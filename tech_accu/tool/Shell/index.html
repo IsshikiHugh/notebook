@@ -1,0 +1,1913 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Shell - Isshiki修's Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#shell" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="Isshiki修&#39;s Notebook" class="md-header__button md-logo" aria-label="Isshiki修's Notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Isshiki修's Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Shell
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        💠 封面
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        📚 技术积累
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../comming/" class="md-tabs__link">
+        🗒 课程笔记
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../comming/" class="md-tabs__link">
+        📝 实践记录
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../comming/" class="md-tabs__link">
+        🚧 施工中
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../link/" class="md-tabs__link">
+        🔗 友链
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Isshiki修&#39;s Notebook" class="md-nav__button md-logo" aria-label="Isshiki修's Notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"/></svg>
+
+    </a>
+    Isshiki修's Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          💠 封面
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="💠 封面" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          💠 封面
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        欢迎！
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          📚 技术积累
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="📚 技术积累" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          📚 技术积累
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          常用工具
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="常用工具" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          常用工具
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Shell
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Shell
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    概述
+  </a>
+  
+    <nav class="md-nav" aria-label="概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    简介
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell-vs-terminal" class="md-nav__link">
+    Shell vs Terminal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bash" class="md-nav__link">
+    以 Bash 为例
+  </a>
+  
+    <nav class="md-nav" aria-label="以 Bash 为例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    准备工作
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    帮助手册
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#echo" class="md-nav__link">
+    打印字符串 | echo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pwd" class="md-nav__link">
+    查看当前路径 | pwd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cd" class="md-nav__link">
+    切换目录 | cd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls" class="md-nav__link">
+    罗列目录下内容 | ls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cat" class="md-nav__link">
+    打印文件内容 | cat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#head-tail" class="md-nav__link">
+    打印文件首尾内容 | head &amp; tail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less" class="md-nav__link">
+    查看文本文件内容 | less
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#touch" class="md-nav__link">
+    修改文件时间属性(创建文件) | touch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkdir" class="md-nav__link">
+    创建文件夹 | mkdir
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mv" class="md-nav__link">
+    移动(重命名) | mv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cp" class="md-nav__link">
+    复制 | cp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rm" class="md-nav__link">
+    删除 | rm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    重定向相关 💡
+  </a>
+  
+    <nav class="md-nav" aria-label="重定向相关 💡">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    标准输出流重定向 | &gt; &gt;&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    标准输入流重定向 | &lt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    标准错误流重定向 | 2&gt; 2&gt;&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    合并 | &lt;&amp; &gt;&amp;
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          🗒 课程笔记
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="🗒 课程笔记" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          🗒 课程笔记
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../comming/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          📝 实践记录
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="📝 实践记录" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          📝 实践记录
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../comming/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          🚧 施工中
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="🚧 施工中" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          🚧 施工中
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../comming/" class="md-nav__link">
+        内容正在编辑中……
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          🔗 友链
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="🔗 友链" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          🔗 友链
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../link/" class="md-nav__link">
+        友链
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    概述
+  </a>
+  
+    <nav class="md-nav" aria-label="概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    简介
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell-vs-terminal" class="md-nav__link">
+    Shell vs Terminal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bash" class="md-nav__link">
+    以 Bash 为例
+  </a>
+  
+    <nav class="md-nav" aria-label="以 Bash 为例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    准备工作
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    帮助手册
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#echo" class="md-nav__link">
+    打印字符串 | echo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pwd" class="md-nav__link">
+    查看当前路径 | pwd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cd" class="md-nav__link">
+    切换目录 | cd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls" class="md-nav__link">
+    罗列目录下内容 | ls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cat" class="md-nav__link">
+    打印文件内容 | cat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#head-tail" class="md-nav__link">
+    打印文件首尾内容 | head &amp; tail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less" class="md-nav__link">
+    查看文本文件内容 | less
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#touch" class="md-nav__link">
+    修改文件时间属性(创建文件) | touch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkdir" class="md-nav__link">
+    创建文件夹 | mkdir
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mv" class="md-nav__link">
+    移动(重命名) | mv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cp" class="md-nav__link">
+    复制 | cp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rm" class="md-nav__link">
+    删除 | rm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    重定向相关 💡
+  </a>
+  
+    <nav class="md-nav" aria-label="重定向相关 💡">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    标准输出流重定向 | &gt; &gt;&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    标准输入流重定向 | &lt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    标准错误流重定向 | 2&gt; 2&gt;&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    合并 | &lt;&amp; &gt;&amp;
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="shell">Shell<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h1>
+<div class="admonition summary">
+<p class="admonition-title">文章目标</p>
+<p>在完成本文学习后，我们期待您对 Shell 能有更具体的认识，并能做到通过 Command Line 实现基础交互并了解如何学习 Shell。除此之外，也可以通过撰写 Shell 脚本来实现一些自动化。</p>
+<p>此外，从 Shell 入门到命令行大师，其中肯定有很长的路要走，我们没法涉及 Shell 的全部知识点，光命令就能讲上很久，所以一定要学会如何利用手册和文档等查询命令的使用方法，本文希望做到的是授人以渔而非授人以鱼。</p>
+<p>此外，我会在文中多次将 Shell 与 C 语言的一些内容相联系，如果您有 C 的基础，那将再好不过。</p>
+</div>
+<h2 id="_1">概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">简介<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>Shell 的中文名称为“壳层”，顾名思义就是“最外层”。Wiki 对其描述为：</p>
+<blockquote>
+<p>It is named a <strong>shell</strong> because it is the outermost layer around the <strong>operating system</strong>.</p>
+</blockquote>
+<p>简单来说，Shell 将读入来自 Keyboard 的内容，并将指令发送给 OS 以调用系统服务。</p>
+<p>在常见的日用操作系统，如 Windows 与 MacOS，你可能尝试过使用 GUI(Graphical User Interface)，即图形用户界面来与你的系统愉快玩耍；与之对应的，Shell 则是一种 CLI(Command Line Interface)，不同于 GUIs 通过点击按钮等操作与系统交互等方式，CLI 要求用户通过命令行来与系统交互。而作为一个合格的程序员，我们接触到的大多数生产场景中，使用 CLI 是一种更加高效的选择，事实上你也很难避免它——因而，我们需要掌握 Shell 的基本使用。</p>
+<p>如今，已经有非常多的 Shell 可以使用，而他们基本上都以 <code>sh</code> 结尾，例如常见的 <code>bash</code> 和 <code>zsh</code> ,再比如许多基于 Alpine 的 Docker Image，内置的 Shell 都是 <code>sh</code>。其他的还有 <code>dash</code> <code>csh</code> <code>ksh</code> 等等。</p>
+<h3 id="shell-vs-terminal">Shell vs Terminal<a class="headerlink" href="#shell-vs-terminal" title="Permanent link">&para;</a></h3>
+<p>在正式开始介绍 Shell 之前，我认为有必要做一些辨析。</p>
+<p>在现代的计算机系统中，想要使用 Shell，你需要借助 Terminal，即终端（更准确的说，是 terminal emulator，不过在本文中我们并不会就此展开）。Terminal 之于 Shell，就好像电话之于通讯服务。</p>
+<p><img alt="" src="1.png" /></p>
+<p>例如，图中打开的这个“窗口”就是一个叫做 iTerm2 的 terminal emulator，而我使用的 <code>fish</code> 则是一种 Shell。</p>
+<p>能与这两个东西进行比较和辨析的东西其实还有很多，但并非本文主题，所以不再展开。</p>
+<h2 id="bash">以 Bash 为例<a class="headerlink" href="#bash" title="Permanent link">&para;</a></h2>
+<p><code>bash</code> 全称 Bourne Again Shell，是如今最常用的 Shell 之一，且大部分 Linux 都会内置 bash，这也避免了更多的环境配置负担，所以在本章种，我们将以 <code>bash</code> 为例，介绍一些 Shell 常用指令和技巧。</p>
+<p>此外，我们接下来提供的大多数论断主要基于 Linux 系统。部分结论在 Windows 等系统中可能并不成立。如果您有兴趣，可以自行查询资料。</p>
+<h3 id="_3">准备工作<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>在开始之前，我希望您确保您本地已有可用的 <code>bash</code> 环境，以便于您能跟着教程边实践边学习。</p>
+<p>在这里，我将提供一种简单的配置 <code>bash</code> 环境的方案：</p>
+<ul>
+<li>如果您是 Linux/MacOS 用户，那么您的系统一般都会自带 Terminal 程序，直接打开并输入 bash 以启用 bash；</li>
+<li>如果您是 Windows 用户，那么您可以选择直接下载 <a href="https://git-scm.com/downloads">Git Bash</a>；</li>
+</ul>
+<p>当然，我们最推荐的还是您可以配置一个 Linux 环境以进行实践和学习。</p>
+<p>当您完成这些工作后，您可能看到类似于如下列举的内容的情况：</p>
+<pre><code class="language-shell"># 也许是这样
+xxx:~$ {你的光标在这里}
+# 或者这样
+[xxx@yyy]~$ {你的光标在这里}
+# 又或者这样
+xxxx yyyy ~
+$ {你的光标在这里}
+# ...
+</code></pre>
+<p>实际情况还有很多种，因为这些“形式”都是可以被设置的。比如这里的 <code>$</code> 被称为 prompt，在本文第一张图片中我就将它设置为了一个 Emoji 图标。而我们发现这里还有一个 <code>~</code> ，它表示的是您的“家目录”。更准确的说，它的含义是您当前所在的位置是您的家目录。关于这一点我们将在接下来展开。</p>
+<p>此外，如果您对 Linux 系统有一定认识，那无疑会帮助您理解本文。</p>
+<p>那么接下来，让我们开始吧！</p>
+<h3 id="_4">帮助手册<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>左思右想，最后我还是把这条指令放到了最前来讲。我们不可能仅仅通过一篇文章就了解命令行的全部知识，所以我觉得把 <code>man</code> 放到最前面来讲是很有意义的。</p>
+<p><code>man</code> 的作用是打开一个 user <strong>man</strong>ual。例如，如果我们在终端中输入 <code>man man</code>，就会得到如下结果，即使用 <code>man</code> 打开了 <code>man</code> 的手册：</p>
+<pre><code>man(1)                                     General Commands Manual                                    man(1)
+
+NAME
+       man - format and display the on-line manual pages
+
+SYNOPSIS
+       man [-acdfFhkKtwW] [--path] [-m system] [-p string] [-C config_file] [-M pathlist] [-P pager] [-B
+       browser] [-H htmlpager] [-S section_list] [section] name ...
+
+DESCRIPTION
+       man formats and displays the on-line manual pages.  If you specify section, man only looks in that
+       section of the manual.  name is normally the name of the manual page, which is typically the name of
+       a command, function, or file.  However, if name contains a slash (/) then man interprets it as a file
+       specification, so that you can do man ./foo.5 or even man /cd/foo/bar.1.gz.
+
+       See below for a description of where man looks for the manual page files.
+
+......
+</code></pre>
+<ul>
+<li>我们可以使用鼠标滚轮/手势翻页/回车等途径可以查看接下来的内容，按下 <code>q</code> 离开手册页面。</li>
+<li>此外，user manual 的内容可能会根据使用的 Shell 不同而不同，甚至在一些 Shell 都不一定有 user manual。</li>
+</ul>
+<p>为了实现抛砖引玉的目的，现在我们仅仅介绍 <code>man</code> 的这些部分，实际上光看 manual 的文本量就能感受到， <code>man</code> 远不止如此，但本文并不打算就此深入。而在这里介绍 <code>man</code> 的目的，一方面是希望大家在学习之后的命令时，可以参考 user manual，事实上本文涉及的命令也并不会介绍其全部用法；另一方面是鼓励大家在遇到为止的指令时，通过手册等途径先查询其行为、用法，再使用它。</p>
+<h3 id="echo">打印字符串 | echo<a class="headerlink" href="#echo" title="Permanent link">&para;</a></h3>
+<p><code>echo</code> 即回响，这个单词非常形象地描述了这个命令的作用，将其接受到的内容“回响”出来。</p>
+<pre><code class="language-shell"># echo 会将它拿到的参数全都当作字符串打印出来，但成对引号并不会
+$ echo &lt;something&gt;
+$ echo &quot;something 1 2 3&quot;
+something 1 2 3
+$ echo something 1 2 3
+something 1 2 3
+
+# 如果你只输入了一个引号，它会等你把他补完再输出
+# 如果想输出引号，需要使用 \&quot; 转义
+$ echo &quot;
+Fine, \&quot;I\&quot; will finish the string.
+&quot;
+Fine, &quot;I&quot; will finish the string.
+
+# echo 支持输出参数，以 $ 开头，在命令行环境下他们指环境变量，在脚本环境下还可以进行一些参数传递
+# 下面的命令输出了当前用户，USER 是一个值为当前用户的用户名的环境变量。
+echo $USER
+isshikih
+</code></pre>
+<h3 id="pwd">查看当前路径 | pwd<a class="headerlink" href="#pwd" title="Permanent link">&para;</a></h3>
+<p>在这里我们想介绍的第二个指令是 <code>pwd</code>，它的效果是输出您当前的位置。</p>
+<pre><code class="language-shell">$ pwd
+# 比如我的环境下，在 ~ 下输出如下
+/Users/isshikih
+# 表示我当前的位置是 /Users/isshikih
+</code></pre>
+<p><strong>一切皆文件</strong>是 Linux 的设计理念，而 Shell 的使用有相当一部分是基于文件体系的。而如何<strong>索引</strong>一个文件呢？我们需要提供这个文件的路径和文件名！例如，您需要去一台 Windows 电脑中找到您上学期的课程作业，它的文件名为 <code>myHomework.pdf</code> ，也许你需要打开D盘中的 Homework 文件夹。那么抽象地来说，这个文件的路径为 <code>D:\Homework\myHomework.pdf</code> （这是在 Windows 上的写法）。这种形式的“位置”被称为<strong>绝对路径</strong>，即我们需要填写文件的完整路径才能找到这个文件。在之后的部分中，我们提到的<code>&lt;filename&gt;&lt;dirname&gt;</code>等都包括了文件的路径。</p>
+<p><strong>👉 事实上，有相当一部分 Shell 语法是围绕着文件展开的。</strong></p>
+<h3 id="cd">切换目录 | cd<a class="headerlink" href="#cd" title="Permanent link">&para;</a></h3>
+<p><code>cd</code> 是 <strong>c</strong>hange <strong>d</strong>irectory 的缩写，它的效果是将您当前的位置转移到目标目录中。它的写法如下：</p>
+<pre><code class="language-shell">cd {target directory}
+
+# eg 1: =========================================
+$ pwd
+/home/username
+
+$ cd /home/username/aaa
+$ pwd
+/home/username/aaa
+
+# eg 2: =========================================
+$ pwd
+/home/username
+
+$ cd ./aaa/bbb
+$ pwd
+/home/username/aaa/bbb
+
+# eg 3: =========================================
+$ pwd
+/home/username
+
+$ cd ./../aaa
+$ pwd
+/home/aaa
+</code></pre>
+<p>接下来对上面 eg 的部分符号做一下解释：</p>
+<ul>
+<li><code>.</code> 表示当前路径；</li>
+<li><code>..</code> 表示上级路径（指上一个） ；</li>
+</ul>
+<p>此外，这里还有一些快捷方式：</p>
+<ul>
+<li>如果只有 <code>cd</code> ，则返回家目录 <code>~</code> （可以发现 eg 4 和 eg 5 等价）；</li>
+<li><code>cd -</code> 返回上一次 <code>cd</code> 之前所在的位置；</li>
+<li><code>cd ~username</code> 切换到目标用户的家目录；</li>
+</ul>
+<h3 id="ls">罗列目录下内容 | ls<a class="headerlink" href="#ls" title="Permanent link">&para;</a></h3>
+<p><code>ls</code> 指令用来查看目标目录下的文件。常用的参数主要有 <code>-l</code> （长格式）和 <code>-a</code> （显示全部）。</p>
+<p>具体写法如下：</p>
+<pre><code class="language-shell"># 假设我们当前在文件夹 my_ 下，文件夹内有两个文件和一个文件夹
+# 文件 .hidden 和文件 file1.md
+# 文件夹 dir1，里面有个文件 file2.md
+
+$ ls
+dir1        file1.md
+
+$ ls -a
+.               ..      .hiden1     dir1        file1.md
+
+$ ls -l
+drwxr-xr-x  2 isshikih  staff  64 10 12 12:15 dir1
+-rw-r--r--  1 isshikih  staff   7 10 12 12:16 file1.md
+
+$ ls -la
+drwxr-xr-x  5 isshikih  staff  160 10 12 12:15 .
+drwxr-xr-x  6 isshikih  staff  192 10 12 12:14 ..
+-rw-r--r--  1 isshikih  staff    0 10 12 12:15 .hiden1
+drwxr-xr-x  2 isshikih  staff   96 10 12 12:15 dir1
+-rw-r--r--  1 isshikih  staff    7 10 12 12:16 file1.md
+
+# 如果后面跟着一个文件夹，则显示目标路径下的内容，否则显示当前路径下的内容。
+$ ls dir1
+file2.md
+</code></pre>
+<ul>
+<li>有时，我们会为 <code>ls -l</code> 设置一个 alias，即 <code>alias ll="ls -l"</code> ，这样，我们就可以更方便的 <code>ll</code> 了。</li>
+<li>其中， <code>l</code> 中的具体格式如下：</li>
+</ul>
+<pre><code class="language-shell">-rw-------   1 me       me            576 Apr 17  2019 weather.txt
+drwxr-xr-x   6 me       me           1024 Oct  9  2019 web_page
+-rw-rw-r--   1 me       me         276480 Feb 11 20:41 web_site.tar
+-rw-------   1 me       me           5743 Dec 16  2018 xmas_file.txt
+
+----------  -------  -------     -------- ------------ -------------
+|          |        |            |         |             |
+|          |        |            |         |
+|          |        |            |         |           文件名
+|          |        |            |         |
+|          |        |            |         +---       修改时间
+|          |        |            |
+|          |        |            +-------------   文件大小(in bytes)
+|          |        |
+|          |        +--------------------------       所属用户组
+|          |
+|          +-----------------------------------       所属用户
+|
++----------------------------------------------       文件权限
+# Edited from https://linuxcommand.org/lc3_lts0030.php
+</code></pre>
+<ul>
+<li>关于这部分具体部分字段的具体解释，请参考相关资料，不属于本文的范畴。</li>
+</ul>
+<h3 id="cat">打印文件内容 | cat<a class="headerlink" href="#cat" title="Permanent link">&para;</a></h3>
+<p><code>cat</code> 指令会连接文件并将内容打印到标准输出流。</p>
+<pre><code class="language-shell"># &lt;filename&gt; 是目标文件的名字。
+$ cat &lt;filename&gt;
+</code></pre>
+<ul>
+<li>而实际上 <code>cat</code> 命令最重要的作用并不是<strong>显示</strong>文件内容，仔细观察描述，它的作用是<strong>打印到标准输出流</strong>，其作用在之后介绍了重定向之后会凸显出来。</li>
+</ul>
+<h3 id="head-tail">打印文件首尾内容 | head &amp; tail<a class="headerlink" href="#head-tail" title="Permanent link">&para;</a></h3>
+<p><code>head</code> 和 <code>tail</code> 语法类似，功能类似，分别为查看目标文件的开头部分的内容和结尾部分的内容。不过由于我们对文本文件除了读写，还有一个叫做“追加”的操作（类比 C 语言中 <code>fopen()</code> 的 <code>‘a’</code> 模式） <code>tail</code> 会持续打印新追加进文件的内容，所以花样稍微比 <code>head</code> 多一点。</p>
+<pre><code class="language-shell"># `head` 和 `tail` 都有默认参数 `-n 10`
+# 也就是，下面两个指令是等价的，它们都会打印目标文件的前 10 行
+$ head &lt;filename&gt;
+$ head -n 10 &lt;filename&gt;
+# 下面这两条指令也是等价的，它们都会打印目标文件的末 10 行
+$ tail &lt;filename&gt;
+$ tail -n 10 &lt;filename&gt;
+
+# 将 10 改成其他数字就可以修改显示的行数，例如下面的指令会打印目标文件的首/末 4 行
+$ head -n 4 &lt;filename&gt;
+$ tail -n 4 &lt;filename&gt;
+
+# 除了行数，你也可以指定打印的字节数，如下面指令会打印目标文件的首/末 20 个字节
+$ head -c 20 &lt;filename&gt;
+$ tail -c 20 &lt;filename&gt;
+</code></pre>
+<pre><code class="language-shell"># `tail` 比 `head` 还要多一些参数，比如 `-f`
+# `-f` 在打印完已有的文件内容后会阻塞，等待目标文件的更新
+# 一旦有内容追加进目标文件，`tail` 就会将它打印出来
+$ tail -f &lt;filename&gt;
+</code></pre>
+<p><center>
+<img alt="" src="2.gif" />
+</center></p>
+<p>注意，这里的 echo 开头的语句是在做追加操作，之后会讲到。</p>
+<p>而至于具体的引用场景，比如有些工具的日志会不断追加到某个日志文件中，这时候就可以用 <code>tail -f</code> 来实时跟踪日志信息。</p>
+<h3 id="less">查看文本文件内容 | less<a class="headerlink" href="#less" title="Permanent link">&para;</a></h3>
+<p><code>less</code> 则是真正用来显示文件内容的指令，它会以文本文件的形式展示文件内容——这意味着你如果强行使用 <code>less</code> 来查看一个二进制文件，则会得到一堆乱码。</p>
+<pre><code class="language-shell"># &lt;textFilename&gt; 为目标文件的名字
+$ less &lt;textFilename&gt;
+</code></pre>
+<p>使用 <code>less</code> 查看文件时，你会发现你打开了一个很像 <code>man</code> 的界面（相信你已经注意到了这个说法有点本末颠倒），那实际上浏览的方式也是类似的，这里再多介绍一些在浏览文件的时候可能用到的技巧：</p>
+<ul>
+<li>鼠标滚轮 / 触控板手势：翻页浏览；</li>
+<li><code>[space]</code> / <code>PageDown</code> ：往后翻一页；</li>
+<li><code>b</code> / <code>PageUp</code> ：往前翻一页；</li>
+<li><code>shift</code> + <code>g</code> （输入 <code>G</code>）：跳转的文末；</li>
+<li>1, <code>shift</code> + <code>g</code> （输入 <code>1G</code>）：跳转到文首；</li>
+<li><code>/{something}</code> , <code>Enter</code> ：搜索 <code>{something}</code> ，类似于常见软件的 <code>Ctrl</code> + <code>f</code> ；</li>
+<li><code>n</code> ：重复上一次搜索操作，适合在搜索内容有多个的时候，跳转到下一个搜索结果；</li>
+<li><code>h</code> ：帮助手册；</li>
+<li><code>q</code> ：退出；</li>
+</ul>
+<h3 id="touch">修改文件时间属性(创建文件) | touch<a class="headerlink" href="#touch" title="Permanent link">&para;</a></h3>
+<p><code>touch</code>实际上是用来修改文件和目录的时间属性的，但是由于它具有“如果文件不存在则创建一个”的特性，所以也常常用来创建一个新档案。</p>
+<pre><code class="language-shell">$ ls -l
+total 0
+
+# 如果当前目录下没有叫做 &lt;filename&gt; 的文件，则创建一个 &lt;filename&gt;
+$ touch file
+$ ls -l
+total 0
+-rw-r--r--  1 isshikih  staff  0 10 25 10:07 file
+# 其中文件的时间为系统的当前时间
+
+# 如果此时再次 touch &lt;filename&gt;，则会更新其时间为当前系统时间
+$ touch file
+$ ls -l
+total 0
+-rw-r--r--  1 isshikih  staff  0 10 25 10:10 file
+</code></pre>
+<h3 id="mkdir">创建文件夹 | mkdir<a class="headerlink" href="#mkdir" title="Permanent link">&para;</a></h3>
+<p><code>mkdir</code>是 make directory 的缩写，也就是创建一个“文件夹”。</p>
+<pre><code class="language-shell"># &lt;dirname&gt; 可以是一个复杂路径下的目录，但是一定要求其前置目录都存在
+$ mkdir &lt;dirname&gt;
+$ ls -l
+total 0
+$ mkdir dir1/dir2
+mkdir: dir1: No such file or directory
+# 说明目标目录 dir2 的前置路径 ./dir1 缺失
+
+# 我们可以依次创建这些目录
+$ mkdir dir1 dir1/dir2
+$ tree      # 该指令会显示当前的文件结构
+.
+├── dir1
+│   ├── dir2
+│   │   └── file2
+│   └── file1
+└── newDir
+    ├── dir2
+    │   └── file2
+    └── file1
+
+4 directories, 4 files
+
+# 或者使用 -p 参数，它允许创建嵌套目录，即如果前置目录不存在它会创建一个
+$ mkdir -p dir1/dir2
+$ tree      # 该指令会显示当前的文件结构
+.
+├── dir1
+│   ├── dir2
+│   │   └── file2
+│   └── file1
+└── newDir
+    ├── dir2
+    │   └── file2
+    └── file1
+
+4 directories, 4 files
+</code></pre>
+<h3 id="mv">移动(重命名) | mv<a class="headerlink" href="#mv" title="Permanent link">&para;</a></h3>
+<p><code>mv</code>即 move，含义很明显，即改变文件或目录的位置。不过由于“位置”这件事，实际上也可以包含文件本身的名字，所以也可以用来做重命名，实际上就是修改目标位置到同一个路径下的另外一个名字。</p>
+<pre><code class="language-shell"># 注意，我们在这一节临时把 &lt;path&gt; 从 &lt;filename&gt; 和 &lt;dirname&gt; 中拆出来
+# 该指令会将 &lt;target1&gt; 移动到 &lt;path2&gt; 并改名为 &lt;target2&gt;，当然允许同名
+$ mv &lt;path1&gt;/&lt;target1&gt; &lt;path2&gt;/&lt;target2&gt;
+
+# 省略 &lt;target2&gt;，则会移动文件位置但不修改文件名，即下面两个指令等价
+$ mv &lt;path1&gt;/&lt;target1&gt; &lt;path2&gt;
+$ mv &lt;path1&gt;/&lt;target1&gt; &lt;path2&gt;/&lt;target1&gt;
+
+# 移动到同一目录，即实现重命名，当然 &lt;path1&gt;/ 可以省略，即此时 &lt;path1&gt; 为 .
+$ mv &lt;path1&gt;/&lt;target1&gt; &lt;path1&gt;/&lt;target2&gt;
+</code></pre>
+<h3 id="cp">复制 | cp<a class="headerlink" href="#cp" title="Permanent link">&para;</a></h3>
+<p><code>cp</code>即 copy，用来复制文件或目录，基本语法和<code>mv</code>类似，我们再多介绍一个<code>-r</code>参数。</p>
+<pre><code class="language-shell"># 该指令会复制一个文件 &lt;filename&gt; 到 &lt;path&gt; 下
+$ cp &lt;filename&gt; &lt;path&gt;
+
+# cp 无法复制文件夹
+$ cp &lt;dir&gt; &lt;path&gt;
+cp: &lt;dir&gt; is a directory (not copied).
+# 但是使用 -r 参数可以复制 &lt;path1&gt; 下所有内容到 &lt;path2&gt; 下
+$ cp -r &lt;path1&gt; &lt;path2&gt;
+$ cp -r dir1 newDir
+$ tree      # 该指令会显示当前的文件结构
+.
+├── dir1
+│   ├── dir2
+│   │   └── file2
+│   └── file1
+└── newDir
+    ├── dir2
+    │   └── file2
+    └── file1
+
+4 directories, 4 files
+</code></pre>
+<h3 id="rm">删除 | rm<a class="headerlink" href="#rm" title="Permanent link">&para;</a></h3>
+<p>把<code>rm</code>放在最后讲是有原因的，或许你听说过 <code>rm / -rf</code> 这条指令，却不知道它的含义，那么看完这一小节你就知道这个指令有多恐怖了（千万不要跑这条指令）。</p>
+<p>首先我们需要知道，Linux 下<code>rm</code>指令并不存在“垃圾箱”这个机制，即用<code>rm</code>删掉的东西是没法通过正常手段复原的，而上面那条指令的意思就是强制递归删除系统根目录下所有内容，也就是<strong>啥都删光了</strong>。</p>
+<p>所以，一般我们都会建议使用<code>alias</code>保护<code>rm</code>指令（我写过<code>fish</code>的<code>rmalias</code>保护流程，可以参考<a href="https://www.yuque.com/isshikixiu/codes/bokmrt">这篇文章</a>）。</p>
+<p><code>rm</code>即 remove，顾名思义就是用来删除东西的，这是个非常危险的指令。常用的参数有<code>-r</code>和<code>-f</code>，分别表示递归删除和强制删除；此外，我们还将介绍一个<code>-i</code>参数。</p>
+<pre><code class="language-shell"># 删除一个文件
+$ rm &lt;filename&gt;
+
+# 删除 &lt;dirname&gt; 下所有的一级文件
+$ rm &lt;dirname&gt;/*
+
+$ tree
+.
+├── dir2
+│   └── file3
+├── file1
+└── file2
+
+1 directory, 3 files
+$ rm ./*
+rm: ./dir2: is a directory
+$ tree
+.
+└── dir2
+    └── file3
+
+1 directory, 1 file
+# 可以发现，中途报错说 dir2 是个目录并且没有删掉，实际上，如果 dir2 是个空目录，那它是会被删掉的
+# 而如果要真正删除这个目录下所有的内容，就需要我们“递归”删除，即使用 -r
+
+# 递归删除 &lt;dirname&gt; 下所有内容
+$ rm -r &lt;dirname&gt;/*
+
+# 递归删除 &lt;dirname&gt;
+$ rm -r &lt;dirname&gt;
+
+# 危险：强制递归删除 &lt;dirname&gt;
+$ rm -rf &lt;dirname&gt;
+
+# 推荐：递归删除时逐一确认
+$ rm -ri dir2
+examine files in directory dir2/? y     # 这里输入的 y 表示确认，否则都不会执行删除
+remove dir2//file3? y                                   # 这里输入的 y 表示确认，否则都不会执行删除
+remove dir2/? y                                             # 这里输入的 y 表示确认，否则都不会执行删除
+</code></pre>
+<h2 id="_5">重定向相关 💡<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>可以说这是 Shell 中最有意思的知识点之一了。重定向，顾名思义就是重新定向，更准确的来说是给数据流重新定向。首先，我们来看看这张图，它描述了命令运行时的数据交互。</p>
+<pre><code class="language-mermaid">flowchart TD;
+input[&quot;file, keyboard, etc&quot;] 
+command
+output[&quot;file, screen, etc&quot;]
+error[&quot;file, screen, etc&quot;]
+
+input --&gt;|&quot;Standard Input (stdin)&quot;| command
+command --&gt;|&quot;Standard Output (stdout)&quot;| output
+command --&gt;|&quot;Standard Error (stderr)&quot;| error
+</code></pre>
+<p>简单的描述一下，命令从标准输入流 <code>stdin</code> 中读取输入数据，处理过程中或者是处理结束后，会向标准输出流 <code>stdout</code> 和标准错误流 <code>stderr</code> 中写入数据，一般来说 <code>stdout</code> 承载的是正常的输出数据，而 <code>stderr</code> 承载的是报错等信息。</p>
+<p>而所谓的重定向，正是指重定向这三个流，而且更多的指的是重定向 <code>stdin</code> 和 <code>stdout</code>。</p>
+<p>而在 Shell 中，我们可以通过他们的代码来指代他们，具体内容本文不会过多涉及，如果想要深入了解可以仔细看看“合并”这一节的内容。</p>
+<table>
+<thead>
+<tr>
+<th>Stream:</th>
+<th>stdin</th>
+<th>stdout</th>
+<th>stderr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code:</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">标准输出流重定向 | &gt; &gt;&gt;<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>基本上所有语言的教程中都会先介绍如何输出 ”Hello World!“（当然他们也可能更想和别人打招呼）。总而言之，输出对一个命令、一个程序是至关重要的。但是你会发现，这些指令都只是将内容打印到你的终端里，即 <code>stdout</code> 里，只不过一般被送进 <code>stdout</code> 的东西会被打印在 screen 上。</p>
+<p>但是现在我们想要它被写入到一个叫 <code>chat.txt</code> 的文件里，你当然可以使用 <code>fopen()</code> 之类的东西来实现，但是现在我们想用 Shell 来实现这个效果。</p>
+<p>我们再次回忆整个过程中数据的流动：程序中的数据 → <code>stdout</code> → screen，而重定向做的事情就是改变 <code>stdout</code> → screen 这个步骤。</p>
+<pre><code class="language-shell"># &quot;command&quot; 的输出会被覆写进 &quot;file&quot;
+$ command &gt; file
+
+# 下面这条指令就实现了将 &quot;Hello World!&quot; 写入了 chat.txt
+$ echo &quot;Hello World!&quot; &gt; chat.txt
+$ cat chat.txt
+Hello World!
+
+# &quot;command&quot; 的输出会被追加进 &quot;file&quot;
+$ command &gt;&gt; file
+
+# 下面这条指令就实现了将 &quot;Hello World!&quot; 追加进 chat.txt
+$ echo &quot;Hello Human!&quot; &gt;&gt; chat.txt
+$ cat chat.txt
+Hello World!
+Hello Human!
+
+# 下面这条指令实现了将当前目录下的文件/文件夹列表写入 &quot;index.txt&quot;
+$ ls -al &gt; index.txt
+</code></pre>
+<p>诶等等，上面怎么突然出现了“追加”这个词？别急。让我们回顾一下 <code>fopen()</code> 。如果需要创建一个可写文件，<code>fopen()</code> 的模式参数一般是 <code>w</code> ，或者是 <code>a</code>。他们分别代表 write 和 append，即覆写和追加。前者将目标文件的内容全部覆盖，写入新的内容，即相当于清空目标文件然后写入内容；后者是在目标文件的尾部开始写入新内容，旧的内容仍然保留。所以上面的代码会出现 “Hello Human!” 被追加在 “Hello World!” 后面的情况。</p>
+<p>现在，如果你想让你的 <code>a.exe</code> 输出的东西被写入 <code>out.txt</code> 中，也可以尝试这样运行它：</p>
+<pre><code class="language-shell">$ a.exe &gt; out.txt
+</code></pre>
+<h3 id="_7">标准输入流重定向 | &lt;<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>与输出相对应，如果我们想从文件中读取数据而非从 Keyboard 写入的缓冲区读取内容，而是从某个文件，我们也可以使用 <code>&lt;</code> 来重定向输入。</p>
+<pre><code class="language-c">// 假设 a.exe 的源码是这样的
+#include &lt;stdio.h&gt;
+int main(){
+        char str[1024];
+        scanf(&quot;%s&quot;, str);
+        printf(&quot;Hello %s!&quot;, str);
+}
+</code></pre>
+<pre><code class="language-c">// 假设 in.txt 中的内容为如下
+isshikih
+</code></pre>
+<pre><code class="language-shell"># &quot;file&quot; 会被当作 &quot;command&quot; 的输入参数
+$ command &lt; file
+
+# &quot;a.exe&quot; 会读入 &quot;chat.txt&quot; 的内容作为输入
+$ a.exe &lt; in.txt
+Hello isshikh!
+
+# 综合起来，我们还可以这样
+$ a.exe &lt; in.txt &gt; out.txt
+$ cat out.txt
+Hello isshikih! 
+</code></pre>
+<h3 id="2-2">标准错误流重定向 | 2&gt; 2&gt;&gt;<a class="headerlink" href="#2-2" title="Permanent link">&para;</a></h3>
+<p><code>stderr</code> 的重定向基本上和 <code>stdout</code> 是一样的。</p>
+<pre><code class="language-shell"># &quot;command&quot; 的错误流会被覆写进 &quot;file&quot;
+$ command 2&gt; file
+
+# &quot;command&quot; 的错误流会被追加进 &quot;file&quot;
+$ command &gt;&gt; file
+</code></pre>
+<p>但对于 <code>stderr</code> ，我们使用重定向的目的也可能是为了让他不要在屏幕上显示出来，即将它重定向到别的地方去。</p>
+<p>这里需要介绍一个特殊的“文件”， <code>/dev/null</code> ——任何写入到它的内容都会被丢弃。也就是说，只要我们将 <code>stderr</code> 重定向到 <code>/dev/null</code> ，就能实现类似于“忽略错误流”的效果。 </p>
+<pre><code class="language-shell"># &quot;command&quot; 的错误信息都会被丢弃
+$ command 2&gt; /dev/null
+</code></pre>
+<h3 id="_8">合并 | &lt;&amp; &gt;&amp;<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>此外，还有 <code>&lt;&amp;</code> 和 <code>&gt;&amp;</code> 这两个符号，由于篇幅有限，我不打算展开讲这件事。这里引用这一批回答：</p>
+<ul>
+<li><a href="https://unix.stackexchange.com/questions/84620/what-does-sh-a-sh-0-0-mean">shell - What does “sh a.sh &lt;&amp;0 &gt;&amp;0” mean? - Unix &amp; Linux Stack Exchange</a></li>
+</ul>
+<blockquote>
+<p><code>n&gt;&amp;p</code> and <code>n&lt;&amp;p</code> are the same operator and are for duplicating the file descriptor (fd) <code>p</code> onto the file descriptor <code>n</code>. Or said otherwise, they redirect the file descriptor <code>n</code> to whatever resource fd <code>p</code> is redirected to.</p>
+<p>The <code>&lt;</code> and <code>&gt;</code> are not used to determine what direction (reading or writing) the redirected file descriptor will be used. <code>n</code> will get the same direction as <code>p</code>. That is, if <code>p</code> was open for writing, so will be <code>n</code> even if the <code>n&lt;&amp;p</code> operator is used.</p>
+<p>The only difference between the two operators is when <code>n</code> is not specified. <code>&gt;&amp;p</code> redirects stdout (is like <code>1&gt;&amp;p</code> or <code>1&lt;&amp;p</code>) and <code>&lt;&amp;p</code> redirects stdin (is like <code>0&lt;&amp;p</code> or <code>0&gt;&amp;p</code>).</p>
+<p>So <code>&lt;&amp;0</code> is like <code>0&lt;&amp;0</code>, so redirects stdin to whatever resource stdin was redirected to, so does nothing useful, it's usually a no-op and doesn't make much sense.</p>
+<p>But not always a no-op, not in every shell. When job control is disabled, POSIX requires stdin of command in the background to be redirected to <code>/dev/null</code> or an equivalent file. In Bash (tested in 4.4.12) <code>&lt;&amp;0</code> overrides this. Compare <code>(ls -l /proc/self/fd/0 &amp;)</code> and <code>(&lt;&amp;0 ls -l /proc/self/fd/0 &amp;)</code>. In some cases this is useful.</p>
+<p><code>&gt;&amp;0</code> duplicates the fd 0 onto the fd 1. Because the fd 1 (stdout), is by convention only used for writing, that <code>&gt;&amp;0</code> only makes sense if fd 0 was open in read+write mode.</p>
+<p>That would be the case in cases where fd 0 points to the terminal device, because terminal emulators or <code>getty</code> would generally open the terminal device in read+write mode and assign fds 0, 1 and 2 to it.</p>
+<p>So maybe whoever wrote that wanted to redirect stdout to the terminal assuming that stdin was pointing to it.</p>
+<p>One place where <code>n&gt;&amp;n</code> makes sense is with zsh and its <code>mult_IOs</code> feature. In <code>zsh</code>:</p>
+<p>```shell
+some-cmd &gt;&amp;1 &gt; some-file</p>
+<h1 id="that-is-some-cmd-11-1-some-file">that is: some-cmd 1&gt;&amp;1 1&gt; some-file<a class="headerlink" href="#that-is-some-cmd-11-1-some-file" title="Permanent link">&para;</a></h1>
+<p>```</p>
+<p>Redirects the standard output of <code>some-cmd</code> to both whatever stdout was before (&amp;1) and <code>some-file</code>, as if you had written:</p>
+<p><code>shell
+some-cmd | tee some-file</code></p>
+<p>While</p>
+<p>```shell
+some-cmd &lt;&amp;0 &lt; some-file</p>
+<h1 id="that-is-some-cmd-00-0-some-file">that is: some-cmd 0&lt;&amp;0 0&lt; some-file<a class="headerlink" href="#that-is-some-cmd-00-0-some-file" title="Permanent link">&para;</a></h1>
+<p>```</p>
+<p>would feed first the original stdin and then <code>some-file</code> as input to <code>some-cmd</code> as if you had written:</p>
+<p><code>shell
+cat - some-file | some-cmd</code></p>
+<p>But in <code>cmd &lt;&amp;0 &gt;&amp;0</code>, fd 0 is redirected only once, so that does not apply.</p>
+<p><code>n&gt;&amp;n</code> can also have an interesting side effect in some shells (<code>ksh</code>, <code>zsh</code>, not <code>dash</code>, <code>bash</code> nor <code>yash</code>) in that it triggers an error and gives up running the command if the file descriptor <code>n</code> is not open. So, in those shells,</p>
+<p><code>shell
+cmd 0&lt;&amp;0</code></p>
+<p>would avoid running <code>cmd</code> in the pathological condition where <code>stdin</code> is closed:</p>
+<p>```shell
+$ ksh -c 'cat file - &lt;&amp;0' &lt;&amp;-
+ksh: 0: cannot open [Bad file descriptor]
+$ mksh -c 'cat file - &lt;&amp;0' &lt;&amp;-
+mksh: &lt;&amp;0 : bad file descriptor
+$ zsh -c 'cat file - &lt;&amp;0' &lt;&amp;-
+zsh:1: 0: bad file descriptor</p>
+<p>$ bash -c 'cat file - &lt;&amp;0' &lt;&amp;-
+contents of file
+cat: -: Bad file descriptor
+cat: closing standard input: Bad file descriptor
+```</p>
+<ul>
+<li><strong>Copy from the top answer from: <a href="https://unix.stackexchange.com/questions/84620/what-does-sh-a-sh-0-0-mean">https://unix.stackexchange.com/questions/84620/what-does-sh-a-sh-0-0-mean</a></strong></li>
+</ul>
+</blockquote>
+<h3 id="_9">管道符 | |<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>前面讲了如何将输入输出重定向至<strong>文件</strong>，即数据的流动是 <strong>从命令到文件</strong> 或是 <strong>从文件到命令</strong>。而管道符 <code>|</code> 则实现了将数据的流动定向为 <strong>从命令到命令</strong>。</p>
+<pre><code class="language-shell"># &quot;command_1&quot; 的输出会作为 &quot;command_2&quot; 的输入
+$ command_1 | command_2
+
+# 使用 less 来查看当前目录下的文件/文件夹列表
+$ ls -al | less
+
+# 一个常用的用法是搭 grep 在日志中找到你想要的一行
+# 比如下面的命令会在 xxx.log 文件中找到带有关键词 &quot;lean_shell&quot; 的若干行
+$ cat xxx.log | grep &quot;lean_shell&quot;
+Let us learn_shell together!
+Learn_shell means learn_shell and learn_shell!
+$ cat xxx.log
+Command line is powerful!
+Let us learn_shell together!
+Have you ever see this?
+Learn_shell means learn_shell and learn_shell!
+
+# 又或者计算当前目录下有多少文件夹和文件
+$ ls -a | wc -w
+5
+$ ls -a
+.   ..  x   xx  xxx.log
+
+# 再比如，统计当前目录下各个文件夹的大小，并输出从大到小的 10 项
+$ du | sort -nr | head
+# 找出当前目录下（递归）所有叫做 &quot;xxx&quot; 的文件并删除
+$ find . -name &quot;xxx&quot;  | xargs rm -f
+</code></pre>
+<h3 id="_10">筛选器<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>可以发现，重定向的功能非常强大。同时，这里也有很多筛选器供你选择，他们经常搭配管道符使用，以辅助管道符进行一些更复杂的工作。</p>
+<p><img alt="Source: https://linuxcommand.org/lc3_lts0070.php" src="3.png" /></p>
+<p>Source: <a href="https://linuxcommand.org/lc3_lts0070.php">https://linuxcommand.org/lc3_lts0070.php</a></p>
+<h2 id="shell_1">脚本 Shell<a class="headerlink" href="#shell_1" title="Permanent link">&para;</a></h2>
+<p>简单来说，Shell 脚本可以看作一条条 Shell 指令的集合，我们在运行 Shell 脚本时，Shell 脚本中的指令按照特定顺序一行一行的被执行下来。</p>
+<p>Shell 脚本一般是以 <code>.sh</code> 为后缀的纯文本文件，而执行 Shell 脚本的方法大致有三种：</p>
+<ul>
+<li><code>./script.sh</code> （需要脚本具有可执行权限）</li>
+<li><code>source script.sh</code></li>
+<li><code>bash script.sh</code> / <code>sh script.sh</code> / ...</li>
+</ul>
+<p>他们的区别主要如下：</p>
+<ul>
+<li>使用 <code>bash script.sh</code> / <code>sh script.sh</code> / ... 的方式执行脚本，主进程会休眠，并开始一个新进程来执行脚本内容；</li>
+<li>使用 <code>source script.sh</code> 的方式执行脚本，脚本内容会在主进程进行，这也是为什么我们在更新完 <code>.bashrc</code> 这种文件以后会使用 <code>source</code> 来执行它以求效果马上被加载出来；</li>
+</ul>
+<h3 id="-">流程控制 - 条件语句<a class="headerlink" href="#-" title="Permanent link">&para;</a></h3>
+<pre><code class="language-shell"># 条件分支语句
+if condition1
+then
+    commands
+elif condition2
+then
+        commands 
+else
+        commands
+fi
+</code></pre>
+<pre><code class="language-shell"># 当 $var 为 &quot;A&quot; 时执行第一块，当 $var 为 &quot;B&quot; 时执行第二块，*) 即其他情况
+case $var in 
+    &quot;A&quot;)
+        commands
+    ;;
+    &quot;B&quot;)
+        commands
+    ;; 
+    *)
+        commands
+    ;;
+esac
+</code></pre>
+<h3 id="-_1">流程控制 - 循环语句<a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h3>
+<pre><code class="language-shell"># 依次枚举若干 item，var 表示正在枚举的内容
+for var in item1 item2 ... itemN
+do
+    commands
+done
+</code></pre>
+<pre><code class="language-shell"># 运行到 condition 为假时结束
+while condition
+do
+    commands
+done
+</code></pre>
+<pre><code class="language-shell"># 运行到 condition 为真时结束
+until condition
+do
+    commands
+done
+</code></pre>
+<h3 id="-_2">流程控制 - 函数<a class="headerlink" href="#-_2" title="Permanent link">&para;</a></h3>
+<pre><code class="language-shell"># 定义了一个叫做 foo 的函数，function 可以不写
+function foo(){
+      commands
+}
+</code></pre>
+<h3 id="_11">参数传递<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>对于函数或命令可以用 <code>$n</code> 来获取第 n 个参数。但当 n 不止一位数时，可以使用 <code>${n}</code> 的方式来获取第 n 个参数。</p>
+<ul>
+<li>假设 <code>script.sh</code> 的内容如下</li>
+</ul>
+<pre><code class="language-shell">#! /bin/bash
+echo $1
+echo $2
+echo $3
+echo $4
+echo $5
+echo $6
+echo $7
+echo $8
+echo $9
+echo $10
+echo ${10}
+</code></pre>
+<ul>
+<li>则如下运行结果如下：</li>
+</ul>
+<pre><code class="language-shell">$ ./foo.sh a b c d e f g h i j
+a
+b
+c
+d
+e
+f
+g
+h
+i
+a0
+j
+</code></pre>
+<ul>
+<li>假设 <code>script.sh</code> 的内容如下</li>
+</ul>
+<pre><code class="language-shell">#! /bin/bash
+function foo(){
+        echo $1
+        echo $2
+        echo $3
+        echo $4
+        echo $5
+        echo $6
+        echo $7
+        echo $8
+        echo $9
+        echo $10
+        echo ${10}
+}
+
+foo a b c d e f g h i j
+</code></pre>
+<ul>
+<li>则如下运行结果如下：</li>
+</ul>
+<pre><code class="language-shell">$ ./script.sh
+a
+b
+c
+d
+e
+f
+g
+h
+i
+a0
+j
+</code></pre>
+<h3 id="_12">将命令结果作为参数列表<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>回忆循环语句的结构，我们需要写出枚举的每一个项目。显然，在大量枚举目标的情况下，手写出全部的枚举可能不太现实，所以我们可能会想要使用文件值或是命令的输出来实现。这个时候，我们可以用 ``` 把把命令给括起来。</p>
+<ul>
+<li>假设 <code>file</code> 的内容如下</li>
+</ul>
+<pre><code class="language-shell">A
+B
+C
+</code></pre>
+<ul>
+<li>执行下列语句</li>
+</ul>
+<pre><code class="language-shell">for var in `cat file`
+do
+    echo - var 
+done
+</code></pre>
+<ul>
+<li>结果为</li>
+</ul>
+<pre><code class="language-shell">- A
+- B
+- C
+</code></pre>
+<h3 id="shell_2">指定执行脚本所使用的 Shell<a class="headerlink" href="#shell_2" title="Permanent link">&para;</a></h3>
+<p>可以发现，在前面给出的若干脚本样例中，我们的第一行都有一行奇怪的注释：</p>
+<pre><code class="language-shell">#! /bin/bash
+</code></pre>
+<p>这句话的意思是，指定该脚本默认使用 <code>/bin/bash</code> 来执行。这里需要使用绝对路径来索引 Shell 的可执行文件。</p>
+<h3 id="_13">一个模板<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>这里再贴一个我自己写 Shell 脚本的时候会采用的模板。</p>
+<pre><code class="language-shell">#! /bin/bash
+
+# get current direction
+curDir=`pwd`
+# get shell direction
+workDir=$(cd &quot;$(dirname &quot;$0&quot;)&quot;;pwd)
+
+cd $workDir
+
+# Write your script here.
+
+cd $curDir
+</code></pre>
+<h2 id="_14">其他<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p><img alt="命令行常见快捷键，Source: https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line" src="img/Shell_4.png" /></p>
+<p>命令行常见快捷键，Source: <a href="https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line">https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line</a></p>
+<h2 id="_15">相关资料<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Shell_(computing)">Shell (computing) - Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Terminal_emulator">Terminal emulator - Wikipedia</a></li>
+<li><a href="https://datacarpentry.org/shell-genomics/01-introduction/">Introducing the Shell – Introduction to the Command Line for Genomics (datacarpentry.org)</a></li>
+<li><a href="https://linuxcommand.org/lc3_learning_the_shell.php">LinuxCommand.org: Learning the shell.</a></li>
+<li><a href="https://missing-semester-cn.github.io/2020/course-shell/">课程概览与 shell · the missing semester of your cs education (missing-semester-cn.github.io)</a></li>
+<li><a href="https://www.geeksforgeeks.org/man-command-in-linux-with-examples/">man command in Linux with Examples - GeeksforGeeks</a></li>
+<li><a href="https://lym.readthedocs.io/en/latest/startingcommands.html">Shell commands — Linux command line for you and me 0.1 documentation (lym.readthedocs.io)</a></li>
+</ul>
+<h2 id="_16">相关知识点<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Linux</li>
+<li>vi / vim</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      
+        
+        <a href="../../.." class="md-footer__link md-footer__link--prev" aria-label="上一页: 欢迎！" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              欢迎！
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../../comming/" class="md-footer__link md-footer__link--next" aria-label="下一页: None" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              None
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.top", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+    
+  </body>
+</html>
