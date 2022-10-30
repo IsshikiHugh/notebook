@@ -1,0 +1,46 @@
+site_name: Isshiki修's Notebook
+
+theme: 
+  name: material
+  language: zh
+  icon: 
+    logo: material/notebook-outline
+  palette:
+    scheme: slate
+    primary: black
+    accent: blue
+  features:
+    - content.code.annotate
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    # - navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.share
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+
+nav:
+  - 💠 封面: 
+    - index.md
+  - 📚 技术积累:
+    - 常用工具:
+      - tech_accu/tool/Shell.md
+  - 🗒 课程笔记:
+    - comming.md
+  - 📝 实践记录:
+    - comming.md 
+  - 🚧 施工中:
+    - comming.md
+  - 🔗 友链:
+    - link.md
+   
+      
