@@ -28,7 +28,7 @@ Shell 的中文名称为“壳层”，顾名思义就是“最外层”。Wiki 
 
 在现代的计算机系统中，想要使用 Shell，你需要借助 Terminal，即终端（更准确的说，是 terminal emulator，不过在本文中我们并不会就此展开）。Terminal 之于 Shell，就好像电话之于通讯服务。
 
-![](Shell/1.png)
+![](1.png)
 
 例如，图中打开的这个“窗口”就是一个叫做 iTerm2 的 terminal emulator，而我使用的 `fish` 则是一种 Shell。
 
@@ -74,7 +74,7 @@ $ {你的光标在这里}
 
 左思右想，最后我还是把这条指令放到了最前来讲。我们不可能仅仅通过一篇文章就了解命令行的全部知识，所以我觉得把 `man` 放到最前面来讲是很有意义的。
 
-`man` 的作用是打开一个 user **man**ual。例如，如果我们在终端中输入 `man man`，就会得到如下结果，即使用 `man` 打开了 `man` 的手册：
+`man` 的作用是打开一个 user manual。例如，如果我们在终端中输入 `man man`，就会得到如下结果，即使用 `man` 打开了 `man` 的手册：
 
 ```
 man(1)                                     General Commands Manual                                    man(1)
@@ -138,13 +138,13 @@ $ pwd
 # 表示我当前的位置是 /Users/isshikih
 ```
 
-**一切皆文件**是 Linux 的设计理念，而 Shell 的使用有相当一部分是基于文件体系的。而如何**索引**一个文件呢？我们需要提供这个文件的路径和文件名！例如，您需要去一台 Windows 电脑中找到您上学期的课程作业，它的文件名为 `myHomework.pdf` ，也许你需要打开D盘中的 Homework 文件夹。那么抽象地来说，这个文件的路径为 `D:\Homework\myHomework.pdf` （这是在 Windows 上的写法）。这种形式的“位置”被称为**绝对路径**，即我们需要填写文件的完整路径才能找到这个文件。在之后的部分中，我们提到的`<filename><dirname>`等都包括了文件的路径。
+**一切皆文件** 是 Linux 的设计理念，而 Shell 的使用有相当一部分是基于文件体系的。而如何 **索引** 一个文件呢？我们需要提供这个文件的路径和文件名！例如，您需要去一台 Windows 电脑中找到您上学期的课程作业，它的文件名为 `myHomework.pdf` ，也许你需要打开D盘中的 Homework 文件夹。那么抽象地来说，这个文件的路径为 `D:\Homework\myHomework.pdf` （这是在 Windows 上的写法）。这种形式的“位置”被称为 **绝对路径**，即我们需要填写文件的完整路径才能找到这个文件。在之后的部分中，我们提到的`<filename><dirname>`等都包括了文件的路径。
 
 **👉 事实上，有相当一部分 Shell 语法是围绕着文件展开的。**
 
 ### 切换目录 | cd
 
-`cd` 是 **c**hange **d**irectory 的缩写，它的效果是将您当前的位置转移到目标目录中。它的写法如下：
+`cd` 是 change directory 的缩写，它的效果是将您当前的位置转移到目标目录中。它的写法如下：
 
 ```shell
 cd {target directory}
@@ -255,7 +255,7 @@ drwxr-xr-x   6 me       me           1024 Oct  9  2019 web_page
 $ cat <filename>
 ```
 
-- 而实际上 `cat` 命令最重要的作用并不是**显示**文件内容，仔细观察描述，它的作用是**打印到标准输出流**，其作用在之后介绍了重定向之后会凸显出来。
+- 而实际上 `cat` 命令最重要的作用并不是 **显示** 文件内容，仔细观察描述，它的作用是 **打印到标准输出流**，其作用在之后介绍了重定向之后会凸显出来。
 
 ### 打印文件首尾内容 | head & tail
 
@@ -286,7 +286,7 @@ $ tail -c 20 <filename>
 $ tail -f <filename>
 ```
 <center>
-![](Shell/2.gif)
+![](2.gif)
 </center>
 
 注意，这里的 echo 开头的语句是在做追加操作，之后会讲到。
@@ -429,7 +429,7 @@ $ tree   	# 该指令会显示当前的文件结构
 
 把`rm`放在最后讲是有原因的，或许你听说过 `rm / -rf` 这条指令，却不知道它的含义，那么看完这一小节你就知道这个指令有多恐怖了（千万不要跑这条指令）。
 
-首先我们需要知道，Linux 下`rm`指令并不存在“垃圾箱”这个机制，即用`rm`删掉的东西是没法通过正常手段复原的，而上面那条指令的意思就是强制递归删除系统根目录下所有内容，也就是**啥都删光了**。
+首先我们需要知道，Linux 下`rm`指令并不存在“垃圾箱”这个机制，即用`rm`删掉的东西是没法通过正常手段复原的，而上面那条指令的意思就是强制递归删除系统根目录下所有内容，也就是 **啥都删光了**。
 
 所以，一般我们都会建议使用`alias`保护`rm`指令（我写过`fish`的`rmalias`保护流程，可以参考[这篇文章](https://www.yuque.com/isshikixiu/codes/bokmrt)）。
 
@@ -673,7 +673,7 @@ $ command 2> /dev/null
 
 ### 管道符 | |
 
-前面讲了如何将输入输出重定向至**文件**，即数据的流动是 **从命令到文件** 或是 **从文件到命令**。而管道符 `|` 则实现了将数据的流动定向为 **从命令到命令**。
+前面讲了如何将输入输出重定向至 **文件**，即数据的流动是 **从命令到文件** 或是 **从文件到命令**。而管道符 `|` 则实现了将数据的流动定向为 **从命令到命令**。
 
 ```shell
 # "command_1" 的输出会作为 "command_2" 的输入
@@ -709,7 +709,7 @@ $ find . -name "xxx"  | xargs rm -f
 
 可以发现，重定向的功能非常强大。同时，这里也有很多筛选器供你选择，他们经常搭配管道符使用，以辅助管道符进行一些更复杂的工作。
 
-![Source: [https://linuxcommand.org/lc3_lts0070.php](https://linuxcommand.org/lc3_lts0070.php)](Shell/3.png)
+![Source: [https://linuxcommand.org/lc3_lts0070.php](https://linuxcommand.org/lc3_lts0070.php)](3.png)
 
 Source: [https://linuxcommand.org/lc3_lts0070.php](https://linuxcommand.org/lc3_lts0070.php)
 
@@ -939,7 +939,7 @@ cd $curDir
 - [Terminal emulator - Wikipedia](https://en.wikipedia.org/wiki/Terminal_emulator)
 - [Introducing the Shell – Introduction to the Command Line for Genomics (datacarpentry.org)](https://datacarpentry.org/shell-genomics/01-introduction/)
 - [LinuxCommand.org: Learning the shell.](https://linuxcommand.org/lc3_learning_the_shell.php)
-- [课程概览与 shell · the missing semester of your cs education (missing-semester-cn.github.io)](https://missing-semester-cn.github.io/2020/course-shell/)
+- [课程概览与 shell · the missing semester of your cs education (missing-semester-cn.github.io)](https://missing-semester-cn.github.io/2020/course-)
 - [man command in Linux with Examples - GeeksforGeeks](https://www.geeksforgeeks.org/man-command-in-linux-with-examples/)
 - [Shell commands — Linux command line for you and me 0.1 documentation (lym.readthedocs.io)](https://lym.readthedocs.io/en/latest/startingcommands.html)
 
