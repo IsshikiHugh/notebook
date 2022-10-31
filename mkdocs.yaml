@@ -5,6 +5,9 @@ theme:
   language: zh
   icon: 
     logo: material/notebook-outline
+  font:
+    text: Share Tech
+    code: JetBrains Mono
   palette:
     scheme: slate
     primary: black
@@ -14,6 +17,7 @@ theme:
     - navigation.instant
     - navigation.tracking
     - navigation.tabs
+    # - navigation.tabs.sticky
     # - navigation.indexes
     - navigation.top
     - search.highlight
@@ -63,8 +67,11 @@ markdown_extensions:
   - pymdownx.tilde
   - mdx_math
 
+extra_css:
+  - _css/extra.css
+
 extra_javascript: 
-    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 nav:
   - 💠 封面: 
