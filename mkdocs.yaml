@@ -3,6 +3,7 @@ site_author: Isshiki修
 
 repo_name: 'IsshikiHugh/MyNoteBook'
 repo_url: 'https://github.com/IsshikiHugh/MyNoteBook'
+edit_uri: blob/main/docs
 
 theme: 
   name: material
