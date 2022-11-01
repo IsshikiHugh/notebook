@@ -142,6 +142,7 @@ BVH 文件数据分为两个部分：
 !!! info ""
 	![](2.png)
 
+
 $$
 vR = vYXZ\\
 vM= vM_{child}M_{parent}M_{grandparent}...
