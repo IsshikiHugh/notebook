@@ -7,7 +7,6 @@ workDir=$(cd "$(dirname "$0")";pwd)
 
 cd $workDir
 
-mkdocs gh-deploy
 git add -A
 
 if [ $# -gt 0 ]
@@ -18,5 +17,7 @@ else
 fi
 
 git push
+
+mkdocs gh-deploy
 
 cd $curDir
