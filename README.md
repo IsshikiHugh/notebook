@@ -1,4 +1,4 @@
-# MyNoteBook
+# My Notebook
 
 传送门：[🔗](https://isshikihugh.github.io/MyNoteBook/)
 
