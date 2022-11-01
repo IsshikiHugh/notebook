@@ -1,4 +1,8 @@
 site_name: Isshiki修's Notebook
+site_author: Isshiki修
+
+repo_name: 'IsshikiHugh/MyNoteBook'
+repo_url: 'https://github.com/IsshikiHugh/MyNoteBook'
 
 theme: 
   name: material
@@ -25,6 +29,17 @@ theme:
 
 plugins:
   - search
+  - git-revision-date-localized:
+      type: datetime
+      timezone: Asia/Shanghai
+      locale: zh
+      enable_creation_date: true
+      exclude:
+        - index.md
+        - comming.md
+        - link.md
+        - tech_accu/index.md
+        - cour_note/index.md
 
 markdown_extensions:
   - toc:
@@ -56,30 +71,43 @@ markdown_extensions:
       repo: mkdocs-material
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.tabbed:
+      alternate_style: true 
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tabbed
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
   - mdx_math
+
+copyright: 'Copyright &copy 2022 Isshiki修'
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/IsshikiHugh
+      name: Github
 
 extra_css:
   - _css/extra.css
 
 extra_javascript: 
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-
+  - _js/extra.js
 nav:
   - 💠 封面: 
     - index.md
   - 📚 技术积累:
+    - tech_accu/index.md
     - 常用工具:
       - tech_accu/tool/Shell/main.md
+    - 标准 | 格式 | 规范:
+      - tech_accu/standard/BVH_format/main.md
   - 🗒 课程笔记:
+    - cour_note/index.md
     - cour_note/D1QD_CXiaoCheng/main.md
     - cour_note/D2QD_Intro2CV/main.md
   - 📝 实践记录:

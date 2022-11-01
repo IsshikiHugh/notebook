@@ -6,11 +6,12 @@
         ~『その時を待つよ』~
     </div>
     <div align="center" style="font-size:12px">
-        我们登上高塔，看到的却只有黑夜。
+        我们登上高塔，看到的却只有黑夜。  ——安德烈·纪德
     </div>
-    <br><br>
+    <br><br><br>
 
-??? summary "<center>@Isshiki修</center>"
+
+??? summary "<center>@Isshiki修</center>" 
 
     - ZJU 21 级 CS 本科生
     - ZJU 求是潮 产品研发中心技术中管

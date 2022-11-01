@@ -38,25 +38,26 @@
 - `typedef`的内容 **一般** 用 **大写单词**(比如FILE)表示这是一个自定义类型，但不用大写也不会出错    
 - `break;`可以出现在 **loop** 或者 **switch** 内    
 - 要小心藏在参数表里的类型转换    
-&nbsp;
-- 「eg」如下程序的输出为___。    
 
-```c
-#include <stdio.h>
-    
-double myFunction(int x){
-	return x;
-}
+!!! info ""
+    === "题面"
+        - 如下程序的输出为___。
 
-int main(){
-	printf("%lf",myFunction(3.14));
-}
-```
+        ```c
+        #include <stdio.h>
+            
+        double myFunction(int x){
+            return x;
+        }
 
-??? note "答案"
-    - 答案：3 
+        int main(){
+            printf("%lf",myFunction(3.14));
+        }
+        ```
+    === "答案"
+        - 3
+        - 因为 3.14 在传入 `myFunction(int)` 时发生了类型转换。   
 
-&nbsp;
 
 - 字符串数组以`\0`为结束符
 - 可以直接用`[]`访问字符串常量的某个字符
@@ -240,16 +241,19 @@ if(x < 60){
 &nbsp;
 
 - C语言的逻辑运算具有省略特性：当前一个表达式已经能够决定整个表达式的值的时候，不计算后面那个表达式
-    - 「eg」下列程序段结束后`x`和`y`的值分别为___ ， ___。
-```c
-int x = 0 , y = 0;
-if((++x) || (++y)){
-	//语句
-}
-```
 
-??? note "答案"
-    - 答案：1，0
+!!! note ""
+    === "题面"
+        - 下列程序段结束后`x`和`y`的值分别为___ ， ___。
+        
+        ```c
+        int x = 0 , y = 0;
+        if((++x) || (++y)){
+            //语句
+        }
+        ```
+    === "答案"
+        - 答案：1，0
 
 
 ## 变量的生命周期&作用域
@@ -433,8 +437,7 @@ if((++x) || (++y)){
 - 函数指针的定义：`类型名(*变量名)(参数类型表)`
     - 「eg」`int(*fun)(int,int)`
 
-丢一个xxjj的文章在这里
-[2.7 指针](https://www.yuque.com/xianyuxuan/coding/apd2_7?view=doc_embed&inner=p5eZs)
+丢一个xxjj的文章在这里&nbsp;&nbsp;[点击跳转](https://www.yuque.com/xianyuxuan/coding/apd2_7?view=doc_embed&inner=p5eZs){ .md-button .md-button--primary }
 
 - `FILE *fp;`申请了一个文件指针
 

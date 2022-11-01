@@ -3,17 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
 
-span, h1{
+.md-ellipsis, h1{
     font-size: larger;
     font-family: 'ZCOOL XiaoWei', serif;
 }
 
 body, input {
     font-family: 'Noto Serif SC', sans-serif, -apple-system, Helvetica, Arial, sans-serif;
-}
-
-pre, code, kbd {
-    font-family: "<font>", SFMono-Regular, Consolas, Menlo, monospace;
 }
 
 p, ul {
@@ -36,3 +32,27 @@ a {
 [data-md-color-primary=black] .md-tabs {
     background-color: #131623c5;
 }
+
+
+
+/* 图片放大start */
+.shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.zoom {
+    transition: transform ease-in-out 0.5s;
+    cursor: zoom-in;
+}
+
+.image-zoom-large {
+    transform: scale(1.9);
+    cursor: zoom-out;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 100;
+    position: relative;
+}
+/* 图片放大end*/
+
+
+
