@@ -929,7 +929,7 @@ cd $curDir
 
 ## 其他
 
-![命令行常见快捷键，Source: [https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line](https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line)](img/Shell_4.png)
+![](4.png)
 
 命令行常见快捷键，Source: [https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line](https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line)
 
