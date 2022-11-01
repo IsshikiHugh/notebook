@@ -1,8 +1,8 @@
 site_name: Isshiki修's Notebook
 site_author: Isshiki修
 
-repo_name: 'IsshikiHugh/MyNoteBook'
-repo_url: 'https://github.com/IsshikiHugh/MyNoteBook'
+repo_name: 'IsshikiHugh/notebook'
+repo_url: 'https://github.com/IsshikiHugh/notebook'
 edit_uri: blob/main/docs
 
 theme: 
