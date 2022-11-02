@@ -28,6 +28,7 @@ theme:
     - navigation.top
     - search.highlight
     - search.share
+  custom_dir: overrides
 
 plugins:
   - glightbox
@@ -101,13 +102,13 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
   - _js/extra.js
 
-custom_dir: overrides
+
 
 
 nav:
   - 💠 封面: 
     - 💠 封面: index.md
-    - 🔗 友链: link.md
+    - 💬 交流区: link.md
   - 📚 技术积累:
     - tech_accu/index.md
     - 常用工具:

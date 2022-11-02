@@ -1,3 +1,7 @@
+---
+comments: false
+---
+
 # 内容正在编辑中……
 
 !!! error "Missing"

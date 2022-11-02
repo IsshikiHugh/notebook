@@ -1,11 +1,11 @@
 
-{% if page.meta.comments %}
+{% if page.meta.comments != false %}
   <h2 id="__comments">{{ lang.t("meta.comments") }}</h2>
   <!-- Insert generated snippet here -->
   <script src="https://giscus.app/client.js"
         data-repo="IsshikiHugh/notebook"
         data-repo-id="R_kgDOIVXFKg"
-        data-category="Announcements"
+        data-category="General"
         data-category-id="DIC_kwDOIVXFKs4CSVPj"
         data-mapping="pathname"
         data-strict="0"
