@@ -23,12 +23,13 @@ theme:
     - navigation.tracking
     - navigation.tabs
     # - navigation.tabs.sticky
-    # - navigation.indexes
+    - navigation.indexes
     - navigation.top
     - search.highlight
     - search.share
 
 plugins:
+  - glightbox
   - search
   - git-revision-date-localized:
       type: datetime
@@ -100,11 +101,16 @@ extra_javascript:
   - _js/extra.js
 nav:
   - 💠 封面: 
-    - index.md
+    - 💠 封面: index.md
+    - 🔗 友链: link.md
   - 📚 技术积累:
     - tech_accu/index.md
     - 常用工具:
+      - Git Something:
+        - tech_accu/tool/Git/Workflow/main.md
+        - tech_accu/tool/Git/Commands/main.md
       - tech_accu/tool/Shell/main.md
+      - tech_accu/tool/Colab/main.md
     - 标准 | 格式 | 规范:
       - tech_accu/standard/BVH_format/main.md
   - 🗒 课程笔记:
@@ -115,7 +121,3 @@ nav:
     - comming.md 
   - 🚧 施工中:
     - comming.md
-  - 🔗 友链:
-    - link.md
-   
-      
