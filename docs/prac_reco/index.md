@@ -1,3 +1,7 @@
+---
+comments: false
+---
+
 # 扉页
 
 !!! note "" 

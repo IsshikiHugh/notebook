@@ -1,3 +1,7 @@
+---
+comments: false
+---
+
 # 欢迎！
 
 <center>
