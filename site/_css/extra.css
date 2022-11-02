@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
+
+.md-ellipsis, h1, .headerlink{
+    font-size: larger;
+    font-family: 'ZCOOL XiaoWei', serif;
+}
+
+body, input {
+    font-family: 'Noto Serif SC', sans-serif, -apple-system, Helvetica, Arial, sans-serif;
+}
+
+p, ul {
+    font-size: medium;
+}
+
+.md-nav__link {
+    font-size: small;
+}
+
+.md-typeset .admonition, .md-typeset details {
+    background-color: rgba(137, 144, 181, 0.201);
+    border: none;
+} 
+
+[data-md-color-primary=black] .md-header {
+    background-color: #121520;
+}
+
+[data-md-color-primary=black] .md-tabs {
+    background-color: #131623c5;
+}
