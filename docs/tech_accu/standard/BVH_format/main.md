@@ -200,5 +200,5 @@ $$
 - [https://blog.csdn.net/u012336923/article/details/50972968](https://blog.csdn.net/u012336923/article/details/50972968)
 - [https://blog.csdn.net/u012336923/article/details/50979894](https://blog.csdn.net/u012336923/article/details/50979894)
 - [https://zhuanlan.zhihu.com/p/71818887](https://zhuanlan.zhihu.com/p/71818887)
-- [http://www.4k8k.xyz/article/one_2_one/97963901](http://www.4k8k.xyz/article/one_2_one/97963901)
-- [http://www.youizone.com/2015/06/04/bvh-files.html](http://www.youizone.com/2015/06/04/bvh-files.html)
+- [https://www.4k8k.xyz/article/one_2_one/97963901](https://www.4k8k.xyz/article/one_2_one/97963901)
+- [https://www.youizone.com/2015/06/04/bvh-files.html](https://www.youizone.com/2015/06/04/bvh-files.html)
