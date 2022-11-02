@@ -90,4 +90,4 @@ Github Workflow 对 Git Workflow 进行了简化，在 Github Workflow 下仅仅
 - [https://gitbook.tw/chapters/gitflow/why-need-git-flow](https://gitbook.tw/chapters/gitflow/why-need-git-flow)
 - [https://medium.com/i-think-so-i-live/git上的三種工作流程-10f4f915167e](https://medium.com/i-think-so-i-live/git%E4%B8%8A%E7%9A%84%E4%B8%89%E7%A8%AE%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B-10f4f915167e)
 - [https://github.com/xirong/my-git/blob/master/git-workflow-tutorial.md](https://github.com/xirong/my-git/blob/master/git-workflow-tutorial.md)
-- [https://about.gitlab.com/topics/version-control/what-is-git-workflow/](
+- [https://about.gitlab.com/topics/version-control/what-is-git-workflow/](https://about.gitlab.com/topics/version-control/what-is-git-workflow/)

@@ -1,5 +1,9 @@
 # 欢迎！
 
+<center>
+内容还在迁移过程中，最近更新可能比较频繁。
+</center>
+
 !!! note "" 
     <br><br>
     <div align="center" style="font-size:32px;font-weight:bold">
