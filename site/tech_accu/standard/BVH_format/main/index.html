@@ -1,0 +1,716 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Isshiki修" name="author"/>
+<link href="https://note.isshikih.top/tech_accu/standard/BVH_format/main/" rel="canonical"/>
+<link href="../../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.1, mkdocs-material-8.5.7" name="generator"/>
+<title>BVH 格式详解 - Isshiki修's Notebook</title>
+<link href="../../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
+<link href="../../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<meta content="#000000" name="theme-color"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Share+Tech:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Share Tech";--md-code-font:"JetBrains Mono"}</style>
+<link href="../../../../_css/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gdesc-inner { font-size: 0.75rem; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                </style><script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="blue" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#bvh-格式详解">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../../../.." title="Isshiki修's Notebook">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Isshiki修's Notebook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              BVH 格式详解
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<a aria-label="分享" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="分享">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"></path></svg>
+</a>
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/IsshikiHugh/notebook" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    IsshikiHugh/notebook
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../..">
+        💠 封面
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../../../">
+        📚 技术积累
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../cour_note/">
+        🗒 课程笔记
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../comming/">
+        📝 实践记录
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../comming/">
+        🚧 施工中
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../../../.." title="Isshiki修's Notebook">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
+</a>
+    Isshiki修's Notebook
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/IsshikiHugh/notebook" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    IsshikiHugh/notebook
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" id="__nav_1" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../..">💠 封面</a>
+<label for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="💠 封面" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+          💠 封面
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../link/">
+        🔗 友链
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../">📚 技术积累</a>
+<label for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="📚 技术积累" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          📚 技术积累
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2">
+          常用工具
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="常用工具" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+          常用工具
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1" id="__nav_2_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2_1">
+          Git Something
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Git Something" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_2_1">
+<span class="md-nav__icon md-icon"></span>
+          Git Something
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tool/Git/Workflow/main/">
+        Git Workflow
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tool/Git/Commands/main/">
+        Git Commands
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tool/Shell/main/">
+        Shell
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tool/Colab/main/">
+        Google Colaboratory
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" id="__nav_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3">
+          标准 | 格式 | 规范
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="标准 | 格式 | 规范" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+          标准 | 格式 | 规范
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          BVH 格式详解
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        BVH 格式详解
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#简介">
+    简介
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件解析">
+    文件解析
+  </a>
+<nav aria-label="文件解析" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#header-section">
+    header section
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-section">
+    data section
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#理解">
+    理解
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#参考资料">
+    参考资料
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../cour_note/">🗒 课程笔记</a>
+<label for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="🗒 课程笔记" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          🗒 课程笔记
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../cour_note/D1QD_CXiaoCheng/main/">
+        [大一秋冬] C小程 琐碎知识点整理
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../cour_note/D2QD_Intro2CV/main/">
+        [大二秋冬] 计算机视觉导论
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
+          📝 实践记录
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="📝 实践记录" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          📝 实践记录
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../comming/">
+        None
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5">
+          🚧 施工中
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="🚧 施工中" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          🚧 施工中
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../comming/">
+        内容正在编辑中……
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#简介">
+    简介
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件解析">
+    文件解析
+  </a>
+<nav aria-label="文件解析" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#header-section">
+    header section
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-section">
+    data section
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#理解">
+    理解
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#参考资料">
+    参考资料
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/tech_accu/standard/BVH_format/main.md" title="编辑此页">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="bvh-格式详解">BVH 格式详解<a class="headerlink" href="#bvh-格式详解" title="Permanent link">¶</a></h1>
+<h2 id="简介">简介<a class="headerlink" href="#简介" title="Permanent link">¶</a></h2>
+<p>BVH 表示 Biovision Hierarchy Data，是 Biovision 动捕设备的数据输出格式，是 BVA 格式的改进，广泛应用于动画制作软件。而该格式以文本形式储存，所以便于开发。
+从需求的角度来讲，为了优雅地解决动画制作问题，它被分为了“蒙皮”和“骨骼”两个部分。而 BVH 就负责存储 <strong>骨骼架结构</strong> 和 <strong>动作信息</strong>。
+BVH 格式总体来说比较优秀，但是缺乏对运动时的骨架姿势的完整解释。因为 BVH 是通过 <strong>偏移(Offset)</strong> 来描述运动的，即保存的是每一帧关键节点对于父节点的相对位移。</p>
+<h2 id="文件解析">文件解析<a class="headerlink" href="#文件解析" title="Permanent link">¶</a></h2>
+<blockquote>
+<p>A BVH file has two parts, a header section which describes the hierarchy and initial pose of the skeleton; and a data section which contains the motion data. </p>
+</blockquote>
+<p>BVH 文件数据分为两个部分：</p>
+<ul>
+<li><strong>骨架信息(header section)</strong>：定义了骨架的组织结构，指导如何解析数据块。</li>
+<li><strong>数据块(data section)</strong>：包含了每一帧各部分的数据信息。</li>
+</ul>
+<p>并且以递归的形式给出定义。
+下面给出一个示例文件，然后做进一步分析。</p>
+<details class="summary">
+<summary>Summary</summary>
+<div class="highlight"><pre><span></span><code><span class="err">HIERARCHY</span><span class="w"></span>
+<span class="err">ROOT</span><span class="w"> </span><span class="err">Hips</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="err">OFFSET</span><span class="w">  </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">    </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="err">Xposi</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yposi</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Zposi</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">    </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Ches</span><span class="kc">t</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">5.21</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">        </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">        </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Neck</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">18.65</span><span class="w">   </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">            </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">            </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Head</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">5.45</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">                </span><span class="err">E</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">Si</span><span class="kc">te</span><span class="w"> </span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">3.87</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Le</span><span class="kc">ft</span><span class="err">Collar</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">1.12</span><span class="w">    </span><span class="mf">16.23</span><span class="w">   </span><span class="mf">1.87</span><span class="w"></span>
+<span class="w">            </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">            </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Le</span><span class="kc">ft</span><span class="err">UpArm</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">5.54</span><span class="w">    </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">                </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Le</span><span class="kc">ft</span><span class="err">LowArm</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-11.96</span><span class="w">   </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                    </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">                    </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Le</span><span class="kc">ft</span><span class="err">Ha</span><span class="kc">n</span><span class="err">d</span><span class="w"></span>
+<span class="w">                    </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-9.93</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                        </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">                        </span><span class="err">E</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">Si</span><span class="kc">te</span><span class="w"> </span>
+<span class="w">                        </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-7.00</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Righ</span><span class="kc">t</span><span class="err">Collar</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="err">OFFSET</span><span class="w">  </span><span class="mf">-1.12</span><span class="w">    </span><span class="mf">16.23</span><span class="w">   </span><span class="mf">1.87</span><span class="w"></span>
+<span class="w">            </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">            </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Righ</span><span class="kc">t</span><span class="err">UpArm</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="err">OFFSET</span><span class="w">  </span><span class="mf">-6.07</span><span class="w">    </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">                </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Righ</span><span class="kc">t</span><span class="err">LowArm</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-11.82</span><span class="w">   </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                    </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">                    </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Righ</span><span class="kc">t</span><span class="err">Ha</span><span class="kc">n</span><span class="err">d</span><span class="w"></span>
+<span class="w">                    </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-10.65</span><span class="w">   </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                        </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">                        </span><span class="err">E</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">Si</span><span class="kc">te</span><span class="w"> </span>
+<span class="w">                        </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-7.00</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Le</span><span class="kc">ft</span><span class="err">UpLeg</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">3.91</span><span class="w">    </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">        </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">        </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Le</span><span class="kc">ft</span><span class="err">LowLeg</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-18.34</span><span class="w">   </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">            </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">            </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Le</span><span class="kc">ft</span><span class="err">Foo</span><span class="kc">t</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-17.37</span><span class="w">   </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">                </span><span class="err">E</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">Si</span><span class="kc">te</span><span class="w"> </span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-3.46</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Righ</span><span class="kc">t</span><span class="err">UpLeg</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="err">OFFSET</span><span class="w">  </span><span class="mf">-3.91</span><span class="w">    </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">        </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">        </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Righ</span><span class="kc">t</span><span class="err">LowLeg</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-17.63</span><span class="w">   </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">            </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">            </span><span class="err">JOINT</span><span class="w"> </span><span class="err">Righ</span><span class="kc">t</span><span class="err">Foo</span><span class="kc">t</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-17.14</span><span class="w">   </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                </span><span class="err">CHANNELS</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">Zro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Xro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">Yro</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"></span>
+<span class="w">                </span><span class="err">E</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">Si</span><span class="kc">te</span><span class="w"> </span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="err">OFFSET</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-3.75</span><span class="w">    </span><span class="mf">0.00</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="err">MOTION</span><span class="w"></span>
+<span class="err">Frames</span><span class="p">:</span><span class="w">    </span><span class="mi">2</span><span class="w"></span>
+<span class="err">Frame</span><span class="w"> </span><span class="err">Time</span><span class="p">:</span><span class="w"> </span><span class="mf">0.033333</span><span class="w"></span>
+<span class="mf">8.03</span><span class="w">     </span><span class="mf">35.01</span><span class="w">   </span><span class="mf">88.36</span><span class="w">  </span><span class="mf">-3.41</span><span class="w">    </span><span class="mf">14.78</span><span class="w">  </span><span class="mf">-164.35</span><span class="w">  </span><span class="mf">13.09</span><span class="w">   </span><span class="mf">40.30</span><span class="w">  </span><span class="mf">-24.60</span><span class="w">   </span><span class="mf">7.88</span><span class="w">    </span><span class="mf">43.80</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-3.61</span><span class="w">   </span><span class="mf">-41.45</span><span class="w">   </span><span class="mf">5.82</span><span class="w">    </span><span class="mf">10.08</span><span class="w">   </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">10.21</span><span class="w">   </span><span class="mf">97.95</span><span class="w">  </span><span class="mf">-23.53</span><span class="w">  </span><span class="mf">-2.14</span><span class="w">   </span><span class="mf">-101.86</span><span class="w"> </span><span class="mf">-80.77</span><span class="w">  </span><span class="mf">-98.91</span><span class="w">   </span><span class="mf">0.69</span><span class="w">    </span><span class="mf">0.03</span><span class="w">    </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-14.04</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-10.50</span><span class="w">  </span><span class="mf">-85.52</span><span class="w">  </span><span class="mf">-13.72</span><span class="w">  </span><span class="mf">-102.93</span><span class="w">  </span><span class="mf">61.91</span><span class="w">  </span><span class="mf">-61.18</span><span class="w">   </span><span class="mf">65.18</span><span class="w">  </span><span class="mf">-1.57</span><span class="w">    </span><span class="mf">0.69</span><span class="w">    </span><span class="mf">0.02</span><span class="w">    </span><span class="mf">15.00</span><span class="w">   </span><span class="mf">22.78</span><span class="w">  </span><span class="mf">-5.92</span><span class="w">    </span><span class="mf">14.93</span><span class="w">   </span><span class="mf">49.99</span><span class="w">   </span><span class="mf">6.60</span><span class="w">    </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-1.14</span><span class="w">    </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-16.58</span><span class="w">  </span><span class="mf">-10.51</span><span class="w">  </span><span class="mf">-3.11</span><span class="w">    </span><span class="mf">15.38</span><span class="w">   </span><span class="mf">52.66</span><span class="w">  </span><span class="mf">-21.80</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-23.95</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span>
+<span class="mf">7.81</span><span class="w">     </span><span class="mf">35.10</span><span class="w">   </span><span class="mf">86.47</span><span class="w">  </span><span class="mf">-3.78</span><span class="w">    </span><span class="mf">12.94</span><span class="w">  </span><span class="mf">-166.97</span><span class="w">  </span><span class="mf">12.64</span><span class="w">   </span><span class="mf">42.57</span><span class="w">  </span><span class="mf">-22.34</span><span class="w">   </span><span class="mf">7.67</span><span class="w">    </span><span class="mf">43.61</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-4.23</span><span class="w">   </span><span class="mf">-41.41</span><span class="w">   </span><span class="mf">4.89</span><span class="w">    </span><span class="mf">19.10</span><span class="w">   </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">4.16</span><span class="w">    </span><span class="mf">93.12</span><span class="w">  </span><span class="mf">-9.69</span><span class="w">   </span><span class="mf">-9.43</span><span class="w">    </span><span class="mf">132.67</span><span class="w"> </span><span class="mf">-81.86</span><span class="w">   </span><span class="mf">136.80</span><span class="w">  </span><span class="mf">0.70</span><span class="w">    </span><span class="mf">0.37</span><span class="w">    </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-8.62</span><span class="w">    </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-21.82</span><span class="w">  </span><span class="mf">-87.31</span><span class="w">  </span><span class="mf">-27.57</span><span class="w">  </span><span class="mf">-100.09</span><span class="w">  </span><span class="mf">56.17</span><span class="w">  </span><span class="mf">-61.56</span><span class="w">   </span><span class="mf">58.72</span><span class="w">  </span><span class="mf">-1.63</span><span class="w">    </span><span class="mf">0.95</span><span class="w">    </span><span class="mf">0.03</span><span class="w">    </span><span class="mf">13.16</span><span class="w">   </span><span class="mf">15.44</span><span class="w">  </span><span class="mf">-3.56</span><span class="w">    </span><span class="mf">7.97</span><span class="w">    </span><span class="mf">59.29</span><span class="w">   </span><span class="mf">4.97</span><span class="w">    </span><span class="mf">0.00</span><span class="w">    </span><span class="mf">1.64</span><span class="w">    </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-17.18</span><span class="w">  </span><span class="mf">-10.02</span><span class="w">  </span><span class="mf">-3.08</span><span class="w">    </span><span class="mf">13.56</span><span class="w">   </span><span class="mf">53.38</span><span class="w">  </span><span class="mf">-18.07</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span><span class="mf">-25.93</span><span class="w">   </span><span class="mf">0.00</span><span class="w">   </span>
+</code></pre></div>
+</details>
+<p>该样例给出了这样一个骨架：</p>
+<div class="admonition info">
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../2.png"><img alt="" src="../2.png"/></a></p>
+</div>
+<div class="arithmatex">\[
+vR = vYXZ\\
+vM= vM_{child}M_{parent}M_{grandparent}...
+\]</div>
+<h3 id="header-section">header section<a class="headerlink" href="#header-section" title="Permanent link">¶</a></h3>
+<p><code>HIERARCHY</code>关键字标识<code>header section</code>的开始，随后在下一行定义了根节点<code>ROOT</code>，而<code>Hips</code>则是该节点的名称。观察上方给出的骨架示意图，<code>Hips</code>节点作为整个骨架的根节点，保证了整个树形图的最大深度相对较小，减小误差。</p>
+<p>其后给出了<code>OFFSET</code>和<code>CHANNELS</code>两个属性。</p>
+<ul>
+<li><code>OFFSET</code>表示相对与父节点，该节点的偏移；</li>
+<li>对于 <strong>根节点</strong> 来说，它一般是<code>0 0 0</code>；</li>
+<li>·<code>CHANNELS</code>后有两个部分，首先是一个数字表示后面有几个通道。</li>
+<li>一般来说，<strong>根节点</strong> 会有 6 个通道，如上示例有<code>Xposition Yposition Zposition Zrotation Yrotation Xrotation</code>，分别代表在<code>data section</code>中，帧序列的数据按这样的方式存储，前三个代表的是 <strong>位移</strong> 下每个分量的顺序（此处表示：依次为 x 坐标， y 坐标， z 坐标，一般只有根节点有这三个通道，用来表示骨架的位移），后三个代表的是 <strong>旋转角度</strong> 顺序；</li>
+<li>而对于 <strong>非根节点</strong>，一般有 3 个通道，代表的 <strong>旋转角度</strong> 顺序；</li>
+<li>注意，这里使用的 <strong>角度制</strong> 而非弧度制；</li>
+</ul>
+<p>而在其后，以<code>JOINT</code>为关键字又表示了其子节点的定义，即以 <strong>递归</strong> 的形式给出定义。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../1.png"><img alt="" src="../1.png"/></a></p>
+<ul>
+<li>在这张图中，<code>Neck``LeftCollar``RightCollar</code>是<code>Chest</code>的子节点，则<code>Neck``LeftCollar``RightCollar</code>的相对位置应当不变，之后的变换仅仅通过它们整体相对于<code>Chest</code>的旋转实现。</li>
+</ul>
+<p>可以这么理解：</p>
+<ul>
+<li><code>ROOT</code>和<code>JOINT</code>在语法上基本一致，</li>
+<li>只不过第一个出现的节点需要用<code>ROOT</code>索引，且它有6个通道；</li>
+<li>而之后的子节点通过<code>JOINT</code>索引，且有3个通道。</li>
+</ul>
+<p>而在递归定义的末端，你会发现一个<code>End Site</code>，它只有<code>OFFSET</code>属性而没有<code>CHANNELS</code>属性，这是因为：</p>
+<ul>
+<li>骨架是有若干“骨棒”组成的，这个“骨棒”称为<code>segment</code>，而定义一个<code>segment</code>需要两个端点，而<code>End Site</code>就是这个<code>segment</code>链的末端，它不具备旋转信息，因为它没有子节点，仅仅用来通过坐标表达最后一个<code>segment</code>的长度。</li>
+</ul>
+<blockquote>
+<p>One last note about the BVH hierarchy, the world space is defined as <strong>a right handed coordinate system</strong> with the <strong>Y axis as the world up vector.</strong> Thus you will typically find that BVH skeletal segments are aligned along the Y or negative Y axis (since the characters are often have a <strong>zero pose</strong> where the character <strong>stands straight up with the arms straight down to the side</strong>).</p>
+</blockquote>
+<p>即世界坐标系一般是一个<span class="arithmatex">\(y\)</span><strong>轴朝上的右手系</strong>，并且骨架的初始姿势总是 T-Pose ，即人打开双手，像字母<code>T</code>一样站在地上。</p>
+<h3 id="data-section">data section<a class="headerlink" href="#data-section" title="Permanent link">¶</a></h3>
+<p><code>MOTION</code>关键字标识<code>data section</code>的开始，之后两行分别是<code>Frames</code>和<code>Frame Time</code>，表示 <strong>帧数</strong> 和 <strong>帧数长度</strong>（即帧率倒数，0.033333就是30帧）。
+而再之后，则是真正的动画数据，根据<code>header section</code>给出的通道定义依次来给出每一帧的相对变化数据。 </p>
+<h2 id="理解">理解<a class="headerlink" href="#理解" title="Permanent link">¶</a></h2>
+<p>根据我的个人理解，<code>header section</code>类似于将一根根棒焊接在能够自由旋转的节点上，并规定数据的组织顺序，即解决了骨架“长什么样”的问题，并指导如何描述骨架“怎么动”；
+而<code>data section</code>则类似于按照<code>header section</code>给出的定义，具体该如何改变各个节点的状态。
+除了发送给<code>ROOT</code>的位置坐标来表示骨架的位移（平移矩阵），之后的一系列数据都表示该节点该如何旋转（旋转矩阵），那么理所当然的，这个节点的所有子节点都会以这个节点为中心进行相应的旋转；每次递归都重复这样的操作，最终指挥整个骨架的变换。
+那么，实际上，每一个节点相对于根节点的变化就可以通过这些变换矩阵按照顺序累乘得到。</p>
+<h2 id="参考资料">参考资料<a class="headerlink" href="#参考资料" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Biovision_Hierarchy">https://en.wikipedia.org/wiki/Biovision_Hierarchy</a></li>
+<li><a href="https://research.cs.wisc.edu/graphics/Courses/cs-838-1999/Jeff/BVH.html"><strong>https://research.cs.wisc.edu/graphics/Courses/cs-838-1999/Jeff/BVH.html</strong></a></li>
+<li><a href="https://blog.csdn.net/u012336923/article/details/50972968">https://blog.csdn.net/u012336923/article/details/50972968</a></li>
+<li><a href="https://blog.csdn.net/u012336923/article/details/50979894">https://blog.csdn.net/u012336923/article/details/50979894</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/71818887">https://zhuanlan.zhihu.com/p/71818887</a></li>
+<li><a href="http://www.4k8k.xyz/article/one_2_one/97963901">http://www.4k8k.xyz/article/one_2_one/97963901</a></li>
+<li><a href="http://www.youizone.com/2015/06/04/bvh-files.html">http://www.youizone.com/2015/06/04/bvh-files.html</a></li>
+</ul>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月1日 19:44:44</span>
+<br/>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月1日 13:37:53</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            回到页面顶部
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Google Colaboratory" class="md-footer__link md-footer__link--prev" href="../../../tool/Colab/main/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                上一页
+              </span>
+              Google Colaboratory
+            </div>
+</div>
+</a>
+<a aria-label="下一页: 扉页" class="md-footer__link md-footer__link--next" href="../../../../cour_note/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                下一页
+              </span>
+              扉页
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2022 Isshiki修
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/IsshikiHugh" rel="noopener" target="_blank" title="Github">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.annotate", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../../../../_js/extra.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+</html>
