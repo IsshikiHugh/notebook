@@ -100,6 +100,10 @@ extra_css:
 extra_javascript: 
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
   - _js/extra.js
+
+custom_dir: overrides
+
+
 nav:
   - 💠 封面: 
     - 💠 封面: index.md
