@@ -1,1378 +1,780 @@
 
-<!doctype html>
-<html lang="zh" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-        <meta name="author" content="Isshiki修">
-      
-      
-      <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
-    
-    
-      
-        <title>Shell - Isshiki修's Notebook</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.20d9efc8.min.css">
-      
-        
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cbb835fc.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#000000">
-        
-      
-      
+<!DOCTYPE html>
 
-    
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Share+Tech:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Share Tech";--md-code-font:"JetBrains Mono"}</style>
-      
-    
-    
-      <link rel="stylesheet" href="../../../../_css/extra.css">
-    
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
-
-    
-    
-    
-  </head>
-  
-  
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue">
-  
-    
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#shell" class="md-skip">
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Isshiki修" name="author"/>
+<link href="../../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.1, mkdocs-material-8.5.7" name="generator"/>
+<title>Shell - Isshiki修's Notebook</title>
+<link href="../../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
+<link href="../../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<meta content="#000000" name="theme-color"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Share+Tech:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Share Tech";--md-code-font:"JetBrains Mono"}</style>
+<link href="../../../../_css/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gdesc-inner { font-size: 0.75rem; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                </style><script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="blue" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#shell">
           跳转至
         </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
-
+</div>
+<div data-md-component="announce">
+</div>
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../../.." title="Isshiki修&#39;s Notebook" class="md-header__button md-logo" aria-label="Isshiki修's Notebook" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"/></svg>
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../../../.." title="Isshiki修's Notebook">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
             Isshiki修's Notebook
           </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
             
               Shell
             
           </span>
-        </div>
-      </div>
-    </div>
-    
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="查找">
-        
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
-          </a>
-        
-        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<a aria-label="分享" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="分享">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"></path></svg>
+</a>
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
             正在初始化搜索引擎
           </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+<ol class="md-search-result__list"></ol>
 </div>
-    
-    
-      <div class="md-header__source">
-        <a href="https://github.com/IsshikiHugh/notebook" title="前往仓库" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/IsshikiHugh/notebook" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
     IsshikiHugh/notebook
   </div>
 </a>
-      </div>
-    
-  </nav>
-  
+</div>
+</nav>
 </header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-            
-<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../..">
         💠 封面
       </a>
-    </li>
-  
-
-      
-        
-  
-  
-    
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../" class="md-tabs__link md-tabs__link--active">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../../../">
         📚 技术积累
       </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../../cour_note/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../cour_note/">
         🗒 课程笔记
       </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../../comming/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../comming/">
         📝 实践记录
       </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../../comming/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../comming/">
         🚧 施工中
       </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../../link/" class="md-tabs__link">
-        🔗 友链
-      </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
+</li>
+</ul>
+</div>
 </nav>
-          
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-  
-
-
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Isshiki修&#39;s Notebook" class="md-nav__button md-logo" aria-label="Isshiki修's Notebook" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"/></svg>
-
-    </a>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../../../.." title="Isshiki修's Notebook">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
+</a>
     Isshiki修's Notebook
   </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/IsshikiHugh/notebook" title="前往仓库" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/IsshikiHugh/notebook" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
     IsshikiHugh/notebook
   </div>
 </a>
-    </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1">
-          💠 封面
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="💠 封面" data-md-level="1">
-        <label class="md-nav__title" for="__nav_1">
-          <span class="md-nav__icon md-icon"></span>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" id="__nav_1" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../..">💠 封面</a>
+<label for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="💠 封面" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
           💠 封面
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
-        欢迎！
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../link/">
+        🔗 友链
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          📚 技术积累
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="📚 技术积累" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../">📚 技术积累</a>
+<label for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="📚 技术积累" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
           📚 技术积累
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../" class="md-nav__link">
-        扉页
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2">
+          常用工具
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="常用工具" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+          常用工具
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1" id="__nav_2_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2_1">
+          Git Something
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Git Something" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_2_1">
+<span class="md-nav__icon md-icon"></span>
+          Git Something
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Git/Workflow/main/">
+        Git Workflow
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2_2">
-          常用工具
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="常用工具" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_2">
-          <span class="md-nav__icon md-icon"></span>
-          常用工具
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Git/Commands/main/">
+        Git Commands
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
           Shell
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         Shell
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
       目录
     </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#概述" class="md-nav__link">
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#概述">
     概述
   </a>
-  
-    <nav class="md-nav" aria-label="概述">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#简介" class="md-nav__link">
+<nav aria-label="概述" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#简介">
     简介
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#shell-vs-terminal" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shell-vs-terminal">
     Shell vs Terminal
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#以-bash-为例" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#以-bash-为例">
     以 Bash 为例
   </a>
-  
-    <nav class="md-nav" aria-label="以 Bash 为例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#准备工作" class="md-nav__link">
+<nav aria-label="以 Bash 为例" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#准备工作">
     准备工作
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#帮助手册" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#帮助手册">
     帮助手册
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#打印字符串--echo" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#打印字符串--echo">
     打印字符串 | echo
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#查看当前路径--pwd" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#查看当前路径--pwd">
     查看当前路径 | pwd
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#切换目录--cd" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#切换目录--cd">
     切换目录 | cd
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#罗列目录下内容--ls" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#罗列目录下内容--ls">
     罗列目录下内容 | ls
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#打印文件内容--cat" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#打印文件内容--cat">
     打印文件内容 | cat
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#打印文件首尾内容--head--tail" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#打印文件首尾内容--head--tail">
     打印文件首尾内容 | head &amp; tail
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#查看文本文件内容--less" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#查看文本文件内容--less">
     查看文本文件内容 | less
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#修改文件时间属性创建文件--touch" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#修改文件时间属性创建文件--touch">
     修改文件时间属性(创建文件) | touch
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#创建文件夹--mkdir" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#创建文件夹--mkdir">
     创建文件夹 | mkdir
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#移动重命名--mv" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#移动重命名--mv">
     移动(重命名) | mv
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#复制--cp" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#复制--cp">
     复制 | cp
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#删除--rm" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#删除--rm">
     删除 | rm
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#重定向相关-" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#重定向相关-">
     重定向相关 💡
   </a>
-  
-    <nav class="md-nav" aria-label="重定向相关 💡">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#标准输出流重定向---" class="md-nav__link">
+<nav aria-label="重定向相关 💡" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#标准输出流重定向---">
     标准输出流重定向 | &gt; &gt;&gt;
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#标准输入流重定向--" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#标准输入流重定向--">
     标准输入流重定向 | &lt;
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#标准错误流重定向--2-2" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#标准错误流重定向--2-2">
     标准错误流重定向 | 2&gt; 2&gt;&gt;
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#合并--" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#合并--">
     合并 | &lt;&amp; &gt;&amp;
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#管道符--" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#管道符--">
     管道符 | |
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#筛选器" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#筛选器">
     筛选器
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#脚本-shell" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#脚本-shell">
     脚本 Shell
   </a>
-  
-    <nav class="md-nav" aria-label="脚本 Shell">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#流程控制---条件语句" class="md-nav__link">
+<nav aria-label="脚本 Shell" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#流程控制---条件语句">
     流程控制 - 条件语句
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#流程控制---循环语句" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#流程控制---循环语句">
     流程控制 - 循环语句
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#流程控制---函数" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#流程控制---函数">
     流程控制 - 函数
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#参数传递" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#参数传递">
     参数传递
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#将命令结果作为参数列表" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#将命令结果作为参数列表">
     将命令结果作为参数列表
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#指定执行脚本所使用的-shell" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#指定执行脚本所使用的-shell">
     指定执行脚本所使用的 Shell
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#一个模板" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#一个模板">
     一个模板
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#其他" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#其他">
     其他
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#相关资料" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#相关资料">
     相关资料
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#相关知识点" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#相关知识点">
     相关知识点
   </a>
-  
 </li>
-      
-    </ul>
-  
+</ul>
 </nav>
-      
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2_3">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Colab/main/">
+        Google Colaboratory
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" id="__nav_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3">
           标准 | 格式 | 规范
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="标准 | 格式 | 规范" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_3">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="标准 | 格式 | 规范" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
           标准 | 格式 | 规范
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../standard/BVH_format/main/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../standard/BVH_format/main/">
         BVH 格式详解
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3">
-          🗒 课程笔记
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="🗒 课程笔记" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../cour_note/">🗒 课程笔记</a>
+<label for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="🗒 课程笔记" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
           🗒 课程笔记
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../cour_note/" class="md-nav__link">
-        扉页
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../cour_note/D1QD_CXiaoCheng/main/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../cour_note/D1QD_CXiaoCheng/main/">
         [大一秋冬] C小程 琐碎知识点整理
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../cour_note/D2QD_Intro2CV/main/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../cour_note/D2QD_Intro2CV/main/">
         [大二秋冬] 计算机视觉导论
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_4">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
           📝 实践记录
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="📝 实践记录" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="📝 实践记录" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
           📝 实践记录
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../comming/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../comming/">
         None
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5">
           🚧 施工中
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="🚧 施工中" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="🚧 施工中" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
           🚧 施工中
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../comming/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../comming/">
         内容正在编辑中……
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_6">
-          🔗 友链
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="🔗 友链" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
-          <span class="md-nav__icon md-icon"></span>
-          🔗 友链
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../link/" class="md-nav__link">
-        友链
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-  </ul>
+</li>
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
       目录
     </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#概述" class="md-nav__link">
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#概述">
     概述
   </a>
-  
-    <nav class="md-nav" aria-label="概述">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#简介" class="md-nav__link">
+<nav aria-label="概述" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#简介">
     简介
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#shell-vs-terminal" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shell-vs-terminal">
     Shell vs Terminal
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#以-bash-为例" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#以-bash-为例">
     以 Bash 为例
   </a>
-  
-    <nav class="md-nav" aria-label="以 Bash 为例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#准备工作" class="md-nav__link">
+<nav aria-label="以 Bash 为例" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#准备工作">
     准备工作
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#帮助手册" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#帮助手册">
     帮助手册
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#打印字符串--echo" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#打印字符串--echo">
     打印字符串 | echo
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#查看当前路径--pwd" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#查看当前路径--pwd">
     查看当前路径 | pwd
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#切换目录--cd" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#切换目录--cd">
     切换目录 | cd
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#罗列目录下内容--ls" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#罗列目录下内容--ls">
     罗列目录下内容 | ls
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#打印文件内容--cat" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#打印文件内容--cat">
     打印文件内容 | cat
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#打印文件首尾内容--head--tail" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#打印文件首尾内容--head--tail">
     打印文件首尾内容 | head &amp; tail
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#查看文本文件内容--less" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#查看文本文件内容--less">
     查看文本文件内容 | less
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#修改文件时间属性创建文件--touch" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#修改文件时间属性创建文件--touch">
     修改文件时间属性(创建文件) | touch
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#创建文件夹--mkdir" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#创建文件夹--mkdir">
     创建文件夹 | mkdir
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#移动重命名--mv" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#移动重命名--mv">
     移动(重命名) | mv
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#复制--cp" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#复制--cp">
     复制 | cp
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#删除--rm" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#删除--rm">
     删除 | rm
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#重定向相关-" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#重定向相关-">
     重定向相关 💡
   </a>
-  
-    <nav class="md-nav" aria-label="重定向相关 💡">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#标准输出流重定向---" class="md-nav__link">
+<nav aria-label="重定向相关 💡" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#标准输出流重定向---">
     标准输出流重定向 | &gt; &gt;&gt;
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#标准输入流重定向--" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#标准输入流重定向--">
     标准输入流重定向 | &lt;
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#标准错误流重定向--2-2" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#标准错误流重定向--2-2">
     标准错误流重定向 | 2&gt; 2&gt;&gt;
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#合并--" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#合并--">
     合并 | &lt;&amp; &gt;&amp;
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#管道符--" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#管道符--">
     管道符 | |
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#筛选器" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#筛选器">
     筛选器
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#脚本-shell" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#脚本-shell">
     脚本 Shell
   </a>
-  
-    <nav class="md-nav" aria-label="脚本 Shell">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#流程控制---条件语句" class="md-nav__link">
+<nav aria-label="脚本 Shell" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#流程控制---条件语句">
     流程控制 - 条件语句
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#流程控制---循环语句" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#流程控制---循环语句">
     流程控制 - 循环语句
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#流程控制---函数" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#流程控制---函数">
     流程控制 - 函数
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#参数传递" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#参数传递">
     参数传递
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#将命令结果作为参数列表" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#将命令结果作为参数列表">
     将命令结果作为参数列表
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#指定执行脚本所使用的-shell" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#指定执行脚本所使用的-shell">
     指定执行脚本所使用的 Shell
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#一个模板" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#一个模板">
     一个模板
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#其他" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#其他">
     其他
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#相关资料" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#相关资料">
     相关资料
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#相关知识点" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#相关知识点">
     相关知识点
   </a>
-  
 </li>
-      
-    </ul>
-  
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-  <a href="https://github.com/IsshikiHugh/notebook/blob/main/docs/tech_accu/tool/Shell/main.md" title="编辑此页" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
-
-
-<h1 id="shell">Shell<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h1>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/tech_accu/tool/Shell/main.md" title="编辑此页">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="shell">Shell<a class="headerlink" href="#shell" title="Permanent link">¶</a></h1>
 <div class="admonition summary">
 <p class="admonition-title">文章目标</p>
 <p>在完成本文学习后，我们期待您对 Shell 能有更具体的认识，并能做到通过 Command Line 实现基础交互并了解如何学习 Shell。除此之外，也可以通过撰写 Shell 脚本来实现一些自动化。</p>
 <p>此外，从 Shell 入门到命令行大师，其中肯定有很长的路要走，我们没法涉及 Shell 的全部知识点，光命令就能讲上很久，所以一定要学会如何利用手册和文档等查询命令的使用方法，本文希望做到的是授人以渔而非授人以鱼。</p>
 <p>此外，我会在文中多次将 Shell 与 C 语言的一些内容相联系，如果您有 C 的基础，那将再好不过。</p>
 </div>
-<h2 id="概述">概述<a class="headerlink" href="#概述" title="Permanent link">&para;</a></h2>
-<h3 id="简介">简介<a class="headerlink" href="#简介" title="Permanent link">&para;</a></h3>
+<h2 id="概述">概述<a class="headerlink" href="#概述" title="Permanent link">¶</a></h2>
+<h3 id="简介">简介<a class="headerlink" href="#简介" title="Permanent link">¶</a></h3>
 <p>Shell 的中文名称为“壳层”，顾名思义就是“最外层”。Wiki 对其描述为：</p>
 <blockquote>
 <p>It is named a <strong>shell</strong> because it is the outermost layer around the <strong>operating system</strong>.</p>
@@ -1380,16 +782,16 @@
 <p>简单来说，Shell 将读入来自 Keyboard 的内容，并将指令发送给 OS 以调用系统服务。</p>
 <p>在常见的日用操作系统，如 Windows 与 MacOS，你可能尝试过使用 GUI(Graphical User Interface)，即图形用户界面来与你的系统愉快玩耍；与之对应的，Shell 则是一种 CLI(Command Line Interface)，不同于 GUIs 通过点击按钮等操作与系统交互等方式，CLI 要求用户通过命令行来与系统交互。而作为一个合格的程序员，我们接触到的大多数生产场景中，使用 CLI 是一种更加高效的选择，事实上你也很难避免它——因而，我们需要掌握 Shell 的基本使用。</p>
 <p>如今，已经有非常多的 Shell 可以使用，而他们基本上都以 <code>sh</code> 结尾，例如常见的 <code>bash</code> 和 <code>zsh</code> ,再比如许多基于 Alpine 的 Docker Image，内置的 Shell 都是 <code>sh</code>。其他的还有 <code>dash</code> <code>csh</code> <code>ksh</code> 等等。</p>
-<h3 id="shell-vs-terminal">Shell vs Terminal<a class="headerlink" href="#shell-vs-terminal" title="Permanent link">&para;</a></h3>
+<h3 id="shell-vs-terminal">Shell vs Terminal<a class="headerlink" href="#shell-vs-terminal" title="Permanent link">¶</a></h3>
 <p>在正式开始介绍 Shell 之前，我认为有必要做一些辨析。</p>
 <p>在现代的计算机系统中，想要使用 Shell，你需要借助 Terminal，即终端（更准确的说，是 terminal emulator，不过在本文中我们并不会就此展开）。Terminal 之于 Shell，就好像电话之于通讯服务。</p>
-<p><img alt="" src="../1.png" /></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../1.png"><img alt="" src="../1.png"/></a></p>
 <p>例如，图中打开的这个“窗口”就是一个叫做 iTerm2 的 terminal emulator，而我使用的 <code>fish</code> 则是一种 Shell。</p>
 <p>能与这两个东西进行比较和辨析的东西其实还有很多，但并非本文主题，所以不再展开。</p>
-<h2 id="以-bash-为例">以 Bash 为例<a class="headerlink" href="#以-bash-为例" title="Permanent link">&para;</a></h2>
+<h2 id="以-bash-为例">以 Bash 为例<a class="headerlink" href="#以-bash-为例" title="Permanent link">¶</a></h2>
 <p><code>bash</code> 全称 Bourne Again Shell，是如今最常用的 Shell 之一，且大部分 Linux 都会内置 bash，这也避免了更多的环境配置负担，所以在本章种，我们将以 <code>bash</code> 为例，介绍一些 Shell 常用指令和技巧。</p>
 <p>此外，我们接下来提供的大多数论断主要基于 Linux 系统。部分结论在 Windows 等系统中可能并不成立。如果您有兴趣，可以自行查询资料。</p>
-<h3 id="准备工作">准备工作<a class="headerlink" href="#准备工作" title="Permanent link">&para;</a></h3>
+<h3 id="准备工作">准备工作<a class="headerlink" href="#准备工作" title="Permanent link">¶</a></h3>
 <p>在开始之前，我希望您确保您本地已有可用的 <code>bash</code> 环境，以便于您能跟着教程边实践边学习。</p>
 <p>在这里，我将提供一种简单的配置 <code>bash</code> 环境的方案：</p>
 <ul>
@@ -1410,7 +812,7 @@ $ <span class="o">{</span>你的光标在这里<span class="o">}</span>
 <p>实际情况还有很多种，因为这些“形式”都是可以被设置的。比如这里的 <code>$</code> 被称为 prompt，在本文第一张图片中我就将它设置为了一个 Emoji 图标。而我们发现这里还有一个 <code>~</code> ，它表示的是您的“家目录”。更准确的说，它的含义是您当前所在的位置是您的家目录。关于这一点我们将在接下来展开。</p>
 <p>此外，如果您对 Linux 系统有一定认识，那无疑会帮助您理解本文。</p>
 <p>那么接下来，让我们开始吧！</p>
-<h3 id="帮助手册">帮助手册<a class="headerlink" href="#帮助手册" title="Permanent link">&para;</a></h3>
+<h3 id="帮助手册">帮助手册<a class="headerlink" href="#帮助手册" title="Permanent link">¶</a></h3>
 <p>左思右想，最后我还是把这条指令放到了最前来讲。我们不可能仅仅通过一篇文章就了解命令行的全部知识，所以我觉得把 <code>man</code> 放到最前面来讲是很有意义的。</p>
 <p><code>man</code> 的作用是打开一个 user manual。例如，如果我们在终端中输入 <code>man man</code>，就会得到如下结果，即使用 <code>man</code> 打开了 <code>man</code> 的手册：</p>
 <div class="highlight"><pre><span></span><code>man(1)                                     General Commands Manual                                    man(1)
@@ -1437,28 +839,28 @@ DESCRIPTION
 <li>此外，user manual 的内容可能会根据使用的 Shell 不同而不同，甚至在一些 Shell 都不一定有 user manual。</li>
 </ul>
 <p>为了实现抛砖引玉的目的，现在我们仅仅介绍 <code>man</code> 的这些部分，实际上光看 manual 的文本量就能感受到， <code>man</code> 远不止如此，但本文并不打算就此深入。而在这里介绍 <code>man</code> 的目的，一方面是希望大家在学习之后的命令时，可以参考 user manual，事实上本文涉及的命令也并不会介绍其全部用法；另一方面是鼓励大家在遇到为止的指令时，通过手册等途径先查询其行为、用法，再使用它。</p>
-<h3 id="打印字符串--echo">打印字符串 | echo<a class="headerlink" href="#打印字符串--echo" title="Permanent link">&para;</a></h3>
+<h3 id="打印字符串--echo">打印字符串 | echo<a class="headerlink" href="#打印字符串--echo" title="Permanent link">¶</a></h3>
 <p><code>echo</code> 即回响，这个单词非常形象地描述了这个命令的作用，将其接受到的内容“回响”出来。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># echo 会将它拿到的参数全都当作字符串打印出来，但成对引号并不会</span>
 $ <span class="nb">echo</span> &lt;something&gt;
-$ <span class="nb">echo</span> <span class="s2">&quot;something 1 2 3&quot;</span>
+$ <span class="nb">echo</span> <span class="s2">"something 1 2 3"</span>
 something <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
 $ <span class="nb">echo</span> something <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
 something <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
 
 <span class="c1"># 如果你只输入了一个引号，它会等你把他补完再输出</span>
-<span class="c1"># 如果想输出引号，需要使用 \&quot; 转义</span>
-$ <span class="nb">echo</span> <span class="s2">&quot;</span>
-<span class="s2">Fine, \&quot;I\&quot; will finish the string.</span>
-<span class="s2">&quot;</span>
-Fine, <span class="s2">&quot;I&quot;</span> will finish the string.
+<span class="c1"># 如果想输出引号，需要使用 \" 转义</span>
+$ <span class="nb">echo</span> <span class="s2">"</span>
+<span class="s2">Fine, \"I\" will finish the string.</span>
+<span class="s2">"</span>
+Fine, <span class="s2">"I"</span> will finish the string.
 
 <span class="c1"># echo 支持输出参数，以 $ 开头，在命令行环境下他们指环境变量，在脚本环境下还可以进行一些参数传递</span>
 <span class="c1"># 下面的命令输出了当前用户，USER 是一个值为当前用户的用户名的环境变量。</span>
 <span class="nb">echo</span> <span class="nv">$USER</span>
 isshikih
 </code></pre></div>
-<h3 id="查看当前路径--pwd">查看当前路径 | pwd<a class="headerlink" href="#查看当前路径--pwd" title="Permanent link">&para;</a></h3>
+<h3 id="查看当前路径--pwd">查看当前路径 | pwd<a class="headerlink" href="#查看当前路径--pwd" title="Permanent link">¶</a></h3>
 <p>在这里我们想介绍的第二个指令是 <code>pwd</code>，它的效果是输出您当前的位置。</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">pwd</span>
 <span class="c1"># 比如我的环境下，在 ~ 下输出如下</span>
@@ -1467,7 +869,7 @@ isshikih
 </code></pre></div>
 <p><strong>一切皆文件</strong> 是 Linux 的设计理念，而 Shell 的使用有相当一部分是基于文件体系的。而如何 <strong>索引</strong> 一个文件呢？我们需要提供这个文件的路径和文件名！例如，您需要去一台 Windows 电脑中找到您上学期的课程作业，它的文件名为 <code>myHomework.pdf</code> ，也许你需要打开D盘中的 Homework 文件夹。那么抽象地来说，这个文件的路径为 <code>D:\Homework\myHomework.pdf</code> （这是在 Windows 上的写法）。这种形式的“位置”被称为 <strong>绝对路径</strong>，即我们需要填写文件的完整路径才能找到这个文件。在之后的部分中，我们提到的<code>&lt;filename&gt;&lt;dirname&gt;</code>等都包括了文件的路径。</p>
 <p><strong>👉 事实上，有相当一部分 Shell 语法是围绕着文件展开的。</strong></p>
-<h3 id="切换目录--cd">切换目录 | cd<a class="headerlink" href="#切换目录--cd" title="Permanent link">&para;</a></h3>
+<h3 id="切换目录--cd">切换目录 | cd<a class="headerlink" href="#切换目录--cd" title="Permanent link">¶</a></h3>
 <p><code>cd</code> 是 change directory 的缩写，它的效果是将您当前的位置转移到目标目录中。它的写法如下：</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="o">{</span>target directory<span class="o">}</span>
 
@@ -1506,7 +908,7 @@ $ <span class="nb">pwd</span>
 <li><code>cd -</code> 返回上一次 <code>cd</code> 之前所在的位置；</li>
 <li><code>cd ~username</code> 切换到目标用户的家目录；</li>
 </ul>
-<h3 id="罗列目录下内容--ls">罗列目录下内容 | ls<a class="headerlink" href="#罗列目录下内容--ls" title="Permanent link">&para;</a></h3>
+<h3 id="罗列目录下内容--ls">罗列目录下内容 | ls<a class="headerlink" href="#罗列目录下内容--ls" title="Permanent link">¶</a></h3>
 <p><code>ls</code> 指令用来查看目标目录下的文件。常用的参数主要有 <code>-l</code> （长格式）和 <code>-a</code> （显示全部）。</p>
 <p>具体写法如下：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 假设我们当前在文件夹 my_ 下，文件夹内有两个文件和一个文件夹</span>
@@ -1562,7 +964,7 @@ drwxr-xr-x   <span class="m">6</span> me       me           <span class="m">1024
 <ul>
 <li>关于这部分具体部分字段的具体解释，请参考相关资料，不属于本文的范畴。</li>
 </ul>
-<h3 id="打印文件内容--cat">打印文件内容 | cat<a class="headerlink" href="#打印文件内容--cat" title="Permanent link">&para;</a></h3>
+<h3 id="打印文件内容--cat">打印文件内容 | cat<a class="headerlink" href="#打印文件内容--cat" title="Permanent link">¶</a></h3>
 <p><code>cat</code> 指令会连接文件并将内容打印到标准输出流。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;filename&gt; 是目标文件的名字。</span>
 $ cat &lt;filename&gt;
@@ -1570,7 +972,7 @@ $ cat &lt;filename&gt;
 <ul>
 <li>而实际上 <code>cat</code> 命令最重要的作用并不是 <strong>显示</strong> 文件内容，仔细观察描述，它的作用是 <strong>打印到标准输出流</strong>，其作用在之后介绍了重定向之后会凸显出来。</li>
 </ul>
-<h3 id="打印文件首尾内容--head--tail">打印文件首尾内容 | head &amp; tail<a class="headerlink" href="#打印文件首尾内容--head--tail" title="Permanent link">&para;</a></h3>
+<h3 id="打印文件首尾内容--head--tail">打印文件首尾内容 | head &amp; tail<a class="headerlink" href="#打印文件首尾内容--head--tail" title="Permanent link">¶</a></h3>
 <p><code>head</code> 和 <code>tail</code> 语法类似，功能类似，分别为查看目标文件的开头部分的内容和结尾部分的内容。不过由于我们对文本文件除了读写，还有一个叫做“追加”的操作（类比 C 语言中 <code>fopen()</code> 的 <code>‘a’</code> 模式） <code>tail</code> 会持续打印新追加进文件的内容，所以花样稍微比 <code>head</code> 多一点。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># `head` 和 `tail` 都有默认参数 `-n 10`</span>
 <span class="c1"># 也就是，下面两个指令是等价的，它们都会打印目标文件的前 10 行</span>
@@ -1594,11 +996,11 @@ $ tail -c <span class="m">20</span> &lt;filename&gt;
 $ tail -f &lt;filename&gt;
 </code></pre></div>
 <center>
-<img alt="" src="../2.gif" />
+<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../2.gif"><img alt="" src="../2.gif"/></a>
 </center></p>
 <p>注意，这里的 echo 开头的语句是在做追加操作，之后会讲到。</p>
 <p>而至于具体的引用场景，比如有些工具的日志会不断追加到某个日志文件中，这时候就可以用 <code>tail -f</code> 来实时跟踪日志信息。</p>
-<h3 id="查看文本文件内容--less">查看文本文件内容 | less<a class="headerlink" href="#查看文本文件内容--less" title="Permanent link">&para;</a></h3>
+<h3 id="查看文本文件内容--less">查看文本文件内容 | less<a class="headerlink" href="#查看文本文件内容--less" title="Permanent link">¶</a></h3>
 <p><code>less</code> 则是真正用来显示文件内容的指令，它会以文本文件的形式展示文件内容——这意味着你如果强行使用 <code>less</code> 来查看一个二进制文件，则会得到一堆乱码。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;textFilename&gt; 为目标文件的名字</span>
 $ less &lt;textFilename&gt;
@@ -1615,7 +1017,7 @@ $ less &lt;textFilename&gt;
 <li><code>h</code> ：帮助手册；</li>
 <li><code>q</code> ：退出；</li>
 </ul>
-<h3 id="修改文件时间属性创建文件--touch">修改文件时间属性(创建文件) | touch<a class="headerlink" href="#修改文件时间属性创建文件--touch" title="Permanent link">&para;</a></h3>
+<h3 id="修改文件时间属性创建文件--touch">修改文件时间属性(创建文件) | touch<a class="headerlink" href="#修改文件时间属性创建文件--touch" title="Permanent link">¶</a></h3>
 <p><code>touch</code>实际上是用来修改文件和目录的时间属性的，但是由于它具有“如果文件不存在则创建一个”的特性，所以也常常用来创建一个新档案。</p>
 <div class="highlight"><pre><span></span><code>$ ls -l
 total <span class="m">0</span>
@@ -1633,7 +1035,7 @@ $ ls -l
 total <span class="m">0</span>
 -rw-r--r--  <span class="m">1</span> isshikih  staff  <span class="m">0</span> <span class="m">10</span> <span class="m">25</span> <span class="m">10</span>:10 file
 </code></pre></div>
-<h3 id="创建文件夹--mkdir">创建文件夹 | mkdir<a class="headerlink" href="#创建文件夹--mkdir" title="Permanent link">&para;</a></h3>
+<h3 id="创建文件夹--mkdir">创建文件夹 | mkdir<a class="headerlink" href="#创建文件夹--mkdir" title="Permanent link">¶</a></h3>
 <p><code>mkdir</code>是 make directory 的缩写，也就是创建一个“文件夹”。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;dirname&gt; 可以是一个复杂路径下的目录，但是一定要求其前置目录都存在</span>
 $ mkdir &lt;dirname&gt;
@@ -1673,7 +1075,7 @@ $ tree      <span class="c1"># 该指令会显示当前的文件结构</span>
 
 <span class="m">4</span> directories, <span class="m">4</span> files
 </code></pre></div>
-<h3 id="移动重命名--mv">移动(重命名) | mv<a class="headerlink" href="#移动重命名--mv" title="Permanent link">&para;</a></h3>
+<h3 id="移动重命名--mv">移动(重命名) | mv<a class="headerlink" href="#移动重命名--mv" title="Permanent link">¶</a></h3>
 <p><code>mv</code>即 move，含义很明显，即改变文件或目录的位置。不过由于“位置”这件事，实际上也可以包含文件本身的名字，所以也可以用来做重命名，实际上就是修改目标位置到同一个路径下的另外一个名字。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 注意，我们在这一节临时把 &lt;path&gt; 从 &lt;filename&gt; 和 &lt;dirname&gt; 中拆出来</span>
 <span class="c1"># 该指令会将 &lt;target1&gt; 移动到 &lt;path2&gt; 并改名为 &lt;target2&gt;，当然允许同名</span>
@@ -1686,7 +1088,7 @@ $ mv &lt;path1&gt;/&lt;target1&gt; &lt;path2&gt;/&lt;target1&gt;
 <span class="c1"># 移动到同一目录，即实现重命名，当然 &lt;path1&gt;/ 可以省略，即此时 &lt;path1&gt; 为 .</span>
 $ mv &lt;path1&gt;/&lt;target1&gt; &lt;path1&gt;/&lt;target2&gt;
 </code></pre></div>
-<h3 id="复制--cp">复制 | cp<a class="headerlink" href="#复制--cp" title="Permanent link">&para;</a></h3>
+<h3 id="复制--cp">复制 | cp<a class="headerlink" href="#复制--cp" title="Permanent link">¶</a></h3>
 <p><code>cp</code>即 copy，用来复制文件或目录，基本语法和<code>mv</code>类似，我们再多介绍一个<code>-r</code>参数。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 该指令会复制一个文件 &lt;filename&gt; 到 &lt;path&gt; 下</span>
 $ cp &lt;filename&gt; &lt;path&gt;
@@ -1710,7 +1112,7 @@ $ tree      <span class="c1"># 该指令会显示当前的文件结构</span>
 
 <span class="m">4</span> directories, <span class="m">4</span> files
 </code></pre></div>
-<h3 id="删除--rm">删除 | rm<a class="headerlink" href="#删除--rm" title="Permanent link">&para;</a></h3>
+<h3 id="删除--rm">删除 | rm<a class="headerlink" href="#删除--rm" title="Permanent link">¶</a></h3>
 <p>把<code>rm</code>放在最后讲是有原因的，或许你听说过 <code>rm / -rf</code> 这条指令，却不知道它的含义，那么看完这一小节你就知道这个指令有多恐怖了（千万不要跑这条指令）。</p>
 <p>首先我们需要知道，Linux 下<code>rm</code>指令并不存在“垃圾箱”这个机制，即用<code>rm</code>删掉的东西是没法通过正常手段复原的，而上面那条指令的意思就是强制递归删除系统根目录下所有内容，也就是 <strong>啥都删光了</strong>。</p>
 <p>所以，一般我们都会建议使用<code>alias</code>保护<code>rm</code>指令（我写过<code>fish</code>的<code>rmalias</code>保护流程，可以参考<a href="https://www.yuque.com/isshikixiu/codes/bokmrt">这篇文章</a>）。</p>
@@ -1755,7 +1157,7 @@ examine files <span class="k">in</span> directory dir2/? y     <span class="c1">
 remove dir2//file3? y                                   <span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
 remove dir2/? y                                             <span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
 </code></pre></div>
-<h2 id="重定向相关-">重定向相关 💡<a class="headerlink" href="#重定向相关-" title="Permanent link">&para;</a></h2>
+<h2 id="重定向相关-">重定向相关 💡<a class="headerlink" href="#重定向相关-" title="Permanent link">¶</a></h2>
 <p>可以说这是 Shell 中最有意思的知识点之一了。重定向，顾名思义就是重新定向，更准确的来说是给数据流重新定向。首先，我们来看看这张图，它描述了命令运行时的数据交互。</p>
 <pre class="mermaid"><code>flowchart TD;
 input["file, keyboard, etc"] 
@@ -1787,51 +1189,51 @@ command --&gt;|"Standard Error (stderr)"| error</code></pre>
 </tr>
 </tbody>
 </table>
-<h3 id="标准输出流重定向---">标准输出流重定向 | &gt; &gt;&gt;<a class="headerlink" href="#标准输出流重定向---" title="Permanent link">&para;</a></h3>
+<h3 id="标准输出流重定向---">标准输出流重定向 | &gt; &gt;&gt;<a class="headerlink" href="#标准输出流重定向---" title="Permanent link">¶</a></h3>
 <p>基本上所有语言的教程中都会先介绍如何输出 ”Hello World!“（当然他们也可能更想和别人打招呼）。总而言之，输出对一个命令、一个程序是至关重要的。但是你会发现，这些指令都只是将内容打印到你的终端里，即 <code>stdout</code> 里，只不过一般被送进 <code>stdout</code> 的东西会被打印在 screen 上。</p>
 <p>但是现在我们想要它被写入到一个叫 <code>chat.txt</code> 的文件里，你当然可以使用 <code>fopen()</code> 之类的东西来实现，但是现在我们想用 Shell 来实现这个效果。</p>
 <p>我们再次回忆整个过程中数据的流动：程序中的数据 → <code>stdout</code> → screen，而重定向做的事情就是改变 <code>stdout</code> → screen 这个步骤。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># &quot;command&quot; 的输出会被覆写进 &quot;file&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># "command" 的输出会被覆写进 "file"</span>
 $ <span class="nb">command</span> &gt; file
 
-<span class="c1"># 下面这条指令就实现了将 &quot;Hello World!&quot; 写入了 chat.txt</span>
-$ <span class="nb">echo</span> <span class="s2">&quot;Hello World!&quot;</span> &gt; chat.txt
+<span class="c1"># 下面这条指令就实现了将 "Hello World!" 写入了 chat.txt</span>
+$ <span class="nb">echo</span> <span class="s2">"Hello World!"</span> &gt; chat.txt
 $ cat chat.txt
 Hello World!
 
-<span class="c1"># &quot;command&quot; 的输出会被追加进 &quot;file&quot;</span>
+<span class="c1"># "command" 的输出会被追加进 "file"</span>
 $ <span class="nb">command</span> &gt;&gt; file
 
-<span class="c1"># 下面这条指令就实现了将 &quot;Hello World!&quot; 追加进 chat.txt</span>
-$ <span class="nb">echo</span> <span class="s2">&quot;Hello Human!&quot;</span> &gt;&gt; chat.txt
+<span class="c1"># 下面这条指令就实现了将 "Hello World!" 追加进 chat.txt</span>
+$ <span class="nb">echo</span> <span class="s2">"Hello Human!"</span> &gt;&gt; chat.txt
 $ cat chat.txt
 Hello World!
 Hello Human!
 
-<span class="c1"># 下面这条指令实现了将当前目录下的文件/文件夹列表写入 &quot;index.txt&quot;</span>
+<span class="c1"># 下面这条指令实现了将当前目录下的文件/文件夹列表写入 "index.txt"</span>
 $ ls -al &gt; index.txt
 </code></pre></div>
 <p>诶等等，上面怎么突然出现了“追加”这个词？别急。让我们回顾一下 <code>fopen()</code> 。如果需要创建一个可写文件，<code>fopen()</code> 的模式参数一般是 <code>w</code> ，或者是 <code>a</code>。他们分别代表 write 和 append，即覆写和追加。前者将目标文件的内容全部覆盖，写入新的内容，即相当于清空目标文件然后写入内容；后者是在目标文件的尾部开始写入新内容，旧的内容仍然保留。所以上面的代码会出现 “Hello Human!” 被追加在 “Hello World!” 后面的情况。</p>
 <p>现在，如果你想让你的 <code>a.exe</code> 输出的东西被写入 <code>out.txt</code> 中，也可以尝试这样运行它：</p>
 <div class="highlight"><pre><span></span><code>$ a.exe &gt; out.txt
 </code></pre></div>
-<h3 id="标准输入流重定向--">标准输入流重定向 | &lt;<a class="headerlink" href="#标准输入流重定向--" title="Permanent link">&para;</a></h3>
+<h3 id="标准输入流重定向--">标准输入流重定向 | &lt;<a class="headerlink" href="#标准输入流重定向--" title="Permanent link">¶</a></h3>
 <p>与输出相对应，如果我们想从文件中读取数据而非从 Keyboard 写入的缓冲区读取内容，而是从某个文件，我们也可以使用 <code>&lt;</code> 来重定向输入。</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// 假设 a.exe 的源码是这样的</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"></span>
 <span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">str</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span><span class="w"></span>
-<span class="w">        </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello %s!&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"Hello %s!"</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1">// 假设 in.txt 中的内容为如下</span>
 <span class="n">isshikih</span><span class="w"></span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># &quot;file&quot; 会被当作 &quot;command&quot; 的输入参数</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># "file" 会被当作 "command" 的输入参数</span>
 $ <span class="nb">command</span> &lt; file
 
-<span class="c1"># &quot;a.exe&quot; 会读入 &quot;chat.txt&quot; 的内容作为输入</span>
+<span class="c1"># "a.exe" 会读入 "chat.txt" 的内容作为输入</span>
 $ a.exe &lt; <span class="k">in</span>.txt
 Hello isshikh!
 
@@ -1840,20 +1242,20 @@ $ a.exe &lt; <span class="k">in</span>.txt &gt; out.txt
 $ cat out.txt
 Hello isshikih! 
 </code></pre></div>
-<h3 id="标准错误流重定向--2-2">标准错误流重定向 | 2&gt; 2&gt;&gt;<a class="headerlink" href="#标准错误流重定向--2-2" title="Permanent link">&para;</a></h3>
+<h3 id="标准错误流重定向--2-2">标准错误流重定向 | 2&gt; 2&gt;&gt;<a class="headerlink" href="#标准错误流重定向--2-2" title="Permanent link">¶</a></h3>
 <p><code>stderr</code> 的重定向基本上和 <code>stdout</code> 是一样的。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># &quot;command&quot; 的错误流会被覆写进 &quot;file&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># "command" 的错误流会被覆写进 "file"</span>
 $ <span class="nb">command</span> <span class="m">2</span>&gt; file
 
-<span class="c1"># &quot;command&quot; 的错误流会被追加进 &quot;file&quot;</span>
+<span class="c1"># "command" 的错误流会被追加进 "file"</span>
 $ <span class="nb">command</span> &gt;&gt; file
 </code></pre></div>
 <p>但对于 <code>stderr</code> ，我们使用重定向的目的也可能是为了让他不要在屏幕上显示出来，即将它重定向到别的地方去。</p>
 <p>这里需要介绍一个特殊的“文件”， <code>/dev/null</code> ——任何写入到它的内容都会被丢弃。也就是说，只要我们将 <code>stderr</code> 重定向到 <code>/dev/null</code> ，就能实现类似于“忽略错误流”的效果。 </p>
-<div class="highlight"><pre><span></span><code><span class="c1"># &quot;command&quot; 的错误信息都会被丢弃</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># "command" 的错误信息都会被丢弃</span>
 $ <span class="nb">command</span> <span class="m">2</span>&gt; /dev/null
 </code></pre></div>
-<h3 id="合并--">合并 | &lt;&amp; &gt;&amp;<a class="headerlink" href="#合并--" title="Permanent link">&para;</a></h3>
+<h3 id="合并--">合并 | &lt;&amp; &gt;&amp;<a class="headerlink" href="#合并--" title="Permanent link">¶</a></h3>
 <p>此外，还有 <code>&lt;&amp;</code> 和 <code>&gt;&amp;</code> 这两个符号，由于篇幅有限，我不打算展开讲这件事。这里引用这一批回答：</p>
 <ul>
 <li><a href="https://unix.stackexchange.com/questions/84620/what-does-sh-a-sh-0-0-mean">shell - What does “sh a.sh &lt;&amp;0 &gt;&amp;0” mean? - Unix &amp; Linux Stack Exchange</a></li>
@@ -1886,14 +1288,14 @@ $ <span class="nb">command</span> <span class="m">2</span>&gt; /dev/null
 <div class="highlight"><pre><span></span><code>cmd <span class="m">0</span>&lt;<span class="p">&amp;</span><span class="m">0</span>
 </code></pre></div>
 <p>would avoid running <code>cmd</code> in the pathological condition where <code>stdin</code> is closed:</p>
-<div class="highlight"><pre><span></span><code>$ ksh -c <span class="s1">&#39;cat file - &lt;&amp;0&#39;</span> &lt;<span class="p">&amp;</span>-
+<div class="highlight"><pre><span></span><code>$ ksh -c <span class="s1">'cat file - &lt;&amp;0'</span> &lt;<span class="p">&amp;</span>-
 ksh: <span class="m">0</span>: cannot open <span class="o">[</span>Bad file descriptor<span class="o">]</span>
-$ mksh -c <span class="s1">&#39;cat file - &lt;&amp;0&#39;</span> &lt;<span class="p">&amp;</span>-
+$ mksh -c <span class="s1">'cat file - &lt;&amp;0'</span> &lt;<span class="p">&amp;</span>-
 mksh: &lt;<span class="p">&amp;</span><span class="m">0</span> : bad file descriptor
-$ zsh -c <span class="s1">&#39;cat file - &lt;&amp;0&#39;</span> &lt;<span class="p">&amp;</span>-
+$ zsh -c <span class="s1">'cat file - &lt;&amp;0'</span> &lt;<span class="p">&amp;</span>-
 zsh:1: <span class="m">0</span>: bad file descriptor
 
-$ bash -c <span class="s1">&#39;cat file - &lt;&amp;0&#39;</span> &lt;<span class="p">&amp;</span>-
+$ bash -c <span class="s1">'cat file - &lt;&amp;0'</span> &lt;<span class="p">&amp;</span>-
 contents of file
 cat: -: Bad file descriptor
 cat: closing standard input: Bad file descriptor
@@ -1902,17 +1304,17 @@ cat: closing standard input: Bad file descriptor
 <li><strong>Copy from the top answer from: <a href="https://unix.stackexchange.com/questions/84620/what-does-sh-a-sh-0-0-mean">https://unix.stackexchange.com/questions/84620/what-does-sh-a-sh-0-0-mean</a></strong></li>
 </ul>
 </blockquote>
-<h3 id="管道符--">管道符 | |<a class="headerlink" href="#管道符--" title="Permanent link">&para;</a></h3>
+<h3 id="管道符--">管道符 | |<a class="headerlink" href="#管道符--" title="Permanent link">¶</a></h3>
 <p>前面讲了如何将输入输出重定向至 <strong>文件</strong>，即数据的流动是 <strong>从命令到文件</strong> 或是 <strong>从文件到命令</strong>。而管道符 <code>|</code> 则实现了将数据的流动定向为 <strong>从命令到命令</strong>。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># &quot;command_1&quot; 的输出会作为 &quot;command_2&quot; 的输入</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># "command_1" 的输出会作为 "command_2" 的输入</span>
 $ command_1 <span class="p">|</span> command_2
 
 <span class="c1"># 使用 less 来查看当前目录下的文件/文件夹列表</span>
 $ ls -al <span class="p">|</span> less
 
 <span class="c1"># 一个常用的用法是搭 grep 在日志中找到你想要的一行</span>
-<span class="c1"># 比如下面的命令会在 xxx.log 文件中找到带有关键词 &quot;lean_shell&quot; 的若干行</span>
-$ cat xxx.log <span class="p">|</span> grep <span class="s2">&quot;lean_shell&quot;</span>
+<span class="c1"># 比如下面的命令会在 xxx.log 文件中找到带有关键词 "lean_shell" 的若干行</span>
+$ cat xxx.log <span class="p">|</span> grep <span class="s2">"lean_shell"</span>
 Let us learn_shell together!
 Learn_shell means learn_shell and learn_shell!
 $ cat xxx.log
@@ -1929,14 +1331,14 @@ $ ls -a
 
 <span class="c1"># 再比如，统计当前目录下各个文件夹的大小，并输出从大到小的 10 项</span>
 $ du <span class="p">|</span> sort -nr <span class="p">|</span> head
-<span class="c1"># 找出当前目录下（递归）所有叫做 &quot;xxx&quot; 的文件并删除</span>
-$ find . -name <span class="s2">&quot;xxx&quot;</span>  <span class="p">|</span> xargs rm -f
+<span class="c1"># 找出当前目录下（递归）所有叫做 "xxx" 的文件并删除</span>
+$ find . -name <span class="s2">"xxx"</span>  <span class="p">|</span> xargs rm -f
 </code></pre></div>
-<h3 id="筛选器">筛选器<a class="headerlink" href="#筛选器" title="Permanent link">&para;</a></h3>
+<h3 id="筛选器">筛选器<a class="headerlink" href="#筛选器" title="Permanent link">¶</a></h3>
 <p>可以发现，重定向的功能非常强大。同时，这里也有很多筛选器供你选择，他们经常搭配管道符使用，以辅助管道符进行一些更复杂的工作。</p>
-<p><img alt="Source: https://linuxcommand.org/lc3_lts0070.php" src="../3.png" /></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../3.png"><img alt="Source: https://linuxcommand.org/lc3_lts0070.php" src="../3.png"/></a></p>
 <p>Source: <a href="https://linuxcommand.org/lc3_lts0070.php">https://linuxcommand.org/lc3_lts0070.php</a></p>
-<h2 id="脚本-shell">脚本 Shell<a class="headerlink" href="#脚本-shell" title="Permanent link">&para;</a></h2>
+<h2 id="脚本-shell">脚本 Shell<a class="headerlink" href="#脚本-shell" title="Permanent link">¶</a></h2>
 <p>简单来说，Shell 脚本可以看作一条条 Shell 指令的集合，我们在运行 Shell 脚本时，Shell 脚本中的指令按照特定顺序一行一行的被执行下来。</p>
 <p>Shell 脚本一般是以 <code>.sh</code> 为后缀的纯文本文件，而执行 Shell 脚本的方法大致有三种：</p>
 <ul>
@@ -1949,7 +1351,7 @@ $ find . -name <span class="s2">&quot;xxx&quot;</span>  <span class="p">|</span>
 <li>使用 <code>bash script.sh</code> / <code>sh script.sh</code> / ... 的方式执行脚本，主进程会休眠，并开始一个新进程来执行脚本内容；</li>
 <li>使用 <code>source script.sh</code> 的方式执行脚本，脚本内容会在主进程进行，这也是为什么我们在更新完 <code>.bashrc</code> 这种文件以后会使用 <code>source</code> 来执行它以求效果马上被加载出来；</li>
 </ul>
-<h3 id="流程控制---条件语句">流程控制 - 条件语句<a class="headerlink" href="#流程控制---条件语句" title="Permanent link">&para;</a></h3>
+<h3 id="流程控制---条件语句">流程控制 - 条件语句<a class="headerlink" href="#流程控制---条件语句" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 条件分支语句</span>
 <span class="k">if</span> condition1
 <span class="k">then</span>
@@ -1961,12 +1363,12 @@ $ find . -name <span class="s2">&quot;xxx&quot;</span>  <span class="p">|</span>
         commands
 <span class="k">fi</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># 当 $var 为 &quot;A&quot; 时执行第一块，当 $var 为 &quot;B&quot; 时执行第二块，*) 即其他情况</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 当 $var 为 "A" 时执行第一块，当 $var 为 "B" 时执行第二块，*) 即其他情况</span>
 <span class="k">case</span> <span class="nv">$var</span> <span class="k">in</span> 
-    <span class="s2">&quot;A&quot;</span><span class="o">)</span>
+    <span class="s2">"A"</span><span class="o">)</span>
         commands
     <span class="p">;;</span>
-    <span class="s2">&quot;B&quot;</span><span class="o">)</span>
+    <span class="s2">"B"</span><span class="o">)</span>
         commands
     <span class="p">;;</span> 
     *<span class="o">)</span>
@@ -1974,7 +1376,7 @@ $ find . -name <span class="s2">&quot;xxx&quot;</span>  <span class="p">|</span>
     <span class="p">;;</span>
 <span class="k">esac</span>
 </code></pre></div>
-<h3 id="流程控制---循环语句">流程控制 - 循环语句<a class="headerlink" href="#流程控制---循环语句" title="Permanent link">&para;</a></h3>
+<h3 id="流程控制---循环语句">流程控制 - 循环语句<a class="headerlink" href="#流程控制---循环语句" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 依次枚举若干 item，var 表示正在枚举的内容</span>
 <span class="k">for</span> var <span class="k">in</span> item1 item2 ... itemN
 <span class="k">do</span>
@@ -1993,13 +1395,13 @@ $ find . -name <span class="s2">&quot;xxx&quot;</span>  <span class="p">|</span>
     commands
 <span class="k">done</span>
 </code></pre></div>
-<h3 id="流程控制---函数">流程控制 - 函数<a class="headerlink" href="#流程控制---函数" title="Permanent link">&para;</a></h3>
+<h3 id="流程控制---函数">流程控制 - 函数<a class="headerlink" href="#流程控制---函数" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 定义了一个叫做 foo 的函数，function 可以不写</span>
 <span class="k">function</span> foo<span class="o">(){</span>
       commands
 <span class="o">}</span>
 </code></pre></div>
-<h3 id="参数传递">参数传递<a class="headerlink" href="#参数传递" title="Permanent link">&para;</a></h3>
+<h3 id="参数传递">参数传递<a class="headerlink" href="#参数传递" title="Permanent link">¶</a></h3>
 <p>对于函数或命令可以用 <code>$n</code> 来获取第 n 个参数。但当 n 不止一位数时，可以使用 <code>${n}</code> 的方式来获取第 n 个参数。</p>
 <ul>
 <li>假设 <code>script.sh</code> 的内容如下</li>
@@ -2069,7 +1471,7 @@ i
 a0
 j
 </code></pre></div>
-<h3 id="将命令结果作为参数列表">将命令结果作为参数列表<a class="headerlink" href="#将命令结果作为参数列表" title="Permanent link">&para;</a></h3>
+<h3 id="将命令结果作为参数列表">将命令结果作为参数列表<a class="headerlink" href="#将命令结果作为参数列表" title="Permanent link">¶</a></h3>
 <p>回忆循环语句的结构，我们需要写出枚举的每一个项目。显然，在大量枚举目标的情况下，手写出全部的枚举可能不太现实，所以我们可能会想要使用文件值或是命令的输出来实现。这个时候，我们可以用 ``` 把把命令给括起来。</p>
 <ul>
 <li>假设 <code>file</code> 的内容如下</li>
@@ -2093,19 +1495,19 @@ C
 - B
 - C
 </code></pre></div>
-<h3 id="指定执行脚本所使用的-shell">指定执行脚本所使用的 Shell<a class="headerlink" href="#指定执行脚本所使用的-shell" title="Permanent link">&para;</a></h3>
+<h3 id="指定执行脚本所使用的-shell">指定执行脚本所使用的 Shell<a class="headerlink" href="#指定执行脚本所使用的-shell" title="Permanent link">¶</a></h3>
 <p>可以发现，在前面给出的若干脚本样例中，我们的第一行都有一行奇怪的注释：</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#! /bin/bash</span>
 </code></pre></div>
 <p>这句话的意思是，指定该脚本默认使用 <code>/bin/bash</code> 来执行。这里需要使用绝对路径来索引 Shell 的可执行文件。</p>
-<h3 id="一个模板">一个模板<a class="headerlink" href="#一个模板" title="Permanent link">&para;</a></h3>
+<h3 id="一个模板">一个模板<a class="headerlink" href="#一个模板" title="Permanent link">¶</a></h3>
 <p>这里再贴一个我自己写 Shell 脚本的时候会采用的模板。</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#! /bin/bash</span>
 
 <span class="c1"># get current direction</span>
 <span class="nv">curDir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 <span class="c1"># get shell direction</span>
-<span class="nv">workDir</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="s2">&quot;</span><span class="k">$(</span>dirname <span class="s2">&quot;</span><span class="nv">$0</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span><span class="p">;</span><span class="nb">pwd</span><span class="k">)</span>
+<span class="nv">workDir</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="s2">"</span><span class="k">$(</span>dirname <span class="s2">"</span><span class="nv">$0</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="p">;</span><span class="nb">pwd</span><span class="k">)</span>
 
 <span class="nb">cd</span> <span class="nv">$workDir</span>
 
@@ -2113,10 +1515,10 @@ C
 
 <span class="nb">cd</span> <span class="nv">$curDir</span>
 </code></pre></div>
-<h2 id="其他">其他<a class="headerlink" href="#其他" title="Permanent link">&para;</a></h2>
-<p><img alt="" src="../4.png" /></p>
+<h2 id="其他">其他<a class="headerlink" href="#其他" title="Permanent link">¶</a></h2>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../4.png"><img alt="" src="../4.png"/></a></p>
 <p>命令行常见快捷键，Source: <a href="https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line">https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line</a></p>
-<h2 id="相关资料">相关资料<a class="headerlink" href="#相关资料" title="Permanent link">&para;</a></h2>
+<h2 id="相关资料">相关资料<a class="headerlink" href="#相关资料" title="Permanent link">¶</a></h2>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Shell_(computing)">Shell (computing) - Wikipedia</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Terminal_emulator">Terminal emulator - Wikipedia</a></li>
@@ -2126,127 +1528,87 @@ C
 <li><a href="https://www.geeksforgeeks.org/man-command-in-linux-with-examples/">man command in Linux with Examples - GeeksforGeeks</a></li>
 <li><a href="https://lym.readthedocs.io/en/latest/startingcommands.html">Shell commands — Linux command line for you and me 0.1 documentation (lym.readthedocs.io)</a></li>
 </ul>
-<h2 id="相关知识点">相关知识点<a class="headerlink" href="#相关知识点" title="Permanent link">&para;</a></h2>
+<h2 id="相关知识点">相关知识点<a class="headerlink" href="#相关知识点" title="Permanent link">¶</a></h2>
 <ul>
 <li>Linux</li>
 <li>vi / vim</li>
 </ul>
-
-  <hr>
+<hr/>
 <div class="md-source-file">
-  <small>
+<small>
     
       最后更新:
       <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月1日 19:22:43</span>
-      
-        <br>
+<br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年10月30日 17:34:39</span>
-      
-    
-  </small>
+</small>
 </div>
-
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
-        </div>
-        
-          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
             回到页面顶部
           </a>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="页脚" >
-      
-        
-        <a href="../../../" class="md-footer__link md-footer__link--prev" aria-label="上一页: 扉页" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
+</main>
+<footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Git Commands" class="md-footer__link md-footer__link--prev" href="../../Git/Commands/main/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
                 上一页
               </span>
-              扉页
+              Git Commands
             </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../../../standard/BVH_format/main/" class="md-footer__link md-footer__link--next" aria-label="下一页: BVH 格式详解" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
+</div>
+</a>
+<a aria-label="下一页: Google Colaboratory" class="md-footer__link md-footer__link--next" href="../../Colab/main/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
                 下一页
               </span>
-              BVH 格式详解
+              Google Colaboratory
             </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
-      Copyright &copy 2022 Isshiki修
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2022 Isshiki修
     </div>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
       Material for MkDocs
     </a>
-  
 </div>
-      
-        <div class="md-social">
-  
-    
-    
-    <a href="https://github.com/IsshikiHugh" target="_blank" rel="noopener" title="Github" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-    </a>
-  
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/IsshikiHugh" rel="noopener" target="_blank" title="Github">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</a>
 </div>
-      
-    </div>
-  </div>
+</div>
+</div>
 </footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.annotate", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.top", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
-    
-    
-      <script src="../../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      
-        <script src="../../../../_js/extra.js"></script>
-      
-    
-  </body>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.annotate", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../../../../_js/extra.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
 </html>
