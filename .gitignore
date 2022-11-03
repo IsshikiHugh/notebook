@@ -6,3 +6,6 @@
 
 # Static Files
 site/
+
+# material src
+mkdocs-material
