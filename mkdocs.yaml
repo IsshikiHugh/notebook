@@ -10,7 +10,7 @@ theme:
   name: material
   language: zh
   icon: 
-    logo: material/notebook-outline
+    logo: material/pac-man
   font:
     text: Share Tech
     code: JetBrains Mono
