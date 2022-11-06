@@ -933,6 +933,9 @@ cd $curDir
 
 命令行常见快捷键，Source: [https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line](https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line)
 
+
+- [Linux 命令大全](https://wangchujiang.com/linux-command/)
+
 ## 相关资料
 
 - [Shell (computing) - Wikipedia](https://en.wikipedia.org/wiki/Shell_(computing))
