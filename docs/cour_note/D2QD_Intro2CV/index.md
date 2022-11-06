@@ -80,7 +80,11 @@ CV 领域的几个顶会
     - 作为后续课程的基础，需要复习线性代数的相关知识，它将贯穿整个课程；
     - 需要熟悉涉及的词汇，之后会若干次提到；
 
+### 线代复习
+
 ## Lecture 2 | Image Formation
+
+
 
 
 ## Lecture 3 | Image Processing

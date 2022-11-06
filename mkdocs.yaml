@@ -113,16 +113,18 @@ nav:
     - tech_accu/index.md
     - 常用工具:
       - Git Something:
-        - tech_accu/tool/Git/Workflow/main.md
-        - tech_accu/tool/Git/Commands/main.md
-      - tech_accu/tool/Shell/main.md
-      - tech_accu/tool/Colab/main.md
+        - tech_accu/tool/Git/index.md
+        - tech_accu/tool/Git/Workflow/index.md
+        - tech_accu/tool/Git/Commands/index.md
+      - tech_accu/tool/Shell/index.md
+      - tech_accu/tool/Colab/index.md
     - 标准 | 格式 | 规范:
-      - tech_accu/standard/BVH_format/main.md
+      - tech_accu/standard/BVH_format/index.md
   - 🗒 课程笔记:
     - cour_note/index.md
-    - cour_note/D1QD_CXiaoCheng/main.md
-    - cour_note/D2QD_Intro2CV/main.md
+    - cour_note/D1QD_CXiaoCheng/index.md
+    - cour_note/D1SJ_cs231n/index.md
+    - cour_note/D2QD_Intro2CV/index.md
   - 📝 实践记录:
     - comming.md 
   - 🚧 施工中:
