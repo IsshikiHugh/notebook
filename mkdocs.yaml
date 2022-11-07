@@ -126,6 +126,9 @@ nav:
     - cour_note/D1SJ_cs231n/index.md
     - cour_note/D2QD_Intro2CV/index.md
   - 📝 实践记录:
-    - comming.md 
+    - prac_reco/index.md
+    - prac_reco/reveal-md2Slides/index.md
+  - 🗂 论文阅读:
+    - pape_read/index.md
   - 🚧 施工中:
     - comming.md

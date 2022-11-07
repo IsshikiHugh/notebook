@@ -10,6 +10,6 @@ comments: false
         ~『その時を待つよ』~
     </div>
     <div align="center" style="font-size:12px">
-        一切安乐，无不来自困苦。  ——夏目漱石《心》
+        你们要努力进窄门，因为宽门和阔路引向沉沦。  ——安德烈·纪德《窄门》
     </div>
     <br><br><br>

@@ -14,7 +14,7 @@ comments: false
         ~『その時を待つよ』~
     </div>
     <div align="center" style="font-size:12px">
-        我们登上高塔，看到的却只有黑夜。  ——安德烈·纪德
+        我们登上高塔，看到的却只有黑夜。  ——安德烈·纪德《地粮》
     </div>
     <br><br><br>
 
