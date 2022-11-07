@@ -2,82 +2,92 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://note.isshikih.top/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/comming/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/link/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/cour_note/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/cour_note/D1QD_CXiaoCheng/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/cour_note/D1SJ_cs231n/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/cour_note/D1SJ_cs231n/assignments/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/cour_note/D2QD_Intro2CV/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://note.isshikih.top/pape_read/</loc>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/prac_reco/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://note.isshikih.top/prac_reco/reveal-md2Slides/</loc>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/tech_accu/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/tech_accu/standard/BVH_format/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/tech_accu/tool/Colab/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/tech_accu/tool/Git/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/tech_accu/tool/Git/Commands/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/tech_accu/tool/Git/Workflow/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://note.isshikih.top/tech_accu/tool/Shell/</loc>
-         <lastmod>2022-11-06</lastmod>
+         <lastmod>2022-11-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

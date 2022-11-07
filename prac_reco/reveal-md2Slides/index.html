@@ -1,0 +1,999 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Isshiki修" name="author"/>
+<link href="https://note.isshikih.top/prac_reco/reveal-md2Slides/" rel="canonical"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.1, mkdocs-material-8.5.7" name="generator"/>
+<title>使用 reveal-md 来写 Slides - Isshiki修's Notebook</title>
+<link href="../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<meta content="#000000" name="theme-color"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Share+Tech:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Share Tech";--md-code-font:"JetBrains Mono"}</style>
+<link href="../../_css/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gdesc-inner { font-size: 0.75rem; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="blue" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#使用-reveal-md-来写-slides">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Isshiki修's Notebook">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 12 7.07 7.07a9.953 9.953 0 0 1-14.14 0C1 15.17 1 8.84 4.93 4.93 8.83 1 15.16 1 19.07 4.93L12 12m7-2a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Isshiki修's Notebook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              使用 reveal-md 来写 Slides
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<a aria-label="分享" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="分享">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"></path></svg>
+</a>
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/IsshikiHugh/notebook" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    IsshikiHugh/notebook
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+        💠 封面
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../tech_accu/">
+        📚 技术积累
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../cour_note/">
+        🗒 课程笔记
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../">
+        📝 实践记录
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../pape_read/">
+        🗂 论文阅读
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../comming/">
+        🚧 施工中
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Isshiki修's Notebook">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 12 7.07 7.07a9.953 9.953 0 0 1-14.14 0C1 15.17 1 8.84 4.93 4.93 8.83 1 15.16 1 19.07 4.93L12 12m7-2a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2Z"></path></svg>
+</a>
+    Isshiki修's Notebook
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/IsshikiHugh/notebook" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    IsshikiHugh/notebook
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" id="__nav_1" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../..">💠 封面</a>
+<label for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="💠 封面" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+          💠 封面
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../link/">
+        💬 交流区
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../tech_accu/">📚 技术积累</a>
+<label for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="📚 技术积累" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          📚 技术积累
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../tech_accu/tool/Shell/">常用工具</a>
+<label for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="常用工具" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+          常用工具
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1" id="__nav_2_2_1" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../tech_accu/tool/Git/">Git Something</a>
+<label for="__nav_2_2_1">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="Git Something" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_2_1">
+<span class="md-nav__icon md-icon"></span>
+          Git Something
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tech_accu/tool/Git/Workflow/">
+        Git Workflow
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tech_accu/tool/Git/Commands/">
+        Git Commands
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tech_accu/tool/Colab/">
+        Google Colaboratory
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" id="__nav_2_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../tech_accu/standard/BVH_format/">标准 | 格式 | 规范</a>
+</div>
+<nav aria-label="标准 | 格式 | 规范" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+          标准 | 格式 | 规范
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../cour_note/">🗒 课程笔记</a>
+<label for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="🗒 课程笔记" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          🗒 课程笔记
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cour_note/D1QD_CXiaoCheng/">
+        [大一秋冬] C小程 琐碎知识点整理
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cour_note/D1SJ_cs231n/">
+        [大一暑假] Deep Learning for Computer Vision (CS231N)
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/">
+        [大二秋冬] 计算机视觉导论
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../">📝 实践记录</a>
+<label for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="📝 实践记录" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          📝 实践记录
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          使用 reveal-md 来写 Slides
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        使用 reveal-md 来写 Slides
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#简介">
+    简介
+  </a>
+<nav aria-label="简介" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#为什么我不用-ppt-和语雀文档演示模式">
+    为什么我不用 PPT 和语雀“文档演示模式”
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#为什么我用-reveal">
+    为什么我用 reveal*
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#安装与演示">
+    安装与演示
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文档编写">
+    文档编写
+  </a>
+<nav aria-label="文档编写" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#分页">
+    分页
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#代码框">
+    代码框
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#格式支持">
+    格式支持
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#定制与美化">
+    定制与美化
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#通过-github-pages-实现静态部署">
+    通过 GitHub Pages 实现静态部署
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../pape_read/">🗂 论文阅读</a>
+</div>
+<nav aria-label="🗂 论文阅读" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          🗂 论文阅读
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
+          🚧 施工中
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="🚧 施工中" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          🚧 施工中
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../comming/">
+        内容正在编辑中……
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#简介">
+    简介
+  </a>
+<nav aria-label="简介" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#为什么我不用-ppt-和语雀文档演示模式">
+    为什么我不用 PPT 和语雀“文档演示模式”
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#为什么我用-reveal">
+    为什么我用 reveal*
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#安装与演示">
+    安装与演示
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文档编写">
+    文档编写
+  </a>
+<nav aria-label="文档编写" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#分页">
+    分页
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#代码框">
+    代码框
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#格式支持">
+    格式支持
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#定制与美化">
+    定制与美化
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#通过-github-pages-实现静态部署">
+    通过 GitHub Pages 实现静态部署
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/prac_reco/reveal-md2Slides/index.md" title="编辑此页">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="使用-reveal-md-来写-slides">使用 reveal-md 来写 Slides<a class="headerlink" href="#使用-reveal-md-来写-slides" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">前言</p>
+<ul>
+<li>本文面向 <u>认为 PPT 并不高效，但同时又确实需要一种「演示」途径</u> 的偏技术人员；</li>
+<li>虽然工具基于前端技术栈，但前端知识仅决定工具使用上限，完全可以做到无前端基础进行基础使用；</li>
+<li>我并没有尝试过脱离命令行来实现这些，但是我觉得大概“偏技术”人员不应当不会使用命令行，至少你要知道在哪里能运行命令；此外，您需要确保您的命令行环境能够使用 <a href="https://www.npmjs.com/">npm</a>；</li>
+</ul>
+</div>
+<h2 id="简介">简介<a class="headerlink" href="#简介" title="Permanent link">¶</a></h2>
+<p><code>reveal-md</code> 是 <code>reveal.js</code> 的一个扩展工具，类似于一个预编译工具。利用 <code>reveal-md</code>，你可以通过编写一个 <code>Markdown</code> 文件来快速简便地生成一个基于网页的 Slides，你也可以将它导出为静态资源并部署在类似 github pages 等平台来分享静态页面。</p>
+<ul>
+<li><code>reveal.js</code> 的官方 demo：<a href="https://revealjs.com/?demo">🔗</a></li>
+<li>我自己写的一个 project：<a href="https://isshikihugh.github.io/C-Newbie-Helper/tutorials/simple/slides.html#/">🔗</a></li>
+<li><code>reveal-md</code> 的 github repo：<a href="https://github.com/webpro/reveal-md">🔗</a></li>
+</ul>
+<h3 id="为什么我不用-ppt-和语雀文档演示模式">为什么我不用 PPT 和语雀“文档演示模式”<a class="headerlink" href="#为什么我不用-ppt-和语雀文档演示模式" title="Permanent link">¶</a></h3>
+<p>在这篇文章和语境中，我想大概将「演示」所使用的形式分为三种：</p>
+<ul>
+<li>PPT 等图形化的「演示」文档制作平台；</li>
+<li>使用<code>Beamer</code>、<code>reveal.js</code>、<code>nodeppt</code>等工具，使用代码编写「演示」文档；</li>
+<li>语雀的「文档演示模式」；</li>
+</ul>
+<hr/>
+<p>恰好，语雀推出演示文稿的时候有说明为什么他们要开发这样一个东西。</p>
+<blockquote>
+<p><a href="https://www.yuque.com/yuque/blog/nxe6vv?view=doc_embed">再见PPT，你好“文档演示模式”</a></p>
+</blockquote>
+<p>我非常赞同这篇文章中对于 PPT 的叙述，我也很讨厌 PPT ，它确实可以做很多事，但是对我来说没必要，我也用不到。而且身为破写代码的，我对那种所谓的高级感并没有什么感觉。而且 PPT 有一个致命的缺点就是它的分享非常不方便，你必须要通过「文件」来传递你的材料，而且还收到展示设备的环境限制，而其他两种方法都可以很方便的解决这个问题。</p>
+<p>回到「文档演示模式」，诚然，在某些特定的时间，文档演示确实能便捷的解决许多问题，但是我不觉得目前的文稿演示能成为 Slides 的替代品。它确实便捷且高效，但是并不好看，也并不清晰——而且说回来，其实也不方便（为什么我之后会讲）。
+简单讲了一下我对其他两种途径的看法，关于通过代码途径编写「演示」文档我当然也有话说，但是我想把他们放在后面。</p>
+<hr/>
+<p>接下来，我想从「使用体验」的角度来评价一下上面已经提过的两个途径。</p>
+<p>在我看来，PPT 之所以累赘且低效，是因为大部分人浪费时间在于与核心内容并不直接相关的美工上。而从工作流程上来讲，除非我精通 PPT 且有时间，否则我不会亲自去做 PPT，而是和美工对接，让他们来做。可这样一来问题就出现了，“对接”这件事未必比做 PPT 轻松。又或者我这个 PPT 是我自己需要的，那我就得硬着头皮花费时间去钻研如何做一个好看的 PPT，结果浪费大把时间做出来的可能还是个连油腻都说不上的东西。</p>
+<p>而回到语雀的「文档演示模式」，<del>说来可笑，我写这一行的时候就又出了 bug</del>。诚然「文档演示模式」是一个很好的 Idea，但是语雀自身大大小小的问题到处都是，本来作为一个效率工具却总是在意料之外的地方遇到很糟心的 Bug ，这着实很影响效率（关于这方面的吐槽我就不放在这里说了，以防偏题）。</p>
+<p>在这样一个基础下，出现了问题但是我们无法，或者说快速排查，或者说是退而求其次寻找别的实现办法，都是不方便的。换句话来说就是这个功能自身的稳定性就不能保证，而其实现对使用者来说也并不足够简单透明，导致使用起来会需要承担很多不确定的风险。（顺便吐槽一句，使用语雀的这一年我体感上影响体验的 Bug 是越来越多了……）</p>
+<h3 id="为什么我用-reveal">为什么我用 reveal*<a class="headerlink" href="#为什么我用-reveal" title="Permanent link">¶</a></h3>
+<p>那么，通过代码来制作「演示」材料又怎么样呢？首先是 <code>Beamer</code>，大概也是最有名的，其基于 <span class="arithmatex">\(\LaTeX\)</span> 实现，其在排版上的可控性不言而喻，但是写过的人都知道 <span class="arithmatex">\(\LaTeX\)</span> 写起来多费心；而<a href="https://github.com/hakimel/reveal.js">reveal.js</a> 以及 <a href="https://github.com/ksky521/nodeppt">nodeppt</a> 是我找到过的两个比较满意的，通过代码来写 Slides 的工具。我并不打算在这里把他们两个都详细的介绍一遍，但是我希望简单表达一下我对这两个东西的看法。</p>
+<p>首先，在我的理解中，<code>nodeppt</code> 对美化是比 <code>reveal.js</code> 要好一些的，即，抛开花费在里面的时间不说，就结果而言，使用 <code>nodeppt</code> 会比 <code>reveal.js</code> 好看一些，排版更自由一些。但是从「效率」来说，我倾向于 <code>reveal.js</code>。
+理由很简单，<code>reveal.js</code> 的分页逻辑深得我心：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="1.png"><img alt="" src="1.png"/></a></p>
+<blockquote>
+<p>我自己写的某个 Slides 的结构速览</p>
+</blockquote>
+<p>可以发现，页面有纵向和横向两个扩展方向，这非常符合层次化的思维逻辑，也很符合文档的编写逻辑，并且总体而言 <strong>没有什么花里胡哨但是没啥用的东西</strong>，具有一种奥卡姆剃刀的美感。然而这并不意味着它的美工上限很低，恰恰相反，不仅 <code>reveal.js</code> 的内置动画和风格就很舒适，而且无论是 <code>reveal.js</code> 还是 <code>nodeppt</code>，他们的本质都是静态网页，你大可以用你的前端技能来美化它——当然， 对我来说这些东西就没啥必要了。
+以上都是关于效果的叙述，那它是否真的写起来很方便呢？其实我感觉原生的 <code>reveal.js</code> 写起来并不方便，我一开始甚至不知道要如何创建一个新的文档。但是我后来发现了<code>[reveal-md](https://github.com/webpro/reveal-md)</code>这个工具。利用<code>reveal-md</code>，你可以真正意义上的实现使用<code>markdown</code>语法来写一个 Slides。</p>
+<h2 id="安装与演示">安装与演示<a class="headerlink" href="#安装与演示" title="Permanent link">¶</a></h2>
+<p>确保您的<code>[npm](https://www.npmjs.com/)</code>能够正常使用，接下来安装<code>reveal-md</code>你只需要使用如下命令即可。</p>
+<div class="highlight"><pre><span></span><code>npm install -g reveal-md
+</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="2.png"><img alt="image.png" src="2.png"/></a></p>
+<p>安装完成后，你就可以将 <code>reveal-md</code> 当作一个 console app 来使用，输入 <code>reveal-md --help</code> 来查看命令详细的使用方法。</p>
+<details class="summary">
+<summary>help list</summary>
+<div class="highlight"><pre><span></span><code>Puppeteer unavailable, unable to create featured slide image <span class="k">for</span> OpenGraph metadata.
+Puppeteer unavailable, unable to generate PDF file.
+Usage: cli &lt;slides.md&gt; <span class="o">[</span>options<span class="o">]</span>
+
+See https://github.com/webpro/reveal-md <span class="k">for</span> more details.
+
+Options:
+  -V, --version                               output the version number
+      --title &lt;title&gt;                         Title of the presentation
+  -s, --separator &lt;separator&gt;                 Slide separator <span class="o">[</span>default: <span class="m">3</span> dashes <span class="o">(</span>---<span class="o">)</span> surrounded by two blank lines<span class="o">]</span>
+  -S, --vertical-separator &lt;separator&gt;        Vertical slide separator <span class="o">[</span>default: <span class="m">4</span> dashes <span class="o">(</span>----<span class="o">)</span> surrounded by two blank lines<span class="o">]</span>
+  -t, --theme &lt;theme&gt;                         Theme <span class="o">[</span>default: black<span class="o">]</span>
+      --highlight-theme &lt;theme&gt;               Highlight theme <span class="o">[</span>default: zenburn<span class="o">]</span>
+      --css &lt;files&gt;                           CSS files to inject into the page
+      --scripts &lt;files&gt;                       Scripts to inject into the page
+      --assets-dir &lt;dirname&gt;                  Defines assets directory name <span class="o">[</span>default: _assets<span class="o">]</span>
+      --preprocessor &lt;script&gt;                 Markdown preprocessor script
+      --template &lt;filename&gt;                   Template file <span class="k">for</span> reveal.js
+      --listing-template &lt;filename&gt;           Template file <span class="k">for</span> listing
+      --glob &lt;pattern&gt;                        Glob pattern to <span class="k">select</span> markdown files <span class="k">for</span> listing and conversion <span class="o">[</span>default: **/*.md<span class="o">]</span>
+      --print <span class="o">[</span>filename<span class="o">]</span>                      Print to PDF file
+      --static <span class="o">[</span>dir<span class="o">]</span>                          Export static html to directory <span class="o">[</span>_static<span class="o">]</span>. Incompatible with --print.
+      --static-dirs &lt;dirs&gt;                    Extra directories to copy into static directory. Only used <span class="k">in</span> conjunction with --static.
+  -w, --watch                                 Watch <span class="k">for</span> changes <span class="k">in</span> markdown file and livereload presentation
+      --disable-auto-open                     Disable auto-opening your web browser
+      --host &lt;host&gt;                           Host <span class="o">[</span>default: localhost<span class="o">]</span>
+      --port &lt;port&gt;                           Port <span class="o">[</span>default: <span class="m">1948</span><span class="o">]</span>
+      --featured-slide &lt;num&gt;                  Capture snapshot from this slide <span class="o">(</span>numbering starts from <span class="m">1</span><span class="o">)</span> and use it as og:image <span class="k">for</span> static build. Defaults to first slide. Only used with --static.
+      --absolute-url &lt;url&gt;                    Define url used <span class="k">for</span> hosting static build. This is included <span class="k">in</span> OpenGraph metadata. Only used with --static.
+      --print-size                            Paper size to use <span class="k">in</span> exported PDF files
+      --puppeteer-launch-args &lt;args&gt;          Customize how Puppeteer launches Chromium. The arguments are specified as a space separated list <span class="o">(</span><span class="k">for</span> example --puppeteer-launch-args<span class="o">=</span><span class="s2">"--no-sandbox --disable-dev-shm-usage"</span><span class="o">)</span>. Needed <span class="k">for</span> some CI setups.
+      --puppeteer-chromium-executable &lt;path&gt;  Customize which Chromium executable puppeteer will launch. Allows to use a globally installed version of Chromium.
+  -h, --help                                  output usage information
+</code></pre></div>
+</details>
+<p>在我自己的使用过程中，我认为比较核心的两条命令如下：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">## 最基础的命令，根据 Markdown 文件在本地 1948 端口生成 Slides 服务。</span>
+$ reveal-md your-md-file.md
+
+<span class="c1">## 为了实现在线部署，需要导出为静态资源。</span>
+$ reveal-md your-md-file.md --static your-static-dir
+</code></pre></div>
+<p>也就是说，你只需要编写一个md文件，并使用这些指令就能生成 reveal.js Slides。
+接下来以官方 demo 为例介绍一下使用。运行指令以后会在 1948 端口启动服务，一般会直接通过浏览器打开。
+在 PC 端口：</p>
+<ul>
+<li>通过点击/ 空格来选择下一页，使用 <code>h/←</code> <code>j/↓</code> <code>k/↑</code> <code>l/→</code> 或者点击右下角的方向盘来进行上下左右切换，直接点击页面底部的进度条也可以实现页面跳转。</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="3.png"><img alt="image.png" src="3.png"/></a></p>
+<ul>
+<li>按下 <code>f</code> 来全屏显示，按下 <code>Esc</code> 或者 <code>f</code> 退出。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center"><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="4.png"><img alt="image.png" src="4.png"/></a></th>
+<th align="center"><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="5.png"><img alt="image.png" src="5.png"/></a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">按 <code>f</code> 之前。</td>
+<td align="center">全屏显示。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>按下<code>s</code>进入演讲者模式，也就是再多跳出来一个弹窗，在实际使用中可以在投影仪里放全屏，在自己电脑上展示这个窗口。修改右上角的 Layout 可以修改显示模式。<code>Notes</code> 的内容会在后面介绍，类似于 PPT 的备注。</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="6.png"><img alt="" src="6.png"/></a><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="8.png"><img alt="" src="8.png"/></a><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="7.png"><img alt="" src="7.png"/></a><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="9.png"><img alt="" src="9.png"/></a></p>
+<ul>
+<li>按下<code>o</code>进入总览视图，可以利用方向键进行移动，回车或点击进行选择。需要注意，这里显示的内容和实际展示的页面内容在布局上存在差异。</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="10.png"><img alt="" src="10.png"/></a></p>
+<ul>
+<li>按下<code>v</code>或<code>.</code>黑屏。</li>
+</ul>
+<hr/>
+<p>而在移动端（比如访问某个实例的在线部署时），基本的点击操作是一样的，此外，带有方向的滑动可以对应方向键功能。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="11.png"><img alt="image.png" src="11.png"/></a></p>
+<h2 id="文档编写">文档编写<a class="headerlink" href="#文档编写" title="Permanent link">¶</a></h2>
+<p>在这部分，我并不打算按照模块化、系统化的流程来编写教程，这些你在官方文档中都能找到——我并不觉得“字典”是一个很好的学习途径，就像我们一般不建议用《C++ Primer》入门 C++，更不会建议外国友人通过《新华字典》来学习汉语。
+我将按照我对这个工具的理解，按照由浅入深，按照必要程度来介绍内容。它可能看起来会又些混乱，但是我觉得它是符合实践顺序的，如果让你觉得看起来很费劲，可以搭配官方文档来使用，或者直接告诉我。
+此外，其中可能不会涉及一部分我个人不太喜欢的东西，比如同样可以通过配置文件和命令参数的行为，我会选择只介绍配置文件的方案。如果你对另外一种方案感兴趣，可以详细阅读文档或者帮助菜单。此外，本文章也不会涉及 <code>reveal-md</code> 的所有内容，而更多的是一个抛砖引玉或者说基础使用的教程。部分需求可能是面向特殊用户群体的，还是那句话，如果有兴趣可以查看官方文档。</p>
+<h3 id="分页">分页<a class="headerlink" href="#分页" title="Permanent link">¶</a></h3>
+<p>首先，如果你用一个再普通不过的 Markdown 文件来创建 Slides，比如：</p>
+<div class="highlight"><pre><span></span><code><span class="gu">## Part 1</span>
+
+<span class="gu">### Part 1.1</span>
+
+<span class="k">-</span> Orderred List
+<span class="k">-</span> Next Line
+
+<span class="k">1.</span> Numberred List
+<span class="k">2.</span> Next Line
+
+<span class="gu">### Part 1.2</span>
+
+{code block here}
+
+<span class="gu">### Part 1.3</span>
+
+<span class="k">&gt; </span><span class="ge">Everthings seems ok!</span>
+</code></pre></div>
+<p>那么运行以后我们会得到这样一个页面：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="12.png"><img alt="" src="12.png"/></a></p>
+<p>可以发现，它并不像我们想的那样，向横向和纵向扩展。但是这恰好说明所有东西都是可控的，而不是莫名其妙的根据某个标题就自动换掉，进而导致一系列诡异的问题。</p>
+<p>在 reveal-md 中，有两种 separator 和 vertical separator 两种，顾名思义，分别对应着左右分页和上下分页。默认情况下，separator 是 <code>\n---\n</code>，而 vertical separator 是 <code>\n----\n</code>。所以稍微对上面的文档进行一些修改：</p>
+<div class="highlight"><pre><span></span><code><span class="gu">### Part 1</span>
+
+---
+
+<span class="gu">#### Part 1.1</span>
+
+<span class="k">-</span> Orderred List
+<span class="k">-</span> Next Line
+
+<span class="k">1.</span> Numberred List
+<span class="k">2.</span> Next Line
+
+----
+
+<span class="gu">#### Part 1.2</span>
+
+{code block here}
+
+----
+
+<span class="gu">#### Part 1.3</span>
+
+<span class="k">&gt; </span><span class="ge">Everthings seems ok!</span>
+</code></pre></div>
+<p>再次运行就能发现我们的 Slides 已经有了二维的层级结构：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="13.png"><img alt="image.png" src="13.png"/></a></p>
+<blockquote>
+<p>虽然这里的预览图里看起来排版很丑，但是实际展示的时候都是默认居中，不喜欢的话可以改相关设置或者用 html 标签修改。</p>
+</blockquote>
+<p>那么其实到此为止，你已经能够通过<code>reveal-md</code>来实现非常快速的 Slides 编写了。但是为了定制主题，或者是使用一些更高级的东西，我们还需要介绍一些别的东西，包括对某些东西的自定义、某些模块的扩展功能、与原生<code>reveal.js</code>语法的混用。
+在正式进入下一个部分之前，我想补充介绍一下如何修改默认的 separator：
+有两种方案能实现 seperator 的自定义，一种是通过在命令行中的附加参数实现，另一种则是在<code>md</code>文件开头写好配置文件实现。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="14.png"><img alt="image.png" src="14.png"/></a></p>
+<div class="highlight"><pre><span></span><code>---
+separator: &lt;!--s--&gt;
+<span class="gu">verticalSeparator: &lt;!--v--&gt;</span>
+<span class="gu">---</span>
+</code></pre></div>
+<ul>
+<li>这里将 <code>&lt;!--s--&gt;</code> 设为 separator，将 <code>&lt;!--v--&gt;</code> 设为 vertical separator。</li>
+<li>这一部分内容需要放在 <code>md</code> 文件的开头，之后会详细介绍。</li>
+</ul>
+<p>这里我才用第二种方案来改装我们的 <code>md</code> 文件现在得到：</p>
+<div class="highlight"><pre><span></span><code>---
+separator: &lt;!--s--&gt;
+<span class="gu">verticalSeparator: &lt;!--v--&gt;</span>
+<span class="gu">---</span>
+
+<span class="gu">### Part 1</span>
+
+&lt;!--s--&gt;
+
+<span class="gu">#### Part 1.1</span>
+
+<span class="k">-</span> Orderred List
+<span class="k">-</span> Next Line
+
+<span class="k">1.</span> Numberred List
+<span class="k">2.</span> Next Line
+
+&lt;!--v--&gt;
+
+<span class="gu">#### Part 1.2</span>
+
+{code block here}
+
+&lt;!--v--&gt;
+
+<span class="gu">#### Part 1.3</span>
+
+<span class="k">&gt; </span><span class="ge">Everthings seems ok!</span>
+</code></pre></div>
+<p>而在这种情况下，除了开头配置文件的部分，其他的 <code>---</code> 则会被认为是 <code>md</code> 的语法，渲染为正常的分割线。</p>
+<h3 id="代码框">代码框<a class="headerlink" href="#代码框" title="Permanent link">¶</a></h3>
+<p>首先，在 <code>reveal-md</code> 中使用代码框和在 <code>markdown</code> 中使用是一样的，只不过 <code>reveal.js</code> 对代码框有更多的支持，而 <code>reveal-md</code> 将这种支持融合进了 <code>markdown</code> 的语法。我在这里主要想介绍的是代码框高亮行动画。</p>
+<p>不知道你有没有遇到过这种情况，我们需要贴出一段代码，但是有些部分并不是重点，但是不放上去又觉得怪怪的；又或者你的代码里有多个重点，你需要在展示时手动告诉大家哪里是重点？<code>reveal*</code> 可以做到按行高亮代码，并且能够实现动画。这么说有点抽象，可以体验一下<a href="https://isshikihugh.github.io/C-Newbie-Helper/tutorials/simple/slides.html#/3/1">这一页 Slide</a>。</p>
+<table>
+<thead>
+<tr>
+<th align="right"><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="15.png"><img alt="image.png" src="15.png"/></a></th>
+<th align="left"><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="16.png"><img alt="image.png" src="16.png"/></a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"></td>
+<td align="left">可以发现，不仅高亮了，而且还有自动滚动到中心。</td>
+</tr>
+</tbody>
+</table>
+<p>那么要如何实现呢？我们知道，在<code>Markdown</code>中使用代码框的语法如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> 前面的数字是为了标记它们属于代码框的第几行而写的，实际不需要写这些数字（废话）
+<span class="k">-</span> 反斜杠是为了防止md渲染错误，实际上不需要加
+
+\```cpp
+1       <span class="ni">#include</span> &lt;iostream&gt;
+2       int main(){
+3           std::cout &lt;&lt; "Hello World!\n";
+4       return 0;
+5       }
+\```
+</code></pre></div>
+<p>那么，为了实现高亮，我们只需要在语言后面加上一个方括号 <code>[...]</code> 来标记高亮行即可，比如 <code>[2-5]</code> 就是标记 2～5 行，也就是整个 <code>main()</code> 函数。此外，你还可以用<code>|</code>来分隔多个高亮块，来实现动画的效果，例如 <code>[1|2-5]</code> 就是先高亮预编译，再高亮 <code>main()</code> 函数。</p>
+<div class="highlight"><pre><span></span><code>---
+separator: &lt;!--s--&gt;
+<span class="gu">verticalSeparator: &lt;!--v--&gt;</span>
+<span class="gu">---</span>
+
+<span class="gu">### Part 1</span>
+
+&lt;!--s--&gt;
+
+<span class="gu">#### Part 1.1</span>
+
+<span class="k">-</span> Orderred List
+<span class="k">-</span> Next Line
+
+<span class="k">1.</span> Numberred List
+<span class="k">2.</span> Next Line
+
+&lt;!--v--&gt;
+
+<span class="gu">#### Part 1.2</span>
+
+\```cpp[1|2-5]
+<span class="gh">#include &lt;iostream&gt;</span>
+int main(){
+    std::cout &lt;&lt; "Hello World!\n";
+    return 0;
+}
+\```
+
+&lt;!--v--&gt;
+
+<span class="gu">#### Part 1.3</span>
+
+<span class="k">&gt; </span><span class="ge">Everthings seems ok!</span>
+</code></pre></div>
+<h3 id="格式支持">格式支持<a class="headerlink" href="#格式支持" title="Permanent link">¶</a></h3>
+<p>在文本格式排版方面，<code>Markdown</code> 的原生语法都是支持的，此外你当然也可以使用 <code>html</code> 标签来编辑你的文字，例如修改颜色、设置居中/靠左/靠右、修改大小……
+例如，上面展示的那张展示代码高亮的 Slide 的初始代码如下：</p>
+<div class="highlight"><pre><span></span><code><span class="gu">### 输出流</span>
+
+\```c[1-19|13-16]
+<span class="gh">#ifndef __C_NEWBIE_HELPER__</span>
+<span class="gh">#define __C_NEWBIE_HELPER__</span>
+/****************************************************
+ <span class="k">*</span> C Newbie Helper 1.0                              *
+ <span class="k">*</span> ------------------------------------------------ *
+ <span class="k">*</span> Github Repository Address:                       *
+ <span class="k">*</span> - https://github.com/IsshikiHugh/C-Newbie-Helper *
+ ****************************************************/
+/*** Config Part ************************************/
+// MODE 0 : Logs will be write to 'CNH_log.txt' file.
+// MODE 1 : Logs will be print to console (colorful for normal terminal).
+// MODE 2 : Logs will be print to console (colorless but fine for CMD).
+<span class="gh">#define CNH_MODE 2</span>
+...
+\```
+
+&lt;font size="6"&gt;
+
+<span class="k">-</span> 如果你对命令行&lt;font color="orange"&gt;毫无了解&lt;/font&gt;，那么请检查 &lt;font color="cyan"&gt;CNH_MODE&lt;/font&gt; 被设置为 &lt;font color="cyan"&gt;2&lt;/font&gt; ；
+<span class="k">-</span> 如果你的日志将会被打印在常规的 &lt;font color="orange"&gt;Terminal&lt;/font&gt; 上，那么我们推荐你设置 &lt;font color="cyan"&gt;CNH_MODE&lt;/font&gt; 为 &lt;font color="cyan"&gt;1&lt;/font&gt; ；
+<span class="k">-</span> 如果你希望你的日志内容不被打印，而是输出到&lt;font color="orange"&gt;文件&lt;/font&gt;中，则可以设置 &lt;font color="cyan"&gt;CNH_MODE&lt;/font&gt; 为 &lt;font color="cyan"&gt;0&lt;/font&gt; ，但是请注意，CNH 无法清空输出文件，请在每次输出的时候手动清理 &lt;font color="yellow"&gt;CNH_log.txt&lt;/font&gt; ；
+
+&lt;/font&gt;
+</code></pre></div>
+<blockquote>
+<p>根据我的观察，如果需要在<code>html</code>标签里使用<code>Markdown</code>语法，最好在标签和语法之间加空行。</p>
+</blockquote>
+<h2 id="定制与美化">定制与美化<a class="headerlink" href="#定制与美化" title="Permanent link">¶</a></h2>
+<p>这里我提供一个我自己的源<code>md</code>文件开头配置的模板：</p>
+<div class="highlight"><pre><span></span><code>---
+title: Title
+separator: &lt;!--s--&gt;
+verticalSeparator: &lt;!--v--&gt;
+theme: league
+highlightTheme: tomorrow-night-bright
+revealOptions:
+  width: <span class="m">1520</span>
+  height: <span class="m">950</span>
+  margin: <span class="m">0</span>.04
+  transition: <span class="s1">'convex'</span>
+  slideNumber: <span class="nb">true</span>
+---
+</code></pre></div>
+<ul>
+<li><code>title</code> 即显示在网页标签上内容；</li>
+<li><code>(vertical)separator</code> 即之前提到过的两个 <code>separator</code>；</li>
+<li><code>theme</code> 为 Slides 主题，可供使用的官方默认主题可以看这里：<a href="https://revealjs.com/themes/">🔗</a>；</li>
+<li><code>highlightTheme</code> 为代码框高亮主题，官方对高亮主题的说明在这里：<a href="https://revealjs.com/code/">🔗</a>；</li>
+<li><code>revealOptions</code> 则对应了 <code>reveal.js</code> 中 <a href="https://revealjs.com/config/">config</a> 的内容；</li>
+<li>这一块不只这些内容，涉及的内容非常多，<code>reveal.js</code> 官方的文档中都有详细的内容，我这里列出了 <strong>宽</strong>、<strong>高</strong>、<strong>边界</strong>、<strong>换页动画</strong>、<strong>标号</strong> 等。</li>
+</ul>
+<blockquote>
+<p>我这里填写的是我自己认为比较舒服而且好看的。当然，如果本地对应资源文件里有您自己编写的资源也是可以用的。但是这一块我的钻研也不是特别深，我本身也不是前端人，所以只能介绍到这里了。</p>
+</blockquote>
+<h2 id="通过-github-pages-实现静态部署">通过 GitHub Pages 实现静态部署<a class="headerlink" href="#通过-github-pages-实现静态部署" title="Permanent link">¶</a></h2>
+<p>在这个章节中，我将介绍如何利用 GitHub Pages 实现 Slides 的部署，在诸如 Gitee Pages 的平台实现这些功能的流程也是类似的。
+首先你需要创建一个 Repo 来存放你的静态资源，例如。我个人的做法是直接把初始的 <code>md</code> 文本和静态资源文本都放在一个地方了。
+接下来，我们需要导出静态资源，使用的是这条指令：</p>
+<div class="highlight"><pre><span></span><code>reveal-md your-md-file.md --static your-static-dir
+</code></pre></div>
+<p>接下来，你会得到一个文件夹，包含这个 Slides 所需要的所有资源。你只需要将它传到你的 Repo 里即可。
+例如我的仓库中：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="17.png"><img alt="" src="17.png"/></a></p>
+<p>进入<code>repo/.../static-dir</code>，也就是上图的<code>slides</code>，我们可以看到类似这样的一些文件：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="18.png"><img alt="" src="18.png"/></a></p>
+<p>其中的 <code>index.html</code> 和 <code>slides.html</code> 都是 Slides 的 <code>html</code> 文件。区别貌似是 <code>index.html</code>会 有一个弹窗告诉你使用的是 <code>reveal.js</code>。</p>
+<p>接下来，设置 pages 服务以后通过 <code>https://&lt;github_id&gt;.github.io/&lt;repo_name&gt;/.../slides.html</code> 即可访问到页面啦！
+例如上方这个仓库对应的 <code>URL</code> 是 <code>https://isshikihugh.github.io/myReveal-md/projectsTutorial_CNewbieHelper/slides/slides.html</code>。</p>
+<p>利用 Pages 服务，就可以快速便捷地分享你的 Slides，对于不懂技术的人来说不仅表现效果不差，而且还有一丝逼格。不过在国内或许访问不太稳定，所以可以考虑使用 Gitee Pages 来实现。不过 Gitee Pages 服务每一次都需要你自己去更新一下，还有一些审核机制。</p>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月7日 10:50:31</span>
+<br/>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月7日 10:50:31</span>
+</small>
+</div>
+<h2 id="__comments">评论</h2>
+<!-- Insert generated snippet here -->
+<script async="" crossorigin="anonymous" data-category="Announcements" data-category-id="DIC_kwDOIVXFKs4CSVPk" data-emit-metadata="0" data-input-position="top" data-lang="zh-CN" data-mapping="pathname" data-reactions-enabled="1" data-repo="isshikihugh/notebook" data-repo-id="R_kgDOIVXFKg" data-strict="0" data-theme="dark" src="https://giscus.app/client.js">
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    /* Set palette on initial load */
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "dark" : "light"
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+          /* Instruct Giscus to change theme */
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            回到页面顶部
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: 扉页" class="md-footer__link md-footer__link--prev" href="../" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                上一页
+              </span>
+              扉页
+            </div>
+</div>
+</a>
+<a aria-label="下一页: 扉页" class="md-footer__link md-footer__link--next" href="../../pape_read/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                下一页
+              </span>
+              扉页
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2022 Isshiki修
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/IsshikiHugh" rel="noopener" target="_blank" title="Github">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../../_js/extra.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+</html>
