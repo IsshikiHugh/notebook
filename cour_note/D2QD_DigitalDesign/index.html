@@ -474,6 +474,11 @@
     最大项之积 POM
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#练习">
+    练习
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -706,6 +711,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#最大项之积-pom">
     最大项之积 POM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#练习">
+    练习
   </a>
 </li>
 </ul>
@@ -1060,6 +1070,9 @@ A--&gt;D</code></pre>
 </blockquote>
 </div>
 <h3 id="布尔代数">布尔代数<a class="headerlink" href="#布尔代数" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>literal ~ 字面量，也就是“变量”。</p>
+</blockquote>
 <h4 id="运算律">运算律<a class="headerlink" href="#运算律" title="Permanent link">¶</a></h4>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="10.jpeg"><img alt="" src="10.jpeg"/></a></p>
 <p>这张图片总结了布尔运算中的运算律，个人感觉最需要强化记忆的是 15 条，因为布尔代数借用了普通代数的符号，但第 15 条在普通代数中并不成立，所以对于习惯这套符号的人来说可能不太 straightfoward。</p>
@@ -1080,7 +1093,7 @@ A--&gt;D</code></pre>
 <p>我们再次发现，与 和 或 在逻辑上是对称的。</p>
 </blockquote>
 <h4 id="对偶法则">对偶法则<a class="headerlink" href="#对偶法则" title="Permanent link">¶</a></h4>
-<p>一个表达式的 <strong>对偶(dual)</strong> 为，将所有的 <strong>与</strong> 和 <strong>或</strong> 对调得到的式子（注意！需要保证参与运算的顺序不能变，比如 <strong>一般情况下</strong> <span class="arithmatex">\(A\cdot B\)</span> 会被对偶为 <span class="arithmatex">\((A+B)\)</span> 以保证运算顺序）。</p>
+<p><strong>对偶法则(duality rule)</strong>: 一个表达式的 <strong>对偶(dual)</strong> 为，将所有的 <strong>与</strong> 和 <strong>或</strong> 对调得到的式子（注意！需要保证参与运算的顺序不能变，比如 <strong>一般情况下</strong> <span class="arithmatex">\(A\cdot B\)</span> 会被对偶为 <span class="arithmatex">\((A+B)\)</span> 以保证运算顺序）。</p>
 <div class="admonition note">
 <p class="admonition-title">eg</p>
 <ul>
@@ -1095,14 +1108,14 @@ A--&gt;D</code></pre>
 <li>如果表达式 F 和 G 等价，那么他们的对偶也等价；</li>
 </ul>
 <h4 id="互补函数">互补函数<a class="headerlink" href="#互补函数" title="Permanent link">¶</a></h4>
-<p>一个布尔函数的 <strong>互补函数(complementing functions)</strong> 指的是，将它的对偶函数中每一个变量都取反得到的函数，而该函数正好等于原函数的非。</p>
+<p>一个 <strong>函数的互补(complement of a function)</strong> 指的是，将它的对偶函数中每一个变量都取反得到的函数，而该函数正好等于原函数的非。</p>
 <div class="admonition note">
 <p class="admonition-title">eg</p>
 <p>原函数：<span class="arithmatex">\(F=\overline{A}B+C\overline{B}\)</span>；
 其互补函数：<span class="arithmatex">\(\overline{F}=(A+\overline{B})(\overline{C}+D)\)</span>；</p>
 </div>
 <h4 id="替代法则">替代法则<a class="headerlink" href="#替代法则" title="Permanent link">¶</a></h4>
-<p>如果将一个等式中 <strong>所有的</strong> <strong>某个变量</strong> 都替换为同一个表达式，则等式依然成立。</p>
+<p><strong>替代法则(substitution rules)</strong>: 如果将一个等式中 <strong>所有的</strong> <strong>某个变量</strong> 都替换为同一个表达式，则等式依然成立。</p>
 <div class="admonition note">
 <p class="admonition-title">eg</p>
 <ul>
@@ -1119,17 +1132,216 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p>其证明的第一步是这样的：
 <span class="arithmatex">\(XY+\overline{X}Z+YZ=XY+\overline{X}Z+(X+\overline{X})YZ\)</span>，那后面就很简单了。本质上这个等式是利用了裂项，需要将其中最本质的部分，最小的粒度给裂开来，然后再慢慢消掉。</p>
 <h3 id="标准形式">标准形式<a class="headerlink" href="#标准形式" title="Permanent link">¶</a></h3>
-<p>由于本质上相等的布尔表达式实际上有很多种写法，而且随着变量越来越复杂，他们之间的比较会很困难。所以我们需要定义一种形式，使得所有相同的表达式都能比较方便的“化简”为同一个形式，同时也能辨别出两个表达式是不同的。这就引入了 <strong>标准形式(Standard Forms)</strong>。</p>
+<p>由于本质上相等的布尔表达式实际上有很多种写法，而且随着变量越来越复杂，他们之间的比较会很困难。所以我们需要定义一种形式，使得所有相同的表达式都能比较方便的“化简”为同一个形式，同时也能辨别出两个表达式是不同的。这就引入了 <strong>标准形式(Standard Forms)</strong>，他们分别为 <strong>最小项之和 SOM(Sum of Minterms)</strong> 和 <strong>最大项之积 POM(Product of Maxterms)</strong>。</p>
+<p>为了方便描述，在继续之前，我们先给出这样一张 🌰 真值表。</p>
+<table>
+<thead>
+<tr>
+<th align="center">🌰 Index</th>
+<th align="center">X</th>
+<th align="center">Y</th>
+<th align="center">Z</th>
+<th align="center">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0 / <code>000</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0</code></td>
+</tr>
+<tr>
+<td align="center">1 / <code>001</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0</code></td>
+</tr>
+<tr>
+<td align="center">2 / <code>010</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>1</code></td>
+</tr>
+<tr>
+<td align="center">3 / <code>011</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0</code></td>
+</tr>
+<tr>
+<td align="center">4 / <code>100</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>1</code></td>
+</tr>
+<tr>
+<td align="center">5 / <code>101</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1</code></td>
+</tr>
+<tr>
+<td align="center">6 / <code>110</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0</code></td>
+</tr>
+<tr>
+<td align="center">7 / <code>111</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>数值是随便搓的，请留意为什么为要在 Index 特地写出二进制的表述。</p>
+</blockquote>
+<p>在开始之前，我需要强调，我们引入 SOM 和 POM 的目的是寻找一种比较典型的 <strong>表达</strong>，使得他们能够 <strong>确定</strong> 一张真值表。即，知道这种 <strong>表达</strong> 我们就足够写出这张真值表，反之亦然。</p>
+<hr/>
 <h4 id="最小项之和-som">最小项之和 SOM<a class="headerlink" href="#最小项之和-som" title="Permanent link">¶</a></h4>
-<p><strong>最小项之和(Sum of Minterms)</strong></p>
+<p>课本中对最小项的描述是：</p>
+<blockquote>
+<p>A product term in which all the variables appear exactly once, either complemented or uncomplemented, is called <em>minterm</em>. </p>
+<p>Its characteristic property is that it represents exactly one combination of binary variable values in the truth table.</p>
+</blockquote>
+<p>用我的话来说，最小项之和就是挑出真值表中所有结果是 <code>1</code> 的最小项（<em>比较模糊但直观，所以请先囫囵吞枣，我在“追加说明”会进一步说明</em>）。显然，在最小项之和的含义就是，一旦字面量取值的组合匹配了这几个“最小项”的其中一项，那么结果就是 <code>1</code>，符合了 OR 的“有1得1”的规则。</p>
+<p>我们使用符号 <span class="arithmatex">\(m_{idx}\)</span> 来表示一个最小项，其中 <span class="arithmatex">\(idx\)</span> 表示描述的那一项在真值表的序号，同时这个下标的二进制也能反映出字面量的组合。</p>
+<p>例如，在 🌰 中，output 为 <code>1</code> 的项有：<code>010</code> <code>100</code> <code>101</code> <code>111</code> 这四项，那么我们需要挑出来的最小项表达就分别是 <span class="arithmatex">\(m_{2}=\overline{X}Y\overline{Z}, \; m_{4}=X\overline{Y}\overline{Z}, \; m_{5}=X\overline{Y}Z, \; m_{7}=XYZ\)</span>。</p>
+<details class="tip" open="open">
+<summary>追加说明（简单，但是建议看一看）</summary>
+<blockquote>
+<p>或许您觉得最小项的得到非常的自然且简单，我建议您也尝试着看一看追加说明，因为这对理解最大项挺有帮助的。</p>
+</blockquote>
+<p>那么什么是“列举”呢？让我们再看一眼上面对最小项之和的描述：“一旦字面量取值的组合匹配这几个‘最小项’的其中一项，那么结果就是真”，追本溯源，在最小项中，我们就需要做到只有当一个电路的状态是特定组合时，其返回值为 <code>1</code>。</p>
+<p>具体来说，比如，对于 🌰 中的 <span class="arithmatex">\(m_{5}=X\overline{Y}Z\)</span>，也可以通过这样一种更啰嗦的方式表达出来是这样的：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>（循序渐进）我们可以将它变化为这样：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>而这个逻辑表达式，实际上已经和 <span class="arithmatex">\(m_5=X\overline{Y}Z\)</span> 一模一样了。</p>
+<p>在这里给出一个总结性的表述：<u>所谓的“挑出”，就是对于选定的一个字面量取值的组合，给出一个特定的表达式，使得只有这种组合的结果是 <span class="arithmatex">\(f\)</span>，而对于任何其他取值的组合，该表达式的结果都是 <span class="arithmatex">\(\overline{f}\)</span>，即实现了该表达式能 <strong>唯一表达</strong> 这个取值组合。</u></p>
+</details>
+<p>至此，我们得到了 🌰 所对应的 SOM：</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+    F(X,Y,Z)
+    &amp; = \sum m(2,4,5,7) \\
+    &amp; = m_2+m_4+m_5+m_7 \\
+    &amp; = \overline{X}Y\overline{Z}+X\overline{Y}\overline{Z}+X\overline{Y}Z+XYZ
+\end{array}
+\]</div>
+<p>再次归纳，使用通俗的话来说，最小项之和更像是“枚举了所有 <code>1</code> 的可能”，只要匹配了这个“和”中的某一项（<em>事实上不做化简的话你也只能满足一项的值取到 <code>1</code></em>），表达式的值就会变成 <code>1</code>；而一个都不匹配的，自然就只能得到 <code>0</code>。</p>
+<hr/>
 <h4 id="最大项之积-pom">最大项之积 POM<a class="headerlink" href="#最大项之积-pom" title="Permanent link">¶</a></h4>
-<p><strong>最大项之积(Product of Maxterms)</strong></p>
+<p>就像我之前不断不断不断强调的，所谓的 <code>1</code> 和 <code>0</code> 都只是人为定义的，摆脱潜意识里对这两者之一的倾向（例如我本人就一直很倾向于以 <code>1</code> 为主体研究问题）会对理解最大项之积和逻辑表达式化简很有帮助。</p>
+<p>而最大项之积——以我个人的愚见——就是以 <code>0</code> 为主体来研究真值表的特征的。</p>
+<p>课本中对最大项的描述是：</p>
+<blockquote>
+<p>A sum term that contains all the variables in complemented or uncomplemented form is called a maxterm.</p>
+</blockquote>
+<p>与最小项对比，无非是把 "product term" 换成了 "sum term"，也就是把 AND 换成了 OR。</p>
+<p>而最大项之积，就是挑出所有结果为 <code>0</code> 的最大项（<em>同样的，这里的“挑出”也很模糊，我也会在追加说明中再次说明</em>），再做 AND。以 <code>1</code> 为主体描述 AND 是“都1出1”，而以 <code>0</code> 为主体描述 AND 则是“有0出0”，这与 OR 的“有1出1”也是高度对称的（反之亦然）。也就是说，最大项之积的含义是，在最大项之积中，只要字面量取值的组合匹配这几个“最大项”的其中一项，整个表达式的结果就会变成 <code>0</code>。</p>
+<p>类似的，我们使用符号 <span class="arithmatex">\(M_{idx}\)</span> 来表示一个最大项，其中 <span class="arithmatex">\(idx\)</span> 表示描述的那一项在真值表的序号，同时这个下标的二进制也能反映出字面量的组合。</p>
+<p>例如，在 🌰 中，output 为 <code>0</code> 的项有：<code>000</code> <code>001</code> <code>011</code> <code>110</code> 这四项，那么我们需要挑出来的最小项表达就分别是 <span class="arithmatex">\(M_{0}=X+Y+Z, \; M_{1}=X+Y+\overline{Z}, \; M_{3}=X+\overline{Y}+\overline{Z}, \; m_{6}=\overline{X}+\overline{Y}+Z\)</span>。可以检验，只有代入他们对应的那一行真值表组合时，他们才会得到 <code>0</code>。</p>
+<details class="tip" open="open">
+<summary>追加说明</summary>
+<p>同样的，回顾最大项之积的描述：“在最大项之积中，只要字面量取值的组合匹配这几个‘最大项’的其中一项，整个表达式的结果就会变成 <code>0</code>”。</p>
+<p>具体来说，比如，对于 🌰 中的 <span class="arithmatex">\(M_6=\overline{X}+\overline{Y}+Z\)</span>，我们可以如下描述：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>如上是比较直观的想法，即仍然是建立在以 <code>1</code> 为主体的思路上的，现在让我们将它变化为以 <code>0</code> 为主体的思路上，以及通过筛选让目标落入 <code>else</code> 中：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Focus on this branch. This is our target actually!</span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>稍作变化：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">((</span><span class="o">!</span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Focus on this branch. This is our target actually!</span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>这也正对应了 <span class="arithmatex">\(M_6=\overline{X}+\overline{Y}+Z\)</span>。</p>
+<p>再次给出这个总结性的表述：<u>所谓的“挑出”，就是对于选定的一个字面量取值的组合，给出一个特定的表达式，使得只有这种组合的结果是 <span class="arithmatex">\(f\)</span>，而对于任何其他取值的组合，该表达式的结果都是 <span class="arithmatex">\(\overline{f}\)</span>，即实现了该表达式能 <strong>唯一表达</strong> 这个取值组合。</u></p>
+</details>
+<p>至此，我们得到了 🌰 所对应的 POM：</p>
+<div class="arithmatex">\[    
+\begin{array}{l}
+    F(X,Y,Z)
+    &amp; = \prod M(0,1,3,6) \\
+    &amp; = M_0M_1M_3M_6 \\
+    &amp; = (X+Y+Z)(X+Y+\overline{Z})(X+\overline{Y}+\overline{Z})(\overline{X}+\overline{Y}+Z)
+\end{array}
+\]</div>
+<p>同样再次归纳，使用通俗的话来说，最大项之积更像是“枚举了所有 <code>0</code> 的可能”，只要匹配了这个“积”中的某一项，表达式的值就会变成 <code>0</code>；而一个都不匹配的，自然就只能得到 <code>1</code>。</p>
+<p>与最小项相比，一个枚举了所有的 <code>1</code> 的可能，一个枚举了所有是 <code>0</code> 的可能，对于一个二值表达式来说，两种 <strong>表达</strong> 都是充要的。</p>
+<hr/>
+<p>此时，我们还能发现：</p>
+<p>例如：<span class="arithmatex">\(M_5 = \overline{X} + Y + \overline{Z} = \overline{ X\overline{Y}Z } = \overline{m}_5\)</span></p>
+<h4 id="练习">练习<a class="headerlink" href="#练习" title="Permanent link">¶</a></h4>
+<p>接下来，我们将通过一些例子来进一步强化这些理解，并且挖掘一些神奇的特性。</p>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">题面</label><label for="__tabbed_1_2">答案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>请分别写出如下真值表中 <span class="arithmatex">\(F\)</span> 和 <span class="arithmatex">\(\overline{F}\)</span> 的 SOM 和 POM。
+<figure markdown=""><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="13.png"><img alt="" src="13.png"/></a></figure></p>
+</div>
+<div class="tabbed-block">
+<p>答案：
+<script type="math/tex; mode=display">
+\begin{array}{l}
+    F(X,Y,Z)
+    & = \sum m(0,2,5,7) = \overline{X}\overline{Y}\overline{Z} + \overline{X}Y\overline{Z} + X\overline{Y}Z + XYZ \\
+    & = \prod M(1,3,4,6) = (X+Y+\overline{Z})(X+\overline{Y}+\overline{Z})(\overline{X}+Y+Z)(\overline{X}+\overline{Y}+Z)
+\end{array}
+</script>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+    \overline{F}(X,Y,Z)
+    & = \sum m(1,3,4,6) = \overline{X}\overline{Y}Z + \overline{X}YZ + X\overline{Y}\overline{Z} + XY\overline{Z} \\
+    & = \prod M(0,2,5,7) = (X+Y+Z)(X+\overline{Y}+Z)(\overline{X}+Y+\overline{Z})(\overline{X}+\overline{Y}+\overline{Z})
+\end{array}
+</script>
+于是我们发现一件很有意思的事情，<span class="arithmatex">\(F\)</span> 的 SOM 的下标与 <span class="arithmatex">\(\overline{F}\)</span> 的 POM 的下标是一样的；当然对于 <span class="arithmatex">\(F\)</span> 的 POM 和 <span class="arithmatex">\(\overline{F}\)</span> 的 SOM 也是一样的。这又双印证了对称性。</p>
+</div>
+</div>
+</input></input></div>
+</div>
+<blockquote>
+<p>之后的练习等我做了再添加x 如果做了的话x 😋</p>
+</blockquote>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月9日 13:33:05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月9日 21:41:47</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月8日 15:38:17</span>
