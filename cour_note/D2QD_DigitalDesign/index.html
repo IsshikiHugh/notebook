@@ -1,0 +1,1211 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Isshiki修" name="author"/>
+<link href="https://note.isshikih.top/cour_note/D2QD_DigitalDesign/" rel="canonical"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.1, mkdocs-material-8.5.7" name="generator"/>
+<title>[大二秋冬] 数字逻辑设计 | DD - Isshiki修's Notebook</title>
+<link href="../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<meta content="#000000" name="theme-color"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Share+Tech:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Share Tech";--md-code-font:"JetBrains Mono"}</style>
+<link href="../../_css/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gdesc-inner { font-size: 0.75rem; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="blue" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#大二秋冬-数字逻辑设计--dd">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Isshiki修's Notebook">
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1.592 2.712 2.38 7.25h4.87a.75.75 0 1 1 0 1.5H2.38l-.788 4.538L13.929 8 1.592 2.712zM.989 8 .064 2.68a1.341 1.341 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.341 1.341 0 0 1-1.85-1.463L.99 8z" fill-rule="evenodd"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Isshiki修's Notebook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              [大二秋冬] 数字逻辑设计 | DD
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<a aria-label="分享" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="分享">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"></path></svg>
+</a>
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/IsshikiHugh/notebook" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    IsshikiHugh/notebook
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+        💠 封面
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../tech_accu/">
+        📚 技术积累
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../">
+        🗒 课程笔记
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../prac_reco/">
+        📝 实践记录
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../pape_read/">
+        🗂 论文阅读
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../comming/">
+        🚧 施工中
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Isshiki修's Notebook">
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1.592 2.712 2.38 7.25h4.87a.75.75 0 1 1 0 1.5H2.38l-.788 4.538L13.929 8 1.592 2.712zM.989 8 .064 2.68a1.341 1.341 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.341 1.341 0 0 1-1.85-1.463L.99 8z" fill-rule="evenodd"></path></svg>
+</a>
+    Isshiki修's Notebook
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/IsshikiHugh/notebook" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    IsshikiHugh/notebook
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" id="__nav_1" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../..">💠 封面</a>
+<label for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="💠 封面" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+          💠 封面
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../link/">
+        💬 交流区
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../tech_accu/">📚 技术积累</a>
+<label for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="📚 技术积累" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          📚 技术积累
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../tech_accu/tool/Shell/">常用工具</a>
+<label for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="常用工具" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+          常用工具
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1" id="__nav_2_2_1" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../tech_accu/tool/Git/">Git Something</a>
+<label for="__nav_2_2_1">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="Git Something" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_2_1">
+<span class="md-nav__icon md-icon"></span>
+          Git Something
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tech_accu/tool/Git/Workflow/">
+        Git Workflow
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tech_accu/tool/Git/Commands/">
+        Git Commands
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tech_accu/tool/Colab/">
+        Google Colaboratory
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" id="__nav_2_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../tech_accu/standard/BVH_format/">标准 | 格式 | 规范</a>
+</div>
+<nav aria-label="标准 | 格式 | 规范" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+          标准 | 格式 | 规范
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../">🗒 课程笔记</a>
+<label for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="🗒 课程笔记" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          🗒 课程笔记
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../D1QD_CXiaoCheng/">
+        [大一秋冬] C小程 琐碎知识点整理
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../D1SJ_cs231n/">
+        [大一暑假] Deep Learning for Computer Vision | CS231N
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          [大二秋冬] 数字逻辑设计 | DD
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        [大二秋冬] 数字逻辑设计 | DD
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#chap-1-digital-systems-and-information">
+    Chap 1 Digital Systems and Information
+  </a>
+<nav aria-label="Chap 1 Digital Systems and Information" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#信息表达--information-representation">
+    信息表达 | Information Representation
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#计算机系统设计中的抽象层--abstraction-layers-in-computer-systems-design">
+    计算机系统设计中的抽象层 | Abstraction Layers in Computer Systems Design
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#数字系统--number-systems">
+    数字系统 | Number Systems
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#算术运算--arithmetic-operations">
+    算术运算 | Arithmetic Operations
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#编码--codes">
+    编码 | Codes
+  </a>
+<nav aria-label="编码 | Codes" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#独热码--独冷码">
+    独热码 &amp; 独冷码
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bcd-码">
+    BCD 码
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#余三码">
+    余三码
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#格雷码">
+    格雷码
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ascii-码">
+    ASCII 码
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#奇偶校验位">
+    奇偶校验位
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#chap-2-combinational-logic-circuits">
+    Chap 2 Combinational Logic Circuits
+  </a>
+<nav aria-label="Chap 2 Combinational Logic Circuits" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逻辑运算">
+    逻辑运算
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逻辑门">
+    逻辑门
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#布尔代数">
+    布尔代数
+  </a>
+<nav aria-label="布尔代数" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#运算律">
+    运算律
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#运算律推广">
+    运算律推广
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#对偶法则">
+    对偶法则
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#互补函数">
+    互补函数
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#替代法则">
+    替代法则
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#一致性定理">
+    一致性定理
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#标准形式">
+    标准形式
+  </a>
+<nav aria-label="标准形式" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#最小项之和-som">
+    最小项之和 SOM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#最大项之积-pom">
+    最大项之积 POM
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../D2QD_Intro2CV/">
+        [大二秋冬] 计算机视觉导论 | I2CV
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../prac_reco/">📝 实践记录</a>
+<label for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="📝 实践记录" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          📝 实践记录
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../prac_reco/reveal-md2Slides/">
+        使用 reveal-md 来写 Slides
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../pape_read/">🗂 论文阅读</a>
+<label for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="🗂 论文阅读" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          🗂 论文阅读
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../pape_read/arXiv%3A2003.08934/">
+        NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
+          🚧 施工中
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="🚧 施工中" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          🚧 施工中
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../comming/">
+        内容正在编辑中……
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#chap-1-digital-systems-and-information">
+    Chap 1 Digital Systems and Information
+  </a>
+<nav aria-label="Chap 1 Digital Systems and Information" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#信息表达--information-representation">
+    信息表达 | Information Representation
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#计算机系统设计中的抽象层--abstraction-layers-in-computer-systems-design">
+    计算机系统设计中的抽象层 | Abstraction Layers in Computer Systems Design
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#数字系统--number-systems">
+    数字系统 | Number Systems
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#算术运算--arithmetic-operations">
+    算术运算 | Arithmetic Operations
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#编码--codes">
+    编码 | Codes
+  </a>
+<nav aria-label="编码 | Codes" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#独热码--独冷码">
+    独热码 &amp; 独冷码
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bcd-码">
+    BCD 码
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#余三码">
+    余三码
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#格雷码">
+    格雷码
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ascii-码">
+    ASCII 码
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#奇偶校验位">
+    奇偶校验位
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#chap-2-combinational-logic-circuits">
+    Chap 2 Combinational Logic Circuits
+  </a>
+<nav aria-label="Chap 2 Combinational Logic Circuits" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逻辑运算">
+    逻辑运算
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逻辑门">
+    逻辑门
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#布尔代数">
+    布尔代数
+  </a>
+<nav aria-label="布尔代数" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#运算律">
+    运算律
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#运算律推广">
+    运算律推广
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#对偶法则">
+    对偶法则
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#互补函数">
+    互补函数
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#替代法则">
+    替代法则
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#一致性定理">
+    一致性定理
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#标准形式">
+    标准形式
+  </a>
+<nav aria-label="标准形式" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#最小项之和-som">
+    最小项之和 SOM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#最大项之积-pom">
+    最大项之积 POM
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/cour_note/D2QD_DigitalDesign/index.md" title="编辑此页">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="大二秋冬-数字逻辑设计--dd">[大二秋冬] 数字逻辑设计 | DD<a class="headerlink" href="#大二秋冬-数字逻辑设计--dd" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">课程信息</p>
+<ul>
+<li>授课：蔡铭</li>
+<li>智云课堂链接：<a href="https://classroom.zju.edu.cn/coursedetail?course_id=46608&amp;tenant_code=112">🔗</a></li>
+<li>教材：Logic and Computer Design Fundamentals, Fifth Edition</li>
+<li><em>本文主要来自于我啃教材时的笔记，但小结安排不完全是按照课本来</em></li>
+</ul>
+</div>
+<h2 id="chap-1-digital-systems-and-information">Chap 1 Digital Systems and Information<a class="headerlink" href="#chap-1-digital-systems-and-information" title="Permanent link">¶</a></h2>
+<h3 id="信息表达--information-representation">信息表达 | Information Representation<a class="headerlink" href="#信息表达--information-representation" title="Permanent link">¶</a></h3>
+<p>现实世界中的信息往往是 <strong>连续(continuous)</strong> 的，但在人造物的世界中，大部分信息都是 <strong>离散(discrete)</strong> 的。</p>
+<p>在电子信息系统中，信号分为 <strong>模拟信号(analog dihnsl)</strong> 和 <strong>数字信号(digital signal)</strong> 两种。其中，在 <strong>数字信号(digital signal)</strong> 中又有多种表示方法，如今我们最常用的是 <strong>二进制(binary)</strong>。对应到电路层面，我们常常用 <strong>高电位(HIGH)</strong> 和 <strong>低电位(LOW)</strong> 来表征 1 和 0。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="1.png"><img alt="" src="1.png"/></a></p>
+<blockquote>
+<p>值得注意的是，在输入和输出中，高低电位的接受范围是不同的。可以发现，输入的判定范围比输出的判定范围大，即 <strong>严进宽出</strong>。其目的是为了进一步提高电路在噪音等异常影响下也能正常表现的能力。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">HIGH input</th>
+<th align="center">LOW input</th>
+<th align="center">HIGH output</th>
+<th align="center">LOW output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0.9 ~ 1.1</td>
+<td align="center">-0.1 ~ 0.1</td>
+<td align="center">0.6 ~ 1.1</td>
+<td align="center">-0.1 ~ 0.4</td>
+</tr>
+</tbody>
+</table>
+<p>或许你也已经注意到了，在图中，HIGH 的接受范围和 LOW 的接受范围之间还存在一段区域。落在这一部分的电平是 <strong>未定义(undefined)</strong> 的，也被称为是 <strong>浮动(floating)</strong> 的。如果输出的电平是在浮动区间的，那么其认定值将是随机的。</p>
+<blockquote>
+<p>事实上，在信息的对应上，虽然将高低电平同 HIGH/LOW 联系是很自然的，但是将他们同 true/false 或者 1/0 联系其实并不唯一。但是在一般情况下（我们称之为 positive logic），我们都认为 HIGH ~ true ~ 1， LOW ~ false ~ 0。</p>
+</blockquote>
+<p>可以发现，(b) 图中的模拟信号在经过我们的器件后，会被认为是 © 图所示的信号。而这些操作在硬件层面，我们通过 <strong>晶体管(transistors)</strong> 来实现。</p>
+<blockquote>
+<p>这也牵扯到我们为什么最终使用二进制来表示信息。一方面是因为二值器件比较常见，亦即这里提到的晶体管；另外一方面是使用二进制可以降低电路成本。</p>
+</blockquote>
+<hr/>
+<h3 id="计算机系统设计中的抽象层--abstraction-layers-in-computer-systems-design">计算机系统设计中的抽象层 | Abstraction Layers in Computer Systems Design<a class="headerlink" href="#计算机系统设计中的抽象层--abstraction-layers-in-computer-systems-design" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th align="center">越上层抽象程度越高</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Algorithms</td>
+</tr>
+<tr>
+<td align="center">Programing Languages</td>
+</tr>
+<tr>
+<td align="center">Operating Systems</td>
+</tr>
+<tr>
+<td align="center">Instruction Set Architecture</td>
+</tr>
+<tr>
+<td align="center">Microarchitecture</td>
+</tr>
+<tr>
+<td align="center">Register Transfers</td>
+</tr>
+<tr>
+<td align="center">Logic Gates</td>
+</tr>
+<tr>
+<td align="center">Transistor Circuits</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h3 id="数字系统--number-systems">数字系统 | Number Systems<a class="headerlink" href="#数字系统--number-systems" title="Permanent link">¶</a></h3>
+<p>首先需要涉及的问题是进制转换。</p>
+<p>对于一个 <span class="arithmatex">\(r\)</span> 进制数，它一般被写成这样：</p>
+<div class="arithmatex">\[
+(A_{n-1}A_{n-2}...A_1A_0A_{-1}...A_{-(m-1)}A_{-m})_{r}
+\]</div>
+<p>而它对应的十进制真值为：</p>
+<div class="arithmatex">\[
+\begin{align}
+\sum_{n-1\leq i \leq m} A_ir^i\;\;
+=&amp;A_{n-1}r^{n-1}+A_{n-2}r^{n-2}+...\\
++&amp;A_{1}r^{1}+A_0r^0+A_{-1}r^{-1}+...\\
++&amp;A_{-(m-1)}r^{m-1}+A_{-m}r^{-m}
+\end{align}
+\]</div>
+<p>计算机领域常见的进制主要是 <strong>二进制(binary)</strong>，<strong>八进制(octal)</strong>，<strong>十进制(decimal)</strong> 和 <strong>十六进制(hexadecimal)</strong>。</p>
+<p>其中二、八、十六进制之间的转换非常简单，存在多位到一位之间的无后效性映射，例如二进制转换到十六进制只需要将从低到高每四位转化成十六进制中的一位即可。</p>
+<blockquote>
+<p>需要注意，由于二进制和十进制在零位上的权重相同，这意味着在整数部分，二进制和十进制是可以相互精准转化的（即最小精度是一致的，都是 1）；然而该性质在小数部分并不成立（因为小数部分不存在“最小精度”一说），即十进制无法精准转化为二进制，但二进制可以转化为十进制。</p>
+</blockquote>
+<hr/>
+<h3 id="算术运算--arithmetic-operations">算术运算 | Arithmetic Operations<a class="headerlink" href="#算术运算--arithmetic-operations" title="Permanent link">¶</a></h3>
+<p>这里涉及的主要是 <strong>加法(Addition)</strong>、<strong>减法(Subtraction)</strong>、<strong>乘法(Multiplication)</strong>。</p>
+<p>整体流程和小学竖式加法是一致的。</p>
+<details class="summary">
+<summary>二进制运算</summary>
+<p><center>
+<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="2.png"><img alt="" src="2.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="3.png"><img alt="" src="3.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="4.png"><img alt="" src="4.png"/></a>
+</center></p>
+</details>
+<hr/>
+<h3 id="编码--codes">编码 | Codes<a class="headerlink" href="#编码--codes" title="Permanent link">¶</a></h3>
+<p>二进制编码主要分为这么几种：</p>
+<ul>
+<li>Numeric</li>
+<li>必须表达一定范围内的数字；</li>
+<li>能够支持简单且普遍的计算；</li>
+<li>和二进制数值本身有较大关联；</li>
+<li>Non-numeric</li>
+<li>相对灵活，因为不需要适配普遍的运算法则；<ul>
+<li>灵活性指，保证编码映射关系是唯一的的情况下都可以称为合法编码；</li>
+</ul>
+</li>
+<li>和二进制数值本身未必有关系；</li>
+</ul>
+<hr/>
+<h4 id="独热码--独冷码">独热码 &amp; 独冷码<a class="headerlink" href="#独热码--独冷码" title="Permanent link">¶</a></h4>
+<p><strong>独热码(one-hot)</strong> 要求比特向量中只有一位是 <code>1</code>；对应的还有 <strong>独冷码(one-cold)</strong>。</p>
+<p>使用这种编码的好处是，决定或改变状态机目前的状态的成本相对较低，容易设计也容易检测非法行为等。</p>
+<p>但是相对应的，缺点是信息表示率较低，非法状态非常多而有效状态很少。</p>
+<hr/>
+<h4 id="bcd-码">BCD 码<a class="headerlink" href="#bcd-码" title="Permanent link">¶</a></h4>
+<p>由于真实世界中大部分数据表述都是以十进制实现的，所以我们需要研究如何用二进制来表示是进制。</p>
+<p>首先，一位二进制数能包含的信息是 1bit，也就是一个“真”或者一个“假”。我们称一个拥有 n 个元素的二进制向量为一个 <strong>n位二进制编码(n-bit binary code)</strong>。一个 n 位二进制数拥有 <span class="arithmatex">\(2^{n}\)</span> 种可能的组合，因而可以表示 <span class="arithmatex">\(2^n\)</span> 种信息。</p>
+<p>而我们需要设计的编码系统，就是将我们需要的信息映射到这 <span class="arithmatex">\(2^n\)</span> 个“空位”中。当然，当我们需要表示的信息数量并不是 2 的幂次时候，会出现一些 未分配(unassigned) 的比特组合。</p>
+<p>而在这种编码中，最常用的就是 <strong>BCD码(binary-coded demical)</strong>。其核心思路就是，将十进制的每一位 <strong>分别</strong> 用 <strong>真值相等的 4 位二进制</strong> 表示，即 <code>0</code> ~ <code>9</code> 分别用 <code>0000</code> ~ <code>1001</code> 表示。</p>
+<table>
+<thead>
+<tr>
+<th align="center">Decimal<br/>Symbol</th>
+<th align="center">BCD<br/>Digit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0000</code></td>
+</tr>
+<tr>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0001</code></td>
+</tr>
+<tr>
+<td align="center"><code>2</code></td>
+<td align="center"><code>0010</code></td>
+</tr>
+<tr>
+<td align="center"><code>3</code></td>
+<td align="center"><code>0011</code></td>
+</tr>
+<tr>
+<td align="center"><code>4</code></td>
+<td align="center"><code>0100</code></td>
+</tr>
+<tr>
+<td align="center"><code>5</code></td>
+<td align="center"><code>0101</code></td>
+</tr>
+<tr>
+<td align="center"><code>6</code></td>
+<td align="center"><code>0110</code></td>
+</tr>
+<tr>
+<td align="center"><code>7</code></td>
+<td align="center"><code>0111</code></td>
+</tr>
+<tr>
+<td align="center"><code>8</code></td>
+<td align="center"><code>1000</code></td>
+</tr>
+<tr>
+<td align="center"><code>9</code></td>
+<td align="center"><code>1001</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">eg</p>
+<div class="arithmatex">\[
+\mathrm{ (185)_{10}\;=\;(0001\;1000\;0101)_{BCD}\;=\;(10111001)_2 }
+\]</div>
+</div>
+<hr/>
+<h4 id="余三码">余三码<a class="headerlink" href="#余三码" title="Permanent link">¶</a></h4>
+<p>一种 <strong>BCD码</strong> 的改进是 <strong>余三码(Excess3)</strong>。其核心思路是在 BCD码的基础上，增加一个大小为 3 的偏移量。</p>
+<table>
+<thead>
+<tr>
+<th align="center">Decimal<br/>Symbol</th>
+<th align="center">Excess3<br/>Digit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0011</code></td>
+</tr>
+<tr>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0100</code></td>
+</tr>
+<tr>
+<td align="center"><code>2</code></td>
+<td align="center"><code>0101</code></td>
+</tr>
+<tr>
+<td align="center"><code>3</code></td>
+<td align="center"><code>0110</code></td>
+</tr>
+<tr>
+<td align="center"><code>4</code></td>
+<td align="center"><code>0111</code></td>
+</tr>
+<tr>
+<td align="center"><code>5</code></td>
+<td align="center"><code>1000</code></td>
+</tr>
+<tr>
+<td align="center"><code>6</code></td>
+<td align="center"><code>1001</code></td>
+</tr>
+<tr>
+<td align="center"><code>7</code></td>
+<td align="center"><code>1010</code></td>
+</tr>
+<tr>
+<td align="center"><code>8</code></td>
+<td align="center"><code>1011</code></td>
+</tr>
+<tr>
+<td align="center"><code>9</code></td>
+<td align="center"><code>1100</code></td>
+</tr>
+</tbody>
+</table>
+<p>为什么是 3 呢？首先这个 3 来自于 <span class="arithmatex">\(\frac{16-10}{2}\)</span>，也就是 8421 码的容量减去我们需要表示的数字数量，再除以二。这样的好处是，十进制下能进位的两个数，在余三码下相加也刚好进位。</p>
+<p>但是需要强调的一点是，编码和数值是存在区别的，虽然我们提到了余三码相加，但是编码做运算多数情况下是没有意义的。“运算”的主体更多是数值。</p>
+<hr/>
+<h4 id="格雷码">格雷码<a class="headerlink" href="#格雷码" title="Permanent link">¶</a></h4>
+<p>此外，这里不得不提的另外一个编码是 <strong>格雷码(Gray Codes)</strong>。格雷码的特征，也是他的优点，就是相邻的两个数在二进制下的表示只差一位（当在占满时，对于整个编码序列，环状满足该条件）。</p>
+<p>比如有如下应用：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="5.png"><img alt="" src="5.png"/></a></p>
+<p>以及在许多状态控制中都有着广泛的应用。</p>
+<p>从笔试做题角度来说，格雷码最麻烦的其实是与十进制数的转换。（此处 <a href="https://www.luogu.com.cn/problem/P5657">@CSP-S2019-Day1-T1</a>）</p>
+<div class="admonition note">
+<p>个人认为最好做的做法就是，假设我们要找的是第 k 个格雷码，则对应的格雷码为：</p>
+<div class="arithmatex">\[
+k \otimes (k&gt;&gt;1)
+\]</div>
+</div>
+<hr/>
+<h4 id="ascii-码">ASCII 码<a class="headerlink" href="#ascii-码" title="Permanent link">¶</a></h4>
+<p>字符编码所使用的一般是 ASCII 编码，由于 ASCII 已经是老生常谈了，所以这里不再展开。</p>
+<hr/>
+<h4 id="奇偶校验位">奇偶校验位<a class="headerlink" href="#奇偶校验位" title="Permanent link">¶</a></h4>
+<p>信道编码与信源编码：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="6.png"><img alt="" src="6.png"/></a></p>
+<p>在信号传输过程中，可能由于环境干扰等原因，出现各种信号抖动，所以为了保证数据的可信度，我们需要一个错误检测机制。</p>
+<p>一种常见的方法是 <strong>冗余(Redundancy)</strong>，即加入一些额外的信息用以校验。</p>
+<pre class="mermaid"><code>graph TD
+A[Error Detection Techniques]
+B[Single Parity Check]
+C[Cyclic Redundancy Check]
+D[Check Sum]
+
+A--&gt;B
+A--&gt;C
+A--&gt;D</code></pre>
+<p>其中一种做法是引入 <strong>奇偶校验位(Parity Bit)</strong>。它分为 <strong>奇校验(Odd Parity)</strong> 和 <strong>偶校验(Even Parity)</strong>。分别通过引入额外的一位，来保证整个信息串中 <code>1</code> 的数量是奇数/偶数。</p>
+<ul>
+<li>比如，如果我们采用偶校验，原始信息为 <code>1101</code>，其中有 3 个 <code>1</code>，这时我们在后面再加上一个 <code>1</code>，保证了整个信息串中有偶数个 <code>1</code>；或者如果原始信息为 <code>1001</code>，其中有 2 个 <code>1</code>，这时我们则在后面加一个 <code>0</code>。此时，如果传输过程中出现了问题，那么 <code>1</code> 的数量很可能变成了一个奇数，此时我们就知道，这个信息是不对的。</li>
+</ul>
+<hr/>
+<h2 id="chap-2-combinational-logic-circuits">Chap 2 Combinational Logic Circuits<a class="headerlink" href="#chap-2-combinational-logic-circuits" title="Permanent link">¶</a></h2>
+<h3 id="逻辑运算">逻辑运算<a class="headerlink" href="#逻辑运算" title="Permanent link">¶</a></h3>
+<p>逻辑运算的对象是布尔变量，也就是 0/1 二值。</p>
+<p>主要的运算就是 <strong>与(AND)</strong>，<strong>或(OR)</strong>，<strong>非(NOT)</strong>，<strong>异或(XOR)</strong>，以及 <strong>与非(NAND)</strong>，<strong>或非(NOR)</strong>。</p>
+<p>运算规则挺简单的，在此略去。</p>
+<p>比较基础的，需要了解与或非的符号表示。</p>
+<ul>
+<li><code>A</code> <code>AND</code> <code>B</code> 可写作 <span class="arithmatex">\(A\cdot B\)</span> 或者 <span class="arithmatex">\(AB\)</span>；</li>
+<li><code>A</code> <code>OR</code> <code>B</code> 可写作 <span class="arithmatex">\(A+B\)</span>；</li>
+<li><code>NOT A</code> 可写作 <span class="arithmatex">\(\overline{A}\)</span>；</li>
+</ul>
+<p>由此可以进行一些组合，例如：</p>
+<ul>
+<li><code>A</code> <code>XOR</code> <code>B</code> 可写作 <span class="arithmatex">\(\overline{A+B}\)</span>；</li>
+<li><code>A</code> <code>NAND</code> <code>B</code> 可写作 <span class="arithmatex">\(\overline{A\cdot B}\)</span>；</li>
+</ul>
+<p>再次还需要提到的是 <strong>德·摩根定律(De Morgan's Laws)</strong>，其表述为：</p>
+<ul>
+<li><span class="arithmatex">\(\overline{A+B} = \overline{A}\cdot\overline{B}\)</span>；</li>
+<li><span class="arithmatex">\(\overline{A\cdot B} = \overline{A}+\overline{B}\)</span>；</li>
+</ul>
+<h3 id="逻辑门">逻辑门<a class="headerlink" href="#逻辑门" title="Permanent link">¶</a></h3>
+<p>逻辑门是在硬件层面上实现布尔代数的逻辑单元。其操作对象为高低电平。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="7.jpeg"><img alt="" src="7.jpeg"/></a></p>
+<blockquote>
+<p>如图，(a)中绘制了三个常用逻辑门的符号；(b)中则描述了这些运算在 <strong>时序图(timing diagram)</strong> 中的状态；©则描述了在延时（见下）效应下的时序图。</p>
+<p>还有一个注意点是，非门其实更多的被称为 inverter，而非 NOT。</p>
+</blockquote>
+<p>但是由于是物理层面的实现，所以会有一些逻辑运算层面不会出现的问题，比如 <strong>延时(delay)</strong>。</p>
+<div class="admonition note">
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="8.png"><img alt="" src="8.png"/></a></p>
+<blockquote>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Signal_propagation_delay#Electronics">https://en.wikipedia.org/wiki/Signal_propagation_delay#Electronics</a></p>
+</blockquote>
+</div>
+<p>延时的长短与很多因素有关，取决于逻辑门的实现技术。而且通常来说，对于不同运算参数，其延时也会有不同。</p>
+<p>此外，与门和或门可能有更多的输入引脚，如下：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="9.jpeg"><img alt="" src="9.jpeg"/></a></p>
+<p>至此，给出了 AND, OR, NOT 三个门的符号表示，类似上一小节提到的那样，我们也可以利用这三个基础的门电路来构成其他的门电路（虽然通常来说，我们可能是通过 NAND + NOT 来实现 AND 的）。</p>
+<p>于是又引申出一个概念——<strong>通用门(universal gate)</strong>。一个功能完全的，能够表示其他所有门的逻辑门被称为通用门，在我们学过的逻辑门中，NAND 和 NOR 都是通用门。</p>
+<div class="admonition quote">
+<p class="admonition-title">推荐阅读</p>
+<ul>
+<li>Title: Universal Logic Gates</li>
+<li>URL: <a href="https://www.electronics-tutorials.ws/logic/universal-gates.html">https://www.electronics-tutorials.ws/logic/universal-gates.html</a></li>
+</ul>
+<blockquote>
+<p>Universal Logic gates can be used to produce any other logic or Boolean function with the NAND and NOR gates being minimal</p>
+</blockquote>
+</div>
+<h3 id="布尔代数">布尔代数<a class="headerlink" href="#布尔代数" title="Permanent link">¶</a></h3>
+<h4 id="运算律">运算律<a class="headerlink" href="#运算律" title="Permanent link">¶</a></h4>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="10.jpeg"><img alt="" src="10.jpeg"/></a></p>
+<p>这张图片总结了布尔运算中的运算律，个人感觉最需要强化记忆的是 15 条，因为布尔代数借用了普通代数的符号，但第 15 条在普通代数中并不成立，所以对于习惯这套符号的人来说可能不太 straightfoward。</p>
+<p>在记忆这套运算规律的时候，我个人的一个想法是，一定要建立 <strong>与</strong> 和 <strong>或</strong> 是对等的观念。我们习惯用“真”去理解这两个运算，但是实际上如果你以“假”为主体去分析这两个运算，会发现和“真”是完全对称的。换言之， <strong>与</strong> 和 <strong>或</strong> 是完全对称的运算，而非像他们借用的符号 <span class="arithmatex">\(\times\)</span> 和 <span class="arithmatex">\(+\)</span> 那样存在非对称关系。</p>
+<p>但是让这件事变得又没那么简单的事情是，虽然 <strong>与</strong> 和 <strong>或</strong> 是对等的，但是我们在借用普通代数符号体系的同时，又人为地给他们添加了优先级（但是这也是必要的，否则表达式就会充满括号）。</p>
+<p>优先级从高到低依次为：</p>
+<ol>
+<li>括号 / ()；</li>
+<li>非 / NOT / <span class="arithmatex">\(\overline A\)</span>；</li>
+<li>与 / AND / <span class="arithmatex">\(\cdot\)</span>；</li>
+<li>或 / OR / <span class="arithmatex">\(+\)</span>；</li>
+</ol>
+<p>个人感觉，这一种思路并不直觉，尤其是借用普通代数的符号体系以后更加混淆，所以可能需要一些练习来摆脱这些“刻板印象”。</p>
+<h4 id="运算律推广">运算律推广<a class="headerlink" href="#运算律推广" title="Permanent link">¶</a></h4>
+<p>除此之外，从上面提到的运算律中还能推广出如下几个模型：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="11.jpg"><img alt="" src="11.jpg"/></a><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="12.jpg"><img alt="" src="12.jpg"/></a></p>
+<blockquote>
+<p>我们再次发现，与 和 或 在逻辑上是对称的。</p>
+</blockquote>
+<h4 id="对偶法则">对偶法则<a class="headerlink" href="#对偶法则" title="Permanent link">¶</a></h4>
+<p>一个表达式的 <strong>对偶(dual)</strong> 为，将所有的 <strong>与</strong> 和 <strong>或</strong> 对调得到的式子（注意！需要保证参与运算的顺序不能变，比如 <strong>一般情况下</strong> <span class="arithmatex">\(A\cdot B\)</span> 会被对偶为 <span class="arithmatex">\((A+B)\)</span> 以保证运算顺序）。</p>
+<div class="admonition note">
+<p class="admonition-title">eg</p>
+<ul>
+<li><span class="arithmatex">\(X+XY\)</span> 和 <span class="arithmatex">\(X(X+Y)\)</span> 对偶；</li>
+<li><span class="arithmatex">\(X(Y+Z)\)</span> 和 <span class="arithmatex">\(X+YZ\)</span> 对偶；</li>
+</ul>
+</div>
+<p>而一般情况下，除非某个表达式是 <strong>自对偶(self-dual)</strong> 的，那么它的表现都与原表达式不同。</p>
+<p>对偶表达式具有如下性质：</p>
+<ul>
+<li>如果 F 的对偶是 G，那么 F 也是 G 的对偶，即对偶关系是对成的；</li>
+<li>如果表达式 F 和 G 等价，那么他们的对偶也等价；</li>
+</ul>
+<h4 id="互补函数">互补函数<a class="headerlink" href="#互补函数" title="Permanent link">¶</a></h4>
+<p>一个布尔函数的 <strong>互补函数(complementing functions)</strong> 指的是，将它的对偶函数中每一个变量都取反得到的函数，而该函数正好等于原函数的非。</p>
+<div class="admonition note">
+<p class="admonition-title">eg</p>
+<p>原函数：<span class="arithmatex">\(F=\overline{A}B+C\overline{B}\)</span>；
+其互补函数：<span class="arithmatex">\(\overline{F}=(A+\overline{B})(\overline{C}+D)\)</span>；</p>
+</div>
+<h4 id="替代法则">替代法则<a class="headerlink" href="#替代法则" title="Permanent link">¶</a></h4>
+<p>如果将一个等式中 <strong>所有的</strong> <strong>某个变量</strong> 都替换为同一个表达式，则等式依然成立。</p>
+<div class="admonition note">
+<p class="admonition-title">eg</p>
+<ul>
+<li>原等式：<span class="arithmatex">\(X(Y+Z)=XY+XZ\)</span>；</li>
+<li>如果使用 <span class="arithmatex">\(X+YZ\)</span> 替换所有的 <span class="arithmatex">\(X\)</span>，则：</li>
+<li>修改后的等式 <span class="arithmatex">\((X+YZ)(Y+Z)=(X+YZ)Y+(X+YZ)Z\)</span> 依然成立；</li>
+</ul>
+</div>
+<h4 id="一致性定理">一致性定理<a class="headerlink" href="#一致性定理" title="Permanent link">¶</a></h4>
+<p>在简化逻辑表达式的时候，<strong>一致性定理(consensus theorem)</strong> 也很有用：</p>
+<div class="arithmatex">\[
+XY+\overline{X}Z+YZ=XY+\overline{X}Z
+\]</div>
+<p>其证明的第一步是这样的：
+<span class="arithmatex">\(XY+\overline{X}Z+YZ=XY+\overline{X}Z+(X+\overline{X})YZ\)</span>，那后面就很简单了。本质上这个等式是利用了裂项，需要将其中最本质的部分，最小的粒度给裂开来，然后再慢慢消掉。</p>
+<h3 id="标准形式">标准形式<a class="headerlink" href="#标准形式" title="Permanent link">¶</a></h3>
+<p>由于本质上相等的布尔表达式实际上有很多种写法，而且随着变量越来越复杂，他们之间的比较会很困难。所以我们需要定义一种形式，使得所有相同的表达式都能比较方便的“化简”为同一个形式，同时也能辨别出两个表达式是不同的。这就引入了 <strong>标准形式(Standard Forms)</strong>。</p>
+<h4 id="最小项之和-som">最小项之和 SOM<a class="headerlink" href="#最小项之和-som" title="Permanent link">¶</a></h4>
+<p><strong>最小项之和(Sum of Minterms)</strong></p>
+<h4 id="最大项之积-pom">最大项之积 POM<a class="headerlink" href="#最大项之积-pom" title="Permanent link">¶</a></h4>
+<p><strong>最大项之积(Product of Maxterms)</strong></p>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月9日 13:33:05</span>
+<br/>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月8日 15:38:17</span>
+</small>
+</div>
+<h2 id="__comments">评论</h2>
+<!-- Insert generated snippet here -->
+<script async="" crossorigin="anonymous" data-category="Announcements" data-category-id="DIC_kwDOIVXFKs4CSVPk" data-emit-metadata="0" data-input-position="top" data-lang="zh-CN" data-mapping="pathname" data-reactions-enabled="1" data-repo="isshikihugh/notebook" data-repo-id="R_kgDOIVXFKg" data-strict="0" data-theme="dark" src="https://giscus.app/client.js">
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    /* Set palette on initial load */
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "dark" : "light"
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+          /* Instruct Giscus to change theme */
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            回到页面顶部
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: [大一暑假] Deep Learning for Computer Vision | CS231N" class="md-footer__link md-footer__link--prev" href="../D1SJ_cs231n/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                上一页
+              </span>
+              [大一暑假] Deep Learning for Computer Vision | CS231N
+            </div>
+</div>
+</a>
+<a aria-label="下一页: [大二秋冬] 计算机视觉导论 | I2CV" class="md-footer__link md-footer__link--next" href="../D2QD_Intro2CV/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                下一页
+              </span>
+              [大二秋冬] 计算机视觉导论 | I2CV
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2022 Isshiki修
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/IsshikiHugh" rel="noopener" target="_blank" title="Github">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../../_js/extra.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+</html>

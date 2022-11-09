@@ -2,6 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;700&display=swap');
 
 .md-ellipsis, h1, .headerlink{
     font-size: larger;
@@ -9,10 +12,10 @@
 }
 
 body, input {
-    font-family: 'Noto Serif SC', sans-serif, -apple-system, Helvetica, Arial, sans-serif;
+    font-family: 'Lexend', 'Noto Sans SC', 'Source Code Pro', 'Noto Serif SC', sans-serif, -apple-system, Helvetica, Arial, sans-serif;
 }
 
-p, ul {
+center, p, ul {
     font-size: medium;
 }
 
@@ -21,7 +24,7 @@ p, ul {
 }
 
 .md-typeset .admonition, .md-typeset details {
-    background-color: rgba(137, 144, 181, 0.201);
+    background-color: rgba(159, 167, 198, 0.256);
     border: none;
 } 
 
