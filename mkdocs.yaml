@@ -10,7 +10,8 @@ theme:
   name: material
   language: zh
   icon: 
-    logo: material/pac-man
+    # logo: material/pac-man
+    logo: octicons/paper-airplane-16
   font:
     text: Share Tech
     code: JetBrains Mono

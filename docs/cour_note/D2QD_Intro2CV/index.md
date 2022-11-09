@@ -1,4 +1,4 @@
-# [大二秋冬] 计算机视觉导论
+# [大二秋冬] 计算机视觉导论 | I2CV
 
 !!! info "课程信息"
 	- 本文为课程《计算机视觉导论》的课程笔记，课程主要介绍计算机视觉的基础理论和基本方法。
@@ -82,9 +82,55 @@ CV 领域的几个顶会
 
 ### 线代复习
 
+基础的内容就不再在这里展开了，这里主要提到的是 **仿射变换(Affine Transformations)**。
+
+放射映射主要包括两个部分，即线性变换和平移，其数学表述为：
+
+$$
+\begin{bmatrix} 
+    x' \\
+    y' 
+\end{bmatrix}
+=
+\begin{bmatrix} 
+    a & b \\ 
+    c & d
+\end{bmatrix} 
+\begin{bmatrix} 
+    x \\ 
+    y 
+\end{bmatrix}
++
+\begin{bmatrix} 
+    t_x \\ 
+    t_y 
+\end{bmatrix}
+$$
+
+上式可以统一为如下式子，即使用 **齐次坐标(homogenous coordinates)**：
+
+$$
+\begin{bmatrix}
+    x'\\
+    y'\\
+    1
+\end{bmatrix}
+=
+\begin{bmatrix}
+    a & b & t_x \\
+    c & d & t_y \\
+    0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+    x \\
+    y \\
+    1
+\end{bmatrix}
+$$
+
+---
+
 ## Lecture 2 | Image Formation
-
-
 
 
 ## Lecture 3 | Image Processing

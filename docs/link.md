@@ -9,5 +9,6 @@
     
     暂时还比较简陋 QAQ，等之后再装修吧呜呜
 
-    - :material-link-variant: [咸鱼暄的代码空间](https://xuan-insr.github.io/)
-    - :material-link-variant: [鹤翔万里的笔记本](https://note.tonycrane.cc/)
+    - :material-link-variant: [咸鱼暄 的 代码空间](https://xuan-insr.github.io/)
+    - :material-link-variant: [鹤翔万里 的 笔记本](https://note.tonycrane.cc/)
+    - :material-link-variant: [sakuratsuyu 的 笔记本](https://sakuratsuyu.github.io/Note/)

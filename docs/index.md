@@ -21,9 +21,15 @@ comments: false
 
 ??? summary "<center>@Isshiki修</center>" 
 
-    - ZJU 21 级 CS 本科生
-    - ZJU 求是潮 产品研发中心技术中管
-    - ZJU xlab 软件组成员
+    <center>
+        **|** 21 级 CS 本科生 **|** 22届 求是潮 产品研发中心技术中管 **|** xlab 软件组成员 **|**
+    </center>
+
+    <div align="center">
+    <img src="https://github-readme-stats.vercel.app/api?username=isshikihugh&show_icons=true&count_private=true&hide_border=true&theme=tokyonight" align="center" />
+    </div> 
+
+
 
 ??? info "<center>这是哪里</center>"
     - 高中写博客的经历和大一在语雀写笔记的经历让我多次认识到，整理笔记对我来说是一个相对来说比较舒适的学习方式。但是由于某些原因，我放弃了使用语雀，而选择使用 `mkdocs` 搭建这样一个个人笔记本。
