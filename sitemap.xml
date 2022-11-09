@@ -46,6 +46,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://note.isshikih.top/others/</loc>
+         <lastmod>2022-11-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://note.isshikih.top/others/reveal-md2Slides/</loc>
+         <lastmod>2022-11-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://note.isshikih.top/pape_read/</loc>
          <lastmod>2022-11-09</lastmod>
          <changefreq>daily</changefreq>
@@ -57,16 +67,6 @@
     </url>
     <url>
          <loc>https://note.isshikih.top/pape_read/arXiv%3A2003.08934/resources/zh/</loc>
-         <lastmod>2022-11-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://note.isshikih.top/prac_reco/</loc>
-         <lastmod>2022-11-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://note.isshikih.top/prac_reco/reveal-md2Slides/</loc>
          <lastmod>2022-11-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
