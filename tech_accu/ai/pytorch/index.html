@@ -117,7 +117,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../">
+<a class="md-tabs__link md-tabs__link--active" href="../../">
         📚 技术积累
       </a>
 </li>
@@ -189,8 +189,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../">📚 技术积累</a>
 <label for="__nav_2">
@@ -206,7 +206,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../tool/Shell/">常用工具</a>
+<a href="../../tool/">常用工具</a>
 <label for="__nav_2_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -218,15 +218,15 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1" id="__nav_2_2_1" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_2" id="__nav_2_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../tool/Git/">Git Something</a>
-<label for="__nav_2_2_1">
+<label for="__nav_2_2_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
 <nav aria-label="Git Something" class="md-nav" data-md-level="3">
-<label class="md-nav__title" for="__nav_2_2_1">
+<label class="md-nav__title" for="__nav_2_2_2">
 <span class="md-nav__icon md-icon"></span>
           Git Something
         </label>
@@ -243,6 +243,11 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tool/Shell/">
+        Shell
+      </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../tool/Colab/">
@@ -263,6 +268,89 @@
           标准 | 格式 | 规范
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" id="__nav_2_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../">人工智能</a>
+<label for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="人工智能" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+          人工智能
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          PyTorch
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        PyTorch
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#安装">
+    安装
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#张量--tensors">
+    张量 | Tensors
+  </a>
+<nav aria-label="张量 | Tensors" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#初始化">
+    初始化
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#属性">
+    属性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#方法与操作">
+    方法与操作
+  </a>
+<nav aria-label="方法与操作" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#使用-gpu-加速">
+    使用 GPU 加速"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#运算">
+    运算
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#索引与切片">
+    索引与切片
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </li>
@@ -697,6 +785,34 @@ Zeros Tensor:
           </a>
 </main>
 <footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: 扉页" class="md-footer__link md-footer__link--prev" href="../" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                上一页
+              </span>
+              扉页
+            </div>
+</div>
+</a>
+<a aria-label="下一页: 扉页" class="md-footer__link md-footer__link--next" href="../../../cour_note/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                下一页
+              </span>
+              扉页
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">

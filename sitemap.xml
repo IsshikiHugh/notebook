@@ -76,12 +76,27 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://note.isshikih.top/tech_accu/ai/</loc>
+         <lastmod>2022-11-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://note.isshikih.top/tech_accu/ai/pytorch/</loc>
          <lastmod>2022-11-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://note.isshikih.top/tech_accu/standard/</loc>
+         <lastmod>2022-11-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://note.isshikih.top/tech_accu/standard/BVH_format/</loc>
+         <lastmod>2022-11-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://note.isshikih.top/tech_accu/tool/</loc>
          <lastmod>2022-11-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
