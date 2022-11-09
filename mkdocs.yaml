@@ -113,6 +113,7 @@ nav:
   - 📚 技术积累:
     - tech_accu/index.md
     - 常用工具:
+      - tech_accu/tool/index.md
       - Git Something:
         - tech_accu/tool/Git/index.md
         - tech_accu/tool/Git/Workflow/index.md
@@ -121,6 +122,9 @@ nav:
       - tech_accu/tool/Colab/index.md
     - 标准 | 格式 | 规范:
       - tech_accu/standard/BVH_format/index.md
+    - 人工智能:
+      - tech_accu/ai/index.md
+      - tech_accu/ai/pytorch/index.md
   - 🗒 课程笔记:
     - cour_note/index.md
     - cour_note/D1QD_CXiaoCheng/index.md
