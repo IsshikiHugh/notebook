@@ -6,19 +6,19 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/cour_note/D2QD_Intro2CV/" rel="canonical"/>
-<link href="../../assets/images/favicon.png" rel="icon"/>
+<link href="https://note.isshikih.top/cour_note/D2QD_Intro2CV/Lec2/" rel="canonical"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.1, mkdocs-material-8.5.7" name="generator"/>
-<title>[大二秋冬] 计算机视觉导论 | I2CV - Isshiki修's Notebook</title>
-<link href="../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
-<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<title>Lecture 2 | Image Formation - Isshiki修's Notebook</title>
+<link href="../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <meta content="#000000" name="theme-color"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Share+Tech:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Share Tech";--md-code-font:"JetBrains Mono"}</style>
-<link href="../../_css/extra.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+<link href="../../../_css/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
             .gdesc-inner { font-size: 0.75rem; }
             .gslide-title { margin-top: 0px; user-select: text; }
@@ -26,13 +26,13 @@
             .gslide-image img { background: white; }
             
                 .gscrollbar-fixer { padding-right: 15px; }
-                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+                </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="blue" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#大二秋冬-计算机视觉导论--i2cv">
+<a class="md-skip" href="#lecture-2--image-formation">
           跳转至
         </a>
 </div>
@@ -40,7 +40,7 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="页眉" class="md-header__inner md-grid">
-<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Isshiki修's Notebook">
+<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Isshiki修's Notebook">
 <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1.592 2.712 2.38 7.25h4.87a.75.75 0 1 1 0 1.5H2.38l-.788 4.538L13.929 8 1.592 2.712zM.989 8 .064 2.68a1.341 1.341 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.341 1.341 0 0 1-1.85-1.463L.99 8z" fill-rule="evenodd"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -56,7 +56,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              [大二秋冬] 计算机视觉导论 | I2CV
+              Lecture 2 | Image Formation
             
           </span>
 </div>
@@ -112,32 +112,32 @@
 <div class="md-tabs__inner md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../..">
+<a class="md-tabs__link" href="../../..">
         💠 封面
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../tech_accu/">
+<a class="md-tabs__link" href="../../../tech_accu/">
         📚 技术积累
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../">
+<a class="md-tabs__link" href="../../">
         🗒 课程笔记
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../pape_read/">
+<a class="md-tabs__link" href="../../../pape_read/">
         📝 论文阅读
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../others/">
+<a class="md-tabs__link" href="../../../others/">
         📦 杂项专题
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../comming/">
+<a class="md-tabs__link" href="../../../comming/">
         🚧 施工中
       </a>
 </li>
@@ -151,7 +151,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Isshiki修's Notebook">
+<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Isshiki修's Notebook">
 <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1.592 2.712 2.38 7.25h4.87a.75.75 0 1 1 0 1.5H2.38l-.788 4.538L13.929 8 1.592 2.712zM.989 8 .064 2.68a1.341 1.341 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.341 1.341 0 0 1-1.85-1.463L.99 8z" fill-rule="evenodd"></path></svg>
 </a>
     Isshiki修's Notebook
@@ -170,7 +170,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" id="__nav_1" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../..">💠 封面</a>
+<a href="../../..">💠 封面</a>
 <label for="__nav_1">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -182,7 +182,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../link/">
+<a class="md-nav__link" href="../../../link/">
         💬 交流区
       </a>
 </li>
@@ -192,7 +192,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../tech_accu/">📚 技术积累</a>
+<a href="../../../tech_accu/">📚 技术积累</a>
 <label for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -206,7 +206,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../tech_accu/tool/">常用工具</a>
+<a href="../../../tech_accu/tool/">常用工具</a>
 <label for="__nav_2_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -220,7 +220,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_2" id="__nav_2_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../tech_accu/tool/Git/">Git Something</a>
+<a href="../../../tech_accu/tool/Git/">Git Something</a>
 <label for="__nav_2_2_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -232,12 +232,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../tech_accu/tool/Git/Workflow/">
+<a class="md-nav__link" href="../../../tech_accu/tool/Git/Workflow/">
         Git Workflow
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../tech_accu/tool/Git/Commands/">
+<a class="md-nav__link" href="../../../tech_accu/tool/Git/Commands/">
         Git Commands
       </a>
 </li>
@@ -245,12 +245,12 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../tech_accu/tool/Shell/">
+<a class="md-nav__link" href="../../../tech_accu/tool/Shell/">
         Shell
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../tech_accu/tool/Colab/">
+<a class="md-nav__link" href="../../../tech_accu/tool/Colab/">
         Google Colaboratory
       </a>
 </li>
@@ -260,7 +260,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" id="__nav_2_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../tech_accu/standard/BVH_format/">标准 | 格式 | 规范</a>
+<a href="../../../tech_accu/standard/BVH_format/">标准 | 格式 | 规范</a>
 </div>
 <nav aria-label="标准 | 格式 | 规范" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_2_3">
@@ -274,7 +274,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" id="__nav_2_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../tech_accu/ai/">人工智能</a>
+<a href="../../../tech_accu/ai/">人工智能</a>
 <label for="__nav_2_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -286,7 +286,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../tech_accu/ai/pytorch/">
+<a class="md-nav__link" href="../../../tech_accu/ai/pytorch/">
         PyTorch
       </a>
 </li>
@@ -296,10 +296,10 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../">🗒 课程笔记</a>
+<a href="../../">🗒 课程笔记</a>
 <label for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -311,290 +311,24 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../D1QD_CXiaoCheng/">
+<a class="md-nav__link" href="../../D1QD_CXiaoCheng/">
         [大一秋冬] C小程 琐碎知识点整理
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../D1SJ_cs231n/">
+<a class="md-nav__link" href="../../D1SJ_cs231n/">
         [大一暑假] Deep Learning for Computer Vision | CS231N
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../D2QD_DigitalDesign/">
+<a class="md-nav__link" href="../../D2QD_DigitalDesign/">
         [大二秋冬] 数字逻辑设计 | DD
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          [大二秋冬] 计算机视觉导论 | I2CV
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../">
         [大二秋冬] 计算机视觉导论 | I2CV
       </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-1--introduction">
-    Lecture 1 | Introduction
-  </a>
-<nav aria-label="Lecture 1 | Introduction" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#cv-的主要任务">
-    CV 的主要任务
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#cv-的应用">
-    CV 的应用
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#学术圈概况">
-    学术圈概况
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#课程概述">
-    课程概述
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#线代复习">
-    线代复习
-  </a>
-<nav aria-label="线代复习" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#线性变换">
-    线性变换
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#仿射变换与齐次坐标">
-    仿射变换与齐次坐标
-  </a>
-<nav aria-label="仿射变换与齐次坐标" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#齐次坐标的扩展性质">
-    齐次坐标的扩展性质
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#逆变换">
-    逆变换
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#行列式的几何含义">
-    行列式的几何含义
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#特征值和特征向量">
-    特征值和特征向量
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-2--image-formation">
-    Lecture 2 | Image Formation
-  </a>
-<nav aria-label="Lecture 2 | Image Formation" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#相机与光学原理">
-    相机与光学原理
-  </a>
-<nav aria-label="相机与光学原理" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#小孔成像">
-    小孔成像
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#透镜">
-    透镜
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#视野-fovfield-of-view">
-    视野 FoV(field of view)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#f-数">
-    F 数
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#对焦">
-    对焦
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#景深-dof">
-    景深 DoF
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#透视投影">
-    透视投影
-  </a>
-<nav aria-label="透视投影" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#应用齐次坐标">
-    应用齐次坐标
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#可视化表示">
-    可视化表示
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#信息缺失">
-    信息缺失
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#灭点与灭线">
-    灭点与灭线
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#透视畸变">
-    透视畸变
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#枕型畸变和桶型畸变">
-    枕型畸变和桶型畸变
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#正交投影">
-    正交投影
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#快门shutter">
-    快门(Shutter)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#光度图像生成与着色">
-    光度图像生成与着色
-  </a>
-<nav aria-label="光度图像生成与着色" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#漫反射">
-    漫反射
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#高光反射">
-    高光反射
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#blinn-phong-反射">
-    Blinn-Phong 反射
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#颜色">
-    颜色
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-3--image-processing">
-    Lecture 3 | Image Processing
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-4--model-fitting-and-optimization">
-    Lecture 4 | Model Fitting and Optimization
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-5--feature-matching-and-motion-estimation">
-    Lecture 5 | Feature Matching and Motion Estimation
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-6--image-alignment-and-stitching">
-    Lecture 6 | Image Alignment and Stitching
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-7--structure-from-motion">
-    Lecture 7 | Structure From Motion
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-8--depth-estimation">
-    Lecture 8 | Depth Estimation
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-9--3d-reconstruction">
-    Lecture 9 | 3D Reconstruction
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-10--deep-learning">
-    Lecture 10 | Deep Learning
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-11--recognition">
-    Lecture 11 | Recognition
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-12--computational-photography-1">
-    Lecture 12 | Computational Photography 1
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-13--computational-photography-2">
-    Lecture 13 | Computational Photography 2
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -602,7 +336,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../pape_read/">📝 论文阅读</a>
+<a href="../../../pape_read/">📝 论文阅读</a>
 <label for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -614,7 +348,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../pape_read/arXiv%3A2003.08934/">
+<a class="md-nav__link" href="../../../pape_read/arXiv%3A2003.08934/">
         NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
       </a>
 </li>
@@ -624,7 +358,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../others/">📦 杂项专题</a>
+<a href="../../../others/">📦 杂项专题</a>
 <label for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -636,7 +370,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../others/reveal-md2Slides/">
+<a class="md-nav__link" href="../../../others/reveal-md2Slides/">
         使用 reveal-md 来写 Slides
       </a>
 </li>
@@ -656,7 +390,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../comming/">
+<a class="md-nav__link" href="../../../comming/">
         内容正在编辑中……
       </a>
 </li>
@@ -678,84 +412,6 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-1--introduction">
-    Lecture 1 | Introduction
-  </a>
-<nav aria-label="Lecture 1 | Introduction" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#cv-的主要任务">
-    CV 的主要任务
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#cv-的应用">
-    CV 的应用
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#学术圈概况">
-    学术圈概况
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#课程概述">
-    课程概述
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#线代复习">
-    线代复习
-  </a>
-<nav aria-label="线代复习" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#线性变换">
-    线性变换
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#仿射变换与齐次坐标">
-    仿射变换与齐次坐标
-  </a>
-<nav aria-label="仿射变换与齐次坐标" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#齐次坐标的扩展性质">
-    齐次坐标的扩展性质
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#逆变换">
-    逆变换
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#行列式的几何含义">
-    行列式的几何含义
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#特征值和特征向量">
-    特征值和特征向量
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-2--image-formation">
-    Lecture 2 | Image Formation
-  </a>
-<nav aria-label="Lecture 2 | Image Formation" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
 <a class="md-nav__link" href="#相机与光学原理">
     相机与光学原理
   </a>
@@ -874,340 +530,23 @@
 </li>
 </ul>
 </nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-3--image-processing">
-    Lecture 3 | Image Processing
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-4--model-fitting-and-optimization">
-    Lecture 4 | Model Fitting and Optimization
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-5--feature-matching-and-motion-estimation">
-    Lecture 5 | Feature Matching and Motion Estimation
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-6--image-alignment-and-stitching">
-    Lecture 6 | Image Alignment and Stitching
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-7--structure-from-motion">
-    Lecture 7 | Structure From Motion
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-8--depth-estimation">
-    Lecture 8 | Depth Estimation
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-9--3d-reconstruction">
-    Lecture 9 | 3D Reconstruction
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-10--deep-learning">
-    Lecture 10 | Deep Learning
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-11--recognition">
-    Lecture 11 | Recognition
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-12--computational-photography-1">
-    Lecture 12 | Computational Photography 1
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lecture-13--computational-photography-2">
-    Lecture 13 | Computational Photography 2
-  </a>
-</li>
-</ul>
-</nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/cour_note/D2QD_Intro2CV/index.md" title="编辑此页">
+<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/cour_note/D2QD_Intro2CV/Lec2.md" title="编辑此页">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="大二秋冬-计算机视觉导论--i2cv">[大二秋冬] 计算机视觉导论 | I2CV<a class="headerlink" href="#大二秋冬-计算机视觉导论--i2cv" title="Permanent link">¶</a></h1>
-<div class="admonition info">
-<p class="admonition-title">课程信息</p>
-<ul>
-<li>本文为课程《计算机视觉导论》的课程笔记，课程主要介绍计算机视觉的基础理论和基本方法。</li>
-<li><strong>智云链接</strong>：<a href="https://classroom.zju.edu.cn/coursedetail?course_id=30737&amp;tenant_code=112">🔗</a></li>
-<li><strong>授课</strong>：周晓巍</li>
-<li><strong>教材</strong>：<a href="https://szeliski.org/Book/">📙</a></li>
-</ul>
-</div>
-<hr/>
-<h2 id="lecture-1--introduction">Lecture 1 | Introduction<a class="headerlink" href="#lecture-1--introduction" title="Permanent link">¶</a></h2>
-<h3 id="cv-的主要任务">CV 的主要任务<a class="headerlink" href="#cv-的主要任务" title="Permanent link">¶</a></h3>
-<ul>
-<li>三维重建 / Reconstruction</li>
-<li>图像理解 / Understanding</li>
-<li>图像合成 / Synthesis</li>
-</ul>
-<hr/>
-<h3 id="cv-的应用">CV 的应用<a class="headerlink" href="#cv-的应用" title="Permanent link">¶</a></h3>
-<details class="note">
-<summary>Application Examples</summary>
-<ul>
-<li>Face Reconstruction and Recognition</li>
-<li>Face ID</li>
-<li>Vending Machine with Face Detection</li>
-<li>DeepFake</li>
-<li>Augmented reality</li>
-<li>Factory Automation</li>
-<li>Vision Inspection</li>
-<li>Optical Character Recognition(OCR)</li>
-<li>Video Surveillance</li>
-<li>Human Computer Interaction: Optical Mouse</li>
-<li>Human Computer Interaction: Motion Sensing Games</li>
-<li>Visual Effects (VFX)</li>
-<li>Digital Human</li>
-<li>VR Tour</li>
-<li>Visual Localization and Navigation</li>
-<li>Autonomous Navigation: Space Exploration</li>
-<li>Robot Perception</li>
-<li>Autonomous Driving</li>
-<li>Augmented Reality</li>
-<li>Free Viewpoint Video</li>
-<li>Medical Image Analysis</li>
-<li>......</li>
-</ul>
-</details>
-<hr/>
-<h3 id="学术圈概况">学术圈概况<a class="headerlink" href="#学术圈概况" title="Permanent link">¶</a></h3>
-<p>CV 领域的几个顶会</p>
-<ul>
-<li><strong>CVPR</strong> (Computer Vision and Pattern Recognition)</li>
-<li><strong>ICCV</strong> (International Conference on Computer Vision)</li>
-<li><strong>ECCV</strong> (European Conference on Computer Vision)</li>
-</ul>
-<p>图形学相关的顶会</p>
-<ul>
-<li>ACM SIGGRAPH</li>
-</ul>
-<hr/>
-<h3 id="课程概述">课程概述<a class="headerlink" href="#课程概述" title="Permanent link">¶</a></h3>
-<ul>
-<li>课程目标<ul>
-<li>学习计算机视觉相关的知识</li>
-<li>学会「用数学描述与解决问题」<ul>
-<li><code>Linear Algebra</code> / <code>Optimization</code> / <code>Geometry</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>课程资源</p>
-<ul>
-<li>教材：<a href="https://szeliski.org/Book/">https://szeliski.org/Book/</a> <br/>
- </li>
-</ul>
-</li>
-<li>
-<p>课程计划</p>
-<ul>
-<li>Basics. (Lec.02 – Lec.04)</li>
-<li>Reconstruction. (Lec.05 – Lec.09) </li>
-<li>Understanding. (Lec.10 – Lec.12)</li>
-<li>Synthesis. (Lec. 13 – Lec.14)</li>
-</ul>
-</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<ul>
-<li>作为后续课程的基础，需要复习线性代数的相关知识，它将贯穿整个课程；</li>
-<li>需要熟悉涉及的词汇，之后会若干次提到；</li>
-</ul>
-</div>
-<h3 id="线代复习">线代复习<a class="headerlink" href="#线代复习" title="Permanent link">¶</a></h3>
-<h4 id="线性变换">线性变换<a class="headerlink" href="#线性变换" title="Permanent link">¶</a></h4>
-<p>首先，一个矩阵左乘一个向量：</p>
-<ul>
-<li>代数上，结果向量的每一项相当于原向量的一个加权求和；</li>
-<li>几何上，结果向量相当于原向量做几何变换得到的新向量；</li>
-</ul>
-<p>在这种基础上，矩阵乘法可以认为是一系列向量（右侧矩阵）经过同一个变换得到新的一系列向量。</p>
-<ul>
-<li>那么反过来的，我们也可以通过观察某些点在变换后的位置来感受这个“变换”的具体内容；</li>
-<li>更特别的，我们可以发现，变换矩阵（左侧矩阵）的每一列，就相当于对应的单位基（例如第 <span class="arithmatex">\(2\)</span> 列对应 <span class="arithmatex">\(\vec{a}(0,1)\)</span> 向量）经过这个变换（右乘这个变换矩阵）得到的结果；</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Tips</p>
-<p>实际上，从单位矩阵的角度也可以很好的理解这件事：</p>
-<div class="arithmatex">\[
-\begin{bmatrix}
-    a &amp; b \\
-    c &amp; d
-\end{bmatrix}
-\begin{bmatrix}
-    1 &amp; 0 \\
-    0 &amp; 1
-\end{bmatrix}
-=
-\begin{bmatrix}
-    a &amp; b \\
-    c &amp; d
-\end{bmatrix}
-\]</div>
-</div>
-<div class="admonition note">
-<p>我们来试着运用上面的技巧求一个旋转变换对应的变换矩阵。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">题面</label><label for="__tabbed_1_2">答案</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="1.png"><img align="left" alt="" src="1.png" width="100px"/></a>
-假设该矩阵让目标图形顺时针旋转 <span class="arithmatex">\(\theta\)</span> ，则其表达式为？</p>
-</div>
-<div class="tabbed-block">
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="2.png"><img align="left" alt="" src="2.png" width="144px"/></a></p>
-<p>我们做此分析：</p>
-<ul>
-<li>对于参考点 <span class="arithmatex">\((1,0)\)</span>，经过旋转后位置变化为 <span class="arithmatex">\((\cos\theta,-\sin\theta)\)</span>；</li>
-<li>对于参考点 <span class="arithmatex">\((0,1)\)</span>，经过旋转后位置变化为 <span class="arithmatex">\((\sin\theta,\cos\theta)\)</span>；</li>
-</ul>
-<p>因此，根据上面提到的技巧，旋转对应的变换矩阵为：</p>
-<div class="arithmatex">\[
-R_{\theta,clockwise} = 
-\begin{bmatrix}
-    \cos\theta &amp; \sin\theta \\ 
-    -\sin\theta &amp; \cos\theta
-\end{bmatrix}
-\]</div>
-<p>特别的，如果是逆时针，结果就是：</p>
-<div class="arithmatex">\[
-R_{\theta,anti-clockwise} = 
-\begin{bmatrix}
-    \cos\theta &amp; -\sin\theta \\ 
-    \sin\theta &amp; \cos\theta
-\end{bmatrix}
-\]</div>
-</div>
-</div>
-</input></input></div>
-</div>
-<hr/>
-<h4 id="仿射变换与齐次坐标">仿射变换与齐次坐标<a class="headerlink" href="#仿射变换与齐次坐标" title="Permanent link">¶</a></h4>
-<p><strong>仿射变换(Affine Transformations)</strong> 主要包括两个部分，即线性变换和平移（换言之，仿射变换并不是线性变换），其数学表述为：</p>
-<div class="arithmatex">\[
-\begin{bmatrix} 
-    x' \\
-    y' 
-\end{bmatrix}
-=
-\begin{bmatrix} 
-    a &amp; b \\ 
-    c &amp; d
-\end{bmatrix} 
-\begin{bmatrix} 
-    x \\ 
-    y 
-\end{bmatrix}
-+
-\begin{bmatrix} 
-    t_x \\ 
-    t_y 
-\end{bmatrix}
-\]</div>
-<p>为了让仿射变换也能写成 <span class="arithmatex">\(a=Mb\)</span> 的形式以简化运算，我们可以用 <span class="arithmatex">\(n+1\)</span> 维向量来表示 <span class="arithmatex">\(n\)</span> 维点，即使用 <strong>齐次坐标(homogenous coordinates)</strong>：</p>
-<div class="arithmatex">\[
-\begin{bmatrix}
-    x'\\
-    y'\\
-    1
-\end{bmatrix}
-=
-\begin{bmatrix}
-    a &amp; b &amp; t_x \\
-    c &amp; d &amp; t_y \\
-    0 &amp; 0 &amp; 1
-\end{bmatrix}
-\begin{bmatrix}
-    x \\
-    y \\
-    1
-\end{bmatrix}
-\]</div>
-<div class="admonition question">
-<p class="admonition-title">为什么是 “1”</p>
-<p>这里我们不禁抛出一个疑问，为什么齐次坐标添加的维度中要填入 1 呢？它有什么含义吗？它不能是 2 或者别的什么东西吗？</p>
-<p>答案是，它可以是别的东西，或者说我们需要对定义进行一个扩展，以使齐次坐标有更大的用处。</p>
-<h5 id="齐次坐标的扩展性质">齐次坐标的扩展性质<a class="headerlink" href="#齐次坐标的扩展性质" title="Permanent link">¶</a></h5>
-<p>例如，<span class="arithmatex">\((x,y)\)</span> 对应的齐次坐标为 <span class="arithmatex">\((x,y,1)\)</span>，如果你把它想象成三维空间中的点，会发现，如果改变 1 的值，得到的点的轨迹会是若干张平行的平面，也就是说他们在三维空间下是相互独立的。</p>
-<p>此时，我们就可以人为的定义一个每一个平面内的点的映射关系（我们只考虑第一象限），从原点引一条射线，直线上与每一个平面的交点我们都认为对应着二维平面上的同一点。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="14.png"><img align="right" alt="" src="14.png" width="320px"/></a></p>
-<p>换句话来说，<strong>我们用 <span class="arithmatex">\(n+1\)</span> 维空间中 从原点发出的一条 <u>射线</u> 来<u>描述</u> <span class="arithmatex">\(n\)</span> 维空间中的一个<u>点</u>。</strong></p>
-<p>于是我们可以用下面的式子来概括扩展定义：</p>
-<ul>
-<li><span class="arithmatex">\(\begin{bmatrix}x\\y\\k\end{bmatrix}\)</span> 等价于 <span class="arithmatex">\(\begin{bmatrix}x/k\\y/k\\1\end{bmatrix}\)</span>，当然，<span class="arithmatex">\(k\not=0\)</span>；</li>
-</ul>
-<p>而引入这种想法后，我们就知道为什么通过齐次坐标化就能把平移变成线性变换——我们可以将 <span class="arithmatex">\(n\)</span> 维 <strong>点</strong> 的 <strong>平移</strong> 看作 <span class="arithmatex">\(n+1\)</span> 维 <strong>射线</strong> 的 <strong>旋转</strong>，而旋转显然是一个线性变换。</p>
-<p>而关于该性质的其他应用，可以看 Lecture 2 的<a href="#应用齐次坐标">第二小节</a>。</p>
-</div>
-<hr/>
-<h4 id="逆变换">逆变换<a class="headerlink" href="#逆变换" title="Permanent link">¶</a></h4>
-<p>线性变换 <span class="arithmatex">\(T\)</span> 的 <strong>逆变换(Inverse Transform)</strong> 就是其变换矩阵的逆 <span class="arithmatex">\(T^{-1}\)</span>，显然，并不是所有变换都是可逆的。</p>
-<p>形象地理解，一个变换矩阵如果不满秩（不可逆），那么就会有几个基在变换中合并，或者说多个点被映射为同一个点，导致无法还原。</p>
-<hr/>
-<h4 id="行列式的几何含义">行列式的几何含义<a class="headerlink" href="#行列式的几何含义" title="Permanent link">¶</a></h4>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="3.png"><img alt="" src="3.png" width="360px"/></a></p>
-<p><strong>行列式(Determinant)</strong> 的值等于这个方阵中的向量对应的 平行图形/几何体/... 的 面积/体积/...</p>
-<hr/>
-<h4 id="特征值和特征向量">特征值和特征向量<a class="headerlink" href="#特征值和特征向量" title="Permanent link">¶</a></h4>
-<p><strong>特征向量(eigenvector)</strong> 和 <strong>特征值(eigenvalue)</strong> 的定义如下：</p>
-<p>对于矩阵 <span class="arithmatex">\(A\in R^{N\times N}\)</span>，如果有向量 <span class="arithmatex">\(v\in R^{N}\)</span> 和实数 <span class="arithmatex">\(\lambda \not = 0\)</span>，满足：</p>
-<div class="arithmatex">\[
-Av = \lambda v
-\]</div>
-<p>则称 <span class="arithmatex">\(v\)</span> 是矩阵 <span class="arithmatex">\(A\)</span> 的特征向量，对应的特征值为 <span class="arithmatex">\(\lambda\)</span>。</p>
-<p>从几何变换的角度来理解这个定义式，可以描述为：向量 <span class="arithmatex">\(v\)</span> 经过变换 <span class="arithmatex">\(A\)</span> 得到的结果，等于直接对 <span class="arithmatex">\(v\)</span> 进行缩放（而没有改变方向）。</p>
-<div class="admonition tip">
-<p class="admonition-title">工程计算方法</p>
-<p>令人惊喜的是，我们在实际运用时，可以直接使用数学库中的 <strong>特征值分解(eigen decomposition)</strong> 方法，其大致会做这样一件事：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="4.png"><img alt="" src="4.png"/></a></p>
-<p>将矩阵 <span class="arithmatex">\(A\)</span> 分解为 <span class="arithmatex">\(Q\Lambda Q^{-1}\)</span>，其中 <span class="arithmatex">\(Q\)</span> 中的每一列即为 <span class="arithmatex">\(A\)</span> 的特征向量，对角阵 <span class="arithmatex">\(\Lambda\)</span> 中的第 <span class="arithmatex">\(i\)</span> 项就是第 <span class="arithmatex">\(i\)</span> 个特征向量的特征值。</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">特征值与特征向量的应用：主成分分析(principal component analysis)</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="5.png"><img align="right" alt="" src="5.png" width="310px"/></a></p>
-<p><strong>主成分(principal component)</strong> 等于协方差矩阵的 特征值最大的 那个特征向量。</p>
-<ul>
-<li>如图，我们要从图中找到一个方向，使得所有数据点在这个方向上的投影，方差最大（换言之，找到这些数据的一个“方向”）；</li>
-<li>记所有数据点为 <span class="arithmatex">\(A\)</span>，则 <span class="arithmatex">\(A^{T}A\)</span> 为 <strong>协方差矩阵(covariance matrix)</strong>，其特征向量中，特征值最大的那个，就是这组数据的主成分；</li>
-</ul>
-</div>
-<hr/>
-<h2 id="lecture-2--image-formation">Lecture 2 | Image Formation<a class="headerlink" href="#lecture-2--image-formation" title="Permanent link">¶</a></h2>
-<details class="summary">
-<summary>Todays</summary>
-<ul>
-<li>Camera and lens</li>
-<li>Geometric image formation</li>
-<li>Photometric image formation</li>
-</ul>
-</details>
+<h1 id="lecture-2--image-formation">Lecture 2 | Image Formation<a class="headerlink" href="#lecture-2--image-formation" title="Permanent link">¶</a></h1>
 <h3 id="相机与光学原理">相机与光学原理<a class="headerlink" href="#相机与光学原理" title="Permanent link">¶</a></h3>
 <h4 id="小孔成像">小孔成像<a class="headerlink" href="#小孔成像" title="Permanent link">¶</a></h4>
 <p>如果我们直接拿一块平面来记录自然界的光信息，不难发现，由于光线是向四面八方传播的，所以接收到的信息也乱七八糟，所以我们需要通过一个小孔，也就是如今的 <strong>光圈(aperture)</strong> 来对光线进行一个过滤。这就是早期 <strong>针孔摄像机(pinhole camera)</strong> 的原理。</p>
-<p><center markdown=""><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="6.png"><img alt="" src="6.png" width="300px"/></a> <a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="7.png"><img alt="" src="7.png" width="326px"/></a></center></p>
+<p><center markdown=""><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../6.png"><img alt="" src="../6.png" width="300px"/></a> <a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../7.png"><img alt="" src="../7.png" width="326px"/></a></center></p>
 <p>这也就是我们很早就学过的，小孔成像原理。而光圈越小，成像也会越来越清楚，但也不能太小，否则会导致亮度不足<s>甚至衍射</s>。</p>
 <h4 id="透镜">透镜<a class="headerlink" href="#透镜" title="Permanent link">¶</a></h4>
 <p>凸透镜具有汇聚光线的作用，在满足特定光学几何关系的前提下具有和小孔成像类似的效果，但是能够汇聚更多的光线。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="8.png"><img alt="" src="8.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../8.png"><img alt="" src="../8.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://fpcv.cs.columbia.edu/">https://fpcv.cs.columbia.edu/</a></p>
 </blockquote>
@@ -1218,25 +557,25 @@ Av = \lambda v
 <p>其中 <span class="arithmatex">\(i\)</span> 为 <strong>像距(img dis)</strong>，<span class="arithmatex">\(o\)</span> 为 <strong>物距(obj dis)</strong>，<span class="arithmatex">\(f\)</span> 为 <strong>焦距(focal len)</strong>。</p>
 <p>而对于平行光，或者说 <span class="arithmatex">\(o\to +\infty\)</span> 时，就会有 <span class="arithmatex">\(i=f\)</span>。通过这种方法，我们可以通过测量平行光透过凸透镜汇聚的位置来测量焦距。</p>
 <p>同时再引入一个 <strong>放大率(Magnification)</strong>：<span class="arithmatex">\(m=\frac{h_i}{h_o}=\frac{i}{o}\)</span>。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="9.png"><img alt="" src="9.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../9.png"><img alt="" src="../9.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://fpcv.cs.columbia.edu/">https://fpcv.cs.columbia.edu/</a></p>
 </blockquote>
 <h4 id="视野-fovfield-of-view">视野 FoV(field of view)<a class="headerlink" href="#视野-fovfield-of-view" title="Permanent link">¶</a></h4>
 <p>焦距和底片的线度共同决定了 FoV 的大小。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="10.png"><img alt="" src="10.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../10.png"><img alt="" src="../10.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://snapsnapsnap.photos/">https://snapsnapsnap.photos/</a></p>
 </blockquote>
 <p>可以发现，焦距的大小会影响视野的大小和放大率的大小。</p>
 <p>50mm/46° 与人的视野相近，因此它被称为 <strong>标准镜头(standard lens)</strong>.</p>
 <p>此外，即使在画面中保证一个物体的大小不变，选用不同的焦距也会导致画面的变化——背景的大小，通过下面这张图的三个画面我们可以很清晰的感受到这一点。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="11.png"><img alt="" src="11.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../11.png"><img alt="" src="../11.png"/></a></p>
 <p>此外，传感器的大小，或者说底片的大小，也会影响 FoV。而且一般来说，越大的底片能够提供更高的分辨率。</p>
 <h4 id="f-数">F 数<a class="headerlink" href="#f-数" title="Permanent link">¶</a></h4>
 <p><strong>F 数(F-Number)</strong> 用来描述光圈的相对大小，其定义式为 <span class="arithmatex">\(N=\frac{f}{D}\)</span>。</p>
 <h4 id="对焦">对焦<a class="headerlink" href="#对焦" title="Permanent link">¶</a></h4>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="12.png"><img alt="" src="12.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../12.png"><img alt="" src="../12.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://fpcv.cs.columbia.edu/">https://fpcv.cs.columbia.edu/</a></p>
 </blockquote>
@@ -1252,7 +591,7 @@ Av = \lambda v
 <h4 id="景深-dof">景深 DoF<a class="headerlink" href="#景深-dof" title="Permanent link">¶</a></h4>
 <p>根据上一小节得到的结论，理论上我们好像只有清晰成像一个特定平面上的内容，但是实际上相机上会有一段距离上的内容都是清晰的，这段距离就是 <strong>景深 DoF(Depth of Field)</strong>。而之所以有景深，是因为底片的感光元件是有极限的，当光斑小雨这个极限时，拍摄出来的就仍然是清晰的。</p>
 <p>而景深的大小可以这么计算：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="13.png"><img alt="" src="13.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../13.png"><img alt="" src="../13.png"/></a></p>
 <p>我们可以发现，景深的大小 大致与 光圈大小、物像 正相关，与 焦距 负相关。</p>
 <hr/>
 <div class="admonition info">
@@ -1262,7 +601,7 @@ Av = \lambda v
 <p>但是需要注意，无论是哪一种模型，由于我们将三维信息通过 <strong>不可逆的线性变换</strong> 压缩到了二维信息，所以一定是存在信息缺失的。通常来说，指的是深度缺失。</p>
 </div>
 <h3 id="透视投影">透视投影<a class="headerlink" href="#透视投影" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="15.png"><img alt="" src="15.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../15.png"><img alt="" src="../15.png"/></a></p>
 <p>如图是 3D 坐标通过透视投影到 2D 坐标到示意图。其中 <span class="arithmatex">\(x,y,Z\)</span> 用来描述空间坐标信息，方便起见，我们用他们表示相对于 <strong>相机中心(camera center)</strong> 的正交坐标，其中 <span class="arithmatex">\(Z\)</span> 和 <strong>光轴(optical axis)</strong> 方向相同，我们也可以称之为深度。</p>
 <p>同时，光轴应当垂直于成像平面，而光轴与成像平面的交点为 <strong>图像中心(img center)</strong>。</p>
 <p>可以发现，<span class="arithmatex">\(P\)</span> 与 <span class="arithmatex">\(p\)</span> 的关系如下：</p>
@@ -1355,7 +694,7 @@ A
 <p>于是，我们就成功的通过线性变换将 <span class="arithmatex">\(P\)</span> 和 <span class="arithmatex">\(p\)</span> 统一了起来。</p>
 <hr/>
 <h4 id="可视化表示">可视化表示<a class="headerlink" href="#可视化表示" title="Permanent link">¶</a></h4>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="16.png"><img align="right" alt="" src="16.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../16.png"><img align="right" alt="" src="../16.png"/></a></p>
 <p>我们可以发现，小孔成像的模型视图其实还是比较麻烦的。现在我们把这个定角相似对折，变成 A 字型相似来表示这个模型，以简化不必要的信息，同时也能更清晰地表示透视关系。</p>
 <p>规定我们讨论的问题中物距总是大于像距，则可以将像表示为相机中心到物体的放射连线中的 <strong>截面</strong>。</p>
 <p>它比较好地表达了透视关系，即 <u>相机中心</u> <u>物点B</u> <u>像点B'</u> 始终共线。这也是在之后的内容中更加常见的可视化表现方法。</p>
@@ -1366,21 +705,21 @@ A
 <p>所以，如果是曲线，它虽然不会变成折线，但是特征可能已经变了，比如圆是会扭曲的。</p>
 <h4 id="灭点与灭线">灭点与灭线<a class="headerlink" href="#灭点与灭线" title="Permanent link">¶</a></h4>
 <p>在透视中一个很有意思的现象是 <strong>灭点(vanishing point)</strong> 和 <strong>灭线(vanishing line)</strong>。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="18.png"><img align="left" alt="" src="18.png" width="400px"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../18.png"><img align="left" alt="" src="../18.png" width="400px"/></a></p>
 <p>可以发现，在图像中一条不断衍生的直线，在像中最终会终结于一个点，这个点就是“灭点”。几何上，灭点与相机中心的连线应当平行于该直线。</p>
 <p>而现实中相互平行的两条直线，最终会在图像中终止于同一个灭点。</p>
 <p>灭点未必在图像中，甚至可能无限远。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="20.png"><img align="right" alt="" src="20.png" width="380px"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../20.png"><img align="right" alt="" src="../20.png" width="380px"/></a></p>
 <p>刚才提到，平行线共享灭点这意味着有多少组平行线就有多少灭点。</p>
 <p>如果我们将一个平面像棋盘那样，划出两组平行线，那么就会得到两个灭点，如图中的 <span class="arithmatex">\(v_1\)</span> 和 <span class="arithmatex">\(v_2\)</span>。这意味着，对于一个平面，我们可以从中取出无数组平行线，因而无限大的平面会产生无数多的灭点，而这些灭点连成线就成了“灭线”。常见的灭线就比如照片上的海天界线。</p>
 <p>因此，如果说灭点象征了一组平行线，那灭线就是象征了一块平面。而我们就可以通过看平面上的内容出现在灭线以上还是灭线一下，来判断平面在我们的相机中心以下还是以上（可以思考一下为什么）。</p>
 <div class="admonition tip">
 <p class="admonition-title">Interesting Try</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">题面</label><label for="__tabbed_2_2">答案</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">题面</label><label for="__tabbed_1_2">答案</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>观察如下图片，判断 🪂(跳伞者) 在 📷 以上还是以下，并阐明理由。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="21.png"><img alt="" src="21.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../21.png"><img alt="" src="../21.png"/></a></p>
 </div>
 <div class="tabbed-block">
 <p>显然，🪂(跳伞者) 在 📷 以下，直接依据是 人 在 天际线 以下，具体理由如下：</p>
@@ -1404,7 +743,7 @@ A
 <p>在建筑拍摄方面，我们的解决办法是下移传感器，使底片中心在光轴交点以下，这种镜头称为移轴镜头。</p>
 <p>另外一种透视畸变体现在曲线的形变上，也就是我们常感受到的，站在边上的人脸总是更大一点。而这种畸变在断镜头下更常见，所以人像更多用的是长焦镜头（其一原因，其他的还有 FoV 小所以背景更干净等）。</p>
 <h4 id="枕型畸变和桶型畸变">枕型畸变和桶型畸变<a class="headerlink" href="#枕型畸变和桶型畸变" title="Permanent link">¶</a></h4>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="22.png"><img alt="" src="22.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../22.png"><img alt="" src="../22.png"/></a></p>
 <div class="arithmatex">\[
 \begin{align}
 r^2 &amp; = {x'}_n^2 + {y'}_n^2 \\
@@ -1481,7 +820,7 @@ L_d = k_d \cdot \frac{I}{r^2} \cdot \max(0,n\cdot l)
 <p>一开始没仔细想的时候还觉得很自然，但是仔细一想为什么能这样表述？于是和同学探讨了一下，感觉一个可以接受的解释是这样的：</p>
 <p>首先，这里与其说与角度相关，不如说与单位面积受到的光照强度有关。换句话来说，对于同一束光，倾斜的面上会有更大的面积被照射到，均摊下来单位面积上的光强度就小，或许可以将它理解成类似于“密度”的概念。</p>
 <p>带着这样的想法，再来看这张图，就比较清晰了。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="24.png"><img alt="" src="24.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../24.png"><img alt="" src="../24.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://sites.cs.ucsb.edu/~lingqi/teaching/games101.html">https://sites.cs.ucsb.edu/~lingqi/teaching/games101.html</a></p>
 </blockquote>
@@ -1508,7 +847,7 @@ L_s = k_s \cdot \frac{I}{r^2} \cdot \max(0, \cos\alpha)^p=k_s \cdot \frac{I}{r^2
 L_a=k_aI_a
 \]</div>
 <p>Blinn-Phong 反射模型的大致成分如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="23.png"><img alt="" src="23.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../23.png"><img alt="" src="../23.png"/></a></p>
 <div class="arithmatex">\[
 \begin{align}
 L &amp; = L_a + L_d + L_s \\
@@ -1523,23 +862,12 @@ L &amp; = L_a + L_d + L_s \\
 <p>在算法中，我们用矩阵来存储图像信息，其中左上角的元素坐标为 <code>(0, 0, :)</code>，其中第三维用来指定颜色通道(channel)，所以第 i 行 j 列的像素点表示为 <code>(i-1, j-1, :)</code>；</p>
 </details>
 <p>在硬件上，颜色传感主要通过 <strong>拜尔滤镜(Bayer filter)</strong> 实现。也就是通过在传感器前安装一个单色滤镜，来接收单一色光。常见的做法是以田字格的四个传感器为单位，分配 <code>R*1</code> <code>G*2</code> <code>B*1</code> 的滤镜。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="25.png"><img alt="" src="25.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../25.png"><img alt="" src="../25.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://en.wikipedia.org/wiki/Bayer_filter">https://en.wikipedia.org/wiki/Bayer_filter</a></p>
 <p>可以发现，绿色的滤镜更多，因为人眼对绿色更敏感。</p>
 </blockquote>
 <p>显然，这样得到的图片需要进行插值才能得到最终图片。</p>
-<h2 id="lecture-3--image-processing">Lecture 3 | Image Processing<a class="headerlink" href="#lecture-3--image-processing" title="Permanent link">¶</a></h2>
-<h2 id="lecture-4--model-fitting-and-optimization">Lecture 4 | Model Fitting and Optimization<a class="headerlink" href="#lecture-4--model-fitting-and-optimization" title="Permanent link">¶</a></h2>
-<h2 id="lecture-5--feature-matching-and-motion-estimation">Lecture 5 | Feature Matching and Motion Estimation<a class="headerlink" href="#lecture-5--feature-matching-and-motion-estimation" title="Permanent link">¶</a></h2>
-<h2 id="lecture-6--image-alignment-and-stitching">Lecture 6 | Image Alignment and Stitching<a class="headerlink" href="#lecture-6--image-alignment-and-stitching" title="Permanent link">¶</a></h2>
-<h2 id="lecture-7--structure-from-motion">Lecture 7 | Structure From Motion<a class="headerlink" href="#lecture-7--structure-from-motion" title="Permanent link">¶</a></h2>
-<h2 id="lecture-8--depth-estimation">Lecture 8 | Depth Estimation<a class="headerlink" href="#lecture-8--depth-estimation" title="Permanent link">¶</a></h2>
-<h2 id="lecture-9--3d-reconstruction">Lecture 9 | 3D Reconstruction<a class="headerlink" href="#lecture-9--3d-reconstruction" title="Permanent link">¶</a></h2>
-<h2 id="lecture-10--deep-learning">Lecture 10 | Deep Learning<a class="headerlink" href="#lecture-10--deep-learning" title="Permanent link">¶</a></h2>
-<h2 id="lecture-11--recognition">Lecture 11 | Recognition<a class="headerlink" href="#lecture-11--recognition" title="Permanent link">¶</a></h2>
-<h2 id="lecture-12--computational-photography-1">Lecture 12 | Computational Photography 1<a class="headerlink" href="#lecture-12--computational-photography-1" title="Permanent link">¶</a></h2>
-<h2 id="lecture-13--computational-photography-2">Lecture 13 | Computational Photography 2<a class="headerlink" href="#lecture-13--computational-photography-2" title="Permanent link">¶</a></h2>
 <hr/>
 <div class="md-source-file">
 <small>
@@ -1593,34 +921,6 @@ L &amp; = L_a + L_d + L_s \\
           </a>
 </main>
 <footer class="md-footer">
-<nav aria-label="页脚" class="md-footer__inner md-grid">
-<a aria-label="上一页: [大二秋冬] 数字逻辑设计 | DD" class="md-footer__link md-footer__link--prev" href="../D2QD_DigitalDesign/" rel="prev">
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
-</div>
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                上一页
-              </span>
-              [大二秋冬] 数字逻辑设计 | DD
-            </div>
-</div>
-</a>
-<a aria-label="下一页: 扉页" class="md-footer__link md-footer__link--next" href="../../pape_read/" rel="next">
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                下一页
-              </span>
-              扉页
-            </div>
-</div>
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
-</div>
-</a>
-</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
@@ -1646,9 +946,9 @@ L &amp; = L_a + L_d + L_s \\
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
-<script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script src="../../_js/extra.js"></script>
+<script src="../../../_js/extra.js"></script>
 <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
 </html>
