@@ -370,6 +370,35 @@
 <a class="md-nav__link" href="#线代复习">
     线代复习
   </a>
+<nav aria-label="线代复习" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#线性变换">
+    线性变换
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#仿射变换与齐次坐标">
+    仿射变换与齐次坐标
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逆变换">
+    逆变换
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#行列式的几何含义">
+    行列式的几何含义
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#特征值和特征向量">
+    特征值和特征向量
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -548,6 +577,35 @@
 <a class="md-nav__link" href="#线代复习">
     线代复习
   </a>
+<nav aria-label="线代复习" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#线性变换">
+    线性变换
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#仿射变换与齐次坐标">
+    仿射变换与齐次坐标
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逆变换">
+    逆变换
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#行列式的几何含义">
+    行列式的几何含义
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#特征值和特征向量">
+    特征值和特征向量
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -627,7 +685,7 @@
 <p class="admonition-title">课程信息</p>
 <ul>
 <li>本文为课程《计算机视觉导论》的课程笔记，课程主要介绍计算机视觉的基础理论和基本方法。</li>
-<li><strong>智云链接</strong>：<a href="https://classroom.zju.edu.cn/coursedetail?course_id=46109&amp;tenant_code=112">🔗</a></li>
+<li><strong>智云链接</strong>：<a href="https://classroom.zju.edu.cn/coursedetail?course_id=30737&amp;tenant_code=112">🔗</a></li>
 <li><strong>授课</strong>：周晓巍</li>
 <li><strong>教材</strong>：<a href="https://szeliski.org/Book/">📙</a></li>
 </ul>
@@ -717,8 +775,74 @@
 </ul>
 </div>
 <h3 id="线代复习">线代复习<a class="headerlink" href="#线代复习" title="Permanent link">¶</a></h3>
-<p>基础的内容就不再在这里展开了，这里主要提到的是 <strong>仿射变换(Affine Transformations)</strong>。</p>
-<p>放射映射主要包括两个部分，即线性变换和平移，其数学表述为：</p>
+<h4 id="线性变换">线性变换<a class="headerlink" href="#线性变换" title="Permanent link">¶</a></h4>
+<p>首先，一个矩阵左乘一个向量：</p>
+<ul>
+<li>代数上，结果向量的每一项相当于原向量的一个加权求和；</li>
+<li>几何上，结果向量相当于原向量做几何变换得到的新向量；</li>
+</ul>
+<p>在这种基础上，矩阵乘法可以认为是一系列向量（右侧矩阵）经过同一个变换得到新的一系列向量。</p>
+<ul>
+<li>那么反过来的，我们也可以通过观察某些点在变换后的位置来感受这个“变换”的具体内容；</li>
+<li>更特别的，我们可以发现，变换矩阵（左侧矩阵）的每一列，就相当于对应的单位基（例如第 <span class="arithmatex">\(2\)</span> 列对应 <span class="arithmatex">\(\vec{a}(0,1)\)</span> 向量）经过这个变换（右乘这个变换矩阵）得到的结果；</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Tips</p>
+<p>实际上，从单位矩阵的角度也可以很好的理解这件事：</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    a &amp; b \\
+    c &amp; d
+\end{bmatrix}
+\begin{bmatrix}
+    1 &amp; 0 \\
+    0 &amp; 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+    a &amp; b \\
+    c &amp; d
+\end{bmatrix}
+\]</div>
+</div>
+<div class="admonition note">
+<p>我们来试着运用上面的技巧求一个旋转变换对应的变换矩阵。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">题面</label><label for="__tabbed_1_2">答案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="1.png"><img align="left" alt="" src="1.png" width="100px"/></a>
+假设该矩阵让目标图形顺时针旋转 <span class="arithmatex">\(\theta\)</span> ，则其表达式为？</p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="2.png"><img align="left" alt="" src="2.png" width="144px"/></a></p>
+<p>我们做此分析：</p>
+<ul>
+<li>对于参考点 <span class="arithmatex">\((1,0)\)</span>，经过旋转后位置变化为 <span class="arithmatex">\((\cos\theta,-\sin\theta)\)</span>；</li>
+<li>对于参考点 <span class="arithmatex">\((0,1)\)</span>，经过旋转后位置变化为 <span class="arithmatex">\((\sin\theta,\cos\theta)\)</span>；</li>
+</ul>
+<p>因此，根据上面提到的技巧，旋转对应的变换矩阵为：</p>
+<div class="arithmatex">\[
+R_{\theta,clockwise} = 
+\begin{bmatrix}
+    \cos\theta &amp; \sin\theta \\ 
+    -\sin\theta &amp; \cos\theta
+\end{bmatrix}
+\]</div>
+<p>特别的，如果是逆时针，结果就是：</p>
+<div class="arithmatex">\[
+R_{\theta,anti-clockwise} = 
+\begin{bmatrix}
+    \cos\theta &amp; -\sin\theta \\ 
+    \sin\theta &amp; \cos\theta
+\end{bmatrix}
+\]</div>
+</div>
+</div>
+</input></input></div>
+</div>
+<hr/>
+<h4 id="仿射变换与齐次坐标">仿射变换与齐次坐标<a class="headerlink" href="#仿射变换与齐次坐标" title="Permanent link">¶</a></h4>
+<p><strong>仿射变换(Affine Transformations)</strong> 主要包括两个部分，即线性变换和平移（换言之，仿射变换并不是线性变换），其数学表述为：</p>
 <div class="arithmatex">\[
 \begin{bmatrix} 
     x' \\
@@ -739,7 +863,7 @@
     t_y 
 \end{bmatrix}
 \]</div>
-<p>上式可以统一为如下式子，即使用 <strong>齐次坐标(homogenous coordinates)</strong>：</p>
+<p>为了让仿射变换也能写成 <span class="arithmatex">\(a=Mb\)</span> 的形式以简化运算，我们可以用 <span class="arithmatex">\(n+1\)</span> 维向量来表示 <span class="arithmatex">\(n\)</span> 维点，即使用 <strong>齐次坐标(homogenous coordinates)</strong>：</p>
 <div class="arithmatex">\[
 \begin{bmatrix}
     x'\\
@@ -759,6 +883,38 @@
 \end{bmatrix}
 \]</div>
 <hr/>
+<h4 id="逆变换">逆变换<a class="headerlink" href="#逆变换" title="Permanent link">¶</a></h4>
+<p>线性变换 <span class="arithmatex">\(T\)</span> 的 <strong>逆变换(Inverse Transform)</strong> 就是其变换矩阵的逆 <span class="arithmatex">\(T^{-1}\)</span>，显然，并不是所有变换都是可逆的。</p>
+<p>形象地理解，一个变换矩阵如果不满秩（不可逆），那么就会有几个基在变换中合并，或者说多个点被映射为同一个点，导致无法还原。</p>
+<hr/>
+<h4 id="行列式的几何含义">行列式的几何含义<a class="headerlink" href="#行列式的几何含义" title="Permanent link">¶</a></h4>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="3.png"><img alt="" src="3.png" width="360px"/></a></p>
+<p><strong>行列式(Determinant)</strong> 的值等于这个方阵中的向量对应的 平行图形/几何体/... 的 面积/体积/...</p>
+<hr/>
+<h4 id="特征值和特征向量">特征值和特征向量<a class="headerlink" href="#特征值和特征向量" title="Permanent link">¶</a></h4>
+<p><strong>特征向量(eigenvector)</strong> 和 <strong>特征值(eigenvalue)</strong> 的定义如下：</p>
+<p>对于矩阵 <span class="arithmatex">\(A\in R^{N\times N}\)</span>，如果有向量 <span class="arithmatex">\(v\in R^{N}\)</span> 和实数 <span class="arithmatex">\(\lambda \not = 0\)</span>，满足：</p>
+<div class="arithmatex">\[
+Av = \lambda v
+\]</div>
+<p>则称 <span class="arithmatex">\(v\)</span> 是矩阵 <span class="arithmatex">\(A\)</span> 的特征向量，对应的特征值为 <span class="arithmatex">\(\lambda\)</span>。</p>
+<p>从几何变换的角度来理解这个定义式，可以描述为：向量 <span class="arithmatex">\(v\)</span> 经过变换 <span class="arithmatex">\(A\)</span> 得到的结果，等于直接对 <span class="arithmatex">\(v\)</span> 进行缩放（而没有改变方向）。</p>
+<div class="admonition tip">
+<p class="admonition-title">工程计算方法</p>
+<p>令人惊喜的是，我们在实际运用时，可以直接使用数学库中的 <strong>特征值分解(eigen decomposition)</strong> 方法，其大致会做这样一件事：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="4.png"><img alt="" src="4.png"/></a></p>
+<p>将矩阵 <span class="arithmatex">\(A\)</span> 分解为 <span class="arithmatex">\(Q\Lambda Q^{-1}\)</span>，其中 <span class="arithmatex">\(Q\)</span> 中的每一列即为 <span class="arithmatex">\(A\)</span> 的特征向量，对角阵 <span class="arithmatex">\(\Lambda\)</span> 中的第 <span class="arithmatex">\(i\)</span> 项就是第 <span class="arithmatex">\(i\)</span> 个特征向量的特征值。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">特征值与特征向量的应用 之 主成分分析(principal component analysis)</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="5.png"><img align="right" alt="" src="5.png" width="310px"/></a></p>
+<p><strong>主成分(principal component)</strong> 等于协方差矩阵的 特征值最大的 那个特征向量。</p>
+<ul>
+<li>如图，我们要从图中找到一个方向，使得所有数据点在这个方向上的投影，方差最大（换言之，找到这些数据的一个“方向”）；</li>
+<li>记所有数据点为 <span class="arithmatex">\(A\)</span>，则 <span class="arithmatex">\(A^{T}A\)</span> 为 <strong>协方差矩阵(covariance matrix)</strong>，其特征向量中，特征值最大的那个，就是这组数据的主成分；</li>
+</ul>
+</div>
+<hr/>
 <h2 id="lecture-2--image-formation">Lecture 2 | Image Formation<a class="headerlink" href="#lecture-2--image-formation" title="Permanent link">¶</a></h2>
 <h2 id="lecture-3--image-processing">Lecture 3 | Image Processing<a class="headerlink" href="#lecture-3--image-processing" title="Permanent link">¶</a></h2>
 <h2 id="lecture-4--model-fitting-and-optimization">Lecture 4 | Model Fitting and Optimization<a class="headerlink" href="#lecture-4--model-fitting-and-optimization" title="Permanent link">¶</a></h2>
@@ -776,7 +932,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月9日 13:33:05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月12日 15:00:08</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年10月31日 14:53:50</span>
