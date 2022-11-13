@@ -35,7 +35,3 @@ center, p, ul {
 [data-md-color-primary=black] .md-tabs {
     background-color: #131623c5;
 }
-
-.md-grid {
-    max-width: 1440px; 
-}
