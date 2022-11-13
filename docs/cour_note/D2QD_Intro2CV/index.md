@@ -747,3 +747,6 @@ $$
 ## Lecture 13 | Computational Photography 2
 
 
+## Lab
+
+- :material-label-outline: [Lab Code](https://github.com/IsshikiHugh/Learning/tree/master/ICV_2022FallWinterTerm)
