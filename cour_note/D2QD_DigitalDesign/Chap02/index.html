@@ -1,0 +1,1565 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Isshiki修" name="author"/>
+<link href="https://note.isshikih.top/cour_note/D2QD_DigitalDesign/Chap02/" rel="canonical"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.1, mkdocs-material-8.5.7" name="generator"/>
+<title>Chap 2 Combinational Logic Circuits - Isshiki修's Notebook</title>
+<link href="../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<meta content="#000000" name="theme-color"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Share+Tech:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Share Tech";--md-code-font:"JetBrains Mono"}</style>
+<link href="../../../_css/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gdesc-inner { font-size: 0.75rem; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="blue" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#chap-2-combinational-logic-circuits">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Isshiki修's Notebook">
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1.592 2.712 2.38 7.25h4.87a.75.75 0 1 1 0 1.5H2.38l-.788 4.538L13.929 8 1.592 2.712zM.989 8 .064 2.68a1.341 1.341 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.341 1.341 0 0 1-1.85-1.463L.99 8z" fill-rule="evenodd"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Isshiki修's Notebook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Chap 2 Combinational Logic Circuits
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<a aria-label="分享" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="分享">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"></path></svg>
+</a>
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/IsshikiHugh/notebook" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    IsshikiHugh/notebook
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+        💠 封面
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../tech_accu/">
+        📚 技术积累
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../../">
+        🗒 课程笔记
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../pape_read/">
+        📝 论文阅读
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../others/">
+        📦 杂项专题
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../comming/">
+        🚧 施工中
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Isshiki修's Notebook">
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1.592 2.712 2.38 7.25h4.87a.75.75 0 1 1 0 1.5H2.38l-.788 4.538L13.929 8 1.592 2.712zM.989 8 .064 2.68a1.341 1.341 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.341 1.341 0 0 1-1.85-1.463L.99 8z" fill-rule="evenodd"></path></svg>
+</a>
+    Isshiki修's Notebook
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/IsshikiHugh/notebook" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    IsshikiHugh/notebook
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" id="__nav_1" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../..">💠 封面</a>
+<label for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="💠 封面" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+          💠 封面
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../link/">
+        💬 交流区
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../tech_accu/">📚 技术积累</a>
+<label for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="📚 技术积累" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          📚 技术积累
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../tech_accu/tool/">常用工具</a>
+<label for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="常用工具" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+          常用工具
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_2" id="__nav_2_2_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../tech_accu/tool/Git/">Git Something</a>
+<label for="__nav_2_2_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="Git Something" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_2_2">
+<span class="md-nav__icon md-icon"></span>
+          Git Something
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tech_accu/tool/Git/Workflow/">
+        Git Workflow
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tech_accu/tool/Git/Commands/">
+        Git Commands
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tech_accu/tool/Shell/">
+        Shell
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tech_accu/tool/Colab/">
+        Google Colaboratory
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" id="__nav_2_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../tech_accu/standard/BVH_format/">标准 | 格式 | 规范</a>
+</div>
+<nav aria-label="标准 | 格式 | 规范" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+          标准 | 格式 | 规范
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" id="__nav_2_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../tech_accu/ai/">人工智能</a>
+<label for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="人工智能" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+          人工智能
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tech_accu/ai/pytorch/">
+        PyTorch
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../">🗒 课程笔记</a>
+<label for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="🗒 课程笔记" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          🗒 课程笔记
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D1QD_CXiaoCheng/">
+        [大一秋冬] C小程 琐碎知识点整理
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D1SJ_cs231n/">
+        [大一暑假] Deep Learning for Computer Vision | CS231N
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" id="__nav_3_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../">[大二秋冬] 数字逻辑设计 | Digital Design</a>
+<label for="__nav_3_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="[大二秋冬] 数字逻辑设计 | Digital Design" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_4">
+<span class="md-nav__icon md-icon"></span>
+          [大二秋冬] 数字逻辑设计 | Digital Design
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Chap01/">
+        Chap 1 Digital Systems and Information
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Chap 2 Combinational Logic Circuits
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Chap 2 Combinational Logic Circuits
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逻辑运算">
+    逻辑运算
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逻辑门">
+    逻辑门
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#布尔代数">
+    布尔代数
+  </a>
+<nav aria-label="布尔代数" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#运算律">
+    运算律
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#运算律推广">
+    运算律推广
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#对偶法则">
+    对偶法则
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#互补函数">
+    互补函数
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#替代法则">
+    替代法则
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#一致性定理">
+    一致性定理
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#标准形式">
+    标准形式
+  </a>
+<nav aria-label="标准形式" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#最小项之和-som">
+    最小项之和 SOM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#最大项之积-pom">
+    最大项之积 POM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#练习">
+    练习
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#电路实现与优化">
+    电路实现与优化
+  </a>
+<nav aria-label="电路实现与优化" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#成本标准">
+    成本标准
+  </a>
+<nav aria-label="成本标准" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#按照字面量字面量计">
+    按照字面量字面量计
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#按门输入计">
+    按门输入计
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#卡诺图">
+    卡诺图
+  </a>
+<nav aria-label="卡诺图" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#卡诺图的思想">
+    卡诺图的思想
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#卡诺图的局限性">
+    卡诺图的局限性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#卡诺图的结构">
+    卡诺图的结构
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#使用卡诺图优化">
+    使用卡诺图优化
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#不定项">
+    不定项
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#蕴含项主蕴含项与基本主蕴含项">
+    蕴含项、主蕴含项与基本主蕴含项
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" id="__nav_3_5" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../D2QD_Intro2CV/">[大二秋冬] 计算机视觉导论 | I2CV</a>
+<label for="__nav_3_5">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="[大二秋冬] 计算机视觉导论 | I2CV" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_5">
+<span class="md-nav__icon md-icon"></span>
+          [大二秋冬] 计算机视觉导论 | I2CV
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec01/">
+        Lecture 1 | Introduction
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec02/">
+        Lecture 2 | Image Formation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec03/">
+        Lecture 3 | Image Processing
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec04/">
+        Lecture 4 | Model Fitting and Optimization
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec05/">
+        Lecture 5 | Feature Matching and Motion Estimation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec06/">
+        Lecture 6 | Image Alignment and Stitching
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec07/">
+        Lecture 7 | Structure From Motion
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec08/">
+        Lecture 8 | Depth Estimation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec09/">
+        Lecture 9 | 3D Reconstruction
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec10/">
+        Lecture 10 | Deep Learning
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec11/">
+        Lecture 11 | Recognition
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec12/">
+        Lecture 12 | Computational Photography 1
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec13/">
+        Lecture 13 | Computational Photography 2
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">📝 论文阅读</a>
+<label for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="📝 论文阅读" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          📝 论文阅读
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../pape_read/arXiv%3A2003.08934/">
+        NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../others/">📦 杂项专题</a>
+<label for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="📦 杂项专题" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          📦 杂项专题
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../others/reveal-md2Slides/">
+        使用 reveal-md 来写 Slides
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
+          🚧 施工中
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="🚧 施工中" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          🚧 施工中
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../comming/">
+        内容正在编辑中……
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逻辑运算">
+    逻辑运算
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逻辑门">
+    逻辑门
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#布尔代数">
+    布尔代数
+  </a>
+<nav aria-label="布尔代数" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#运算律">
+    运算律
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#运算律推广">
+    运算律推广
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#对偶法则">
+    对偶法则
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#互补函数">
+    互补函数
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#替代法则">
+    替代法则
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#一致性定理">
+    一致性定理
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#标准形式">
+    标准形式
+  </a>
+<nav aria-label="标准形式" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#最小项之和-som">
+    最小项之和 SOM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#最大项之积-pom">
+    最大项之积 POM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#练习">
+    练习
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#电路实现与优化">
+    电路实现与优化
+  </a>
+<nav aria-label="电路实现与优化" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#成本标准">
+    成本标准
+  </a>
+<nav aria-label="成本标准" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#按照字面量字面量计">
+    按照字面量字面量计
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#按门输入计">
+    按门输入计
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#卡诺图">
+    卡诺图
+  </a>
+<nav aria-label="卡诺图" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#卡诺图的思想">
+    卡诺图的思想
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#卡诺图的局限性">
+    卡诺图的局限性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#卡诺图的结构">
+    卡诺图的结构
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#使用卡诺图优化">
+    使用卡诺图优化
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#不定项">
+    不定项
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#蕴含项主蕴含项与基本主蕴含项">
+    蕴含项、主蕴含项与基本主蕴含项
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/cour_note/D2QD_DigitalDesign/Chap02.md" title="编辑此页">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="chap-2-combinational-logic-circuits">Chap 2 Combinational Logic Circuits<a class="headerlink" href="#chap-2-combinational-logic-circuits" title="Permanent link">¶</a></h1>
+<h2 id="逻辑运算">逻辑运算<a class="headerlink" href="#逻辑运算" title="Permanent link">¶</a></h2>
+<p>逻辑运算的对象是布尔变量，也就是 0/1 二值。</p>
+<p>主要的运算就是 <strong>与(AND)</strong>，<strong>或(OR)</strong>，<strong>非(NOT)</strong>，<strong>异或(XOR)</strong>，以及 <strong>与非(NAND)</strong>，<strong>或非(NOR)</strong>。</p>
+<p>运算规则挺简单的，在此略去。</p>
+<p>比较基础的，需要了解与或非的符号表示。</p>
+<ul>
+<li><code>A</code> <code>AND</code> <code>B</code> 可写作 <span class="arithmatex">\(A\cdot B\)</span> 或者 <span class="arithmatex">\(AB\)</span>；</li>
+<li><code>A</code> <code>OR</code> <code>B</code> 可写作 <span class="arithmatex">\(A+B\)</span>；</li>
+<li><code>NOT A</code> 可写作 <span class="arithmatex">\(\bar{A}\)</span>；</li>
+</ul>
+<p>由此可以进行一些组合，例如：</p>
+<ul>
+<li><code>A</code> <code>XOR</code> <code>B</code> 可写作 <span class="arithmatex">\(\bar{A+B}\)</span>；</li>
+<li><code>A</code> <code>NAND</code> <code>B</code> 可写作 <span class="arithmatex">\(\bar{A\cdot B}\)</span>；</li>
+</ul>
+<p>再次还需要提到的是 <strong>德·摩根定律(De Morgan's Laws)</strong>，其表述为：</p>
+<ul>
+<li><span class="arithmatex">\(\bar{A+B} = \bar{A}\cdot\bar{B}\)</span>；</li>
+<li><span class="arithmatex">\(\bar{A\cdot B} = \bar{A}+\bar{B}\)</span>；</li>
+</ul>
+<h2 id="逻辑门">逻辑门<a class="headerlink" href="#逻辑门" title="Permanent link">¶</a></h2>
+<p>逻辑门是在硬件层面上实现布尔代数的逻辑单元。其操作对象为高低电平。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../7.jpeg"><img alt="" src="../7.jpeg"/></a></p>
+<blockquote>
+<p>如图，(a)中绘制了三个常用逻辑门的符号；(b)中则描述了这些运算在 <strong>时序图(timing diagram)</strong> 中的状态；©则描述了在延时（见下）效应下的时序图。</p>
+<p>还有一个注意点是，非门其实更多的被称为 inverter，而非 NOT。</p>
+</blockquote>
+<p>但是由于是物理层面的实现，所以会有一些逻辑运算层面不会出现的问题，比如 <strong>延时(delay)</strong>。</p>
+<div class="admonition note">
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../8.png"><img alt="" src="../8.png"/></a></p>
+<blockquote>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Signal_propagation_delay#Electronics">https://en.wikipedia.org/wiki/Signal_propagation_delay#Electronics</a></p>
+</blockquote>
+</div>
+<p>延时的长短与很多因素有关，取决于逻辑门的实现技术。而且通常来说，对于不同运算参数，其延时也会有不同。</p>
+<p>此外，与门和或门可能有更多的输入引脚，如下：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../9.jpeg"><img alt="" src="../9.jpeg"/></a></p>
+<p>至此，给出了 AND, OR, NOT 三个门的符号表示，类似上一小节提到的那样，我们也可以利用这三个基础的门电路来构成其他的门电路（虽然通常来说，我们可能是通过 NAND + NOT 来实现 AND 的）。</p>
+<p>于是又引申出一个概念——<strong>通用门(universal gate)</strong>。一个功能完全的，能够表示其他所有门的逻辑门被称为通用门，在我们学过的逻辑门中，NAND 和 NOR 都是通用门。</p>
+<div class="admonition quote">
+<p class="admonition-title">推荐阅读</p>
+<ul>
+<li>Title: Universal Logic Gates</li>
+<li>URL: <a href="https://www.electronics-tutorials.ws/logic/universal-gates.html">https://www.electronics-tutorials.ws/logic/universal-gates.html</a></li>
+</ul>
+<blockquote>
+<p>Universal Logic gates can be used to produce any other logic or Boolean function with the NAND and NOR gates being minimal</p>
+</blockquote>
+</div>
+<h2 id="布尔代数">布尔代数<a class="headerlink" href="#布尔代数" title="Permanent link">¶</a></h2>
+<blockquote>
+<p>literal ~ 字面量，也就是“变量”。</p>
+</blockquote>
+<h3 id="运算律">运算律<a class="headerlink" href="#运算律" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../10.jpeg"><img alt="" src="../10.jpeg"/></a></p>
+<p>这张图片总结了布尔运算中的运算律，个人感觉最需要强化记忆的是 15 条，因为布尔代数借用了普通代数的符号，但第 15 条在普通代数中并不成立，所以对于习惯这套符号的人来说可能不太 straightfoward。</p>
+<p>在记忆这套运算规律的时候，我个人的一个想法是，一定要建立 <strong>与</strong> 和 <strong>或</strong> 是对等的观念。我们习惯用“真”去理解这两个运算，但是实际上如果你以“假”为主体去分析这两个运算，会发现和“真”是完全对称的。换言之， <strong>与</strong> 和 <strong>或</strong> 是完全对称的运算，而非像他们借用的符号 <span class="arithmatex">\(\times\)</span> 和 <span class="arithmatex">\(+\)</span> 那样存在非对称关系。</p>
+<p>但是让这件事变得又没那么简单的事情是，虽然 <strong>与</strong> 和 <strong>或</strong> 是对等的，但是我们在借用普通代数符号体系的同时，又人为地给他们添加了优先级（但是这也是必要的，否则表达式就会充满括号）。</p>
+<p>优先级从高到低依次为：</p>
+<ol>
+<li>括号 / ()；</li>
+<li>非 / NOT / <span class="arithmatex">\(\bar A\)</span>；</li>
+<li>与 / AND / <span class="arithmatex">\(\cdot\)</span>；</li>
+<li>或 / OR / <span class="arithmatex">\(+\)</span>；</li>
+</ol>
+<p>个人感觉，这一种思路并不直觉，尤其是借用普通代数的符号体系以后更加混淆，所以可能需要一些练习来摆脱这些“刻板印象”。</p>
+<h3 id="运算律推广">运算律推广<a class="headerlink" href="#运算律推广" title="Permanent link">¶</a></h3>
+<p>除此之外，从上面提到的运算律中还能推广出如下几个模型：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../11.jpg"><img alt="" src="../11.jpg"/></a><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../12.jpg"><img alt="" src="../12.jpg"/></a></p>
+<blockquote>
+<p>我们再次发现，与 和 或 在逻辑上是对称的。</p>
+</blockquote>
+<h3 id="对偶法则">对偶法则<a class="headerlink" href="#对偶法则" title="Permanent link">¶</a></h3>
+<p><strong>对偶法则(duality rule)</strong>: 一个表达式的 <strong>对偶(dual)</strong> 为，将所有的 <strong>与</strong> 和 <strong>或</strong> 对调得到的式子（注意！需要保证参与运算的顺序不能变，比如 <strong>一般情况下</strong> <span class="arithmatex">\(A\cdot B\)</span> 会被对偶为 <span class="arithmatex">\((A+B)\)</span> 以保证运算顺序）。</p>
+<div class="admonition note">
+<p class="admonition-title">eg</p>
+<ul>
+<li><span class="arithmatex">\(X+XY\)</span> 和 <span class="arithmatex">\(X(X+Y)\)</span> 对偶；</li>
+<li><span class="arithmatex">\(X(Y+Z)\)</span> 和 <span class="arithmatex">\(X+YZ\)</span> 对偶；</li>
+</ul>
+</div>
+<p>而一般情况下，除非某个表达式是 <strong>自对偶(self-dual)</strong> 的，那么它的表现都与原表达式不同。</p>
+<p>对偶表达式具有如下性质：</p>
+<ul>
+<li>如果 F 的对偶是 G，那么 F 也是 G 的对偶，即对偶关系是对成的；</li>
+<li>如果表达式 F 和 G 等价，那么他们的对偶也等价；</li>
+</ul>
+<h3 id="互补函数">互补函数<a class="headerlink" href="#互补函数" title="Permanent link">¶</a></h3>
+<p>一个 <strong>函数的互补(complement of a function)</strong> 指的是，将它的对偶函数中每一个变量都取反得到的函数，而该函数正好等于原函数的非。</p>
+<div class="admonition note">
+<p class="admonition-title">eg</p>
+<p>原函数：<span class="arithmatex">\(F=\bar{A}B+C\bar{B}\)</span>；
+其互补函数：<span class="arithmatex">\(\bar{F}=(A+\bar{B})(\bar{C}+D)\)</span>；</p>
+</div>
+<h3 id="替代法则">替代法则<a class="headerlink" href="#替代法则" title="Permanent link">¶</a></h3>
+<p><strong>替代法则(substitution rules)</strong>: 如果将一个等式中 <strong>所有的</strong> <strong>某个变量</strong> 都替换为同一个表达式，则等式依然成立。</p>
+<div class="admonition note">
+<p class="admonition-title">eg</p>
+<ul>
+<li>原等式：<span class="arithmatex">\(X(Y+Z)=XY+XZ\)</span>；</li>
+<li>如果使用 <span class="arithmatex">\(X+YZ\)</span> 替换所有的 <span class="arithmatex">\(X\)</span>，则：</li>
+<li>修改后的等式 <span class="arithmatex">\((X+YZ)(Y+Z)=(X+YZ)Y+(X+YZ)Z\)</span> 依然成立；</li>
+</ul>
+</div>
+<h3 id="一致性定理">一致性定理<a class="headerlink" href="#一致性定理" title="Permanent link">¶</a></h3>
+<p>在简化逻辑表达式的时候，<strong>一致性定理(consensus theorem)</strong> 也很有用：</p>
+<div class="arithmatex">\[
+XY+\bar{X}Z+YZ=XY+\bar{X}Z
+\]</div>
+<p>其证明的第一步是这样的：
+<span class="arithmatex">\(XY+\bar{X}Z+YZ=XY+\bar{X}Z+(X+\bar{X})YZ\)</span>，那后面就很简单了。本质上这个等式是利用了裂项，需要将其中最本质的部分，最小的粒度给裂开来，然后再慢慢消掉。</p>
+<h2 id="标准形式">标准形式<a class="headerlink" href="#标准形式" title="Permanent link">¶</a></h2>
+<p>由于本质上相等的布尔表达式实际上有很多种写法，而且随着变量越来越复杂，他们之间的比较会很困难。所以我们需要定义一种形式，使得所有相同的表达式都能比较方便的“化简”为同一个形式，同时也能辨别出两个表达式是不同的。这就引入了 <strong>标准形式(Standard Forms)</strong>，他们分别为 <strong>最小项之和 SOM(Sum of Minterms)</strong> 和 <strong>最大项之积 POM(Product of Maxterms)</strong>。</p>
+<p>为了方便描述，在继续之前，我们先给出这样一张 🌰 真值表。</p>
+<table>
+<thead>
+<tr>
+<th align="center">🌰 Index</th>
+<th align="center">X</th>
+<th align="center">Y</th>
+<th align="center">Z</th>
+<th align="center">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0 / <code>000</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0</code></td>
+</tr>
+<tr>
+<td align="center">1 / <code>001</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0</code></td>
+</tr>
+<tr>
+<td align="center">2 / <code>010</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>1</code></td>
+</tr>
+<tr>
+<td align="center">3 / <code>011</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0</code></td>
+</tr>
+<tr>
+<td align="center">4 / <code>100</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>1</code></td>
+</tr>
+<tr>
+<td align="center">5 / <code>101</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1</code></td>
+</tr>
+<tr>
+<td align="center">6 / <code>110</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0</code></td>
+</tr>
+<tr>
+<td align="center">7 / <code>111</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>数值是随便搓的，请留意为什么为要在 Index 特地写出二进制的表述。</p>
+</blockquote>
+<p>在开始之前，我需要强调，我们引入 SOM 和 POM 的目的是寻找一种比较典型的 <strong>表达</strong>，使得他们能够 <strong>确定</strong> 一张真值表。即，知道这种 <strong>表达</strong> 我们就足够写出这张真值表，反之亦然。</p>
+<hr/>
+<h3 id="最小项之和-som">最小项之和 SOM<a class="headerlink" href="#最小项之和-som" title="Permanent link">¶</a></h3>
+<p>课本中对最小项的描述是：</p>
+<blockquote>
+<p>A product term in which all the variables appear exactly once, either complemented or uncomplemented, is called <em>minterm</em>. </p>
+<p>Its characteristic property is that it represents exactly one combination of binary variable values in the truth table.</p>
+</blockquote>
+<p>用我的话来说，最小项之和就是挑出真值表中所有结果是 <code>1</code> 的最小项（<em>比较模糊但直观，所以请先囫囵吞枣，我在“追加说明”会进一步说明</em>）。显然，在最小项之和的含义就是，一旦字面量取值的组合匹配了这几个“最小项”的其中一项，那么结果就是 <code>1</code>，符合了 OR 的“有1得1”的规则。</p>
+<p>我们使用符号 <span class="arithmatex">\(m_{idx}\)</span> 来表示一个最小项，其中 <span class="arithmatex">\(idx\)</span> 表示描述的那一项在真值表的序号，同时这个下标的二进制也能反映出字面量的组合。</p>
+<p>例如，在 🌰 中，output 为 <code>1</code> 的项有：<code>010</code> <code>100</code> <code>101</code> <code>111</code> 这四项，那么我们需要挑出来的最小项表达就分别是 <span class="arithmatex">\(m_{2}=\bar{X}Y\bar{Z}, \; m_{4}=X\bar{Y}\bar{Z}, \; m_{5}=X\bar{Y}Z, \; m_{7}=XYZ\)</span>。</p>
+<details class="tip" open="open">
+<summary>追加说明（简单，但是建议看一看）</summary>
+<blockquote>
+<p>或许您觉得最小项的得到非常的自然且简单，我建议您也尝试着看一看追加说明，因为这对理解最大项挺有帮助的。</p>
+</blockquote>
+<p>那么什么是“列举”呢？让我们再看一眼上面对最小项之和的描述：“一旦字面量取值的组合匹配这几个‘最小项’的其中一项，那么结果就是真”，追本溯源，在最小项中，我们就需要做到只有当一个电路的状态是特定组合时，其返回值为 <code>1</code>。</p>
+<p>具体来说，比如，对于 🌰 中的 <span class="arithmatex">\(m_{5}=X\bar{Y}Z\)</span>，也可以通过这样一种更啰嗦的方式表达出来是这样的：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>（循序渐进）我们可以将它变化为这样：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>而这个逻辑表达式，实际上已经和 <span class="arithmatex">\(m_5=X\bar{Y}Z\)</span> 一模一样了。</p>
+<p>在这里给出一个总结性的表述：<u>所谓的“挑出”，就是对于选定的一个字面量取值的组合，给出一个特定的表达式，使得只有这种组合的结果是 <span class="arithmatex">\(f\)</span>，而对于任何其他取值的组合，该表达式的结果都是 <span class="arithmatex">\(\bar{f}\)</span>，即实现了该表达式能 <strong>唯一表达</strong> 这个取值组合。</u></p>
+</details>
+<p>至此，我们得到了 🌰 所对应的 SOM：</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+    F(X,Y,Z)
+    &amp; = \sum m(2,4,5,7) \\
+    &amp; = m_2+m_4+m_5+m_7 \\
+    &amp; = \bar{X}Y\bar{Z}+X\bar{Y}\bar{Z}+X\bar{Y}Z+XYZ
+\end{array}
+\]</div>
+<p>再次归纳，使用通俗的话来说，最小项之和更像是“枚举了所有 <code>1</code> 的可能”，只要匹配了这个“和”中的某一项（<em>事实上不做化简的话你也只能满足一项的值取到 <code>1</code></em>），表达式的值就会变成 <code>1</code>；而一个都不匹配的，自然就只能得到 <code>0</code>。</p>
+<hr/>
+<h3 id="最大项之积-pom">最大项之积 POM<a class="headerlink" href="#最大项之积-pom" title="Permanent link">¶</a></h3>
+<p>就像我之前不断不断不断强调的，所谓的 <code>1</code> 和 <code>0</code> 都只是人为定义的，摆脱潜意识里对这两者之一的倾向（例如我本人就一直很倾向于以 <code>1</code> 为主体研究问题）会对理解最大项之积和逻辑表达式化简很有帮助。</p>
+<p>而最大项之积——以我个人的愚见——就是以 <code>0</code> 为主体来研究真值表的特征的。</p>
+<p>课本中对最大项的描述是：</p>
+<blockquote>
+<p>A sum term that contains all the variables in complemented or uncomplemented form is called a maxterm.</p>
+</blockquote>
+<p>与最小项对比，无非是把 "product term" 换成了 "sum term"，也就是把 AND 换成了 OR。</p>
+<p>而最大项之积，就是挑出所有结果为 <code>0</code> 的最大项（<em>同样的，这里的“挑出”也很模糊，我也会在追加说明中再次说明</em>），再做 AND。以 <code>1</code> 为主体描述 AND 是“都1出1”，而以 <code>0</code> 为主体描述 AND 则是“有0出0”，这与 OR 的“有1出1”也是高度对称的（反之亦然）。也就是说，最大项之积的含义是，在最大项之积中，只要字面量取值的组合匹配这几个“最大项”的其中一项，整个表达式的结果就会变成 <code>0</code>。</p>
+<p>类似的，我们使用符号 <span class="arithmatex">\(M_{idx}\)</span> 来表示一个最大项，其中 <span class="arithmatex">\(idx\)</span> 表示描述的那一项在真值表的序号，同时这个下标的二进制也能反映出字面量的组合。</p>
+<p>例如，在 🌰 中，output 为 <code>0</code> 的项有：<code>000</code> <code>001</code> <code>011</code> <code>110</code> 这四项，那么我们需要挑出来的最小项表达就分别是 <span class="arithmatex">\(M_{0}=X+Y+Z, \; M_{1}=X+Y+\bar{Z}, \; M_{3}=X+\bar{Y}+\bar{Z}, \; m_{6}=\bar{X}+\bar{Y}+Z\)</span>。可以检验，只有代入他们对应的那一行真值表组合时，他们才会得到 <code>0</code>。</p>
+<details class="tip" open="open">
+<summary>追加说明</summary>
+<p>同样的，回顾最大项之积的描述：“在最大项之积中，只要字面量取值的组合匹配这几个‘最大项’的其中一项，整个表达式的结果就会变成 <code>0</code>”。</p>
+<p>具体来说，比如，对于 🌰 中的 <span class="arithmatex">\(M_6=\bar{X}+\bar{Y}+Z\)</span>，我们可以如下描述：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>如上是比较直观的想法，即仍然是建立在以 <code>1</code> 为主体的思路上的，现在让我们将它变化为以 <code>0</code> 为主体的思路上，以及通过筛选让目标落入 <code>else</code> 中：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Focus on this branch. This is our target actually!</span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>稍作变化：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">((</span><span class="o">!</span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Focus on this branch. This is our target actually!</span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>这也正对应了 <span class="arithmatex">\(M_6=\bar{X}+\bar{Y}+Z\)</span>。</p>
+<p>再次给出这个总结性的表述：<u>所谓的“挑出”，就是对于选定的一个字面量取值的组合，给出一个特定的表达式，使得只有这种组合的结果是 <span class="arithmatex">\(f\)</span>，而对于任何其他取值的组合，该表达式的结果都是 <span class="arithmatex">\(\bar{f}\)</span>，即实现了该表达式能 <strong>唯一表达</strong> 这个取值组合。</u></p>
+</details>
+<p>至此，我们得到了 🌰 所对应的 POM：</p>
+<div class="arithmatex">\[    
+\begin{array}{l}
+    F(X,Y,Z)
+    &amp; = \prod M(0,1,3,6) \\
+    &amp; = M_0M_1M_3M_6 \\
+    &amp; = (X+Y+Z)(X+Y+\bar{Z})(X+\bar{Y}+\bar{Z})(\bar{X}+\bar{Y}+Z)
+\end{array}
+\]</div>
+<p>同样再次归纳，使用通俗的话来说，最大项之积更像是“枚举了所有 <code>0</code> 的可能”，只要匹配了这个“积”中的某一项，表达式的值就会变成 <code>0</code>；而一个都不匹配的，自然就只能得到 <code>1</code>。</p>
+<p>与最小项相比，一个枚举了所有的 <code>1</code> 的可能，一个枚举了所有是 <code>0</code> 的可能，对于一个二值表达式来说，两种 <strong>表达</strong> 都是充要的。</p>
+<hr/>
+<p>此时，我们还能发现：</p>
+<p>例如：<span class="arithmatex">\(M_5 = \bar{X} + Y + \bar{Z} = \bar{ X\bar{Y}Z } = \bar{m}_5\)</span></p>
+<hr/>
+<h3 id="练习">练习<a class="headerlink" href="#练习" title="Permanent link">¶</a></h3>
+<p>接下来，我们将通过一些例子来进一步强化这些理解，并且挖掘一些神奇的特性。</p>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">题面</label><label for="__tabbed_1_2">答案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>请分别写出如下真值表中 <span class="arithmatex">\(F\)</span> 和 <span class="arithmatex">\(\bar{F}\)</span> 的 SOM 和 POM。
+<figure markdown=""><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../13.png"><img alt="" src="../13.png"/></a></figure></p>
+</div>
+<div class="tabbed-block">
+<p>答案：
+<script type="math/tex; mode=display">
+\begin{array}{l}
+    F(X,Y,Z)
+    & = \sum m(0,2,5,7) = \bar{X}\bar{Y}\bar{Z} + \bar{X}Y\bar{Z} + X\bar{Y}Z + XYZ \\
+    & = \prod M(1,3,4,6) \\
+    & = (X+Y+\bar{Z})(X+\bar{Y}+\bar{Z})(\bar{X}+Y+Z)(\bar{X}+\bar{Y}+Z)
+\end{array}
+</script>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+    \bar{F}(X,Y,Z)
+    & = \sum m(1,3,4,6) = \bar{X}\bar{Y}Z + \bar{X}YZ + X\bar{Y}\bar{Z} + XY\bar{Z} \\
+    & = \prod M(0,2,5,7) \\
+    & = (X+Y+Z)(X+\bar{Y}+Z)(\bar{X}+Y+\bar{Z})(\bar{X}+\bar{Y}+\bar{Z})
+\end{array}
+</script>
+于是我们发现一件很有意思的事情，<span class="arithmatex">\(F\)</span> 的 SOM 的下标与 <span class="arithmatex">\(\bar{F}\)</span> 的 POM 的下标是一样的；当然对于 <span class="arithmatex">\(F\)</span> 的 POM 和 <span class="arithmatex">\(\bar{F}\)</span> 的 SOM 也是一样的。这又双印证了对称性。</p>
+</div>
+</div>
+</input></input></div>
+</div>
+<blockquote>
+<p>之后的练习等我做了再添加x 如果做了的话x 😋</p>
+</blockquote>
+<hr/>
+<h2 id="电路实现与优化">电路实现与优化<a class="headerlink" href="#电路实现与优化" title="Permanent link">¶</a></h2>
+<div class="admonition info">
+<p class="admonition-title">引入</p>
+<p>我们当然可以直接通过标准形式来得到对应的电路，但是在实际情况中，这样做会导致成本过高以及电路复杂（因为门太多了），所以我们需要对电路进行优化。在这里，我们介绍通过 <strong>卡诺图(Karnaugh map)</strong> 来优化逻辑电路的方法。</p>
+<p>不过再开始“优化”的话题之前，我们需要定义什么是“优”，也就是给出一个电路成本的衡量依据，即 <strong>成本标准(cost criteria)</strong>。</p>
+</div>
+<hr/>
+<h3 id="成本标准">成本标准<a class="headerlink" href="#成本标准" title="Permanent link">¶</a></h3>
+<p>在成本标准中，我们需要介绍的主要有三种标准，分别是：</p>
+<ul>
+<li>按照字面量字面量计(literal cost)：<span class="arithmatex">\(L\)</span></li>
+<li>按门输入计，不计非门(gate-input cost)：<span class="arithmatex">\(G\)</span></li>
+<li>按门输入计，计非门(gate-input cost with NOTs)：<span class="arithmatex">\(GN\)</span></li>
+</ul>
+<hr/>
+<h4 id="按照字面量字面量计">按照字面量字面量计<a class="headerlink" href="#按照字面量字面量计" title="Permanent link">¶</a></h4>
+<p>很直白，就是按照表达式中有多少字面量来计算，例如：</p>
+<ul>
+<li><span class="arithmatex">\(F = BD + A\bar{B}C + A\bar{C}\bar{D}\)</span> 中 <span class="arithmatex">\(L = 8\)</span>；</li>
+<li><span class="arithmatex">\(F = ABC+\bar{A}\bar{B}\bar{C}\)</span> 中 <span class="arithmatex">\(L = 6\)</span>；</li>
+<li><span class="arithmatex">\(F = (A+B+C)(\bar{A}+\bar{B} + \bar{C})\)</span> 中 <span class="arithmatex">\(L = 6\)</span>；</li>
+</ul>
+<p>可以想象，虽然这种计算方法非常的简单，但是感觉不太靠谱。比如，后面两个例子，虽然他们的 literal cost 是一样的，但是显然开销不太一样（因为一个是 3+3 一个是 2+2+2）。所以我们需要一个更合适的计算方法。</p>
+<hr/>
+<h4 id="按门输入计">按门输入计<a class="headerlink" href="#按门输入计" title="Permanent link">¶</a></h4>
+<p>按照门输入计就是按照逻辑门输入引脚的总个数来计算，这里的输入并不仅仅是直接来自于字面量输入的那些引脚，也包括字面量做运算后得到的结果作为输入传入下一级逻辑门的引脚。</p>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>虽然非门也是门，但是我们通常不把非门直接计入 gate-input cost，所以接下来提到的“输入引脚”默认是不包含非门的输入引脚的。</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../14.png"><img alt="" src="../14.png"/></a></p>
+<p>例如这张对应表达式 <span class="arithmatex">\(F = A+BC+\bar{B}\bar{C}\)</span> 的图中：</p>
+<ul>
+<li>绿色原点表示一级输入引脚；</li>
+<li>蓝色方点表示二级输入引脚；</li>
+<li>黑色三角表示非门店输入引脚；</li>
+</ul>
+<p>也就是说，这里一共有 5 + 2 = 7 个输入引脚，以及 2 个非门输入引脚。</p>
+<p>从表达式来看，它可以看作是每一层运算的参数数量求和，不过我们忽略非门。</p>
+<p>例如，式子 <span class="arithmatex">\(F=AB+\bar{B}C+C\bar{D}\)</span> 中，最顶层的运算是一个三输入或运算，所以有 3 个输入；接下来有三个二输入与运算，所以各计 2 个输入，一共 2 * 3 = 6 个输入，一共是 9 个输入。</p>
+<p>当然，实际上从底层往上数更方便：
+- A 和 B 各自算一个，AB 整体算一个，一共 3 个；
+- 一共有三组类似 AB 的结构，所以一共是 3 * 3 = 9 个；
+- 即 <span class="arithmatex">\(G=9\)</span>；</p>
+<p>总之，就是类似于在做算式化简，每做一次化简都需要计入一次操作数的数量。</p>
+<p>而对于 gate-input cost with NOTs，只要再额外计入非门的输入即可。例如上面那个式子：</p>
+<ul>
+<li>发现有两个被非了的字面量，所以要额外计 2 个，一共是 11 个；</li>
+<li>即 <span class="arithmatex">\(GN=11\)</span>；</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>如果出现了比如 <span class="arithmatex">\(F=\bar{A}B+\bar{A}C\)</span> 的情况，非门只需要计 1 个，因为我们实际上是把非了以后的东西当作了一个字面量再用的，在实际电路中，我们只需要非一次，之后只需要把这个输出值拿走去用就行。</p>
+</div>
+<p>接下来放几道例题。</p>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">题面</label><label for="__tabbed_2_2">答案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>计算 <span class="arithmatex">\(F=ABC+\bar{A}\bar{B}\bar{C}\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><span class="arithmatex">\(L = 6\)</span>；</li>
+<li><span class="arithmatex">\(G = 8\)</span>；</li>
+<li><span class="arithmatex">\(GN = 11\)</span>；</li>
+</ul>
+</div>
+</div>
+</input></input></div>
+</div>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">题面</label><label for="__tabbed_3_2">答案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>计算 <span class="arithmatex">\(F=(A+\bar{C})(\bar{B}+C)(\bar{A}+B)\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><span class="arithmatex">\(L = 6\)</span>；</li>
+<li><span class="arithmatex">\(G = 9\)</span>；</li>
+<li><span class="arithmatex">\(GN = 12\)</span>；</li>
+</ul>
+</div>
+</div>
+</input></input></div>
+</div>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">题面</label><label for="__tabbed_4_2">答案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>计算 <span class="arithmatex">\(F=(A+\bar{B})(A+D)(B+C+\bar{D})(\bar{B}+\bar{C}+D)\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><span class="arithmatex">\(L = 10\)</span>；</li>
+<li><span class="arithmatex">\(G = 14\)</span>；</li>
+<li><span class="arithmatex">\(GN = 17\)</span>；</li>
+</ul>
+<p>这里需要注意，出现了重复的被非了的字面量，不要重复计算！</p>
+</div>
+</div>
+</input></input></div>
+</div>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">题面</label><label for="__tabbed_5_2">答案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>计算 <span class="arithmatex">\(F=BD+A\bar{B}C+A\bar{B}\bar{D}+AB\bar{C}\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><span class="arithmatex">\(L = 11\)</span>；</li>
+<li><span class="arithmatex">\(G = 15\)</span>；</li>
+<li><span class="arithmatex">\(GN = 18\)</span>；</li>
+</ul>
+<p>这里同样需要注意，出现了重复的被非了的字面量，不要重复计算！</p>
+</div>
+</div>
+</input></input></div>
+</div>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">题面</label><label for="__tabbed_6_2">答案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>计算 <span class="arithmatex">\(F=\bar{A}\bar{C}(B+\bar{D})+AC(B+\bar{D})\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><span class="arithmatex">\(L = 8\)</span>；</li>
+<li><span class="arithmatex">\(G = 12\)</span>；</li>
+<li><span class="arithmatex">\(GN = 15\)</span>；</li>
+</ul>
+<p>这里同样需要注意，出现了比较复杂的逻辑运算，以 <span class="arithmatex">\(\bar{A}\bar{C}(B+\bar{D})\)</span> 为例，自顶向下是：⓵三输入与门，⓶二输入或门；所以应该是 <span class="arithmatex">\(1^{\bar{A}} + 1^{\bar{C}} + 1^{B} + 1^{\bar{D}} + 1^{B+\bar{D}} + 1^{\bar{A}\bar{C}(B+\bar{D})}\)</span>，即 6。</p>
+</div>
+</div>
+</input></input></div>
+</div>
+<h3 id="卡诺图">卡诺图<a class="headerlink" href="#卡诺图" title="Permanent link">¶</a></h3>
+<hr/>
+<h4 id="卡诺图的思想">卡诺图的思想<a class="headerlink" href="#卡诺图的思想" title="Permanent link">¶</a></h4>
+<p>优化逻辑表达式最直白的思想就是减少门电路，也就是去减少 gate-input cost。那么要如何做呢？</p>
+<p>我们考虑到逻辑运算律中的这个推广：<span class="arithmatex">\(XY+X\bar{Y}=X(Y+\bar{Y})=X\)</span>，也就是说，如果两个最小项只差一个字面量的非，那么他们是可以合并的；当然，对称的，根据<span class="arithmatex">\((X+\bar{Y})(X+Y)=X+Y\bar{Y}=X\)</span>，我们也可以得到这个结论对最大项也成立。</p>
+<p>是不是觉得“只差一个”很耳熟？是的！我们想到了格雷码！假设我们将 n 个字面量排列成一个 n bits 的向量，那么只需要按照格雷码排序，一旦发现有相邻的最小项，我们就可以合并他们。</p>
+<p>但这还不够充分，例如在一个有三个字面量的逻辑表达式中，“与一个表达式相邻”的表达式其实有三个，但是用线性的表示方法又没法很好的表示这一点，所以我们想到将它写成一张二维的表，即将字面量拆成两组 bit 向量，各自按照格雷码排列，形成一张二维表，这就是 <strong>卡诺图(Karnaugh map)</strong>，也叫 <strong>K-map</strong>。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../15.png"><img alt="" src="../15.png"/></a></p>
+<p>可以发现，任意两个相邻的格子都只差一个字面量的非，而且是充要的，即所有“相邻”都可以在这张图表现出来。</p>
+<div class="admonition tip">
+<p class="admonition-title">说明</p>
+<p>由于格雷码的性质是一个在“满”状态下 <strong>环状成立</strong> 的性质，所以卡诺图也需要用“环状”的思路去看，这里可以联想一下行列式的形象化计算方法，将这张表当作一个无限扩展的表格。</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">思考题</p>
+<p>在这里，也可以尝试着感受一下两个字面量的情况下，即实际上“相邻也只有2个”的情况下，也可以使用“4个相邻”的卡诺图。事实上，三个字面量也只有“3个相邻”，但是为什么可以用明明有“4个相邻”的卡诺图来实现呢？</p>
+</div>
+<hr/>
+<h4 id="卡诺图的局限性">卡诺图的局限性<a class="headerlink" href="#卡诺图的局限性" title="Permanent link">¶</a></h4>
+<p>然而，上面的说法其实很牵强。因为一张二维表中，能与一个元素相邻的元素最多只有四个，也就是说我们撑死也只能用卡诺图表示 4 个字面量的情况（当然更多的变量也有处理的方法，但是多少有点麻烦了）。因此，实际上卡诺图只能用于化简非常简单的逻辑表达式。</p>
+<div class="admonition quote">
+<p class="admonition-title">cm 老师如是说</p>
+<p>更多情况下，卡诺图实际上只适合我们做题。但是其思路是非常有意思的。</p>
+</div>
+<hr/>
+<h4 id="卡诺图的结构">卡诺图的结构<a class="headerlink" href="#卡诺图的结构" title="Permanent link">¶</a></h4>
+<p>这里我们以 3 元的逻辑表达式为例，2 元和 4 元的思路是一样的。</p>
+<p>同样，举一个 🌰 ：<span class="arithmatex">\(F(X,Y,Z) = \sum m(2,3,4,5)\)</span></p>
+<p>首先我们按照比特向量的形式把最小项写出来：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>X</th>
+<th>Y</th>
+<th>Z</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>接下来，我们来绘制卡诺图，我们将 bit 向量 <code>[x, y, z]</code> 拆成 <code>[x]</code> 和 <code>[y, z]</code> 做如下表格：</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"><strong><code>yz</code> = <code>00</code></strong></th>
+<th align="center"><strong><code>yz</code> = <code>01</code></strong></th>
+<th align="center"><strong><code>yz</code> = <code>11</code></strong></th>
+<th align="center"><strong><code>yz</code> = <code>10</code></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong><code>x</code> = <code>0</code></strong></td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"><strong><code>x</code> = <code>1</code></strong></td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<p>另外一种标注表格的方式是这样，它可能更清晰：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../16.png"><img alt="" src="../16.png" width="300px"/></a></p>
+<p>但是他们的本质都是格雷码。</p>
+<p>4 元字面量的卡诺图则长这个样子：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../17.png"><img alt="" src="../17.png" width="500.px"/></a></p>
+<hr/>
+<h4 id="使用卡诺图优化">使用卡诺图优化<a class="headerlink" href="#使用卡诺图优化" title="Permanent link">¶</a></h4>
+<p>已经讲了思想和卡诺图的结构，那么到底要如何利用卡诺图进行优化呢？</p>
+<p>让我们回顾优化的方法，即合并相邻两项，也就是找到卡诺图中相邻的部分。但是这不够，我们还要思考是不是能合并已经相邻的部分，比如：</p>
+<p>我们通过卡诺图，首先合并了 <span class="arithmatex">\(WXYZ\)</span> 和 <span class="arithmatex">\(WXY\bar{Z}\)</span>，<span class="arithmatex">\(WX\bar{Y}Z\)</span> 和 <span class="arithmatex">\(WX\bar{Y}\bar{Z}\)</span>，分别得到了 <span class="arithmatex">\(WXY\)</span> 和 <span class="arithmatex">\(WX\bar{Y}\)</span>，显然这两个东西也是可以合并的；而在卡诺图上，这表现为两个相邻的 <code>1*2</code> 的矩形。</p>
+<p>总而言之，这种迭代合并的行为最终可以划归为这样一个行为：</p>
+<p>我们在卡诺图中寻找若干 <strong>极大</strong> 的 <strong>2 幂矩形</strong>，即元素个数为 2 的幂次（自然边长也都为 2 的幂次）的矩形，而每一个矩形所覆盖的元素都应该是 <strong>最小项</strong>/最大项（一般都是做最小项）。需要注意，“循环”的性质仍然满足，即第一列和最后一列，第一行和最后一行也可以认为是相邻的。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../20.png"><img alt="" src="../20.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../21.png"><img alt="" src="../21.png"/></a></p>
+<p>例如：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../18.png"><img alt="" src="../18.png" width="300.px"/></a></p>
+<p>例如：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../19.png"><img alt="" src="../19.png" width="300.px"/></a></p>
+<p>再例如：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../22.png"><img alt="" src="../22.png" width="500.px"/></a></p>
+<p>都是合理的卡诺图划分。</p>
+<p>在得到这些划分后，我们就可以很方便地将这些项拎出来，写出它们的表达式。</p>
+<p>而至于如何拎出来——不难发现，如果一个方框中，某一个字面量的值既可以是 <code>0</code>，又可以是 <code>1</code> 时（这里指的是输入的值，并非输出结果），在这个优化项的结果中就可以不用写出这个字面量；反之，如果这个字面量 <span class="arithmatex">\(X\)</span> 的值都是 <code>0</code>，则结果中会包含 <span class="arithmatex">\(\bar{X}\)</span>，如果都是 <code>1</code>，则结果中会包含 <span class="arithmatex">\(X\)</span>。</p>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"><input id="__tabbed_7_2" name="__tabbed_7" type="radio"><div class="tabbed-labels"><label for="__tabbed_7_1">题面</label><label for="__tabbed_7_2">答案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>利用卡诺图优化 <span class="arithmatex">\(F(X,Y,Z) = \sum m(0,1,2,4,6,7)\)</span> 的结果。</p>
+</div>
+<div class="tabbed-block">
+<p>画出这个表达式对应的卡诺图：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../23.png"><img alt="" src="../23.png" width="300.png"/></a></p>
+<p>然后划出其中的极大最小项优化项：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../24.png"><img align="left" alt="" src="../24.png" width="300.png"/></a></p>
+<p>写出来是：</p>
+<ul>
+<li>绿：<span class="arithmatex">\(x=0,\;y=0,\;z=0/1\)</span><ul>
+<li>所以是：<span class="arithmatex">\(\bar{X}\bar{Y}\)</span>；</li>
+</ul>
+</li>
+<li>蓝：<span class="arithmatex">\(x=0/1,\;y=0/1,\;z=0\)</span><ul>
+<li>所以是：<span class="arithmatex">\(\bar{Z}\)</span>；</li>
+</ul>
+</li>
+<li>红：<span class="arithmatex">\(x=1,\;y=1,\;z=0/1\)</span><ul>
+<li>所以是：<span class="arithmatex">\(XY\)</span></li>
+</ul>
+</li>
+</ul>
+<p>综上所述，优化结果是 <span class="arithmatex">\(F = \bar{X}\bar{Y} + \bar{Z} + XY\)</span></p>
+</div>
+</div>
+</input></input></div>
+</div>
+<hr/>
+<h4 id="不定项">不定项<a class="headerlink" href="#不定项" title="Permanent link">¶</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">推荐阅读</p>
+<p><a href="https://www.geeksforgeeks.org/dont-care-x-conditions-in-k-maps/">https://www.geeksforgeeks.org/dont-care-x-conditions-in-k-maps/</a></p>
+</div>
+<p><strong>不定项(don't cares)</strong> 指的是需要化简的逻辑函数中，没有给出定义的几项，它们可能是：</p>
+<ul>
+<li>输入组合不会出现；</li>
+<li>输入组合的输出不被使用；</li>
+</ul>
+<p>对于这种项，在卡诺图中用 X 来表示，在最小项之和中用 <span class="arithmatex">\(\sum d(...)\)</span> 表示。我们可以随意定义它们的输出，此时就可以利用这些项来方便我们的优化——当我们画出来的极大矩阵越大，成本就越低。</p>
+<p>例如，我们定义一个函数，当输入的 BCD 码表示的数字大于等于 5 时返回 <code>1</code>，则它可以通过这样的形式来优化：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../25.png"><img alt="" src="../25.png"/></a></p>
+<p>根据结果，写出优化后的表达式为：<span class="arithmatex">\(F(W,X,Y,Z) = W + XY + XZ\)</span>。</p>
+<hr/>
+<div class="admonition tip">
+<p class="admonition-title">由卡诺图得到乘积结果</p>
+<p>尽管我们不停强调 与 和 或 是对称的，但是仍然有很多操作是鉴于我们对 <code>1</code> 的偏爱才会顺手的（你会发现，把乘除换成我们完全不熟悉的符号，你甚至可能无从下手）。</p>
+<p>所以，在卡诺图的问题中，如果要利用卡诺图得到 <span class="arithmatex">\(F\)</span> 优化后的乘积形式，我们还是建议从将问题转化为求 <span class="arithmatex">\(\bar{F}\)</span> 优化后的和形式，然后再对其取反过，利用德·摩根定律来得到结果。</p>
+<details class="note">
+<summary>eg</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../26.png"><img alt="" src="../26.png"/></a></p>
+</details>
+</div>
+<hr/>
+<h4 id="蕴含项主蕴含项与基本主蕴含项">蕴含项、主蕴含项与基本主蕴含项<a class="headerlink" href="#蕴含项主蕴含项与基本主蕴含项" title="Permanent link">¶</a></h4>
+<p><strong>蕴含项(implicant)</strong> 分为 <strong>主蕴含项(prime implicant)</strong> 和 <strong>基本主蕴含项(essential prime implicant)</strong>。</p>
+<div class="admonition info">
+<p class="admonition-title">咕咕咕</p>
+<p>咕咕咕一下</p>
+</div>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 15:31:12</span>
+<br/>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月8日 15:38:17</span>
+</small>
+</div>
+<h2 id="__comments">评论</h2>
+<!-- Insert generated snippet here -->
+<script async="" crossorigin="anonymous" data-category="Announcements" data-category-id="DIC_kwDOIVXFKs4CSVPj" data-emit-metadata="0" data-input-position="top" data-lang="zh-CN" data-mapping="pathname" data-reactions-enabled="1" data-repo="IsshikiHugh/notebook" data-repo-id="R_kgDOIVXFKg" data-strict="0" data-theme="dark" src="https://giscus.app/client.js">
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    /* Set palette on initial load */
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "dark" : "light"
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+          /* Instruct Giscus to change theme */
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            回到页面顶部
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Chap 1 Digital Systems and Information" class="md-footer__link md-footer__link--prev" href="../Chap01/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                上一页
+              </span>
+              Chap 1 Digital Systems and Information
+            </div>
+</div>
+</a>
+<a aria-label="下一页: [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision" class="md-footer__link md-footer__link--next" href="../../D2QD_Intro2CV/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                下一页
+              </span>
+              [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2022 Isshiki修
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/IsshikiHugh" rel="noopener" target="_blank" title="Github">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../../../_js/extra.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+</html>
