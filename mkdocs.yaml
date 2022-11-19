@@ -12,6 +12,20 @@ theme:
   icon: 
     # logo: material/pac-man
     logo: octicons/paper-airplane-16
+    repo: fontawesome/brands/github-alt
+    admonition:
+      note: fontawesome/solid/note-sticky
+      # abstract: 
+      info: fontawesome/solid/circle-info
+      # tip: 
+      success: fontawesome/solid/check
+      question: fontawesome/solid/circle-question
+      warning: fontawesome/solid/triangle-exclamation
+      failure: fontawesome/solid/bomb
+      danger: fontawesome/solid/skull
+      bug: fontawesome/solid/robot
+      example: fontawesome/solid/flask
+      quote: fontawesome/solid/quote-left
   font:
     text: Share Tech
     code: JetBrains Mono
