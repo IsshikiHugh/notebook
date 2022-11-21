@@ -11,7 +11,7 @@ git add -A
 
 if [ $# -gt 0 ]
 then
-    git commit -m "[Addition] $@"
+    git commit -m "[+] $@"
 else
     git commit -m "[Default] Content Synchronization"
 fi
