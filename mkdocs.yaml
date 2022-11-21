@@ -16,7 +16,7 @@ theme:
     admonition:
       note: fontawesome/solid/note-sticky
       # abstract: 
-      info: fontawesome/solid/circle-info
+      # info: 
       # tip: 
       success: fontawesome/solid/check
       question: fontawesome/solid/circle-question

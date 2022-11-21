@@ -12,3 +12,8 @@
     - :material-link-variant: [咸鱼暄 的 代码空间](https://xuan-insr.github.io/)
     - :material-link-variant: [鹤翔万里 的 笔记本](https://note.tonycrane.cc/)
     - :material-link-variant: [sakuratsuyu 的 笔记本](https://sakuratsuyu.github.io/Note/)
+
+??? tip "🔗 有意思的链接" 
+    在这里收集一些有意思的链接！
+
+    - https://quickref.me/
