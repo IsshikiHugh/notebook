@@ -1,9 +1,7 @@
 # Lecture 3 | Image Processing
 
-??? summary "today"
-    - Image processing basics
-    - Image sampling
-    - Image magnification
+!!! warning "注意"
+    本文尚未完全整理好！
 
 ## 基本操作
 

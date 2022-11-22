@@ -1,5 +1,8 @@
 # Lecture 4 | Model Fitting and Optimization
 
+!!! warning "注意"
+    本文尚未整理好！
+
 优化 Optimization
 
 - 目标函数
