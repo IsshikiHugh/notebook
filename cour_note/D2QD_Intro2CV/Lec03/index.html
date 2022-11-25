@@ -432,8 +432,51 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#图像采样-sampling">
-    图像采样 sampling
+<a class="md-nav__link" href="#缩小图片向下采样">
+    缩小图片：向下采样
+  </a>
+<nav aria-label="缩小图片：向下采样" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#信号走样">
+    信号走样
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fourier-变换">
+    Fourier 变换
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#采样">
+    采样
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#减少走样">
+    减少走样
+  </a>
+<nav aria-label="减少走样" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#奈奎斯采样定理">
+    奈奎斯采样定理
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#放大图片向上采样--插值">
+    放大图片：向上采样 / 插值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#改变图像长宽比">
+    改变图像长宽比
   </a>
 </li>
 </ul>
@@ -618,8 +661,51 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#图像采样-sampling">
-    图像采样 sampling
+<a class="md-nav__link" href="#缩小图片向下采样">
+    缩小图片：向下采样
+  </a>
+<nav aria-label="缩小图片：向下采样" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#信号走样">
+    信号走样
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fourier-变换">
+    Fourier 变换
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#采样">
+    采样
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#减少走样">
+    减少走样
+  </a>
+<nav aria-label="减少走样" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#奈奎斯采样定理">
+    奈奎斯采样定理
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#放大图片向上采样--插值">
+    放大图片：向上采样 / 插值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#改变图像长宽比">
+    改变图像长宽比
   </a>
 </li>
 </ul>
@@ -983,7 +1069,7 @@ f(i,j)=\frac{1}{2\pi \sigma^2}e^{-\frac{i^2+j^2}{2\sigma^2}}
 <li>即有 <span class="arithmatex">\(2I = I_s + I_h\)</span>，可以发现，又一个类似于互补的关系；</li>
 <li>而这里的高频可以理解为图像中变化比较明显的地方；</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../31.png"><img alt="" src="../31.png" width="400px"/></a><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../32.png"><img alt="" src="../32.png" width="400px"/></a><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../33.png"><img alt="" src="../33.png" width="400px"/></a><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../34.png"><img alt="" src="../34.png" width="400px"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../31.png"><img alt="" src="../31.png" width="240px"/></a><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../32.png"><img alt="" src="../32.png" width="240px"/></a><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../33.png"><img alt="" src="../33.png" width="240px"/></a><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../34.png"><img alt="" src="../34.png" width="240px"/></a></p>
 </div>
 <hr/>
 <h3 id="再看滤波器">再看滤波器<a class="headerlink" href="#再看滤波器" title="Permanent link">¶</a></h3>
@@ -1059,34 +1145,166 @@ f(i,j)=\frac{1}{2\pi \sigma^2}e^{-\frac{i^2+j^2}{2\sigma^2}}
 </ul>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../36.png"><img alt="" src="../36.png"/></a></p>
 </details>
-<h2 id="图像采样-sampling">图像采样 sampling<a class="headerlink" href="#图像采样-sampling" title="Permanent link">¶</a></h2>
+<hr/>
+<div class="admonition summary">
+<p class="admonition-title">引入</p>
+<p><strong>图像采样(sampling)</strong> 分为 <strong>向上采样(up-sampling)</strong> 和 <strong>向下采样(down-sampling)</strong> 两种。</p>
+<p>更通俗的来说，就是在保持图像特征的情况下对图片进行缩放。显然，在缩放图像时，会出现像素数量的变化，那要如何添加像素、如何减少像素，就是图像采样考虑的事情。</p>
+<p>此外，将两者结合，还会有例如改变图片长宽比，进行拉伸这种问题。</p>
+</div>
+<h2 id="缩小图片向下采样">缩小图片：向下采样<a class="headerlink" href="#缩小图片向下采样" title="Permanent link">¶</a></h2>
+<p>向下采样也就是让图片变小，这里主要需要考虑的问题是如何缩小图片，如何避免出现信号走样的问题。</p>
+<h3 id="信号走样">信号走样<a class="headerlink" href="#信号走样" title="Permanent link">¶</a></h3>
+<p>说到让图像变小，最简单的一个想法就是——比如，让图片的线度缩小一半，可以每四个格子就采一个格子的样本。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../37.png"><img alt="" src="../37.png"/></a></p>
+<p>而这种粗暴的做法则有可能导致：</p>
 <ul>
-<li>
-<p>打印的分辨率</p>
-</li>
-<li>
-<p>向下采样（缩小）</p>
-</li>
-<li>隔一个像素采样 ----&gt; 摩尔纹</li>
-<li>信号走样/失真 Aliasing<ul>
-<li>产生原因 ----&gt; 信号变化太快，采样太慢</li>
-<li>描述信号变化快慢：频率</li>
-<li>如果没有周期特性，我们就需要使用 <strong>傅立叶变换</strong> 来描述任意信号变化</li>
-<li>不同频率有不同的权重，可以得到一个频谱</li>
-<li>傅立叶变换的式子可以用卷积来尝试理解</li>
-<li>Lec4 开头也有一部分二维傅立叶变换的内容</li>
+<li><strong>摩尔纹(Moiré Patterns)</strong>。</li>
+<li><strong>马车轮错觉(Wagon Wheel Illusion)</strong></li>
+<li>...</li>
 </ul>
-</li>
+<p>而这些由采样导致的问题，我们称之为 <strong>信号走样(aliasing)</strong>。</p>
+<p>从本质上来说，信号走样的发生，是因为 <strong>采样频率跟不上图像频率</strong> 导致的。</p>
+<blockquote>
+<p>Signals are changing too fast but sampled too slow.</p>
+</blockquote>
+<div class="admonition question">
+<p class="admonition-title">如何理解这里的“频率”</p>
+<p>在之后的部分中，我们会给出这里的“频率”的来源。</p>
+<p>但是一个更直观，更模糊的看法是：如果一个图像的某个部分变化越剧烈，一般来说其频率就会较大。比如图像中有一个非常分明的边界，那么它的频率一般不会低。</p>
+</div>
+<p>而这里的“采样频率”衡量了信号变化的频率。</p>
+<p>比如，如果对一个正弦波进行采样，即从一个连续的正弦模拟信号中选取若干点，可以发现，不同采样频率和不同的图像频率的选取方案会产生不同的结果：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../38.png"><img alt="" src="../38.png"/></a></p>
+<p>可以发现，对于上面的几个函数，采样频率和原函数的频率匹配较好，所以采样得到的点基本能反映出原来图形的特征；但是对于比较下面的几个曲线，采样就不是很理想了。</p>
+<p>比较直观的一个想法是，过慢点采样频率会导致信息丢失，甚至是表现出其它频率的信号的特征，这些不正常的行为就导致了信号走样。</p>
+<div class="admonition question">
+<p class="admonition-title">这个“频率”和图像有什么关系？</p>
+<p>首先我们知道，要向有“频率”这个属性，表达式或者说函数需要是周期性的。然而“周期性”对于任意函数来说可能是一个较为苛刻的条件。</p>
+<p>此时就轮到傅立叶变换登场了。</p>
+</div>
+<hr/>
+<h3 id="fourier-变换">Fourier 变换<a class="headerlink" href="#fourier-变换" title="Permanent link">¶</a></h3>
+<p>最简单直白地理解 <strong>傅立叶变换(Fourier Transform)</strong>，实际上就是将任意可以进行傅立叶变换的函数，变化为一个正弦、余弦函数级数的形式。</p>
+<p>例如最经典的，使用不同频率的正弦波来拟合一个方波。</p>
+<div class="admonition note">
+<p><del>这里引流一个 xg 的视频：<a href="https://www.bilibili.com/video/BV1Y7411W73U/">https://www.bilibili.com/video/BV1Y7411W73U/</a></del></p>
+</div>
+<p>此时你可能会问，正余弦函数的级数也不保证有周期啊，但是请注意，我们的目的并不是找到一个周期，而是能够使用频率来 <strong>表达</strong> 这个函数的某些特征。</p>
+<p>我们知道，正余弦函数是具有周期性的，那么我们就可以用这个级数中的正余弦函数的频率来表达这个函数。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../39.png"><img alt="" src="../39.png"/></a></p>
+<blockquote>
+<p>下面这张图片就是编码后的 <strong>频谱</strong>。</p>
+</blockquote>
+<p>而在欧拉公式 <span class="arithmatex">\(e^{i\theta} = \cos\theta + i\sin\theta\)</span> 的统一下，Fourier 变换可以表示为：</p>
+<div class="arithmatex">\[
+F(u) = \int^{\infty}_{-\infty} f(x) e^{-i2\pi ux} \rm{d} x \\
+f(x) = \int^{\infty}_{-\infty} F(u) e^{i2\pi ux} \rm{d} u \\
+\text{ where 'x' refers to space, 'u' refers to frequency}
+\]</div>
+<p>通过这种形式，我们实现了 spatial domain 和 frequency domain 之间的统一。</p>
+<pre class="mermaid"><code>graph LR;
+A(["spatial domain"]) ==&gt;|"Fourier transform"| B(["frequency domain"])
+B ===&gt;|"Inverse transform"| A</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">尝试使用卷积的角度来看傅立叶变换</p>
+<p>观察式子 <span class="arithmatex">\(F(u) = \int^{\infty}_{-\infty} f(x) e^{-i2\pi ux} \rm{d} x\)</span>，是不是能将它看作一个<a href="#卷积">卷积</a>式呢？</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: 具体解释暂时咕咕咕。</li>
 </ul>
-<p>Convolution Theorem</p>
-<p>传统图像压缩是将他们的二维频谱中的高频丢掉</p>
-<p>数学上采样，就是使用脉冲函数(Dirac comb function)去乘被采样的函数</p>
-<p>奈奎斯采样定理 Nyquies-Shannon theorem</p>
-<p>如何减少走样？</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">一个有意思的性质</p>
+<p>而使用 Fourier 的另外一个好处是，它为我们带来了这样一个数学性质：</p>
+<table>
+<thead>
+<tr>
+<th align="center">Spatial Domain</th>
+<th align="center"></th>
+<th align="center">Frequency Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="arithmatex">\(g(x) = f(x) * h(x)\)</span> <br/> Convolution</td>
+<td align="center"><span class="arithmatex">\(\leftrightarrow\)</span></td>
+<td align="center"><span class="arithmatex">\(G(u) = F(u)H(u)\)</span> <br/> Multiplication</td>
+</tr>
+<tr>
+<td align="center">g(x)=f(x)h(x) <br/> Multiplication</td>
+<td align="center"><span class="arithmatex">\(\leftrightarrow\)</span></td>
+<td align="center"><span class="arithmatex">\(G(u) = F(u) * H(u)\)</span> <br/> Convolution</td>
+</tr>
+</tbody>
+</table>
+<p>具体来说，例如：</p>
+<p>我们对一个图像进行模糊处理，即将图像与 Blur Kernel 进行卷积，就等效于将这两个矩阵在频率域中相乘。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../41.png"><img alt="" src="../41.png"/></a></p>
+<p>而传统图像压缩，对应到频率域上，就是将他们的二维频谱中的高频丢掉。</p>
+</div>
+<p>那么得到 Fourier 变换这个工具以后，我们就可以将较难处理的像素信息转化为频率信息。</p>
+<p>如下图，将一张图片信息编码为了频谱的形式。由于这里的频谱是二维的，所以使用一张灰度图表现出来。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../40.png"><img alt="" src="../40.png"/></a></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: 需要更详细的解释</li>
+</ul>
+<hr/>
+<p>好，有了这些铺垫，我们在回头来讲采样，这次我们将尝试着同时从 Spatial domain 和 Frequency domain 的角度来看待问题。</p>
+<h3 id="采样">采样<a class="headerlink" href="#采样" title="Permanent link">¶</a></h3>
+<p>首先，我们从字面意思上和目的上来理解一下采样。</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%8F%96%E6%A8%A3">wiki</a> 上对采样的定义是这样的：</p>
+<blockquote>
+<p>在信号处理领域，采样是将信号从连续时间域上的模拟信号转换到离散时间域上的离散信号的过程。</p>
+</blockquote>
+<p>显然，我们这里采样的定义和这里的定义并不一样。与之不同的是，我们需要从原始的，近似连续的图片中提取出具有特征的一些同样是离散的的信息，以此来实现我们将图片进行放大缩小变换的目的。</p>
+<p>关于采样更数学的定义，就是使用（梳形）<strong>脉冲函数(Dirac comb function)</strong> 去乘被采样的函数。</p>
+<ul>
+<li>脉冲函数经过 Fourier 变换后仍然是梳形的。</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../42.png"><img alt="" src="../42.png"/></a></p>
+<ul>
+<li>通过脉冲函数，我们将特定频率的内容给过滤下来，将一个“连续”的内容采样为了一个“离散”的内容。</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../43.png"><img alt="" src="../43.png"/></a></p>
+<p>取决于脉冲函数的频率，采样又被分为 <strong>密集采样(Dense sampling)</strong> 和 <strong>稀疏采样(Sparse sampling)</strong>，也就分别对应着之前提到的，采样频率较高和采样频率较低的情况。</p>
+<p>而稀疏采样导致的信号走样问题，就是采样结果再频率域中出现了交集。</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: 理解并解释这一点。</li>
+</ul>
+<hr/>
+<h3 id="减少走样">减少走样<a class="headerlink" href="#减少走样" title="Permanent link">¶</a></h3>
+<p>既然搞清楚了走样是如何产生的，那接下来我们就需要考虑如何减少信号走样。</p>
+<p>总体来说，有这么两种选择：</p>
 <ol>
-<li>至少 奈奎斯频率： <span class="arithmatex">\(2f_0\)</span></li>
-<li>先滤波，把高频滤掉再采样</li>
+<li>提高采样频率；</li>
+<li>先过滤高频再采样；</li>
 </ol>
+<hr/>
+<p>首先我们回顾知道，走样是由于采样频率低于图像高频导致的，那么我们只需要提高采样频率就能解决这个问题了。</p>
+<p>而具体需要提高到多少呢？就需要 <strong>奈奎斯采样定理(Nyquies-Shannon Theorem)</strong>。</p>
+<div class="admonition summary">
+<p class="admonition-title">奈奎斯采样定理</p>
+<h4 id="奈奎斯采样定理">奈奎斯采样定理<a class="headerlink" href="#奈奎斯采样定理" title="Permanent link">¶</a></h4>
+<p>首先规定 <strong>频带限制信号(band-limited signal)</strong> <span class="arithmatex">\(f_0\)</span> 是图像频率的一个上界；则奈奎斯采样定理指出，如果采样频率大于 <span class="arithmatex">\(2f_0\)</span>，则该采样得到的结果可以完美表征原函数的特征，即 "perfectly reconstruct"。</p>
+</div>
+<hr/>
+<p>当然，为了跨过一个更高的门槛我们也不一定需要增长自己的腿。在能够接受的情况下，我们也可以选择降低门槛——即，先将高频滤波，再进行采样。</p>
+<p>更形象地来说，在频率域中去掉交集的手段为：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../44.png"><img alt="" src="../44.png"/></a></p>
+<p>那么要如何实现呢？</p>
+<p>回顾我们一开始给出的，关于频率的一个模糊的理解，“如果一个图像的某个部分变化越剧烈，一般来说其频率就会较大”。换句话来说，要消去这个高频，我们就需要让抹去这些“变化剧烈”的成分。再接地气一点，就是我们需要将这些棱角抹开——所以一种手段就是进行模糊。</p>
+<details class="quote" open="open">
+<summary>一个直观的 🌰</summary>
+<p>我们以对一个三角形采样为例，说明如何滤高频：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../45.png"><img alt="" src="../45.png"/></a></p>
+<p>可以发现，直接采样会导致结果不太理想接下来我们在采样之前进行一次模糊操作：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../46.png"><img alt="" src="../46.png"/></a></p>
+<p>它将超过奈奎斯频率的部分滤波后，明显发现采样保留的原本图像的特征更多了。</p>
+</details>
+<p>而这里就产生了一个比较贴近日常生活的词，叫 <strong>抗锯齿(anti-aliasing)</strong>，或者说反走样。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../47.png"><img alt="" src="../47.png"/></a></p>
+<hr/>
+<h2 id="放大图片向上采样--插值">放大图片：向上采样 / 插值<a class="headerlink" href="#放大图片向上采样--插值" title="Permanent link">¶</a></h2>
 <p>Image magnification</p>
 <p>插值 Interpolation</p>
 <ul>
@@ -1101,13 +1319,15 @@ f(i,j)=\frac{1}{2\pi \sigma^2}e^{-\frac{i^2+j^2}{2\sigma^2}}
 <li>多项式拟合：Cubic interpolation</li>
 </ul>
 <p>超分辨率 Super-Resolution</p>
+<hr/>
+<h2 id="改变图像长宽比">改变图像长宽比<a class="headerlink" href="#改变图像长宽比" title="Permanent link">¶</a></h2>
 <p>改变图像长宽比 aspect ratio</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月21日 15:50:07</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月25日 22:25:51</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
