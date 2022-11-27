@@ -29,6 +29,14 @@ comments: false
     <img src="https://github-readme-stats.vercel.app/api?username=isshikihugh&show_icons=true&count_private=true&hide_border=true&theme=tokyonight" align="center" />
     </div> 
 
+    <center>
+        **🥺 不抱希望地放一个打赏通道在这里 🥺**
+    </center>
+    <figure markdown align="center">
+    ![](static/wechatPayQRCode.png){ width="200px" }
+    <figure>
+
+
 
 
 ??? info "<center>这是哪里</center>"
