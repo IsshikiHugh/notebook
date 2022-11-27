@@ -473,6 +473,35 @@
 <a class="md-nav__link" href="#放大图片向上采样--插值">
     放大图片：向上采样 / 插值
   </a>
+<nav aria-label="放大图片：向上采样 / 插值" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#最近插值">
+    最近插值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#线性插值">
+    线性插值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3次多项式插值">
+    (3次)多项式插值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#双线性插值">
+    双线性插值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#双3次多项式插值">
+    双(3次)多项式插值
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#改变图像长宽比">
@@ -702,6 +731,35 @@
 <a class="md-nav__link" href="#放大图片向上采样--插值">
     放大图片：向上采样 / 插值
   </a>
+<nav aria-label="放大图片：向上采样 / 插值" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#最近插值">
+    最近插值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#线性插值">
+    线性插值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3次多项式插值">
+    (3次)多项式插值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#双线性插值">
+    双线性插值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#双3次多项式插值">
+    双(3次)多项式插值
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#改变图像长宽比">
@@ -719,10 +777,6 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="lecture-3--image-processing">Lecture 3 | Image Processing<a class="headerlink" href="#lecture-3--image-processing" title="Permanent link">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>本文尚未完全整理好！</p>
-</div>
 <h2 id="基本操作">基本操作<a class="headerlink" href="#基本操作" title="Permanent link">¶</a></h2>
 <p>对图像的基本操作即在图像编辑软件中常见的那么几种，稍后我们将会简单介绍这几种操作是如何实现的。</p>
 <p>不过在此之前，我们需要先介绍一个工具——<strong>卷积(convolution)</strong>，之后一些操作都依赖于此。</p>
@@ -1305,29 +1359,111 @@ B ===&gt;|"Inverse transform"| A</code></pre>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../47.png"><img alt="" src="../47.png"/></a></p>
 <hr/>
 <h2 id="放大图片向上采样--插值">放大图片：向上采样 / 插值<a class="headerlink" href="#放大图片向上采样--插值" title="Permanent link">¶</a></h2>
-<p>Image magnification</p>
-<p>插值 Interpolation</p>
+<p><strong>图像放大(image magnification)</strong> 是图像缩小的逆变换(废话)，但是实际上并不能严格地说是逆变换，因为图像缩小与图像放大都是不可逆的——即，图片缩小必然带啦像素损失，图像放大必然带来一些通过计算得到的近似像素，而这些像素在变换得到的结果图像中与原本像素是无法区分的。</p>
+<p>那么，单就图像放大来说，我们就需要根据已有的像素，进行一些 <strong>插值(interpolation)</strong> 操作，以生成那些放大过程中新出现的像素。</p>
+<p>我们从对一个一元一维函数插值的角度来看这个问题，即把这个问题抽象为在采样当中插入点的问题。例如，我们现在有一个来自于正弦函数的采样，现在我们希望在 <span class="arithmatex">\(x\in(x_i,x_{i+1})\)</span> 中插入一个点 <span class="arithmatex">\((x_{ip}, y_{ip})\)</span> 使得它尽可能符合原本的正弦函数——又或者说，使得它看起来尽可能合理。</p>
+<p>而这个问题，我们再进一步地思考，实际上就是利用现有的点去 <strong>拟合一个新的函数</strong>，然后再用这个函数上取的点作为插入的点。</p>
+<div class="admonition summary">
+<p>那么比较常见的“拟合”方法有这么几种：</p>
+<ol>
+<li><strong>最近插值(nearest-neighbor interpolation)</strong>；</li>
+<li><strong>线性插值(linear interpolation)</strong>；</li>
+<li><strong>(3次)多项式插值(cubic interpolation)</strong>；</li>
+</ol>
+</div>
+<p>接下来我们一一介绍。</p>
+<hr/>
+<h3 id="最近插值">最近插值<a class="headerlink" href="#最近插值" title="Permanent link">¶</a></h3>
+<p>所谓的 <strong>最近插值(nearest-neighbor interpolation)</strong>，实际上与 KNN 的 K=1 的特殊情况。即，<span class="arithmatex">\(y(x) = y(x_{\mathop{argmin}(|x-x_i|)})\)</span>。说人话就是横坐标离哪个近，就和哪个一样。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../48.png"><img alt="" src="../48.png"/></a></p>
+<blockquote>
+<p>其中红色为原有的采样点，蓝色为我们的所有插值构成的曲线。</p>
+</blockquote>
+<p>观察这条蓝色曲线，不难发现，它具有这几个特征：</p>
 <ul>
-<li>最简单的：最近插值：Nearest-neighbor interpolation<ul>
-<li>然而不连续</li>
+<li>不连续（具体来说就是在每两个采样点的中间，会出现断点）；</li>
+<li>不光滑（断点处无法求导）；</li>
 </ul>
-</li>
-<li>线性插值： Linear interpolation<ul>
-<li>连续然而不光滑</li>
+<p>而且拍脑瓜想想也能感受到，这种插值的方法并不优雅——一张图片放大后一个像素的颜色取决于最近的采样像素颜色——在多数情况下，我们并不希望有这样的结果。</p>
+<hr/>
+<h3 id="线性插值">线性插值<a class="headerlink" href="#线性插值" title="Permanent link">¶</a></h3>
+<p><strong>线性插值(linear interpolation)</strong> 就是直接做连线，将相邻的点两两用直线连起来，绘制出一个折线图。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../49.png"><img alt="" src="../49.png"/></a></p>
+<blockquote>
+<p>其中红色为原有的采样点，蓝色为我们的所有插值构成的曲线。</p>
+</blockquote>
+<p>可以发现，相比于最近插值，线性插值对原函数的拟合性相对来说好了很多，而且变得连续了，观察蓝色曲线，发现有这么几个特征：</p>
+<ul>
+<li>连续；</li>
+<li>不光滑（在采样点函数会出现突变，无法求导）；</li>
 </ul>
-</li>
-<li>多项式拟合：Cubic interpolation</li>
-</ul>
-<p>超分辨率 Super-Resolution</p>
+<p>于是我们继续改进。</p>
+<hr/>
+<h3 id="3次多项式插值">(3次)多项式插值<a class="headerlink" href="#3次多项式插值" title="Permanent link">¶</a></h3>
+<p>顾名思义，<strong>(3次)多项式插值(cubic interpolation)</strong> 就是使用多项式函数段来拟合采样区间。</p>
+<p>这里需要做一个辨析：并不是用一个多项式来拟合所有的采样点，而是用多项式来拟合一对采样点，即一个 interval。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../50.png"><img alt="" src="../50.png"/></a></p>
+<blockquote>
+<p>其中红色为原有的采样点，蓝色为我们的所有插值构成的曲线。</p>
+</blockquote>
+<p>其中，每一段 interval 的蓝色线条都符合 <span class="arithmatex">\(f_i(x) = a_ix^3 + b_ix^2 + c_ix + d_i, x \in [x_i, x_{i+1}]\)</span>；并且我们保证在采样点处它们都是光滑的，即保证 <span class="arithmatex">\(\forall i, \frac{\mathrm{d}f_i(x_{i+1})}{\mathrm{d} x} = \frac{\mathrm{d}f_{i+1}(x_{i+1})}{\mathrm{d} x}\)</span></p>
+<p>于是，它自然就具有以下性质：</p>
+<ol>
+<li>连续；</li>
+<li>光滑；</li>
+</ol>
+<hr/>
+<div class="admonition note">
+<p class="admonition-title">更具体的</p>
+<p>刚才讲的都是从一维函数的角度来思考插值，现在我们来介绍一些在二维层面做插值的案例。</p>
+</div>
+<hr/>
+<h3 id="双线性插值">双线性插值<a class="headerlink" href="#双线性插值" title="Permanent link">¶</a></h3>
+<p><strong>双线性插值(bilinear interpolation)</strong> 就是在二维平面内做<a href="#线性插值">线性插值</a>，思路非常简单。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../51.png"><img alt="" src="../51.png"/></a></p>
+<p>如图，我们希望在红点处进行插值，那么我们就会选取与之相邻的四个点，<span class="arithmatex">\(u_{ij},\;\; i,j\in \{0,1\}\)</span>，再根据这个点在这个矩阵中的位置进行求值。</p>
+<details class="note">
+<summary>具体计算方法</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../52.png"><img alt="" src="../52.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../53.png"><img alt="" src="../53.png"/></a></p>
+</details>
+<hr/>
+<h3 id="双3次多项式插值">双(3次)多项式插值<a class="headerlink" href="#双3次多项式插值" title="Permanent link">¶</a></h3>
+<p><a href="https://en.wikipedia.org/wiki/Bicubic_interpolation">wiki 🔗</a></p>
+<p><strong>双(3次)多项式插值(bicubic interpolation)</strong> 即在二维平面做<a href="#3次多项式插值">(3次)多项式插值</a>，实现思路与双线性插值是类似的。</p>
+<div class="arithmatex">\[
+p(x,y) = \sum_{i=0}^{3}\sum_{j=0}^{3}a_{i,j}x^iy^j
+\]</div>
+<div class="admonition question">
+<p class="admonition-title">What's '4' means here?</p>
+</div>
+<hr/>
+<div class="admonition tip">
+<p class="admonition-title">超分辨率</p>
+<p>在得到这些插值策略后，我们就可以引出 <strong>超分辨率(Super-Resolution)</strong> 这个概念，即通过插值，我们将一张图片的分辨率提高，得到超过原有图片分辨率的一张图片。</p>
+<p>例如，通过下面这个对比，我们会发现，多项式插值的表现比线性插值的表现好不少。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../54.png"><img alt="" src="../54.png"/></a></p>
+</div>
 <hr/>
 <h2 id="改变图像长宽比">改变图像长宽比<a class="headerlink" href="#改变图像长宽比" title="Permanent link">¶</a></h2>
-<p>改变图像长宽比 aspect ratio</p>
+<p>改变 <strong>图像长宽比(aspect ratio)</strong> 这件事貌似可以直接通过单维度上进行缩放来实现（进行一维插值or采样），但是是否存在别的方法，不大幅改变整体图像形状的情况下，实现该彼岸长宽比呢？</p>
+<p>实际上，有一个做法就是偷偷删掉几行/几列像素，对人眼来说这貌似是难以察觉的。</p>
+<p>接下来，我们来做一些改进，我们这次不是暴力的删除一行或一列，而是有选择性的，在每一行里删除几个像素。为了保证图像不错位，我们希望这些选中的像素可以被看作图像上的“裂缝”，即一条弯弯曲曲的曲线。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../55.png"><img alt="" src="../55.png"/></a></p>
+<p>这种做法叫 <strong>seam carving</strong>，我们需要找到比较不重要的一连串连续像素。而这里的“不重要”，指的就是那些变化不那么剧烈的像素，即与周围十分相近的点。</p>
+<p>更数学的表述是：</p>
+<ul>
+<li>我们定义 <strong>edge energy</strong> <span class="arithmatex">\(E(I) = \big|\frac{\partial I}{\partial x}\big| + \big| \frac{\partial I}{\partial y} \big|\)</span>；</li>
+<li>找到从顶到底的一条联通（就是下一个点肯定与上一个点相邻或者共同顶点）路径，使得 edge energy 最小；</li>
+<li>然后将这条路径从图片中删除，就好像将这个裂缝两边拼起来；</li>
+</ul>
+<p>而至于寻找最短路的算法，则是个 dp 问题，在这里就不展开了。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月25日 22:25:51</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月27日 23:15:12</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
