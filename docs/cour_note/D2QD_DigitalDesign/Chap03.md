@@ -12,8 +12,8 @@
 
 !!! note "表示逻辑的方法"
     1. <u>真值表(Truth Table)</u>；
-    2. <u>布尔函数(Boolean Function)；
-    3. 卡诺图(Karnaugh Maps)</u>；
+    2. 布尔函数(Boolean Function)；
+    3. <u>卡诺图(Karnaugh Maps)</u>；
     4. <u>时序图(Timing Diagram)</u>；
     5. 逻辑电路图(Logic Circuit)；
 
