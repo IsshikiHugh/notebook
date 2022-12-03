@@ -21,6 +21,8 @@ comments: false
 
 ??? summary "<center>@Isshiki修</center>" 
 
+    [个人主页](https://isshikihugh.github.io/homepageSrc/)
+
     <center>
         **|** 21 级 CS 本科生 **|** 22届 求是潮 产品研发中心技术中管 **|** xlab 软件组成员 **|**
     </center>
