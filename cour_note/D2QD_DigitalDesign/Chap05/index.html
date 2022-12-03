@@ -6,10 +6,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/cour_note/D2QD_Intro2CV/Lec04/" rel="canonical"/>
+<link href="https://note.isshikih.top/cour_note/D2QD_DigitalDesign/Chap05/" rel="canonical"/>
 <link href="../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.1, mkdocs-material-8.5.7" name="generator"/>
-<title>Lecture 4 | Model Fitting and Optimization - Isshiki修's Notebook</title>
+<title>Chap 5 Digital Hardware Implementation - Isshiki修's Notebook</title>
 <link href="../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <meta content="#000000" name="theme-color"/>
@@ -33,7 +33,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#lecture-4--model-fitting-and-optimization">
+<a class="md-skip" href="#chap-5-digital-hardware-implementation">
           跳转至
         </a>
 </div>
@@ -57,7 +57,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Lecture 4 | Model Fitting and Optimization
+              Chap 5 Digital Hardware Implementation
             
           </span>
 </div>
@@ -321,10 +321,10 @@
         [大一暑假] Deep Learning for Computer Vision | CS231N
       </a>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" id="__nav_3_4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" id="__nav_3_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2QD_DigitalDesign/">[大二秋冬] 数字逻辑设计 | Digital Design</a>
+<a href="../">[大二秋冬] 数字逻辑设计 | Digital Design</a>
 <label for="__nav_3_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -336,32 +336,74 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap01/">
+<a class="md-nav__link" href="../Chap01/">
         Chap 1 Digital Systems and Information
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap02/">
+<a class="md-nav__link" href="../Chap02/">
         Chap 2 Combinational Logic Circuits
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap03/">
+<a class="md-nav__link" href="../Chap03/">
         Chap 3 Combinational Logic Design
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap05/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Chap 5 Digital Hardware Implementation
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         Chap 5 Digital Hardware Implementation
       </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#可重编程技术">
+    可重编程技术
+  </a>
+<nav aria-label="可重编程技术" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逻辑符号介绍">
+    逻辑符号介绍
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rom">
+    ROM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pal">
+    PAL
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pla">
+    PLA
+  </a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" id="__nav_3_5" type="checkbox"/>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" id="__nav_3_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../">[大二秋冬] 计算机视觉导论 | I2CV</a>
+<a href="../../D2QD_Intro2CV/">[大二秋冬] 计算机视觉导论 | I2CV</a>
 <label for="__nav_3_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -373,100 +415,67 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec01/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec01/">
         Lecture 1 | Introduction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec02/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec02/">
         Lecture 2 | Image Formation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec03/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec03/">
         Lecture 3 | Image Processing
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          Lecture 4 | Model Fitting and Optimization
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec04/">
         Lecture 4 | Model Fitting and Optimization
       </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#鲁棒估计-robust-estimation">
-    鲁棒估计 Robust estimation
-  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#病态问题ill-posed-problem">
-    病态问题(ill-posed problem)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#interpolation">
-    Interpolation
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#graphcut图割-and-mrf马可夫随机场">
-    Graphcut图割 and MRF马可夫随机场
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../Lec05/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec05/">
         Lecture 5 | Feature Matching and Motion Estimation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec06/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec06/">
         Lecture 6 | Image Alignment and Stitching
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec07/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec07/">
         Lecture 7 | Structure From Motion
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec08/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec08/">
         Lecture 8 | Depth Estimation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec09/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec09/">
         Lecture 9 | 3D Reconstruction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec10/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec10/">
         Lecture 10 | Deep Learning
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec11/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec11/">
         Lecture 11 | Recognition
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec12/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec12/">
         Lecture 12 | Computational Photography 1
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec13/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec13/">
         Lecture 13 | Computational Photography 2
       </a>
 </li>
@@ -555,24 +564,33 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#鲁棒估计-robust-estimation">
-    鲁棒估计 Robust estimation
+<a class="md-nav__link" href="#可重编程技术">
+    可重编程技术
+  </a>
+<nav aria-label="可重编程技术" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逻辑符号介绍">
+    逻辑符号介绍
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#病态问题ill-posed-problem">
-    病态问题(ill-posed problem)
+<a class="md-nav__link" href="#rom">
+    ROM
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#interpolation">
-    Interpolation
+<a class="md-nav__link" href="#pal">
+    PAL
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#graphcut图割-and-mrf马可夫随机场">
-    Graphcut图割 and MRF马可夫随机场
+<a class="md-nav__link" href="#pla">
+    PLA
   </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -581,191 +599,133 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/cour_note/D2QD_Intro2CV/Lec04.md" title="编辑此页">
+<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/cour_note/D2QD_DigitalDesign/Chap05.md" title="编辑此页">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="lecture-4--model-fitting-and-optimization">Lecture 4 | Model Fitting and Optimization<a class="headerlink" href="#lecture-4--model-fitting-and-optimization" title="Permanent link">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>本文尚未整理好！</p>
+<h1 id="chap-5-digital-hardware-implementation">Chap 5 Digital Hardware Implementation<a class="headerlink" href="#chap-5-digital-hardware-implementation" title="Permanent link">¶</a></h1>
+<hr/>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: Finish this.</li>
+</ul>
+<hr/>
+<h2 id="可重编程技术">可重编程技术<a class="headerlink" href="#可重编程技术" title="Permanent link">¶</a></h2>
+<p><strong>可重编程技术(programmable implementation technologies)</strong></p>
+<p>直接更改电路来修改电路功能被称为硬编程，而可重变成技术让我们能够不更改硬件布线的情况下，实现**逻辑功能的重新编辑**。</p>
+<div class="admonition example">
+<p class="admonition-title">FPGA</p>
+<p><a href="https://zh.wikipedia.org/zh-cn/%E7%8E%B0%E5%9C%BA%E5%8F%AF%E7%BC%96%E7%A8%8B%E9%80%BB%E8%BE%91%E9%97%A8%E9%98%B5%E5%88%97">现场可编程逻辑门阵列(Field Programmable Gate Array)FPGA</a>
+- <a href="https://zh.m.wikipedia.org/zh-hans/%E6%9F%A5%E6%89%BE%E8%A1%A8">查找表(lookup table)LUT</a></p>
 </div>
-<p>优化 Optimization</p>
+<p>可重编程在硬件层面有三种实现手段：</p>
 <ul>
-<li>目标函数</li>
-<li>约束条件</li>
-<li>求目标函数的最优化</li>
+<li>控制连接来实现；<ul>
+<li>Mask programing</li>
+<li>Fuse</li>
+<li>Anti-fuse</li>
 </ul>
-<p>一种特殊情况：线性优化（规划）</p>
-<p>eg：图像去模糊问题</p>
-<p>模糊 -&gt; 清晰</p>
-<div class="arithmatex">\[
-\min_{X} ||Y-F*X||^2_2\\
-\text{ where Y is the blurred image, F is the blur kernel and X is the sharp image}
-\]</div>
+</li>
+<li>控制门级电路电压；<ul>
+<li>Single-bit storage element</li>
+<li>Stored charge on a floating gate<ul>
+<li>Erasable</li>
+<li>Electrically erasable</li>
+<li>Flash (as in Flash Memory) </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用查找表(LUT)；<ul>
+<li>Storage elements for the function<ul>
+<li>比如使用一个 <code>MUX</code>，并将输入端接内存，通过修改内存的值来修改 <code>MUX</code> 的行为，进而实现函数重编程</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>课程中介绍的可重编程的器件主要有如下四种：</p>
+<ul>
+<li>只读内存 Read Only Memory (ROM) </li>
+<li>可编程阵列逻辑 Programmable Array Logic (PAL<sup>Ⓡ</sup>)</li>
+<li>可编程逻辑阵列 Programmable Logic Array (PLA)</li>
+<li>Complex Programmable Logic Device (CPLD) or Field-Programmable Gate Array(FPGA)</li>
+</ul>
+<p>前三者都只能重写一次，如下是它们的重写内容：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../51.png"><img alt="" src="../51.png"/></a></p>
 <hr/>
-<p>模型拟合 Model Fitting</p>
-<p>一个数学模型描述问题中输入输出的关系</p>
-<p>构成：</p>
+<div class="admonition info">
+<p class="admonition-title">引入</p>
+<p>由于之后出现的电路图会非常庞大，所以需要引入一些逻辑符号。</p>
+</div>
+<h3 id="逻辑符号介绍">逻辑符号介绍<a class="headerlink" href="#逻辑符号介绍" title="Permanent link">¶</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Buffer</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../52.png"><img alt="" src="../52.png"/></a></p>
+<blockquote>
+<p>简化表示一个变量的自身和其非；</p>
+</blockquote>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Wire connecting</p>
+<p>在可编程逻辑电路中，线的连接不再只有单纯的连通和不连通的关系：</p>
+<p>对于两条相交导线：</p>
 <ul>
-<li>输入</li>
-<li>输出</li>
-<li>参数</li>
+<li>如果没有特殊符号，则表示这个交叉点 is not connected ；</li>
 </ul>
-<p>最小二乘法</p>
-<p>均方误差 / Mean Square Error / MSE</p>
-<p><span class="arithmatex">\(\argmin\)</span></p>
-<p>Maximum likelihood Estimation 极大似然估计</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../53.png"><img alt="" src="../53.png"/></a></p>
 <ul>
-<li>Details</li>
+<li>如果有一个 ❌，则表示这个交叉点 programmable；</li>
 </ul>
-<p>如果我们假设噪声是高斯分布的，那么可以与统计学的极大似然估计统一</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../55.png"><img alt="" src="../55.png"/></a></p>
+<ul>
+<li>如果只有一个加粗的点，则表示这个交叉点 not programmable；</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../54.png"><img alt="" src="../54.png"/></a></p>
+</div>
+<p>特别的，如果一个元器件的所有输入都是 programmable，我们也可以选择把这个 ❌ 画到逻辑门上（如下图 e 和 f）。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../56.png"><img alt="" src="../56.png"/></a></p>
 <hr/>
-<p>数值方法 Numerical methods</p>
-<p>给定优化问题，如何求最优解</p>
-<ul>
-<li>求解析解（比如通过求导）<ul>
-<li>以刚刚的线性 MSE 为例</li>
-</ul>
-</li>
-</ul>
-<p>然而大部分问题我们没法求解析解</p>
-<ul>
-<li>梯度下降 GD<ul>
-<li>确定下降方向 p ：<ul>
-<li>局部范围内可以让我值下降；</li>
-<li>如果形式简单，可以直接求解析解；</li>
-<li>在局部去逼近函数，使用泰勒展开，雅可比矩阵&amp;海森矩阵；<ul>
-<li><span class="arithmatex">\(F(x_k+\Delta x) \approx F(x_k) + J_F \Delta x + \frac{1}{2}\Delta x^TH_F\Delta x\)</span>；</li>
-</ul>
-</li>
-<li>使用一阶导数来决定减小方向：<ul>
-<li>Taypor expansion at <span class="arithmatex">\(x_0\)</span>: <span class="arithmatex">\(F(x_0+\Delta x) \approx F(x_0) +J_F\Delta x\)</span>；</li>
-<li>当 <span class="arithmatex">\(J_F\Delta x &lt; 0\)</span> 时，此函数会减小。</li>
-<li>于是当 <span class="arithmatex">\(Delta x\)</span> 的方向与 <span class="arithmatex">\(-J_F^T\)</span> 相同时候，能快速下降；</li>
-<li>这种方法即 最速梯度下降法（Steepest descent method）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>确定步长：<ul>
-<li>理论最优：使 <span class="arithmatex">\(\phi(\alpha) = F(x+\alpha h)\)</span> 最小的 <span class="arithmatex">\(\alpha\)</span></li>
-<li>Backtracking algorithm 的方法：设置较大的 <span class="arithmatex">\(\alpha\)</span> 初值，不断减小直到使 <span class="arithmatex">\(\phi(\alpha) \leq \phi(0) + \gamma\phi'(0)\alpha,\;\; 0 &lt; \gamma &lt; 1\)</span> 成立。</li>
-<li>改进：一阶近似不够好，所以使用二阶近似，即牛顿法；</li>
-<li>二阶泰勒展开得到 <span class="arithmatex">\(F(x_k+\Delta x) \approx F(x_k) + J_F \Delta x + \frac{1}{2}\Delta x^TH_F\Delta x\)</span>；</li>
-<li>对它求导得到 <span class="arithmatex">\(\frac{\partial F}{\partial \Delta x} = J_F^T+H_F\Delta x = 0\)</span>;</li>
-<li>于是最佳的 <span class="arithmatex">\(\Delta x = -H_F^{-1}J_F^T\)</span>；</li>
-<li>优点：下降快；</li>
-<li>缺点：难解；<ul>
-<li>如何解决计算量大的问题：<ul>
-<li>根据实际问题决定</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Gauss-Newton method<ul>
-<li>最小二乘，找一阶倒的平方做近似，得到最佳的 <span class="arithmatex">\(\Delta x = -(J_R^TJ_R)^{-1}J_R^TR(x_k)\)</span>；</li>
-<li>优点就是没有海森矩阵，只有雅可比矩阵；</li>
-<li>本方法的特点是，使用 <span class="arithmatex">\((J_R^TJ_R)^{-1}R(x_k)\)</span> 来近似了海森矩阵的逆；</li>
-<li>但是成立的前提是函数的形式是最小二乘的形式；</li>
-</ul>
-</li>
-<li>然而 <span class="arithmatex">\(J_R^TJ_R\)</span> 不是正定的，即未必可以求逆，所以我们使用 Levenberg-Marquardt 算法，即 LM 算法，将 <span class="arithmatex">\(J_R^TJ_R\)</span> 修正为 <span class="arithmatex">\(<span class="arithmatex">\(J_R^TJ_R\)</span> + \lambda I\)</span> 以保证正定；</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>对于带约束的优化问题，需要 <strong>根据实际问题</strong> 求解。</p>
-<p>局部最优和全局最优</p>
-<ul>
-<li>可能转化问题，使用更简单的表达式去拟合原来的表达式，来求解；</li>
-<li>其中，（凹）凸函数是一定能找到最优解的，我们称这种问题为凸优化问题(Convex optimization)(推荐同名读物https://web.stanford.edu/class/ee364a)</li>
-</ul>
-<h2 id="鲁棒估计-robust-estimation">鲁棒估计 Robust estimation<a class="headerlink" href="#鲁棒估计-robust-estimation" title="Permanent link">¶</a></h2>
-<p>inlier / outliers i.e. 内点 / 外点</p>
-<ul>
-<li>前者指符合我们的预期模型拟合的点；</li>
-<li>外点为完全不符合我们预期的模型拟合的点；</li>
-</ul>
-<p>由于外点偏离很大，而最小二乘法中存在平方操作，所以最小二乘法拟合收这些外点影响很大</p>
-<p>于是我们考虑，更换拟合的目标函数，比如使用 L1 loss(即求绝对值)，不过更好的是一种叫 huber loss，它在距离远点较远的时候比较接近 L1 loss；</p>
-<p>另外一种方法是 RANSAC，即 Random Sample Consensus，随机采样一致；</p>
-<p>RANSAC procedure:</p>
-<ul>
-<li>首先随机找两个点拟合一条直线，然后检查有多少点符合这条直线，并对其进行 vote；</li>
-<li>重复这个步骤，最后选择票数最高的拟合；</li>
-</ul>
-<p>正确性证明：</p>
-<ul>
-<li>首先有结论，outlier拟合出来的直线一般votes比较少，因为outlier之间很难一致，但是inlier之间容易一致；</li>
-</ul>
-<h2 id="病态问题ill-posed-problem">病态问题(ill-posed problem)<a class="headerlink" href="#病态问题ill-posed-problem" title="Permanent link">¶</a></h2>
-<ul>
-<li>如果一个问题的解不唯一，那么这个问题是一个病态问题；</li>
-<li>在线性问题中，一个线性方程的解不唯一，则同样是一个病态问题；</li>
-</ul>
-<p>解决办法：</p>
-<ul>
-<li>增加方程，即增加约束，而这种约束一般来自于对变量的先验约束；</li>
-<li>L2 regularization<ul>
-<li>可以让我们没有用的解尽可能接近0，以减小没用的变量的影响</li>
-<li>抑制冗余变量</li>
-</ul>
-</li>
-<li>L1 regularization<ul>
-<li>L1 可视化中可以发现，坐标轴上比较容易抓住解，此时意味着有些变量是0，换句话来说能让解变得“稀疏sparse”，即在维度上的分布比较集中</li>
-</ul>
-</li>
-</ul>
-<p>不过，将他们作为约束条件参与求解，不如直接加进去作为一个项，其效果是等价的</p>
+<h3 id="rom">ROM<a class="headerlink" href="#rom" title="Permanent link">¶</a></h3>
+<p>ROM 的基本结构如下：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../57.png"><img alt="" src="../57.png"/></a></p>
+<p>而 ROM 的大小如下计算（以上图为例）：</p>
 <div class="arithmatex">\[
-\min_{x}||Ax-b||^2_2+\lambda ||x||_2^2  (或者\lambda ||x||_1)\\
-s.t. ||x||_2 \leq 1
+\begin{array}{rl}
+    ROM\;\;size\;\;&amp;=\;\;address\;\;width\;\;\times\;\;word\;\;width&amp;\\
+                   &amp;=\;\;2^2\;\;\times\;\;4\;\;=\;\;16\;\;bit&amp;
+\end{array}
 \]</div>
-<p>Overfitting and underfitting 过拟合和欠拟合</p>
-<h2 id="interpolation">Interpolation<a class="headerlink" href="#interpolation" title="Permanent link">¶</a></h2>
-<p>线性拟合、二次样条插值（每一段都是一个二次函数）、三次样条插值（一阶导二阶导连续，但最终是个病态问题，需要额外再约束起点和终点二阶导为零或者限定给定斜率等，就需要俩额外约束条件）、</p>
-<p>上面是连续优化问题，下面是离散优化问题</p>
-<h2 id="graphcut图割-and-mrf马可夫随机场">Graphcut图割 and MRF马可夫随机场<a class="headerlink" href="#graphcut图割-and-mrf马可夫随机场" title="Permanent link">¶</a></h2>
-<ul>
-<li>
-<p>image labeling problems</p>
-<ul>
-<li>强先验：相邻pixel的label很可能相同，关键在于如何建模这种空间连续性<ul>
-<li>实现：用图(graph)来描述图片，假设每个像素都是一个node，像素之间建edge，以相似性或关联性作为边权；</li>
-<li>一般这个权重为 <ul>
-<li>例如，<span class="arithmatex">\(f\)</span> 是颜色，则：</li>
-<li>像素差异为 <span class="arithmatex">\(s(f_i,f_j)=\sqrt{\sum_k(f_{ik},f_{jk})^2}\)</span></li>
-<li>则相似性权重 affinity <span class="arithmatex">\(w(i,j) = A(f_i,f_j) = e^{\frac{-1}{2\sigma^2}s(f_i,f_j)}\)</span>；</li>
-</ul>
-</li>
-<li>然后做图割问题，割成两个图，图割的代价为断的边权之权重和 <span class="arithmatex">\(cut(V_A,V_B)= \sum_{u\in V_A, v\in V_B} w(u,v)\)</span>；<ul>
-<li>这个问题等效于最大流问题；</li>
-</ul>
-</li>
-<li>但这样的分割也是有问题的，所以可能不太联通的两个点被分在了一起；</li>
-<li>我们还需要衡量这个子集是否足够稠密 (normalized cut)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Markov Random Field （更通用）</p>
-<ul>
-<li>Markov chains</li>
-<li>听不懂</li>
-</ul>
-</li>
-</ul>
+<details class="example" open="open">
+<summary>eg</summary>
+<p>更清晰的表示其内部逻辑的，可以将 ROM 写成这样：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../58.png"><img alt="" src="../58.png"/></a></p>
+</details>
+<hr/>
+<h3 id="pal">PAL<a class="headerlink" href="#pal" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../59.png"><img alt="" src="../59.png"/></a></p>
+<p>可重编程输入组合来得到固定输出。</p>
+<p>其具有一个缺陷是，因为表达函数的方法不是通过 SOM 或者 POM 的形式，所以不一定能够完备表达函数。</p>
+<p>在此基础上的一个改进是，通过将一个既有的 PAL 输出当作输入，输入到另外一个函数中，来弥补项不足的问题。</p>
+<details class="example" open="open">
+<summary>eg</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../60.png"><img alt="" src="../60.png"/></a></p>
+</details>
+<hr/>
+<h3 id="pla">PLA<a class="headerlink" href="#pla" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../61.png"><img alt="" src="../61.png"/></a></p>
+<p>与 PAL 的区别在于，在输出的时候也能对输出组合进行重编程。</p>
+<p>其同 PAL 一样具有一个缺陷是，因为表达函数的方法不是通过 SOM 或者 POM 的形式，所以不一定能够完备表达函数。</p>
+<p>在基础上一个改进是在输出的时候再做一次异或，以产生新的项，来弥补项不足的问题。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../62.png"><img alt="" src="../62.png"/></a></p>
+<p>可以发现，出现了新的项。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月22日 22:07:42</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月4日 00:33:01</span>
 <br/>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月4日 00:33:01</span>
 </small>
 </div>
 <h2 id="__comments">评论</h2>
@@ -811,7 +771,7 @@ s.t. ||x||_2 \leq 1
 </main>
 <footer class="md-footer">
 <nav aria-label="页脚" class="md-footer__inner md-grid">
-<a aria-label="上一页: Lecture 3 | Image Processing" class="md-footer__link md-footer__link--prev" href="../Lec03/" rel="prev">
+<a aria-label="上一页: Chap 3 Combinational Logic Design" class="md-footer__link md-footer__link--prev" href="../Chap03/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -820,17 +780,17 @@ s.t. ||x||_2 \leq 1
 <span class="md-footer__direction">
                 上一页
               </span>
-              Lecture 3 | Image Processing
+              Chap 3 Combinational Logic Design
             </div>
 </div>
 </a>
-<a aria-label="下一页: Lecture 5 | Feature Matching and Motion Estimation" class="md-footer__link md-footer__link--next" href="../Lec05/" rel="next">
+<a aria-label="下一页: [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision" class="md-footer__link md-footer__link--next" href="../../D2QD_Intro2CV/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 下一页
               </span>
-              Lecture 5 | Feature Matching and Motion Estimation
+              [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision
             </div>
 </div>
 <div class="md-footer__button md-icon">
