@@ -495,8 +495,32 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#经典组合电路">
+    经典组合电路
+  </a>
+<nav aria-label="经典组合电路" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#三态门">
+    三态门
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#复杂门">
+    复杂门
+  </a>
+</li>
 </ul>
 </nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Chap03/">
+        Chap 3 Combinational Logic Design
+      </a>
 </li>
 </ul>
 </nav>
@@ -804,6 +828,25 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#经典组合电路">
+    经典组合电路
+  </a>
+<nav aria-label="经典组合电路" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#三态门">
+    三态门
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#复杂门">
+    复杂门
+  </a>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </div>
@@ -817,7 +860,13 @@
 <h1 id="chap-2-combinational-logic-circuits">Chap 2 Combinational Logic Circuits<a class="headerlink" href="#chap-2-combinational-logic-circuits" title="Permanent link">¶</a></h1>
 <h2 id="逻辑运算">逻辑运算<a class="headerlink" href="#逻辑运算" title="Permanent link">¶</a></h2>
 <p>逻辑运算的对象是布尔变量，也就是 0/1 二值。</p>
-<p>主要的运算就是 <strong>与(AND)</strong>，<strong>或(OR)</strong>，<strong>非(NOT)</strong>，<strong>异或(XOR)</strong>，以及 <strong>与非(NAND)</strong>，<strong>或非(NOR)</strong>。</p>
+<p>主要的运算就是 <strong>与(AND)</strong>，<strong>或(OR)</strong>，<strong>非(NOT)</strong>，<strong>异或(XOR)</strong>，以及 <strong>与非(NAND)</strong>，<strong>同或(NOR)</strong>。</p>
+<div class="admonition note">
+<p class="admonition-title">高维</p>
+<p>多输入的异或和同或被称为奇函数和偶函数。</p>
+<p>可以用它们来实现奇校验和偶校验。</p>
+<p>而且观察其卡诺图的形状（棋盘形），可以发现，它们是天然优化的，即不可优化的。</p>
+</div>
 <p>运算规则挺简单的，在此略去。</p>
 <p>比较基础的，需要了解与或非的符号表示。</p>
 <ul>
@@ -1448,16 +1497,61 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <hr/>
 <h4 id="蕴含项主蕴含项与基本主蕴含项">蕴含项、主蕴含项与基本主蕴含项<a class="headerlink" href="#蕴含项主蕴含项与基本主蕴含项" title="Permanent link">¶</a></h4>
 <p><strong>蕴含项(implicant)</strong> 分为 <strong>主蕴含项(prime implicant)</strong> 和 <strong>基本主蕴含项(essential prime implicant)</strong>。</p>
-<div class="admonition info">
-<p class="admonition-title">咕咕咕</p>
-<p>咕咕咕一下</p>
+<ul>
+<li>在卡诺图中，一个蕴含项就是任意一个包含 <span class="arithmatex">\(2^n\)</span> 个 <code>1</code> 的单元；</li>
+<li>而主蕴含项则是在卡诺图中的 <strong>极大</strong> 蕴含项；</li>
+<li>基本主蕴含项是包含 只被它覆盖的 <code>1</code> 的主蕴含项；</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../27.png"><img alt="" src="../27.png"/></a></p>
+<blockquote>
+<p>如图，左侧的两个主蕴含项因为包括了 ⓵ 和 ⓶ 这两个唯一的 <code>1</code>，所以是基本主蕴含项；</p>
+<p>而右侧的蕴含项则是一个冗余的蕴含项；</p>
+</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>对于任意函数，主蕴含项一定存在，但是基本主蕴含项不一定存在。</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">🤔</p>
+<p>正因为有主蕴含项的存在，对于一个任意函数，优化的多解结果总有一部分是不变的（只不过没有主蕴含项的时候这部分为零）。</p>
+</div>
+<hr/>
+<div class="admonition tip">
+<p class="admonition-title">麦克拉奎因算法</p>
+</div>
+<hr/>
+<h2 id="经典组合电路">经典组合电路<a class="headerlink" href="#经典组合电路" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">引入</p>
+<p>在实际设计中，我们有一些现成的组合电路能够使用，来方便我们设计。</p>
+<p>不过我没有全写出来；</p>
+</div>
+<hr/>
+<h3 id="三态门">三态门<a class="headerlink" href="#三态门" title="Permanent link">¶</a></h3>
+<p><strong>三态缓冲器(3-State Buffer)</strong></p>
+<p>除了输入和输出，它还有一个 <strong>使能端(enable)</strong> 来控制输出。</p>
+<p>所谓的三态指的是：</p>
+<ul>
+<li>当使能端为 <code>1</code>，且输入为 <code>1</code> 时，输出为 <code>1</code>；</li>
+<li>当使能端为 <code>1</code>，且输入为 <code>0</code> 时，输出为 <code>0</code>；</li>
+<li>当使能端为 <code>0</code>，输出为 <code>z</code>(浮动，高阻态)；</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../28.png"><img alt="" src="../28.png"/></a></p>
+<div class="admonition note">
+<p class="admonition-title">作用</p>
+<p>我们可以用三态门来解决多路输出互联的问题。正如在 <a href="https://www.yuque.com/isshikixiu/codes/ics">ICS</a> 笔记中提到的，可以让多个输入在同一时刻只有一个被输出到总线中——实现的手段就是通过电路来使同一时刻只有一个使能端为 <code>1</code>。</p>
+</div>
+<hr/>
+<h3 id="复杂门">复杂门<a class="headerlink" href="#复杂门" title="Permanent link">¶</a></h3>
+<p>通过一些基本门组合出来的门，它们的表示方法大致如下：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../29.png"><img alt="" src="../29.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../30.png"><img alt="" src="../30.png"/></a></p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 15:31:12</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月3日 17:09:00</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月8日 15:38:17</span>
@@ -1519,13 +1613,13 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
             </div>
 </div>
 </a>
-<a aria-label="下一页: [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision" class="md-footer__link md-footer__link--next" href="../../D2QD_Intro2CV/" rel="next">
+<a aria-label="下一页: Chap 3 Combinational Logic Design" class="md-footer__link md-footer__link--next" href="../Chap03/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 下一页
               </span>
-              [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision
+              Chap 3 Combinational Logic Design
             </div>
 </div>
 <div class="md-footer__button md-icon">

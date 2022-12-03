@@ -9,7 +9,7 @@
 <link href="https://note.isshikih.top/cour_note/D2QD_DigitalDesign/Chap03/" rel="canonical"/>
 <link href="../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.1, mkdocs-material-8.5.7" name="generator"/>
-<title>Chap03 - Isshiki修's Notebook</title>
+<title>Chap 3 Combinational Logic Design - Isshiki修's Notebook</title>
 <link href="../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <meta content="#000000" name="theme-color"/>
@@ -33,6 +33,9 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
+<a class="md-skip" href="#chap-3-combinational-logic-design">
+          跳转至
+        </a>
 </div>
 <div data-md-component="announce">
 </div>
@@ -54,7 +57,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Chap03
+              Chap 3 Combinational Logic Design
             
           </span>
 </div>
@@ -120,7 +123,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../">
+<a class="md-tabs__link md-tabs__link--active" href="../../">
         🗒 课程笔记
       </a>
 </li>
@@ -294,8 +297,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../">🗒 课程笔记</a>
 <label for="__nav_3">
@@ -318,8 +321,8 @@
         [大一暑假] Deep Learning for Computer Vision | CS231N
       </a>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" id="__nav_3_4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" id="__nav_3_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../">[大二秋冬] 数字逻辑设计 | Digital Design</a>
 <label for="__nav_3_4">
@@ -341,6 +344,34 @@
 <a class="md-nav__link" href="../Chap02/">
         Chap 2 Combinational Logic Circuits
       </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Chap 3 Combinational Logic Design
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Chap 3 Combinational Logic Design
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#电路设计">
+    电路设计
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#分层设计">
+    分层设计
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -503,6 +534,22 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#电路设计">
+    电路设计
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#分层设计">
+    分层设计
+  </a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -512,13 +559,58 @@
 <a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/cour_note/D2QD_DigitalDesign/Chap03.md" title="编辑此页">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1>Chap03</h1>
+<h1 id="chap-3-combinational-logic-design">Chap 3 Combinational Logic Design<a class="headerlink" href="#chap-3-combinational-logic-design" title="Permanent link">¶</a></h1>
+<p>按照功能，逻辑电路分为两类：</p>
+<ul>
+<li><strong>组合电路(combinational circuit)</strong><ul>
+<li>拥有 m 个输入和 n 个输出，其中包含了 <span class="arithmatex">\(2^m\)</span> 种输入组合，以及对应的 n 个不同的函数；</li>
+<li>最关键的是，它的 <strong>输出只依赖于这 m 个输入的组合</strong>（不包含回路）；</li>
+</ul>
+</li>
+<li><strong>时序电路(sequential logic cirtuit)</strong><ul>
+<li>与之对应的，时序电路具有记忆功能，即它的输出可能会依赖之前的结果；</li>
+</ul>
+</li>
+</ul>
+<h2 id="电路设计">电路设计<a class="headerlink" href="#电路设计" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">表示逻辑的方法</p>
+<ol>
+<li><u>真值表(Truth Table)</u>；</li>
+<li><u>布尔函数(Boolean Function)；</u></li>
+<li>卡诺图(Karnaugh Maps)；</li>
+<li><u>时序图(Timing Diagram)</u>；</li>
+<li>逻辑电路图(Logic Circuit)；</li>
+</ol>
+<p>其中，下划线的方法在功能确定的情况下，其表示是唯一的。</p>
+</div>
+<p>而我们的设计，就是在满足功能的前提下，尽可能优化和找到最好的设计。</p>
+<p>而主要的设计过程如下：</p>
+<ol>
+<li>确定系统的行为；</li>
+<li>阐述输入和输出之间的逻辑关系，并用真值表或逻辑表达式表达出来；</li>
+<li>优化逻辑表达以减少成本(比如使用卡诺图)；</li>
+<li>将优化后的逻辑设计映射到硬件实现上；</li>
+<li>验证正确性（在仿真环境中）；</li>
+</ol>
+<pre class="mermaid"><code>graph LR;
+
+A["实际问题"] ===&gt; B["真值表"]
+
+B ==&gt;|"化简"| C["最简功能"] ===&gt;|"工艺映射"| D["网表"]
+
+B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre>
+<hr/>
+<h2 id="分层设计">分层设计<a class="headerlink" href="#分层设计" title="Permanent link">¶</a></h2>
+<p>分层设计即将复杂问题模块化分解为若干层次，然后逐个抽象解决。</p>
+<p>其设计方法分为 <strong>自顶向下(Top-Down)</strong> 和 <strong>自底向上(Bottom-Up)</strong>。</p>
+<p>前者从需求开始，自顶向下分解功能设计；后者根据现有的元件去组合成目标功能。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 15:31:12</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月3日 17:09:00</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月1日 13:37:53</span>
@@ -566,6 +658,34 @@
           </a>
 </main>
 <footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Chap 2 Combinational Logic Circuits" class="md-footer__link md-footer__link--prev" href="../Chap02/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                上一页
+              </span>
+              Chap 2 Combinational Logic Circuits
+            </div>
+</div>
+</a>
+<a aria-label="下一页: [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision" class="md-footer__link md-footer__link--next" href="../../D2QD_Intro2CV/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                下一页
+              </span>
+              [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
