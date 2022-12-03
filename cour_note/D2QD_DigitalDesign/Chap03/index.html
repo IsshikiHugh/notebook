@@ -369,6 +369,72 @@
 <a class="md-nav__link" href="#分层设计">
     分层设计
   </a>
+<nav aria-label="分层设计" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#集成电路">
+    集成电路
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#技术参数">
+    技术参数
+  </a>
+<nav aria-label="技术参数" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#扇入扇出">
+    扇入扇出
+  </a>
+<nav aria-label="扇入扇出" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#转换时间">
+    转换时间
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#传播延迟">
+    传播延迟
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#延迟模型">
+    延迟模型
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#延迟以及相关问题">
+    延迟以及相关问题
+  </a>
+<nav aria-label="延迟以及相关问题" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#延迟计算">
+    延迟计算
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#延迟带来的问题">
+    延迟带来的问题
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#正逻辑和负逻辑">
+    正逻辑和负逻辑
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -548,6 +614,72 @@
 <a class="md-nav__link" href="#分层设计">
     分层设计
   </a>
+<nav aria-label="分层设计" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#集成电路">
+    集成电路
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#技术参数">
+    技术参数
+  </a>
+<nav aria-label="技术参数" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#扇入扇出">
+    扇入扇出
+  </a>
+<nav aria-label="扇入扇出" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#转换时间">
+    转换时间
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#传播延迟">
+    传播延迟
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#延迟模型">
+    延迟模型
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#延迟以及相关问题">
+    延迟以及相关问题
+  </a>
+<nav aria-label="延迟以及相关问题" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#延迟计算">
+    延迟计算
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#延迟带来的问题">
+    延迟带来的问题
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#正逻辑和负逻辑">
+    正逻辑和负逻辑
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -606,11 +738,162 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <p>其设计方法分为 <strong>自顶向下(Top-Down)</strong> 和 <strong>自底向上(Bottom-Up)</strong>。</p>
 <p>前者从需求开始，自顶向下分解功能设计；后者根据现有的元件去组合成目标功能。</p>
 <hr/>
+<h3 id="集成电路">集成电路<a class="headerlink" href="#集成电路" title="Permanent link">¶</a></h3>
+<p><strong>集成电路(integrated circuits)</strong> 又叫 <strong>芯片(chip)</strong>，分为如下若干等级：</p>
+<ul>
+<li>SSI(small-scale integrated) 内含不到 10 个 gates；</li>
+<li>MSI(medium-scale integrated) 内含 10 ~ 100 个 gates；</li>
+<li>LSI(large-scale integrated) 内含 成百上千 个 gates；</li>
+<li>VLSI(very large-scale integrated) 内含 成千上亿 个 gates；</li>
+</ul>
+<hr/>
+<h3 id="技术参数">技术参数<a class="headerlink" href="#技术参数" title="Permanent link">¶</a></h3>
+<p>门的实现主要通过这些参数特性来描述：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Fan-in</strong></td>
+<td align="left">一个门可用的输入</td>
+</tr>
+<tr>
+<td align="left"><strong>Fan-out</strong></td>
+<td align="left">一个栅极输出驱动的标准负载数量</td>
+</tr>
+<tr>
+<td align="left">Logic Levels</td>
+<td align="left">被认为是高低电平的输入输出电压范围</td>
+</tr>
+<tr>
+<td align="left">Noise Margin</td>
+<td align="left">对外界噪声的容忍能力(具体来说是不会导致行为异变的最大噪声压值)</td>
+</tr>
+<tr>
+<td align="left">Cost for a gate</td>
+<td align="left">继承电路的门成本</td>
+</tr>
+<tr>
+<td align="left"><strong>Propagation Delay</strong></td>
+<td align="left">信号改变后从输入到输出所需的变化时间</td>
+</tr>
+<tr>
+<td align="left">Power Dissipation</td>
+<td align="left">电源输出能耗和门的能耗</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h4 id="扇入扇出">扇入扇出<a class="headerlink" href="#扇入扇出" title="Permanent link">¶</a></h4>
+<p>扇入描述了一个门能够接受的最多输入量，如一个四输入与非门的扇入就是 4；而扇出描述的则是一个门的输出(栅极输出)在不降低工作性能的情况下能够负载多少门，例如一个非门的输出能够同时负载 4 个非门并且都能正常工作，则其扇出为 4，所以其也能通过标准负载来定义。</p>
+<div class="admonition note">
+<p class="admonition-title">标准负载</p>
+<p>所谓的标准负载，是衡量“负载”的一个“单位砝码”。其大小等于一个非门(逆变器)贡献的负载压力。</p>
+</div>
+<p>那么要如何评估负载呢？首先我们引入 <strong>过渡时间(transition time)</strong>：</p>
+<hr/>
+<h5 id="转换时间">转换时间<a class="headerlink" href="#转换时间" title="Permanent link">¶</a></h5>
+<p>转换时间分为 <span class="arithmatex">\(\mathrm{t_{LH}}\)</span>(rise time) 和 <span class="arithmatex">\(\mathrm{t_{HL}}\)</span>(fall time) 两个部分。</p>
+<ul>
+<li>rise time 等于栅极输出从 <span class="arithmatex">\(\mathrm{V_{CC}}\)</span> 的 10% 升高到 90% 所需要的时间；</li>
+<li>fall time 等于栅极输出从 <span class="arithmatex">\(\mathrm{V_{CC}}\)</span> 的 90% 降低到 10% 所需要的时间；</li>
+</ul>
+<p>通过时序图表示就是这样：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../31.png"><img alt="" src="../31.png"/></a></p>
+<hr/>
+<p>随着负载增加，转换时间也会增加（给电容充电的时间增加），而扇出定义中提到的“最大负载”，就是指它的转换时间不超过它预定的最大转换时间。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../32.png"><img alt="" src="../32.png"/></a></p>
+<blockquote>
+<p>从左到右表示负载不断增加时，rise time 的变化趋势。</p>
+</blockquote>
+<p>实际上，类似的，超出扇入后，门对输入的反应就太慢了。</p>
+<hr/>
+<h4 id="传播延迟">传播延迟<a class="headerlink" href="#传播延迟" title="Permanent link">¶</a></h4>
+<p><strong>传播延迟(propagation delay)</strong> 衡量了门的输入变化导致输出变化所需要的时间。由于从低电平转化到高电平和高电平转化到低电平所需要的时间不一样，所以传播延迟同样有两个部分，分别使用 <span class="arithmatex">\(\mathrm{t_{PHL}}\)</span> 和 <span class="arithmatex">\(\mathrm{t_{PLH}} 来表示\)</span>。</p>
+<p>更具体的来说，传播延迟的计算方法是输入和输出的变化中点（即变化到 <span class="arithmatex">\(\frac{1}{2}V_{CC}\)</span> 时）的时间差，通过时序图表示就是这样：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../33.png"><img alt="" src="../33.png"/></a></p>
+<blockquote>
+<p>此外，我们还可以引入 <span class="arithmatex">\(\mathrm{ t_{pd} }\)</span> 来统一表示 <span class="arithmatex">\(\mathrm{t_{PHL}}\)</span> 和 <span class="arithmatex">\(\mathrm{t_{PLH}}\)</span>。数值上，<span class="arithmatex">\(\mathrm{ t_{pd} } = average(\mathrm{t_{PHL}}, \mathrm{t_{PLH}})\)</span> 或 <span class="arithmatex">\(\mathrm{ t_{pd} } = max(\mathrm{t_{PHL}}, \mathrm{t_{PLH}})\)</span>。</p>
+</blockquote>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">题面</label><label for="__tabbed_1_2">答案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>根据时序图，写出门的传播延迟，此处 <span class="arithmatex">\(\mathrm{ t_{pd} } = average(\mathrm{t_{PHL}}, \mathrm{t_{PLH}})\)</span>。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../34.png"><img alt="" src="../34.png"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../35.png"><img alt="" src="../35.png"/></a></p>
+</div>
+</div>
+</input></input></div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Transition Time vs. Propagation Delay</p>
+<p>转换时间专注于输出的变化，而传播延迟则包含了输入的变化和输出的变化整个过程。</p>
+<p>从时序图上的表示来看，转换时间只需要输出的时序图即可表示；但传播延迟则是通过比较输入和输出的偏差来表示的。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../36.png"><img alt="" src="../36.png"/></a></p>
+</div>
+<hr/>
+<h3 id="延迟模型">延迟模型<a class="headerlink" href="#延迟模型" title="Permanent link">¶</a></h3>
+<p>为了研究为什么会存在门延迟，刻画门的 <strong>固有门延迟(inherent gate delay)</strong>，我们需要对其建模，常见的 <strong>延迟模型(delay model)</strong> 有以下两种：</p>
+<ul>
+<li>传输延迟(transport delay): 认为输入和输出之间的延迟是一个定值的；</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../37.png"><img alt="" src="../37.png"/></a></p>
+<ul>
+<li>惯性延迟(inertial delay): 引入了 <strong>拒绝时间(rejection time)</strong>，只有当输入达到一定能量后，才会出发栅极输出（在这种模型下，噪音等会被过滤）；</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../38.png"><img alt="" src="../38.png"/></a></p>
+<p>将不存在延迟的模型、传输延迟模型和惯性延迟模型做比较地来看，就是如下情况：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../39.png"><img alt="" src="../39.png"/></a></p>
+<hr/>
+<h3 id="延迟以及相关问题">延迟以及相关问题<a class="headerlink" href="#延迟以及相关问题" title="Permanent link">¶</a></h3>
+<div class="admonition info">
+<p class="admonition-title">引入</p>
+<p>由于实际电路中实现延迟，数学上的逻辑表达式与实际电路情况会存在不同——即存在若干数学上无法直接解决的问题。</p>
+<p>所以研究延迟是非常必要的。</p>
+</div>
+<hr/>
+<h4 id="延迟计算">延迟计算<a class="headerlink" href="#延迟计算" title="Permanent link">¶</a></h4>
+<p>计算一个电路的延迟时，有两方面需要考虑，一方面是电路自身所导致的一个固定延迟，另外一方面则是由于不同的负载导致的额外延迟。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../40.png"><img alt="" src="../40.png"/></a></p>
+<blockquote>
+<p>在这个例子中，0.07 为固定延迟，0.021 为一个标准负载带来的延迟系数，SL(4.5 here) 则是标准化的负载量。</p>
+</blockquote>
+<hr/>
+<h4 id="延迟带来的问题">延迟带来的问题<a class="headerlink" href="#延迟带来的问题" title="Permanent link">¶</a></h4>
+<p>由于存在延迟，许多在数学意义上没有问题的逻辑表达式在电路中就存在非常大的问题。</p>
+<p>例如，从数学角度看，<span class="arithmatex">\(\mathrm{Y=\bar{A}A}\)</span> 的值恒为 <code>0</code>，但是实际上由于延迟，其仿真波形中会出现这样一个 <strong>毛刺(glitch)</strong>，而这在工程意义上有很大的问题。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../41.png"><img alt="" src="../41.png"/></a></p>
+<details class="note" open="open">
+<summary>更复杂的 🌰</summary>
+<p>让我们分析下面这个二路选择器，其功能是通过 S 控制输出表达的是 A 还是 B，在传输延迟模型下，其波形如下：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../42.png"><img alt="" src="../42.png"/></a></p>
+<blockquote>
+<p>可以发现，Y 中出现了意料之外的毛刺。</p>
+</blockquote>
+<p>而这中毛刺可以用添加冗余项来解决：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../43.png"><img alt="" src="../43.png"/></a></p>
+</details>
+<hr/>
+<h3 id="正逻辑和负逻辑">正逻辑和负逻辑<a class="headerlink" href="#正逻辑和负逻辑" title="Permanent link">¶</a></h3>
+<p><strong>正逻辑(positive logic)</strong> 就是 <code>1</code> 是有效信号，<strong>负逻辑(negative logic)</strong> 就是 <code>0</code> 是有效信号。而在正逻辑中 AND 门的作用就等效于负逻辑中 OR 门的作用，这也正是我在前面几章的笔记中提到的对称。</p>
+<p>而正逻辑的电路的符号一般就是正常的逻辑门符号，而负逻辑的逻辑门符号则可能有小三角标，即 <strong>极性指示器(polarity indicator)</strong>：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../44.png"><img alt="" src="../44.png"/></a></p>
+<blockquote>
+<p>如图，左侧是正逻辑电路的符号，右侧是负逻辑电路的符号。</p>
+</blockquote>
+<hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月3日 17:16:38</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月3日 19:59:13</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月1日 13:37:53</span>
