@@ -14,15 +14,15 @@ theme:
     logo: octicons/paper-airplane-16
     repo: fontawesome/brands/github-alt
     admonition:
-      note: fontawesome/solid/note-sticky
-      # abstract: 
-      # info: 
-      # tip: 
+      info: fontawesome/solid/anchor
+      note: fontawesome/solid/pen-nib
+      abstract: fontawesome/solid/list
+      tip: fontawesome/solid/lightbulb
       success: fontawesome/solid/check
       question: fontawesome/solid/circle-question
       warning: fontawesome/solid/triangle-exclamation
-      failure: fontawesome/solid/bomb
-      danger: fontawesome/solid/skull
+      failure: material/alien
+      danger: fontawesome/solid/virus
       bug: fontawesome/solid/robot
       example: fontawesome/solid/flask
       quote: fontawesome/solid/quote-left
