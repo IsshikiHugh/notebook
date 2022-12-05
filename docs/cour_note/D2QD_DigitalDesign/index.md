@@ -4,7 +4,7 @@
     - 授课：蔡铭
     - 智云课堂链接：[🔗](https://classroom.zju.edu.cn/coursedetail?course_id=46608&tenant_code=112)
     - 教材：Logic and Computer Design Fundamentals, Fifth Edition
-    - *本文主要来自于我啃教材时的笔记，但小结安排不完全是按照课本来*
+    - ~~*本文主要来自于我啃教材时的笔记，但小结安排不完全是按照课本来*~~
 
 !!! note "Notes"
     - :material-label: [Chap1](Chap01.md)
