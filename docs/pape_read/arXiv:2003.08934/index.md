@@ -24,6 +24,12 @@
     - https://blog.csdn.net/weixin_44580210/article/details/122284120 （笔记）
 
 
+通过对多张图片进行学习，得到原始模型，然后从模型中通过 ray 上的采样与积分来获得对应的图像、光泽等。
+
+其中涉及位置信息编码。
+
+社区 Pytorch 复现代码的注释：https://github.com/IsshikiHugh/nerf-pytorch
+
 ??? question "存疑"
     - 随机均匀采样？为何能够得到连续可微？
-    - 何为位置信息编码？
+    - 何为位置信息编码？其原理如何？
