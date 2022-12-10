@@ -112,6 +112,7 @@ extra:
 
 extra_css:
   - _css/extra.css
+  - _css/flink.css
 
 extra_javascript: 
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML

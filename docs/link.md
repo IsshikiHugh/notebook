@@ -5,13 +5,39 @@
     
 
 !!! summary "🔗 友链"
-    计划在这里这里放友链，<s>手动尝试构造社区</s>
-    
-    暂时还比较简陋 QAQ，等之后再装修吧呜呜
+    <div class="flink-list">
 
-    - :material-link-variant: [咸鱼暄 的 代码空间](https://xuan-insr.github.io/)
-    - :material-link-variant: [鹤翔万里 的 笔记本](https://note.tonycrane.cc/)
-    - :material-link-variant: [sakuratsuyu 的 笔记本](https://sakuratsuyu.github.io/Note/)
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
+                ![](./_assets/avatars/xyx.png)
+            </div>
+        <a href="https://xuan-insr.github.io/" title="咸鱼暄 的 代码空间" target="_blank">
+            <div class="flink-item-name">咸鱼暄 的 代码空间</div>
+            <div class="flink-item-desc">臭光头，暴揍xyx！</div>
+        </a>
+    </div>
+
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
+                ![](./_assets/avatars/hxwl.jpeg)
+            </div>
+        <a href="https://note.tonycrane.cc/" title="鹤翔万里 的 笔记本" target="_blank">
+            <div class="flink-item-name">鹤翔万里 的 笔记本</div>
+            <div class="flink-item-desc"> 🤤 xg 教死我！</div>
+        </a>
+    </div>
+
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
+                ![](./_assets/avatars/sakuratsuyu.jpeg)
+            </div>
+        <a href="https://sakuratsuyu.github.io/Note/" title="sakuratsuyu 的 笔记本" target="_blank">
+            <div class="flink-item-name">sakuratsuyu 的 笔记本</div>
+            <div class="flink-item-desc"> 🤤 无敌麦哥带带我！</div>
+        </a>
+    </div>
+
+    </div>
 
 ??? tip "🔗 有意思的链接" 
     在这里收集一些有意思的链接！

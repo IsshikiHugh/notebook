@@ -56,10 +56,10 @@ center, p, li {
 }
 
 :root, [data-md-color-scheme=default] {
-    --md-default-fg-color: rgba(72, 52, 52, 0.78);
+    --md-default-fg-color: rgba(72, 52, 52, .78);
     --md-default-fg-color--light: rgba(72, 52, 52,.54);
     --md-default-fg-color--lighter: rgba(72, 52, 52,.32);
-    --md-default-fg-color--lightest: rgba(72, 52, 52,.07);
+    --md-default-fg-color--lightest: rgba(72, 52, 52,.27);
     --md-default-bg-color: #fffaf5;
     --md-default-bg-color--light: hsla(0,0%,100%,.7);
     --md-default-bg-color--lighter: hsla(0,0%,100%,.3);
@@ -70,6 +70,7 @@ center, p, li {
     --md-primary-bg-color: #FDF6EC;
     --md-primary-bg-color--light: hsla(0,0%,100%,.7);
     --md-accent-fg-color: #809A6F;
+    --md-accent-fg-color--light: #b1c1a2;
     --md-accent-fg-color--transparent: rgba(82,108,254,.1);
     --md-accent-bg-color: #fff;
     --md-accent-bg-color--light: hsla(0,0%,100%,.7);
@@ -89,7 +90,7 @@ center, p, li {
     --md-code-hl-generic-color: var(--md-default-fg-color--light);
     --md-code-hl-variable-color: var(--md-default-fg-color--light);
     --md-typeset-color: var(--md-default-fg-color);
-    --md-typeset-a-color: var(--md-primary-fg-color);
+    --md-typeset-a-color: var(--md-accent-fg-color--light);
     --md-typeset-mark-color: rgba(255,255,0,.5);
     --md-typeset-del-color: rgba(245,80,61,.15);
     --md-typeset-ins-color: rgba(11,213,112,.15);
