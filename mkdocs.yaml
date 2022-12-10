@@ -30,9 +30,9 @@ theme:
     text: Share Tech
     code: JetBrains Mono
   palette:
-    scheme: slate
-    primary: black
-    accent: blue
+    scheme: default
+    primary: brown
+    accent: deep orange
   features:
     - content.code.annotate
     - navigation.instant
@@ -167,6 +167,7 @@ nav:
   - 📝 论文阅读:
     - pape_read/index.md
     - pape_read/arXiv:2003.08934/index.md
+    # - pape_read/arXiv:2104.05670/index.md
   - 📦 杂项专题:
     - others/index.md
     - others/reveal-md2Slides/index.md
