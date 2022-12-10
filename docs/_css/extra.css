@@ -43,11 +43,14 @@ center, p, li {
 }
 
 .md-typeset details:not([open]) {
-    box-shadow: var(--md-shadow-z1);
+    box-shadow: var(--md-shadow-z2);
     padding-bottom: 0;
 }
+.md-typeset .admonition, .md-typeset details {
+    box-shadow: var(--md-shadow-z2);
+}
 
-.md-typeset img, .md-typeset svg, .md-typeset video {
+.md-typeset img, .md-typeset video {
     box-shadow: var(--md-shadow-z1);
     border-radius: 5px;
 }
@@ -62,7 +65,7 @@ center, p, li {
     --md-default-bg-color--lighter: hsla(0,0%,100%,.3);
     --md-default-bg-color--lightest: hsla(0,0%,100%,.12);
     --md-primary-fg-color: #967E76;
-    --md-primary-fg-color--light: #967E76;
+    --md-primary-fg-color--light: #ab9188;
     --md-primary-fg-color--dark: #806b65;
     --md-primary-bg-color: #FDF6EC;
     --md-primary-bg-color--light: hsla(0,0%,100%,.7);
@@ -101,7 +104,7 @@ center, p, li {
     --md-footer-fg-color--lighter: hsla(0,0%,100%,.3);
     --md-footer-bg-color: rgba(0,0,0,.87);
     --md-footer-bg-color--dark: rgba(0,0,0,.32);
-    --md-shadow-z1: 1px 1px 3px #fff5ee,2px 2px 7px #cebeb3;
-    --md-shadow-z2: 0 0.4rem 0.5remrgba(0,0,0,.1),0 0 0.05remrgba(0,0,0,.25);
-    --md-shadow-z3: 0 0.4rem 0.5remrgba(0,0,0,.2),0 0 0.05remrgba(0,0,0,.35);
+    --md-shadow-z1: 1px 1px 3px #fff5ee,1px 1px 5px #e1d0c5;
+    --md-shadow-z2: 1px 1px 3px #fff5ee,2px 2px 7px #cebeb3;
+    --md-shadow-z3: 1px 1px 3px #fff5ee,2px 2px 9px #cebeb3;
 }
