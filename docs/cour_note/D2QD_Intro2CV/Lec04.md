@@ -47,7 +47,7 @@
 
 一种比较经典的逼近方法（[最小二乘法](https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95)）是求使 **[均方误差(mean square error)MSE](https://zh.wikipedia.org/wiki/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE)** 最小的 model parameters：
 
-$\hat{x} = \mathop{\arg min}\limits_x \sum\limits_i(b_i - a_i^Tx)^2$
+$\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 而如果我们假设数据中的噪声是高斯分布的（实际上大部分噪声在基数足够大的情况下都可以看作为高斯分布的），那么可以与统计学的 **极大似然估计(maximum likelihood estimation)MLE** 相统一.
 
@@ -56,7 +56,7 @@ $\hat{x} = \mathop{\arg min}\limits_x \sum\limits_i(b_i - a_i^Tx)^2$
 
 具体来说，$b_i = a_i^T x + n, \;\; n \sim G(0,\sigma)$，而对于给定的 $x$，其 **似然(likehood)** $P[(a_i,b_i)|x] = P[b_i-a_i^Tx] \propto \exp - \frac{(b_i-a_i^Tx)^2}{2\sigma^2}$，表示在 model parameter 为 $x$ 的情况下，数据符合 $(a_i,b_i)$ 的可能性。
 
-!!! note "Maximum Likelihood Es(ma(on"
+???+ note "Maximum Likelihood Estimation"
     <!--Copy from https://github.com/sakuratsuyu/Note/blob/master/docs/Computer_Science_Courses/ICV/4_Model_Fitting_and_Optimization.md?plain=1-->
 	If the data points are **independent**,
 	
@@ -71,8 +71,8 @@ $\hat{x} = \mathop{\arg min}\limits_x \sum\limits_i(b_i - a_i^Tx)^2$
 
 	$$
 	\begin{align}
-	\hat x &= \mathop{\arg max}\limits_x P[(a_1, b_1)(a_2, b_2)\dots|x] \\ &= \mathop{\arg max}\limits_x \exp\left(-\frac{||Ax-b||^2_2}{2\sigma^2}\right) 
-	= \mathop{\arg min}\limits_x||Ax - b||_2^2
+	\hat x &= \mathop{\arg \max\limits_x} P[(a_1, b_1)(a_2, b_2)\dots|x] \\ &= \mathop{\arg \max\limits_x} \exp\left(-\frac{||Ax-b||^2_2}{2\sigma^2}\right) 
+	= \mathop{\arg \min\limits_x}||Ax - b||_2^2
 	\end{align}
 	$$
 
@@ -89,7 +89,7 @@ $\hat{x} = \mathop{\arg min}\limits_x \sum\limits_i(b_i - a_i^Tx)^2$
 我们知道，对于一些比较简单的模型，我们可以直接求其 **解析解(analytical solution)**，比如使用求导等方法。
 
 !!! example "🌰"
-    以刚才的线性 MSE 为例，$\hat{x} = \mathop{\arg min}\limits_x \sum\limits_i(b_i - a_i^Tx)^2$ 等效于求解等式 $A^TAx=A^Tb$。
+    以刚才的线性 MSE 为例，$\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$ 等效于求解等式 $A^TAx=A^Tb$。
 
 然而，实际情况是大部分问题过于复杂，我们没法直接求其解析解，所以我们需要采用一些即采用一些 **数值方法(numerical methods)**。
 
@@ -116,7 +116,7 @@ $\hat{x} = \mathop{\arg min}\limits_x \sum\limits_i(b_i - a_i^Tx)^2$
 
 - 如何确定下降方向 $\vec p$
 - 如何确定下降步长
-- 最值与极值
+- 全局最优和局部最优
 
 #### 确定下降方向
 
@@ -133,41 +133,102 @@ $\hat{x} = \mathop{\arg min}\limits_x \sum\limits_i(b_i - a_i^Tx)^2$
 
 接下来以 first-order approximation 为例继续分析。
 
-观察 $F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x$，发现当 $J_f\Delta x < 0$ 时， $F(x_0 + \Delta x)$ 大概率会比 $F(x_0)$ 小，即“下降”，所以在 first-order approximation 的情况下，一般选择方向 $\vec p = -J_F^T$，即 **最速梯度下降法(steepest descent method)**。
+观察 $F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x$，发现当 $J_f\Delta x < 0$ 时， $F(x_0 + \Delta x)$ 大概率会比 $F(x_0)$ 小，即“下降”，所以在 first-order approximation 的情况下，一般选择方向 $\vec p = -J_F^T$。
+
+---
 
 #### 确定下降步长
 
 即使但从下降速率来考虑，步长太长或太小也都有明显的问题：
 
-![](70.png)
+![](57.png)
 
 所以步长的选择对下降速率的十分关键。
 
-- 确定步长：
-    - 理论最优：使 $\phi(\alpha) = F(x+\alpha h)$ 最小的 $\alpha$
-    - Backtracking algorithm 的方法：设置较大的 $\alpha$ 初值，不断减小到使 $\phi(\alpha) \leq \phi(0) + \gamma\phi'(0)\alpha,\;\; 0 <\gamma < 1$ 成立。
-    - 改进：一阶近似不够好，所以使用二阶近似，即牛顿法；
-      - 二阶泰勒展开得到 $F(x_k+\Delta x) \approx F(x_k) + J_F \Delta x + \frac{1}{2}\Delta x^TH_F\Delta x$；
-      - 对它求导得到 $\frac{\partial F}{\partial \Delta x} = J_F^T+H_F\Delta x = 0$;
-      - 于是最佳的 $\Delta x = -H_F^{-1}J_F^T$；
-      - 优点：下降快；
-      - 缺点：难解；
-          - 如何解决计算量大的问题：
-              - 根据实际问题决定
-    - Gauss-Newton method
-        - 最小二乘，找一阶倒的平方做近似，得到最佳的 $\Delta x = -(J_R^TJ_R)^{-1}J_R^TR(x_k)$；
-        - 优点就是没有海森矩阵，只有雅可比矩阵；
-        - 本方法的特点是，使用 $(J_R^TJ_R)^{-1}R(x_k)$ 来近似了海森矩阵的逆；
-        - 但是成立的前提是函数的形式是最小二乘的形式；
-    - 然而 $J_R^TJ_R$ 不是正定的，即未必可以求逆，所以我们使用Levenberg-Marquardt 算法，即 LM 算法，将 $J_R^TJ_R$ 修正为$$J_R^TJ_R$ + \lambda I$ 以保证正定；
+为了专注于步长的选择，我们记 $\phi(\alpha) = F(x+\alpha h),\;\;\text{where x and h fixed}, x\geq 0$。现在我们希望找到一个能让 $\phi(\alpha)$ 尽可能小于 $\phi(0)$ 的 $\alpha$。接下来我们介绍 Backtracking Algorithm：
 
-对于带约束的优化问题，需要 **根据实际问题** 求解。
+1. 初始化 $\alpha$ 为一个比较大的值；
+2. 不断减小 $\alpha$ 直到 $\phi(\alpha) \leq \phi(0) + \gamma\phi'(0)\alpha$；
+        - 其中 $\gamma\in(0,1)$ 是一个参数；
 
-局部最优和全局最优
 
-- 可能转化问题，使用更简单的表达式去拟合原来的表达式，来求解；
-- 其中，（凹）凸函数是一定能找到最优解的，我们称这种问题为凸优化问题(Convex optimization)(推荐同名读物https://web.stanford.edu/class/ee364a)
-  
+![](58.png){ width=300px }
+
+---
+
+上面使用 first-order approximation 为例介绍的这套方法就是 **最速梯度下降法(steepest descent method)**。
+
+!!! note "最速梯度下降法"
+    $\vec p = -J_F^T$；
+
+    - 优点
+        - 容易实现；
+        - 在距离目标点较远时表现良好；
+    - 缺点
+        - 在目标点附近收敛比较慢；
+        - 浪费了大量算力；
+
+    这是因为，最速梯度下降法主要采用的是 first-order approximation，没有体现曲率特征。
+
+因而一种很自然的改进方法就是使用 second-order approximation，即 **牛顿法(Newton Method)**。
+
+!!! note "牛顿法"
+    $F(x_k + \Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^T H_F \Delta x$
+
+    对它求导得到 $\frac{\partial F}{\partial \Delta x} = J_F^T+H_F\Delta x = 0$。
+
+    所以得到方向为 $\vec p = \Delta x =  -H_F^{-1}J_F^T$
+
+    - 优点
+        - 在目标点附近下降速度相对更快；
+    - 缺点
+        - Hessian matrix 的计算需要相当算力，甚至有时候无法计算；
+
+由此发现，牛顿法的表现会好很多，如果能够避免计算黑塞矩阵，就可以进一步提高牛顿法的效果，于是就出现了 **高斯牛顿法(Gauss-Newton method)**。
+
+!!! note "高斯牛顿法"
+    > 对于解决最小二乘法 $\hat x = \mathop{\arg \min\limits_x} ||R(x)||^2_2$ 的问题表现非常好。
+
+    对于这类问题，高斯牛顿法使用 $J_R^TJ_R$ 来近似代替 $H_F$，得到下降方向为 $\vec p = -(J_R^TJ_R)^{-1}J_R^T,\;\;\text{where }J_R\text{ is the Jacobian of }R(x)$。
+
+    - 优点
+        - 不需要计算 Hessian matrix，只需要计算 Jacobian matrix；
+    - 缺点
+        - 由于 $J_R^TJ_R$ 不正定，所以未必可逆，高斯牛顿法成立的前提是其可逆；
+        - 当然，可以使用 Levenberg-Marquardt 算法（LM 算法），即将 $J_R^TJ_R$ 修正为$$J_R^TJ_R$ + \lambda I$ 以保证正定；
+
+    ???+ summary "Levenberg-Marquardt"
+        Wiki: [🔗](https://zh.wikipedia.org/wiki/%E8%8E%B1%E6%96%87%E4%BC%AF%E6%A0%BC-%E9%A9%AC%E5%A4%B8%E7%89%B9%E6%96%B9%E6%B3%95)
+
+        $$
+        \Delta x = -(J_R^TJ_R+\lambda I)^{-1}J_R^TR(x_k)
+        $$
+
+        - The effect of $\lambda$:
+            - $\lambda \to \infty$: Gradient descent, and stepsize is small;
+            - $\lambda \to 0$: Gauss-Newton step;
+        - How to determine $\lambda$:
+            - Update in every iteration;
+            - When decreases obviously, $\lambda\uparrow$;
+            - When doesn't decrease obviously, $\lambda\downarrow$;
+
+        简单来说，LM 就是综合了最速梯度下降法和牛顿法的优点，在远离目标点的时候使用最速梯度下降法，保证启动速度快；在靠近目标点的时候使用牛顿法，保证收敛速度足够快；并且保证 $J_R^TJ_R+\lambda I$ 正定，所以始终能够使牛顿法成立。
+
+!!! tip "带约束的优化问题"
+    对于 **带约束的优化问题(constrained optimization)**，则需要 **根据实际问题** 求解。
+
+    - 我们可能可以转化问题，使用更简单的表达式去拟合原来的表达式，来求解；
+    - 其中，（凹）凸函数是一定能找到最优解的，我们称这种问题为凸优化问题(Convex optimization)
+    
+    > 推荐同名读物：https://web.stanford.edu/class/ee364a
+
+---
+
+#### 全局最优和局部最优
+
+分多个 batch 来处理，大量撒点，然后比较每一个 batch 的结果，最终取最好的一个即可。
+
+---
 
 ## 鲁棒估计 Robust estimation
 
