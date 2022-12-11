@@ -404,6 +404,53 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#优化">
+    优化
+  </a>
+<nav aria-label="优化" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#模型拟合">
+    模型拟合
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#数值方法">
+    数值方法
+  </a>
+<nav aria-label="数值方法" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#梯度下降">
+    梯度下降
+  </a>
+<nav aria-label="梯度下降" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#确定下降方向">
+    确定下降方向
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#确定下降步长">
+    确定下降步长
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#全局最优和局部最优">
+    全局最优和局部最优
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#鲁棒估计-robust-estimation">
     鲁棒估计 Robust estimation
   </a>
@@ -556,6 +603,53 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#优化">
+    优化
+  </a>
+<nav aria-label="优化" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#模型拟合">
+    模型拟合
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#数值方法">
+    数值方法
+  </a>
+<nav aria-label="数值方法" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#梯度下降">
+    梯度下降
+  </a>
+<nav aria-label="梯度下降" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#确定下降方向">
+    确定下降方向
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#确定下降步长">
+    确定下降步长
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#全局最优和局部最优">
+    全局最优和局部最优
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#鲁棒估计-robust-estimation">
     鲁棒估计 Robust estimation
   </a>
@@ -590,98 +684,215 @@
 <p class="admonition-title">注意</p>
 <p>本文尚未整理好！</p>
 </div>
-<p>优化 Optimization</p>
-<ul>
-<li>目标函数</li>
-<li>约束条件</li>
-<li>求目标函数的最优化</li>
-</ul>
-<p>一种特殊情况：线性优化（规划）</p>
-<p>eg：图像去模糊问题</p>
-<p>模糊 -&gt; 清晰</p>
+<h2 id="优化">优化<a class="headerlink" href="#优化" title="Permanent link">¶</a></h2>
+<p>首先我们来定义一个 <strong>优化(Optimization)</strong> 问题的模型：</p>
+<div class="admonition info">
+<p>设 <strong>目标函数</strong> <span class="arithmatex">\(f_0(\vec x)\)</span> 满足 <strong>约束条件</strong>：</p>
 <div class="arithmatex">\[
-\min_{X} ||Y-F*X||^2_2\\
-\text{ where Y is the blurred image, F is the blur kernel and X is the sharp image}
+\left\{
+\begin{array}{ll}
+    &amp;f_i(\vec x) \leq 0,  &amp;i = 1,...,m &amp; \text{inequality constraint functions} \\
+    &amp;g_i(\vec x) = 0,  &amp;i = 1,...,p &amp; \text{equality constraint functions}&amp;
+\end{array}
+\right.
 \]</div>
+<p>求 <span class="arithmatex">\(\vec x\in \mathrm{R}^n\)</span> ，使 <span class="arithmatex">\(f_0(\vec{x})\)</span> 最小（即最优）。</p>
+</div>
+<blockquote>
+<p>很显然，这和我们高中接触的线性规划很像，实际上线性规划就是其中一种优化问题。</p>
+</blockquote>
+<p>而接下来，我们需要尝试将一些复杂问题转化为优化问题，即根据问题，写出目标函数和约束条件，并通过一些方法来得到我们需要的 <span class="arithmatex">\(\vec x\)</span>。</p>
+<div class="admonition example">
+<p class="admonition-title">🌰 图像去模糊问题</p>
+<p>在这个 🌰 中，我们已知模糊图像 <span class="arithmatex">\(Y\)</span> 和模糊滤波器(卷积核) <span class="arithmatex">\(F\)</span>，需要通过优化的方法来求卷积运算之前的清晰图像 <span class="arithmatex">\(X\)</span>。</p>
+<p>进一步来说，就是找到清晰的图像 <span class="arithmatex">\(X\)</span>，使得它做模糊处理后与已知的模糊图像 <span class="arithmatex">\(Y\)</span> 差别尽可能小，于是问题转化为：</p>
+<ul>
+<li>目标函数为 <span class="arithmatex">\(\min\limits_{X} || Y - F * X ||^2_2\)</span> 的优化问题。</li>
+</ul>
+</div>
 <hr/>
-<p>模型拟合 Model Fitting</p>
-<p>一个数学模型描述问题中输入输出的关系</p>
-<p>构成：</p>
-<ul>
-<li>输入</li>
-<li>输出</li>
-<li>参数</li>
-</ul>
-<p>最小二乘法</p>
-<p>均方误差 / Mean Square Error / MSE</p>
-<p><span class="arithmatex">\(\argmin\)</span></p>
-<p>Maximum likelihood Estimation 极大似然估计</p>
-<ul>
-<li>Details</li>
-</ul>
-<p>如果我们假设噪声是高斯分布的，那么可以与统计学的极大似然估计统一</p>
+<h3 id="模型拟合">模型拟合<a class="headerlink" href="#模型拟合" title="Permanent link">¶</a></h3>
+<p>为了研究分析实际问题，我们需要对问题进行一个建模，更具体的来说就是根据实际情况，寻找数据之间的关系，并建立数学模型。</p>
+<p>一个数学 <strong>模型(model)</strong> 描述问题中输入和输出的关系，例如：线性模型(linear model) <span class="arithmatex">\(b = a^T x\)</span> 就描述了输入(input) <span class="arithmatex">\(a\)</span> 和输出(output) <span class="arithmatex">\(b\)</span> 关于模型参数(model parameter) <span class="arithmatex">\(x\)</span> 的关系。</p>
+<p>而实际的结果很难严格满足数学模型，这是由多方原因导致的，所以我们往往做的是对实际情况进行 <strong>模型拟合(model fitting)</strong>。</p>
+<p>更具体的来说，我们可能已经有一个先验的假设，即数据符合哪种模型，接下来根据数据来分析得到合适的 model parameters，而这个步骤也常常被称为 learning。</p>
+<p>一种比较经典的逼近方法（<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95">最小二乘法</a>）是求使 <strong><a href="https://zh.wikipedia.org/wiki/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE">均方误差(mean square error)MSE</a></strong> 最小的 model parameters：</p>
+<p><span class="arithmatex">\(\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2\)</span></p>
+<p>而如果我们假设数据中的噪声是高斯分布的（实际上大部分噪声在基数足够大的情况下都可以看作为高斯分布的），那么可以与统计学的 <strong>极大似然估计(maximum likelihood estimation)MLE</strong> 相统一.</p>
+<div class="admonition tip">
+<p class="admonition-title">MSE vs. MLE</p>
+<p><a href="https://medium.com/analytics-vidhya/mse-vs-mle-for-linear-regression-f4ce3f6b990e">MSE vs MLE for linear regression</a></p>
+</div>
+<p>具体来说，<span class="arithmatex">\(b_i = a_i^T x + n, \;\; n \sim G(0,\sigma)\)</span>，而对于给定的 <span class="arithmatex">\(x\)</span>，其 <strong>似然(likehood)</strong> <span class="arithmatex">\(P[(a_i,b_i)|x] = P[b_i-a_i^Tx] \propto \exp - \frac{(b_i-a_i^Tx)^2}{2\sigma^2}\)</span>，表示在 model parameter 为 <span class="arithmatex">\(x\)</span> 的情况下，数据符合 <span class="arithmatex">\((a_i,b_i)\)</span> 的可能性。</p>
+<details class="note" open="open">
+<summary>Maximum Likelihood Estimation</summary>
+<p><!--Copy from https://github.com/sakuratsuyu/Note/blob/master/docs/Computer_Science_Courses/ICV/4_Model_Fitting_and_Optimization.md?plain=1-->
+If the data points are <strong>independent</strong>,</p>
+<div class="arithmatex">\[
+\begin{align}
+P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\limits_iP[b_i - a_{i^{Tx]}} \\
+&amp; \propto \exp\left(-\frac{\sum_i(b_i - a_i^Tx)^2}{2\sigma^2}\right) = \exp\left(-\frac{||Ax-b||^2_2}{2\sigma^2}\right)
+\end{align}
+\]</div>
+<p>That is, maximize the likelihood to find the best <span class="arithmatex">\(x\)</span>.</p>
+<div class="arithmatex">\[
+\begin{align}
+\hat x &amp;= \mathop{\arg \max\limits_x} P[(a_1, b_1)(a_2, b_2)\dots|x] \\ &amp;= \mathop{\arg \max\limits_x} \exp\left(-\frac{||Ax-b||^2_2}{2\sigma^2}\right) 
+= \mathop{\arg \min\limits_x}||Ax - b||_2^2
+\end{align}
+\]</div>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">MSE = MLE with Gaussian noise assumption</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">需要补数学知识，完善这部分内容</p>
+</div>
 <hr/>
-<p>数值方法 Numerical methods</p>
-<p>给定优化问题，如何求最优解</p>
+<h2 id="数值方法">数值方法<a class="headerlink" href="#数值方法" title="Permanent link">¶</a></h2>
+<p>上一小节介绍了如何对实际问题进行数学建模，接下来需要介绍的是如何求解数学模型。</p>
+<p>我们知道，对于一些比较简单的模型，我们可以直接求其 <strong>解析解(analytical solution)</strong>，比如使用求导等方法。</p>
+<div class="admonition example">
+<p class="admonition-title">🌰</p>
+<p>以刚才的线性 MSE 为例，<span class="arithmatex">\(\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2\)</span> 等效于求解等式 <span class="arithmatex">\(A^TAx=A^Tb\)</span>。</p>
+</div>
+<p>然而，实际情况是大部分问题过于复杂，我们没法直接求其解析解，所以我们需要采用一些即采用一些 <strong>数值方法(numerical methods)</strong>。</p>
+<hr/>
+<h3 id="梯度下降">梯度下降<a class="headerlink" href="#梯度下降" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../56.png"><img align="right" alt="" src="../56.png" width="300px"/></a></p>
+<blockquote>
+<p>Sourece: <a href="https://commons.wikimedia.org/w/index.php?curid=2283984">https://commons.wikimedia.org/w/index.php?curid=2283984</a></p>
+<p>由于相关领域的“函数”等基本上都是高维的，所以我们一般使用二维函数图像的方法来形象表示函数，即使用“等高线”的形式来可视化函数。</p>
+</blockquote>
+<p>虽然没法直接求解析解，但是一般函数都具有一些局部性质，例如极值点临域的梯度都指向极值点。模糊地来说，只要我们随着“梯度”去“下降”，就有可能找到极值点，这就是通过 <strong>梯度下降(gradient descent)</strong> 的方法来解决优化问题。</p>
+<p>简单描述梯度下降的过程：</p>
+<ol>
+<li>初始化起点坐标 x；</li>
+<li>直到 x 收敛到我们满意的程度之前：</li>
+<li>计算下降方向 p；</li>
+<li>决定下降步长 ⍺；</li>
+<li>更新 x = x + ⍺p；</li>
+</ol>
+<p>其中有三件事需要特殊说明：</p>
 <ul>
-<li>求解析解（比如通过求导）<ul>
-<li>以刚刚的线性 MSE 为例</li>
+<li>如何确定下降方向 <span class="arithmatex">\(\vec p\)</span></li>
+<li>如何确定下降步长</li>
+<li>全局最优和局部最优</li>
 </ul>
-</li>
-</ul>
-<p>然而大部分问题我们没法求解析解</p>
+<h4 id="确定下降方向">确定下降方向<a class="headerlink" href="#确定下降方向" title="Permanent link">¶</a></h4>
+<p>对于我们以前接触过的函数，即形式相对简单的函数，我们当然可以直接求其梯度得到下降方向。然而实际问题中的函数可能非常复杂，或梯度很难得到。这时候我们就只能退而求其次，求其“近似”梯度方向。换句话来说，我们希望能够找到一个和原函数在局部和该函数很像的拟合函数，并且用这个拟合函数的梯度方向来决定梯度下降的方向。</p>
+<p>于是我们想到泰勒展开，它将函数展开为多项式，而多项式的梯度是相对容易得到的。</p>
+<p>其中比较常用的是：</p>
 <ul>
-<li>梯度下降 GD<ul>
-<li>确定下降方向 p ：<ul>
-<li>局部范围内可以让我值下降；</li>
-<li>如果形式简单，可以直接求解析解；</li>
-<li>在局部去逼近函数，使用泰勒展开，雅可比矩阵&amp;海森矩阵；<ul>
-<li><span class="arithmatex">\(F(x_k+\Delta x) \approx F(x_k) + J_F \Delta x + \frac{1}{2}\Delta x^TH_F\Delta x\)</span>；</li>
+<li>first-order approximation: <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x\)</span></li>
+<li>second-order approximation: <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^T H_F \Delta x\)</span></li>
 </ul>
-</li>
-<li>使用一阶导数来决定减小方向：<ul>
-<li>Taypor expansion at <span class="arithmatex">\(x_0\)</span>: <span class="arithmatex">\(F(x_0+\Delta x) \approx F(x_0) +J_F\Delta x\)</span>；</li>
-<li>当 <span class="arithmatex">\(J_F\Delta x &lt; 0\)</span> 时，此函数会减小。</li>
-<li>于是当 <span class="arithmatex">\(Delta x\)</span> 的方向与 <span class="arithmatex">\(-J_F^T\)</span> 相同时候，能快速下降；</li>
-<li>这种方法即 最速梯度下降法（Steepest descent method）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>确定步长：<ul>
-<li>理论最优：使 <span class="arithmatex">\(\phi(\alpha) = F(x+\alpha h)\)</span> 最小的 <span class="arithmatex">\(\alpha\)</span></li>
-<li>Backtracking algorithm 的方法：设置较大的 <span class="arithmatex">\(\alpha\)</span> 初值，不断减小直到使 <span class="arithmatex">\(\phi(\alpha) \leq \phi(0) + \gamma\phi'(0)\alpha,\;\; 0 &lt; \gamma &lt; 1\)</span> 成立。</li>
-<li>改进：一阶近似不够好，所以使用二阶近似，即牛顿法；</li>
-<li>二阶泰勒展开得到 <span class="arithmatex">\(F(x_k+\Delta x) \approx F(x_k) + J_F \Delta x + \frac{1}{2}\Delta x^TH_F\Delta x\)</span>；</li>
-<li>对它求导得到 <span class="arithmatex">\(\frac{\partial F}{\partial \Delta x} = J_F^T+H_F\Delta x = 0\)</span>;</li>
-<li>于是最佳的 <span class="arithmatex">\(\Delta x = -H_F^{-1}J_F^T\)</span>；</li>
-<li>优点：下降快；</li>
-<li>缺点：难解；<ul>
-<li>如何解决计算量大的问题：<ul>
-<li>根据实际问题决定</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Gauss-Newton method<ul>
-<li>最小二乘，找一阶倒的平方做近似，得到最佳的 <span class="arithmatex">\(\Delta x = -(J_R^TJ_R)^{-1}J_R^TR(x_k)\)</span>；</li>
-<li>优点就是没有海森矩阵，只有雅可比矩阵；</li>
-<li>本方法的特点是，使用 <span class="arithmatex">\((J_R^TJ_R)^{-1}R(x_k)\)</span> 来近似了海森矩阵的逆；</li>
-<li>但是成立的前提是函数的形式是最小二乘的形式；</li>
-</ul>
-</li>
-<li>然而 <span class="arithmatex">\(J_R^TJ_R\)</span> 不是正定的，即未必可以求逆，所以我们使用 Levenberg-Marquardt 算法，即 LM 算法，将 <span class="arithmatex">\(J_R^TJ_R\)</span> 修正为 <span class="arithmatex">\(<span class="arithmatex">\(J_R^TJ_R\)</span> + \lambda I\)</span> 以保证正定；</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>对于带约束的优化问题，需要 <strong>根据实际问题</strong> 求解。</p>
-<p>局部最优和全局最优</p>
+<p>其中 <span class="arithmatex">\(J_F\)</span> 是 <a href="https://zh.m.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94%E7%9F%A9%E9%98%B5">雅各比矩阵</a>，可以理解为多维向量函数的导数；<span class="arithmatex">\(H_F\)</span> 是 <a href="https://zh.m.wikipedia.org/zh-hans/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%99%A3">海森矩阵</a>，可以理解为多位向量函数的二阶导数。</p>
+<p>接下来以 first-order approximation 为例继续分析。</p>
+<p>观察 <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x\)</span>，发现当 <span class="arithmatex">\(J_f\Delta x &lt; 0\)</span> 时， <span class="arithmatex">\(F(x_0 + \Delta x)\)</span> 大概率会比 <span class="arithmatex">\(F(x_0)\)</span> 小，即“下降”，所以在 first-order approximation 的情况下，一般选择方向 <span class="arithmatex">\(\vec p = -J_F^T\)</span>。</p>
+<hr/>
+<h4 id="确定下降步长">确定下降步长<a class="headerlink" href="#确定下降步长" title="Permanent link">¶</a></h4>
+<p>即使但从下降速率来考虑，步长太长或太小也都有明显的问题：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../57.png"><img alt="" src="../57.png"/></a></p>
+<p>所以步长的选择对下降速率的十分关键。</p>
+<p>为了专注于步长的选择，我们记 <span class="arithmatex">\(\phi(\alpha) = F(x+\alpha h),\;\;\text{where x and h fixed}, x\geq 0\)</span>。现在我们希望找到一个能让 <span class="arithmatex">\(\phi(\alpha)\)</span> 尽可能小于 <span class="arithmatex">\(\phi(0)\)</span> 的 <span class="arithmatex">\(\alpha\)</span>。接下来我们介绍 Backtracking Algorithm：</p>
+<ol>
+<li>初始化 <span class="arithmatex">\(\alpha\)</span> 为一个比较大的值；</li>
+<li>不断减小 <span class="arithmatex">\(\alpha\)</span> 直到 <span class="arithmatex">\(\phi(\alpha) \leq \phi(0) + \gamma\phi'(0)\alpha\)</span>；
+        - 其中 <span class="arithmatex">\(\gamma\in(0,1)\)</span> 是一个参数；</li>
+</ol>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../58.png"><img alt="" src="../58.png" width="300px"/></a></p>
+<hr/>
+<p>上面使用 first-order approximation 为例介绍的这套方法就是 <strong>最速梯度下降法(steepest descent method)</strong>。</p>
+<div class="admonition note">
+<p class="admonition-title">最速梯度下降法</p>
+<p><span class="arithmatex">\(\vec p = -J_F^T\)</span>；</p>
 <ul>
-<li>可能转化问题，使用更简单的表达式去拟合原来的表达式，来求解；</li>
-<li>其中，（凹）凸函数是一定能找到最优解的，我们称这种问题为凸优化问题(Convex optimization)(推荐同名读物https://web.stanford.edu/class/ee364a)</li>
+<li>优点<ul>
+<li>容易实现；</li>
+<li>在距离目标点较远时表现良好；</li>
 </ul>
+</li>
+<li>缺点<ul>
+<li>在目标点附近收敛比较慢；</li>
+<li>浪费了大量算力；</li>
+</ul>
+</li>
+</ul>
+<p>这是因为，最速梯度下降法主要采用的是 first-order approximation，没有体现曲率特征。</p>
+</div>
+<p>因而一种很自然的改进方法就是使用 second-order approximation，即 <strong>牛顿法(Newton Method)</strong>。</p>
+<div class="admonition note">
+<p class="admonition-title">牛顿法</p>
+<p><span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^T H_F \Delta x\)</span></p>
+<p>对它求导得到 <span class="arithmatex">\(\frac{\partial F}{\partial \Delta x} = J_F^T+H_F\Delta x = 0\)</span>。</p>
+<p>所以得到方向为 <span class="arithmatex">\(\vec p = \Delta x =  -H_F^{-1}J_F^T\)</span></p>
+<ul>
+<li>优点<ul>
+<li>在目标点附近下降速度相对更快；</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>Hessian matrix 的计算需要相当算力，甚至有时候无法计算；</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>由此发现，牛顿法的表现会好很多，如果能够避免计算黑塞矩阵，就可以进一步提高牛顿法的效果，于是就出现了 <strong>高斯牛顿法(Gauss-Newton method)</strong>。</p>
+<div class="admonition note">
+<p class="admonition-title">高斯牛顿法</p>
+<blockquote>
+<p>对于解决最小二乘法 <span class="arithmatex">\(\hat x = \mathop{\arg \min\limits_x} ||R(x)||^2_2\)</span> 的问题表现非常好。</p>
+</blockquote>
+<p>对于这类问题，高斯牛顿法使用 <span class="arithmatex">\(J_R^TJ_R\)</span> 来近似代替 <span class="arithmatex">\(H_F\)</span>，得到下降方向为 <span class="arithmatex">\(\vec p = -(J_R^TJ_R)^{-1}J_R^T,\;\;\text{where }J_R\text{ is the Jacobian of }R(x)\)</span>。</p>
+<ul>
+<li>优点<ul>
+<li>不需要计算 Hessian matrix，只需要计算 Jacobian matrix；</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>由于 <span class="arithmatex">\(J_R^TJ_R\)</span> 不正定，所以未必可逆，高斯牛顿法成立的前提是其可逆；</li>
+<li>当然，可以使用 Levenberg-Marquardt 算法（LM 算法），即将 <span class="arithmatex">\(J_R^TJ_R\)</span> 修正为<span class="arithmatex">\(<span class="arithmatex">\(J_R^TJ_R\)</span> + \lambda I\)</span> 以保证正定；</li>
+</ul>
+</li>
+</ul>
+<details class="summary" open="open">
+<summary>Levenberg-Marquardt</summary>
+<p>Wiki: <a href="https://zh.wikipedia.org/wiki/%E8%8E%B1%E6%96%87%E4%BC%AF%E6%A0%BC-%E9%A9%AC%E5%A4%B8%E7%89%B9%E6%96%B9%E6%B3%95">🔗</a></p>
+<div class="arithmatex">\[
+\Delta x = -(J_R^TJ_R+\lambda I)^{-1}J_R^TR(x_k)
+\]</div>
+<ul>
+<li>The effect of <span class="arithmatex">\(\lambda\)</span>:<ul>
+<li><span class="arithmatex">\(\lambda \to \infty\)</span>: Gradient descent, and stepsize is small;</li>
+<li><span class="arithmatex">\(\lambda \to 0\)</span>: Gauss-Newton step;</li>
+</ul>
+</li>
+<li>How to determine <span class="arithmatex">\(\lambda\)</span>:<ul>
+<li>Update in every iteration;</li>
+<li>When decreases obviously, <span class="arithmatex">\(\lambda\uparrow\)</span>;</li>
+<li>When doesn't decrease obviously, <span class="arithmatex">\(\lambda\downarrow\)</span>;</li>
+</ul>
+</li>
+</ul>
+<p>简单来说，LM 就是综合了最速梯度下降法和牛顿法的优点，在远离目标点的时候使用最速梯度下降法，保证启动速度快；在靠近目标点的时候使用牛顿法，保证收敛速度足够快；并且保证 <span class="arithmatex">\(J_R^TJ_R+\lambda I\)</span> 正定，所以始终能够使牛顿法成立。</p>
+</details>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">带约束的优化问题</p>
+<p>对于 <strong>带约束的优化问题(constrained optimization)</strong>，则需要 <strong>根据实际问题</strong> 求解。</p>
+<ul>
+<li>我们可能可以转化问题，使用更简单的表达式去拟合原来的表达式，来求解；</li>
+<li>其中，（凹）凸函数是一定能找到最优解的，我们称这种问题为凸优化问题(Convex optimization)</li>
+</ul>
+<blockquote>
+<p>推荐同名读物：<a href="https://web.stanford.edu/class/ee364a">https://web.stanford.edu/class/ee364a</a></p>
+</blockquote>
+</div>
+<hr/>
+<h4 id="全局最优和局部最优">全局最优和局部最优<a class="headerlink" href="#全局最优和局部最优" title="Permanent link">¶</a></h4>
+<p>分多个 batch 来处理，大量撒点，然后比较每一个 batch 的结果，最终取最好的一个即可。</p>
+<hr/>
 <h2 id="鲁棒估计-robust-estimation">鲁棒估计 Robust estimation<a class="headerlink" href="#鲁棒估计-robust-estimation" title="Permanent link">¶</a></h2>
 <p>inlier / outliers i.e. 内点 / 外点</p>
 <ul>
@@ -763,7 +974,7 @@ s.t. ||x||_2 \leq 1
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月22日 22:07:42</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月11日 17:36:35</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
