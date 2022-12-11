@@ -97,9 +97,6 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 ### 梯度下降
 
-![](56.png){ width=300px align=right }
-> Sourece: https://commons.wikimedia.org/w/index.php?curid=2283984
-
 > 由于相关领域的“函数”等基本上都是高维的，所以我们一般使用二维函数图像的方法来形象表示函数，即使用“等高线”的形式来可视化函数。
 
 虽然没法直接求解析解，但是一般函数都具有一些局部性质，例如极值点临域的梯度都指向极值点。模糊地来说，只要我们随着“梯度”去“下降”，就有可能找到极值点，这就是通过 **梯度下降(gradient descent)** 的方法来解决优化问题。
@@ -111,6 +108,9 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
    1. 计算下降方向 p；
    2. 决定下降步长 ⍺；
    3. 更新 x = x + ⍺p；
+
+![](56.png)
+> Sourece: https://commons.wikimedia.org/w/index.php?curid=2283984
 
 其中有三件事需要特殊说明：
 
