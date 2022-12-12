@@ -230,73 +230,169 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 ---
 
-## 鲁棒估计 Robust estimation
+## 鲁棒估计
 
-inlier / outliers i.e. 内点 / 外点
+**[鲁棒估计(robust estimation)](https://en.wikipedia.org/wiki/Robust_statistics)** 是对从各种概率分布（尤其是非正态分布）中提取的数据具有良好性能的统计。
 
-- 前者指符合我们的预期模型拟合的点；
-- 外点为完全不符合我们预期的模型拟合的点；
+在拟合模型中，难免出现一些不符合预期的点，而它们会对拟合结果产生或多或小的影响，而如何权衡这些噪声与真正有用的数据点之间的关系，就是鲁棒估计的课题。
 
-由于外点偏离很大，而最小二乘法中存在平方操作，所以最小二乘法拟合收这些外点影响很大
+---
 
-于是我们考虑，更换拟合的目标函数，比如使用 L1 loss(即求绝对值)，不过更好的是一种叫 huber loss，它在距离远点较远的时候比较接近 L1 loss；
+### 内点 & 外点
 
-另外一种方法是 RANSAC，即 Random Sample Consensus，随机采样一致；
+首先我们对数据点进行分类：
 
-RANSAC procedure:
+- 内点(inlier)：符合我们预期的模型拟合的点；
+- 外点(outlier)：完全不符合我们预期模型的点，又叫离群；
 
-- 首先随机找两个点拟合一条直线，然后检查有多少点符合这条直线，并对其进行 vote；
-- 重复这个步骤，最后选择票数最高的拟合；
+![](59.png)
 
-正确性证明：
+!!! error "外点的影响"
+    由于外点偏离很大，而最小二乘法中存在平方操作，所以最小二乘法拟合受这些外点影响很大：
 
-- 首先有结论，outlier拟合出来的直线一般votes比较少，因为outlier之间很难一致，但是inlier之间容易一致；
+    ![](60.png)
 
-## 病态问题(ill-posed problem)
+---
 
-- 如果一个问题的解不唯一，那么这个问题是一个病态问题；
-- 在线性问题中，一个线性方程的解不唯一，则同样是一个病态问题；
+### 不同的损失函数
 
-解决办法：
+于是我们考虑，可以更换拟合的损失函数，来减小大偏差点带来的影响，比如使用 L1 loss(即求绝对值)。不过更好的是一种选择叫 huber loss，它在距离远点较远的时候比较接近 L1 loss。
 
-- 增加方程，即增加约束，而这种约束一般来自于对变量的先验约束；
-- L2 regularization
-    - 可以让我们没有用的解尽可能接近0，以减小没用的变量的影响
-    - 抑制冗余变量
-- L1 regularization
-    - L1 可视化中可以发现，坐标轴上比较容易抓住解，此时意味着有些变量是0，换句话来说能让解变得“稀疏sparse”，即在维度上的分布比较集中
+??? note "L1 & L2 & Huber"
+    - L1 loss 即直接对偏差取绝对值，其公式为 $L_1 = |f(x)-Y|$，其最大的问题就是在拐点处不光滑，即不可导，而且其收敛可能过快；
+    - L2 loss 即将偏差取平方，即 $L_2 = |f(x)-Y|^2$，L2 loss 在拐点处则是光滑可导的，且收敛相对稳定光滑，但是且在某些时候具有比较好的几何意义，但是对于偏差较大的点更敏感；
+    - Huber loss 又叫 smooth L1 loss，即使用分段函数，在拐点附近使用 L2 loss，在远端使用 L1 loss；
 
-不过，将他们作为约束条件参与求解，不如直接加进去作为一个项，其效果是等价的
+    ![](61.png)
+
+    - 相关文章：https://zhuanlan.zhihu.com/p/48426076
+
+---
+
+### 随机抽样一致
+
+**[随机抽样一致(random sample consensus)RANSAC](https://zh.wikipedia.org/wiki/%E9%9A%A8%E6%A9%9F%E6%8A%BD%E6%A8%A3%E4%B8%80%E8%87%B4)** 采用迭代的方式从包含外点的数据中估计数学模型参数，是一个对于存在明显外点的数据非常有效的方法。
+
+!!! summary "RANSAC procedure"
+
+    1. 首先随机找两个点拟合一条直线，然后检查有多少点符合这条直线，并对其进行 vote；
+    2. 重复这个步骤，最后选择票数最高的拟合；
+
+    ![](62.png)
+
+由 outlier 拟合出来的直线一般 votes 比较少，因为 outlier 之间很难一致；但是inlier之间容易一致，因而得分往往更高，于是将它们区分开来。~~这不就是 Voting Tree (逃~~
+
+---
+
+## 病态问题
+
+如果一个问题的解不唯一，那么这个问题是一个 **病态问题(ill-posed problem)**。特别的，在线性问题中，一个线性方程（组）的解如果不唯一（不满秩），则同样是一个病态问题。
+
+当然，对于线性方程组，根据线性代数的知识，我们可以增加方程，即增加约束。而这种约束一般来自于对变量的先验约束，比如：
+
+!!! note "L2 regularization"
+    **L2 norm**: $||x||_2 = \sigma_i x_i^2$;
+
+    **L2 regularization**: $\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_2 \leq 1$;
+
+    ![](63.png){ width=200px }
+
+    > 通过让选择的解尽可能接近原点，而让我们没有用的解的维度尽可能接近 0，以减小没用的变量的影响，抑制冗余变量。
+
+!!! note "L1 regularization"
+    **L1 norm**: $||x||_1=\sigma_i|x_i|$;
+
+    **L1 regularization**: $\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_1 \leq 1$
+
+    ![](64.png){ width=200px }
+
+    > L1 可视化中可以发现，坐标轴上比较容易抓住解，此时意味着有些变量(维度)是 0，换句话来说能让解变得“**稀疏(sparse)**”，即在维度上的分布只比较集中于个别项。
+
+不过，将他们作为约束条件参与求解，不如直接加进去作为一个项，其效果是等价的：
 
 $$
-\min_{x}||Ax-b||^2_2+\lambda ||x||_2^2  (或者\lambda ||x||_1)\\
-s.t. ||x||_2 \leq 1
+\begin{matrix}
+    \text{L2 regularization:}               & | & \text{or L1 regularization:}\\
+    \min_{x}||Ax-b||^2_2+\lambda ||x||_2^2  & | & \min_{x}||Ax-b||^2_2+\lambda ||x||_1\\
+    s.t. ||x||_2 \leq 1                     & | & s.t. ||x||_1 \leq 1 \\
+\end{matrix}
 $$
 
-Overfitting and underfitting 过拟合和欠拟合
+---
 
+### 过拟合和欠拟合
 
-## Interpolation
+在这个过程中，也要小心 **过拟合(overfitting)** 和 **欠拟合(underfitting)**，它们的含义非常直白：
 
-线性拟合、二次样条插值（每一段都是一个二次函数）、三次样条插值（一阶导二阶导连续，但最终是个病态问题，需要额外再约束起点和终点二阶导为零或者限定给定斜率等，就需要俩额外约束条件）、
+![](65.png)
 
+---
+
+## 插值
+
+**插值(interpolation)** 其实已经在 [lec 3 的笔记](Lec03.md#放大图片向上采样--插值) 里提到过了。
+
+这里先略过。
+
+- [ ] TODO: 再细说。
+
+??? bug "sketch" 
+    线性拟合、二次样条插值（每一段都是一个二次函数）、三次样条插值（一阶导二阶导连续，但最终是个病态问题，需要额外再约束起点和终点二阶导为零或者限定给定斜率等，就需要俩额外约束条件）、
+
+---
 
 上面是连续优化问题，下面是离散优化问题
 
-## Graphcut图割 and MRF马可夫随机场
+## 图割 & 马可夫随机场
 
-- image labeling problems
-    - 强先验：相邻pixel的label很可能相同，关键在于如何建模这种空间连续性
-        - 实现：用图(graph)来描述图片，假设每个像素都是一个node，像素之间建edge，以相似性或关联性作为边权；
-        - 一般这个权重为 
-            - 例如，$f$ 是颜色，则：
-            - 像素差异为 $s(f_i,f_j)=\sqrt{\sum_k(f_{ik},f_{jk})^2}$
-            - 则相似性权重 affinity $w(i,j) = A(f_i,f_j) = e^{\frac{-1}{2\sigma^2}s(f_i,f_j)}$；
-        - 然后做图割问题，割成两个图，图割的代价为断的边权之权重和 $cut(V_A,V_B)= \sum_{u\in V_A, v\in V_B} w(u,v)$；
-            - 这个问题等效于最大流问题；
-        - 但这样的分割也是有问题的，所以可能不太联通的两个点被分在了一起；
-        - 我们还需要衡量这个子集是否足够稠密 (normalized cut)
+### 图像标签问题
 
-- Markov Random Field （更通用）
-    - Markov chains
-    - 听不懂
+**图像标签问题(image labeling problems)** 即通过图片信息给每一个像素分配标签，实际上就是一个对图像内容的分类和识别问题。
+
+![](66.png)
+
+其中一个比较强的 **先验(prior)** 是：相邻且相似的像素应当拥有相同的标签。
+
+而图割和马可夫随机场可以建模这种先验。
+
+---
+
+### 图割
+
+
+**图割(Graphcut)** 的核心思想是，把一张图片的每一个像素看作一个 graph 中的 vertex，并在像素之间建 edge，并将 weight 定义为两像素之间的相似性或关联性(affinity or similarity)。
+
+!!! success "measuring affinity"
+    比如，我们可以这样衡量像素的相似性：
+
+    - 设 $f$ 表示颜色；
+    - 像素差异(dissimilarity)为 $s(f_i,f_j)=\sqrt{\sum_k(f_{ik},f_{jk})^2}$；
+    - 则相似性(affinity)权重为：$w(i,j) = A(f_i,f_j) = e^{\frac{-1}{2\sigma^2}s(f_i,f_j)}$；
+
+再接下来，通过这样的方式将图片建成图后，就可以把问题转化为图割问题，我们将小权的边删去，最终会形成若干连通分量，而这些连通分量那的点则被视为一个“分割”。
+
+具体来说，图割的代价为断的边权之权重和 $cut(V_A,V_B)= \sum_{u\in V_A, v\in V_B} w(u,v)$，而我们需要找代价尽可能小的，满足我们要求的图割。当然，这个问题也等效于最大流问题；
+
+!!! warning "Problem with min-cut"
+    > Bias to cut small, isolated segments.
+
+    ![](67.png)
+
+由于 min-cut 的这个问题，我们还需要衡量这个子集是否足够稠密，所以我们倾向于使用 normalized-cut。
+
+$$
+assoc(V_A,V) = \sigma_{u\in V_A, v\in V} w(u,v) \\
+NCut(V_A,V_B) = \frac{cut(V_A,V_B)}{assoc(V_A,V)} + \frac{cut(V_A,V_B)}{assoc(V_B,V)}
+$$
+
+- NP-Complete
+- Approximate solution by eigenvalue decomposition
+
+---
+
+### 马可夫随机场
+
+**马可夫随机场(Markov Random Field)MRF** 是一种更通用的解决方案，可惜我第一次没听懂，等我听懂了再来补充这里的内容。
+
+??? bug "sketch"
+    Markov chains
