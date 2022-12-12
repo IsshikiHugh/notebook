@@ -291,7 +291,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 当然，对于线性方程组，根据线性代数的知识，我们可以增加方程，即增加约束。而这种约束一般来自于对变量的先验约束，比如：
 
 !!! note "L2 regularization"
-    **L2 norm**: $||x||_2 = \sigma_i x_i^2$;
+    **L2 norm**: $||x||_2 = \sum_i x_i^2$;
 
     **L2 regularization**: $\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_2 \leq 1$;
 
@@ -300,7 +300,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
     > 通过让选择的解尽可能接近原点，而让我们没有用的解的维度尽可能接近 0，以减小没用的变量的影响，抑制冗余变量。
 
 !!! note "L1 regularization"
-    **L1 norm**: $||x||_1=\sigma_i|x_i|$;
+    **L1 norm**: $||x||_1=\sum_i|x_i|$;
 
     **L1 regularization**: $\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_1 \leq 1$
 
@@ -381,7 +381,7 @@ $$
 由于 min-cut 的这个问题，我们还需要衡量这个子集是否足够稠密，所以我们倾向于使用 normalized-cut。
 
 $$
-assoc(V_A,V) = \sigma_{u\in V_A, v\in V} w(u,v) \\
+assoc(V_A,V) = \sum_{u\in V_A, v\in V} w(u,v) \\
 NCut(V_A,V_B) = \frac{cut(V_A,V_B)}{assoc(V_A,V)} + \frac{cut(V_A,V_B)}{assoc(V_B,V)}
 $$
 
