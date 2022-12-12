@@ -451,24 +451,71 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#鲁棒估计-robust-estimation">
-    鲁棒估计 Robust estimation
+<a class="md-nav__link" href="#鲁棒估计">
+    鲁棒估计
+  </a>
+<nav aria-label="鲁棒估计" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#内点--外点">
+    内点 &amp; 外点
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#病态问题ill-posed-problem">
-    病态问题(ill-posed problem)
+<a class="md-nav__link" href="#不同的损失函数">
+    不同的损失函数
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#interpolation">
-    Interpolation
+<a class="md-nav__link" href="#随机抽样一致">
+    随机抽样一致
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#病态问题">
+    病态问题
+  </a>
+<nav aria-label="病态问题" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#过拟合和欠拟合">
+    过拟合和欠拟合
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#插值">
+    插值
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#graphcut图割-and-mrf马可夫随机场">
-    Graphcut图割 and MRF马可夫随机场
+<a class="md-nav__link" href="#图割--马可夫随机场">
+    图割 &amp; 马可夫随机场
   </a>
+<nav aria-label="图割 &amp; 马可夫随机场" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#图像标签问题">
+    图像标签问题
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#图割">
+    图割
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#马可夫随机场">
+    马可夫随机场
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -650,24 +697,71 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#鲁棒估计-robust-estimation">
-    鲁棒估计 Robust estimation
+<a class="md-nav__link" href="#鲁棒估计">
+    鲁棒估计
+  </a>
+<nav aria-label="鲁棒估计" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#内点--外点">
+    内点 &amp; 外点
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#病态问题ill-posed-problem">
-    病态问题(ill-posed problem)
+<a class="md-nav__link" href="#不同的损失函数">
+    不同的损失函数
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#interpolation">
-    Interpolation
+<a class="md-nav__link" href="#随机抽样一致">
+    随机抽样一致
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#病态问题">
+    病态问题
+  </a>
+<nav aria-label="病态问题" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#过拟合和欠拟合">
+    过拟合和欠拟合
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#插值">
+    插值
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#graphcut图割-and-mrf马可夫随机场">
-    Graphcut图割 and MRF马可夫随机场
+<a class="md-nav__link" href="#图割--马可夫随机场">
+    图割 &amp; 马可夫随机场
   </a>
+<nav aria-label="图割 &amp; 马可夫随机场" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#图像标签问题">
+    图像标签问题
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#图割">
+    图割
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#马可夫随机场">
+    马可夫随机场
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -759,9 +853,7 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <p>然而，实际情况是大部分问题过于复杂，我们没法直接求其解析解，所以我们需要采用一些即采用一些 <strong>数值方法(numerical methods)</strong>。</p>
 <hr/>
 <h3 id="梯度下降">梯度下降<a class="headerlink" href="#梯度下降" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../56.png"><img align="right" alt="" src="../56.png" width="300px"/></a></p>
 <blockquote>
-<p>Sourece: <a href="https://commons.wikimedia.org/w/index.php?curid=2283984">https://commons.wikimedia.org/w/index.php?curid=2283984</a></p>
 <p>由于相关领域的“函数”等基本上都是高维的，所以我们一般使用二维函数图像的方法来形象表示函数，即使用“等高线”的形式来可视化函数。</p>
 </blockquote>
 <p>虽然没法直接求解析解，但是一般函数都具有一些局部性质，例如极值点临域的梯度都指向极值点。模糊地来说，只要我们随着“梯度”去“下降”，就有可能找到极值点，这就是通过 <strong>梯度下降(gradient descent)</strong> 的方法来解决优化问题。</p>
@@ -773,6 +865,10 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <li>决定下降步长 ⍺；</li>
 <li>更新 x = x + ⍺p；</li>
 </ol>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../56.png"><img alt="" src="../56.png"/></a></p>
+<blockquote>
+<p>Sourece: <a href="https://commons.wikimedia.org/w/index.php?curid=2283984">https://commons.wikimedia.org/w/index.php?curid=2283984</a></p>
+</blockquote>
 <p>其中有三件事需要特殊说明：</p>
 <ul>
 <li>如何确定下降方向 <span class="arithmatex">\(\vec p\)</span></li>
@@ -893,88 +989,145 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <h4 id="全局最优和局部最优">全局最优和局部最优<a class="headerlink" href="#全局最优和局部最优" title="Permanent link">¶</a></h4>
 <p>分多个 batch 来处理，大量撒点，然后比较每一个 batch 的结果，最终取最好的一个即可。</p>
 <hr/>
-<h2 id="鲁棒估计-robust-estimation">鲁棒估计 Robust estimation<a class="headerlink" href="#鲁棒估计-robust-estimation" title="Permanent link">¶</a></h2>
-<p>inlier / outliers i.e. 内点 / 外点</p>
+<h2 id="鲁棒估计">鲁棒估计<a class="headerlink" href="#鲁棒估计" title="Permanent link">¶</a></h2>
+<p><strong><a href="https://en.wikipedia.org/wiki/Robust_statistics">鲁棒估计(robust estimation)</a></strong> 是对从各种概率分布（尤其是非正态分布）中提取的数据具有良好性能的统计。</p>
+<p>在拟合模型中，难免出现一些不符合预期的点，而它们会对拟合结果产生或多或小的影响，而如何权衡这些噪声与真正有用的数据点之间的关系，就是鲁棒估计的课题。</p>
+<hr/>
+<h3 id="内点--外点">内点 &amp; 外点<a class="headerlink" href="#内点--外点" title="Permanent link">¶</a></h3>
+<p>首先我们对数据点进行分类：</p>
 <ul>
-<li>前者指符合我们的预期模型拟合的点；</li>
-<li>外点为完全不符合我们预期的模型拟合的点；</li>
+<li>内点(inlier)：符合我们预期的模型拟合的点；</li>
+<li>外点(outlier)：完全不符合我们预期模型的点，又叫离群；</li>
 </ul>
-<p>由于外点偏离很大，而最小二乘法中存在平方操作，所以最小二乘法拟合收这些外点影响很大</p>
-<p>于是我们考虑，更换拟合的目标函数，比如使用 L1 loss(即求绝对值)，不过更好的是一种叫 huber loss，它在距离远点较远的时候比较接近 L1 loss；</p>
-<p>另外一种方法是 RANSAC，即 Random Sample Consensus，随机采样一致；</p>
-<p>RANSAC procedure:</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../59.png"><img alt="" src="../59.png"/></a></p>
+<div class="admonition error">
+<p class="admonition-title">外点的影响</p>
+<p>由于外点偏离很大，而最小二乘法中存在平方操作，所以最小二乘法拟合受这些外点影响很大：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../60.png"><img alt="" src="../60.png"/></a></p>
+</div>
+<hr/>
+<h3 id="不同的损失函数">不同的损失函数<a class="headerlink" href="#不同的损失函数" title="Permanent link">¶</a></h3>
+<p>于是我们考虑，可以更换拟合的损失函数，来减小大偏差点带来的影响，比如使用 L1 loss(即求绝对值)。不过更好的是一种选择叫 huber loss，它在距离远点较远的时候比较接近 L1 loss。</p>
+<details class="note">
+<summary>L1 &amp; L2 &amp; Huber</summary>
 <ul>
+<li>L1 loss 即直接对偏差取绝对值，其公式为 <span class="arithmatex">\(L_1 = |f(x)-Y|\)</span>，其最大的问题就是在拐点处不光滑，即不可导，而且其收敛可能过快；</li>
+<li>L2 loss 即将偏差取平方，即 <span class="arithmatex">\(L_2 = |f(x)-Y|^2\)</span>，L2 loss 在拐点处则是光滑可导的，且收敛相对稳定光滑，但是且在某些时候具有比较好的几何意义，但是对于偏差较大的点更敏感；</li>
+<li>Huber loss 又叫 smooth L1 loss，即使用分段函数，在拐点附近使用 L2 loss，在远端使用 L1 loss；</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../61.png"><img alt="" src="../61.png"/></a></p>
+<ul>
+<li>相关文章：<a href="https://zhuanlan.zhihu.com/p/48426076">https://zhuanlan.zhihu.com/p/48426076</a></li>
+</ul>
+</details>
+<hr/>
+<h3 id="随机抽样一致">随机抽样一致<a class="headerlink" href="#随机抽样一致" title="Permanent link">¶</a></h3>
+<p><strong><a href="https://zh.wikipedia.org/wiki/%E9%9A%A8%E6%A9%9F%E6%8A%BD%E6%A8%A3%E4%B8%80%E8%87%B4">随机抽样一致(random sample consensus)RANSAC</a></strong> 采用迭代的方式从包含外点的数据中估计数学模型参数，是一个对于存在明显外点的数据非常有效的方法。</p>
+<div class="admonition summary">
+<p class="admonition-title">RANSAC procedure</p>
+<ol>
 <li>首先随机找两个点拟合一条直线，然后检查有多少点符合这条直线，并对其进行 vote；</li>
 <li>重复这个步骤，最后选择票数最高的拟合；</li>
-</ul>
-<p>正确性证明：</p>
-<ul>
-<li>首先有结论，outlier拟合出来的直线一般votes比较少，因为outlier之间很难一致，但是inlier之间容易一致；</li>
-</ul>
-<h2 id="病态问题ill-posed-problem">病态问题(ill-posed problem)<a class="headerlink" href="#病态问题ill-posed-problem" title="Permanent link">¶</a></h2>
-<ul>
-<li>如果一个问题的解不唯一，那么这个问题是一个病态问题；</li>
-<li>在线性问题中，一个线性方程的解不唯一，则同样是一个病态问题；</li>
-</ul>
-<p>解决办法：</p>
-<ul>
-<li>增加方程，即增加约束，而这种约束一般来自于对变量的先验约束；</li>
-<li>L2 regularization<ul>
-<li>可以让我们没有用的解尽可能接近0，以减小没用的变量的影响</li>
-<li>抑制冗余变量</li>
-</ul>
-</li>
-<li>L1 regularization<ul>
-<li>L1 可视化中可以发现，坐标轴上比较容易抓住解，此时意味着有些变量是0，换句话来说能让解变得“稀疏sparse”，即在维度上的分布比较集中</li>
-</ul>
-</li>
-</ul>
-<p>不过，将他们作为约束条件参与求解，不如直接加进去作为一个项，其效果是等价的</p>
+</ol>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../62.png"><img alt="" src="../62.png"/></a></p>
+</div>
+<p>由 outlier 拟合出来的直线一般 votes 比较少，因为 outlier 之间很难一致；但是inlier之间容易一致，因而得分往往更高，于是将它们区分开来。<del>这不就是 Voting Tree (逃</del></p>
+<hr/>
+<h2 id="病态问题">病态问题<a class="headerlink" href="#病态问题" title="Permanent link">¶</a></h2>
+<p>如果一个问题的解不唯一，那么这个问题是一个 <strong>病态问题(ill-posed problem)</strong>。特别的，在线性问题中，一个线性方程（组）的解如果不唯一（不满秩），则同样是一个病态问题。</p>
+<p>当然，对于线性方程组，根据线性代数的知识，我们可以增加方程，即增加约束。而这种约束一般来自于对变量的先验约束，比如：</p>
+<div class="admonition note">
+<p class="admonition-title">L2 regularization</p>
+<p><strong>L2 norm</strong>: <span class="arithmatex">\(||x||_2 = \sigma_i x_i^2\)</span>;</p>
+<p><strong>L2 regularization</strong>: <span class="arithmatex">\(\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_2 \leq 1\)</span>;</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../63.png"><img alt="" src="../63.png" width="200px"/></a></p>
+<blockquote>
+<p>通过让选择的解尽可能接近原点，而让我们没有用的解的维度尽可能接近 0，以减小没用的变量的影响，抑制冗余变量。</p>
+</blockquote>
+</div>
+<div class="admonition note">
+<p class="admonition-title">L1 regularization</p>
+<p><strong>L1 norm</strong>: <span class="arithmatex">\(||x||_1=\sigma_i|x_i|\)</span>;</p>
+<p><strong>L1 regularization</strong>: <span class="arithmatex">\(\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_1 \leq 1\)</span></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../64.png"><img alt="" src="../64.png" width="200px"/></a></p>
+<blockquote>
+<p>L1 可视化中可以发现，坐标轴上比较容易抓住解，此时意味着有些变量(维度)是 0，换句话来说能让解变得“<strong>稀疏(sparse)</strong>”，即在维度上的分布只比较集中于个别项。</p>
+</blockquote>
+</div>
+<p>不过，将他们作为约束条件参与求解，不如直接加进去作为一个项，其效果是等价的：</p>
 <div class="arithmatex">\[
-\min_{x}||Ax-b||^2_2+\lambda ||x||_2^2  (或者\lambda ||x||_1)\\
-s.t. ||x||_2 \leq 1
+\begin{matrix}
+    \text{L2 regularization:}               &amp; | &amp; \text{or L1 regularization:}\\
+    \min_{x}||Ax-b||^2_2+\lambda ||x||_2^2  &amp; | &amp; \min_{x}||Ax-b||^2_2+\lambda ||x||_1\\
+    s.t. ||x||_2 \leq 1                     &amp; | &amp; s.t. ||x||_1 \leq 1 \\
+\end{matrix}
 \]</div>
-<p>Overfitting and underfitting 过拟合和欠拟合</p>
-<h2 id="interpolation">Interpolation<a class="headerlink" href="#interpolation" title="Permanent link">¶</a></h2>
+<hr/>
+<h3 id="过拟合和欠拟合">过拟合和欠拟合<a class="headerlink" href="#过拟合和欠拟合" title="Permanent link">¶</a></h3>
+<p>在这个过程中，也要小心 <strong>过拟合(overfitting)</strong> 和 <strong>欠拟合(underfitting)</strong>，它们的含义非常直白：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../65.png"><img alt="" src="../65.png"/></a></p>
+<hr/>
+<h2 id="插值">插值<a class="headerlink" href="#插值" title="Permanent link">¶</a></h2>
+<p><strong>插值(interpolation)</strong> 其实已经在 <a href="../Lec03/#放大图片向上采样--插值">lec 3 的笔记</a> 里提到过了。</p>
+<p>这里先略过。</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: 再细说。</li>
+</ul>
+<details class="bug">
+<summary>sketch</summary>
 <p>线性拟合、二次样条插值（每一段都是一个二次函数）、三次样条插值（一阶导二阶导连续，但最终是个病态问题，需要额外再约束起点和终点二阶导为零或者限定给定斜率等，就需要俩额外约束条件）、</p>
+</details>
+<hr/>
 <p>上面是连续优化问题，下面是离散优化问题</p>
-<h2 id="graphcut图割-and-mrf马可夫随机场">Graphcut图割 and MRF马可夫随机场<a class="headerlink" href="#graphcut图割-and-mrf马可夫随机场" title="Permanent link">¶</a></h2>
+<h2 id="图割--马可夫随机场">图割 &amp; 马可夫随机场<a class="headerlink" href="#图割--马可夫随机场" title="Permanent link">¶</a></h2>
+<h3 id="图像标签问题">图像标签问题<a class="headerlink" href="#图像标签问题" title="Permanent link">¶</a></h3>
+<p><strong>图像标签问题(image labeling problems)</strong> 即通过图片信息给每一个像素分配标签，实际上就是一个对图像内容的分类和识别问题。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../66.png"><img alt="" src="../66.png"/></a></p>
+<p>其中一个比较强的 <strong>先验(prior)</strong> 是：相邻且相似的像素应当拥有相同的标签。</p>
+<p>而图割和马可夫随机场可以建模这种先验。</p>
+<hr/>
+<h3 id="图割">图割<a class="headerlink" href="#图割" title="Permanent link">¶</a></h3>
+<p><strong>图割(Graphcut)</strong> 的核心思想是，把一张图片的每一个像素看作一个 graph 中的 vertex，并在像素之间建 edge，并将 weight 定义为两像素之间的相似性或关联性(affinity or similarity)。</p>
+<div class="admonition success">
+<p class="admonition-title">measuring affinity</p>
+<p>比如，我们可以这样衡量像素的相似性：</p>
 <ul>
-<li>
-<p>image labeling problems</p>
+<li>设 <span class="arithmatex">\(f\)</span> 表示颜色；</li>
+<li>像素差异(dissimilarity)为 <span class="arithmatex">\(s(f_i,f_j)=\sqrt{\sum_k(f_{ik},f_{jk})^2}\)</span>；</li>
+<li>则相似性(affinity)权重为：<span class="arithmatex">\(w(i,j) = A(f_i,f_j) = e^{\frac{-1}{2\sigma^2}s(f_i,f_j)}\)</span>；</li>
+</ul>
+</div>
+<p>再接下来，通过这样的方式将图片建成图后，就可以把问题转化为图割问题，我们将小权的边删去，最终会形成若干连通分量，而这些连通分量那的点则被视为一个“分割”。</p>
+<p>具体来说，图割的代价为断的边权之权重和 <span class="arithmatex">\(cut(V_A,V_B)= \sum_{u\in V_A, v\in V_B} w(u,v)\)</span>，而我们需要找代价尽可能小的，满足我们要求的图割。当然，这个问题也等效于最大流问题；</p>
+<div class="admonition warning">
+<p class="admonition-title">Problem with min-cut</p>
+<blockquote>
+<p>Bias to cut small, isolated segments.</p>
+</blockquote>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../67.png"><img alt="" src="../67.png"/></a></p>
+</div>
+<p>由于 min-cut 的这个问题，我们还需要衡量这个子集是否足够稠密，所以我们倾向于使用 normalized-cut。</p>
+<div class="arithmatex">\[
+assoc(V_A,V) = \sigma_{u\in V_A, v\in V} w(u,v) \\
+NCut(V_A,V_B) = \frac{cut(V_A,V_B)}{assoc(V_A,V)} + \frac{cut(V_A,V_B)}{assoc(V_B,V)}
+\]</div>
 <ul>
-<li>强先验：相邻pixel的label很可能相同，关键在于如何建模这种空间连续性<ul>
-<li>实现：用图(graph)来描述图片，假设每个像素都是一个node，像素之间建edge，以相似性或关联性作为边权；</li>
-<li>一般这个权重为 <ul>
-<li>例如，<span class="arithmatex">\(f\)</span> 是颜色，则：</li>
-<li>像素差异为 <span class="arithmatex">\(s(f_i,f_j)=\sqrt{\sum_k(f_{ik},f_{jk})^2}\)</span></li>
-<li>则相似性权重 affinity <span class="arithmatex">\(w(i,j) = A(f_i,f_j) = e^{\frac{-1}{2\sigma^2}s(f_i,f_j)}\)</span>；</li>
+<li>NP-Complete</li>
+<li>Approximate solution by eigenvalue decomposition</li>
 </ul>
-</li>
-<li>然后做图割问题，割成两个图，图割的代价为断的边权之权重和 <span class="arithmatex">\(cut(V_A,V_B)= \sum_{u\in V_A, v\in V_B} w(u,v)\)</span>；<ul>
-<li>这个问题等效于最大流问题；</li>
-</ul>
-</li>
-<li>但这样的分割也是有问题的，所以可能不太联通的两个点被分在了一起；</li>
-<li>我们还需要衡量这个子集是否足够稠密 (normalized cut)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Markov Random Field （更通用）</p>
-<ul>
-<li>Markov chains</li>
-<li>听不懂</li>
-</ul>
-</li>
-</ul>
+<hr/>
+<h3 id="马可夫随机场">马可夫随机场<a class="headerlink" href="#马可夫随机场" title="Permanent link">¶</a></h3>
+<p><strong>马可夫随机场(Markov Random Field)MRF</strong> 是一种更通用的解决方案，可惜我第一次没听懂，等我听懂了再来补充这里的内容。</p>
+<details class="bug">
+<summary>sketch</summary>
+<p>Markov chains</p>
+</details>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月11日 17:36:35</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月12日 15:58:34</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
