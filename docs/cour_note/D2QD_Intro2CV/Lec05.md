@@ -196,9 +196,9 @@ $$
 为了求解 u 和 v，LK Method 对其作泰勒展开：
 
 $$
-I(x+u,y+v,t+1) \approx I(x,y,t) + I_x\times u + I_y \times v + I_t \\
-I(x+u,y+v,t+1) - I(x,y,t) = I_x\times u + I_y \times v + I_t \approx 0 \\
-\nabla I \times \begin{bmatrix}
+I(x+u,y+v,t+1) \approx I(x,y,t) + I_x\cdot u + I_y \cdot v + I_t \\
+I(x+u,y+v,t+1) - I(x,y,t) = I_x\cdot u + I_y \cdot v + I_t \approx 0 \\
+\nabla I \cdot \begin{bmatrix}
     u & v
 \end{bmatrix}^T + I_t = 0
 $$
