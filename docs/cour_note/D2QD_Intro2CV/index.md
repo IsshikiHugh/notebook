@@ -4,7 +4,7 @@
 	- 本文为课程《计算机视觉导论》的课程笔记，课程主要介绍计算机视觉的基础理论和基本方法。
 	- **智云链接**：[🔗](https://classroom.zju.edu.cn/coursedetail?course_id=30737&tenant_code=112)
 	- **授课**：周晓巍
-	- **教材**：[📙](https://szeliski.org/Book/)
+	- **教材**：[📙](https://szeliski.org/Book/) [.](https://www.aliyundrive.com/s/fT6RkyihatM)
 
 !!! note "Notes"
     - :material-label: [Lec1](Lec01.md)
