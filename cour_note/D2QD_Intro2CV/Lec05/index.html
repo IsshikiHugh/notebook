@@ -862,9 +862,9 @@ I(x,y,t) = I(x+u, y+v, t+1)
 \]</div>
 <p>为了求解 u 和 v，LK Method 对其作泰勒展开：</p>
 <div class="arithmatex">\[
-I(x+u,y+v,t+1) \approx I(x,y,t) + I_x\times u + I_y \times v + I_t \\
-I(x+u,y+v,t+1) - I(x,y,t) = I_x\times u + I_y \times v + I_t \approx 0 \\
-\nabla I \times \begin{bmatrix}
+I(x+u,y+v,t+1) \approx I(x,y,t) + I_x\cdot u + I_y \cdot v + I_t \\
+I(x+u,y+v,t+1) - I(x,y,t) = I_x\cdot u + I_y \cdot v + I_t \approx 0 \\
+\nabla I \cdot \begin{bmatrix}
     u &amp; v
 \end{bmatrix}^T + I_t = 0
 \]</div>
@@ -892,7 +892,7 @@ Ad=b \rightarrow \min\limits_d ||Ad-b||^2
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月13日 16:54:05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月13日 16:57:54</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
