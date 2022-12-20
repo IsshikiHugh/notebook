@@ -6,10 +6,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/cour_note/D2QD_DigitalDesign/Chap05/" rel="canonical"/>
+<link href="https://note.isshikih.top/cour_note/D2QD_DigitalDesign/Chap04/" rel="canonical"/>
 <link href="../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.1, mkdocs-material-8.5.7" name="generator"/>
-<title>Chap 5 Digital Hardware Implementation - Isshiki修's Notebook</title>
+<title>Chap 4 Sequential Circuits - Isshiki修's Notebook</title>
 <link href="../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <meta content="#795649" name="theme-color"/>
@@ -34,7 +34,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#chap-5-digital-hardware-implementation">
+<a class="md-skip" href="#chap-4-sequential-circuits">
           跳转至
         </a>
 </div>
@@ -58,7 +58,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Chap 5 Digital Hardware Implementation
+              Chap 4 Sequential Circuits
             
           </span>
 </div>
@@ -408,19 +408,14 @@
         Chap 3 Combinational Logic Design
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../Chap04/">
-        Chap 4 Sequential Circuits
-      </a>
-</li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
-          Chap 5 Digital Hardware Implementation
+          Chap 4 Sequential Circuits
           <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
-        Chap 5 Digital Hardware Implementation
+        Chap 4 Sequential Circuits
       </a>
 <nav aria-label="目录" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
@@ -429,60 +424,65 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#可重编程技术">
-    可重编程技术
+<a class="md-nav__link" href="#锁存器">
+    锁存器
   </a>
-<nav aria-label="可重编程技术" class="md-nav">
+<nav aria-label="锁存器" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#逻辑符号介绍">
-    逻辑符号介绍
+<a class="md-nav__link" href="#sr--sr-锁存器">
+    SR &amp; S'R' 锁存器
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#rom">
-    ROM
+<a class="md-nav__link" href="#d-锁存器">
+    D 锁存器
   </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#pal">
-    PAL
-  </a>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#pla">
-    PLA
+<a class="md-nav__link" href="#触发器">
+    触发器
   </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lookup-tables">
-    Lookup Tables
-  </a>
-<nav aria-label="Lookup Tables" class="md-nav">
+<nav aria-label="触发器" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#clb">
-    CLB
+<a class="md-nav__link" href="#sr-主从触发器">
+    SR 主从触发器
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#sm">
-    SM
+<a class="md-nav__link" href="#边沿触发式触发器">
+    边沿触发式触发器
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#iob">
-    IOB
+<a class="md-nav__link" href="#标准图形符号">
+    标准图形符号
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#直接输入">
+    直接输入
   </a>
 </li>
 </ul>
 </nav>
 </li>
-</ul>
-</nav>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#时序电路分析">
+    时序电路分析
+  </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Chap05/">
+        Chap 5 Digital Hardware Implementation
+      </a>
 </li>
 </ul>
 </nav>
@@ -656,57 +656,57 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#可重编程技术">
-    可重编程技术
+<a class="md-nav__link" href="#锁存器">
+    锁存器
   </a>
-<nav aria-label="可重编程技术" class="md-nav">
+<nav aria-label="锁存器" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#逻辑符号介绍">
-    逻辑符号介绍
+<a class="md-nav__link" href="#sr--sr-锁存器">
+    SR &amp; S'R' 锁存器
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#rom">
-    ROM
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#pal">
-    PAL
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#pla">
-    PLA
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lookup-tables">
-    Lookup Tables
-  </a>
-<nav aria-label="Lookup Tables" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#clb">
-    CLB
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#sm">
-    SM
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#iob">
-    IOB
+<a class="md-nav__link" href="#d-锁存器">
+    D 锁存器
   </a>
 </li>
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#触发器">
+    触发器
+  </a>
+<nav aria-label="触发器" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sr-主从触发器">
+    SR 主从触发器
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#边沿触发式触发器">
+    边沿触发式触发器
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#标准图形符号">
+    标准图形符号
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#直接输入">
+    直接输入
+  </a>
+</li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#时序电路分析">
+    时序电路分析
+  </a>
 </li>
 </ul>
 </nav>
@@ -715,209 +715,120 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/cour_note/D2QD_DigitalDesign/Chap05.md" title="编辑此页">
+<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/cour_note/D2QD_DigitalDesign/Chap04.md" title="编辑此页">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="chap-5-digital-hardware-implementation">Chap 5 Digital Hardware Implementation<a class="headerlink" href="#chap-5-digital-hardware-implementation" title="Permanent link">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>本章节在补天中完成，内容可能比较简略。</p>
+<h1 id="chap-4-sequential-circuits">Chap 4 Sequential Circuits<a class="headerlink" href="#chap-4-sequential-circuits" title="Permanent link">¶</a></h1>
+<p>上一章讲的是组合电路，虽然组合电路能够实现诸多功能，但是它依然存在一些的问题：</p>
+<ol>
+<li>对于复杂的逻辑，抽象层级多，导致硬件层面开销大、耗时长，一方面提高成本，一方面降低效率；</li>
+<li>组合电路没法实现信息的存储，所有的功能模块对于特定的输入给出相同的输出；</li>
+</ol>
+<p>而时序电路则拥有存储信息的能力，对于时序电路来说，输出除了与输入有关（甚至可以没有输入），也可以与自身 <strong>状态(state)</strong> 有关。</p>
+<p>时序电路主要分为两类（主要分类依据是输入信号的时间和内部状态改变的时间）：<strong>同步时序电路(synchronous sequential circuit)</strong> 和 <strong>异步时序电路(asynchronous sequential circuit)</strong>。</p>
+<blockquote>
+<p>The behavior of a synchronous sequential circuit can be defined from the knowledge of its signals at discrete instants of time. The behavior of an asynchronous sequential circuit depends upon the inputs at any instant of time and the order in continuous time in which the inputs change.</p>
+</blockquote>
+<p>一般来说，异步电路的设计相对困难（行为与门的传播延迟和输入信号变化的时间序列密切相关），但仍然十分必要，比如触发器就是以一部锁存器为模块设计的；而同步电路的使用更加广泛，通常这些“离散的时刻”都是由 <strong>时钟发生器(clock generator)</strong> 这种时序器件产生周期性的 <strong>时钟脉冲(clock pulse)</strong> 序列来实现的（这种电路一般被称为 <strong>钟控时序电路(clocked sequential circuit)</strong>，由于设计相对容易，鲁棒性强，所以被广泛应用）。</p>
+<div class="admonition summary">
+<p class="admonition-title">缓冲</p>
+<p>缓冲器(buffer) 一般通过两个非门串联，并将输入连通输出实现，这样能够实现信息的存储，然而无法修改。而锁存器就是在缓冲器的基础上，将非门替换为或非门或与非门实现的。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../79.png"><img alt="" src="../79.png"/></a></p>
+<blockquote>
+<p>其中，从给定输入到更新输出有一个 <span class="arithmatex">\(t_G\)</span> 的延时。</p>
+</blockquote>
 </div>
-<hr/>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: Finish this.</li>
-</ul>
-<hr/>
-<h2 id="可重编程技术">可重编程技术<a class="headerlink" href="#可重编程技术" title="Permanent link">¶</a></h2>
-<p><strong>可重编程技术(programmable implementation technologies)</strong></p>
-<p>直接更改电路来修改电路功能被称为硬编程，而可重变成技术让我们能够不更改硬件布线的情况下，实现**逻辑功能的重新编辑**。</p>
-<div class="admonition example">
-<p class="admonition-title">FPGA</p>
-<p><a href="https://zh.wikipedia.org/zh-cn/%E7%8E%B0%E5%9C%BA%E5%8F%AF%E7%BC%96%E7%A8%8B%E9%80%BB%E8%BE%91%E9%97%A8%E9%98%B5%E5%88%97">现场可编程逻辑门阵列(Field Programmable Gate Array)FPGA</a>
-- <a href="https://zh.m.wikipedia.org/zh-hans/%E6%9F%A5%E6%89%BE%E8%A1%A8">查找表(lookup table)LUT</a></p>
-</div>
-<p>可重编程在硬件层面有三种实现手段：</p>
-<ul>
-<li>控制连接来实现；<ul>
-<li>Mask programing</li>
-<li>Fuse</li>
-<li>Anti-fuse</li>
-</ul>
-</li>
-<li>控制门级电路电压；<ul>
-<li>Single-bit storage element</li>
-<li>Stored charge on a floating gate<ul>
-<li>Erasable</li>
-<li>Electrically erasable</li>
-<li>Flash (as in Flash Memory) </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>使用查找表(LUT)；<ul>
-<li>Storage elements for the function<ul>
-<li>比如使用一个 <code>MUX</code>，并将输入端接内存，通过修改内存的值来修改 <code>MUX</code> 的行为，进而实现函数重编程</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>课程中介绍的可重编程的器件主要有如下四种：</p>
-<ul>
-<li>只读内存 Read Only Memory (ROM) </li>
-<li>可编程阵列逻辑 Programmable Array Logic (PAL<sup>Ⓡ</sup>)</li>
-<li>可编程逻辑阵列 Programmable Logic Array (PLA)</li>
-<li>Complex Programmable Logic Device (CPLD) or Field-Programmable Gate Array(FPGA)</li>
-</ul>
-<p>前三者都只能重写一次，如下是它们的重写内容：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../51.png"><img alt="" src="../51.png"/></a></p>
 <hr/>
 <div class="admonition info">
 <p class="admonition-title">引入</p>
-<p>由于之后出现的电路图会非常庞大，所以需要引入一些逻辑符号。</p>
+<p>显然，根据上面的概述，时序电路中最重要的就是信息存储元件。当输入信号不发生变化时（重点是变化，即输入和存储信息未必存在对应关系）存储元件就能够保持其内部存储的二进制数据。</p>
+<p>存储元件主要由 <strong>锁存器(latch)</strong> 和 <strong>触发器(flip-flop)</strong> 两种，其中前者是后者的基础，或者说多数情况下我们使用后者，但后者由前者构成。</p>
 </div>
-<h3 id="逻辑符号介绍">逻辑符号介绍<a class="headerlink" href="#逻辑符号介绍" title="Permanent link">¶</a></h3>
-<div class="admonition example">
-<p class="admonition-title">Buffer</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../52.png"><img alt="" src="../52.png"/></a></p>
+<hr/>
+<h2 id="锁存器">锁存器<a class="headerlink" href="#锁存器" title="Permanent link">¶</a></h2>
+<h3 id="sr--sr-锁存器">SR &amp; S'R' 锁存器<a class="headerlink" href="#sr--sr-锁存器" title="Permanent link">¶</a></h3>
+<p>SR 锁存器和 S'R' 锁存器的基本原理是一致的，只不过前者用的是或非门，后者用的是与非门。</p>
+<p>SR 锁存器和 S'R' 锁存器的输入都是 S(Set) 和 R(Reset) 两个部分，输出都是 Q 和 Q' 两个部分。</p>
 <blockquote>
-<p>简化表示一个变量的自身和其非；</p>
+<p><strong>名称上</strong> 的共同点是，当 S 为 <code>1</code> 时，Q 都会是 <code>1</code>；对于 R 和 Q' 也是这样，只不过要注意，S'R'锁存器输入的并不是这里所说的 S，而是将 S' 作为输入。</p>
 </blockquote>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">SR 锁存器</label><label for="__tabbed_1_2">S'R' 锁存器</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><figure markdown="">
+<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../80.png"><img alt="" src="../80.png"/></a>
+</figure></p>
 </div>
-<div class="admonition example">
-<p class="admonition-title">Wire connecting</p>
-<p>在可编程逻辑电路中，线的连接不再只有单纯的连通和不连通的关系：</p>
-<p>对于两条相交导线：</p>
-<ul>
-<li>如果没有特殊符号，则表示这个交叉点 is not connected ；</li>
-</ul>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../53.png"><img alt="" src="../53.png"/></a></p>
-<ul>
-<li>如果有一个 ❌，则表示这个交叉点 programmable；</li>
-</ul>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../55.png"><img alt="" src="../55.png"/></a></p>
-<ul>
-<li>如果只有一个加粗的点，则表示这个交叉点 not programmable；</li>
-</ul>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../54.png"><img alt="" src="../54.png"/></a></p>
+<div class="tabbed-block">
+<p><figure markdown="">
+<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../81.png"><img alt="" src="../81.png"/></a>
+</figure></p>
 </div>
-<p>特别的，如果一个元器件的所有输入都是 programmable，我们也可以选择把这个 ❌ 画到逻辑门上（如下图 e 和 f）。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../56.png"><img alt="" src="../56.png"/></a></p>
+</div>
+</input></input></div>
+</div>
+<p>一个记忆方法是，SR 的门元件对 <code>1</code> 敏感，所以是 或非门 的实现；而 S'R' 的门元件对 <code>0</code> 敏感，所以是 与非门 的实现。而通过 「当 S 为 <code>1</code> 时，Q 都会是 <code>1</code>」可以得到 S、R 与 Q、Q' 的位置。</p>
+<p>但是实际的存储元件并不是单纯的 SR/S'R' Latches，所以它们当然是存在问题的。由于电路存在延时，所以 S 和 R 的输入很难同时到达，所以我们可以在前面加一个控制端，当确保两个输入都到位的时候再使能。</p>
+<p>于是我们得到了，<strong>带控制输入的 SR 锁存器(SR Latch with Control Input)</strong>（S'R'略）：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../82.png"><img alt="" src="../82.png"/></a></p>
+<blockquote>
+<p>注意！SR 锁存器通过 或非门 实现，但带输入控制的 SR 锁存器则通过 <strong>与非门</strong> 实现！</p>
+</blockquote>
 <hr/>
-<h3 id="rom">ROM<a class="headerlink" href="#rom" title="Permanent link">¶</a></h3>
-<p>ROM 的基本结构如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../57.png"><img alt="" src="../57.png"/></a></p>
-<p>而 ROM 的大小如下计算（以上图为例）：</p>
-<div class="arithmatex">\[
-\begin{array}{rl}
-    ROM\;\;size\;\;&amp;=\;\;address\;\;width\;\;\times\;\;word\;\;width&amp;\\
-                   &amp;=\;\;2^2\;\;\times\;\;4\;\;=\;\;16\;\;bit&amp;
-\end{array}
-\]</div>
-<details class="example" open="open">
-<summary>eg</summary>
-<p>更清晰的表示其内部逻辑的，可以将 ROM 写成这样：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../58.png"><img alt="" src="../58.png"/></a></p>
-</details>
+<h3 id="d-锁存器">D 锁存器<a class="headerlink" href="#d-锁存器" title="Permanent link">¶</a></h3>
+<p>D 锁存器实际上是带控制输入的 SR 锁存器的改进。其中我们关注到，虽然 S 和 R 起作用的有三种状态</p>
+<p>我们关注到，即使是带控制输入的 SR 锁存器，也存在一个「undefined」状态，而这是我们不希望出现的，于是我们想，能不能避免这种情况的发生。这时候我们观察到，由于可以通过 C 来控制是否保持，所以可以直接强制要求 <span class="arithmatex">\(S = \overline R\)</span>，于是就避免了 undefined 情况的出现，这就是 D 锁存器。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../83.png"><img alt="" src="../83.png"/></a></p>
+<p>只有当 C 为 <code>1</code> 时，D 锁存器才能写入数据；而当 C 为 <code>0</code> 时，D 锁存器的数据就不会变化。</p>
 <hr/>
-<h3 id="pal">PAL<a class="headerlink" href="#pal" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../59.png"><img alt="" src="../59.png"/></a></p>
-<p>可重编程输入组合来得到固定输出。</p>
-<p>其具有一个缺陷是，因为表达函数的方法不是通过 SOM 或者 POM 的形式，所以不一定能够完备表达函数。</p>
-<p>在此基础上的一个改进是，通过将一个既有的 PAL 输出当作输入，输入到另外一个函数中，来弥补项不足的问题。</p>
-<details class="example" open="open">
-<summary>eg</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../60.png"><img alt="" src="../60.png"/></a></p>
-</details>
+<div class="admonition warning">
+<p class="admonition-title">透明的危害：空翻</p>
+<p>当然，D 锁存器也存在问题。如果我门将 <span class="arithmatex">\(\overline Q\)</span> 接到 <span class="arithmatex">\(D\)</span> 上，就会发现 D 锁存器将不停的变化其中的数据，出现 <strong>空翻</strong>，导致我们无法确定 C 置 <code>0</code> 时 Q 的输出究竟是什么，而这是非常危险的。</p>
+<p>这主要是因为 D 锁存器的输入和输出都是直接暴露出来、同时允许变化的（不是同时变化，是指在 Input 可以变的时候 Output 也能变），即 <strong>透明(transparent)</strong> 的。这就导致了在一个时钟周期里，同时存在 <strong>可以互相影响</strong> 的两个东西。这也是触发器所解决的问题。</p>
+</div>
 <hr/>
-<h3 id="pla">PLA<a class="headerlink" href="#pla" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../61.png"><img alt="" src="../61.png"/></a></p>
-<p>与 PAL 的区别在于，在输出的时候也能对输出组合进行重编程。</p>
-<p>其同 PAL 一样具有一个缺陷是，因为表达函数的方法不是通过 SOM 或者 POM 的形式，所以不一定能够完备表达函数。</p>
-<p>在基础上一个改进是在输出的时候再做一次异或（不用非门体现了可重编程的思想），以产生新的项，来弥补项不足的问题。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../62.png"><img alt="" src="../62.png"/></a></p>
-<p>可以发现，出现了新的项。</p>
-<hr/>
-<h3 id="lookup-tables">Lookup Tables<a class="headerlink" href="#lookup-tables" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../63.png"><img alt="" src="../63.png"/></a></p>
-<p>通过让数据源接内存，并通过修改真值表内的值，即修改内存里的值，来实现数据源的变化，来改变 <code>MUX</code> 的行为。</p>
-<p>但是实际应用中，函数输入的数量会变化，因此我们需要通过灵活组合的方法（比如通过四选二选一的方式，用三个二选一的 <code>MUX</code> 来实现四选一）来实现多输入。</p>
-<p>常见的 <code>LUT</code> 大小以 16bits 或 64bits 的 4 输入或 6 输入为主。</p>
-<p>由于 <code>LUT</code> 存的本质上是真值表，所以它可以实现任意输入符合要求的逻辑函数。</p>
-<p>所以，问题就变化为如何用较小的 <code>LUT</code> 来组合实现复杂的逻辑函数。</p>
-<p><code>LUT</code> 的基本结构如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../64.png"><img alt="" src="../64.png"/></a></p>
-<p><code>FPGA</code> 的基本结构如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../65.png"><img alt="" src="../65.png"/></a></p>
-<p>其主要分为三个组成部分：</p>
-<ul>
-<li>CLB(Configurable Logic Block)<ul>
-<li>大量存储 <code>LUT</code></li>
-</ul>
-</li>
-<li>SM(Switch Matrix)<ul>
-<li>可编程的交换矩阵</li>
-</ul>
-</li>
-<li>IOB(Input &amp; Output Block)<ul>
-<li>可编程的输入输出单元</li>
-</ul>
-</li>
-</ul>
-<hr/>
-<h4 id="clb">CLB<a class="headerlink" href="#clb" title="Permanent link">¶</a></h4>
-<p>CLB 是 <code>FPGA</code> 中的基础逻辑单元。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../66.png"><img alt="" src="../66.png"/></a></p>
-<hr/>
-<h4 id="sm">SM<a class="headerlink" href="#sm" title="Permanent link">¶</a></h4>
-<p>通过相当复杂的算法， <code>SM</code> 会根据目标逻辑，选择链接不同的 <code>CLB</code> 以实现复杂逻辑。</p>
-<p>它具有这些基本属性：</p>
+<h2 id="触发器">触发器<a class="headerlink" href="#触发器" title="Permanent link">¶</a></h2>
+<p>为了解决上面提到的，由「透明」引发的问题，而采用触发器的设计。通过组合两个锁存器，主要有两种实现方法：</p>
 <ol>
-<li>Flexibility: 评估一条线可以连接到多少线；</li>
-<li>Topology: 哪些线可以被连接到；</li>
-<li>Routability: 有多少回路可以被路由；</li>
+<li>在有脉冲（高电平）时，修改第一个锁存器的值，保持第二个锁存器的值；在没有脉冲（低电平）时候保持第一个锁存器的值，修改第二个锁存器的值，更新触发器的状态，即 <strong>主从式(master-slave)触发器</strong>；</li>
+<li>仅在时钟的边缘触发，即在特定时刻仅接受一个输入，即 <strong>边沿触发式(edge-triggered)触发器</strong>；</li>
 </ol>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../68.png"><img alt="" src="../68.png"/></a></p>
+<blockquote>
+<p>边沿触发式 D 触发器是目前使用最广泛的触发器。</p>
+</blockquote>
 <hr/>
-<h4 id="iob">IOB<a class="headerlink" href="#iob" title="Permanent link">¶</a></h4>
-<p><code>IOB</code> 用来对外部设备进行连接，用来控制输入和输出。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../67.png"><img alt="" src="../67.png"/></a></p>
+<h3 id="sr-主从触发器">SR 主从触发器<a class="headerlink" href="#sr-主从触发器" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../84.png"><img alt="" src="../84.png"/></a></p>
 <hr/>
-<details class="example">
-<summary>eg for <code>FPGA</code></summary>
-<p>通过 <code>FPGA</code> 实现 <span class="arithmatex">\(f=x_1x_2+\overline{x_2x_3}\)</span>：</p>
-<p>分解问题：<span class="arithmatex">\(f_1 = x_1x_2,\;\;f_2=\overline{x_2x_3},\;\;f=f_1+f_2\)</span>。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../69.png"><img alt="" src="../69.png"/></a></p>
-</details>
-<p>在软件层面编程完后，会生成位流文件(<code>bitfile</code>)，下载到板时会更新 <code>FPGA</code> 中的内容。</p>
+<h3 id="边沿触发式触发器">边沿触发式触发器<a class="headerlink" href="#边沿触发式触发器" title="Permanent link">¶</a></h3>
+<p>上面已经说过了，边沿触发式触发器主要对脉冲的 上升沿 或 下降沿 敏感。</p>
+<p>下图为正边沿触发 D 触发器的大致原理图。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../85.png"><img alt="" src="../85.png"/></a></p>
+<blockquote>
+<p>关注上升沿前后，上升沿前一刻，主锁存器可写，从锁存器只读；上升沿后一刻，主锁存器只读，从锁存器只写，且写入的是主锁存器存储的值——换句话来说，存的是上升沿前一刻写入主锁存器的内容。</p>
+</blockquote>
+<p>需要注意的一点是，D 触发器没有「保持」态。如果要使 D 触发器保持，可以使时钟脉冲失效或通过 <code>MUX</code> 将输出接到输入实现。其中前者不太常用，因为受门控的时钟脉冲进入触发器时有延迟，即 <strong>时钟偏移(clock skew)</strong></p>
 <hr/>
-<div class="admonition summary">
-<p class="admonition-title">组合函数的实现方法</p>
-<p>到目前为止，不管是可重编程还是不可重编程，都已经介绍了很多方法，这里进行一次小结：</p>
-<ol>
-<li><code>Decoder</code>s &amp; <code>OR</code> gates<ul>
-<li>将译码出来的需要的目标组合都 <code>OR</code> 在一起；</li>
-</ul>
-</li>
-<li><code>MUX</code>s<ul>
-<li>通过多路选择器实现任意逻辑函数； </li>
-</ul>
-</li>
-<li><code>ROM</code>s</li>
-<li><code>PAL</code>s</li>
-<li><code>PLA</code>s</li>
-<li><code>LUT</code>s</li>
-</ol>
-</div>
+<h3 id="标准图形符号">标准图形符号<a class="headerlink" href="#标准图形符号" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../86.png"><img alt="" src="../86.png"/></a></p>
+<blockquote>
+<p>带圆圈表示负逻辑。</p>
+</blockquote>
+<hr/>
+<h3 id="直接输入">直接输入<a class="headerlink" href="#直接输入" title="Permanent link">¶</a></h3>
+<p>这些直接输入往往是异步的，一般用来异步置位（直接置位或预置）或异步复位（直接复位或清零）。</p>
+<hr/>
+<h2 id="时序电路分析">时序电路分析<a class="headerlink" href="#时序电路分析" title="Permanent link">¶</a></h2>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月5日 12:00:15</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月20日 14:50:19</span>
 <br/>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月4日 00:33:01</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月20日 14:50:19</span>
 </small>
 </div>
 <h2 id="__comments">评论</h2>
@@ -963,7 +874,7 @@
 </main>
 <footer class="md-footer">
 <nav aria-label="页脚" class="md-footer__inner md-grid">
-<a aria-label="上一页: Chap 4 Sequential Circuits" class="md-footer__link md-footer__link--prev" href="../Chap04/" rel="prev">
+<a aria-label="上一页: Chap 3 Combinational Logic Design" class="md-footer__link md-footer__link--prev" href="../Chap03/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -972,17 +883,17 @@
 <span class="md-footer__direction">
                 上一页
               </span>
-              Chap 4 Sequential Circuits
+              Chap 3 Combinational Logic Design
             </div>
 </div>
 </a>
-<a aria-label="下一页: [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision" class="md-footer__link md-footer__link--next" href="../../D2QD_Intro2CV/" rel="next">
+<a aria-label="下一页: Chap 5 Digital Hardware Implementation" class="md-footer__link md-footer__link--next" href="../Chap05/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 下一页
               </span>
-              [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision
+              Chap 5 Digital Hardware Implementation
             </div>
 </div>
 <div class="md-footer__button md-icon">
