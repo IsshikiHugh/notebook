@@ -555,6 +555,34 @@
 <a class="md-nav__link" href="#算术逻辑电路">
     算术逻辑电路
   </a>
+<nav aria-label="算术逻辑电路" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#半加器--全加器">
+    半加器 &amp; 全加器
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#行波加法器">
+    行波加法器
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#二进制减法">
+    二进制减法
+  </a>
+<nav aria-label="二进制减法" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#有符号数的表示与计算">
+    有符号数的表示与计算
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -669,6 +697,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../../pape_read/arXiv%3A2003.08934/">
         NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../pape_read/arXiv%3A2104.05670/">
+        Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
       </a>
 </li>
 </ul>
@@ -867,6 +900,34 @@
 <a class="md-nav__link" href="#算术逻辑电路">
     算术逻辑电路
   </a>
+<nav aria-label="算术逻辑电路" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#半加器--全加器">
+    半加器 &amp; 全加器
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#行波加法器">
+    行波加法器
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#二进制减法">
+    二进制减法
+  </a>
+<nav aria-label="二进制减法" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#有符号数的表示与计算">
+    有符号数的表示与计算
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1056,7 +1117,7 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <hr/>
 <h4 id="延迟带来的问题">延迟带来的问题<a class="headerlink" href="#延迟带来的问题" title="Permanent link">¶</a></h4>
 <p>由于存在延迟，许多在数学意义上没有问题的逻辑表达式在电路中就存在非常大的问题。</p>
-<p>例如，从数学角度看，<span class="arithmatex">\(\mathrm{Y=\bar{A}A}\)</span> 的值恒为 <code>0</code>，但是实际上由于延迟，其仿真波形中会出现这样一个 <strong>毛刺(glitch)</strong>，而这在工程意义上有很大的问题。</p>
+<p>例如，从数学角度看，<span class="arithmatex">\(\mathrm{Y=\overline{A}A}\)</span> 的值恒为 <code>0</code>，但是实际上由于延迟，其仿真波形中会出现这样一个 <strong>毛刺(glitch)</strong>，而这在工程意义上有很大的问题。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../41.png"><img alt="" src="../41.png"/></a></p>
 <details class="note" open="open">
 <summary>更复杂的 🌰</summary>
@@ -1078,6 +1139,7 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 </blockquote>
 <hr/>
 <h3 id="工艺映射">工艺映射<a class="headerlink" href="#工艺映射" title="Permanent link">¶</a></h3>
+<p><strong>工艺映射(technology mapping)</strong> 是指将逻辑图或网表转化为可以用工艺实现的心的图或网表的过程。</p>
 <p>有时我们会使用与非门和非门替换与门和或门(因为电路层面，与门实际上就是通过与非门实现的)，然后会发现有一些连续对非门可以相互抵消，例如下面的情况：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../46.png"><img alt="" src="../46.png"/></a></p>
 <blockquote>
@@ -1097,8 +1159,8 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <ul>
 <li><strong>常量函数(Value-Fixing)</strong>：<span class="arithmatex">\(F=0\;\;or\;\;F=1\)</span> | 输出定值；</li>
 <li><strong>传输函数(Transferring)</strong>：<span class="arithmatex">\(F=X\)</span> | 直接输出输入值；</li>
-<li><strong>逆变函数(Inverting)</strong>：<span class="arithmatex">\(F=\bar{X}\)</span> | 输出输入的相反；</li>
-<li><strong>使能函数(Enabling)</strong>：<span class="arithmatex">\(F=X\cdot En \;\; or \;\; F = X + \bar{En}\)</span> | 通过使能控制输出是否可变，分为两种，比如与的形式中，只有 <span class="arithmatex">\(En\)</span> 为 <code>1</code> 时，<span class="arithmatex">\(F\)</span> 表现为 <span class="arithmatex">\(X\)</span> 的值；反之输出必定为 <code>0</code>（注意区分它与三态门的区别）；</li>
+<li><strong>逆变函数(Inverting)</strong>：<span class="arithmatex">\(F=\overline{X}\)</span> | 输出输入的相反；</li>
+<li><strong>使能函数(Enabling)</strong>：<span class="arithmatex">\(F=X\cdot En \;\; or \;\; F = X + \overline{En}\)</span> | 通过使能控制输出是否可变，分为两种，比如与的形式中，只有 <span class="arithmatex">\(En\)</span> 为 <code>1</code> 时，<span class="arithmatex">\(F\)</span> 表现为 <span class="arithmatex">\(X\)</span> 的值；反之输出必定为 <code>0</code>（注意区分它与三态门的区别，高阻态or定值）；</li>
 </ul>
 <hr/>
 <h3 id="基本功能块">基本功能块<a class="headerlink" href="#基本功能块" title="Permanent link">¶</a></h3>
@@ -1113,20 +1175,31 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <li>（三端）信号分配器(Demultiplexer) <code>DEMUX</code></li>
 </ul>
 <hr/>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: 更详细的说明。</li>
-</ul>
 <h4 id="译码器">译码器<a class="headerlink" href="#译码器" title="Permanent link">¶</a></h4>
 <p>穷举可能性，稠密 -&gt; 稠密/稀疏</p>
+<p>为了节省门输入成本，我们常常使用 <strong>分级</strong> 的思想来构造多输入多译码器。</p>
+<p>eg:</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../70.png"><img alt="" src="../70.png"/></a></p>
+<p>由于底层的电路能够直接实现的运算十分局限，所以需要用译码器来实现一些基础运算，例如加法。</p>
+<p>一位加法器就可以通过译码器和或门实现，核心就是枚举输入的各种情况，然后用或门拾取 sum 和 carry 的最小项。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../71.png"><img alt="" src="../71.png"/></a></p>
 <hr/>
 <h4 id="编码器">编码器<a class="headerlink" href="#编码器" title="Permanent link">¶</a></h4>
 <p>稠密/稀疏 -&gt; 稠密</p>
+<blockquote>
+<p>如上定义的编码器有一个限制，即任何时候输入只能有一个是活动的，即输入是 one-hot 的。</p>
+</blockquote>
+<div class="admonition summary">
+<p class="admonition-title">优先编码器</p>
+<p>优先编码器能够实现优先级函数，它不要求输入是 one-hot 的，而是总是关注有效输入中优先级最高的那一个。即比如当优先级最高的那一位是 <code>1</code> 时，其它所有优先级不如它的位置的值都是我们不关心的内容了。</p>
 <div class="admonition example">
 <p class="admonition-title">中断(interrupt)判优器</p>
+<p>优先编码器的一种应用就是中断判优器。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../48.png"><img alt="" src="../48.png"/></a></p>
 <blockquote>
 <p>其中 <span class="arithmatex">\(V\)</span> 表示输出是否有效，在中断判优系统中即表示是否有中断请求。</p>
 </blockquote>
+</div>
 </div>
 <hr/>
 <h4 id="多路复用器">多路复用器<a class="headerlink" href="#多路复用器" title="Permanent link">¶</a></h4>
@@ -1139,26 +1212,110 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <p>完全使用三态门来实现四输入 <code>MUX</code>，门输入大大减少。</p>
 </blockquote>
 </details>
-<p><code>MUX</code> 还可以实现任意的逻辑函数：</p>
+<p><code>MUX</code> 还可以 <strong>实现任意的逻辑函数</strong>：</p>
 <ul>
 <li>将控制端当作输入，原来的输入当作结果；</li>
 <li>即可以将一个四输入 <code>MUX</code> 当作一个二输入的函数；</li>
 </ul>
+<p>换句话来说，就是将原来的控制端当作输入端，并在原来的输入端写入逻辑函数的真值表，以实现任意逻辑函数。</p>
 <p>我们还可以通过把一部分的输入当作常量端来简化元件（降维）：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../50.png"><img alt="" src="../50.png"/></a></p>
 <p>观察其最小项，使其输出所有最小项。但是在降维过程中并不需要全都是 C，如果卡诺图中存在双 <code>1</code> 或者双 <code>0</code>，也可以仍然使用常量。</p>
 <hr/>
 <h4 id="信号分配器">信号分配器<a class="headerlink" href="#信号分配器" title="Permanent link">¶</a></h4>
-<p>通过控制端选择输入给到若干输出中的哪一个。</p>
+<p>简写为 <code>DEMUX</code>，通过控制端选择输入给到若干输出中的哪一个。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../45.png"><img alt="" src="../45.png"/></a></p>
 <hr/>
 <p>👍 后续 <a href="../Chap05/#可重编程技术">可重编程技术</a></p>
 <hr/>
 <h2 id="算术逻辑电路">算术逻辑电路<a class="headerlink" href="#算术逻辑电路" title="Permanent link">¶</a></h2>
 <p>我们主要讨论的计算主要包括逻辑运算和算术运算，前者由于可以直接通过基本门很方便实现，所以我们不过多考虑；在此主要介绍算数运算。在计算机硬件中，承担计算工作的主要部件为 <code>ALU</code>(Arithmetic Logical Unit)。</p>
-<p>然而，算数模块的本质只是解码器，只是我们将逻辑转化为解码规则。</p>
+<hr/>
+<div class="admonition info">
+<p class="admonition-title">引入</p>
+<p>在之前 <a href="#编码器">译码器</a> 和 <a href="#多路复用器">多路复用器</a> 的部分中已经介绍过一些实现 1 bit 加法器的方法，接下来我们就来详细看看加法器这个东西。</p>
+<p>首先我们需要了解加法器最底层的单元，即实现 1 bit 运算的 <strong>半加器(half adder)</strong> 和 <strong>全加器(full adder)</strong>，接下来需要将他们组合在一起，实现 n bits 的加法器，其中主要介绍 <strong>行波加法器(binary ripple carry adder)</strong>。此外，基于一些编码的知识，我们还可以将它改装成加减法器。</p>
+</div>
+<hr/>
+<h3 id="半加器--全加器">半加器 &amp; 全加器<a class="headerlink" href="#半加器--全加器" title="Permanent link">¶</a></h3>
+<p>对于二进制加法，其输出无疑有当前位的和 <code>S</code> 和进位 <code>C</code>，而输入除了两个操作数 <code>X</code> 和 <code>Y</code> 以外，还可能有上一位的进位 <code>Z</code>(或者<code>C{n-1}</code>)。而对于一个二进制数的第一位，显然不会有进位，或者说 <code>Z=0</code>，所以我们可以将这个 <code>Z</code> 去掉，即输入只有 <code>X</code> 和 <code>Y</code>，这就是 半加器(half adder)；显然，对应的，如果输入中有上一位的进位 <code>Z</code>，则称为 <strong>全加器(full adder)</strong>。</p>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">半加器</label><label for="__tabbed_2_2">全加器</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">逻辑表达式</label><label for="__tabbed_3_2">真值表</label><label for="__tabbed_3_3">电路图</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="arithmatex">\[
+S=\overline{X}Y+X\overline{Y}=X\oplus Y \\
+C = XY
+\]</div>
+</div>
+<div class="tabbed-block">
+<p><figure markdown="">
+<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../72.png"><img alt="" src="../72.png"/></a>
+</figure></p>
+</div>
+<div class="tabbed-block">
+<p><figure markdown="">
+<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../73.png"><img alt="" src="../73.png"/></a>
+</figure></p>
+</div>
+</div>
+</input></input></input></div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><input id="__tabbed_4_3" name="__tabbed_4" type="radio"><input id="__tabbed_4_4" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">逻辑表达式</label><label for="__tabbed_4_2">真值表</label><label for="__tabbed_4_3">卡诺图</label><label for="__tabbed_4_4">逻辑表达式 with XOR</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="arithmatex">\[
+S=\overline{X}\,\overline{Y}Z + \overline{X}Y\overline{Z} + X\overline{Y}\,\overline{Z} + XYZ \\
+C = XY + XZ + YZ
+\]</div>
+</div>
+<div class="tabbed-block">
+<p><figure markdown="">
+<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../74.png"><img alt="" src="../74.png"/></a>
+</figure></p>
+</div>
+<div class="tabbed-block">
+<p><figure markdown="">
+<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../75.png"><img alt="" src="../75.png"/></a>
+</figure></p>
+</div>
+<div class="tabbed-block">
+<div class="arithmatex">\[
+S = (X\oplus Y)\oplus Z \\
+C = XY + Z(X\oplus Y)
+\]</div>
+</div>
+</div>
+</input></input></input></input></div>
+</div>
+</div>
+</div>
+</input></input></div>
+</div>
+<hr/>
+<h3 id="行波加法器">行波加法器<a class="headerlink" href="#行波加法器" title="Permanent link">¶</a></h3>
+<p>行波加法器是朴素的 n bits 加法器实现。其核心思想也就是模拟我们使用“竖式”来计算加法，从低位开始逐位计算，并将进位给到下一位作为输入。</p>
+<p>实际上无论是只用半加器或是只用全加器，都可以实现行波加法器，但是殊途同归，无非是通过外部器件来进行互相转化而已。如果只使用全加器来实现，则以 4 bits 行波加法器为例，其大致逻辑如下：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../76.png"><img alt="" src="../76.png"/></a></p>
+<p>其中，在加法器中，<span class="arithmatex">\(C_0\)</span> 必然是 <code>0</code>。</p>
+<hr/>
+<h3 id="二进制减法">二进制减法<a class="headerlink" href="#二进制减法" title="Permanent link">¶</a></h3>
+<p>首先，在开始二进制减法的介绍之前，你需要了解 <strong>补码(2's complement)</strong>，不过这个东西实在是提过太多次了所以我不打算在这里再写一次，可以查看我的 <a href="../../D1QD_CXiaoCheng/#补码">C 小笔记的补码内容</a>。</p>
+<p>结合补码，我们再来观察行波加法器，我们需要对减数的每一位取反，并对整个数加一，再直接将它们相加即可，即将减法转化为补码下的加法。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../77.png"><img alt="" src="../77.png"/></a></p>
+<p>其中加一这一步恰好可以通过在加法器中必定为 <code>0</code> 的 <span class="arithmatex">\(C_0\)</span> 来实现，然后我们再在输入中添加 <code>MUX</code>，就可以实现加减法器。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../78.png"><img alt="" src="../78.png"/></a></p>
+<hr/>
+<h4 id="有符号数的表示与计算">有符号数的表示与计算<a class="headerlink" href="#有符号数的表示与计算" title="Permanent link">¶</a></h4>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: 补</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: 补充这里。</li>
 </ul>
 <hr/>
 <hr/>
@@ -1166,7 +1323,7 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月5日 12:00:15</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月20日 12:39:27</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月1日 13:37:53</span>

@@ -692,6 +692,11 @@
         NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
       </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../pape_read/arXiv%3A2104.05670/">
+        Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
+      </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -935,17 +940,17 @@
 <ul>
 <li><code>A</code> <code>AND</code> <code>B</code> 可写作 <span class="arithmatex">\(A\cdot B\)</span> 或者 <span class="arithmatex">\(AB\)</span>；</li>
 <li><code>A</code> <code>OR</code> <code>B</code> 可写作 <span class="arithmatex">\(A+B\)</span>；</li>
-<li><code>NOT A</code> 可写作 <span class="arithmatex">\(\bar{A}\)</span>；</li>
+<li><code>NOT A</code> 可写作 <span class="arithmatex">\(\overline{A}\)</span>；</li>
 </ul>
 <p>由此可以进行一些组合，例如：</p>
 <ul>
-<li><code>A</code> <code>XOR</code> <code>B</code> 可写作 <span class="arithmatex">\(\bar{A+B}\)</span>；</li>
-<li><code>A</code> <code>NAND</code> <code>B</code> 可写作 <span class="arithmatex">\(\bar{A\cdot B}\)</span>；</li>
+<li><code>A</code> <code>XOR</code> <code>B</code> 可写作 <span class="arithmatex">\(\overline{A+B}\)</span>；</li>
+<li><code>A</code> <code>NAND</code> <code>B</code> 可写作 <span class="arithmatex">\(\overline{A\cdot B}\)</span>；</li>
 </ul>
 <p>再次还需要提到的是 <strong>德·摩根定律(De Morgan's Laws)</strong>，其表述为：</p>
 <ul>
-<li><span class="arithmatex">\(\bar{A+B} = \bar{A}\cdot\bar{B}\)</span>；</li>
-<li><span class="arithmatex">\(\bar{A\cdot B} = \bar{A}+\bar{B}\)</span>；</li>
+<li><span class="arithmatex">\(\overline{A+B} = \overline{A}\cdot\overline{B}\)</span>；</li>
+<li><span class="arithmatex">\(\overline{A\cdot B} = \overline{A}+\overline{B}\)</span>；</li>
 </ul>
 <h2 id="逻辑门">逻辑门<a class="headerlink" href="#逻辑门" title="Permanent link">¶</a></h2>
 <p>逻辑门是在硬件层面上实现布尔代数的逻辑单元。其操作对象为高低电平。</p>
@@ -988,7 +993,7 @@
 <p>优先级从高到低依次为：</p>
 <ol>
 <li>括号 / ()；</li>
-<li>非 / NOT / <span class="arithmatex">\(\bar A\)</span>；</li>
+<li>非 / NOT / <span class="arithmatex">\(\overline A\)</span>；</li>
 <li>与 / AND / <span class="arithmatex">\(\cdot\)</span>；</li>
 <li>或 / OR / <span class="arithmatex">\(+\)</span>；</li>
 </ol>
@@ -1018,8 +1023,8 @@
 <p>一个 <strong>函数的互补(complement of a function)</strong> 指的是，将它的对偶函数中每一个变量都取反得到的函数，而该函数正好等于原函数的非。</p>
 <div class="admonition note">
 <p class="admonition-title">eg</p>
-<p>原函数：<span class="arithmatex">\(F=\bar{A}B+C\bar{B}\)</span>；
-其互补函数：<span class="arithmatex">\(\bar{F}=(A+\bar{B})(\bar{C}+D)\)</span>；</p>
+<p>原函数：<span class="arithmatex">\(F=\overline{A}B+C\overline{B}\)</span>；
+其互补函数：<span class="arithmatex">\(\overline{F}=(A+\overline{B})(\overline{C}+D)\)</span>；</p>
 </div>
 <h3 id="替代法则">替代法则<a class="headerlink" href="#替代法则" title="Permanent link">¶</a></h3>
 <p><strong>替代法则(substitution rules)</strong>: 如果将一个等式中 <strong>所有的</strong> <strong>某个变量</strong> 都替换为同一个表达式，则等式依然成立。</p>
@@ -1034,10 +1039,10 @@
 <h3 id="一致性定理">一致性定理<a class="headerlink" href="#一致性定理" title="Permanent link">¶</a></h3>
 <p>在简化逻辑表达式的时候，<strong>一致性定理(consensus theorem)</strong> 也很有用：</p>
 <div class="arithmatex">\[
-XY+\bar{X}Z+YZ=XY+\bar{X}Z
+XY+\overline{X}Z+YZ=XY+\overline{X}Z
 \]</div>
 <p>其证明的第一步是这样的：
-<span class="arithmatex">\(XY+\bar{X}Z+YZ=XY+\bar{X}Z+(X+\bar{X})YZ\)</span>，那后面就很简单了。本质上这个等式是利用了裂项，需要将其中最本质的部分，最小的粒度给裂开来，然后再慢慢消掉。</p>
+<span class="arithmatex">\(XY+\overline{X}Z+YZ=XY+\overline{X}Z+(X+\overline{X})YZ\)</span>，那后面就很简单了。本质上这个等式是利用了裂项，需要将其中最本质的部分，最小的粒度给裂开来，然后再慢慢消掉。</p>
 <h2 id="标准形式">标准形式<a class="headerlink" href="#标准形式" title="Permanent link">¶</a></h2>
 <p>由于本质上相等的布尔表达式实际上有很多种写法，而且随着变量越来越复杂，他们之间的比较会很困难。所以我们需要定义一种形式，使得所有相同的表达式都能比较方便的“化简”为同一个形式，同时也能辨别出两个表达式是不同的。这就引入了 <strong>标准形式(Standard Forms)</strong>，他们分别为 <strong>最小项之和 SOM(Sum of Minterms)</strong> 和 <strong>最大项之积 POM(Product of Maxterms)</strong>。</p>
 <p>为了方便描述，在继续之前，我们先给出这样一张 🌰 真值表。</p>
@@ -1123,14 +1128,14 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 </blockquote>
 <p>用我的话来说，最小项之和就是挑出真值表中所有结果是 <code>1</code> 的最小项（<em>比较模糊但直观，所以请先囫囵吞枣，我在“追加说明”会进一步说明</em>）。显然，在最小项之和的含义就是，一旦字面量取值的组合匹配了这几个“最小项”的其中一项，那么结果就是 <code>1</code>，符合了 OR 的“有1得1”的规则。</p>
 <p>我们使用符号 <span class="arithmatex">\(m_{idx}\)</span> 来表示一个最小项，其中 <span class="arithmatex">\(idx\)</span> 表示描述的那一项在真值表的序号，同时这个下标的二进制也能反映出字面量的组合。</p>
-<p>例如，在 🌰 中，output 为 <code>1</code> 的项有：<code>010</code> <code>100</code> <code>101</code> <code>111</code> 这四项，那么我们需要挑出来的最小项表达就分别是 <span class="arithmatex">\(m_{2}=\bar{X}Y\bar{Z}, \; m_{4}=X\bar{Y}\bar{Z}, \; m_{5}=X\bar{Y}Z, \; m_{7}=XYZ\)</span>。</p>
+<p>例如，在 🌰 中，output 为 <code>1</code> 的项有：<code>010</code> <code>100</code> <code>101</code> <code>111</code> 这四项，那么我们需要挑出来的最小项表达就分别是 <span class="arithmatex">\(m_{2}=\overline{X}Y\overline{Z}, \; m_{4}=X\overline{Y}\overline{Z}, \; m_{5}=X\overline{Y}Z, \; m_{7}=XYZ\)</span>。</p>
 <details class="tip" open="open">
 <summary>追加说明（简单，但是建议看一看）</summary>
 <blockquote>
 <p>或许您觉得最小项的得到非常的自然且简单，我建议您也尝试着看一看追加说明，因为这对理解最大项挺有帮助的。</p>
 </blockquote>
 <p>那么什么是“列举”呢？让我们再看一眼上面对最小项之和的描述：“一旦字面量取值的组合匹配这几个‘最小项’的其中一项，那么结果就是真”，追本溯源，在最小项中，我们就需要做到只有当一个电路的状态是特定组合时，其返回值为 <code>1</code>。</p>
-<p>具体来说，比如，对于 🌰 中的 <span class="arithmatex">\(m_{5}=X\bar{Y}Z\)</span>，也可以通过这样一种更啰嗦的方式表达出来是这样的：</p>
+<p>具体来说，比如，对于 🌰 中的 <span class="arithmatex">\(m_{5}=X\overline{Y}Z\)</span>，也可以通过这样一种更啰嗦的方式表达出来是这样的：</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
 <span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -1144,8 +1149,8 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>而这个逻辑表达式，实际上已经和 <span class="arithmatex">\(m_5=X\bar{Y}Z\)</span> 一模一样了。</p>
-<p>在这里给出一个总结性的表述：<u>所谓的“挑出”，就是对于选定的一个字面量取值的组合，给出一个特定的表达式，使得只有这种组合的结果是 <span class="arithmatex">\(f\)</span>，而对于任何其他取值的组合，该表达式的结果都是 <span class="arithmatex">\(\bar{f}\)</span>，即实现了该表达式能 <strong>唯一表达</strong> 这个取值组合。</u></p>
+<p>而这个逻辑表达式，实际上已经和 <span class="arithmatex">\(m_5=X\overline{Y}Z\)</span> 一模一样了。</p>
+<p>在这里给出一个总结性的表述：<u>所谓的“挑出”，就是对于选定的一个字面量取值的组合，给出一个特定的表达式，使得只有这种组合的结果是 <span class="arithmatex">\(f\)</span>，而对于任何其他取值的组合，该表达式的结果都是 <span class="arithmatex">\(\overline{f}\)</span>，即实现了该表达式能 <strong>唯一表达</strong> 这个取值组合。</u></p>
 </details>
 <p>至此，我们得到了 🌰 所对应的 SOM：</p>
 <div class="arithmatex">\[
@@ -1153,7 +1158,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
     F(X,Y,Z)
     &amp; = \sum m(2,4,5,7) \\
     &amp; = m_2+m_4+m_5+m_7 \\
-    &amp; = \bar{X}Y\bar{Z}+X\bar{Y}\bar{Z}+X\bar{Y}Z+XYZ
+    &amp; = \overline{X}Y\overline{Z}+X\overline{Y}\,\overline{Z}+X\overline{Y}Z+XYZ
 \end{array}
 \]</div>
 <p>再次归纳，使用通俗的话来说，最小项之和更像是“枚举了所有 <code>1</code> 的可能”，只要匹配了这个“和”中的某一项（<em>事实上不做化简的话你也只能满足一项的值取到 <code>1</code></em>），表达式的值就会变成 <code>1</code>；而一个都不匹配的，自然就只能得到 <code>0</code>。</p>
@@ -1168,11 +1173,11 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <p>与最小项对比，无非是把 "product term" 换成了 "sum term"，也就是把 AND 换成了 OR。</p>
 <p>而最大项之积，就是挑出所有结果为 <code>0</code> 的最大项（<em>同样的，这里的“挑出”也很模糊，我也会在追加说明中再次说明</em>），再做 AND。以 <code>1</code> 为主体描述 AND 是“都1出1”，而以 <code>0</code> 为主体描述 AND 则是“有0出0”，这与 OR 的“有1出1”也是高度对称的（反之亦然）。也就是说，最大项之积的含义是，在最大项之积中，只要字面量取值的组合匹配这几个“最大项”的其中一项，整个表达式的结果就会变成 <code>0</code>。</p>
 <p>类似的，我们使用符号 <span class="arithmatex">\(M_{idx}\)</span> 来表示一个最大项，其中 <span class="arithmatex">\(idx\)</span> 表示描述的那一项在真值表的序号，同时这个下标的二进制也能反映出字面量的组合。</p>
-<p>例如，在 🌰 中，output 为 <code>0</code> 的项有：<code>000</code> <code>001</code> <code>011</code> <code>110</code> 这四项，那么我们需要挑出来的最小项表达就分别是 <span class="arithmatex">\(M_{0}=X+Y+Z, \; M_{1}=X+Y+\bar{Z}, \; M_{3}=X+\bar{Y}+\bar{Z}, \; m_{6}=\bar{X}+\bar{Y}+Z\)</span>。可以检验，只有代入他们对应的那一行真值表组合时，他们才会得到 <code>0</code>。</p>
+<p>例如，在 🌰 中，output 为 <code>0</code> 的项有：<code>000</code> <code>001</code> <code>011</code> <code>110</code> 这四项，那么我们需要挑出来的最小项表达就分别是 <span class="arithmatex">\(M_{0}=X+Y+Z, \; M_{1}=X+Y+\overline{Z}, \; M_{3}=X+\overline{Y}+\overline{Z}, \; m_{6}=\overline{X}+\overline{Y}+Z\)</span>。可以检验，只有代入他们对应的那一行真值表组合时，他们才会得到 <code>0</code>。</p>
 <details class="tip" open="open">
 <summary>追加说明</summary>
 <p>同样的，回顾最大项之积的描述：“在最大项之积中，只要字面量取值的组合匹配这几个‘最大项’的其中一项，整个表达式的结果就会变成 <code>0</code>”。</p>
-<p>具体来说，比如，对于 🌰 中的 <span class="arithmatex">\(M_6=\bar{X}+\bar{Y}+Z\)</span>，我们可以如下描述：</p>
+<p>具体来说，比如，对于 🌰 中的 <span class="arithmatex">\(M_6=\overline{X}+\overline{Y}+Z\)</span>，我们可以如下描述：</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"></span>
 <span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -1193,8 +1198,8 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Focus on this branch. This is our target actually!</span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>这也正对应了 <span class="arithmatex">\(M_6=\bar{X}+\bar{Y}+Z\)</span>。</p>
-<p>再次给出这个总结性的表述：<u>所谓的“挑出”，就是对于选定的一个字面量取值的组合，给出一个特定的表达式，使得只有这种组合的结果是 <span class="arithmatex">\(f\)</span>，而对于任何其他取值的组合，该表达式的结果都是 <span class="arithmatex">\(\bar{f}\)</span>，即实现了该表达式能 <strong>唯一表达</strong> 这个取值组合。</u></p>
+<p>这也正对应了 <span class="arithmatex">\(M_6=\overline{X}+\overline{Y}+Z\)</span>。</p>
+<p>再次给出这个总结性的表述：<u>所谓的“挑出”，就是对于选定的一个字面量取值的组合，给出一个特定的表达式，使得只有这种组合的结果是 <span class="arithmatex">\(f\)</span>，而对于任何其他取值的组合，该表达式的结果都是 <span class="arithmatex">\(\overline{f}\)</span>，即实现了该表达式能 <strong>唯一表达</strong> 这个取值组合。</u></p>
 </details>
 <p>至此，我们得到了 🌰 所对应的 POM：</p>
 <div class="arithmatex">\[    
@@ -1202,14 +1207,14 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
     F(X,Y,Z)
     &amp; = \prod M(0,1,3,6) \\
     &amp; = M_0M_1M_3M_6 \\
-    &amp; = (X+Y+Z)(X+Y+\bar{Z})(X+\bar{Y}+\bar{Z})(\bar{X}+\bar{Y}+Z)
+    &amp; = (X+Y+Z)(X+Y+\overline{Z})(X+\overline{Y}+\overline{Z})(\overline{X}+\overline{Y}+Z)
 \end{array}
 \]</div>
 <p>同样再次归纳，使用通俗的话来说，最大项之积更像是“枚举了所有 <code>0</code> 的可能”，只要匹配了这个“积”中的某一项，表达式的值就会变成 <code>0</code>；而一个都不匹配的，自然就只能得到 <code>1</code>。</p>
 <p>与最小项相比，一个枚举了所有的 <code>1</code> 的可能，一个枚举了所有是 <code>0</code> 的可能，对于一个二值表达式来说，两种 <strong>表达</strong> 都是充要的。</p>
 <hr/>
 <p>此时，我们还能发现：</p>
-<p>例如：<span class="arithmatex">\(M_5 = \bar{X} + Y + \bar{Z} = \bar{ X\bar{Y}Z } = \bar{m}_5\)</span></p>
+<p>例如：<span class="arithmatex">\(M_5 = \overline{X} + Y + \overline{Z} = \overline{ X\overline{Y}Z } = \overline{m}_5\)</span></p>
 <hr/>
 <h3 id="练习">练习<a class="headerlink" href="#练习" title="Permanent link">¶</a></h3>
 <p>接下来，我们将通过一些例子来进一步强化这些理解，并且挖掘一些神奇的特性。</p>
@@ -1217,7 +1222,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">题面</label><label for="__tabbed_1_2">答案</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>请分别写出如下真值表中 <span class="arithmatex">\(F\)</span> 和 <span class="arithmatex">\(\bar{F}\)</span> 的 SOM 和 POM。
+<p>请分别写出如下真值表中 <span class="arithmatex">\(F\)</span> 和 <span class="arithmatex">\(\overline{F}\)</span> 的 SOM 和 POM。
 <figure markdown=""><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../13.png"><img alt="" src="../13.png"/></a></figure></p>
 </div>
 <div class="tabbed-block">
@@ -1225,20 +1230,20 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <script type="math/tex; mode=display">
 \begin{array}{l}
     F(X,Y,Z)
-    & = \sum m(0,2,5,7) = \bar{X}\bar{Y}\bar{Z} + \bar{X}Y\bar{Z} + X\bar{Y}Z + XYZ \\
+    & = \sum m(0,2,5,7) = \overline{X}\,\overline{Y}\,\overline{Z} + \overline{X}Y\overline{Z} + X\overline{Y}Z + XYZ \\
     & = \prod M(1,3,4,6) \\
-    & = (X+Y+\bar{Z})(X+\bar{Y}+\bar{Z})(\bar{X}+Y+Z)(\bar{X}+\bar{Y}+Z)
+    & = (X+Y+\overline{Z})(X+\overline{Y}+\overline{Z})(\overline{X}+Y+Z)(\overline{X}+\overline{Y}+Z)
 \end{array}
 </script>
 <script type="math/tex; mode=display">
 \begin{array}{l}
-    \bar{F}(X,Y,Z)
-    & = \sum m(1,3,4,6) = \bar{X}\bar{Y}Z + \bar{X}YZ + X\bar{Y}\bar{Z} + XY\bar{Z} \\
+    \overline{F}(X,Y,Z)
+    & = \sum m(1,3,4,6) = \overline{X}\,\overline{Y}Z + \overline{X}YZ + X\overline{Y}\,\overline{Z} + XY\overline{Z} \\
     & = \prod M(0,2,5,7) \\
-    & = (X+Y+Z)(X+\bar{Y}+Z)(\bar{X}+Y+\bar{Z})(\bar{X}+\bar{Y}+\bar{Z})
+    & = (X+Y+Z)(X+\overline{Y}+Z)(\overline{X}+Y+\overline{Z})(\overline{X}+\overline{Y}+\overline{Z})
 \end{array}
 </script>
-于是我们发现一件很有意思的事情，<span class="arithmatex">\(F\)</span> 的 SOM 的下标与 <span class="arithmatex">\(\bar{F}\)</span> 的 POM 的下标是一样的；当然对于 <span class="arithmatex">\(F\)</span> 的 POM 和 <span class="arithmatex">\(\bar{F}\)</span> 的 SOM 也是一样的。这又双印证了对称性。</p>
+于是我们发现一件很有意思的事情，<span class="arithmatex">\(F\)</span> 的 SOM 的下标与 <span class="arithmatex">\(\overline{F}\)</span> 的 POM 的下标是一样的；当然对于 <span class="arithmatex">\(F\)</span> 的 POM 和 <span class="arithmatex">\(\overline{F}\)</span> 的 SOM 也是一样的。这又双印证了对称性。</p>
 </div>
 </div>
 </input></input></div>
@@ -1265,9 +1270,9 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <h4 id="按照字面量字面量计">按照字面量字面量计<a class="headerlink" href="#按照字面量字面量计" title="Permanent link">¶</a></h4>
 <p>很直白，就是按照表达式中有多少字面量来计算，例如：</p>
 <ul>
-<li><span class="arithmatex">\(F = BD + A\bar{B}C + A\bar{C}\bar{D}\)</span> 中 <span class="arithmatex">\(L = 8\)</span>；</li>
-<li><span class="arithmatex">\(F = ABC+\bar{A}\bar{B}\bar{C}\)</span> 中 <span class="arithmatex">\(L = 6\)</span>；</li>
-<li><span class="arithmatex">\(F = (A+B+C)(\bar{A}+\bar{B} + \bar{C})\)</span> 中 <span class="arithmatex">\(L = 6\)</span>；</li>
+<li><span class="arithmatex">\(F = BD + A\overline{B}C + A\overline{C}\,\overline{D}\)</span> 中 <span class="arithmatex">\(L = 8\)</span>；</li>
+<li><span class="arithmatex">\(F = ABC+\overline{A}\,\overline{B}\,\overline{C}\)</span> 中 <span class="arithmatex">\(L = 6\)</span>；</li>
+<li><span class="arithmatex">\(F = (A+B+C)(\overline{A}+\overline{B} + \overline{C})\)</span> 中 <span class="arithmatex">\(L = 6\)</span>；</li>
 </ul>
 <p>可以想象，虽然这种计算方法非常的简单，但是感觉不太靠谱。比如，后面两个例子，虽然他们的 literal cost 是一样的，但是显然开销不太一样（因为一个是 3+3 一个是 2+2+2）。所以我们需要一个更合适的计算方法。</p>
 <hr/>
@@ -1278,7 +1283,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <p>虽然非门也是门，但是我们通常不把非门直接计入 gate-input cost，所以接下来提到的“输入引脚”默认是不包含非门的输入引脚的。</p>
 </div>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../14.png"><img alt="" src="../14.png"/></a></p>
-<p>例如这张对应表达式 <span class="arithmatex">\(F = A+BC+\bar{B}\bar{C}\)</span> 的图中：</p>
+<p>例如这张对应表达式 <span class="arithmatex">\(F = A+BC+\overline{B}\,\overline{C}\)</span> 的图中：</p>
 <ul>
 <li>绿色原点表示一级输入引脚；</li>
 <li>蓝色方点表示二级输入引脚；</li>
@@ -1286,7 +1291,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 </ul>
 <p>也就是说，这里一共有 5 + 2 = 7 个输入引脚，以及 2 个非门输入引脚。</p>
 <p>从表达式来看，它可以看作是每一层运算的参数数量求和，不过我们忽略非门。</p>
-<p>例如，式子 <span class="arithmatex">\(F=AB+\bar{B}C+C\bar{D}\)</span> 中，最顶层的运算是一个三输入或运算，所以有 3 个输入；接下来有三个二输入与运算，所以各计 2 个输入，一共 2 * 3 = 6 个输入，一共是 9 个输入。</p>
+<p>例如，式子 <span class="arithmatex">\(F=AB+\overline{B}C+C\overline{D}\)</span> 中，最顶层的运算是一个三输入或运算，所以有 3 个输入；接下来有三个二输入与运算，所以各计 2 个输入，一共 2 * 3 = 6 个输入，一共是 9 个输入。</p>
 <p>当然，实际上从底层往上数更方便：
 - A 和 B 各自算一个，AB 整体算一个，一共 3 个；
 - 一共有三组类似 AB 的结构，所以一共是 3 * 3 = 9 个；
@@ -1299,14 +1304,14 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>如果出现了比如 <span class="arithmatex">\(F=\bar{A}B+\bar{A}C\)</span> 的情况，非门只需要计 1 个，因为我们实际上是把非了以后的东西当作了一个字面量再用的，在实际电路中，我们只需要非一次，之后只需要把这个输出值拿走去用就行。</p>
+<p>如果出现了比如 <span class="arithmatex">\(F=\overline{A}B+\overline{A}C\)</span> 的情况，非门只需要计 1 个，因为我们实际上是把非了以后的东西当作了一个字面量再用的，在实际电路中，我们只需要非一次，之后只需要把这个输出值拿走去用就行。</p>
 </div>
 <p>接下来放几道例题。</p>
 <div class="admonition note">
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">题面</label><label for="__tabbed_2_2">答案</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>计算 <span class="arithmatex">\(F=ABC+\bar{A}\bar{B}\bar{C}\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
+<p>计算 <span class="arithmatex">\(F=ABC+\overline{A}\,\overline{B}\,\overline{C}\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
 </div>
 <div class="tabbed-block">
 <ul>
@@ -1322,7 +1327,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">题面</label><label for="__tabbed_3_2">答案</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>计算 <span class="arithmatex">\(F=(A+\bar{C})(\bar{B}+C)(\bar{A}+B)\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
+<p>计算 <span class="arithmatex">\(F=(A+\overline{C})(\overline{B}+C)(\overline{A}+B)\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
 </div>
 <div class="tabbed-block">
 <ul>
@@ -1338,7 +1343,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">题面</label><label for="__tabbed_4_2">答案</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>计算 <span class="arithmatex">\(F=(A+\bar{B})(A+D)(B+C+\bar{D})(\bar{B}+\bar{C}+D)\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
+<p>计算 <span class="arithmatex">\(F=(A+\overline{B})(A+D)(B+C+\overline{D})(\overline{B}+\overline{C}+D)\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
 </div>
 <div class="tabbed-block">
 <ul>
@@ -1355,7 +1360,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">题面</label><label for="__tabbed_5_2">答案</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>计算 <span class="arithmatex">\(F=BD+A\bar{B}C+A\bar{B}\bar{D}+AB\bar{C}\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
+<p>计算 <span class="arithmatex">\(F=BD+A\overline{B}C+A\overline{B}\,\overline{D}+AB\overline{C}\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
 </div>
 <div class="tabbed-block">
 <ul>
@@ -1372,7 +1377,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">题面</label><label for="__tabbed_6_2">答案</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>计算 <span class="arithmatex">\(F=\bar{A}\bar{C}(B+\bar{D})+AC(B+\bar{D})\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
+<p>计算 <span class="arithmatex">\(F=\overline{A}\,\overline{C}(B+\overline{D})+AC(B+\overline{D})\)</span> 的 <span class="arithmatex">\(L\)</span>、<span class="arithmatex">\(G\)</span>、<span class="arithmatex">\(GN\)</span>。</p>
 </div>
 <div class="tabbed-block">
 <ul>
@@ -1380,7 +1385,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <li><span class="arithmatex">\(G = 12\)</span>；</li>
 <li><span class="arithmatex">\(GN = 15\)</span>；</li>
 </ul>
-<p>这里同样需要注意，出现了比较复杂的逻辑运算，以 <span class="arithmatex">\(\bar{A}\bar{C}(B+\bar{D})\)</span> 为例，自顶向下是：⓵三输入与门，⓶二输入或门；所以应该是 <span class="arithmatex">\(1^{\bar{A}} + 1^{\bar{C}} + 1^{B} + 1^{\bar{D}} + 1^{B+\bar{D}} + 1^{\bar{A}\bar{C}(B+\bar{D})}\)</span>，即 6。</p>
+<p>这里同样需要注意，出现了比较复杂的逻辑运算，以 <span class="arithmatex">\(\overline{A}\,\overline{C}(B+\overline{D})\)</span> 为例，自顶向下是：⓵三输入与门，⓶二输入或门；所以应该是 <span class="arithmatex">\(1^{\overline{A}} + 1^{\overline{C}} + 1^{B} + 1^{\overline{D}} + 1^{B+\overline{D}} + 1^{\overline{A}\,\overline{C}(B+\overline{D})}\)</span>，即 6。</p>
 </div>
 </div>
 </input></input></div>
@@ -1389,7 +1394,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <hr/>
 <h4 id="卡诺图的思想">卡诺图的思想<a class="headerlink" href="#卡诺图的思想" title="Permanent link">¶</a></h4>
 <p>优化逻辑表达式最直白的思想就是减少门电路，也就是去减少 gate-input cost。那么要如何做呢？</p>
-<p>我们考虑到逻辑运算律中的这个推广：<span class="arithmatex">\(XY+X\bar{Y}=X(Y+\bar{Y})=X\)</span>，也就是说，如果两个最小项只差一个字面量的非，那么他们是可以合并的；当然，对称的，根据<span class="arithmatex">\((X+\bar{Y})(X+Y)=X+Y\bar{Y}=X\)</span>，我们也可以得到这个结论对最大项也成立。</p>
+<p>我们考虑到逻辑运算律中的这个推广：<span class="arithmatex">\(XY+X\overline{Y}=X(Y+\overline{Y})=X\)</span>，也就是说，如果两个最小项只差一个字面量的非，那么他们是可以合并的；当然，对称的，根据<span class="arithmatex">\((X+\overline{Y})(X+Y)=X+Y\overline{Y}=X\)</span>，我们也可以得到这个结论对最大项也成立。</p>
 <p>是不是觉得“只差一个”很耳熟？是的！我们想到了格雷码！假设我们将 n 个字面量排列成一个 n bits 的向量，那么只需要按照格雷码排序，一旦发现有相邻的最小项，我们就可以合并他们。</p>
 <p>但这还不够充分，例如在一个有三个字面量的逻辑表达式中，“与一个表达式相邻”的表达式其实有三个，但是用线性的表示方法又没法很好的表示这一点，所以我们想到将它写成一张二维的表，即将字面量拆成两组 bit 向量，各自按照格雷码排列，形成一张二维表，这就是 <strong>卡诺图(Karnaugh map)</strong>，也叫 <strong>K-map</strong>。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../15.png"><img alt="" src="../15.png"/></a></p>
@@ -1487,7 +1492,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <h4 id="使用卡诺图优化">使用卡诺图优化<a class="headerlink" href="#使用卡诺图优化" title="Permanent link">¶</a></h4>
 <p>已经讲了思想和卡诺图的结构，那么到底要如何利用卡诺图进行优化呢？</p>
 <p>让我们回顾优化的方法，即合并相邻两项，也就是找到卡诺图中相邻的部分。但是这不够，我们还要思考是不是能合并已经相邻的部分，比如：</p>
-<p>我们通过卡诺图，首先合并了 <span class="arithmatex">\(WXYZ\)</span> 和 <span class="arithmatex">\(WXY\bar{Z}\)</span>，<span class="arithmatex">\(WX\bar{Y}Z\)</span> 和 <span class="arithmatex">\(WX\bar{Y}\bar{Z}\)</span>，分别得到了 <span class="arithmatex">\(WXY\)</span> 和 <span class="arithmatex">\(WX\bar{Y}\)</span>，显然这两个东西也是可以合并的；而在卡诺图上，这表现为两个相邻的 <code>1*2</code> 的矩形。</p>
+<p>我们通过卡诺图，首先合并了 <span class="arithmatex">\(WXYZ\)</span> 和 <span class="arithmatex">\(WXY\overline{Z}\)</span>，<span class="arithmatex">\(WX\overline{Y}Z\)</span> 和 <span class="arithmatex">\(WX\overline{Y}\,\overline{Z}\)</span>，分别得到了 <span class="arithmatex">\(WXY\)</span> 和 <span class="arithmatex">\(WX\overline{Y}\)</span>，显然这两个东西也是可以合并的；而在卡诺图上，这表现为两个相邻的 <code>1*2</code> 的矩形。</p>
 <p>总而言之，这种迭代合并的行为最终可以划归为这样一个行为：</p>
 <p>我们在卡诺图中寻找若干 <strong>极大</strong> 的 <strong>2 幂矩形</strong>，即元素个数为 2 的幂次（自然边长也都为 2 的幂次）的矩形，而每一个矩形所覆盖的元素都应该是 <strong>最小项</strong>/最大项（一般都是做最小项）。需要注意，“循环”的性质仍然满足，即第一列和最后一列，第一行和最后一行也可以认为是相邻的。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../20.png"><img alt="" src="../20.png"/></a></p>
@@ -1500,7 +1505,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../22.png"><img alt="" src="../22.png" width="500.px"/></a></p>
 <p>都是合理的卡诺图划分。</p>
 <p>在得到这些划分后，我们就可以很方便地将这些项拎出来，写出它们的表达式。</p>
-<p>而至于如何拎出来——不难发现，如果一个方框中，某一个字面量的值既可以是 <code>0</code>，又可以是 <code>1</code> 时（这里指的是输入的值，并非输出结果），在这个优化项的结果中就可以不用写出这个字面量；反之，如果这个字面量 <span class="arithmatex">\(X\)</span> 的值都是 <code>0</code>，则结果中会包含 <span class="arithmatex">\(\bar{X}\)</span>，如果都是 <code>1</code>，则结果中会包含 <span class="arithmatex">\(X\)</span>。</p>
+<p>而至于如何拎出来——不难发现，如果一个方框中，某一个字面量的值既可以是 <code>0</code>，又可以是 <code>1</code> 时（这里指的是输入的值，并非输出结果），在这个优化项的结果中就可以不用写出这个字面量；反之，如果这个字面量 <span class="arithmatex">\(X\)</span> 的值都是 <code>0</code>，则结果中会包含 <span class="arithmatex">\(\overline{X}\)</span>，如果都是 <code>1</code>，则结果中会包含 <span class="arithmatex">\(X\)</span>。</p>
 <div class="admonition note">
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"><input id="__tabbed_7_2" name="__tabbed_7" type="radio"><div class="tabbed-labels"><label for="__tabbed_7_1">题面</label><label for="__tabbed_7_2">答案</label></div>
 <div class="tabbed-content">
@@ -1515,11 +1520,11 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <p>写出来是：</p>
 <ul>
 <li>绿：<span class="arithmatex">\(x=0,\;y=0,\;z=0/1\)</span><ul>
-<li>所以是：<span class="arithmatex">\(\bar{X}\bar{Y}\)</span>；</li>
+<li>所以是：<span class="arithmatex">\(\overline{X}\,\overline{Y}\)</span>；</li>
 </ul>
 </li>
 <li>蓝：<span class="arithmatex">\(x=0/1,\;y=0/1,\;z=0\)</span><ul>
-<li>所以是：<span class="arithmatex">\(\bar{Z}\)</span>；</li>
+<li>所以是：<span class="arithmatex">\(\overline{Z}\)</span>；</li>
 </ul>
 </li>
 <li>红：<span class="arithmatex">\(x=1,\;y=1,\;z=0/1\)</span><ul>
@@ -1527,7 +1532,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 </ul>
 </li>
 </ul>
-<p>综上所述，优化结果是 <span class="arithmatex">\(F = \bar{X}\bar{Y} + \bar{Z} + XY\)</span></p>
+<p>综上所述，优化结果是 <span class="arithmatex">\(F = \overline{X}\,\overline{Y} + \overline{Z} + XY\)</span></p>
 </div>
 </div>
 </input></input></div>
@@ -1551,7 +1556,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <div class="admonition tip">
 <p class="admonition-title">由卡诺图得到乘积结果</p>
 <p>尽管我们不停强调 与 和 或 是对称的，但是仍然有很多操作是鉴于我们对 <code>1</code> 的偏爱才会顺手的（你会发现，把乘除换成我们完全不熟悉的符号，你甚至可能无从下手）。</p>
-<p>所以，在卡诺图的问题中，如果要利用卡诺图得到 <span class="arithmatex">\(F\)</span> 优化后的乘积形式，我们还是建议从将问题转化为求 <span class="arithmatex">\(\bar{F}\)</span> 优化后的和形式，然后再对其取反过，利用德·摩根定律来得到结果。</p>
+<p>所以，在卡诺图的问题中，如果要利用卡诺图得到 <span class="arithmatex">\(F\)</span> 优化后的乘积形式，我们还是建议从将问题转化为求 <span class="arithmatex">\(\overline{F}\)</span> 优化后的和形式，然后再对其取反过，利用德·摩根定律来得到结果。</p>
 <details class="note">
 <summary>eg</summary>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../26.png"><img alt="" src="../26.png"/></a></p>
@@ -1614,7 +1619,7 @@ XY+\bar{X}Z+YZ=XY+\bar{X}Z
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月3日 17:09:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月20日 12:39:27</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月8日 15:38:17</span>
