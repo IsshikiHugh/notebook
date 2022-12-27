@@ -488,8 +488,8 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#状态机">
-    状态机
+<a class="md-nav__link" href="#状态图">
+    状态图
   </a>
 </li>
 <li class="md-nav__item">
@@ -749,8 +749,8 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#状态机">
-    状态机
+<a class="md-nav__link" href="#状态图">
+    状态图
   </a>
 </li>
 <li class="md-nav__item">
@@ -880,7 +880,7 @@
 <hr/>
 <h2 id="时序电路分析">时序电路分析<a class="headerlink" href="#时序电路分析" title="Permanent link">¶</a></h2>
 <p>为了分析时序电路，我们需要一些工具来表示时序电路的一些特征与逻辑。观察时序电路和组合电路的区别，发现最核心的就是逻辑运算过程中出现了「状态」参与运算。因此，我们需要在各个组合电路分析中采用的表示方法中，添加表示「状态」的信息。</p>
-<p>除此之外，如果只是单纯的将「状态」作为一个新的输入，作为增量添加到表达方式中，会发现这些表述会显得很重。所以我们也需要寻找一种更好的办法来表达时序电路中的逻辑，这就是「状态机」。</p>
+<p>除此之外，如果只是单纯的将「状态」作为一个新的输入，作为增量添加到表达方式中，会发现这些表述会显得很重。所以我们也需要寻找一种更好的办法来表达时序电路中的逻辑，这就是「状态图」。</p>
 <hr/>
 <h3 id="触发器的输入方程">触发器的输入方程<a class="headerlink" href="#触发器的输入方程" title="Permanent link">¶</a></h3>
 <p><strong>触发器的输入方程(flip-flop input equation)</strong> 主要是为其提供一个代数表达方式。它的主要想法是⓵表达每一个触发器的输入与输出之间的关系；⓶表达每一个直接输出的逻辑表达式。其中，触发器的输出符号表示了其类型（即符号）与输出（即下标）。</p>
@@ -964,26 +964,28 @@
 <div class="admonition note">
 <p class="admonition-title">Mealy model circuit &amp; Moore model circuit</p>
 <p>如果输出既依赖于当前状态，也依赖于输入的时序电路，则称为 <strong>米勒型电路(Mealy model circuit)</strong>；而如果输出只依赖于当前状态，则称为 <strong>摩尔型电路(Moore model circuit)</strong>。</p>
-<p>在 <a href="#状态机">状态机</a> 中，我们还将再一次遇到这两个人名。</p>
+<p>在 <a href="#状态图">状态图</a> 中，我们还将再一次遇到这两个人名。</p>
 </div>
 <hr/>
-<h3 id="状态机">状态机<a class="headerlink" href="#状态机" title="Permanent link">¶</a></h3>
-<p>可以发现，状态表比较清晰的表达了不同的状态和输入得到的结果，但是对于「不同状态之间是如何转换的」这件事的描述并不清晰。而对于「联系」这件事，有向图是一个非常好的形式，所以我们将介绍 <strong>状态图(state diagram)</strong>，也就是状态机。</p>
+<h3 id="状态图">状态图<a class="headerlink" href="#状态图" title="Permanent link">¶</a></h3>
+<p>可以发现，状态表比较清晰的表达了不同的状态和输入得到的结果，但是对于「不同状态之间是如何转换的」这件事的描述并不清晰。而对于「联系」这件事，有向图是一个非常好的形式，所以我们将介绍 <strong>状态图(state diagram)</strong>。</p>
 <p>状态图承载的信息量和状态表是一样的，所以也是需要表达 当前状态(present state)、输入(input)、下一状态(next state)、输出(output) 这四个东西。只不过「下一状态」是通过有向边来表示的。当前状态作为一个 node 的属性；而输入作为 edge 的一个属性；至于输出，根据它是放在 edge 上还是 node 上，分为 <strong>米勒型(Mealy)</strong> 和 <strong>摩尔型(Moore)</strong> 两种。</p>
 <div class="admonition example">
 <p class="admonition-title">Mealy</p>
-<p>例如，这是一个 米勒型 的状态机，以及对应的状态表。</p>
+<p>例如，这是一个 米勒型 的状态图，以及对应的状态表。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../89.png"><img alt="" src="../89.png"/></a></p>
 <blockquote>
+<p>因为米勒型电路的**输出与当前状态和输入都有关**，所以输出会和输入放在一起，即放在 edge 里。</p>
 <p>对于米勒型，node 内的二进制为 present state 中的 <code>AB</code>；edge 上分别为 input 和 output：<code>X</code>/<code>Y</code>；有向边表达了每个状态在特定输入下的下一个状态。</p>
 <p>例如，关注 node <code>00</code>，它有一条自环 <code>0</code>/<code>0</code>，对应 状态表 的第一行；它有一条 edge <code>1</code>/<code>0</code> 指向 node <code>01</code>，对应 状态表的第二行。</p>
 </blockquote>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Moore</p>
-<p>而下面是一个 摩尔型 的状态机，以及对应的状态表。</p>
+<p>而下面是一个 摩尔型 的状态图，以及对应的状态表。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../88.png"><img alt="" src="../88.png"/></a></p>
 <blockquote>
+<p>因为摩尔型电路的**输出只与当前状态有关**，所以输出会和当前状态放在一起，即放在 node 里。</p>
 <p>对于摩尔型，node 内的二进制表示 present state 和 output：<code>A</code>/<code>Z</code>；edge 上列举了这种转移可能的 inputs：<code>XY</code>。</p>
 <p>例如，关注 node <code>0</code>/<code>0</code>，它有两条自环 <code>00</code> 和 <code>11</code>，分别对应 状态表 的第一行和第四行；它有两条 edge <code>01</code> 和 <code>10</code> 指向 node <code>1</code>/<code>1</code>，对应 状态表 的第二行和第三行。</p>
 </blockquote>
@@ -998,7 +1000,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月25日 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月27日 14:37:03</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月20日 14:50:19</span>
