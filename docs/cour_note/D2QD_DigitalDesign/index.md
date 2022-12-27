@@ -14,8 +14,3 @@
     - :material-label: [Chap5](Chap05.md)
     - :material-label: [Chap6](Chap06.md)
     - :material-label: [Chap7](Chap07.md)
-    - :material-label: [Chap8](Chap08.md)
-    - :material-label: [Chap9](Chap09.md)
-    - :material-label: [Chap10](Chap10.md)
-    - :material-label: [Chap11](Chap11.md)
-    - :material-label: [Chap12](Chap12.md)

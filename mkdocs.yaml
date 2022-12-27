@@ -122,25 +122,25 @@ extra_javascript:
 
 
 nav:
-  - 💠 封面: 
-    - 💠 封面: index.md
-    - 💬 交流区: link.md
-  - 📚 技术积累:
+  - "💠 封面": 
+    - "💠 封面": index.md
+    - "💬 交流区": link.md
+  - "📚 技术积累":
     - tech_accu/index.md
-    - 常用工具:
+    - "常用工具":
       - tech_accu/tool/index.md
-      - Git Something:
+      - "Git Something":
         - tech_accu/tool/Git/index.md
         - tech_accu/tool/Git/Workflow/index.md
         - tech_accu/tool/Git/Commands/index.md
       - tech_accu/tool/Shell/index.md
       - tech_accu/tool/Colab/index.md
-    - 标准 | 格式 | 规范:
+    - "标准 | 格式 | 规范":
       - tech_accu/standard/BVH_format/index.md
-    - 人工智能:
+    - "人工智能":
       - tech_accu/ai/index.md
       - tech_accu/ai/pytorch/index.md
-  - 🗒 课程笔记:
+  - "🗒 课程笔记":
     - cour_note/index.md
     - cour_note/D1QD_CXiaoCheng/index.md
     - cour_note/D1SJ_cs231n/index.md
@@ -176,12 +176,12 @@ nav:
       - cour_note/D2QD_Intro2CV/Lec11.md
       - cour_note/D2QD_Intro2CV/Lec12.md
       - cour_note/D2QD_Intro2CV/Lec13.md
-  - 📝 论文阅读:
+  - "📝 论文阅读":
     - pape_read/index.md
     - pape_read/arXiv:2003.08934/index.md
     - pape_read/arXiv:2104.05670/index.md
-  - 📦 杂项专题:
+  - "📦 杂项专题":
     - others/index.md
     - others/reveal-md2Slides/index.md
-  - 🚧 施工中:
+  - "🚧 施工中":
     - comming.md
