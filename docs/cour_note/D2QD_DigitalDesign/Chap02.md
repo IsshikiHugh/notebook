@@ -305,7 +305,8 @@ $$
         $$
         \begin{array}{l}
             F(X,Y,Z)
-            & = \sum m(0,2,5,7) = \overline{X}\,\overline{Y}\,\overline{Z} + \overline{X}Y\overline{Z} + X\overline{Y}Z + XYZ \\
+            & = \sum m(0,2,5,7) \\
+            & = \overline{X}\,\overline{Y}\,\overline{Z} + \overline{X}Y\overline{Z} + X\overline{Y}Z + XYZ \\
             & = \prod M(1,3,4,6) \\
             & = (X+Y+\overline{Z})(X+\overline{Y}+\overline{Z})(\overline{X}+Y+Z)(\overline{X}+\overline{Y}+Z)
         \end{array}
@@ -313,7 +314,8 @@ $$
         $$
         \begin{array}{l}
             \overline{F}(X,Y,Z)
-            & = \sum m(1,3,4,6) = \overline{X}\,\overline{Y}Z + \overline{X}YZ + X\overline{Y}\,\overline{Z} + XY\overline{Z} \\
+            & = \sum m(1,3,4,6) \\
+            & = \overline{X}\,\overline{Y}Z + \overline{X}YZ + X\overline{Y}\,\overline{Z} + XY\overline{Z} \\
             & = \prod M(0,2,5,7) \\
             & = (X+Y+Z)(X+\overline{Y}+Z)(\overline{X}+Y+\overline{Z})(\overline{X}+\overline{Y}+\overline{Z})
         \end{array}
@@ -368,7 +370,7 @@ $$
 
 - 绿色原点表示一级输入引脚；
 - 蓝色方点表示二级输入引脚；
-- 黑色三角表示非门店输入引脚；
+- 黑色三角表示非门的输入引脚；
 
 也就是说，这里一共有 5 + 2 = 7 个输入引脚，以及 2 个非门输入引脚。
 
