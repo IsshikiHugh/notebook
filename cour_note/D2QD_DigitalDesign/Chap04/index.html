@@ -505,6 +505,11 @@
     时序电路的设计
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#延时分析">
+    延时分析
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -766,6 +771,11 @@
     时序电路的设计
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#延时分析">
+    延时分析
+  </a>
+</li>
 </ul>
 </nav>
 </div>
@@ -993,14 +1003,45 @@
 <p>换句话来说，米勒型倾向于表达「在特定状态下，特定输入将导致某种结果，以及状态转移」；而摩尔型倾向于表达「特定输入将导致某个状态向另外一个状态转移，而输出更像是一种状态的结果」。</p>
 <hr/>
 <h3 id="等价状态">等价状态<a class="headerlink" href="#等价状态" title="Permanent link">¶</a></h3>
+<p>暂略</p>
+<hr/>
+<div class="admonition info">
+<p class="admonition-title">延时分析</p>
+<p>延时分析是一个重难点，对于时序电路的延时分析，将在之后单独开一个小结重点介绍。</p>
+<p>请参考 <strong><a href="#延时分析">延时分析</a></strong>。</p>
+</div>
 <hr/>
 <h2 id="时序电路的设计">时序电路的设计<a class="headerlink" href="#时序电路的设计" title="Permanent link">¶</a></h2>
+<p>类比组合逻辑电路通过真值表设计电路，（同步）时序电路主要依据状态表（或等价表达，如状态图）来设计电路。实际设计中，我们需要考虑触发器以及其它组合电路的选择与设计：</p>
+<ul>
+<li>触发器的数量基本取决于整个需求中 状态 的数量，<span class="arithmatex">\(n\)</span> 个触发器能够表达 <span class="arithmatex">\(2^n\)</span> 个二进制状态；</li>
+<li>组合电路的主要设计围绕 触发器 的 输入 和 输出 展开；</li>
+</ul>
+<p>而主要的设计过程和组合逻辑电路的设计是类似的，如下：</p>
+<ol>
+<li>确定系统的行为；</li>
+<li>描述系统行为过程中，要注意状态的复用（不过并非状态越少成本就越小，这里有触发器数量和组合逻辑电路的 trade-off）；</li>
+<li>确定电路的初始状态（<strong>复位状态(reset state)</strong>，通过给定复位(reset)信号实现）；<ul>
+<li>复位一般可以是异步的；</li>
+</ul>
+</li>
+<li>阐述输入和输出之间的逻辑关系，并用真值表或逻辑表达式表达出来；</li>
+<li>给设计好的状态编码赋值，得到具体的状态表；</li>
+<li>我们可以使用 按计数顺序、 按格雷码、用独热码 来给状态赋值，更系统的方法比较复杂，不做讨论；</li>
+<li>根据状态表确定使用的触发器及其输入方程；</li>
+<li>根据状态表确定输出方程；</li>
+<li>优化输入方程和输出方程；</li>
+<li>将优化后的逻辑设计工艺映射到硬件实现上；</li>
+<li>验证正确性（在仿真环境中）；</li>
+</ol>
+<hr/>
+<h2 id="延时分析">延时分析<a class="headerlink" href="#延时分析" title="Permanent link">¶</a></h2>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月27日 14:37:03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月27日 23:24:20</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月20日 14:50:19</span>
