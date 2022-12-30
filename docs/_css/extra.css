@@ -23,10 +23,6 @@ center, p, li {
     font-size: medium;
 }
 
-li {
-    line-height: 1;
-}
-
 .md-nav__link {
     font-size: small;
 }
