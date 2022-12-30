@@ -514,6 +514,30 @@
 <a class="md-nav__link" href="#延时分析">
     延时分析
   </a>
+<nav aria-label="延时分析" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#组合电路延时">
+    组合电路延时
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#触发器延时">
+    触发器延时
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#松弛时间">
+    松弛时间
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#时序电路延时">
+    时序电路延时
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -785,6 +809,30 @@
 <a class="md-nav__link" href="#延时分析">
     延时分析
   </a>
+<nav aria-label="延时分析" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#组合电路延时">
+    组合电路延时
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#触发器延时">
+    触发器延时
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#松弛时间">
+    松弛时间
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#时序电路延时">
+    时序电路延时
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -984,7 +1032,7 @@
 <div class="admonition note">
 <p class="admonition-title">Mealy model circuit &amp; Moore model circuit</p>
 <p>如果输出既依赖于当前状态，也依赖于输入的时序电路，则称为 <strong>米勒型电路(Mealy model circuit)</strong>；而如果输出只依赖于当前状态，则称为 <strong>摩尔型电路(Moore model circuit)</strong>。</p>
-<p>在 <a href="#状态图">状态图</a> 中，我们还将再一次遇到这两个人名。</p>
+<p>在 <strong><a href="#状态图">状态图</a></strong> 中，我们还将再一次遇到这两个人名。</p>
 </div>
 <hr/>
 <h3 id="状态图">状态图<a class="headerlink" href="#状态图" title="Permanent link">¶</a></h3>
@@ -995,24 +1043,25 @@
 <p>例如，这是一个 米勒型 的状态图，以及对应的状态表。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../89.png"><img alt="" src="../89.png"/></a></p>
 <blockquote>
-<p>因为米勒型电路的**输出与当前状态和输入都有关**，所以输出会和输入放在一起，即放在 edge 里。</p>
+<p>因为米勒型电路的 <strong>输出与当前状态和输入都有关</strong>，所以输出会和输入放在一起，即放在 edge 里。</p>
 <p>对于米勒型，node 内的二进制为 present state 中的 <code>AB</code>；edge 上分别为 input 和 output：<code>X</code>/<code>Y</code>；有向边表达了每个状态在特定输入下的下一个状态。</p>
 <p>例如，关注 node <code>00</code>，它有一条自环 <code>0</code>/<code>0</code>，对应 状态表 的第一行；它有一条 edge <code>1</code>/<code>0</code> 指向 node <code>01</code>，对应 状态表的第二行。</p>
 </blockquote>
-<p>当然，米勒型是有**缺陷**的，在时序电路设计之后的步骤中，我们需要根据它来对每一个状态设计输出方程。此时由于两个输出共享同一个目标状态，所以我们需要将两个输出结合到同一个式子中，这将提高设计难度和组合电路成本。</p>
+<p>当然，米勒型是有 <strong>缺陷</strong> 的，在时序电路设计之后的步骤中，我们需要根据它来对每一个状态设计输出方程。此时由于两个输出共享同一个目标状态，所以我们需要将两个输出结合到同一个式子中，这将提高设计难度和组合电路成本。</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Moore</p>
 <p>而下面是一个 摩尔型 的状态图，以及对应的状态表。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../88.png"><img alt="" src="../88.png"/></a></p>
 <blockquote>
-<p>因为摩尔型电路的**输出只与当前状态有关**，所以输出会和当前状态放在一起，即放在 node 里。</p>
+<p>因为摩尔型电路的 <strong>输出只与当前状态有关</strong>，所以输出会和当前状态放在一起，即放在 node 里。</p>
 <p>对于摩尔型，node 内的二进制表示 present state 和 output：<code>A</code>/<code>Z</code>；edge 上列举了这种转移可能的 inputs：<code>XY</code>。</p>
 <p>例如，关注 node <code>0</code>/<code>0</code>，它有两条自环 <code>00</code> 和 <code>11</code>，分别对应 状态表 的第一行和第四行；它有两条 edge <code>01</code> 和 <code>10</code> 指向 node <code>1</code>/<code>1</code>，对应 状态表 的第二行和第三行。</p>
 </blockquote>
-<p>摩尔型也存在**缺陷**的，非常显然，相比于米勒型，摩尔型需要更多的状态。</p>
+<p>摩尔型也存在 <strong>缺陷</strong> 的，非常显然，相比于米勒型，摩尔型需要更多的状态。</p>
 </div>
 <p>换句话来说，米勒型倾向于表达「在特定状态下，特定输入将导致某种结果，以及状态转移」；而摩尔型倾向于表达「特定输入将导致某个状态向另外一个状态转移，而输出更像是一种状态的结果」。</p>
+<p>状态图还有进阶形态，之后会提及，就是 <strong><a href="#状态机">状态机</a></strong>。</p>
 <hr/>
 <h3 id="等价状态">等价状态<a class="headerlink" href="#等价状态" title="Permanent link">¶</a></h3>
 <p>暂略</p>
@@ -1031,28 +1080,34 @@
 </ul>
 <p>而主要的设计过程和组合逻辑电路的设计是类似的，如下：</p>
 <ol>
-<li>确定系统的行为；</li>
+<li>确定系统的行为；<ol>
 <li>描述系统行为过程中，要注意状态的复用（不过并非状态越少成本就越小，这里有触发器数量和组合逻辑电路的 trade-off）；</li>
 <li>确定电路的初始状态（<strong>复位状态(reset state)</strong>，通过给定复位(reset)信号实现）；<ul>
 <li>复位一般可以是异步的；</li>
 </ul>
 </li>
+</ol>
+</li>
 <li>阐述输入和输出之间的逻辑关系，并用真值表或逻辑表达式表达出来；</li>
-<li>给设计好的状态编码赋值，得到具体的状态表；</li>
+<li>给设计好的状态编码赋值，得到具体的状态表；<ol>
 <li>我们可以使用 按计数顺序、 按格雷码、用独热码 来给状态赋值，更系统的方法比较复杂，不做讨论；</li>
 <li>其中还有一种情况是所需要的状态不能完整填充 <span class="arithmatex">\(2^n\)</span> 种情况，需要设计无效状态，这种时候可以不考虑它们；</li>
+</ol>
+</li>
 <li>根据状态表确定使用的触发器及其输入方程；</li>
 <li>根据状态表确定输出方程；</li>
 <li>优化输入方程和输出方程；</li>
 <li>将优化后的逻辑设计工艺映射到硬件实现上；</li>
-<li>验证正确性（在仿真环境中）；</li>
+<li>验证正确性（在仿真环境中）；<ul>
 <li>主要就是看能不能复现状态图；</li>
+</ul>
+</li>
 </ol>
-<p>--</p>
+<hr/>
 <h2 id="状态机">状态机<a class="headerlink" href="#状态机" title="Permanent link">¶</a></h2>
 <p>尽管在小规模的设计中，状态图表现良好，但是随着设计的系统规模变大，我们需要一个更加泛用的方式来表达类似的时序逻辑。</p>
 <p>于是，我们在状态图的基础上进行修改，设计了 <strong>状态机(State-Machine Diagram)</strong> 来做这件事。</p>
-<p>状态机混用了米勒型和摩尔型的输出格式，优劣在 <a href="#状态图">状态图</a> 中有所提及。并且，有限图将状态转移方程也写入，总体上对电路设计更友好。下图是状态机的一个“范式”。</p>
+<p>状态机混用了米勒型和摩尔型的输出格式，优劣在 <strong><a href="#状态图">状态图</a></strong> 中有所提及。并且，有限图将状态转移方程也写入，总体上对电路设计更友好。下图是状态机的一个“范式”。</p>
 <div class="admonition note">
 <p class="admonition-title">Generic State Diagram Template</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../90.png"><img alt="" src="../90.png"/></a></p>
@@ -1075,16 +1130,25 @@
 <li>TOCD Mealy 在转移发生时候才可能条件成立，即当 TC 和 OC 都成立时才发生 Output Action，所以需要从 TC 引出 OC，并跟在 OC 后面（<code>TC</code>——<code>OC</code>/<code>TOCD OA</code>）；
         - 如果出现复数的 TOCD OA，则使用 <code>,</code> 分隔；</li>
 </ul>
-<div class="admonition note">
 <blockquote>
 <p>In a given state, an output action occurs if: (a) it is unconditional (Moore), (b)  TCI and its output condition OC = 1, (c) TCD and its transition condition TD = 1, and (d) TOCD and its transition condition TC and output condition OC are both equal to 1, i.e, TC·OC = 1. Note that Moore and TCI output actions attached to a state, apply to all transitions from the state as well.</p>
 </blockquote>
-</div>
 <p>回到输出行为本身，当 OC 成立时输出行为发生，一般会将输出变量标出，如果写的是 NOT X，表示 OC 成立时 X 应为 <code>0</code>；如果写的是 X，则表示 OC 成立时 X 为 <code>1</code>。</p>
 <div class="admonition warning">
 <p class="admonition-title">注意点</p>
 <p>此外，还有一个点需要辨析，由于「Transition」表示的是“下一个”状态，所以对于当前时刻，当前节点的输出和出度的输出不能冲突。例如，下图因为 Moore 输出行为的 Z 和 TC=AB 那条边的 Z' 冲突，所以非法。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../92.png"><img alt="" src="../92.png"/></a></p>
+<hr/>
+<p>当然，非法状态机并不只有这一个判据。不过核心思想就是 <strong>不能有歧义或冲突且需要充分</strong>，更数学的表达是，必须满足如下两个条件：</p>
+<p>1.非交：对于每一个状态 <span class="arithmatex">\(S_i\)</span>，它的任意两个出度 <span class="arithmatex">\((T_{ij},T_{jk})\)</span> 都不能同时成立，即应有：</p>
+<div class="arithmatex">\[
+\forall (T_{ij},T_{ik})\;,\;\;T_{ij}\cdot T_{ik} = 0
+\]</div>
+<p>2.充分：对于每一个状态 <span class="arithmatex">\(S_i\)</span>，它的所有出度条件应该涵盖所有可能，即应有：</p>
+<div class="arithmatex">\[
+\sum_{j}T_{ij} = 1
+\]</div>
+<p>Tips: 上面是对 Transition Condition 的约束，<strong>将 TC 换成 OC 也需要成立</strong>。</p>
 </div>
 <hr/>
 <details class="summary" open="open">
@@ -1106,22 +1170,22 @@
 <tr>
 <td>OC</td>
 <td>Output Condition</td>
-<td>输出条件：导致 Output Action 的 Input Condition</td>
+<td>输出条件：导致 Output Actions 的 Input Condition</td>
 </tr>
 <tr>
 <td>TCI</td>
 <td>Transition-condition Independent</td>
-<td>不依赖转移：只与 State 有关的 Output Action</td>
+<td>不依赖转移：只与 State 有关的 Output Actions</td>
 </tr>
 <tr>
 <td>TCD</td>
 <td>Transition-condition Dependent</td>
-<td>依赖转移：Transition Condition 成立才有 Output Action</td>
+<td>依赖转移：Transition Condition 成立才有 Output Actions</td>
 </tr>
 <tr>
 <td>TOCD</td>
 <td>Transition and Output-condition Dependent</td>
-<td>依赖转移和输出方程：Transition Condition 和 Output Condition 都成立才有 Output Actioner</td>
+<td>依赖转移和输出方程：Transition Condition 和 Output Condition 都成立才有 Output Actions</td>
 </tr>
 </tbody>
 </table>
@@ -1133,12 +1197,60 @@
 </div>
 <hr/>
 <h2 id="延时分析">延时分析<a class="headerlink" href="#延时分析" title="Permanent link">¶</a></h2>
+<p>首先，自上而下的给出观念，时序电路的延时分析有两个主要部分和一个次要部分：</p>
+<ol>
+<li>组合电路导致的延时；</li>
+<li>触发器导致的延时；</li>
+<li>电路的松弛时间；</li>
+</ol>
+<p>并且往往是根据触发器的类型，计算一个时钟周期的时间。最核心的问题就是计算电路能够正常工作的最短时钟周期。接下来，自下而上的进行细节补充。</p>
+<hr/>
+<h3 id="组合电路延时">组合电路延时<a class="headerlink" href="#组合电路延时" title="Permanent link">¶</a></h3>
+<p>这一部分的详细内容已经在 <strong><a href="../Chap03/#传播延迟">上一章</a></strong> 介绍过了，在这里，为了简化计算过程，我们全部采用 <span class="arithmatex">\(t_{pd}\)</span>。</p>
+<hr/>
+<h3 id="触发器延时">触发器延时<a class="headerlink" href="#触发器延时" title="Permanent link">¶</a></h3>
+<p>触发器延时相比组合电路延时复杂很多，主要目的是为了保证采样。也就是说它的“延时”并不仅仅是因为电信号传播的延迟，还有为了保证信号稳定设计的一些内容。</p>
+<p>大致来说有三个部分：</p>
+<ul>
+<li>Setup Time：采样边缘前输入信号需要保持稳定的时间；</li>
+<li>Hold Time：采样边缘后输入信号需要保持稳定的时间；</li>
+<li>Propagation Time：触发器的采样边缘到输出稳定的时间（传播时间）；</li>
+</ul>
+<div class="admonition note">
+<p>一篇介绍 Setup Time 和 Hold Time 的 <strong><a href="https://nandland.com/lesson-12-setup-and-hold-time/">文章</a></strong>。</p>
+</div>
+<p>根据触发器的类型不同，主要的 Setup Time 也不同：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../93.png"><img alt="" src="../93.png"/></a></p>
+<p>其中比较重要的一些点是：</p>
+<ol>
+<li>这几个时间点起点/终点都是触发边缘；</li>
+<li>Propagation Time 一定长于 Hold Time，因此在计算电路延迟时只考虑 Propagation Time；</li>
+<li>Pulse-trigger 和 Edge-trigger 的区别在于 Setup Time，前者需要覆盖整个 pulse(<code>pos</code> or <code>neg</code>)；</li>
+</ol>
+<hr/>
+<h3 id="松弛时间">松弛时间<a class="headerlink" href="#松弛时间" title="Permanent link">¶</a></h3>
+<p>实际上这就是给整个电路的一个“容差”时间，给定一个误差，但是由于通过前两者计算出来的是最短时间，所以松弛时间必定非负。（不能倒扣！）</p>
+<hr/>
+<h3 id="时序电路延时">时序电路延时<a class="headerlink" href="#时序电路延时" title="Permanent link">¶</a></h3>
+<p>时序电路的延时计算实际上是为了计算时序电路运作的最大频率以设计时钟频率。所以我们需要算出电路能够稳定工作的最小时钟期。</p>
+<p>其计算遵循一定方法：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../94.png"><img alt="" src="../94.png"/></a></p>
+<blockquote>
+<p>图中 <span class="arithmatex">\(t_{pd,FF}\)</span> 指触发器的 propagation time，<span class="arithmatex">\(t_{COMB}\)</span> 指组合电路的总传播时间（一般情况下 <span class="arithmatex">\(t_{COMB} = \max{\sum_i t_{pd,gate_i}}\)</span>），<span class="arithmatex">\(t_{s}\)</span> 指触发器的 setup time，<span class="arithmatex">\(t_{slack}\)</span> 表示电路的松弛时间。</p>
+</blockquote>
+<div class="admonition note">
+<p class="admonition-title">（假）经验之谈</p>
+<p>一般从一个 FF 的输出出发到 FF 的输入结束。</p>
+</div>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 我觉得这里应该是需要有例题的，但是我现在还没做题，所以做了再写。</li>
+</ul>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月30日 16:41:25</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月30日 19:29:19</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月20日 14:50:19</span>
