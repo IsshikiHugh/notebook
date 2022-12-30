@@ -182,7 +182,7 @@ $$
 !!! note "Mealy model circuit & Moore model circuit"
     如果输出既依赖于当前状态，也依赖于输入的时序电路，则称为 **米勒型电路(Mealy model circuit)**；而如果输出只依赖于当前状态，则称为 **摩尔型电路(Moore model circuit)**。
 
-    在 [状态图](#状态图) 中，我们还将再一次遇到这两个人名。
+    在 **[状态图](#状态图)** 中，我们还将再一次遇到这两个人名。
 
 ---
 
@@ -198,13 +198,13 @@ $$
 
     ![](89.png)
 
-    > 因为米勒型电路的**输出与当前状态和输入都有关**，所以输出会和输入放在一起，即放在 edge 里。
+    > 因为米勒型电路的 **输出与当前状态和输入都有关**，所以输出会和输入放在一起，即放在 edge 里。
     > 
     > 对于米勒型，node 内的二进制为 present state 中的 `AB`；edge 上分别为 input 和 output：`X`/`Y`；有向边表达了每个状态在特定输入下的下一个状态。
     >
     > 例如，关注 node `00`，它有一条自环 `0`/`0`，对应 状态表 的第一行；它有一条 edge `1`/`0` 指向 node `01`，对应 状态表的第二行。
 
-    当然，米勒型是有**缺陷**的，在时序电路设计之后的步骤中，我们需要根据它来对每一个状态设计输出方程。此时由于两个输出共享同一个目标状态，所以我们需要将两个输出结合到同一个式子中，这将提高设计难度和组合电路成本。
+    当然，米勒型是有 **缺陷** 的，在时序电路设计之后的步骤中，我们需要根据它来对每一个状态设计输出方程。此时由于两个输出共享同一个目标状态，所以我们需要将两个输出结合到同一个式子中，这将提高设计难度和组合电路成本。
 
 !!! example "Moore"
 
@@ -212,15 +212,17 @@ $$
 
     ![](88.png)
 
-    > 因为摩尔型电路的**输出只与当前状态有关**，所以输出会和当前状态放在一起，即放在 node 里。
+    > 因为摩尔型电路的 **输出只与当前状态有关**，所以输出会和当前状态放在一起，即放在 node 里。
     > 
     > 对于摩尔型，node 内的二进制表示 present state 和 output：`A`/`Z`；edge 上列举了这种转移可能的 inputs：`XY`。
     > 
     > 例如，关注 node `0`/`0`，它有两条自环 `00` 和 `11`，分别对应 状态表 的第一行和第四行；它有两条 edge `01` 和 `10` 指向 node `1`/`1`，对应 状态表 的第二行和第三行。
 
-    摩尔型也存在**缺陷**的，非常显然，相比于米勒型，摩尔型需要更多的状态。
+    摩尔型也存在 **缺陷** 的，非常显然，相比于米勒型，摩尔型需要更多的状态。
 
 换句话来说，米勒型倾向于表达「在特定状态下，特定输入将导致某种结果，以及状态转移」；而摩尔型倾向于表达「特定输入将导致某个状态向另外一个状态转移，而输出更像是一种状态的结果」。
+
+状态图还有进阶形态，之后会提及，就是 **[状态机](#状态机)**。
 
 ---
 
@@ -248,21 +250,21 @@ $$
 而主要的设计过程和组合逻辑电路的设计是类似的，如下：
 
 1. 确定系统的行为；
-   1. 描述系统行为过程中，要注意状态的复用（不过并非状态越少成本就越小，这里有触发器数量和组合逻辑电路的 trade-off）；
-   2. 确定电路的初始状态（**复位状态(reset state)**，通过给定复位(reset)信号实现）；
-      - 复位一般可以是异步的；
+    1. 描述系统行为过程中，要注意状态的复用（不过并非状态越少成本就越小，这里有触发器数量和组合逻辑电路的 trade-off）；
+    2. 确定电路的初始状态（**复位状态(reset state)**，通过给定复位(reset)信号实现）；
+        - 复位一般可以是异步的；
 2. 阐述输入和输出之间的逻辑关系，并用真值表或逻辑表达式表达出来；
 3. 给设计好的状态编码赋值，得到具体的状态表；
-   1. 我们可以使用 按计数顺序、 按格雷码、用独热码 来给状态赋值，更系统的方法比较复杂，不做讨论；
-   2. 其中还有一种情况是所需要的状态不能完整填充 $2^n$ 种情况，需要设计无效状态，这种时候可以不考虑它们；
+    1. 我们可以使用 按计数顺序、 按格雷码、用独热码 来给状态赋值，更系统的方法比较复杂，不做讨论；
+    2. 其中还有一种情况是所需要的状态不能完整填充 $2^n$ 种情况，需要设计无效状态，这种时候可以不考虑它们；
 4. 根据状态表确定使用的触发器及其输入方程；
 5. 根据状态表确定输出方程；
 6. 优化输入方程和输出方程；
 7. 将优化后的逻辑设计工艺映射到硬件实现上；
 8. 验证正确性（在仿真环境中）；
-   - 主要就是看能不能复现状态图；
+    - 主要就是看能不能复现状态图；
 
---
+---
 
 ## 状态机
 
@@ -270,7 +272,7 @@ $$
 
 于是，我们在状态图的基础上进行修改，设计了 **状态机(State-Machine Diagram)** 来做这件事。
 
-状态机混用了米勒型和摩尔型的输出格式，优劣在 [状态图](#状态图) 中有所提及。并且，有限图将状态转移方程也写入，总体上对电路设计更友好。下图是状态机的一个“范式”。
+状态机混用了米勒型和摩尔型的输出格式，优劣在 **[状态图](#状态图)** 中有所提及。并且，有限图将状态转移方程也写入，总体上对电路设计更友好。下图是状态机的一个“范式”。
 
 !!! note "Generic State Diagram Template"
     ![](90.png)
@@ -301,8 +303,7 @@ $$
     - TOCD Mealy 在转移发生时候才可能条件成立，即当 TC 和 OC 都成立时才发生 Output Action，所以需要从 TC 引出 OC，并跟在 OC 后面（`TC`——`OC`/`TOCD OA`）；
             - 如果出现复数的 TOCD OA，则使用 `,` 分隔；
 
-    !!! note ""
-        > In a given state, an output action occurs if: (a) it is unconditional (Moore), (b)  TCI and its output condition OC = 1, \(c) TCD and its transition condition TD = 1, and (d) TOCD and its transition condition TC and output condition OC are both equal to 1, i.e, TC·OC = 1. Note that Moore and TCI output actions attached to a state, apply to all transitions from the state as well.
+    > In a given state, an output action occurs if: (a) it is unconditional (Moore), (b)  TCI and its output condition OC = 1, \(c) TCD and its transition condition TD = 1, and (d) TOCD and its transition condition TC and output condition OC are both equal to 1, i.e, TC·OC = 1. Note that Moore and TCI output actions attached to a state, apply to all transitions from the state as well.
 
     回到输出行为本身，当 OC 成立时输出行为发生，一般会将输出变量标出，如果写的是 NOT X，表示 OC 成立时 X 应为 `0`；如果写的是 X，则表示 OC 成立时 X 为 `1`。
 
@@ -311,25 +312,106 @@ $$
 
         ![](92.png)
 
+        ---
+
+        当然，非法状态机并不只有这一个判据。不过核心思想就是 **不能有歧义或冲突且需要充分**，更数学的表达是，必须满足如下两个条件：
+
+        1.非交：对于每一个状态 $S_i$，它的任意两个出度 $(T_{ij},T_{jk})$ 都不能同时成立，即应有：
+
+        $$
+        \forall (T_{ij},T_{ik})\;,\;\;T_{ij}\cdot T_{ik} = 0
+        $$
+
+        2.充分：对于每一个状态 $S_i$，它的所有出度条件应该涵盖所有可能，即应有：
+
+        $$
+        \sum_{j}T_{ij} = 1
+        $$
+
+        Tips: 上面是对 Transition Condition 的约束，**将 TC 换成 OC 也需要成立**。
+
     ---
 
     ???+ summary "缩写对照表"
         |缩写    |含义                                       |注释|
         |---    |---                                        |---|
         |TC     |Transition Condition                       |转移条件：导致 Transition 的 Input Condition|
-        |OC     |Output Condition                           |输出条件：导致 Output Action 的 Input Condition|
-        |TCI    |Transition-condition Independent           |不依赖转移：只与 State 有关的 Output Action|
-        |TCD    |Transition-condition Dependent             |依赖转移：Transition Condition 成立才有 Output Action|
-        |TOCD   |Transition and Output-condition Dependent  |依赖转移和输出方程：Transition Condition 和 Output Condition 都成立才有 Output Actioner|
+        |OC     |Output Condition                           |输出条件：导致 Output Actions 的 Input Condition|
+        |TCI    |Transition-condition Independent           |不依赖转移：只与 State 有关的 Output Actions|
+        |TCD    |Transition-condition Dependent             |依赖转移：Transition Condition 成立才有 Output Actions|
+        |TOCD   |Transition and Output-condition Dependent  |依赖转移和输出方程：Transition Condition 和 Output Condition 都成立才有 Output Actions|
 
     ???+ example "State Machine Diagram 🌰"
         ![](91.png)
 
-    
-
 ---
 
 ## 延时分析
+
+首先，自上而下的给出观念，时序电路的延时分析有两个主要部分和一个次要部分：
+
+1. 组合电路导致的延时；
+2. 触发器导致的延时；
+3. 电路的松弛时间；
+
+并且往往是根据触发器的类型，计算一个时钟周期的时间。最核心的问题就是计算电路能够正常工作的最短时钟周期。接下来，自下而上的进行细节补充。
+
+---
+
+### 组合电路延时
+
+这一部分的详细内容已经在 **[上一章](Chap03.md#传播延迟)** 介绍过了，在这里，为了简化计算过程，我们全部采用 $t_{pd}$。
+
+---
+
+### 触发器延时
+
+触发器延时相比组合电路延时复杂很多，主要目的是为了保证采样。也就是说它的“延时”并不仅仅是因为电信号传播的延迟，还有为了保证信号稳定设计的一些内容。
+
+大致来说有三个部分：
+
+- Setup Time：采样边缘前输入信号需要保持稳定的时间；
+- Hold Time：采样边缘后输入信号需要保持稳定的时间；
+- Propagation Time：触发器的采样边缘到输出稳定的时间（传播时间）；
+
+!!! note ""
+    一篇介绍 Setup Time 和 Hold Time 的 **[文章](https://nandland.com/lesson-12-setup-and-hold-time/)**。
+
+根据触发器的类型不同，主要的 Setup Time 也不同：
+
+![](93.png)
+
+其中比较重要的一些点是：
+
+1. 这几个时间点起点/终点都是触发边缘；
+2. Propagation Time 一定长于 Hold Time，因此在计算电路延迟时只考虑 Propagation Time；
+3. Pulse-trigger 和 Edge-trigger 的区别在于 Setup Time，前者需要覆盖整个 pulse(`pos` or `neg`)；
+
+---
+
+### 松弛时间
+
+实际上这就是给整个电路的一个“容差”时间，给定一个误差，但是由于通过前两者计算出来的是最短时间，所以松弛时间必定非负。（不能倒扣！）
+
+---
+
+### 时序电路延时
+
+时序电路的延时计算实际上是为了计算时序电路运作的最大频率以设计时钟频率。所以我们需要算出电路能够稳定工作的最小时钟期。
+
+其计算遵循一定方法：
+
+![](94.png)
+> 图中 $t_{pd,FF}$ 指触发器的 propagation time，$t_{COMB}$ 指组合电路的总传播时间（一般情况下 $t_{COMB} = \max{\sum_i t_{pd,gate_i}}$），$t_{s}$ 指触发器的 setup time，$t_{slack}$ 表示电路的松弛时间。
+
+!!! note "（假）经验之谈"
+    一般从一个 FF 的输出出发到 FF 的输入结束。
+
+- [ ] 我觉得这里应该是需要有例题的，但是我现在还没做题，所以做了再写。
+
+
+
+
 
 
 
