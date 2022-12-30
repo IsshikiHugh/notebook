@@ -298,19 +298,28 @@ $$
 
         「状态转移」在图中表现为有向边，当 TC 成立时，状态转移发生；或者对于无条件转移，只要得到时钟脉冲就会转移到下一个状态。
 
-        「输出行为」在状态机中有三种表达方法：**不依赖转移(Transition-condition Independent)TCI**、**依赖转移(Transition-condition Dependent)TCD** 和 **依赖转移和输出条件(Transition and Output-condition Dependent)TOCD**。我个人倾向这里不再联系 Mealy&Moore 的区别理解，而是根据输出的依赖条件。根据字面意思来看：
+        「输出行为」在状态机中有四种触发方法（即四种 OC）：**Moore**、**不依赖转移(Transition-condition Independent)TCI** Mealy、**依赖转移(Transition-condition Dependent)TCD** Mealy 和 **依赖转移和输出条件(Transition and Output-condition Dependent)TOCD** Mealy。根据字面意思来看：
         
-        - TCI 只与状态有关，所以在图中从状态节点引出
+        - Moore 只与状态有关，所以在图中从状态节点引出；
+        - TCI Mealy 与状态和输出条件有关，所以在图中从状态节点引出写在 OC 后面（`OC`/`TCI OA`）；
+        - TCD Mealy 与转移条件有关，当转移成立的时候发生 Output Action，所以直接写在 TC 后面（`TC`/`TCD OA`）；
+        - TOCD Mealy 在转移发生时候才可能条件成立，即当 TC 和 OC 都成立时才发生 Output Action，所以需要从 TC 引出 OC，并跟在 OC 后面（`TC`——`OC`/`TOCD OA`）；
+            - 如果出现复数的 TOCD OA，则使用 `,` 分隔；
+
+        !!! note ""
+            In a given state, an output action occurs if: (a) it is unconditional (Moore), (b)  TCI and its output condition OC = 1, (c) TCD and its transition condition TD = 1, and (d) TOCD and its transition condition TC and output condition OC are both equal to 1, i.e, TC·OC = 1. Note that Moore and TCI output actions attached to a state, apply to all transitions from the state as well.
+
+        
 
 
     ??? summary "缩写对照表"
         |缩写    |含义                                       |注释|
         |---    |---                                        |---|
-        |TC   |Transition Condition                       |转移条件：导致 Transition 的 Input Condition|
-        |OC   |Output Condition                           |输出条件：导致 Output Action 的 Input Condition|
-        |TCI  |Transition-condition Independent           |不依赖转移：只与 State 有关的 Output Action|
-        |TCD  |Transition-condition Dependent             |依赖转移：Transition Condition 成立才有 Output Action|
-        |TOCD |Transition and Output-condition Dependent  |依赖转移和输出方程：Transition Condition 和 Output Condition 都成立才有 Output Actioner|
+        |TC     |Transition Condition                       |转移条件：导致 Transition 的 Input Condition|
+        |OC     |Output Condition                           |输出条件：导致 Output Action 的 Input Condition|
+        |TCI    |Transition-condition Independent           |不依赖转移：只与 State 有关的 Output Action|
+        |TCD    |Transition-condition Dependent             |依赖转移：Transition Condition 成立才有 Output Action|
+        |TOCD   |Transition and Output-condition Dependent  |依赖转移和输出方程：Transition Condition 和 Output Condition 都成立才有 Output Actioner|
 
     ??? example "State Machine Diagram 🌰"
         ![](91.png)
