@@ -506,6 +506,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#状态机">
+    状态机
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#延时分析">
     延时分析
   </a>
@@ -772,6 +777,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#状态机">
+    状态机
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#延时分析">
     延时分析
   </a>
@@ -989,6 +999,7 @@
 <p>对于米勒型，node 内的二进制为 present state 中的 <code>AB</code>；edge 上分别为 input 和 output：<code>X</code>/<code>Y</code>；有向边表达了每个状态在特定输入下的下一个状态。</p>
 <p>例如，关注 node <code>00</code>，它有一条自环 <code>0</code>/<code>0</code>，对应 状态表 的第一行；它有一条 edge <code>1</code>/<code>0</code> 指向 node <code>01</code>，对应 状态表的第二行。</p>
 </blockquote>
+<p>当然，米勒型是有**缺陷**的，在时序电路设计之后的步骤中，我们需要根据它来对每一个状态设计输出方程。此时由于两个输出共享同一个目标状态，所以我们需要将两个输出结合到同一个式子中，这将提高设计难度和组合电路成本。</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Moore</p>
@@ -999,6 +1010,7 @@
 <p>对于摩尔型，node 内的二进制表示 present state 和 output：<code>A</code>/<code>Z</code>；edge 上列举了这种转移可能的 inputs：<code>XY</code>。</p>
 <p>例如，关注 node <code>0</code>/<code>0</code>，它有两条自环 <code>00</code> 和 <code>11</code>，分别对应 状态表 的第一行和第四行；它有两条 edge <code>01</code> 和 <code>10</code> 指向 node <code>1</code>/<code>1</code>，对应 状态表 的第二行和第三行。</p>
 </blockquote>
+<p>摩尔型也存在**缺陷**的，非常显然，相比于米勒型，摩尔型需要更多的状态。</p>
 </div>
 <p>换句话来说，米勒型倾向于表达「在特定状态下，特定输入将导致某种结果，以及状态转移」；而摩尔型倾向于表达「特定输入将导致某个状态向另外一个状态转移，而输出更像是一种状态的结果」。</p>
 <hr/>
@@ -1028,12 +1040,96 @@
 <li>阐述输入和输出之间的逻辑关系，并用真值表或逻辑表达式表达出来；</li>
 <li>给设计好的状态编码赋值，得到具体的状态表；</li>
 <li>我们可以使用 按计数顺序、 按格雷码、用独热码 来给状态赋值，更系统的方法比较复杂，不做讨论；</li>
+<li>其中还有一种情况是所需要的状态不能完整填充 <span class="arithmatex">\(2^n\)</span> 种情况，需要设计无效状态，这种时候可以不考虑它们；</li>
 <li>根据状态表确定使用的触发器及其输入方程；</li>
 <li>根据状态表确定输出方程；</li>
 <li>优化输入方程和输出方程；</li>
 <li>将优化后的逻辑设计工艺映射到硬件实现上；</li>
 <li>验证正确性（在仿真环境中）；</li>
+<li>主要就是看能不能复现状态图；</li>
 </ol>
+<p>--</p>
+<h2 id="状态机">状态机<a class="headerlink" href="#状态机" title="Permanent link">¶</a></h2>
+<p>尽管在小规模的设计中，状态图表现良好，但是随着设计的系统规模变大，我们需要一个更加泛用的方式来表达类似的时序逻辑。</p>
+<p>于是，我们在状态图的基础上进行修改，设计了 <strong>状态机(State-Machine Diagram)</strong> 来做这件事。</p>
+<p>状态机混用了米勒型和摩尔型的输出格式，优劣在 <a href="#状态图">状态图</a> 中有所提及。并且，有限图将状态转移方程也写入，总体上对电路设计更友好。下图是状态机的一个“范式”。</p>
+<div class="admonition note">
+<p class="admonition-title">Generic State Diagram Template</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../90.png"><img alt="" src="../90.png"/></a></p>
+<p>首先解释一下这个“范式”，</p>
+<details class="note" open="open">
+<summary>模版图的直接解释</summary>
+<blockquote>
+<p>可以对照缩写对照表和结合下方这个状态机的 🌰 来看，主要掠过细节解释模版图片中的要素是什么。</p>
+</blockquote>
+<ul>
+<li><span class="arithmatex">\(S_O\)</span> 和 <span class="arithmatex">\(S_D\)</span> 是两个状态的符号；</li>
+<li><span class="arithmatex">\(S_O \rightarrow S_D\)</span> 有一条有向边，表示当转移条件 TC 为 <code>1</code> 时，状态 <span class="arithmatex">\(S_O\)</span> 可以转移为 <span class="arithmatex">\(S_D\)</span>，如果 TC 不存在，说明这个转移是无条件发生的； </li>
+<li>输出有两种表达方式（Mealy&amp;Moore），分别根据实际情况使用：<ul>
+<li>如果状态和输出可绑定，可以使用 Moore 型，从节点处引出一条线标注输出；</li>
+<li>如果状态和输出不可绑定，可使用 Mealy 型，从 TC 处引出一条线，标注输出条件和输出结果，用 <code>/</code> 分隔；如果输出条件和转移方程相同，可以直接用 <code>/</code> 将输出写在 TC 后面；</li>
+</ul>
+</li>
+</ul>
+</details>
+<details class="note" open="open">
+<summary>详细解释</summary>
+<blockquote>
+<p>具体解释状态机有哪些内容，以及各个部分之间的逻辑。关于各个部分出现的位置，请参考 Template。</p>
+<p>另外，为了简化语句，下面的说法省略了时钟，请记得考虑。</p>
+</blockquote>
+<p>更系统的来说，状态机模型主要有三要素：<strong>输入条件(Input Conditions)</strong>、<strong>状态转移(Transitions)</strong> 和 <strong>输出行为(Output Actions)</strong>。总体来说，输入条件告诉我们整个状态机要如何变化；状态转移描述了状态机的内部转移行为，即图论上的有向联通关系；输出行为描述动态变化过程中状态机的对外表达。其中，状态转移和输出行为是我们需要关注的状态机的两个维度，输入条件是我们用来做实时判断的外部依据。</p>
+<p>「输入条件」是由输入变量形成的一个布尔方程，在整个状态机中，输入是变化的“因变量”，换句话来说，无论是状态转移还是输出，都取决于输入条件。而导致特定行为的输入条件则被分类为 <strong>转移条件(Transition Condition)TC</strong> 和 <strong>输出条件(Output Condition)OC</strong>。</p>
+<p>「状态转移」在图中表现为有向边，当 TC 成立时，状态转移发生；或者对于无条件转移，只要得到时钟脉冲就会转移到下一个状态。</p>
+<p>「输出行为」在状态机中有三种表达方法：<strong>不依赖转移(Transition-condition Independent)TCI</strong>、<strong>依赖转移(Transition-condition Dependent)TCD</strong> 和 <strong>依赖转移和输出条件(Transition and Output-condition Dependent)TOCD</strong>。我个人倾向这里不再联系 Mealy&amp;Moore 的区别理解，而是根据输出的依赖条件。根据字面意思来看：</p>
+<ul>
+<li>TCI 只与状态有关，所以在图中从状态节点引出</li>
+</ul>
+</details>
+<details class="summary">
+<summary>缩写对照表</summary>
+<table>
+<thead>
+<tr>
+<th>缩写</th>
+<th>含义</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TC</td>
+<td>Transition Condition</td>
+<td>转移条件：导致 Transition 的 Input Condition</td>
+</tr>
+<tr>
+<td>OC</td>
+<td>Output Condition</td>
+<td>输出条件：导致 Output Action 的 Input Condition</td>
+</tr>
+<tr>
+<td>TCI</td>
+<td>Transition-condition Independent</td>
+<td>不依赖转移：只与 State 有关的 Output Action</td>
+</tr>
+<tr>
+<td>TCD</td>
+<td>Transition-condition Dependent</td>
+<td>依赖转移：Transition Condition 成立才有 Output Action</td>
+</tr>
+<tr>
+<td>TOCD</td>
+<td>Transition and Output-condition Dependent</td>
+<td>依赖转移和输出方程：Transition Condition 和 Output Condition 都成立才有 Output Actioner</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="example">
+<summary>State Machine Diagram 🌰</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../91.png"><img alt="" src="../91.png"/></a></p>
+</details>
+</div>
 <hr/>
 <h2 id="延时分析">延时分析<a class="headerlink" href="#延时分析" title="Permanent link">¶</a></h2>
 <hr/>
@@ -1041,7 +1137,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月27日 23:24:20</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月30日 16:09:07</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月20日 14:50:19</span>
