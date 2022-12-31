@@ -7,6 +7,8 @@
     - ~~*本文主要来自于我啃教材时的笔记，但小结安排不完全是按照课本来*~~
 
 !!! note "Notes"
+    > 补天时候的一点想法，因为课本每一章都有一个 summary，所以或许可以先看那个 summary 再看具体的。
+
     - :material-label: [Chap1](Chap01.md)
     - :material-label: [Chap2](Chap02.md)
     - :material-label: [Chap3](Chap03.md)
@@ -14,3 +16,4 @@
     - :material-label: [Chap5](Chap05.md)
     - :material-label: [Chap6](Chap06.md)
     - :material-label: [Chap7](Chap07.md)
+    - :material-label: [Glossary](glossary.md)
