@@ -124,7 +124,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../">
+<a class="md-tabs__link md-tabs__link--active" href="../../">
         🗒 课程笔记
       </a>
 </li>
@@ -298,8 +298,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../">🗒 课程笔记</a>
 <label for="__nav_3">
@@ -379,8 +379,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" id="__nav_3_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" id="__nav_3_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../">[大二秋冬] 数字逻辑设计 | Digital Design</a>
 <label for="__nav_3_5">
@@ -416,6 +416,106 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Chap05/">
         Chap 5 Digital Hardware Implementation
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Chap 6 Registers &amp; Register Transfers
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Chap 6 Registers &amp; Register Transfers
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#寄存器">
+    寄存器
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#寄存器传送">
+    寄存器传送
+  </a>
+<nav aria-label="寄存器传送" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#寄存器传输操作--寄存器传输语言">
+    寄存器传输操作 &amp; 寄存器传输语言
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#微操作">
+    微操作
+  </a>
+<nav aria-label="微操作" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#转移">
+    转移
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#算术">
+    算术
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逻辑">
+    逻辑
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#位移">
+    位移
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#单寄存器上微操作的实现">
+    单寄存器上微操作的实现
+  </a>
+<nav aria-label="单寄存器上微操作的实现" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#基于-mux-实现传送">
+    基于 MUX 实现传送
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#基于总线实现传送">
+    基于总线实现传送
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#树状状态总线">
+    树状状态总线
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#其它">
+    其它
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Chap07.md">
+        None
       </a>
 </li>
 </ul>
@@ -594,6 +694,78 @@
     寄存器
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#寄存器传送">
+    寄存器传送
+  </a>
+<nav aria-label="寄存器传送" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#寄存器传输操作--寄存器传输语言">
+    寄存器传输操作 &amp; 寄存器传输语言
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#微操作">
+    微操作
+  </a>
+<nav aria-label="微操作" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#转移">
+    转移
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#算术">
+    算术
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#逻辑">
+    逻辑
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#位移">
+    位移
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#单寄存器上微操作的实现">
+    单寄存器上微操作的实现
+  </a>
+<nav aria-label="单寄存器上微操作的实现" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#基于-mux-实现传送">
+    基于 MUX 实现传送
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#基于总线实现传送">
+    基于总线实现传送
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#树状状态总线">
+    树状状态总线
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#其它">
+    其它
+  </a>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </div>
@@ -619,12 +791,110 @@
 <p>实现寄存器一个最直白的想法就是公用控制线路和分列数据线路来控制多个触发器，如下图是使用 D FF 实现的一个 4-bit register：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../95.png"><img alt="" src="../95.png"/></a></p>
 <p>我们称新数据被写入寄存器的操作为 <strong>载入(load)</strong>，而如果载入操作在同一个时钟脉冲中完成，我们称之是 <strong>并行(parallel)</strong> 的。</p>
-<p>但是我们发现，如图的寄存器在每个时钟都允许载入，换句话来说每个时钟周期都会改变为输入。但是我们希望即使我们不管它它也能保持之前的值。所以我们需要选择性的让它跟随时钟脉冲切换状态。做法就是将 Control 信号修改为 <span class="arithmatex">\(C = \overline{Load} + Clock\)</span>，如此而来，当 <span class="arithmatex">\(Load = 0\)</span> 时，始终有 <span class="arithmatex">\(C = 0\)</span>，脉冲消失，寄存器无法被载入。如下图，这种技术叫 <strong>门控时钟(clock gating)</strong>。</p>
+<p>但是我们发现，如图的寄存器在每个时钟都允许载入，换句话来说每个时钟周期都会改变为输入。但是我们希望即使我们不管它它也能保持之前的值，主要有两个方案。</p>
+<div class="admonition tip">
+<p class="admonition-title">方案 A</p>
+<p>其中一个做法是需要选择性的让它跟随时钟脉冲切换状态。做法就是将 Control 信号修改为 <span class="arithmatex">\(C = \overline{Load} + Clock\)</span>，如此而来，当 <span class="arithmatex">\(Load = 0\)</span> 时，始终有 <span class="arithmatex">\(C = 0\)</span>，脉冲消失，寄存器无法被载入。如下图，这种技术叫 <strong>门控时钟(clock gating)</strong>。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../96.png"><img alt="" src="../96.png"/></a></p>
 <div class="admonition warning">
 <p class="admonition-title">clock skew</p>
-<p>然而，在门控时钟技术中，由于添加了一个额外的逻辑门，时钟脉冲到达 Control 的时候会出现额外的传播延时，即 <strong>时钟偏移(clock skew)</strong>。而这微小的延时会导致在整个同步系统中，不同组件得到的时钟脉冲有偏差，而这是我们所不希望看到的。</p>
+<p>然而，在门控时钟技术中，由于添加了一个额外的逻辑门，时钟脉冲到达 Control 的时候会出现额外的传播延时，即 <strong>时钟偏移(clock skew)</strong>。而这微小的延时会导致在整个同步系统中，不同组件得到的时钟脉冲有偏差，而这是我们所不希望看到的。所以在实际设计中，我们应当避免或尽可能缩小时钟偏移。</p>
 </div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">方案 B</p>
+<p>另外一个做法是，在不希望它修改的时候，不断将它的输入载入，也就是保持不变。我们可以通过一个 <code>MUX</code> 来实现这个功能，用 <code>EN</code> 使能端来选择是载入新值还是保持之前的值，如下图。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../97.png"><img alt="" src="../97.png"/></a></p>
+</div>
+<hr/>
+<h2 id="寄存器传送">寄存器传送<a class="headerlink" href="#寄存器传送" title="Permanent link">¶</a></h2>
+<p>一个复杂系统除了信息的存储还需要信息的传输和处理。大部分电子系统设计中，都会有一个 <strong>控制单元(Control Unit)</strong> 来负责指挥（决定指令的序列） <strong>数据通路(Datapath)</strong> 进行数据处理。</p>
+<blockquote>
+<p>Datapaths are defined by their registers and the operations performed on binary data stored in the registers.</p>
+</blockquote>
+<p>对于寄存器自身而言，它可能实现 载入(load)、清空(clear)、位移(shift)（关于这里的shift的含义我存疑） 和 计数(count) 等。此外，对于那些寄存器中的数据进行移动了的加工，被称为 <strong>寄存器传送操作(Register Transfer Operations)</strong>，它们主要包含这三个部分：</p>
+<ol>
+<li>系统中的寄存器集合；</li>
+<li>对于数据的操作；</li>
+<li>监督操作序列的控制；</li>
+</ol>
+<p>其中，最基础的那部分操作被称为 <strong>微操作(microoperation)</strong>，它们是实现复杂操作的基础，例如将 R1 的数据载入 R2，将 R1 和 R2 相加，或是自增 R1 等。它们通常以比特向量为载体并行实现的。</p>
+<div class="admonition warning">
+<p class="admonition-title">Note that:</p>
+<blockquote>
+<p>the term “microoperation,” as used here, does not refer to any particular way of producing the control signals: specifically, it does not imply that the control signals are generated by a control unit based on a technique called microprogramming.</p>
+</blockquote>
+</div>
+<hr/>
+<h3 id="寄存器传输操作--寄存器传输语言">寄存器传输操作 &amp; 寄存器传输语言<a class="headerlink" href="#寄存器传输操作--寄存器传输语言" title="Permanent link">¶</a></h3>
+<p>对于简单的时序逻辑系统，我们可以使用状态机等方式来描述它们的行为，但是对与规模更大的系统来说，这是一件很痛苦的事情。所以我们引入了一种专注于行为逻辑的语言来描述寄存器传输中的逻辑行为：<strong>寄存器传输语言(Register Transfer Language)RTL</strong>。</p>
+<p>通常具有特殊功能的寄存器都会用其名称缩写大写表示，例如 AR(Address Register)，PC(Program Counter)，IR(Instruction Register) 或者更普通的 R2(Register 2)。</p>
+<blockquote>
+<p><a href="https://www.geeksforgeeks.org/little-and-big-endian-mystery/">Little-endian &amp; Big-endian</a></p>
+</blockquote>
+<p>我们有时候也会用这些形式来图形化的表示寄存器：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../99.png"><img alt="" src="../99.png"/></a></p>
+<p>此外，常见操作用 RTL 表示方法和符号如下：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../100.png"><img alt="" src="../100.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../98.png"><img alt="" src="../98.png"/></a></p>
+<p>需要额外说明的是，如果我们想表达条件语句，例如我们想表达：</p>
+<div class="arithmatex">\[
+if\, (K_1 = 1) \,then\, (R2 \leftarrow R1)
+\]</div>
+<p>则可以写为：</p>
+<div class="arithmatex">\[
+K_1 : R2 \leftarrow R1
+\]</div>
+<hr/>
+<h2 id="微操作">微操作<a class="headerlink" href="#微操作" title="Permanent link">¶</a></h2>
+<blockquote>
+<p>A microoperation is an elementary operation performed on data stored in registers or in memory.</p>
+</blockquote>
+<p>微操作一般分为这四种：</p>
+<ol>
+<li>转移，transfer microoperations，将数据从一个寄存器转移到另外一个寄存器；</li>
+<li>算术，arithmetic microoperations，对数据的算术运算操作；</li>
+<li>逻辑，logic microoperations，对数据的逻辑运算操作；</li>
+<li>位移，shift microoperations，对数据的位移操作；</li>
+</ol>
+<blockquote>
+<p>A given microoperation may be of more than one type. For example, a 1s complement operation is both an arithmetic microoperation and a logic microoperation.</p>
+</blockquote>
+<hr/>
+<h3 id="转移">转移<a class="headerlink" href="#转移" title="Permanent link">¶</a></h3>
+<p>不改变数据本身，只是从一个寄存器中把数据移动到另外一个寄存器。</p>
+<hr/>
+<h3 id="算术">算术<a class="headerlink" href="#算术" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../101.png"><img alt="" src="../101.png"/></a></p>
+<blockquote>
+<p>Multiplication and division are not listed in Table 6-3. Multiplication can be represented by the symbol * and division by /. These two operations are not included in the basic set of arithmetic microoperations because they are assumed to be implemented by sequences of basic microoperations. However, multiplication can be considered as a microoperation if implemented by a combinational circuit. In such a case, the result is transferred into a destination register at the clock edge after all signals have propagated through the entire combinational circuit</p>
+</blockquote>
+<div class="admonition example">
+<p class="admonition-title">加减法器</p>
+<p>就像我们之前学过的，用加法器实现加减法器，在 RTL 和模块逻辑电路的维度下，可以这么表示：</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+    &amp;\overline{X}K_1:R_1\leftarrow R_1 + R_2 \\
+    &amp;XK_1:R_1\leftarrow R_1 + \overline{R_2} + 1
+\end{array}
+\]</div>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../102.png"><img alt="" src="../102.png"/></a></p>
+</div>
+<hr/>
+<h3 id="逻辑">逻辑<a class="headerlink" href="#逻辑" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../103.png"><img alt="" src="../103.png"/></a></p>
+<hr/>
+<h3 id="位移">位移<a class="headerlink" href="#位移" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../104.png"><img alt="" src="../104.png"/></a></p>
+<hr/>
+<h2 id="单寄存器上微操作的实现">单寄存器上微操作的实现<a class="headerlink" href="#单寄存器上微操作的实现" title="Permanent link">¶</a></h2>
+<h3 id="基于-mux-实现传送">基于 MUX 实现传送<a class="headerlink" href="#基于-mux-实现传送" title="Permanent link">¶</a></h3>
+<hr/>
+<h3 id="基于总线实现传送">基于总线实现传送<a class="headerlink" href="#基于总线实现传送" title="Permanent link">¶</a></h3>
+<hr/>
+<h3 id="树状状态总线">树状状态总线<a class="headerlink" href="#树状状态总线" title="Permanent link">¶</a></h3>
+<hr/>
+<h3 id="其它">其它<a class="headerlink" href="#其它" title="Permanent link">¶</a></h3>
 <hr/>
 <div class="md-source-file">
 <small>
@@ -678,6 +948,34 @@
           </a>
 </main>
 <footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Chap 5 Digital Hardware Implementation" class="md-footer__link md-footer__link--prev" href="../Chap05/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                上一页
+              </span>
+              Chap 5 Digital Hardware Implementation
+            </div>
+</div>
+</a>
+<a aria-label="下一页: [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision" class="md-footer__link md-footer__link--next" href="../../D2QD_Intro2CV/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                下一页
+              </span>
+              [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
