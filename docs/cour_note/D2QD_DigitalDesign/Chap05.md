@@ -19,9 +19,9 @@
     [现场可编程逻辑门阵列(Field Programmable Gate Array)FPGA](https://zh.wikipedia.org/zh-cn/%E7%8E%B0%E5%9C%BA%E5%8F%AF%E7%BC%96%E7%A8%8B%E9%80%BB%E8%BE%91%E9%97%A8%E9%98%B5%E5%88%97)
     - [查找表(lookup table)LUT](https://zh.m.wikipedia.org/zh-hans/%E6%9F%A5%E6%89%BE%E8%A1%A8)
 
-可重编程在硬件层面有三种实现手段：
+**编程技术(programming technologies)** 在硬件层面有三种实现手段：
 
-- 控制连接来实现；
+- 控制连接来实现（不是可重编程）；
     - Mask programing
     - Fuse
     - Anti-fuse
