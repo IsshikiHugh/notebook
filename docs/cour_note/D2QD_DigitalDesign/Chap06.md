@@ -12,7 +12,7 @@
 
 > Registers are useful for storing and manipulating information; counters are employed in circuits that sequence and control operations in a digital system.
 
-实现寄存器一个最直白的想法就是公用控制线路和分列数据线路来控制多个触发器，如下图是使用 D FF 实现的一个 4-bit register：
+实现寄存器一个最直白的想法就是公用控制线路和分列数据线路来控制多个触发器，如下图是使用 D `FF` 实现的一个 4-bit register：
 
 ![](95.png)
 
@@ -20,7 +20,7 @@
 
 ---
 
-## 保持
+### 保持
 
 但是我们发现，如图的寄存器在每个时钟都允许载入，换句话来说每个时钟周期都会改变为输入。但是我们希望即使我们不管它它也能保持之前的值，主要有两个方案。
 
@@ -93,63 +93,14 @@ $$
 
 ---
 
-## 微操作
-
-> A microoperation is an elementary operation performed on data stored in registers or in memory.
-
-微操作一般分为这四种：
-
-1. 转移，transfer microoperations，将数据从一个寄存器转移到另外一个寄存器；
-2. 算术，arithmetic microoperations，对数据的算术运算操作；
-3. 逻辑，logic microoperations，对数据的逻辑运算操作；
-4. 位移，shift microoperations，对数据的位移操作；
-
-> A given microoperation may be of more than one type. For example, a 1s complement operation is both an arithmetic microoperation and a logic microoperation.
-
----
-
-### 转移
-
-不改变数据本身，只是从一个寄存器中把数据移动到另外一个寄存器。
-
----
-
-### 算术
-
-![](101.png)
-
-> Multiplication and division are not listed in Table 6-3. Multiplication can be represented by the symbol * and division by /. These two operations are not included in the basic set of arithmetic microoperations because they are assumed to be implemented by sequences of basic microoperations. However, multiplication can be considered as a microoperation if implemented by a combinational circuit. In such a case, the result is transferred into a destination register at the clock edge after all signals have propagated through the entire combinational circuit
-
-!!! example "加减法器"
-    就像我们之前学过的，用加法器实现加减法器，在 RTL 和模块逻辑电路的维度下，可以这么表示：
-
-    $$
-    \begin{array}{l}
-        &\overline{X}K_1:R_1\leftarrow R_1 + R_2 \\
-        &XK_1:R_1\leftarrow R_1 + \overline{R_2} + 1
-    \end{array}
-    $$
-
-    ![](102.png)
-
-!!! warning "注意"
-    对于如上出现的形式如：$condition: reg \leftarrow options one regs$ 的表达式，`:` 左侧出现的 `+` 表示或，右侧的则表示加（“乘”也是这样）！
-
----
-
-### 逻辑
-
-![](103.png)
-
----
-
-### 位移
-
-![](104.png)
-
----
-
 ## 寄存器传送的实现
+
+!!! info "引入"
+    如何实现寄存器所存储的数据之间的处理与交互是本章节的核心命题。如果说 **[微操作](#微操作及其实现)** 处理的是数据之间的处理，那 **[寄存器传送](#寄存器传送)** 则着眼于数据之间的交互。
+    
+    换句话来说，如何把数据给到别的寄存器、如何获取别的寄存器给到的数据、如何传输和选择这些数据，就是本小节要解决的问题。
+
+    特别的，寄存器传送的实现可以直接实现 **[转移](#转移)** 操作。
 
 ### 基于 MUX 实现传送
 
@@ -159,9 +110,11 @@ $$
 
 ![](106.png)
 
-用语言来描述这个总体架构就是，我们通过一系列 one-hot 编码（不确定，也许可能都为零？我感觉取决于 **[保持](#保持)** 的实现。）来表示选择哪个输入源（下图中 $K_0\sim K_{n-1}$），再通过 `Encoder` 将它们编码作为 `MUX` 的输入选择信号（下图中 $S_m \sim S_0$），从多个输入源（下图中 $k_0 \sim k_{n-1}$）中选择对应的源，并输出，给到 R0；此外，将选择信号都或起来，作为 R0 的 Load 信号输入。
+用语言来描述这个总体架构就是，我们通过一系列 one-hot 编码（不确定，也许可能都为零？我感觉取决于 **[保持](#保持)** 的实现。）来表示选择哪个输入源（下图中 $K_0\sim K_{n-1}$），再通过 `Encoder` 将它们编码作为 `MUX` 的输入选择信号（下图中 $S_m \sim S_0$），从多个输入源（下图中 0 \sim k \sim (n-1)$）中选择对应的源，并输出，给到 R0；此外，将选择信号都或起来，作为 R0 的 Load 信号输入。
 
 ![](105.png)
+
+> 其中 `MUX` 的 $k \sim (n-1)$ 实现了 **[转移](#转移)** 操作。
 
 !!! summary "小结"
 
@@ -224,16 +177,195 @@ $$
 
 对比来看，三态门的实现大大降低了总线的实现成本，精简了电路的实现，所以通常来说更常用。
 
-??? explain "个人想法"
+??? note "个人想法"
     虽然书中说三态门的接线比 `MUX` 的少了一半，但我觉的三态门只是把线分岔的地方移动到了寄存器附近，换句话来说不如说是节省了导线的长度。但是随着输入的增加，`MUX` 的结构会越来越复杂且需要重新设计，但三态门只需要量的增加就行了，所以确实是更加吸引人。（当然，虽然书中没说，但是我觉得 Enable 必须 at most one-hot，而这部分的逻辑对于两个实现方法来说是一样的）
 
 ---
 
-### 其它
+## 微操作及其实现
 
+> A microoperation is an elementary operation performed on data stored in registers or in memory.
 
+微操作一般分为这四种：
 
+1. 转移，transfer microoperations，将数据从一个寄存器转移到另外一个寄存器；
+2. 算术，arithmetic microoperations，对数据的算术运算操作；
+3. 逻辑，logic microoperations，对数据的逻辑运算操作；
+4. 位移，shift microoperations，对数据的位移操作；
 
+> A given microoperation may be of more than one type. For example, a 1s complement operation is both an arithmetic microoperation and a logic microoperation.
+
+---
+
+### 转移
+
+不改变数据本身，只是从一个寄存器中把数据移动到另外一个寄存器。
+
+将 R0 中的数据转移到 R1 中，用 RTL 表示就是 $R0 \leftarrow R1$。
+
+这一部分的实现途径在 **[寄存器传送的实现](#寄存器传送的实现)** 已经阐述。
+
+---
+
+### 算术
+
+![](101.png)
+
+> Multiplication and division are not listed in Table 6-3. Multiplication can be represented by the symbol * and division by /. These two operations are not included in the basic set of arithmetic microoperations because they are assumed to be implemented by sequences of basic microoperations. However, multiplication can be considered as a microoperation if implemented by a combinational circuit. In such a case, the result is transferred into a destination register at the clock edge after all signals have propagated through the entire combinational circuit
+
+!!! example "加减法器"
+    就像我们之前学过的，用加法器实现加减法器，在 RTL 和模块逻辑电路的维度下，可以这么表示：
+
+    $$
+    \begin{array}{l}
+        &\overline{X}K_1:R_1\leftarrow R_1 + R_2 \\
+        &XK_1:R_1\leftarrow R_1 + \overline{R_2} + 1
+    \end{array}
+    $$
+
+    ![](102.png)
+
+!!! warning "注意"
+    对于如上出现的形式如：$condition: reg \leftarrow options one regs$ 的表达式，`:` 左侧出现的 `+` 表示或，右侧的则表示加（“乘”也是这样）！
+
+相对应的，加减法的实现可以通过加减法器实现，乘法可以用 **[位移](#位移)** 操作实现，而除法相对复杂。
+
+!!! note "乘法实现的<u>大致</u>思路"
+    假设我们需要计算 $a \cdot b$，且 $a$，$b$ 都是整数，则可以将 $b$ 写成二进制形式 $(b_{n-1}b_{n-2}...b_1b_0)_2$，于是：
+
+    $$
+    \begin{array}{l}
+        a \cdot b & = & a \cdot (b_{n-1}b_{n-2}...b_1b_0)_2 \\
+                  & = & a \cdot \left[ (b_{n-1}0...00)_2 + \cdot (0b_{n-2}...00)_2 + ... + \cdot (00...b_10)_2 + \cdot(00...0b_0)_2 \right]\\
+                  & = & a \cdot \sum_{i = 0} ^{n-1} b_i \cdot 2^{i} \\
+                  & = & a \cdot \sum_{i = 0} ^{n-1} b_i \;\mathrm{<<}\; i \;\;\; \text{where "<<" means "Shift Left"}
+    \end{array}
+    $$
+
+    于是就可以通过 **[位移](#位移)** 的相关知识来实现。
+
+---
+
+### 逻辑
+
+![](103.png)
+
+逻辑运算的实现相比算术更加直接，因为大部分逻辑都可以通过逻辑门来实现。
+
+---
+
+!!! note ""
+    而承担逻辑和算术运算的硬件模块，一般被称为 **ALU**。
+
+---
+
+### 位移
+
+![](104.png)
+
+位移的实现通过 **位移寄存器(Shift Register)SHR** 实现。
+
+!!! info "引入"
+    位移操作从本质上来讲，是通过 **触发器随着时钟脉冲，将串行数据一位一位地移动** 实现的。但是如果读者尚未理解其实现原理，阅读以下内容刚开始可能会觉得有些莫名其妙，但是请先阅读 **[串行实现](#串行实现)** 和 **[并行化](#并行化)** 的内容，知道它们的行为后，可以先暂时跳过 **[双向位移寄存器](#双向位移寄存器)**，再来看本节末尾的总结，也许能够让您明白它究竟是怎么实现的。
+
+#### 串行实现
+
+位移操作最简单的实现只需要与输入数相同位数的触发器实现。它的基本结构如下：
+
+![](109.png)
+
+> 四个触发器首尾相连，最前面 **串行输入(Serial Input)SI** 数据，末端得到 **串行输出(Serial Output)SO**，在不同时钟周期的偏差下，连续读入的 n bits 即为不同位数位移的结果。
+
+!!! example "串行位移操作实现的模拟解释"
+    假设现在我们有 4 个 `FF` 首尾相连，现在串行输入 `1001` 这 4bits 的数据（当然，完全输入需要 4 个时钟周期）。
+
+    假设第 1 个周期结束后，`1001` 最右侧的 `1` 被存在了第一个 FF，则：
+
+    |周期|待输入|FF1|FF2|FF3|FF4|SO|
+    |:--:|--:|:--:|:--:|:--:|:--:|:--:|
+    |1|`100`|`1`|?|?|?|`1???`|
+    |2|`10`|`0`|`1`|?|?|`01??`|
+    |3|`1`|`0`|`0`|`1`|?|`001?`|
+    |4| |`1`|`0`|`0`|`1`|`1001`|
+    |5| |?|`1`|`0`|`0`|`?100`|
+    |6| |?|?|`1`|`0`|`??10`|
+    |7| |?|?|?|`1`|`???1`|
+
+    这里的 SO 指的是从当前轮次开始，读入 4bits 数据得到的串行输出结果，这里的 4bits 当然是对应输入的 4bits。
+
+    可以发现，在第四轮前后的结果分别是左移和右移的结果，当然，如果是要考虑具有实际计算价值的位移，我们当然需要填充 `?` 的值，不过这都是小事情。
+
+---
+
+#### 并行化
+
+并行化主要有两个方面，即 **并行输出(parallel output)** 和 **并行载入(parallel load)**，分别对应着 在同一个时间周期内 **得到每一个 `FF` 的结果** 和 **对每一个 `FF` 载入数据**。
+
+并行输出的实现非常简单，只需要给每一个 `FF` 的输出引出一条线就行了，它与串行输出可以直接同时存在；而并行输入则与串行输入冲突，一次只能实现其中一个，所以需要一些控制电路：
+
+![](110.png)
+
+> 看起来有点复杂，但是实际上逻辑还是很清晰的。
+>
+> - 纵向观察右侧的四个 `FF`，可以发现基本上就是串行位移实现，只不过其输入不再是直接从上一个 `FF` 那边拿来的；
+> - 四个 `FF` 的输入是类似的，所以我们仅关注最上面的那三个与门和一个或门，表示数据输入有三个可能的来源；
+>     1. 第一个与门，$F_i=Shift \cdot SI$（对于后面几个 `FF`，则是 $F_i=Shift \cdot FF_{i-1}$），可以发现，此时电路的行为与 **串行位移实现** 一致；
+>         - 即 $Shift$ 为 `1` 时，`SHR` 表现为「**每个周期执行一次位移**」；
+>     2. 第二个与门，$F_i=\overline{Shift} \cdot Load \cdot D_i$，此时电路的行为是使用比特向量对每一个 `FF` 赋值，即 **并行载入**；
+>         - 即 $\overline{Shift} \cdot Load$ 为 `1` 时，`SHR` 表现为「**并行载入**」；
+>     3. 第三个与门，$F_i=\overline{Shift} \cdot \overline{Load} \cdot Q_i$，此时电路的行为是保持上一周期的结果；
+>         - 即 $\overline{Shift} \cdot \overline{Load}$ 为 `1` 时，`SHR` 表现为「**保持**」；
+>
+> 总和来说，就是：
+>
+> $$
+> \begin{array}{rl}
+>       Shift :& Q\leftarrow \mathrm{sl}\; Q \\   
+>       \overline{Shift}\cdot Load :& Q\leftarrow D \\   
+>       \overline{Shift}\cdot \overline{Load} :& Q\leftarrow Q
+> \end{array}
+> $$
+> 
+> ![](111.png)
+
+---
+
+#### 双向位移寄存器
+
+上面介绍的位移寄存器随着时钟周期的供给，只能不可逆、单向地进行位移，这种位移寄存器称为 **无向位移寄存器(Unidirectional SHR)**；对应的，如果能够支持可控制的左移右移，则被称为 **双向位移寄存器(Bidirectional SHR)**。
+
+其行为如下：
+
+$$
+\begin{array}{rl}
+    \overline{S_0} \cdot \overline{S_1} :& Q \leftarrow Q\\
+    S_0 \cdot \overline{S_1} :& Q\leftarrow\mathrm{Sl}\; Q \\
+    \overline{S_0} \cdot S_1 :& Q\leftarrow\mathrm{Sr}\; Q \\
+    S_0 \cdot S_1:& Q\leftarrow D
+\end{array}
+$$
+
+其单元实现如下：
+
+![](112.png)
+
+> 其本质上就是添加了一个 `MUX` 来选择下一个时钟是继承 $(i+1)$、$(i-1)$、$D_i$ 还是 $Q$。
+
+---
+
+!!! note "综合阐述"
+    代码意义上的位移一般指的是一个双目操作，即可以指定位移多少位，这个参数被称为 **位移量(Shift Amount)**。
+    
+    但在硬件层面的实现上，这个多少“位”只能通过循环和已经实现的、**有限种** 确定位移量的位移实现，在我们提到的实现中，指的就是我们硬件只实现「一位位移」，并通过循环实现「任意位位移」，而这个“循环”，就是在时钟周期下，`FF` 不断继承上一个 `FF` 的值来实现的。
+
+    而并行与串行实现无非是体现这个特征的两种实现方法而已。
+
+    ???- tip "关于并行和串行"
+        这是一个题外话，我暂时不知道放哪里，刚好这里提到了就在这里说了。
+
+        实际上，虽然看起来并行的效率会比串行高很多，但是实际上很多高速传输设备或协议用的都是串行。这是因为，并行单次传输线路多，线路之间的距离小，干扰大，所以相对来说正常工作所下对频率的要求更高；而串行由于可以使用更高的频率工作，所以在某些情况下效率更高。
+
+---
 
 
 
