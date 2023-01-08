@@ -439,6 +439,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#保持">
+    保持
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#寄存器传送">
     寄存器传送
   </a>
@@ -482,10 +487,10 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#单寄存器上微操作的实现">
-    单寄存器上微操作的实现
+<a class="md-nav__link" href="#寄存器传送的实现">
+    寄存器传送的实现
   </a>
-<nav aria-label="单寄存器上微操作的实现" class="md-nav">
+<nav aria-label="寄存器传送的实现" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#基于-mux-实现传送">
@@ -496,11 +501,20 @@
 <a class="md-nav__link" href="#基于总线实现传送">
     基于总线实现传送
   </a>
+<nav aria-label="基于总线实现传送" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#共有-mux-实现">
+    共有 MUX 实现
+  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#树状状态总线">
-    树状状态总线
+<a class="md-nav__link" href="#三态门实现">
+    三态门实现
   </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#其它">
@@ -695,6 +709,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#保持">
+    保持
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#寄存器传送">
     寄存器传送
   </a>
@@ -738,10 +757,10 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#单寄存器上微操作的实现">
-    单寄存器上微操作的实现
+<a class="md-nav__link" href="#寄存器传送的实现">
+    寄存器传送的实现
   </a>
-<nav aria-label="单寄存器上微操作的实现" class="md-nav">
+<nav aria-label="寄存器传送的实现" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#基于-mux-实现传送">
@@ -752,11 +771,20 @@
 <a class="md-nav__link" href="#基于总线实现传送">
     基于总线实现传送
   </a>
+<nav aria-label="基于总线实现传送" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#共有-mux-实现">
+    共有 MUX 实现
+  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#树状状态总线">
-    树状状态总线
+<a class="md-nav__link" href="#三态门实现">
+    三态门实现
   </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#其它">
@@ -791,6 +819,8 @@
 <p>实现寄存器一个最直白的想法就是公用控制线路和分列数据线路来控制多个触发器，如下图是使用 D FF 实现的一个 4-bit register：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../95.png"><img alt="" src="../95.png"/></a></p>
 <p>我们称新数据被写入寄存器的操作为 <strong>载入(load)</strong>，而如果载入操作在同一个时钟脉冲中完成，我们称之是 <strong>并行(parallel)</strong> 的。</p>
+<hr/>
+<h2 id="保持">保持<a class="headerlink" href="#保持" title="Permanent link">¶</a></h2>
 <p>但是我们发现，如图的寄存器在每个时钟都允许载入，换句话来说每个时钟周期都会改变为输入。但是我们希望即使我们不管它它也能保持之前的值，主要有两个方案。</p>
 <div class="admonition tip">
 <p class="admonition-title">方案 A</p>
@@ -808,7 +838,11 @@
 </div>
 <hr/>
 <h2 id="寄存器传送">寄存器传送<a class="headerlink" href="#寄存器传送" title="Permanent link">¶</a></h2>
-<p>一个复杂系统除了信息的存储还需要信息的传输和处理。大部分电子系统设计中，都会有一个 <strong>控制单元(Control Unit)</strong> 来负责指挥（决定指令的序列） <strong>数据通路(Datapath)</strong> 进行数据处理。</p>
+<div class="admonition warning">
+<p class="admonition-title">说明</p>
+<p>把 transfer 翻译为“传送”是我脑瓜一拍的行为，我并不知道翻译成什么比较合适，如果读者有更好的翻译，请告诉我！</p>
+</div>
+<p>一个复杂系统除了信息的存储还需要信息的传输和处理，换句话来说，为了实现灵活、复杂的计算，我们需要信息之间能够广泛地交互。大部分电子系统设计中，都会有一个 <strong>控制单元(Control Unit)</strong> 来负责指挥（决定指令的序列） <strong>数据通路(Datapath)</strong> 进行数据处理。</p>
 <blockquote>
 <p>Datapaths are defined by their registers and the operations performed on binary data stored in the registers.</p>
 </blockquote>
@@ -880,6 +914,10 @@ K_1 : R2 \leftarrow R1
 \]</div>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../102.png"><img alt="" src="../102.png"/></a></p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>对于如上出现的形式如：<span class="arithmatex">\(condition: reg \leftarrow options one regs\)</span> 的表达式，<code>:</code> 左侧出现的 <code>+</code> 表示或，右侧的则表示加（“乘”也是这样）！</p>
+</div>
 <hr/>
 <h3 id="逻辑">逻辑<a class="headerlink" href="#逻辑" title="Permanent link">¶</a></h3>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../103.png"><img alt="" src="../103.png"/></a></p>
@@ -887,12 +925,68 @@ K_1 : R2 \leftarrow R1
 <h3 id="位移">位移<a class="headerlink" href="#位移" title="Permanent link">¶</a></h3>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../104.png"><img alt="" src="../104.png"/></a></p>
 <hr/>
-<h2 id="单寄存器上微操作的实现">单寄存器上微操作的实现<a class="headerlink" href="#单寄存器上微操作的实现" title="Permanent link">¶</a></h2>
+<h2 id="寄存器传送的实现">寄存器传送的实现<a class="headerlink" href="#寄存器传送的实现" title="Permanent link">¶</a></h2>
 <h3 id="基于-mux-实现传送">基于 MUX 实现传送<a class="headerlink" href="#基于-mux-实现传送" title="Permanent link">¶</a></h3>
+<p>对于一个单一寄存器，它的 <strong>输入</strong> 可能有多种来源，例如其它寄存器，又或者是其他操作的结果。总而言之，它的输入很可能是不唯一的，而同一时刻我们只能接受一个来源的输入。因此，我们需要使用 <code>MUX</code> 来对输入进行选择。</p>
+<p>一个简单 🌰 如下：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../106.png"><img alt="" src="../106.png"/></a></p>
+<p>用语言来描述这个总体架构就是，我们通过一系列 one-hot 编码（不确定，也许可能都为零？我感觉取决于 <strong><a href="#保持">保持</a></strong> 的实现。）来表示选择哪个输入源（下图中 <span class="arithmatex">\(K_0\sim K_{n-1}\)</span>），再通过 <code>Encoder</code> 将它们编码作为 <code>MUX</code> 的输入选择信号（下图中 <span class="arithmatex">\(S_m \sim S_0\)</span>），从多个输入源（下图中 <span class="arithmatex">\(k_0 \sim k_{n-1}\)</span>）中选择对应的源，并输出，给到 R0；此外，将选择信号都或起来，作为 R0 的 Load 信号输入。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../105.png"><img alt="" src="../105.png"/></a></p>
+<div class="admonition summary">
+<p class="admonition-title">小结</p>
+<p>换句话来说，<code>MUX</code> 实现主要的实现了 <strong>多对一</strong> 的数据传输问题。如果我们单单使用 <code>MUX</code> 来完成寄存器之间的数据交互（假设所有寄存器都能相互传输数据），那将这个模型（图例在<a href="#基于总线实现传送">下一小节</a>）抽象后，我们得到的将是一张“<strong><a href="https://zh.wikipedia.org/zh-cn/%E5%AE%8C%E5%85%A8%E5%9C%96">完全图</a></strong>”，然而它肉眼可见的开销大。</p>
+<p>而总线则非常巧妙地优化了这个问题（并不是上位替代关系）。</p>
+</div>
 <hr/>
 <h3 id="基于总线实现传送">基于总线实现传送<a class="headerlink" href="#基于总线实现传送" title="Permanent link">¶</a></h3>
+<p>在<a href="#基于-mux-实现传送">上一小节</a>的小结中我们已经提到了 <code>MUX</code> 实现的优劣，也提到了 <strong>总线(bus)</strong> 传输的优势，那么它具体来说其实现方法有两种——通过共有 <code>MUX</code> 实现，或通过三态门实现。</p>
 <hr/>
-<h3 id="树状状态总线">树状状态总线<a class="headerlink" href="#树状状态总线" title="Permanent link">¶</a></h3>
+<h4 id="共有-mux-实现">共有 MUX 实现<a class="headerlink" href="#共有-mux-实现" title="Permanent link">¶</a></h4>
+<p>让我们以三个寄存器的模型为例，对比通过专有 <code>MUX</code> 实现和通过 <strong>单一总线(single bus)</strong> 实现的区别：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../107.png"><img alt="" src="../107.png"/></a></p>
+<p>首先对总线实现进行说明，同样是使用 <code>MUX</code>，但此时 <code>MUX</code> 不再是某个寄存器的 <strong>专有逻辑(dedicated logic)</strong>，而是三个寄存器共同使用的 <strong>共有逻辑(shared logic)</strong>。总线中的 <code>MUX</code> 在所有寄存器的输入中选择其中一个，并将它输出，给到所有寄存器；而总线通过控制 Load 信号来选择让哪个（或哪些）寄存器得到这个信号。</p>
+<p>接下来进行对比，以总线实现为主体，与 <code>MUX</code> 实现对比：</p>
+<ul>
+<li>优势：<ul>
+<li>电路更精简，成本更低，随着寄存器增加这个特点更加明显；</li>
+</ul>
+</li>
+<li>劣势：<ul>
+<li>同一时刻内总线只能传输一个数据，即只有一个数据源(source)；<ul>
+<li>同一时钟周期内只有一个数据能传输到别的地方，例如交换操作就需要至少两个 bus 才能实现；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>而因为这些特点，我们需要评估我们的需求，选择合适的结构来实现。</p>
+<hr/>
+<h4 id="三态门实现">三态门实现<a class="headerlink" href="#三态门实现" title="Permanent link">¶</a></h4>
+<p>三态门的相关内容已经在前面介绍，传送门在 <strong><a href="../Chap02/#三态门">这里</a></strong> ，关于本小节的知识，可以重点关注 <strong><a href="../Chap02/#三态门">#三态门/碎碎念</a></strong>。</p>
+<p>而关于总线的实现，引用一句我在 <strong><a href="../Chap02/#三态门">#三态门/碎碎念</a></strong> 里写的话：</p>
+<blockquote>
+<p>只要我们让导线的若干输入中只有一个三态门不在「高阻态」，就能够优雅地实现多路输出互联。</p>
+</blockquote>
+<p>实际上，所谓的三态门实现原理上和 <code>MUX</code> 实现无二，只不过我们是通过三态门来实现「路由」这个逻辑而已，也就是书上所说的：</p>
+<blockquote>
+<p>Three-state buffer outputs can be connected together to form a multiplexed output line.</p>
+</blockquote>
+<p>与 <code>MUX</code> 实现相对比，三态门实现方式如下：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../108.png"><img alt="" src="../108.png"/></a></p>
+<p>进行简单说明，<span class="arithmatex">\(c\)</span> 中对三态门的表示进行了简化，含义参考 <span class="arithmatex">\(a\)</span>。它想表达的主要含义是，当 <code>EN</code> 为 <code>1</code> 时，表示输出；反之表示输入（当然，真正决定是否读入寄存器的还是 <code>LD</code>）。</p>
+<details class="question">
+<summary>个人疑惑</summary>
+<p>书中的表述是：</p>
+<blockquote>
+<p>If the three-state buffers are enabled, then the lines are outputs; if the three-state buffers are disabled, then the lines can be inputs.</p>
+</blockquote>
+<p>但是看 <span class="arithmatex">\(a\)</span> 的表达，不管 <code>EN</code> 是什么，它应当都有输入才对，真正决定是否输入进来的应该还是 <code>LD</code>？</p>
+</details>
+<p>对比来看，三态门的实现大大降低了总线的实现成本，精简了电路的实现，所以通常来说更常用。</p>
+<details class="explain">
+<summary>个人想法</summary>
+<p>虽然书中说三态门的接线比 <code>MUX</code> 的少了一半，但我觉的三态门只是把线分岔的地方移动到了寄存器附近，换句话来说不如说是节省了导线的长度。但是随着输入的增加，<code>MUX</code> 的结构会越来越复杂且需要重新设计，但三态门只需要量的增加就行了，所以确实是更加吸引人。（当然，虽然书中没说，但是我觉得 Enable 必须 at most one-hot，而这部分的逻辑对于两个实现方法来说是一样的）</p>
+</details>
 <hr/>
 <h3 id="其它">其它<a class="headerlink" href="#其它" title="Permanent link">¶</a></h3>
 <hr/>
@@ -900,7 +994,7 @@ K_1 : R2 \leftarrow R1
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月31日 17:17:32</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月8日 11:49:25</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月31日 15:18:46</span>
