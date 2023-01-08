@@ -542,6 +542,48 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#计数器">
+    计数器
+  </a>
+<nav aria-label="计数器" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#行波计数器">
+    行波计数器
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#同步计数器">
+    同步计数器
+  </a>
+<nav aria-label="同步计数器" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#同步载入">
+    同步载入
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#任意计数序列">
+    任意计数序列
+  </a>
+<nav aria-label="任意计数序列" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bcd-码循环计数">
+    BCD 码循环计数
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </li>
@@ -830,6 +872,48 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#计数器">
+    计数器
+  </a>
+<nav aria-label="计数器" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#行波计数器">
+    行波计数器
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#同步计数器">
+    同步计数器
+  </a>
+<nav aria-label="同步计数器" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#同步载入">
+    同步载入
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#任意计数序列">
+    任意计数序列
+  </a>
+<nav aria-label="任意计数序列" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bcd-码循环计数">
+    BCD 码循环计数
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </div>
@@ -848,7 +932,7 @@
 </ol>
 <h2 id="寄存器">寄存器<a class="headerlink" href="#寄存器" title="Permanent link">¶</a></h2>
 <p><strong>寄存器(registers)</strong> 粗略的来说就是一堆触发器以及对应的状态控制电路，用来实现多位数据的存储等操作。</p>
-<p>其中有一种特殊的寄存器叫 <strong>计数器(counter)</strong>，非常直白的，它的行为就是随着时钟周期不断在固定的状态序列中循环。更形象的，一般是实现自动的计数功能，像电子时钟那样。</p>
+<p>其中有一种特殊的寄存器叫 <strong><a href="#计数器">计数器(counter)</a></strong>，非常直白的，它的行为就是随着时钟周期不断在固定的状态序列中循环。更形象的，一般是实现自动的计数功能，像电子时钟那样。</p>
 <blockquote>
 <p>Registers are useful for storing and manipulating information; counters are employed in circuits that sequence and control operations in a digital system.</p>
 </blockquote>
@@ -1214,12 +1298,84 @@ K_1 : R2 \leftarrow R1
 </details>
 </div>
 <hr/>
+<h2 id="计数器">计数器<a class="headerlink" href="#计数器" title="Permanent link">¶</a></h2>
+<p>计数器(counter) 是什么，已经在 <strong><a href="#寄存器">#寄存器</a></strong> 中解释了，根据实现原理，主要分为 <strong>行波计数器(Ripple Counter)</strong> 和 <strong>同步计数器(Synchronous Counter)</strong> 两种。</p>
+<hr/>
+<h3 id="行波计数器">行波计数器<a class="headerlink" href="#行波计数器" title="Permanent link">¶</a></h3>
+<p>行波计数器的主要思想就是将一个不断自反的 <code>FF</code> 的输出直接或间接作为下一个 <code>FF</code> 的时钟脉冲。由于形成一次脉冲需要一对 <code>0</code>&amp;<code>1</code>，所以前一个 <code>FF</code> 取反两次才能引起下一个 <code>FF</code> 取反一次，如果下一个 <code>FF</code> 是在上一个 <code>FF</code> 的输出从 <code>1</code> 变 <code>0</code> 时触发，那两个 <code>FF</code> 的变化刚好对应于二进制自增的进位规律：<code>(0,0)</code>，<code>(0,1)</code>，<code>(1,0)</code>，<code>(1,1)</code>，<code>0,0</code>，...</p>
+<p>于是，一个 4-Bit 行波计数器的逻辑图就如下：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../113.png"><img alt="" src="../113.png"/></a></p>
+<blockquote>
+<ul>
+<li>上图中，下一个 <code>FF</code> 的时钟来自于上一个 <code>FF</code> 的输出取反，也就是对于上升沿触发的 <code>FF</code> 来说，下一个 <code>FF</code> 会在上一个 <code>FF</code> 的输出从 <code>1</code> 到 <code>0</code> 时自反，所以是 <strong>正向计时(Upward Counting)</strong>；</li>
+<li>反之，如果下一个 <code>FF</code> 的时钟来自于上一个 <code>FF</code> 的直接输出，也就是对于上升沿触发的 <code>FF</code> 来说，下一个 <code>FF</code> 会在上一个 <code>FF</code> 的输出从 <code>0</code> 到 <code>1</code> 时自反，所以是 <strong>逆向输出(Downward Counting)</strong>；</li>
+</ul>
+</blockquote>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../114.png"><img alt="" src="../114.png"/></a></p>
+<p>可以发现，行波计数器的优点是电路简单，成本低；但是缺点也很明显，既然它与同步计数器相区分，就说明它不是同步电路，每一个 <code>FF</code> 都会有传播延时，随着计数范围增大，总传播延时也会增加，而为了让电路正常工作，时钟频率也要因此下降。</p>
+<p>由于这些，书上对行波计数器的评价是多数情况下行波加法器只会在低功耗电路中被采用。</p>
+<hr/>
+<h3 id="同步计数器">同步计数器<a class="headerlink" href="#同步计数器" title="Permanent link">¶</a></h3>
+<p>同步计数器从实现自增的原理上来说，和行波计数器也是类似的，同样是在上一个 <code>FF</code> 完成一次翻转的时候让下一个 <code>FF</code> 变化。只不过同步计数器不是控制时钟，而是控制「<code>FF</code> 内的值是否取反」来实现，而它是通过异或门来实现的。</p>
+<p>我们知道，<span class="arithmatex">\(0 \;\mathrm{XOR}\; X = X\)</span>，而 <span class="arithmatex">\(1 \;\mathrm{XOR}\; X = \overline{X}\)</span>。因此，我们可以控制 <code>XOR</code> 的某个输入是 <code>0</code> 还是 <code>1</code> 来实现取反还是保持的切换。</p>
+<blockquote>
+<p>不过需要区分的是，行波计数器是在上一个 <code>FF</code> 变化完才影响下一个的，所以是 <code>1</code> 变 <code>0</code> 时需要进位；而同步计数器的所有 <code>FF</code> 是一起变化的，所以只有在前面都是 <code>1</code> 时候，表示下一刻它们都要进位了，当前 <code>FF</code> 才进位。</p>
+<p>也就是说，行波计数器是建立在前一个 <code>FF</code> 的结果进行变化；而并行加法器是建立在上一刻所有关联 <code>FF</code> 的状态，对下一状态的预判。</p>
+</blockquote>
+<p>在这基础上，同步计数器的 <strong>自增器(incrementer)</strong> 有两种不同的实现方法：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../115.png"><img alt="" src="../115.png"/></a></p>
+<blockquote>
+<p>(b) 的蓝色部分替换 (a) 的蓝框部分为第二种。两种分别为 门串行实现 和 门并行实现。</p>
+<p>两种实现其实原理都是一样的，只不过门串行牺牲某些情况下的运行效率，节约了门成本；而门并行提高x了门成本，减少了某些情况下的门延迟。</p>
+</blockquote>
+<p>当然，既然使用的是自增器，那么实现的自然就是正向计数器。为了实现逆向计数器，我们则需要将自增器换为自减器。做法只不过是将异或门的控制信号取反。</p>
+<p>具体来说，输入函数变为：</p>
+<div class="arithmatex">\[
+\begin{array}{rl}
+    D_{A0} = &amp; Q_0 \oplus EN \\
+    D_{A1} = &amp; Q_1 \oplus \left(
+        (Q_0 \cdot \overline{S} + \overline{Q_0} \cdot S) \cdot EN
+    \right) \\
+    D_{A2} = &amp; Q_2 \oplus \left(
+        (Q_0 \cdot Q_1 \cdot \overline{S} + \overline{Q_0} \cdot \overline{Q_1} \cdot S) \cdot EN
+    \right) \\
+    D_{A3} = &amp; Q_3 \oplus \left(
+        (Q_0 \cdot Q_1 \cdot Q_2 \cdot \overline{S} + \overline{Q_0} \cdot \overline{Q_1} \cdot \overline{Q_2} \cdot S) \cdot EN
+    \right)
+\end{array}
+\]</div>
+<blockquote>
+<p>从这个表达式也可以略微感受到门串行和门并行的区别究竟在哪里，它们使用同一个表达式，只不过用不同的方式来实现多位 <code>AND</code> 运算。</p>
+</blockquote>
+<hr/>
+<h4 id="同步载入">同步载入<a class="headerlink" href="#同步载入" title="Permanent link">¶</a></h4>
+<p>这里同步载入的含义可以同 <strong><a href="#并行化">位移寄存器的并行载入</a></strong> 类比，其主要目的是将计数器的当前值设为一个我们需要的数字。</p>
+<p>以门串行实现为例，添加功能控制逻辑后的设计如下：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../116.png"><img alt="" src="../116.png"/></a></p>
+<hr/>
+<h3 id="任意计数序列">任意计数序列<a class="headerlink" href="#任意计数序列" title="Permanent link">¶</a></h3>
+<p>现在让我们回归计数器的行为：<u>随着时钟周期不断在固定的状态序列中循环</u>。也就是说，这个序列未必需要是整数自增自减序列。而实现某一序列的计数行为，实际上只要设计好有限状态和状态之间的转移即可。</p>
+<p>当然，这个话题太过宽泛，我们在这里具体讨论的还是整数自增序列，只不过限制了上下界。书上提供的案例是 BCD 码的循环计数，那我们也跟着这个案例来。</p>
+<hr/>
+<h4 id="bcd-码循环计数">BCD 码循环计数<a class="headerlink" href="#bcd-码循环计数" title="Permanent link">¶</a></h4>
+<p>首先我们需要根据时序电路的设计规则，搞清楚状态序列，显然，根据 BCD 码的定义，我们可以毛毛地认为它是下确界为 <code>0</code>，上确界为 <code>9</code> 的 4 比特整数序列。换句话说，我们需要实现一个计数到 <code>9</code> 后下一个状态是 <code>0</code> 的 4 比特计数器。</p>
+<p>于是我们可以当计数器的输出为 <code>9</code> 时，下一周期让计数器载入 <code>0</code>：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../117.png"><img alt="" src="../117.png"/></a></p>
+<blockquote>
+<p>按理来说这里应该是 <span class="arithmatex">\(Load = Q_0\cdot\overline{Q_1}\cdot\overline{Q_2}\cdot Q_3\)</span>，以对应 <code>9D=1001B</code>，但是由于自增过程中，<code>1001</code> 是第一个满足 <code>1??1</code> 的组合，所以可以直接简化为 <span class="arithmatex">\(Load = Q_0\cdot Q_3\)</span>。</p>
+</blockquote>
+<p>如上是修改上确界的方法，而修改下确界的方法则是修改 <span class="arithmatex">\(D_i\)</span> 序列，例如上图中 <span class="arithmatex">\(D\)</span> 接地，所以下确界是 <code>0000B</code>。</p>
+<div class="admonition example">
+<p class="admonition-title">Mod N 计数器</p>
+<p>实际上，我们可以把 BCD 码循环计数器看作是特殊的 Mod N 计数器，即 N = 10 的 Mod N 计数器。</p>
+<p>或许你会想，实现 Mod N 计数器能不能在满足输出条件后直接使用 <code>Clear</code> 输入。但是请不要忘记了，<code>Clear</code> 也好，<code>Set</code> 也罢，它们都是异步操作。我们没有必要也不应该使用异步操作，所以最好的做法还是使用 <code>Load</code>。</p>
+</div>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月8日 15:08:55</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月8日 18:43:54</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月31日 15:18:46</span>
