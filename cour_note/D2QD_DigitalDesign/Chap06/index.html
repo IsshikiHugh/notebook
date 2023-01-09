@@ -584,12 +584,17 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#寄存器单元">
+    寄存器单元
+  </a>
+</li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Chap07.md">
-        None
+<a class="md-nav__link" href="../Chap07/">
+        Chap 7 Memory Basics
       </a>
 </li>
 </ul>
@@ -914,6 +919,11 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#寄存器单元">
+    寄存器单元
+  </a>
+</li>
 </ul>
 </nav>
 </div>
@@ -925,11 +935,6 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="chap-6-registers--register-transfers">Chap 6 Registers &amp; Register Transfers<a class="headerlink" href="#chap-6-registers--register-transfers" title="Permanent link">¶</a></h1>
-<ol>
-<li>What's Registers</li>
-<li>Registers transfers(a means of representing and specifying elementary processing operations)</li>
-<li>Microoperations(Elementary operations performed on data stored in reg) and implementations</li>
-</ol>
 <h2 id="寄存器">寄存器<a class="headerlink" href="#寄存器" title="Permanent link">¶</a></h2>
 <p><strong>寄存器(registers)</strong> 粗略的来说就是一堆触发器以及对应的状态控制电路，用来实现多位数据的存储等操作。</p>
 <p>其中有一种特殊的寄存器叫 <strong><a href="#计数器">计数器(counter)</a></strong>，非常直白的，它的行为就是随着时钟周期不断在固定的状态序列中循环。更形象的，一般是实现自动的计数功能，像电子时钟那样。</p>
@@ -1057,7 +1062,7 @@ K_1 : R2 \leftarrow R1
 </blockquote>
 <p>与 <code>MUX</code> 实现相对比，三态门实现方式如下：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../108.png"><img alt="" src="../108.png"/></a></p>
-<p>进行简单说明，<span class="arithmatex">\(c\)</span> 中对三态门的表示进行了简化，含义参考 <span class="arithmatex">\(a\)</span>。它想表达的主要含义是，当 <code>EN</code> 为 <code>1</code> 时，表示输出；反之表示输入（当然，真正决定是否读入寄存器的还是 <code>LD</code>）。</p>
+<p>进行简单说明，<span class="arithmatex">\(c) 中对三态门的表示进行了简化，含义参考 \(a\)</span>。它想表达的主要含义是，当 <code>EN</code> 为 <code>1</code> 时，表示输出；反之表示输入（当然，真正决定是否读入寄存器的还是 <code>LD</code>）。</p>
 <details class="question">
 <summary>个人疑惑</summary>
 <p>书中的表述是：</p>
@@ -1304,7 +1309,7 @@ K_1 : R2 \leftarrow R1
 <h3 id="行波计数器">行波计数器<a class="headerlink" href="#行波计数器" title="Permanent link">¶</a></h3>
 <p>行波计数器的主要思想就是将一个不断自反的 <code>FF</code> 的输出直接或间接作为下一个 <code>FF</code> 的时钟脉冲。由于形成一次脉冲需要一对 <code>0</code>&amp;<code>1</code>，所以前一个 <code>FF</code> 取反两次才能引起下一个 <code>FF</code> 取反一次，如果下一个 <code>FF</code> 是在上一个 <code>FF</code> 的输出从 <code>1</code> 变 <code>0</code> 时触发，那两个 <code>FF</code> 的变化刚好对应于二进制自增的进位规律：<code>(0,0)</code>，<code>(0,1)</code>，<code>(1,0)</code>，<code>(1,1)</code>，<code>0,0</code>，...</p>
 <p>于是，一个 4-Bit 行波计数器的逻辑图就如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../113.png"><img alt="" src="../113.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../113.png"><img alt="" src="../113.png" width="200px"/></a></p>
 <blockquote>
 <ul>
 <li>上图中，下一个 <code>FF</code> 的时钟来自于上一个 <code>FF</code> 的输出取反，也就是对于上升沿触发的 <code>FF</code> 来说，下一个 <code>FF</code> 会在上一个 <code>FF</code> 的输出从 <code>1</code> 到 <code>0</code> 时自反，所以是 <strong>正向计时(Upward Counting)</strong>；</li>
@@ -1371,11 +1376,14 @@ K_1 : R2 \leftarrow R1
 <p>或许你会想，实现 Mod N 计数器能不能在满足输出条件后直接使用 <code>Clear</code> 输入。但是请不要忘记了，<code>Clear</code> 也好，<code>Set</code> 也罢，它们都是异步操作。我们没有必要也不应该使用异步操作，所以最好的做法还是使用 <code>Load</code>。</p>
 </div>
 <hr/>
+<h2 id="寄存器单元">寄存器单元<a class="headerlink" href="#寄存器单元" title="Permanent link">¶</a></h2>
+<p>来不及了我先跳过了 Orz</p>
+<hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月8日 18:43:54</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月9日 09:46:20</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月31日 15:18:46</span>
@@ -1437,13 +1445,13 @@ K_1 : R2 \leftarrow R1
             </div>
 </div>
 </a>
-<a aria-label="下一页: [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision" class="md-footer__link md-footer__link--next" href="../../D2QD_Intro2CV/" rel="next">
+<a aria-label="下一页: Chap 7 Memory Basics" class="md-footer__link md-footer__link--next" href="../Chap07/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 下一页
               </span>
-              [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision
+              Chap 7 Memory Basics
             </div>
 </div>
 <div class="md-footer__button md-icon">
