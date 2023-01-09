@@ -654,7 +654,7 @@
 </ul>
 </li>
 <li>R&amp;W operations have specific steps and associated timing parameters: access time &amp; write cycle time</li>
-<li>static or dynamic, volatile or nonvolatile</li>
+<li>static(SRAM) or dynamic(DRAM), volatile or nonvolatile</li>
 </ul>
 </div>
 <h2 id="7-1-memory">7-1 Memory<a class="headerlink" href="#7-1-memory" title="Permanent link">¶</a></h2>
@@ -690,12 +690,15 @@
 <p>The memory will then take the bits from the word that has been selected by the address and apply them to the data output lines. The contents of the selected word are not changed by reading them.</p>
 </blockquote>
 <p>...</p>
+<blockquote>
+<p>To avoid destroying data in other memory words, it is important that this change occur after the signals on the address lines have become fixed at the desired values. </p>
+</blockquote>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月9日 18:24:38</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月9日 19:39:18</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月9日 09:46:20</span>
