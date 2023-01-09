@@ -419,10 +419,10 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#电路设计">
-    电路设计
+<a class="md-nav__link" href="#组合电路设计">
+    组合电路设计
   </a>
-<nav aria-label="电路设计" class="md-nav">
+<nav aria-label="组合电路设计" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#分层设计">
@@ -779,10 +779,10 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#电路设计">
-    电路设计
+<a class="md-nav__link" href="#组合电路设计">
+    组合电路设计
   </a>
-<nav aria-label="电路设计" class="md-nav">
+<nav aria-label="组合电路设计" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#分层设计">
@@ -955,19 +955,23 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="chap-3-combinational-logic-design">Chap 3 Combinational Logic Design<a class="headerlink" href="#chap-3-combinational-logic-design" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">引入</p>
 <p>按照功能，逻辑电路分为两类：</p>
 <ul>
-<li><strong>组合电路(combinational circuit)</strong><ul>
+<li><strong>组合电路(Combinational Circuit)</strong><ul>
 <li>拥有 m 个输入和 n 个输出，其中包含了 <span class="arithmatex">\(2^m\)</span> 种输入组合，以及对应的 n 个不同的函数；</li>
 <li>最关键的是，它的 <strong>输出只依赖于这 m 个输入的组合</strong>（不包含回路）；</li>
 </ul>
 </li>
-<li><strong>时序电路(sequential logic cirtuit)</strong><ul>
+<li><strong>时序电路(Sequential Logic Cirtuit)</strong><ul>
 <li>与之对应的，时序电路具有记忆功能，即它的输出可能会依赖之前的结果；</li>
 </ul>
 </li>
 </ul>
-<h2 id="电路设计">电路设计<a class="headerlink" href="#电路设计" title="Permanent link">¶</a></h2>
+</div>
+<p>而本章将着眼于组合电路的相关内容，时序电路的相关内容将在 <strong><a href="../Chap04/">下一章</a></strong> 介绍。</p>
+<h2 id="组合电路设计">组合电路设计<a class="headerlink" href="#组合电路设计" title="Permanent link">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">表示逻辑的方法</p>
 <ol>
@@ -1052,7 +1056,7 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 </table>
 <hr/>
 <h4 id="扇入扇出">扇入扇出<a class="headerlink" href="#扇入扇出" title="Permanent link">¶</a></h4>
-<p>扇入描述了一个门能够接受的最多输入量，如一个四输入与非门的扇入就是 4；而扇出描述的则是一个门的输出(栅极输出)在不降低工作性能的情况下能够负载多少门，例如一个非门的输出能够同时负载 4 个非门并且都能正常工作，则其扇出为 4，所以其也能通过标准负载来定义。</p>
+<p>扇入描述了一个门能够接受的最多输入量，如一个四输入与非门的扇入就是 4；而扇出描述的则是一个门的输出(栅极输出)在不降低工作性能的情况下能够负载多少门，例如一个非门的输出能够同时负载 4 个非门并且都能正常工作，则其扇出为 4，其也能通过标准负载来定义。</p>
 <div class="admonition note">
 <p class="admonition-title">标准负载</p>
 <p>所谓的标准负载，是衡量“负载”的一个“单位砝码”。其大小等于一个非门(逆变器)贡献的负载压力。</p>
@@ -1241,14 +1245,14 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <p>简写为 <code>DEMUX</code>，通过控制端选择输入给到若干输出中的哪一个。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../45.png"><img alt="" src="../45.png"/></a></p>
 <hr/>
-<p>👍 后续 <a href="../Chap05/#可重编程技术">可重编程技术</a></p>
+<p>后续 👉 <strong><a href="../Chap05/#可重编程技术">可重编程技术</a></strong></p>
 <hr/>
 <h2 id="算术逻辑电路">算术逻辑电路<a class="headerlink" href="#算术逻辑电路" title="Permanent link">¶</a></h2>
 <p>我们主要讨论的计算主要包括逻辑运算和算术运算，前者由于可以直接通过基本门很方便实现，所以我们不过多考虑；在此主要介绍算数运算。在计算机硬件中，承担计算工作的主要部件为 <code>ALU</code>(Arithmetic Logical Unit)。</p>
 <hr/>
 <div class="admonition info">
 <p class="admonition-title">引入</p>
-<p>在之前 <a href="#编码器">译码器</a> 和 <a href="#多路复用器">多路复用器</a> 的部分中已经介绍过一些实现 1 bit 加法器的方法，接下来我们就来详细看看加法器这个东西。</p>
+<p>在之前 <strong><a href="#编码器">#译码器</a></strong> 和 <strong><a href="#多路复用器">#多路复用器</a></strong> 的部分中已经介绍过一些实现 1 bit 加法器的方法，接下来我们就来详细看看加法器这个东西。</p>
 <p>首先我们需要了解加法器最底层的单元，即实现 1 bit 运算的 <strong>半加器(half adder)</strong> 和 <strong>全加器(full adder)</strong>，接下来需要将他们组合在一起，实现 n bits 的加法器，其中主要介绍 <strong>行波加法器(binary ripple carry adder)</strong>。此外，基于一些编码的知识，我们还可以将它改装成加减法器。</p>
 </div>
 <hr/>
@@ -1338,7 +1342,7 @@ C = XY + Z(X\oplus Y)
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月8日 11:49:25</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月9日 15:47:28</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月1日 13:37:53</span>
