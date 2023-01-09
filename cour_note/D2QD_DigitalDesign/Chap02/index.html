@@ -985,7 +985,7 @@
 <p>此外，与门和或门可能有更多的输入引脚，如下：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../9.jpeg"><img alt="" src="../9.jpeg"/></a></p>
 <p>至此，给出了 AND, OR, NOT 三个门的符号表示，类似上一小节提到的那样，我们也可以利用这三个基础的门电路来构成其他的门电路（虽然通常来说，我们可能是通过 NAND + NOT 来实现 AND 的）。</p>
-<p>于是又引申出一个概念——<strong>通用门(universal gate)</strong>。一个功能完全的，能够表示其他所有门的逻辑门被称为通用门，在我们学过的逻辑门中，NAND 和 NOR 都是通用门。</p>
+<p>于是又引申出一个概念——<strong>通用门(Universal Gate)</strong>。一个功能完全的，能够表示其他所有门的逻辑门被称为通用门，在我们学过的逻辑门中，NAND 和 NOR 都是通用门。</p>
 <div class="admonition quote">
 <p class="admonition-title">推荐阅读</p>
 <ul>
@@ -1017,11 +1017,11 @@
 <p>除此之外，从上面提到的运算律中还能推广出如下几个模型：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../11.jpg"><img alt="" src="../11.jpg"/></a><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../12.jpg"><img alt="" src="../12.jpg"/></a></p>
 <blockquote>
-<p>我们再次发现，与 和 或 在逻辑上是对称的。</p>
+<p>对比前三个和后三个，我们再次发现，与 和 或 在逻辑上是对称的。</p>
 </blockquote>
 <h3 id="对偶法则">对偶法则<a class="headerlink" href="#对偶法则" title="Permanent link">¶</a></h3>
-<p><strong>对偶法则(duality rule)</strong>: 一个表达式的 <strong>对偶(dual)</strong> 为，将所有的 <strong>与</strong> 和 <strong>或</strong> 对调得到的式子（注意！需要保证参与运算的顺序不能变，比如 <strong>一般情况下</strong> <span class="arithmatex">\(A\cdot B\)</span> 会被对偶为 <span class="arithmatex">\((A+B)\)</span> 以保证运算顺序）。</p>
-<div class="admonition note">
+<p><strong>对偶法则(Duality Rule)</strong>：一个表达式的 <strong>对偶(dual)</strong> 为，将所有的 <strong>与</strong> 和 <strong>或</strong> 对调得到的式子（注意！需要保证参与运算的结构不能变（是“<strong>带括号</strong>”的宏展开），比如 <strong>一般情况下</strong> <span class="arithmatex">\(A\cdot B\)</span> 会被对偶为 <span class="arithmatex">\((A+B)\)</span> 以保证运算顺序）。</p>
+<div class="admonition example">
 <p class="admonition-title">eg</p>
 <ul>
 <li><span class="arithmatex">\(X+XY\)</span> 和 <span class="arithmatex">\(X(X+Y)\)</span> 对偶；</li>
@@ -1035,15 +1035,18 @@
 <li>如果表达式 F 和 G 等价，那么他们的对偶也等价；</li>
 </ul>
 <h3 id="互补函数">互补函数<a class="headerlink" href="#互补函数" title="Permanent link">¶</a></h3>
-<p>一个 <strong>函数的互补(complement of a function)</strong> 指的是，将它的对偶函数中每一个变量都取反得到的函数，而该函数正好等于原函数的非。</p>
-<div class="admonition note">
+<p>一个 <strong>函数的互补(Complement of a Function)</strong> 指的是，将它的 <strong>对偶函数</strong> 中每一个 <strong>变量</strong> 都取反得到的函数，而该函数正好等于原函数的 <strong>非</strong>。</p>
+<div class="admonition example">
 <p class="admonition-title">eg</p>
-<p>原函数：<span class="arithmatex">\(F=\overline{A}B+C\overline{B}\)</span>；
-其互补函数：<span class="arithmatex">\(\overline{F}=(A+\overline{B})(\overline{C}+D)\)</span>；</p>
+<ul>
+<li>原函数：<span class="arithmatex">\(F=\overline{A}B+C\overline{B}\)</span>；</li>
+<li>其对偶函数：<span class="arithmatex">\(F=(\overline{A}+B)(C+\overline{B})\)</span>；</li>
+<li>其互补函数：<span class="arithmatex">\(\overline{F}=(A+\overline{B})(\overline{C}+D)\)</span>；</li>
+</ul>
 </div>
 <h3 id="替代法则">替代法则<a class="headerlink" href="#替代法则" title="Permanent link">¶</a></h3>
-<p><strong>替代法则(substitution rules)</strong>: 如果将一个等式中 <strong>所有的</strong> <strong>某个变量</strong> 都替换为同一个表达式，则等式依然成立。</p>
-<div class="admonition note">
+<p><strong>替代法则(Substitution Rules)</strong>: 如果将一个等式中 <strong>所有的</strong> <strong>某个变量</strong> 都替换为同一个表达式，则等式依然成立。</p>
+<div class="admonition example">
 <p class="admonition-title">eg</p>
 <ul>
 <li>原等式：<span class="arithmatex">\(X(Y+Z)=XY+XZ\)</span>；</li>
@@ -1052,7 +1055,7 @@
 </ul>
 </div>
 <h3 id="一致性定理">一致性定理<a class="headerlink" href="#一致性定理" title="Permanent link">¶</a></h3>
-<p>在简化逻辑表达式的时候，<strong>一致性定理(consensus theorem)</strong> 也很有用：</p>
+<p>在简化逻辑表达式的时候，<strong>一致性定理(Consensus Theorem)</strong> 也很有用：</p>
 <div class="arithmatex">\[
 XY+\overline{X}Z+YZ=XY+\overline{X}Z
 \]</div>
@@ -1141,9 +1144,9 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p>A product term in which all the variables appear exactly once, either complemented or uncomplemented, is called <em>minterm</em>. </p>
 <p>Its characteristic property is that it represents exactly one combination of binary variable values in the truth table.</p>
 </blockquote>
-<p>用我的话来说，最小项之和就是挑出真值表中所有结果是 <code>1</code> 的最小项（<em>比较模糊但直观，所以请先囫囵吞枣，我在“追加说明”会进一步说明</em>）。显然，在最小项之和的含义就是，一旦字面量取值的组合匹配了这几个“最小项”的其中一项，那么结果就是 <code>1</code>，符合了 OR 的“有1得1”的规则。</p>
-<p>我们使用符号 <span class="arithmatex">\(m_{idx}\)</span> 来表示一个最小项，其中 <span class="arithmatex">\(idx\)</span> 表示描述的那一项在真值表的序号，同时这个下标的二进制也能反映出字面量的组合。</p>
-<p>例如，在 🌰 中，output 为 <code>1</code> 的项有：<code>010</code> <code>100</code> <code>101</code> <code>111</code> 这四项，那么我们需要挑出来的最小项表达就分别是 <span class="arithmatex">\(m_{2}=\overline{X}Y\overline{Z}, \; m_{4}=X\overline{Y}\overline{Z}, \; m_{5}=X\overline{Y}Z, \; m_{7}=XYZ\)</span>。</p>
+<p>用我的话来说，最小项之和就是挑出真值表中所有结果是 <code>1</code> 的最小项（<em>比较模糊但直观，所以请先囫囵吞枣，我在“追加说明”会进一步说明</em>）然后 <code>OR</code> 起来。显然，最小项之和的含义就是，一旦字面量取值的组合匹配了这几个“最小项”的其中一项，那么结果就是 <code>1</code>，符合了 <code>OR</code> 的“有1得1”的规则。</p>
+<p>我们使用符号 <span class="arithmatex">\(m_{idx}\)</span> 来表示变量组合 <span class="arithmatex">\(idx\)</span> 是一个最小项，其中 <span class="arithmatex">\(idx\)</span> 表示描述的那一项在真值表的序号，同时这个下标的二进制也能反映出字面量的组合。</p>
+<p>例如，在 🌰 中，output 为 <code>1</code> 的项有：<code>010</code> <code>100</code> <code>101</code> <code>111</code> 这四项，那么我们需要挑出来的最小项表达就分别是 <span class="arithmatex">\(m_{2}=\overline{X}Y\overline{Z}, \; m_{4}=X\overline{Y}\overline{Z}, \; m_{5}=X\overline{Y}Z, \; m_{7}=XYZ\)</span>，这些变量表达式都是当且仅当变量组合为对应项时才会取 <code>1</code> 的表达式，可以认为，这写表达式唯一表达了这些真值表中的 <code>1</code>。</p>
 <details class="tip" open="open">
 <summary>追加说明（简单，但是建议看一看）</summary>
 <blockquote>
@@ -1151,21 +1154,24 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 </blockquote>
 <p>那么什么是“列举”呢？让我们再看一眼上面对最小项之和的描述：“一旦字面量取值的组合匹配这几个‘最小项’的其中一项，那么结果就是真”，追本溯源，在最小项中，我们就需要做到只有当一个电路的状态是特定组合时，其返回值为 <code>1</code>。</p>
 <p>具体来说，比如，对于 🌰 中的 <span class="arithmatex">\(m_{5}=X\overline{Y}Z\)</span>，也可以通过这样一种更啰嗦的方式表达出来是这样的：</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>（循序渐进）我们可以将它变化为这样：</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
+<p>如果你熟悉“压行”技巧，那么这一段都可以写成：</p>
+<div class="highlight"><pre><span></span><code><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
 <p>而这个逻辑表达式，实际上已经和 <span class="arithmatex">\(m_5=X\overline{Y}Z\)</span> 一模一样了。</p>
-<p>在这里给出一个总结性的表述：<u>所谓的“挑出”，就是对于选定的一个字面量取值的组合，给出一个特定的表达式，使得只有这种组合的结果是 <span class="arithmatex">\(f\)</span>，而对于任何其他取值的组合，该表达式的结果都是 <span class="arithmatex">\(\overline{f}\)</span>，即实现了该表达式能 <strong>唯一表达</strong> 这个取值组合。</u></p>
+<p>在这里给出一个总结性的表述：<u>所谓的“挑出”，就是对于选定的一个字面量取值的组合，给出一个特定的表达式，使得只有这种组合的结果是 <span class="arithmatex">\(f\)</span>，而对于任何其他取值的组合，该表达式的结果都是 <span class="arithmatex">\(\overline{f}\)</span>，即实现了该表达式能 <strong>唯一表达</strong> 这个取值组合。</u>（这里之所以写的是 <span class="arithmatex">\(f\)</span> 而不是 <code>1</code>，是为了给之后分析 POM 做铺垫，对于 POM，<code>0</code> 才是唯一表达的特征结果。）</p>
 </details>
 <p>至此，我们得到了 🌰 所对应的 SOM：</p>
 <div class="arithmatex">\[
@@ -1186,8 +1192,8 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p>A sum term that contains all the variables in complemented or uncomplemented form is called a maxterm.</p>
 </blockquote>
 <p>与最小项对比，无非是把 "product term" 换成了 "sum term"，也就是把 AND 换成了 OR。</p>
-<p>而最大项之积，就是挑出所有结果为 <code>0</code> 的最大项（<em>同样的，这里的“挑出”也很模糊，我也会在追加说明中再次说明</em>），再做 AND。以 <code>1</code> 为主体描述 AND 是“都1出1”，而以 <code>0</code> 为主体描述 AND 则是“有0出0”，这与 OR 的“有1出1”也是高度对称的（反之亦然）。也就是说，最大项之积的含义是，在最大项之积中，只要字面量取值的组合匹配这几个“最大项”的其中一项，整个表达式的结果就会变成 <code>0</code>。</p>
-<p>类似的，我们使用符号 <span class="arithmatex">\(M_{idx}\)</span> 来表示一个最大项，其中 <span class="arithmatex">\(idx\)</span> 表示描述的那一项在真值表的序号，同时这个下标的二进制也能反映出字面量的组合。</p>
+<p>而最大项之积，就是挑出所有结果为 <code>0</code> 的最大项（<em>“挑出”的定义我已经在 SOM 的追加说明中给出，在 POM 的追加说明中我还会再一次提及</em>），再做 AND。以 <code>1</code> 为主体描述 AND 是“都1出1”，而以 <code>0</code> 为主体描述 AND 则是“有0出0”，这与 OR 的“有1出1”也是高度对称的（反之亦然）。也就是说，最大项之积的含义是，在最大项之积中，只要字面量取值的组合匹配这几个“最大项”的其中一项，整个表达式的结果就会变成 <code>0</code>。</p>
+<p>类似的，我们使用符号 <span class="arithmatex">\(M_{idx}\)</span> 来表示变量组合 <span class="arithmatex">\(idx\)</span> 是一个最大项，其中 <span class="arithmatex">\(idx\)</span> 表示描述的那一项在真值表的序号，同时这个下标的二进制也能反映出字面量的组合。</p>
 <p>例如，在 🌰 中，output 为 <code>0</code> 的项有：<code>000</code> <code>001</code> <code>011</code> <code>110</code> 这四项，那么我们需要挑出来的最小项表达就分别是 <span class="arithmatex">\(M_{0}=X+Y+Z, \; M_{1}=X+Y+\overline{Z}, \; M_{3}=X+\overline{Y}+\overline{Z}, \; M_{6}=\overline{X}+\overline{Y}+Z\)</span>。可以检验，只有代入他们对应的那一行真值表组合时，他们才会得到 <code>0</code>。</p>
 <details class="tip" open="open">
 <summary>追加说明</summary>
@@ -1200,14 +1206,18 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>回顾最大项的目的是满足这个分支条件的情况下输出 <code>0</code>，也就是说我们需要表达 <code>(X == 1 &amp;&amp; Y == 1 &amp;&amp; Z == 0)</code> 这个逻辑条件。但由于最大项的实现形式是 <code>OR</code>，所以我们需要将 <code>&amp;&amp;</code> 的式子以 <code>||</code> 的形式表达。</p>
-<p>当然，你可以选择使用各种运算律来化简，但是不妨想一想 <code>AND</code> 和 <code>OR</code> 的运算特征，前者是“有0出0”，后者是有<code>1出1</code>。而对于 <code>AND</code> 来说，想要做到条件筛选，就需要每一个条件都是 <code>1</code>，最后如果筛选成功结果就是 <code>1</code>；对于 <code>OR</code> 来说，就是每一个条件都是 <code>0</code>，如果筛选成功结果就是 <code>0</code>。也就是说对于或，我们可以这样表示：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// The '!(...)' means if the result of the formula is '0', it will </span>
-<span class="c1">// be what we want.</span>
-<span class="k">if</span><span class="p">(</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">){</span><span class="w"></span>
+<p>当然，你可以选择使用各种运算律来化简，但是不妨想一想 <code>AND</code> 和 <code>OR</code> 的运算特征，前者是“有0出0”，后者是有<code>1出1</code>。而对于 <code>AND</code> 来说，想要做到条件筛选，就需要每一个条件都是 <code>1</code>，最后如果筛选成功结果就是 <code>1</code>；对于 <code>OR</code> 来说，就是每一个条件都是 <code>0</code>，如果 <strong>筛选成功</strong> 的结果就是 <code>0</code>。也就是说对于或，我们可以这样表示：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">((</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"></span>
 <span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>同样进行一下压行：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// It might be too complex.</span>
+<span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">((</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// So we can simplify it.</span>
+<span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 <p>这也正对应了 <span class="arithmatex">\(M_6=\overline{X}+\overline{Y}+Z\)</span>。</p>
 <p>再次给出这个总结性的表述：<u>所谓的“挑出”，就是对于选定的一个字面量取值的组合，给出一个特定的表达式，使得只有这种组合的结果是 <span class="arithmatex">\(f\)</span>，而对于任何其他取值的组合，该表达式的结果都是 <span class="arithmatex">\(\overline{f}\)</span>，即实现了该表达式能 <strong>唯一表达</strong> 这个取值组合。</u></p>
@@ -1226,6 +1236,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <hr/>
 <p>此时，我们还能发现：</p>
 <p>例如：<span class="arithmatex">\(M_5 = \overline{X} + Y + \overline{Z} = \overline{ X\overline{Y}Z } = \overline{m}_5\)</span></p>
+<p>关于这个发现的更多的例子和说明，可以看下面的第一个练习。</p>
 <hr/>
 <h3 id="练习">练习<a class="headerlink" href="#练习" title="Permanent link">¶</a></h3>
 <p>接下来，我们将通过一些例子来进一步强化这些理解，并且挖掘一些神奇的特性。</p>
@@ -1411,7 +1422,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p>优化逻辑表达式最直白的思想就是减少门电路，也就是去减少 gate-input cost。那么要如何做呢？</p>
 <p>我们考虑到逻辑运算律中的这个推广：<span class="arithmatex">\(XY+X\overline{Y}=X(Y+\overline{Y})=X\)</span>，也就是说，如果两个最小项只差一个字面量的非，那么他们是可以合并的；当然，对称的，根据<span class="arithmatex">\((X+\overline{Y})(X+Y)=X+Y\overline{Y}=X\)</span>，我们也可以得到这个结论对最大项也成立。</p>
 <p>是不是觉得“只差一个”很耳熟？是的！我们想到了格雷码！假设我们将 n 个字面量排列成一个 n bits 的向量，那么只需要按照格雷码排序，一旦发现有相邻的最小项，我们就可以合并他们。</p>
-<p>但这还不够充分，例如在一个有三个字面量的逻辑表达式中，“与一个表达式相邻”的表达式其实有三个，但是用线性的表示方法又没法很好的表示这一点，所以我们想到将它写成一张二维的表，即将字面量拆成两组 bit 向量，各自按照格雷码排列，形成一张二维表，这就是 <strong>卡诺图(Karnaugh map)</strong>，也叫 <strong>K-map</strong>。</p>
+<p>但这还不够充分，例如在一个有三个字面量的逻辑表达式中，“与一个表达式相邻”的表达式其实有三个，但是用线性的表示方法又没法很好的表示这一点，所以我们想到将它写成一张二维的表，即将字面量拆成两组 bit 向量，各自按照格雷码排列，形成一张二维表，这就是 <strong>卡诺图(Karnaugh Map)</strong>，也叫 <strong>K-map</strong>。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../15.png"><img alt="" src="../15.png"/></a></p>
 <p>可以发现，任意两个相邻的格子都只差一个字面量的非，而且是充要的，即所有“相邻”都可以在这张图表现出来。</p>
 <div class="admonition tip">
@@ -1558,7 +1569,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p class="admonition-title">推荐阅读</p>
 <p><a href="https://www.geeksforgeeks.org/dont-care-x-conditions-in-k-maps/">https://www.geeksforgeeks.org/dont-care-x-conditions-in-k-maps/</a></p>
 </div>
-<p><strong>不定项(don't cares)</strong> 指的是需要化简的逻辑函数中，没有给出定义的几项，它们可能是：</p>
+<p><strong>不定项(Don't Cares)</strong> 指的是需要化简的逻辑函数中，没有给出定义的几项，它们可能是：</p>
 <ul>
 <li>输入组合不会出现；</li>
 <li>输入组合的输出不被使用；</li>
@@ -1571,8 +1582,9 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <div class="admonition tip">
 <p class="admonition-title">由卡诺图得到乘积结果</p>
 <p>尽管我们不停强调 与 和 或 是对称的，但是仍然有很多操作是鉴于我们对 <code>1</code> 的偏爱才会顺手的（你会发现，把乘除换成我们完全不熟悉的符号，你甚至可能无从下手）。</p>
-<p>所以，在卡诺图的问题中，如果要利用卡诺图得到 <span class="arithmatex">\(F\)</span> 优化后的乘积形式，我们还是建议从将问题转化为求 <span class="arithmatex">\(\overline{F}\)</span> 优化后的和形式，然后再对其取反过，利用德·摩根定律来得到结果。</p>
-<details class="note">
+<p>所以，在卡诺图的问题中，如果要利用卡诺图得到 <span class="arithmatex">\(F\)</span> 优化后的乘积形式，也可以将问题转化为求 <span class="arithmatex">\(\overline{F}\)</span> 优化后的和形式，然后再对其取反过，利用德·摩根定律来得到结果。</p>
+<p>具体来说就是反转 K-map 中所有的 <code>0</code> 和 <code>1</code>，然后着眼于 SOM 进行优化，最后再对结果取反，用德·摩根定律来得到结果。</p>
+<details class="example">
 <summary>eg</summary>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../26.png"><img alt="" src="../26.png"/></a></p>
 </details>
@@ -1594,9 +1606,9 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p class="admonition-title">注意</p>
 <p>对于任意函数，主蕴含项一定存在，但是基本主蕴含项不一定存在。</p>
 </div>
-<div class="admonition note">
+<div class="admonition tip">
 <p class="admonition-title">🤔</p>
-<p>正因为有主蕴含项的存在，对于一个任意函数，优化的多解结果总有一部分是不变的（只不过没有主蕴含项的时候这部分为零）。</p>
+<p>正因为有基本主蕴含项的存在，对于一个任意函数，优化的多解结果总有一部分是不变的（只不过没有基本主蕴含项的时候这部分为零）。</p>
 </div>
 <hr/>
 <div class="admonition tip">
@@ -1643,7 +1655,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月9日 10:30:02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月9日 11:20:24</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月8日 15:38:17</span>
