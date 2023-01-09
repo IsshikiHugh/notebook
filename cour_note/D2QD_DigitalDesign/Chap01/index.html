@@ -846,16 +846,20 @@
 <h2 id="编码--codes">编码 | Codes<a class="headerlink" href="#编码--codes" title="Permanent link">¶</a></h2>
 <p>二进制编码主要分为这么几种：</p>
 <ul>
-<li>Numeric</li>
+<li>Numeric<ul>
 <li>必须表达一定范围内的数字；</li>
 <li>能够支持简单且普遍的计算；</li>
 <li>和二进制数值本身有较大关联；</li>
-<li>Non-numeric</li>
+</ul>
+</li>
+<li>Non-numeric<ul>
 <li>相对灵活，因为不需要适配普遍的运算法则；<ul>
 <li>灵活性指，保证编码映射关系是唯一的的情况下都可以称为合法编码；</li>
 </ul>
 </li>
 <li>和二进制数值本身未必有关系；</li>
+</ul>
+</li>
 </ul>
 <hr/>
 <h3 id="独热码--独冷码">独热码 &amp; 独冷码<a class="headerlink" href="#独热码--独冷码" title="Permanent link">¶</a></h3>
@@ -864,7 +868,7 @@
 <p>但是相对应的，缺点是信息表示率较低，非法状态非常多而有效状态很少。</p>
 <hr/>
 <h3 id="bcd-码">BCD 码<a class="headerlink" href="#bcd-码" title="Permanent link">¶</a></h3>
-<p>由于真实世界中大部分数据表述都是以十进制实现的，所以我们需要研究如何用二进制来表示是进制。</p>
+<p>由于真实世界中大部分数据表述都是以十进制实现的，所以我们需要研究如何用二进制来表示十进制。</p>
 <p>首先，一位二进制数能包含的信息是 1bit，也就是一个“真”或者一个“假”。我们称一个拥有 n 个元素的二进制向量为一个 <strong>n位二进制编码(n-bit binary code)</strong>。一个 n 位二进制数拥有 <span class="arithmatex">\(2^{n}\)</span> 种可能的组合，因而可以表示 <span class="arithmatex">\(2^n\)</span> 种信息。</p>
 <p>而我们需要设计的编码系统，就是将我们需要的信息映射到这 <span class="arithmatex">\(2^n\)</span> 个“空位”中。当然，当我们需要表示的信息数量并不是 2 的幂次时候，会出现一些 未分配(unassigned) 的比特组合。</p>
 <p>而在这种编码中，最常用的就是 <strong>BCD码(binary-coded demical)</strong>。其核心思路就是，将十进制的每一位 <strong>分别</strong> 用 <strong>真值相等的 4 位二进制</strong> 表示，即 <code>0</code> ~ <code>9</code> 分别用 <code>0000</code> ~ <code>1001</code> 表示。</p>
@@ -989,7 +993,7 @@
 <div class="admonition note">
 <p>个人认为最好做的做法就是，假设我们要找的是第 k 个格雷码，则对应的格雷码为：</p>
 <div class="arithmatex">\[
-k \mathrm{XOR} (k&gt;&gt;1)
+k \;\;\mathrm{XOR}\;\; (k&gt;&gt;1)
 \]</div>
 </div>
 <hr/>
@@ -1019,7 +1023,7 @@ A--&gt;D</code></pre>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月9日 09:46:20</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月9日 10:30:02</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
