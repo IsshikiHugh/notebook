@@ -1594,7 +1594,11 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p><strong>蕴含项(implicant)</strong> 分为 <strong>主蕴含项(prime implicant)</strong> 和 <strong>基本主蕴含项(essential prime implicant)</strong>。</p>
 <ul>
 <li>在卡诺图中，一个蕴含项就是任意一个包含 <span class="arithmatex">\(2^n\)</span> 个 <code>1</code> 的单元；</li>
-<li>而主蕴含项则是在卡诺图中的 <strong>极大</strong> 蕴含项；</li>
+<li>而主蕴含项则是在卡诺图中的 <strong>极大</strong> 蕴含项；<ul>
+<li>对于存在 Dont'cares 的 K-map，如果我们关注的是 <code>1</code>，那我们积极地将他们当作 <code>1</code> 来处理，反之亦然；</li>
+<li>但是单独的 <code>X</code> 不会被认为是主蕴含项；</li>
+</ul>
+</li>
 <li>基本主蕴含项是包含 只被它(基本主蕴含项)覆盖的 <code>1</code> 的主蕴含项；</li>
 </ul>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../27.png"><img alt="" src="../27.png"/></a></p>
@@ -1655,7 +1659,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月9日 11:20:24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月9日 15:24:37</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月8日 15:38:17</span>
