@@ -23,7 +23,7 @@
 
 由此可以进行一些组合，例如：
 
-- `A` `XOR` `B` 可写作 $\overline{A+B}$；
+- `A` `NOR` `B` 可写作 $\overline{A+B}$；
 - `A` `NAND` `B` 可写作 $\overline{A\cdot B}$；
 
 再次还需要提到的是 **德·摩根定律(De Morgan's Laws)**，其表述为：
