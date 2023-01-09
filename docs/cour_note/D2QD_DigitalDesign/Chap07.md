@@ -7,7 +7,7 @@
         - DRAM
         - Error-detection and correction codes, often based on Hamming codes
     - R&W operations have specific steps and associated timing parameters: access time & write cycle time
-    - static or dynamic, volatile or nonvolatile
+    - static(SRAM) or dynamic(DRAM), volatile or nonvolatile
 
 ## 7-1 Memory
 
@@ -52,6 +52,8 @@
 
 ...
 
+
+> To avoid destroying data in other memory words, it is important that this change occur after the signals on the address lines have become fixed at the desired values. 
 
 
 
