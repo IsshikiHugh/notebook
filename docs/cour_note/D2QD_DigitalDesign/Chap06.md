@@ -1,9 +1,5 @@
 # Chap 6 Registers & Register Transfers
 
-1. What's Registers
-2. Registers transfers(a means of representing and specifying elementary processing operations)
-3. Microoperations(Elementary operations performed on data stored in reg) and implementations
-
 ## 寄存器
 
 **寄存器(registers)** 粗略的来说就是一堆触发器以及对应的状态控制电路，用来实现多位数据的存储等操作。
@@ -166,7 +162,7 @@ $$
 
 ![](108.png)
 
-进行简单说明，\(c\) 中对三态门的表示进行了简化，含义参考 \(a\)。它想表达的主要含义是，当 `EN` 为 `1` 时，表示输出；反之表示输入（当然，真正决定是否读入寄存器的还是 `LD`）。
+进行简单说明，\(c) 中对三态门的表示进行了简化，含义参考 \(a\)。它想表达的主要含义是，当 `EN` 为 `1` 时，表示输出；反之表示输入（当然，真正决定是否读入寄存器的还是 `LD`）。
 
 ??? question "个人疑惑"
     书中的表述是：
@@ -379,7 +375,7 @@ $$
 
 于是，一个 4-Bit 行波计数器的逻辑图就如下：
 
-![](113.png)
+![](113.png){ width=200px }
 > - 上图中，下一个 `FF` 的时钟来自于上一个 `FF` 的输出取反，也就是对于上升沿触发的 `FF` 来说，下一个 `FF` 会在上一个 `FF` 的输出从 `1` 到 `0` 时自反，所以是 **正向计时(Upward Counting)**；
 > - 反之，如果下一个 `FF` 的时钟来自于上一个 `FF` 的直接输出，也就是对于上升沿触发的 `FF` 来说，下一个 `FF` 会在上一个 `FF` 的输出从 `0` 到 `1` 时自反，所以是 **逆向输出(Downward Counting)**；
 
@@ -465,8 +461,11 @@ $$
 
     或许你会想，实现 Mod N 计数器能不能在满足输出条件后直接使用 `Clear` 输入。但是请不要忘记了，`Clear` 也好，`Set` 也罢，它们都是异步操作。我们没有必要也不应该使用异步操作，所以最好的做法还是使用 `Load`。
 
+---
 
+## 寄存器单元
 
+来不及了我先跳过了 Orz
 
 
 

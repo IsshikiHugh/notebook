@@ -96,6 +96,11 @@ D 锁存器实际上是带控制输入的 SR 锁存器的改进。其中我们�
 ### SR 主从触发器
 
 ![](84.png)
+> 虽然它叫 FF，但它并不符合 FF 的特征，然而分类上又属于 pulse-triggered FF。
+
+SR 触发器知所以是所谓的 pulse-triggered 的，是因为在 S 和 R 输入都为 `0` 时，如果出现噪音，就会导致 Slave 写入异常数据。
+
+> 但是我个人认为这是 SR 自身有两个保持态导致的弊端，而在实际使用过程中我们就不应该有输入为 S 和 R 都为 `0` 的情况。
 
 ---
 
@@ -303,7 +308,7 @@ $$
     - TOCD Mealy 在转移发生时候才可能条件成立，即当 TC 和 OC 都成立时才发生 Output Action，所以需要从 TC 引出 OC，并跟在 OC 后面（`TC`——`OC`/`TOCD OA`）；
             - 如果出现复数的 TOCD OA，则使用 `,` 分隔；
 
-    > In a given state, an output action occurs if: (a) it is unconditional (Moore), (b)  TCI and its output condition OC = 1, \(c\) TCD and its transition condition TD = 1, and (d) TOCD and its transition condition TC and output condition OC are both equal to 1, i.e, TC·OC = 1. Note that Moore and TCI output actions attached to a state, apply to all transitions from the state as well.
+    > In a given state, an output action occurs if: (a) it is unconditional (Moore), (b)  TCI and its output condition OC = 1, \(c) TCD and its transition condition TD = 1, and (d) TOCD and its transition condition TC and output condition OC are both equal to 1, i.e, TC·OC = 1. Note that Moore and TCI output actions attached to a state, apply to all transitions from the state as well.
 
     回到输出行为本身，当 OC 成立时输出行为发生，一般会将输出变量标出，如果写的是 NOT X，表示 OC 成立时 X 应为 `0`；如果写的是 X，则表示 OC 成立时 X 为 `1`。
 
@@ -343,6 +348,7 @@ $$
 
     ???+ example "State Machine Diagram 🌰"
         ![](91.png)
+        > 注意，图中有一个错误（大概），右侧 $S_1$ 的 OC 应为 $(\overline{A}\cdot\overline{B})$。
 
 ---
 
@@ -385,7 +391,7 @@ $$
 
 1. 这几个时间点起点/终点都是触发边缘；
 2. Propagation Time 一定长于 Hold Time，因此在计算电路延迟时只考虑 Propagation Time；
-3. Pulse-trigger 和 Edge-trigger 的区别在于 Setup Time，前者需要覆盖整个 pulse(`pos` or `neg`)；
+3. Pulse-trigger 和 Edge-trigger 在表现上的区别在于 Setup Time，前者需要覆盖整个 pulse(`pos` or `neg`)；
 
 ---
 

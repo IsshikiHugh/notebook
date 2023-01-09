@@ -99,7 +99,7 @@ li {
     --md-code-hl-variable-color: var(--md-default-fg-color--light);
     --md-typeset-color: var(--md-default-fg-color);
     --md-typeset-a-color: var(--md-accent-fg-color--light);
-    --md-typeset-mark-color: rgba(255,255,0,.5);
+    --md-typeset-mark-color: rgba(255, 179, 0, 0.5);
     --md-typeset-del-color: rgba(245,80,61,.15);
     --md-typeset-ins-color: rgba(11,213,112,.15);
     --md-typeset-kbd-color: #fafafa;
