@@ -8,6 +8,8 @@
     - ~~*本文主要来自于我啃教材时的笔记，但小结安排不完全是按照课本来*~~
     - 因为我的强迫症，我很纠结如何把话说通顺和把上下逻辑写出来，所以有些可能一眼就看出来的东西我还是要解释一大堆，所以可能会比较啰嗦呜呜呜，希望大家有任何意见或者建议都写在评论区里让我知道！希望这份资料可以给你带来帮助！
 
+    很显然，我烂尾了，第五章内容很简陋，第七章基本没写，实在是考前来不及写完了。但是我可以保证除此之外的内容我都是仔细推敲后才写出来的orz。
+
 !!! note "Notes"
     > 补天时候的一点想法，因为课本每一章都有一个 summary，所以如果要看书的话或许可以先看那个 summary 再看具体的。
 
@@ -15,7 +17,7 @@
     - :material-label: [Chap2](Chap02.md)
     - :material-label: [Chap3](Chap03.md)
     - :material-label: [Chap4](Chap04.md)
-    - :material-label: [Chap5](Chap05.md)
+    - :material-label: [Chap5](Chap05.md) （略简略）
     - :material-label: [Chap6](Chap06.md)
-    - :material-label: [Chap7](Chap07.md)
+    - :material-label: [Chap7](Chap07.md) （没写）
     - :material-label: [Glossary](glossary.md)
