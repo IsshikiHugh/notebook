@@ -105,6 +105,9 @@ markdown_extensions:
 copyright: 'Copyright &copy 2022 Isshiki修'
 
 extra:
+  analytics:
+    provider: google
+    property: G-4P08GMSPJM
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/IsshikiHugh
