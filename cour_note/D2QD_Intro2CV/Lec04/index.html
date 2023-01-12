@@ -20,6 +20,8 @@
 <link href="../../../_css/extra.css" rel="stylesheet"/>
 <link href="../../../_css/flink.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-4P08GMSPJM"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-4P08GMSPJM",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-4P08GMSPJM",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+<script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
 <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
             .gdesc-inner { font-size: 0.75rem; }
@@ -861,7 +863,7 @@
 <p class="admonition-title">MSE vs. MLE</p>
 <p><a href="https://medium.com/analytics-vidhya/mse-vs-mle-for-linear-regression-f4ce3f6b990e">MSE vs MLE for linear regression</a></p>
 </div>
-<p>具体来说，<span class="arithmatex">\(b_i = a_i^T x + n, \;\; n \sim G(0,\sigma)\)</span>，而对于给定的 <span class="arithmatex">\(x\)</span>，其 <strong>似然(likehood)</strong> <span class="arithmatex">\(P[(a_i,b_i)|x] = P[b_i-a_i^Tx] \propto \exp - \frac{(b_i-a_i^Tx)^2}{2\sigma^2}\)</span>，表示在 model parameter 为 <span class="arithmatex">\(x\)</span> 的情况下，数据符合 <span class="arithmatex">\((a_i,b_i)\)</span> 的可能性。</p>
+<p>具体来说，<span class="arithmatex">\(b_i = a_i^T x + n, \;\; n \sim G(0,\sigma)\)</span>，而对于给定的 <span class="arithmatex">\(x\)</span>，其 <strong>似然(likehood)</strong> <span class="arithmatex">\(P[(a_i,b_i)|x] = P[b_i-a_i^Tx] \propto \exp \left( - \frac{(b_i-a_i^Tx)^2}{2\sigma^2} \right)\)</span>，表示在 model parameter 为 <span class="arithmatex">\(x\)</span> 的情况下，数据符合 <span class="arithmatex">\((a_i,b_i)\)</span> 的可能性。</p>
 <details class="note" open="open">
 <summary>Maximum Likelihood Estimation</summary>
 <p><!--Copy from https://github.com/sakuratsuyu/Note/blob/master/docs/Computer_Science_Courses/ICV/4_Model_Fitting_and_Optimization.md?plain=1-->
@@ -1171,7 +1173,7 @@ NCut(V_A,V_B) = \frac{cut(V_A,V_B)}{assoc(V_A,V)} + \frac{cut(V_A,V_B)}{assoc(V_
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月12日 16:17:32</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月12日 12:55:59</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
