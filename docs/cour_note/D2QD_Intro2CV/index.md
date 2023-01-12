@@ -1,4 +1,4 @@
-# [大二秋冬] 计算机视觉导论 | Introduction to Computer Vision
+# [大二学年] 计算机视觉导论 | Introduction to Computer Vision
 
 !!! info "课程信息"
 	- 本文为课程《计算机视觉导论》的课程笔记，课程主要介绍计算机视觉的基础理论和基本方法。
