@@ -142,7 +142,7 @@
 </li>
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../../../comming/">
-        🚧 施工中
+        🚧 施工中...
       </a>
 </li>
 </ul>
@@ -664,13 +664,13 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
 <label class="md-nav__link" for="__nav_6">
-          🚧 施工中
+          🚧 施工中...
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="🚧 施工中" class="md-nav" data-md-level="1">
+<nav aria-label="🚧 施工中..." class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
-          🚧 施工中
+          🚧 施工中...
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
@@ -906,10 +906,12 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <p>简单描述梯度下降的过程：</p>
 <ol>
 <li>初始化起点坐标 x；</li>
-<li>直到 x 收敛到我们满意的程度之前：</li>
-<li>计算下降方向 p；</li>
+<li>直到 x 收敛到我们满意的程度之前：<ol>
+<li>计算下降方向 <em>p</em>；</li>
 <li>决定下降步长 ⍺；</li>
-<li>更新 x = x + ⍺p；</li>
+<li>更新 x = x + ⍺<em>p</em>；</li>
+</ol>
+</li>
 </ol>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../56.png"><img alt="" src="../56.png"/></a></p>
 <blockquote>
@@ -922,16 +924,16 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <li>全局最优和局部最优</li>
 </ul>
 <h4 id="确定下降方向">确定下降方向<a class="headerlink" href="#确定下降方向" title="Permanent link">¶</a></h4>
-<p>对于我们以前接触过的函数，即形式相对简单的函数，我们当然可以直接求其梯度得到下降方向。然而实际问题中的函数可能非常复杂，或梯度很难得到。这时候我们就只能退而求其次，求其“近似”梯度方向。换句话来说，我们希望能够找到一个和原函数在局部和该函数很像的拟合函数，并且用这个拟合函数的梯度方向来决定梯度下降的方向。</p>
+<p>对于我们以前接触过的函数，即形式相对简单的函数，我们当然可以直接求其梯度得到下降方向。然而实际问题中的函数可能非常复杂，或梯度解析式很难得到。这时候我们就只能退而求其次，求其“近似”梯度方向。换句话来说，我们希望能够找到一个和原函数在局部和该函数很像的拟合函数，并且用这个拟合函数的梯度方向来决定梯度下降的方向。</p>
 <p>于是我们想到泰勒展开，它将函数展开为多项式，而多项式的梯度是相对容易得到的。</p>
 <p>其中比较常用的是：</p>
 <ul>
 <li>first-order approximation: <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x\)</span></li>
 <li>second-order approximation: <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^T H_F \Delta x\)</span></li>
 </ul>
-<p>其中 <span class="arithmatex">\(J_F\)</span> 是 <a href="https://zh.m.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94%E7%9F%A9%E9%98%B5">雅各比矩阵</a>，可以理解为多维向量函数的导数；<span class="arithmatex">\(H_F\)</span> 是 <a href="https://zh.m.wikipedia.org/zh-hans/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%99%A3">海森矩阵</a>，可以理解为多位向量函数的二阶导数。</p>
+<p>其中 <span class="arithmatex">\(J_F\)</span> 是 <strong><a href="https://zh.m.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94%E7%9F%A9%E9%98%B5">雅各比矩阵</a></strong>，可以理解为多维向量函数的导数；<span class="arithmatex">\(H_F\)</span> 是 <strong><a href="https://zh.m.wikipedia.org/zh-hans/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%99%A3">海森矩阵</a></strong>，可以理解为多位向量函数的二阶导数。</p>
 <p>接下来以 first-order approximation 为例继续分析。</p>
-<p>观察 <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x\)</span>，发现当 <span class="arithmatex">\(J_f\Delta x &lt; 0\)</span> 时， <span class="arithmatex">\(F(x_0 + \Delta x)\)</span> 大概率会比 <span class="arithmatex">\(F(x_0)\)</span> 小，即“下降”，所以在 first-order approximation 的情况下，一般选择方向 <span class="arithmatex">\(\vec p = -J_F^T\)</span>。</p>
+<p>观察 <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x\)</span>，发现当 <span class="arithmatex">\(J_F\Delta x &lt; 0\)</span> 时， <span class="arithmatex">\(F(x_0 + \Delta x)\)</span> 大概率比 <span class="arithmatex">\(F(x_0)\)</span> 小，即“下降”，所以在 first-order approximation 的情况下，一般选择方向 <span class="arithmatex">\(\vec p = -J_F^T\)</span>，于是位移量 <span class="arithmatex">\(movement = -J_F \cdot J_F^T \cdot step\)</span>。</p>
 <hr/>
 <h4 id="确定下降步长">确定下降步长<a class="headerlink" href="#确定下降步长" title="Permanent link">¶</a></h4>
 <p>即使但从下降速率来考虑，步长太长或太小也都有明显的问题：</p>
@@ -940,10 +942,15 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <p>为了专注于步长的选择，我们记 <span class="arithmatex">\(\phi(\alpha) = F(x+\alpha h),\;\;\text{where x and h fixed}, x\geq 0\)</span>。现在我们希望找到一个能让 <span class="arithmatex">\(\phi(\alpha)\)</span> 尽可能小于 <span class="arithmatex">\(\phi(0)\)</span> 的 <span class="arithmatex">\(\alpha\)</span>。接下来我们介绍 Backtracking Algorithm：</p>
 <ol>
 <li>初始化 <span class="arithmatex">\(\alpha\)</span> 为一个比较大的值；</li>
-<li>不断减小 <span class="arithmatex">\(\alpha\)</span> 直到 <span class="arithmatex">\(\phi(\alpha) \leq \phi(0) + \gamma\phi'(0)\alpha\)</span>；
-        - 其中 <span class="arithmatex">\(\gamma\in(0,1)\)</span> 是一个参数；</li>
+<li>不断减小 <span class="arithmatex">\(\alpha\)</span> 直到 <span class="arithmatex">\(\phi(\alpha) \leq \phi(0) + \gamma\phi'(0)\alpha\)</span>；<ul>
+<li>其中 <span class="arithmatex">\(\gamma\in(0,1)\)</span> 是一个固定的参数；</li>
+</ul>
+</li>
 </ol>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../58.png"><img alt="" src="../58.png" width="300px"/></a></p>
+<blockquote>
+<p>换句话说就是，符合预期的最大步长，这个“预期”，就是通过 <span class="arithmatex">\(\gamma\)</span> 体现的。图中红色虚线和黑色细线分别是 <span class="arithmatex">\(\gamma\)</span> 取边界值时的情况，而红色实线则表示我们的预期随 <span class="arithmatex">\(\alpha\)</span> 的变化。</p>
+</blockquote>
 <hr/>
 <p>上面使用 first-order approximation 为例介绍的这套方法就是 <strong>最速梯度下降法(steepest descent method)</strong>。</p>
 <div class="admonition note">
@@ -994,7 +1001,7 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 </li>
 <li>缺点<ul>
 <li>由于 <span class="arithmatex">\(J_R^TJ_R\)</span> 不正定，所以未必可逆，高斯牛顿法成立的前提是其可逆；</li>
-<li>当然，可以使用 Levenberg-Marquardt 算法（LM 算法），即将 <span class="arithmatex">\(J_R^TJ_R\)</span> 修正为<span class="arithmatex">\(<span class="arithmatex">\(J_R^TJ_R\)</span> + \lambda I\)</span> 以保证正定；</li>
+<li>当然，可以使用 Levenberg-Marquardt 算法（LM 算法），即将 <span class="arithmatex">\(J_R^TJ_R\)</span> 修正为 <span class="arithmatex">\(J_R^TJ_R + \lambda I\)</span> 以保证正定；</li>
 </ul>
 </li>
 </ul>
@@ -1173,7 +1180,7 @@ NCut(V_A,V_B) = \frac{cut(V_A,V_B)}{assoc(V_A,V)} + \frac{cut(V_A,V_B)}{assoc(V_
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月12日 12:55:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月15日 17:03:03</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
