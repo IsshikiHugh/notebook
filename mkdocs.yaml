@@ -158,9 +158,7 @@ nav:
       - cour_note/D2QD_DigitalDesign/Chap05.md
       - cour_note/D2QD_DigitalDesign/Chap06.md
       - cour_note/D2QD_DigitalDesign/Chap07.md
-    - "[大二春夏] 计算机组成 | Computer Organization":
-      - cour_note/D2CX_ComputerOrganization/index.md
-    - "[大二学年] 计算机视觉导论 | I2CV":
+    - "[大二秋冬] 计算机视觉导论 | I2CV":
       - cour_note/D2QD_Intro2CV/index.md
       - cour_note/D2QD_Intro2CV/Lec01.md
       - cour_note/D2QD_Intro2CV/Lec02.md
@@ -175,6 +173,8 @@ nav:
       - cour_note/D2QD_Intro2CV/Lec11.md
       - cour_note/D2QD_Intro2CV/Lec12.md
       - cour_note/D2QD_Intro2CV/Lec13.md
+    - "[大二春夏] 计算机组成 | Computer Organization":
+      - cour_note/D2CX_ComputerOrganization/index.md
   - "📝 论文阅读":
     - pape_read/index.md
     - pape_read/arXiv:2003.08934/index.md
