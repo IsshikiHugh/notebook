@@ -105,9 +105,9 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 1. 初始化起点坐标 x；
 2. 直到 x 收敛到我们满意的程度之前：
-   1. 计算下降方向 p；
-   2. 决定下降步长 ⍺；
-   3. 更新 x = x + ⍺p；
+    1. 计算下降方向 *p*；
+    2. 决定下降步长 ⍺；
+    3. 更新 x = x + ⍺*p*；
 
 ![](56.png)
 > Sourece: https://commons.wikimedia.org/w/index.php?curid=2283984
@@ -120,7 +120,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 #### 确定下降方向
 
-对于我们以前接触过的函数，即形式相对简单的函数，我们当然可以直接求其梯度得到下降方向。然而实际问题中的函数可能非常复杂，或梯度很难得到。这时候我们就只能退而求其次，求其“近似”梯度方向。换句话来说，我们希望能够找到一个和原函数在局部和该函数很像的拟合函数，并且用这个拟合函数的梯度方向来决定梯度下降的方向。
+对于我们以前接触过的函数，即形式相对简单的函数，我们当然可以直接求其梯度得到下降方向。然而实际问题中的函数可能非常复杂，或梯度解析式很难得到。这时候我们就只能退而求其次，求其“近似”梯度方向。换句话来说，我们希望能够找到一个和原函数在局部和该函数很像的拟合函数，并且用这个拟合函数的梯度方向来决定梯度下降的方向。
 
 于是我们想到泰勒展开，它将函数展开为多项式，而多项式的梯度是相对容易得到的。
 
@@ -129,11 +129,11 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 - first-order approximation: $F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x$
 - second-order approximation: $F(x_k + \Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^T H_F \Delta x$
 
-其中 $J_F$ 是 [雅各比矩阵](https://zh.m.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94%E7%9F%A9%E9%98%B5)，可以理解为多维向量函数的导数；$H_F$ 是 [海森矩阵](https://zh.m.wikipedia.org/zh-hans/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%99%A3)，可以理解为多位向量函数的二阶导数。
+其中 $J_F$ 是 **[雅各比矩阵](https://zh.m.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94%E7%9F%A9%E9%98%B5)**，可以理解为多维向量函数的导数；$H_F$ 是 **[海森矩阵](https://zh.m.wikipedia.org/zh-hans/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%99%A3)**，可以理解为多位向量函数的二阶导数。
 
 接下来以 first-order approximation 为例继续分析。
 
-观察 $F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x$，发现当 $J_f\Delta x < 0$ 时， $F(x_0 + \Delta x)$ 大概率会比 $F(x_0)$ 小，即“下降”，所以在 first-order approximation 的情况下，一般选择方向 $\vec p = -J_F^T$。
+观察 $F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x$，发现当 $J_F\Delta x < 0$ 时， $F(x_0 + \Delta x)$ 大概率比 $F(x_0)$ 小，即“下降”，所以在 first-order approximation 的情况下，一般选择方向 $\vec p = -J_F^T$，于是位移量 $movement = -J_F \cdot J_F^T \cdot step$。
 
 ---
 
@@ -149,10 +149,10 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 1. 初始化 $\alpha$ 为一个比较大的值；
 2. 不断减小 $\alpha$ 直到 $\phi(\alpha) \leq \phi(0) + \gamma\phi'(0)\alpha$；
-        - 其中 $\gamma\in(0,1)$ 是一个参数；
-
+    - 其中 $\gamma\in(0,1)$ 是一个固定的参数；
 
 ![](58.png){ width=300px }
+> 换句话说就是，符合预期的最大步长，这个“预期”，就是通过 $\gamma$ 体现的。图中红色虚线和黑色细线分别是 $\gamma$ 取边界值时的情况，而红色实线则表示我们的预期随 $\alpha$ 的变化。
 
 ---
 
@@ -195,7 +195,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
         - 不需要计算 Hessian matrix，只需要计算 Jacobian matrix；
     - 缺点
         - 由于 $J_R^TJ_R$ 不正定，所以未必可逆，高斯牛顿法成立的前提是其可逆；
-        - 当然，可以使用 Levenberg-Marquardt 算法（LM 算法），即将 $J_R^TJ_R$ 修正为$$J_R^TJ_R$ + \lambda I$ 以保证正定；
+        - 当然，可以使用 Levenberg-Marquardt 算法（LM 算法），即将 $J_R^TJ_R$ 修正为 $J_R^TJ_R + \lambda I$ 以保证正定；
 
     ???+ summary "Levenberg-Marquardt"
         Wiki: [🔗](https://zh.wikipedia.org/wiki/%E8%8E%B1%E6%96%87%E4%BC%AF%E6%A0%BC-%E9%A9%AC%E5%A4%B8%E7%89%B9%E6%96%B9%E6%B3%95)
