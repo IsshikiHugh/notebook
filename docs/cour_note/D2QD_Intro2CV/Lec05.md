@@ -3,11 +3,11 @@
 !!! warning "注意"
     本文尚未完全整理好！
 
-## 图像特征匹配 image matching
+## 图像特征匹配
 
 本节的课题是 **特征匹配(feature matching)**，关键在于找到图片见点和点的匹配关系。该问题是很多问题的基石，例如：
 
-!!! summary "applications"
+???+ summary "applications"
     - Image alignment / Panoramas
     - 3D reconstruction
     - Motion tracking
@@ -16,33 +16,65 @@
     - Robot navigation
     - ...
 
-feature matching 的主要环节是：
+特征匹配的主要环节是：
 
-1. Detection: 找到 **兴趣点(interest points)**
-2. Description: 提取每个兴趣点周围的向量 **特征描述符(feature descriptor)**
-3. Matching: 决定两个视角下特征描述符的关联并匹配
+1. **检测(detection)**: 找到 **兴趣点(interest points)**
+2. **表达(description)**: 提取每个兴趣点周围的向量 **特征描述符(feature descriptor)**
+3. **匹配(matching)**: 决定两个视角下特征描述符的关联并匹配
 
 ---
 
-### Detection
+!!! info "关键点检测"
+    > 推荐阅读：https://zhuanlan.zhihu.com/p/36382429
 
-首先第一个问题是如何选择 interest points / feature points。
+    **检测(detection)** 的首要问题是如何选择 **关键点(interest points/feature points)**。
 
-- 它需要 唯一性uniqueness
+    显然，这个关键点需要具有 **独特性(uniqueness)**，换言之，这个点需要能够表征某个图案的某个特性。
 
-接下来是这个 uniqueness 的数学定义：
+---
 
-Local measures of uniqueness:
+### 关键点检测 · 角落
 
-像任何方向滑动窗口，在任何方向都会产生较大变化的那个区域相比之下 uniqueness 更强
+其中一种关键点就是尖角，或者说角落，这一类关键点的<u>局部</u>独特性可以通过下面这个方式来衡量：
 
-![](68.png)
+!!! note "Local measures of uniqueness(rough):"
+    我们认为一个 **区域**，如果向任何方向滑动窗口，都会产生较大变化，那么其 uniqueness 较强。
 
-然而这个定义仍然不够足以建模，因此我们进一步地赋予其数学意义：
+    ![](68.png)
 
-![](69.png)
+这是一个相对模糊的定义，而为了对其进行建模，我们进一步地赋予其数学含义：
 
-根据梯度的分布，我们可以大致观察到图形的特征。进一步的，我们利用数学工具去分析这些点的分散度和分散方向。于是我们采用主成分分析(Principle Component Analysis)
+!!! note "Local measures of uniqueness(detail):"
+    关注区域内的梯度分布：
+
+    ![](69.png)
+
+
+根据梯度的分布，我们可以大致观察到图形的特征。进一步的，我们可以利用数学工具（**主成分分析(Principle Component Analysis)**）去分析这些点的分散度和分散方向。
+
+!!! note "Principle Component Analysis"
+    ① Compute the covariance matrix at each point.
+
+    $$
+    H = \sum_{(u,v)}w(u,v) \begin{bmatrix}
+        I_x^2 & I_xI_y \\
+        I_xI_y & I_y^2
+    \end{bmatrix} \text{     where  } 
+    I_x = \frac{\partial f}{\partial x}, I_y = \frac{\partial y}{\partial y}
+    $$
+
+    > $w(u,v)$ 一般是高斯权重。
+
+    ② Compute eigenvalues.
+
+    $$
+    H = \begin{bmatrix}
+        a & b \\
+        c & d
+    \end{bmatrix} \;\;\;\; \lambda_{\pm} = \frac{1}{2}\left(
+        (a+d) \pm \sqrt{4bc + (a-d)^2}   
+    \right)
+    $$
 
 对于上面的三种情况，它们做主成分分析后得到的结果是：
 
@@ -50,12 +82,12 @@ Local measures of uniqueness:
 
 可以发现，第三个情况的两个特征值都很大。
 
-更一般的，我们通过判断特征值的大小情况来判断一个区域是否包含一个 角(corner)，又或者是一些 边(edge)，甚至是平面(flag)：
+更一般的，我们通过判断特征值的大小情况来判断一个区域是否包含一个 **角(corner)**，又或者是一些 **边(edge)**，甚至是 **平面(flag)**：
 
 ![](71.png)
 > Corner detection.
 
-逻辑判断->数值计算：Harris operator:
+为了能够量化地表达上面这张图的分类规则，我们引入 **哈里斯算子(Harris operator)**:
 
 $$
 f = \frac{\lambda_1\lambda_2}{\lambda_1+\lambda_2} = \frac{determinant(H)}{trace(H)}
@@ -65,7 +97,7 @@ $$
 
 而这个 $f$ 就叫做 corner response。
 
-??? question "reminder"
+???+ question "reminder"
     $$
     det\left(\begin{bmatrix}
         a & b\\
@@ -78,37 +110,49 @@ $$
     \end{bmatrix}\right) = a+d
     $$
 
-综合起来，这个方法叫作：
+如上这套方法就是 **[Harris corner detector](https://zh.wikipedia.org/wiki/%E5%93%88%E9%87%8C%E6%96%AF%E9%82%8A%E8%A7%92%E5%81%B5%E6%B8%AC)** 的实现。
 
-#### Harris detector
+归纳一下，其步骤就是：
 
-1. Compute derivatives at each pixel.
-2. Compute covariance matrix H in a Gaussian window around each pixel.
-3. Compute corner response function f.
-4. Threshold f.
-5. Find local maxima of response function (nonmaximum suppression).
+!!! note "Harris detector "
+    
+    1. 求导 | Compute derivatives at each pixel.
+    2. 协方差矩阵 | Compute covariance matrix $H$ in a Gaussian window around each pixel.
+    3. 响应函数 | Compute corner response function $f$.
+    4. 阈值过滤 | Threshold $f$.
+    5. 非极大值抑制 | Find local maxima of response function (nonmaximum suppression).
+
+    更详细的说明可以参考 wiki 上的说明：<u>**[Harris corner detector](https://zh.wikipedia.org/wiki/%E5%93%88%E9%87%8C%E6%96%AF%E9%82%8A%E8%A7%92%E5%81%B5%E6%B8%AC)**</u>。
+    
+    - C.Harris and M.Stephens. “**[A Combined Corner and Edge Detector.](http://www.bmva.org/bmvc/1988/avc-88-023.pdf)**” Proceedings of the 4th Alvey Vision Conference: pages 147—151, 1988.
 
 一个关键问题是特征匹配的可重复问题（因为同一个点不一定在两张图里都是 interest point，所以只有重复的点才能匹配）
 
 我们希望这些 repeatable 的点的 response 在 image transformation 中具有一定的不变性。
 
-transformation
+我们已知的 transformation 主要包括这么几个：
+
 - 强度变化
 - 几何变化
     - 旋转
     - 放大缩小
     - 平移
 
+而关于不变性，它们的结论是：
+
 >  **Partially** invariant to affine intensity change.
+> 
 > Corner response is invariant w.r.t. translation.
+> 
 > Corner response is invariant w.r.t. image rotation.
-> Corner response is **NOT** invariant to scaling
+> 
+> Corner response is **NOT** invariant to scaling.
 
 所以我们在使用这个方法的过程中需要注意尺度，即窗口的大小选定。
 
 一种方案是，不断尝试不同的 window size，然后取得 response 曲线，假设 response 的大小只与 scale 有关，则曲线都应该是单峰的，而取出这个峰值，就可以当他为对应的 scale 以及对应的 response。
 
-不过实际情况是固定窗口大小，改变图片的大小，再在得到的图像金字塔上进行这个方法的计算，即对不同分辨率的图片上分别实现一次这个方法。（相当于提高了一个维度）
+不过实际情况是固定窗口大小，改变图片的大小，再在得到的 **图像金字塔** 上进行这个方法的计算，即对不同分辨率的图片上分别实现一次这个方法。（相当于增加了一个维度）
 
 ---
 
