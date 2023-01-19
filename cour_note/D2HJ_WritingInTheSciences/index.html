@@ -6,23 +6,23 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/cour_note/D2QD_Intro2CV/Lec05/" rel="canonical"/>
-<link href="../../../assets/images/favicon.png" rel="icon"/>
+<link href="https://note.isshikih.top/cour_note/D2HJ_WritingInTheSciences/" rel="canonical"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.1, mkdocs-material-8.5.7" name="generator"/>
-<title>Lecture 5 | Feature Matching and Motion Estimation - Isshiki修's Notebook</title>
-<link href="../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
-<link href="../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<title>斯坦福 SCI 论文写作公开课 - Isshiki修's Notebook</title>
+<link href="../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <meta content="#795649" name="theme-color"/>
 <style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64h-64c-35.3 0-64-28.7-64-64V216z"/></svg>');}</style>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Share+Tech:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Share Tech";--md-code-font:"JetBrains Mono"}</style>
-<link href="../../../_css/extra.css" rel="stylesheet"/>
-<link href="../../../_css/flink.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../_css/extra.css" rel="stylesheet"/>
+<link href="../../_css/flink.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-4P08GMSPJM"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-4P08GMSPJM",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-4P08GMSPJM",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
 <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-<link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
             .gdesc-inner { font-size: 0.75rem; }
             .gslide-title { margin-top: 0px; user-select: text; }
@@ -30,13 +30,13 @@
             .gslide-image img { background: white; }
             
                 .gscrollbar-fixer { padding-right: 15px; }
-                </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="brown" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#lecture-5--feature-matching-and-motion-estimation">
+<a class="md-skip" href="#斯坦福-sci-论文写作公开课">
           跳转至
         </a>
 </div>
@@ -44,7 +44,7 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="页眉" class="md-header__inner md-grid">
-<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Isshiki修's Notebook">
+<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Isshiki修's Notebook">
 <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1.592 2.712 2.38 7.25h4.87a.75.75 0 1 1 0 1.5H2.38l-.788 4.538L13.929 8 1.592 2.712zM.989 8 .064 2.68a1.341 1.341 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.341 1.341 0 0 1-1.85-1.463L.99 8z" fill-rule="evenodd"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -60,7 +60,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Lecture 5 | Feature Matching and Motion Estimation
+              斯坦福 SCI 论文写作公开课
             
           </span>
 </div>
@@ -116,32 +116,32 @@
 <div class="md-tabs__inner md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../..">
+<a class="md-tabs__link" href="../..">
         💠 封面
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../tech_accu/">
+<a class="md-tabs__link" href="../../tech_accu/">
         📚 技术积累
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../../">
+<a class="md-tabs__link" href="../">
         🗒 课程笔记
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../pape_read/">
+<a class="md-tabs__link" href="../../pape_read/">
         📝 论文阅读
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../others/">
+<a class="md-tabs__link" href="../../others/">
         📦 杂项专题
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../comming/">
+<a class="md-tabs__link" href="../../comming/">
         🚧 施工中...
       </a>
 </li>
@@ -155,7 +155,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Isshiki修's Notebook">
+<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Isshiki修's Notebook">
 <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1.592 2.712 2.38 7.25h4.87a.75.75 0 1 1 0 1.5H2.38l-.788 4.538L13.929 8 1.592 2.712zM.989 8 .064 2.68a1.341 1.341 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.341 1.341 0 0 1-1.85-1.463L.99 8z" fill-rule="evenodd"></path></svg>
 </a>
     Isshiki修's Notebook
@@ -174,7 +174,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" id="__nav_1" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../..">💠 封面</a>
+<a href="../..">💠 封面</a>
 <label for="__nav_1">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -186,7 +186,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../link/">
+<a class="md-nav__link" href="../../link/">
         💬 交流区
       </a>
 </li>
@@ -196,7 +196,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/">📚 技术积累</a>
+<a href="../../tech_accu/">📚 技术积累</a>
 <label for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -210,7 +210,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/tool/">常用工具</a>
+<a href="../../tech_accu/tool/">常用工具</a>
 <label for="__nav_2_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -224,7 +224,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_2" id="__nav_2_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/tool/Git/">Git Something</a>
+<a href="../../tech_accu/tool/Git/">Git Something</a>
 <label for="__nav_2_2_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -236,12 +236,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Git/Workflow/">
+<a class="md-nav__link" href="../../tech_accu/tool/Git/Workflow/">
         Git Workflow
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Git/Commands/">
+<a class="md-nav__link" href="../../tech_accu/tool/Git/Commands/">
         Git Commands
       </a>
 </li>
@@ -249,12 +249,12 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Shell/">
+<a class="md-nav__link" href="../../tech_accu/tool/Shell/">
         Shell
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Colab/">
+<a class="md-nav__link" href="../../tech_accu/tool/Colab/">
         Google Colaboratory
       </a>
 </li>
@@ -264,7 +264,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" id="__nav_2_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/standard/BVH_format/">标准 | 格式 | 规范</a>
+<a href="../../tech_accu/standard/BVH_format/">标准 | 格式 | 规范</a>
 </div>
 <nav aria-label="标准 | 格式 | 规范" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_2_3">
@@ -278,7 +278,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" id="__nav_2_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/ai/">人工智能</a>
+<a href="../../tech_accu/ai/">人工智能</a>
 <label for="__nav_2_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -290,7 +290,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/ai/pytorch/">
+<a class="md-nav__link" href="../../tech_accu/ai/pytorch/">
         PyTorch
       </a>
 </li>
@@ -300,10 +300,10 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../">🗒 课程笔记</a>
+<a href="../">🗒 课程笔记</a>
 <label for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -315,29 +315,29 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1QD_CXiaoCheng/">
+<a class="md-nav__link" href="../D1QD_CXiaoCheng/">
         [大一秋冬] C小程 琐碎知识点整理
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/">
+<a class="md-nav__link" href="../D1CX_ProbabilityAndStatistics/">
         [大一春夏] 概率论与数理统计
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1SJ_cs231n/">
+<a class="md-nav__link" href="../D1SJ_cs231n/">
         [大一暑假] Deep Learning for Computer Vision | CS231N
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1SJ_Intro2CS/">
+<a class="md-nav__link" href="../D1SJ_Intro2CS/">
         [大一暑假] 计算机系统概论 | Introduction to Computing Systems
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" id="__nav_3_6" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2QD_DigitalDesign/">[大二秋冬] 数字逻辑设计 | Digital Design</a>
+<a href="../D2QD_DigitalDesign/">[大二秋冬] 数字逻辑设计 | Digital Design</a>
 <label for="__nav_3_6">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -349,47 +349,47 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap01/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap01/">
         Chap 1 Digital Systems and Information
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap02/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap02/">
         Chap 2 Combinational Logic Circuits
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap03/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap03/">
         Chap 3 Combinational Logic Design
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap04/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap04/">
         Chap 4 Sequential Circuits
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap05/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap05/">
         Chap 5 Digital Hardware Implementation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap06/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap06/">
         Chap 6 Registers &amp; Register Transfers
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap07/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap07/">
         Chap 7 Memory Basics
       </a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_7" id="__nav_3_7" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_7" id="__nav_3_7" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../">[大二秋冬] 计算机视觉导论 | I2CV</a>
+<a href="../D2QD_Intro2CV/">[大二秋冬] 计算机视觉导论 | I2CV</a>
 <label for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -401,137 +401,67 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec01/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec01/">
         Lecture 1 | Introduction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec02/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec02/">
         Lecture 2 | Image Formation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec03/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec03/">
         Lecture 3 | Image Processing
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec04/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec04/">
         Lecture 4 | Model Fitting and Optimization
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          Lecture 5 | Feature Matching and Motion Estimation
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec05/">
         Lecture 5 | Feature Matching and Motion Estimation
       </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#图像特征匹配">
-    图像特征匹配
-  </a>
-<nav aria-label="图像特征匹配" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#关键点检测">
-    关键点检测
-  </a>
-<nav aria-label="关键点检测" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#角落检测">
-    角落检测
-  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#斑点检测">
-    斑点检测
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#表达">
-    表达
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#匹配">
-    匹配
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#learning-based-matching">
-    Learning based matching
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#运动估计-motion-estimation">
-    运动估计 motion estimation
-  </a>
-<nav aria-label="运动估计 motion estimation" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#the-brightness-constancy">
-    The brightness constancy
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../Lec06/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec06/">
         Lecture 6 | Image Alignment and Stitching
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec07/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec07/">
         Lecture 7 | Structure From Motion
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec08/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec08/">
         Lecture 8 | Depth Estimation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec09/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec09/">
         Lecture 9 | 3D Reconstruction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec10/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec10/">
         Lecture 10 | Deep Learning
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec11/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec11/">
         Lecture 11 | Recognition
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec12/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec12/">
         Lecture 12 | Computational Photography 1
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec13/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec13/">
         Lecture 13 | Computational Photography 2
       </a>
 </li>
@@ -541,7 +471,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_8" id="__nav_3_8" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2CX_ComputerOrganization/">[大二春夏] 计算机组成 | Computer Organization</a>
+<a href="../D2CX_ComputerOrganization/">[大二春夏] 计算机组成 | Computer Organization</a>
 </div>
 <nav aria-label="[大二春夏] 计算机组成 | Computer Organization" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_8">
@@ -558,7 +488,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../pape_read/">📝 论文阅读</a>
+<a href="../../pape_read/">📝 论文阅读</a>
 <label for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -570,12 +500,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/arXiv%3A2003.08934/">
+<a class="md-nav__link" href="../../pape_read/arXiv%3A2003.08934/">
         NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/arXiv%3A2104.05670/">
+<a class="md-nav__link" href="../../pape_read/arXiv%3A2104.05670/">
         Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
       </a>
 </li>
@@ -585,7 +515,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../others/">📦 杂项专题</a>
+<a href="../../others/">📦 杂项专题</a>
 <label for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -597,7 +527,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../others/reveal-md2Slides/">
+<a class="md-nav__link" href="../../others/reveal-md2Slides/">
         使用 reveal-md 来写 Slides
       </a>
 </li>
@@ -617,7 +547,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../comming/">
+<a class="md-nav__link" href="../../comming/">
         内容正在编辑中……
       </a>
 </li>
@@ -633,355 +563,32 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#图像特征匹配">
-    图像特征匹配
-  </a>
-<nav aria-label="图像特征匹配" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#关键点检测">
-    关键点检测
-  </a>
-<nav aria-label="关键点检测" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#角落检测">
-    角落检测
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#斑点检测">
-    斑点检测
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#表达">
-    表达
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#匹配">
-    匹配
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#learning-based-matching">
-    Learning based matching
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#运动估计-motion-estimation">
-    运动估计 motion estimation
-  </a>
-<nav aria-label="运动估计 motion estimation" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#the-brightness-constancy">
-    The brightness constancy
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/cour_note/D2QD_Intro2CV/Lec05.md" title="编辑此页">
+<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/cour_note/D2HJ_WritingInTheSciences/index.md" title="编辑此页">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="lecture-5--feature-matching-and-motion-estimation">Lecture 5 | Feature Matching and Motion Estimation<a class="headerlink" href="#lecture-5--feature-matching-and-motion-estimation" title="Permanent link">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>本文尚未完全整理好！</p>
-</div>
-<h2 id="图像特征匹配">图像特征匹配<a class="headerlink" href="#图像特征匹配" title="Permanent link">¶</a></h2>
-<p>本节的课题是 <strong>特征匹配(feature matching)</strong>，关键在于找到图片之间点和点的匹配关系。该问题是很多问题的基石，例如：</p>
-<details class="summary" open="open">
-<summary>applications</summary>
+<h1 id="斯坦福-sci-论文写作公开课">斯坦福 SCI 论文写作公开课<a class="headerlink" href="#斯坦福-sci-论文写作公开课" title="Permanent link">¶</a></h1>
+<div class="admonition info">
 <ul>
-<li>Image alignment / Panoramas</li>
-<li>3D reconstruction</li>
-<li>Motion tracking</li>
-<li>Object recognition</li>
-<li>Indexing &amp; database retrieval</li>
-<li>Robot navigation</li>
-<li>...</li>
-</ul>
-</details>
-<p>特征匹配的主要环节是：</p>
-<ol>
-<li><strong>检测(detection)</strong>: 找到 <strong>兴趣点(interest points)</strong></li>
-<li><strong>表达(description)</strong>: 提取每个兴趣点周围的向量 <strong>特征描述符(feature descriptor)</strong></li>
-<li><strong>匹配(matching)</strong>: 决定两个视角下特征描述符的关联并匹配</li>
-</ol>
-<hr/>
-<h3 id="关键点检测">关键点检测<a class="headerlink" href="#关键点检测" title="Permanent link">¶</a></h3>
-<blockquote>
-<p>推荐阅读：<a href="https://zhuanlan.zhihu.com/p/36382429">https://zhuanlan.zhihu.com/p/36382429</a></p>
-</blockquote>
-<p><strong>检测(detection)</strong> 的首要问题是如何选择 <strong>关键点(interest points/feature points)</strong>。</p>
-<p>总体来说，关键点需要由这么两个特征：</p>
-<ol>
-<li><strong>独特性(uniqueness)</strong>，这个点需要能够表征某个图案的某个特性；</li>
-<li>对于大部分变换不敏感，即对于一个客观上的关键点，在不同图片中它都应当（尽可能地）被识别为兴趣点；</li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">关键点</p>
-<p>虽然说是关键“点”，但是实际上指的是一小块区域。</p>
-</div>
-<p>而常见的检测方法主要包括如下两种：</p>
-<ol>
-<li>Harris corner detector;</li>
-<li>Blog detector (LoG or DoG);</li>
-</ol>
-<hr/>
-<h4 id="角落检测">角落检测<a class="headerlink" href="#角落检测" title="Permanent link">¶</a></h4>
-<p>其中一种关键点就是尖角，或者说角落，这一类关键点的<u>局部</u>独特性可以通过下面这个方式来衡量：</p>
-<div class="admonition note">
-<p class="admonition-title">Local measures of uniqueness(rough):</p>
-<p>我们认为一个 <strong>区域</strong>，如果向任何方向滑动窗口，都会产生较大变化，那么其 uniqueness 较强。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../68.png"><img alt="" src="../68.png"/></a></p>
-</div>
-<p>这是一个相对模糊的定义，而为了对其进行建模，我们进一步地赋予其数学含义：</p>
-<div class="admonition note">
-<p class="admonition-title">Local measures of uniqueness(detail):</p>
-<p>关注区域内的梯度分布：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../69.png"><img alt="" src="../69.png"/></a></p>
-</div>
-<p>根据梯度的分布，我们可以大致观察到图形的特征。进一步的，我们可以利用数学工具（<strong>主成分分析(Principle Component Analysis)</strong>）去分析这些点的分散度和分散方向。</p>
-<div class="admonition note">
-<p class="admonition-title">Principle Component Analysis</p>
-<p>① Compute the covariance matrix at each point.</p>
-<div class="arithmatex">\[
-H = \sum_{(u,v)}w(u,v) \begin{bmatrix}
-    I_x^2 &amp; I_xI_y \\
-    I_xI_y &amp; I_y^2
-\end{bmatrix} \text{     where  } 
-I_x = \frac{\partial f}{\partial x}, I_y = \frac{\partial y}{\partial y}
-\]</div>
-<blockquote>
-<p><span class="arithmatex">\(w(u,v)\)</span> 一般是高斯权重。</p>
-</blockquote>
-<p>② Compute eigenvalues.</p>
-<div class="arithmatex">\[
-H = \begin{bmatrix}
-    a &amp; b \\
-    c &amp; d
-\end{bmatrix} \;\;\;\; \lambda_{\pm} = \frac{1}{2}\left(
-    (a+d) \pm \sqrt{4bc + (a-d)^2}   
-\right)
-\]</div>
-</div>
-<p>对于上面的三种情况，它们做主成分分析后得到的结果是：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../70.png"><img alt="" src="../70.png"/></a></p>
-<p>可以发现，第三个情况的两个特征值都很大。</p>
-<p>更一般的，我们通过判断特征值的大小情况来判断一个区域是否包含一个 <strong>角(corner)</strong>，又或者是一些 <strong>边(edge)</strong>，甚至是 <strong>平面(flag)</strong>：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../71.png"><img alt="" src="../71.png"/></a></p>
-<blockquote>
-<p>Corner detection.</p>
-</blockquote>
-<p>为了能够量化地表达上面这张图的分类规则，我们引入 <strong>哈里斯算子(Harris operator)</strong>:</p>
-<div class="arithmatex">\[
-f = \frac{\lambda_1\lambda_2}{\lambda_1+\lambda_2} = \frac{determinant(H)}{trace(H)}
-\]</div>
-<p>这里的一个特性是，对于二维矩阵来说，我们实际上并不需要按照之前的步骤，进行主成分分析以后再得到，而是可以直接通过这个公式得到。</p>
-<p>而这个 <span class="arithmatex">\(f\)</span> 就叫做 corner response。</p>
-<details class="question" open="open">
-<summary>reminder</summary>
-<div class="arithmatex">\[
-det\left(\begin{bmatrix}
-    a &amp; b\\
-    c &amp; d
-\end{bmatrix}\right) = ad-bc
-\;\;\;\;\;
-trace\left(\begin{bmatrix}
-    a &amp; b\\
-    c &amp; d
-\end{bmatrix}\right) = a+d
-\]</div>
-</details>
-<p>如上这套方法就是 <strong><a href="https://zh.wikipedia.org/wiki/%E5%93%88%E9%87%8C%E6%96%AF%E9%82%8A%E8%A7%92%E5%81%B5%E6%B8%AC">Harris corner detector</a></strong> 的实现。</p>
-<p>归纳一下，其步骤就是：</p>
-<div class="admonition note">
-<p class="admonition-title">Harris detector </p>
-<ol>
-<li>求导 | Compute derivatives at each pixel.</li>
-<li>协方差矩阵 | Compute covariance matrix <span class="arithmatex">\(H\)</span> in a Gaussian window around each pixel.</li>
-<li>响应函数 | Compute corner response function <span class="arithmatex">\(f\)</span>.</li>
-<li>阈值过滤 | Threshold <span class="arithmatex">\(f\)</span>.</li>
-<li>非极大值抑制 | Find local maxima of response function (nonmaximum suppression).</li>
-</ol>
-<p>更详细的说明可以参考 wiki 上的说明：<u><strong><a href="https://zh.wikipedia.org/wiki/%E5%93%88%E9%87%8C%E6%96%AF%E9%82%8A%E8%A7%92%E5%81%B5%E6%B8%AC">Harris corner detector</a></strong></u>。</p>
-<ul>
-<li>C.Harris and M.Stephens. “<strong><a href="http://www.bmva.org/bmvc/1988/avc-88-023.pdf">A Combined Corner and Edge Detector.</a></strong>” Proceedings of the 4<sup>th</sup> Alvey Vision Conference: pages 147—151, 1988.</li>
+<li>官方网站：<a href="https://online.stanford.edu/courses/som-y0010-writing-sciences">🔗</a></li>
+<li>视频链接：<a href="https://www.bilibili.com/video/BV1zv41177JQ">🔗</a></li>
+<li>参考笔记：<a href="https://docs.qq.com/doc/DUnJuVkJGV0luZGti">🔗</a></li>
 </ul>
 </div>
-<p>一个关键问题是特征匹配的可重复问题（因为同一个点不一定在两张图里都是 interest point，所以只有重复的点才能匹配）</p>
-<p>我们希望这些 repeatable 的点的 response 在 image transformation 中具有一定的不变性。</p>
-<p>我们已知的 transformation 主要包括这么几个：</p>
-<ul>
-<li>强度变化</li>
-<li>几何变化<ul>
-<li>旋转</li>
-<li>放大缩小</li>
-<li>平移</li>
-</ul>
-</li>
-</ul>
-<p>而关于不变性，它们的结论是：</p>
-<blockquote>
-<p><strong>Partially</strong> invariant to affine intensity change.</p>
-<p>Corner response is invariant w.r.t. translation.</p>
-<p>Corner response is invariant w.r.t. image rotation.</p>
-<p>Corner response is <strong>NOT</strong> invariant to scaling.</p>
-</blockquote>
-<p>所以我们在使用这个方法的过程中需要注意尺度，即窗口的大小选定。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../72.png"><img alt="" src="../72.png" width="200px"/></a></p>
-<p>一种方案是，不断尝试不同的 window size，然后取得 response 曲线，假设 response 的大小只与 scale 有关，则曲线都应该是单峰的，而取出这个峰值（特征最明显的时候），就可以当他为对应的 scale 以及对应的 response。</p>
-<p>不过一般实际的做法是固定窗口大小，而改变图片的大小，再在得到的 <strong>图像金字塔</strong> 上进行这个方法的计算，即对不同分辨率的图片上分别进行哈里斯检测。（相当于增加了一个维度）</p>
-<hr/>
-<h4 id="斑点检测">斑点检测<a class="headerlink" href="#斑点检测" title="Permanent link">¶</a></h4>
-<p>除了角落，<strong>斑点(blob)</strong> 也是一个比较好的特性，非常适合作为兴趣点。</p>
-<p>而斑点的寻找我们则可以利用滤波器来实现，让我们回顾 <strong><a href="../Lec03/#边缘提取">第三章边缘提取</a></strong> 的相关内容，我们可以利用类似的做法，使用一个中间负四周正的滤波器来提取斑点。</p>
-<p>通常来说，我们使用 Gaussian 滤波器的 Laplacian，即 Laplacian of Gaussian Filter(LoG)，来作为滤波器和图像进行卷积。</p>
-<p>👉 <strong><a href="https://zh.wikipedia.org/wiki/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90">Laplacian 算子</a></strong></p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../73.png"><img alt="" src="../73.png"/></a></p>
-<p>实际上也等效于先对图片作高斯模糊（减小噪声影响），再计算其拉普拉斯算子，即：</p>
-<div class="arithmatex">\[
-\nabla^2(f*g) = f * \nabla^2 g
-\]</div>
-<p>其中，LoG 的 scale 是通过高斯函数的 <span class="arithmatex">\(\sigma\)</span> 控制的，也同样通过像素金字塔来实现。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../74.png"><img alt="" src="../74.png"/></a></p>
-<p>又或者可以使用 Difference of Gaussian(DoG)，即将 Laplacian of Gaussian Filter 替换为一个由两个高斯函数做差得到的 Filter，相对来说效率更高。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../75.png"><img alt="" src="../75.png"/></a></p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../76.png"><img alt="" src="../76.png"/></a></p>
-<hr/>
-<h3 id="表达">表达<a class="headerlink" href="#表达" title="Permanent link">¶</a></h3>
-<p>选定匹配点后，我们需要考虑如何描述表达这些点。</p>
-<p>一种朴素的思想是将窗口内的像素作为一个 <strong>特性向量(feature vector)</strong> 进行比较，但是这样做对偏移的误差过于敏感。也就是说，也许两张图片很像，但是因为一点位移误差，导致向量刚好错开，导致结果显示两个点差别很大。这是因为这种做法对像素点在窗口中的位置很敏感，决定了其在向量中的位置，即绝对排列顺序影响结果；然而实际情况下更重要的是相对排布顺序，但向量的做法比较难实现。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../78.png"><img alt="" src="../78.png" width="500px"/></a></p>
-<p>另外更好的做法是 尺度不变的特征变换(Scale Invariant Feature Transform)SIFT descriptor，不再使用像素值，而是使用区域中的梯度的分布作为一个描述，可以表示为一张 <span class="arithmatex">\([0,2\pi)\)</span> 的，<strong>循环的</strong> 直方图。此时小的平移和缩放都不会对它产生很大影响，而旋转只会导致直方图的循环平移，不过这是很好处理的，比如我们可以选中最大的分量作为参考，并将整个直方图平移对齐。而这种做法相比于上面那个做法，<strong>鲁棒性</strong> 和 <strong>效率</strong> 都更高。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../77.png"><img alt="" src="../77.png"/></a></p>
-<div class="admonition tip">
-<p class="admonition-title">注意，完整的 SIFT 是包括「检测」步骤的。</p>
-</div>
-<hr/>
-<details class="note">
-<summary>Other detectors and descriptors:</summary>
-<ul>
-<li><strong>HOG: Histogram of oriented gradients</strong><ul>
-<li>Dalal &amp; Triggs, 2005 </li>
-</ul>
-</li>
-<li><strong>SURF: Speeded Up Robust Features</strong><ul>
-<li>Herbert Bay, Andreas Ess, Tinne Tuytelaars, Luc Van Gool, "SURF: Speeded Up Robust Features", Computer Vision and Image Understanding (CVIU), Vol. 110, No. 3, pp. 346--359, 2008 </li>
-</ul>
-</li>
-<li><strong>FAST (corner detector)</strong><ul>
-<li>Rosten. Machine Learning for High-speed Corner Detection, 2006. </li>
-</ul>
-</li>
-<li><strong>ORB: an efficient alternative to SIFT or SURF</strong> <ul>
-<li>Ethan Rublee, Vincent Rabaud, Kurt Konolige, Gary R. Bradski: ORB: An efficient alternative to SIFT or SURF. ICCV 2011 </li>
-</ul>
-</li>
-<li><strong>Fast Retina Key- point (FREAK)</strong> <ul>
-<li>A. Alahi, R. Ortiz, and P. Vandergheynst. FREAK: Fast Retina Keypoint. In IEEE Conference on Computer Vision and Pattern Recognition, 2012. CVPR 2012 Open Source Award Winner.</li>
-</ul>
-</li>
-</ul>
-</details>
-<hr/>
-<h3 id="匹配">匹配<a class="headerlink" href="#匹配" title="Permanent link">¶</a></h3>
-<p>所谓的 <strong>匹配(matching)</strong> 就是字面上的将两张图中对应的点建立起匹配关系。而评估方法就是寻找「距离」最接近的点。</p>
-<p>而这里的「距离函数」是用来衡量两个兴趣点经过 <strong><a href="#表达">表达</a></strong> 后的差异的函数，一般使用 L2 distance，即 <span class="arithmatex">\(||f_1 - f_2||\)</span>。</p>
-<div class="admonition warning">
-<p class="admonition-title">重复性纹理</p>
-<p>然而需要特别注意点一个问题是，很有可能某个特征图案是重复出现的，这种问题叫做 <strong>重复性纹理</strong>。这就导致可能有很多兴趣点能和这个兴趣点实现匹配，这个时候我们就需要用 Ratio score = <span class="arithmatex">\(\frac{ ||f_1 - f_2|| }{ ||f_1 - f_2'|| }\)</span>，比较最接近的两种匹配。</p>
-<p>如果 Ratio score 接近1，说明并不可靠，只能丢掉这个兴趣点。</p>
-</div>
-<p>此外，为了增加匹配的准确性，我们还有一个判定规则：两点 <strong>相互最相似</strong>，则该匹配十分可信。（在 I2 中你最像我，在 I1 中我最像你）</p>
-<hr/>
-<h3 id="learning-based-matching">Learning based matching<a class="headerlink" href="#learning-based-matching" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../79.png"><img alt="" src="../79.png"/></a></p>
-<hr/>
-<h2 id="运动估计-motion-estimation">运动估计 motion estimation<a class="headerlink" href="#运动估计-motion-estimation" title="Permanent link">¶</a></h2>
-<p>运动的成因：</p>
-<ul>
-<li>相机运动 x 场景运动</li>
-</ul>
-<p>Motion estimation problems:</p>
-<ul>
-<li>Feature-tracking 稀疏</li>
-<li>光流 Optical flow 稠密</li>
-</ul>
-<p>而两个问题都可以使用 Lucas-Kanade method 解决。</p>
-<p>运动估计问题的定义：</p>
-<p>视频的两帧，关键点的变化量。</p>
-<p>不同于关键点匹配，动作估计中存在对时序关系的捕捉。</p>
-<p>LK method 假设：</p>
-<ol>
-<li>Small motion 相邻帧运动距离小</li>
-<li>Brightness constancy 相邻帧的点的亮度倾向于不变</li>
-<li>Spatial coherence 相邻的点倾向于运动类似</li>
-</ol>
-<p>使用公式表述：</p>
-<h3 id="the-brightness-constancy">The brightness constancy<a class="headerlink" href="#the-brightness-constancy" title="Permanent link">¶</a></h3>
-<div class="arithmatex">\[
-I(x,y,t) = I(x+u, y+v, t+1)
-\]</div>
-<p>为了求解 u 和 v，LK Method 对其作泰勒展开：</p>
-<div class="arithmatex">\[
-I(x+u,y+v,t+1) \approx I(x,y,t) + I_x\cdot u + I_y \cdot v + I_t \\
-I(x+u,y+v,t+1) - I(x,y,t) = I_x\cdot u + I_y \cdot v + I_t \approx 0 \\
-\nabla I \cdot \begin{bmatrix}
-    u &amp; v
-\end{bmatrix}^T + I_t = 0
-\]</div>
-<p>于是得到了关于 u 和 v 的一个较简单的等式。</p>
-<p>然而未知元有 2，等式有 1，所以无法求解。</p>
-<div class="admonition question">
-<p class="admonition-title">PPT 里那个u' v'的例子是什么意思？</p>
-</div>
-<p><strong>孔径问题(Aperture problem)</strong></p>
-<p>solution:</p>
-<p>More equation</p>
-<p>利用假设 Spatial coherence，我可以利用窗口内的大量像素都带入上面那个等式求解 u 和 v。</p>
-<p>但是这下方程数又大于变量数了，于是我们转化问题，把解方程的问题转化为优化问题。</p>
-<div class="arithmatex">\[
-Ad=b \rightarrow \min\limits_d ||Ad-b||^2
-\]</div>
-<p><strong>Least squares solution(前面提到过的最小二乘法的近似解)</strong> for d given by <span class="arithmatex">\((A^TA)d = A^Tb\)</span>.</p>
-<p>*在这里补一个公式</p>
-<div class="admonition tip">
-<p class="admonition-title">而这个公式有解恰好意味着它是个角点。</p>
-</div>
-<p>理论上我们对假设1的要求是，两帧之间的运动差距应该小于一个像素，然而这个条件非常苛刻。所以我们的做法是先对图片进行模糊/缩小处理，像素足够“大”之后就可以满足这个假设1。然而只根据这个条件来计算也不行，所以我们要在像素金字塔上进行逐层次的做法。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月19日 16:40:17</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月17日 00:18:30</span>
 <br/>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月17日 00:18:30</span>
 </small>
 </div>
 <h2 id="__comments">评论</h2>
@@ -1026,34 +633,6 @@ Ad=b \rightarrow \min\limits_d ||Ad-b||^2
           </a>
 </main>
 <footer class="md-footer">
-<nav aria-label="页脚" class="md-footer__inner md-grid">
-<a aria-label="上一页: Lecture 4 | Model Fitting and Optimization" class="md-footer__link md-footer__link--prev" href="../Lec04/" rel="prev">
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
-</div>
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                上一页
-              </span>
-              Lecture 4 | Model Fitting and Optimization
-            </div>
-</div>
-</a>
-<a aria-label="下一页: Lecture 6 | Image Alignment and Stitching" class="md-footer__link md-footer__link--next" href="../Lec06/" rel="next">
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                下一页
-              </span>
-              Lecture 6 | Image Alignment and Stitching
-            </div>
-</div>
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
-</div>
-</a>
-</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
@@ -1079,9 +658,9 @@ Ad=b \rightarrow \min\limits_d ||Ad-b||^2
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
-<script src="../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script src="../../../_js/extra.js"></script>
+<script src="../../_js/extra.js"></script>
 <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
 </html>
