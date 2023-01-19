@@ -5,7 +5,7 @@
 
 ## 图像特征匹配
 
-本节的课题是 **特征匹配(feature matching)**，关键在于找到图片见点和点的匹配关系。该问题是很多问题的基石，例如：
+本节的课题是 **特征匹配(feature matching)**，关键在于找到图片之间点和点的匹配关系。该问题是很多问题的基石，例如：
 
 ???+ summary "applications"
     - Image alignment / Panoramas
@@ -24,16 +24,29 @@
 
 ---
 
-!!! info "关键点检测"
-    > 推荐阅读：https://zhuanlan.zhihu.com/p/36382429
+### 关键点检测
 
-    **检测(detection)** 的首要问题是如何选择 **关键点(interest points/feature points)**。
 
-    显然，这个关键点需要具有 **独特性(uniqueness)**，换言之，这个点需要能够表征某个图案的某个特性。
+> 推荐阅读：https://zhuanlan.zhihu.com/p/36382429
+
+**检测(detection)** 的首要问题是如何选择 **关键点(interest points/feature points)**。
+
+总体来说，关键点需要由这么两个特征：
+
+1. **独特性(uniqueness)**，这个点需要能够表征某个图案的某个特性；
+2. 对于大部分变换不敏感，即对于一个客观上的关键点，在不同图片中它都应当（尽可能地）被识别为兴趣点；
+
+!!! note "关键点"
+    虽然说是关键“点”，但是实际上指的是一小块区域。
+
+而常见的检测方法主要包括如下两种：
+
+1. Harris corner detector;
+2. Blog detector (LoG or DoG);
 
 ---
 
-### 关键点检测 · 角落
+#### 角落检测
 
 其中一种关键点就是尖角，或者说角落，这一类关键点的<u>局部</u>独特性可以通过下面这个方式来衡量：
 
@@ -150,59 +163,96 @@ $$
 
 所以我们在使用这个方法的过程中需要注意尺度，即窗口的大小选定。
 
-一种方案是，不断尝试不同的 window size，然后取得 response 曲线，假设 response 的大小只与 scale 有关，则曲线都应该是单峰的，而取出这个峰值，就可以当他为对应的 scale 以及对应的 response。
+![](72.png){ width=200px }
 
-不过实际情况是固定窗口大小，改变图片的大小，再在得到的 **图像金字塔** 上进行这个方法的计算，即对不同分辨率的图片上分别实现一次这个方法。（相当于增加了一个维度）
+一种方案是，不断尝试不同的 window size，然后取得 response 曲线，假设 response 的大小只与 scale 有关，则曲线都应该是单峰的，而取出这个峰值（特征最明显的时候），就可以当他为对应的 scale 以及对应的 response。
 
----
-
-#### 斑点检测 Blob detector
-
-Blobs(area) are good features.
-
-类似于找边，我们可以使用滤波器。
-
-!!! note "Laplacian 算子"
-    （二阶导求和）
-
-使用 Laplacian of Gaussian Filter(LoG)，是一个中间负，两边正的滤波器(形状类似，相反亦可)，是高斯函数的拉普拉斯算子。
-
-实际上也等效于先对图片作高斯模糊（减小噪声影响），再计算其拉普拉斯算子。
-
-而它的 scale 的选择，则和角点检测的方法是一致的。
-
-又或者可以使用 Difference of Gaussian(DoG)
-
-即将 Laplacian of Gaussian Filter 替换为一个两个高斯函数做差得到的 Filter，相对来说效率更高。
+不过一般实际的做法是固定窗口大小，而改变图片的大小，再在得到的 **图像金字塔** 上进行这个方法的计算，即对不同分辨率的图片上分别进行哈里斯检测。（相当于增加了一个维度）
 
 ---
 
-### Description
+#### 斑点检测
 
-选定匹配点后，我们需要考虑如何描述。
+除了角落，**斑点(blob)** 也是一个比较好的特性，非常适合作为兴趣点。
 
-一种朴素的思想是将窗口内的像素作为一个向量进行比较，但是这样做对误差过于敏感。
+而斑点的寻找我们则可以利用滤波器来实现，让我们回顾 **[第三章边缘提取](Lec03.md#边缘提取)** 的相关内容，我们可以利用类似的做法，使用一个中间负四周正的滤波器来提取斑点。
 
-更好的做法是 SIFT descriptor，不是使用像素值，而是使用梯度的分布（0~2派的分布直方图）作为一个描述。
-此时小的平移和缩放都不会对它产生很大影响，而旋转会导致直方图的循环平移，不过这是很好处理的。
+通常来说，我们使用 Gaussian 滤波器的 Laplacian，即 Laplacian of Gaussian Filter(LoG)，来作为滤波器和图像进行卷积。
 
-Scale Invariant Feature Transform(SIFT)包括detector:
+👉 **[Laplacian 算子](https://zh.wikipedia.org/wiki/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90)**
 
-特点：比较鲁棒，效率也相对高
+![](73.png)
+
+
+实际上也等效于先对图片作高斯模糊（减小噪声影响），再计算其拉普拉斯算子，即：
+
+$$
+\nabla^2(f*g) = f * \nabla^2 g
+$$
+
+其中，LoG 的 scale 是通过高斯函数的 $\sigma$ 控制的，也同样通过像素金字塔来实现。
+
+![](74.png)
+
+又或者可以使用 Difference of Gaussian(DoG)，即将 Laplacian of Gaussian Filter 替换为一个由两个高斯函数做差得到的 Filter，相对来说效率更高。
+
+![](75.png)
+
+![](76.png)
 
 ---
 
-### Matching
+### 表达
 
-检测重复性纹理：Ratio score，比较最接近的两种匹配，如果比值接近1，说明并不可靠，只能丢掉
+选定匹配点后，我们需要考虑如何描述表达这些点。
 
-Mutual nearest neighbor
-相互最相似的点更可靠。
+一种朴素的思想是将窗口内的像素作为一个 **特性向量(feature vector)** 进行比较，但是这样做对偏移的误差过于敏感。也就是说，也许两张图片很像，但是因为一点位移误差，导致向量刚好错开，导致结果显示两个点差别很大。这是因为这种做法对像素点在窗口中的位置很敏感，决定了其在向量中的位置，即绝对排列顺序影响结果；然而实际情况下更重要的是相对排布顺序，但向量的做法比较难实现。
+
+![](78.png){ width=500px }
+
+另外更好的做法是 尺度不变的特征变换(Scale Invariant Feature Transform)SIFT descriptor，不再使用像素值，而是使用区域中的梯度的分布作为一个描述，可以表示为一张 $[0,2\pi)$ 的，**循环的** 直方图。此时小的平移和缩放都不会对它产生很大影响，而旋转只会导致直方图的循环平移，不过这是很好处理的，比如我们可以选中最大的分量作为参考，并将整个直方图平移对齐。而这种做法相比于上面那个做法，**鲁棒性** 和 **效率** 都更高。
+
+![](77.png)
+
+!!! tip "注意，完整的 SIFT 是包括「检测」步骤的。"
+
+---
+
+??? note "Other detectors and descriptors:"
+    - **HOG: Histogram of oriented gradients**
+        - Dalal & Triggs, 2005 
+    - **SURF: Speeded Up Robust Features**
+        - Herbert Bay, Andreas Ess, Tinne Tuytelaars, Luc Van Gool, "SURF: Speeded Up Robust Features", Computer Vision and Image Understanding (CVIU), Vol. 110, No. 3, pp. 346--359, 2008 
+    - **FAST (corner detector)**
+        - Rosten. Machine Learning for High-speed Corner Detection, 2006. 
+    - **ORB: an efficient alternative to SIFT or SURF** 
+        - Ethan Rublee, Vincent Rabaud, Kurt Konolige, Gary R. Bradski: ORB: An efficient alternative to SIFT or SURF. ICCV 2011 
+    - **Fast Retina Key- point (FREAK)** 
+        - A. Alahi, R. Ortiz, and P. Vandergheynst. FREAK: Fast Retina Keypoint. In IEEE Conference on Computer Vision and Pattern Recognition, 2012. CVPR 2012 Open Source Award Winner.
 
 
+---
+
+### 匹配
+
+所谓的 **匹配(matching)** 就是字面上的将两张图中对应的点建立起匹配关系。而评估方法就是寻找「距离」最接近的点。
+
+而这里的「距离函数」是用来衡量两个兴趣点经过 **[表达](#表达)** 后的差异的函数，一般使用 L2 distance，即 $||f_1 - f_2||$。
+
+!!! warning "重复性纹理"
+    然而需要特别注意点一个问题是，很有可能某个特征图案是重复出现的，这种问题叫做 **重复性纹理**。这就导致可能有很多兴趣点能和这个兴趣点实现匹配，这个时候我们就需要用 Ratio score = $\frac{ ||f_1 - f_2|| }{ ||f_1 - f_2'|| }$，比较最接近的两种匹配。
+
+    如果 Ratio score 接近1，说明并不可靠，只能丢掉这个兴趣点。
+
+此外，为了增加匹配的准确性，我们还有一个判定规则：两点 **相互最相似**，则该匹配十分可信。（在 I2 中你最像我，在 I1 中我最像你）
+
+---
 
 ### Learning based matching
 
+![](79.png)
+
+---
 
 ## 运动估计 motion estimation
 
