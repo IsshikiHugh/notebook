@@ -173,7 +173,7 @@ $$
     y'\\
     1
 \end{bmatrix}
-=
+\cong
 \begin{bmatrix}
     a & b & t_x \\
     c & d & t_y \\
