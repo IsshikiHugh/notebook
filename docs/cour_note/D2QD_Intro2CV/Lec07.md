@@ -6,6 +6,9 @@
 !!! tip "前言"
     个人感觉这一章的内容虽然脉络清晰，但是需要不断引入新的内容，如果直接采用“用到什么讲什么”的顺序阐述，可能会有些杂乱，不方便知识索引和复习，所以我大致按照拓扑排序的顺序排列内容，倾向于完整地介绍一下前置，再引入之后的内容并阶段性小结，可能看起来比较唐突，但是大概对回头查知识点比较方便。
 
+!!! warning "说明"
+    本文中提到的所有的「成像平面」指的都是我们的简化几何模型中的虚拟成像平面，并不是物理意义上小孔成像所在的那个成反向倒立像的平面！
+
 **运动推断结构(Structure from Motion)SfM** 用于估计二维图像中的三维结构，通过相机运动（平移、旋转）引起的画面变化来计算其反应的 3D 结构。
 
 > 在机器人领域，一个相关的领域是 [同时定位与地图构建(Simultaneous Localization and Mapping)SLAM](https://zh.wikipedia.org/wiki/%E5%90%8C%E6%97%B6%E5%AE%9A%E4%BD%8D%E4%B8%8E%E5%9C%B0%E5%9B%BE%E6%9E%84%E5%BB%BA)。
@@ -437,7 +440,7 @@ $$
 
     ---
 
-    需要说明的一点是，我们已知的特征匹配是建立在两张二维图片上的，而现在要做的是 3D 到 2D 的匹配。然而这不重要，因为我们可以将 3D 景象按照我们希望的方法映射为 2D 景象，例如我们可以直接拿这个标定板的 zy 平面来进行特征匹配。
+    需要说明的一点是，我们已知的特征匹配是建立在两张二维图片上的，而现在要做的是 3D 到 2D 的匹配。一种想法是，我们可以将 3D 景象按照我们希望的方法映射为 2D 景象，例如在这个问题中我们可以直接拿这个标定板的 zy 平面来进行特征匹配。
 
     ![](85.jpg)
 
@@ -464,7 +467,8 @@ $$
     \underbrace{\begin{bmatrix}
         x_w^{(i)} \\
         y_w^{(i)} \\
-        z_w^{(i)}
+        z_w^{(i)} \\
+        1
     \end{bmatrix}}_{known}
     \\
     i.e. \;\;\;\;
@@ -644,32 +648,527 @@ $$
 
 ---
 
-## 三维重建
+!!! info "说明"
+    本节接下来的内容，讲的是如何三维重建得到稀疏的点云，而如何得到稠密的三维重建，将成为下一节的重点。
 
-### 双目三维重建
+---
 
-根据两张图片重建
+## 双目三维重建
 
-**双目视觉(Stereo Vision)**：已知内参，根据两个图像求解目标的 3D 结构和两个相机的外参。
+**双目视觉(Stereo Vision)**：已知两个相机的内参，根据两张图像求解两个相机的外参和目标的 3D 结构。
 
-1. 已知两个相机的内参
-2. 寻找可靠的对应关系
-3. 寻找两个相机的相对变化关系 $(t,R)$：A to B
-    - 对极几何(Epipolar Geometry)
-    - 对极点 Epipole，另外一个相机出现在本相平面上的位置
-    - 对极平面 Epipolar Plane of Scene Point P
-    - ......
-    - 推导得到 Epipolar Constraint
-    - 本征矩阵 Essential Matrix E，可分解，使用 SV 分解， Singular Value Decomposition
-    - 然而我们并不知道 xl... 和 xr...，可是实际上我们并不在乎“深度”，只需要知道他们的方向即可
-    - 于是经过一次变换，我们得到基本矩阵 Fundamental Matrix F
-    - 接下来，使用 n 对对应关系求解 F 即可
+![](86.png)
+
+---
+
+### 对极几何
+
+在 **[前一节](#相机标定与位置估计)** 我们介绍了如何在「3D 景象模型已知」的情况下，对相机进行标定或进行未知估计，但我们仍然不知道如何从 2D 图片中重建出 3D 模型。
+
+让我们考虑双目三维重建中的情形——两个相机下不同景象之间显然是存在一定的几何关系的，而 **对极几何(Epipolar Geometry)** 着眼于下面这三个目标之间的几何关系：两个相机中心 $O_L$ 和 $O_R$，以及景物中的某个空间点 $X$（或者 $P$）。
+
+!!! quote "WIKI page"
+    https://en.wikipedia.org/wiki/Epipolar_geometry
+
+    ![](89.png){ align=right }
+    
+    > Epipolar geometry is the geometry of stereo vision. When two cameras view a 3D scene from two distinct positions, there are a number of geometric relations between the 3D points and their projections onto the 2D images that lead to constraints between the image points. These relations are derived based on the assumption that the cameras can be approximated by the pinhole camera model.
+    >
+    > 对极几何是立体视觉的几何学。当两个摄像机从两个不同的位置查看 3D 场景时，3D 点与它们在 2D 图像上的投影之间存在许多几何关系，导致图像点之间存在约束。这些关系是基于相机可以用针孔相机模型近似的假设导出的。
+    > 
+    > ——Wiki
+
+首先，我们需要介绍对极几何中的几个概念，我们将借助上图进行说明。
+
+!!! note "基线"
+    **基线(Baseline)** 是两个相机中心的连线，即 $OO'$。
+
+!!! note "对极点"
+    **对极点(Epipole)** 指的是：其中一个相机的 **相机中心** 在 另外一个相机的 **成像平面上** 的投影点，即 $e_l$ 和 $e_r$，且他们在既定的具体双目模型下是唯一的。
+
+!!! note "对极面"
+    **对极面(Epipolar Plane)** 指的是两个相机中心 $O_L$ 和 $O_R$，以及景物中的某个空间点 $X$ 这三个点所确定的空间平面。
+
+    其中有一个性质，对极面总是经过相机中心连线 $O_L O_R$，所以对于某个景物中的点 $X_i$，其对极面都是唯一的。（显然，反过来不成立。）
+
+!!! note "对极线"
+    **对极线(Epipolar Line)** 是关于动点 $X$ 来说的，体现为对极面与成像平面的交线，详细可以阅读 [WIKI](https://en.wikipedia.org/wiki/Epipolar_geometry#Epipolar_line)。
+
+!!! summary "其他说明"
+    图中还需要额外解释的就是 $X_L$ 和 $X_R$，它们分别是景物中的某个空间点 $X$ 在两个成像平面上的像。
+
+---
+
+#### 极线约束
+
+现在我们关注对极面，着眼于解决下面这样一个问题。
+
+![](90.png)
+
+其中两侧的相机理所当然的都拥有自己的坐标系，现在我们寻找一种变换，使得：$\mathbf{x}_l = R\mathbf{x}_r + \mathbf{t}$，其中 $\mathbf{t} = \overrightarrow{O_r O_l}$（图中貌似标错了方向），$\mathbf{x}_l = \overrightarrow{O_l P}$ 而 $\mathbf{x}_r = \overrightarrow{O_r P}$ 。
+
+下面开始 ~~变魔法~~ 进行一些变化：
+
+???+ note "形式 ② 推理过程"
+    首先，在同一个（任何一个）笛卡尔坐标系中，都有 $\mathbf{x}_l \cdot (\mathbf{t} \times \mathbf{x}_l) = 0$。
+
+    具体来说，$\mathbf{t}$ 和 $\mathbf{x}_l$ 都是对极面内的两个不平行（我们假定这一点恒成立）的向量，那么 $\mathbf{t} \times \mathbf{x}_l$ 的结果必然是一个垂直于对极面的向量。而这个向量必然垂直于对极面上任意一个向量，所以上式结果为 $0$。而将这个式子写成矩阵向量运算的形式，就是：
+
+    $$
+    \begin{bmatrix}
+        x_l & y_l & z_l
+    \end{bmatrix}
+    \left(
+    \begin{bmatrix}
+        0    & -t_z & t_y  \\
+        t_z  & 0    & -t_x \\
+        -t_y & t_x  & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_l \\
+        y_l \\
+        z_l
+    \end{bmatrix}
+    \right)
+    = 0
+    \;\;\;\;\;\left( 1 \right)
+    $$  
+
+    ---
+    
+    类似的，我们将 $\mathbf{x}_l = R\mathbf{x}_r + \mathbf{t}$ 也写成矩阵和向量运算的形式：
+
+    $$
+    \begin{bmatrix}
+        x_l \\
+        y_l \\
+        z_l        
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        r_{11} & r_{12} & r_{13} \\
+        r_{21} & r_{22} & r_{23} \\
+        r_{31} & r_{32} & r_{33}
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_r \\
+        y_r \\
+        z_r
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        t_x \\
+        t_y \\
+        t_z
+    \end{bmatrix}
+    \;\;\;\;\;\left( 2 \right)
+    $$
+
+    ---
+
+    我们将 $(2)$ 式带入 $(1)$ 式，得到：
+
+    $$
+    \begin{bmatrix}
+        x_l & y_l & z_l
+    \end{bmatrix}
+    \begin{bmatrix}
+        0    & -t_z & t_y  \\
+        t_z  & 0    & -t_x \\
+        -t_y & t_x  & 0
+    \end{bmatrix}
+    \left(
+    \begin{bmatrix}
+        r_{11} & r_{12} & r_{13} \\
+        r_{21} & r_{22} & r_{23} \\
+        r_{31} & r_{32} & r_{33}
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_r \\
+        y_r \\
+        z_r
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        t_x \\
+        t_y \\
+        t_z
+    \end{bmatrix}    
+    \right)
+    = 0
+    $$
+
+    稍作变化（把含 $t$ 的方阵拿到括号里面）：
+
+    $$
+    \begin{bmatrix}
+        x_l & y_l & z_l
+    \end{bmatrix}
+    \left(
+    \begin{bmatrix}
+        0    & -t_z & t_y  \\
+        t_z  & 0    & -t_x \\
+        -t_y & t_x  & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        r_{11} & r_{12} & r_{13} \\
+        r_{21} & r_{22} & r_{23} \\
+        r_{31} & r_{32} & r_{33}
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_r \\
+        y_r \\
+        z_r
+    \end{bmatrix}
+    +
+    \underbrace{
+        \begin{bmatrix}
+            0    & -t_z & t_y  \\
+            t_z  & 0    & -t_x \\
+            -t_y & t_x  & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            t_x \\
+            t_y \\
+            t_z
+        \end{bmatrix}
+    }_{\mathbf{t} \times \mathbf{t} = 0}
+    \right)
+    = 0
+    $$
+    
+    我们开心的发现里面出来了一个 $0$，把它摘掉以后就变成了：
+
+    $$
+    \begin{bmatrix}
+        x_l & y_l & z_l
+    \end{bmatrix}
+    \underbrace{
+        \begin{bmatrix}
+            0    & -t_z & t_y  \\
+            t_z  & 0    & -t_x \\
+            -t_y & t_x  & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            r_{11} & r_{12} & r_{13} \\
+            r_{21} & r_{22} & r_{23} \\
+            r_{31} & r_{32} & r_{33}
+        \end{bmatrix}
+    }_{\text{Essential Matrix E}}
+    \begin{bmatrix}
+        x_r \\
+        y_r \\
+        z_r
+    \end{bmatrix}
+    = 0
+    $$
+    
+    ##### 本征矩阵
+
+    更进一步化简，我们可以把中间两个矩阵合起来，得到 **本征矩阵(Essential Matrix)** $E$：
+
+    $$
+    E=T_{\times}R=
+    \begin{bmatrix}
+        e_{11} & e_{12} & e_{13} \\
+        e_{21} & e_{22} & e_{23} \\
+        e_{31} & e_{32} & e_{33}
+    \end{bmatrix}
+    $$
+
+    于是我们就得到：
+
+    $$
+    \begin{bmatrix}
+        x_l & y_l & z_l
+    \end{bmatrix}
+    \begin{bmatrix}
+        e_{11} & e_{12} & e_{13} \\
+        e_{21} & e_{22} & e_{23} \\
+        e_{31} & e_{32} & e_{33}
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_r \\
+        y_r \\
+        z_r
+    \end{bmatrix}
+    = 0
+    \;\;\;\text{i.e.} \;\;\;
+    \mathbf{x}_l^T E \mathbf{x}_r = 0
+    $$
+
+    !!! note "本征矩阵的性质"
+        由于 Essential Matrix 的定义具有如下特征：
+
+        ![](91.png)
+        > $T_{\times}$ 反对称(Skew-Symmetric)，$R$ 正交(Orthonormal)。
+
+        所以我们可以使用 **奇异值分解(Singular Value Decomposition)** 或者说 SV 分解来去耦合。
+
+也就是说，我们将求解这个问题：
+
+> 形式 ①：寻找一种变换，使得：$\mathbf{x}_l = R\mathbf{x}_r + \mathbf{t}$，其中 $\mathbf{t} = \overrightarrow{O_r O_l}$；
+
+利用对极几何的相关内容，转换为了：
+
+> 形式 ②：求解 $E$ 使得 $\mathbf{x}_l^T E \mathbf{x}_r = 0$，其中 $E = T_{\times}R$，其中 $T$ 是 $\mathbf{t}$ 的矩阵形式；
+
+然而我们并不知道 $\mathbf{x}_l$ 和 $\mathbf{x}_r$，所以还需要进一步变化。
+
+???+ note "形式 ③ 推理过程"
+    根据 **[透视投影](Lec02.md#透视投影)** 的相关内容，我们可以得到：
+
+    $$
+    \small
+    \begin{aligned}
+        \text{Left Camera} && \text{Right Camera}
+        \\
+        z_l 
+        \begin{bmatrix}
+        u_l \\ v_l \\ 1
+        \end{bmatrix}
+        & =
+        \underbrace{
+        \begin{bmatrix}
+        f_x^{(l)} & 0 & o_x^{(l)} \\
+        0 & f_y^{(l)} & o_y^{(l)} \\
+        0 & 0 & 1
+        \end{bmatrix}
+        }_{K_l}
+        \begin{bmatrix}
+        x_l \\ y_l \\ z_l
+        \end{bmatrix}
+        &
+        z_r 
+        \begin{bmatrix}
+        u_r \\ v_r \\ 1
+        \end{bmatrix}
+        &=
+        \underbrace{
+        \begin{bmatrix}
+        f_x^{(r)} & 0 & o_x^{(r)} \\
+        0 & f_y^{(r)} & o_y^{(r)} \\
+        0 & 0 & 1
+        \end{bmatrix}
+        }_{K_r}
+        \begin{bmatrix}
+        x_r \\ y_r \\ z_r
+        \end{bmatrix}
+        \\
+        \mathbf{x}_l^T &=
+        \begin{bmatrix}
+        u_l & v_l & 1
+        \end{bmatrix}
+        z_l (K_l^{-1})^T
+        & \mathbf{x}_r &= 
+        K_r^{-1} z_r
+        \begin{bmatrix}
+        u_r \\ v_r \\ 1
+        \end{bmatrix}
+    \end{aligned}
+    $$
+
+    ---
+
+    将上式带入到形式 ② 得到：
+
+    $$
+    \begin{bmatrix}
+        x_l & y_l & z_l
+    \end{bmatrix}
+    \begin{bmatrix}
+        e_{11} & e_{12} & e_{13} \\
+        e_{21} & e_{22} & e_{23} \\
+        e_{31} & e_{32} & e_{33}
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_r \\
+        y_r \\
+        z_r
+    \end{bmatrix}
+    = 0
+    $$
+    
+    就变成了：
+
+    $$
+    \begin{bmatrix}
+        u_l & v_l & 1
+    \end{bmatrix}
+    z_l (K_l^{-1})^T
+    \begin{bmatrix}
+        e_{11} & e_{12} & e_{13} \\
+        e_{21} & e_{22} & e_{23} \\
+        e_{31} & e_{32} & e_{33}
+    \end{bmatrix}
+    K_r^{-1} z_r
+    \begin{bmatrix}
+        u_r \\ v_r \\ 1
+    \end{bmatrix}
+    = 0
+    $$
+
+    ##### 基本矩阵
+
+    我们可以将常数 $z_l$ 和 $z_r$ 约掉，并且合并中间的三个矩阵，得到：
+
+    $$
+    \begin{bmatrix}
+        u_l & v_l & 1
+    \end{bmatrix}
+    \underbrace{
+        (K_l^{-1})^T
+        \begin{bmatrix}
+            e_{11} & e_{12} & e_{13} \\
+            e_{21} & e_{22} & e_{23} \\
+            e_{31} & e_{32} & e_{33}
+        \end{bmatrix}
+        K_r^{-1}
+    }_{\text{Fundamental Matrix F}}
+    \begin{bmatrix}
+        u_r \\ v_r \\ 1
+    \end{bmatrix}
+    = 0
+    $$
+
+    于是得到了 **基本矩阵(Fundamental Matrix)** $F$：
+
+    $$
+    F = (K_l^{-1})^T E K_r^{-1} 
+      = (K_l^{-1})^T 
+        \begin{bmatrix}
+            e_{11} & e_{12} & e_{13} \\
+            e_{21} & e_{22} & e_{23} \\
+            e_{31} & e_{32} & e_{33}
+        \end{bmatrix}
+        K_r^{-1}
+      = \begin{bmatrix}
+            f_{11} & f_{12} & f_{13} \\
+            f_{21} & f_{22} & f_{23} \\
+            f_{31} & f_{32} & f_{33}
+        \end{bmatrix}
+    $$
+    
+    这就是我们的形式 ③。
+    
+这时，我们发现，$\mathbf{u}_l$ 和 $\mathbf{u}_r$ 终于是我们已知的东西了，这下我们可以求解基本矩阵 $F$，而由于两个相机的内参矩阵也是已知的，所以我们还可以倒过来接着得到本征矩阵 $E$，最后通过 SV 分解得到我们想要的 $R$ 和 $\mathbf{t}$。
+
+具体来说，求解基本矩阵、本征矩阵、坐标变换的步骤如下：
+
+???+ note "求解步骤"
+    对于关键点 $i$，我们需要求解：
+
+    $$
+    \begin{bmatrix}
+        u_l^{(i)} & v_l^{(i)} & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        f_{11} & f_{12} & f_{13} \\
+        f_{21} & f_{22} & f_{23} \\
+        f_{31} & f_{32} & f_{33}
+    \end{bmatrix}
+    \begin{bmatrix}
+        u_r^{(i)} \\ v_r^{(i)} \\ 1
+    \end{bmatrix}
+    = 0
+    $$
+
+    将其展开：
+
+    $$
+    \left( f_{11} u_r^{(i)} + f_{12} v_r^{(i)} + f_13 \right) u_l^{(i)} +
+    \left( f_{21} u_r^{(i)} + f_{22} v_r^{(i)} + f_23 \right) v_l^{(i)} +
+    f_{31} u_r^{(i)} + f_{32} v_r^{(i)} + f_33 = 0.
+    $$
+
+    ---
+
+    接下来将所有的 $m$ 组方程合再同一个矩阵里（我们至少需要额外的 8 个方程，之后会说）：
+
+    $$
+    \underbrace{
+        \begin{bmatrix}
+            u_l^{(1)}u_r^{(1)} & u_l^{(1)}v_r^{(1)} & u_l^{(1)} & v_l^{(1)}u_r^{(1)} & v_l^{(1)}v_r^{(1)} & v_l^{(1)} & u_r^{(1)} & v_r^{(1)} & 1 \\
+            \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\ 
+            u_l^{(i)}u_r^{(i)} & u_l^{(i)}v_r^{(i)} & u_l^{(i)} & v_l^{(i)}u_r^{(i)} & v_l^{(i)}v_r^{(i)} & v_l^{(i)} & u_r^{(i)} & v_r^{(i)} & 1 \\
+            \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\ 
+            u_l^{(m)}u_r^{(m)} & u_l^{(m)}v_r^{(m)} & u_l^{(m)} & v_l^{(m)}u_r^{(m)} & v_l^{(m)}v_r^{(m)} & v_l^{(m)} & u_r^{(m)} & v_r^{(m)} & 1 \\
+        \end{bmatrix}
+    }_{A: \text{ Known }}
+    \underbrace{
+        \begin{bmatrix}
+            f_{11} \\ f_{12} \\ f_{13} \\
+            f_{21} \\ f_{22} \\ f_{23} \\
+            f_{31} \\ f_{32} \\ f_{33} \\
+        \end{bmatrix}
+    }_{\mathbf{f}: \text{ Unknown }}
+    =
+    \begin{bmatrix}
+        0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0
+    \end{bmatrix}
+    \\
+    \text{i.e.} \;\;\;\; A\mathbf{f}=0
+    $$
+
+    当然，像之前一样，由于这个方程可以解出 $k\mathbf{f}, \forall k\in \text{Z}$，所以我们需要给 $\mathbf{f}$ 一个约束，在这里我们取 $||\mathbf{f}||^2 = 1$，于是问题就又变成了：
+
+    $$
+    \mathop{minimize} \limits_{\mathbf{f}} ||A\mathbf{f}||^2 \text{ such that } ||\mathbf{f}||^2 = 1
+    $$
+
+    > 为了求解 $F$ 中的 9 个未知数，我们已经有一个确定的约束方程是 $||\mathbf{f}||^2 = 1$，所以还需要额外 8 个方程。
+
+    ---
+
+    求解得到 $F$ 以后，根据 $E = K_l^T F K_r$ 得到 $E$。
+
+    ---
+
+    前面也已经说过，对 $E$ 进行 SV 分解就可以得到 $R$ 和 $T_{\times}$，对 $T_{\times}$ 重排列就得到了 $\mathbf{t}$。
+
+---
+
+#### 三角剖分
+
+
+
+
+---
+
+### 具体步骤
+
+
+!!! example "前提"
+    两个相机的 **[内参矩阵](#内参矩阵)** $K$ 已知。
+
+    这意味着我们可以根据这些参数将相机成像可视化，如下图。
+
+    其中下标为 $l$ 的表示左侧相机的相关关键点，下标为 $r$ 的表示右侧相机的相关关键点。
+
+    ![](87.png)
+
+!!! example "步骤一"
+    对两张图片进行 [关键点匹配](./Lec05.md#图像特征匹配)，找到至少 8 对匹配特征。
+
+    ---
+
+    「为什么需要 8 对」这个问题我们在 [#极线约束/求解过程](#极线约束) 中已经说明。
+
+    ![](88.png)
+
+!!! example "步骤二"
+
+    按照 [#极线约束/求解过程](#极线约束) 提到的步骤，求解两个相机坐标的变换参数 $R$ 和 $\mathbf{t}$。
+
+!!! example "步骤三"
+
+
 4. 根据已知寻找 3D 点
     - 直接最小二乘法
     - 或做最小化再投影误差的优化问题
 
 
-### 多目三维重建
+## 多目三维重建
 
 根据多张图片重建
 
@@ -680,7 +1179,12 @@ Sequential SfM：
 3. 进一步优化和调整
     - **集束优化(Bundle Adjustment)** LM algorithm
 
+---
 
-## COLMAP 
+!!! info "A modern SfM system: COLMAP"
 
+    - GitHub Repo: https://github.com/colmap/colmap
 
+    > COLMAP is a general-purpose Structure-from-Motion (SfM) and Multi-View Stereo (MVS) pipeline with a graphical and command-line interface. It offers a wide range of features for reconstruction of ordered and unordered image collections. 
+
+    ![](94.png)
