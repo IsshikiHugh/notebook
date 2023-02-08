@@ -11,9 +11,14 @@
     font-family: 'ZCOOL XiaoWei', serif;
 }
 
+.md-typeset h5 {
+    font-size: large;
+}
+
 .md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset h4, .md-typeset h5 {
     font-weight: 600;
 }
+
 
 body, input {
     font-family: 'Lexend', 'Noto Sans SC', 'Source Code Pro', 'Noto Serif SC', sans-serif, -apple-system, Helvetica, Arial, sans-serif;

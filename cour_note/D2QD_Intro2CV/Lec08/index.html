@@ -437,9 +437,87 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Lecture 8 | Depth Estimation
+          <span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
         Lecture 8 | Depth Estimation
       </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#depth-estimation">
+    Depth estimation
+  </a>
+<nav aria-label="Depth estimation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stereo-matching">
+    Stereo matching
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-reconstruction">
+    3D reconstruction
+  </a>
+<nav aria-label="3D reconstruction" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-representations">
+    3D representations
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-surface-reconstruction">
+    3D surface reconstruction
+  </a>
+<nav aria-label="3D surface reconstruction" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#深度---体素表示">
+    深度 -&gt; 体素表示
+  </a>
+<nav aria-label="深度 -&gt; 体素表示" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#depth-fusion-depth-maps-to-tsdf">
+    Depth Fusion （depth maps to TSDF）
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#poisson-reconstruction-depth-maps-to-occupancy-volume">
+    Poisson reconstruction （depth maps to occupancy volume）
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#体素表示---三维网格">
+    体素表示 -&gt; 三维网格
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#texture-mapping">
+    Texture mapping
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Lec09/">
@@ -469,13 +547,18 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2HJ_WritingInTheSciences/">
+        斯坦福 SCI 论文写作公开课
+      </a>
+</li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_8" id="__nav_3_8" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_9" id="__nav_3_9" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../D2CX_ComputerOrganization/">[大二春夏] 计算机组成 | Computer Organization</a>
 </div>
 <nav aria-label="[大二春夏] 计算机组成 | Computer Organization" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_3_8">
+<label class="md-nav__title" for="__nav_3_9">
 <span class="md-nav__icon md-icon"></span>
           [大二春夏] 计算机组成 | Computer Organization
         </label>
@@ -564,6 +647,78 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#depth-estimation">
+    Depth estimation
+  </a>
+<nav aria-label="Depth estimation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stereo-matching">
+    Stereo matching
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-reconstruction">
+    3D reconstruction
+  </a>
+<nav aria-label="3D reconstruction" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-representations">
+    3D representations
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-surface-reconstruction">
+    3D surface reconstruction
+  </a>
+<nav aria-label="3D surface reconstruction" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#深度---体素表示">
+    深度 -&gt; 体素表示
+  </a>
+<nav aria-label="深度 -&gt; 体素表示" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#depth-fusion-depth-maps-to-tsdf">
+    Depth Fusion （depth maps to TSDF）
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#poisson-reconstruction-depth-maps-to-occupancy-volume">
+    Poisson reconstruction （depth maps to occupancy volume）
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#体素表示---三维网格">
+    体素表示 -&gt; 三维网格
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#texture-mapping">
+    Texture mapping
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -579,11 +734,169 @@
 <p>本文尚未完全整理好！</p>
 </div>
 <hr/>
+<p>稀疏的点云 + 图像 ----&gt; 稠密结果</p>
+<h2 id="depth-estimation">Depth estimation<a class="headerlink" href="#depth-estimation" title="Permanent link">¶</a></h2>
+<p>深度在深度图上的表现十分稠密，每一个像素都具有深度属性。</p>
+<blockquote>
+<p>Active depth sensing 主动深度探测 （非视觉方法）</p>
+<ul>
+<li>LiDAR</li>
+<li>Structured light</li>
+<li>Active stereo</li>
+</ul>
+</blockquote>
+<p>Passive depth sensing 被动深度探测</p>
+<ul>
+<li>Stereo</li>
+<li>Multi-view stereo</li>
+<li>Monocular</li>
+</ul>
+<h3 id="stereo-matching">Stereo matching<a class="headerlink" href="#stereo-matching" title="Permanent link">¶</a></h3>
+<ul>
+<li>Stereo vision<ul>
+<li>“视差”</li>
+<li>原理是三角测量</li>
+<li>继续使用之前的方法，很难有效计算所有的像素点的对应关系，而高效实现这一点，就是 stereo matching，立体匹配</li>
+<li>回顾 <strong><a href="../Lec07/#对极几何">对极几何</a></strong></li>
+<li>在本节，我们需要重点关注对极线</li>
+<li>已知 <span class="arithmatex">\(X_L\)</span>，<span class="arithmatex">\(X_R\)</span> 的位置一定在 R 平面的对极线上，其线方程正是 <span class="arithmatex">\(X_L^T F X_R\)</span>。而这个结论可以大大降低查找 pixel 的复杂度。我们只需要在一条线上搜索比较匹配即可。</li>
+<li>然而如果对于每个点都需要计算对极线，那也非常糟糕，所以我们希望能有一些特殊情况——比如，（……）相机如果只有水平移动和旋转，那么对极线都会是水平的，Simplest Case 会让一切相关计算和步骤变简单<ul>
+<li>disparity 视差 = x2 - x1（对于各自的坐标系）</li>
+<li>通过视差可以计算深度（相似三角形）</li>
+</ul>
+</li>
+<li>而对于并非 simplest case 的一般情况，我们可以考虑把当前情况转化为 simplest case——使用 stereo image rectification，细节不展开</li>
+</ul>
+</li>
+<li>基础的 Stereo matching 算法<ul>
+<li>计算相似度，查找相似度最小的地方</li>
+<li>常见的 Matching Scores<ul>
+<li>SSD(Sum of Squared Differences)</li>
+<li>SAD(Sum of Absolute Differences)</li>
+<li>ZNCC(Zero-mean Normalized Cross Correlation) （协方差？，互相关？）对图像整体亮度差异不大敏感</li>
+</ul>
+</li>
+<li>还有一个问题是选取的窗口大小，有一个精确度和平滑度的 trade-off</li>
+<li>于是有一个改进就是考虑空间上的连续性，方法就是转化为优化问题，在目标函数同时考虑匹配度和在临域的平滑度（视差剧烈程度）<ul>
+<li>而求解这个最优化的问题，在上面提到的「临域」只涉及像素点左侧和右侧，即线性约束时，可以使用 DP 来做，但是在非线性约束下，这个问题变成 NP-hard 问题，只能求近似解，可以使用图割来做</li>
+</ul>
+</li>
+<li>Pipeline<ul>
+<li>...</li>
+</ul>
+</li>
+<li>常见误差出现的地方（大作业提示）<ul>
+<li>...</li>
+</ul>
+</li>
+<li>Baseline 对计算的影响，：<ul>
+<li>太大（景象变化更大，搜索更难）</li>
+<li>太小（可以通过相交得到的四边形长度体现出来）</li>
+</ul>
+</li>
+<li>对于纹理不明显的内容，如果想要去重建，有一种办法是手动增加纹理，比如手动打变化明显的结构光<ul>
+<li>而在结构光下，我们可以去掉一个相机，因为在投影仪位置的相机，在特定参数下拍到的景象和射出去的内容可能十分相似（貌似默认漫反射时能量不消损，但是不考虑光斑亮暗，单看结构来说应该是这样的）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>multi-view stereo  MVS<ul>
+<li>好处是约束更强、选择更多、构建更完整</li>
+<li>具体做法是<ul>
+<li>枚举一个视角里对极线上的深度，然后用在其他视角里的重投影匹配度做评估，找到效果最好的深度</li>
+<li>其中一个问题是如何高效的计算所有的误差</li>
+<li>可以使用 Plane-Sweep<ul>
+<li>对于每一个其他视角，构造一个关于 x-y-z 的三维表，能够查询对于参考图片<code>[x][y]</code>处的像素，如果处于深度<code>[z]</code>时的情况</li>
+<li>利用两次投影，先在“A”字里相似到远处，然后再斜着投影到每个视角里</li>
+<li>每一层层扫过去</li>
+<li><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../92.gif"><img alt="" src="../92.gif"/></a><ul>
+<li>在上图数组里找每一个<code>[x][y]</code>里表现最好的<code>[z]</code>作为那个像素的深度。</li>
+</ul>
+</li>
+<li>然而这个做法还是不太高效，一个更高效的做法，是 PatchMatch。<ul>
+<li>随即初始化，总有几个是接近最优解的</li>
+<li>对于这些比较优的解，它附近的像素答案在这个答案的附近寻找（传播），然后再在小范围内进一步优化（搜索）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3d-reconstruction">3D reconstruction<a class="headerlink" href="#3d-reconstruction" title="Permanent link">¶</a></h2>
+<p>具体来说，3D 重建包括这么三个步骤：</p>
+<ol>
+<li>深度计算</li>
+<li>深度 -&gt; 3D网格表面</li>
+<li>纹理填充</li>
+</ol>
+<h3 id="3d-representations">3D representations<a class="headerlink" href="#3d-representations" title="Permanent link">¶</a></h3>
+<p>补充图片</p>
+<ul>
+<li>点云 point cloud</li>
+<li>体素（3d像素）occupancy</li>
+<li>signed distance function (SDF)<ul>
+<li>大小距离表面的距离，内部为负，外部为正</li>
+<li>Truncated Signed Distance Function 截断SDF，即仍和大于 1 都记为 1，小于 -1 的记为 -1</li>
+</ul>
+</li>
+<li>网格 mesh（比较常用）</li>
+</ul>
+<h3 id="3d-surface-reconstruction">3D surface reconstruction<a class="headerlink" href="#3d-surface-reconstruction" title="Permanent link">¶</a></h3>
+<ol>
+<li>深度 -&gt; 体素表示</li>
+<li>体素表示 -&gt; 三维网格</li>
+</ol>
+<h4 id="深度---体素表示">深度 -&gt; 体素表示<a class="headerlink" href="#深度---体素表示" title="Permanent link">¶</a></h4>
+<p>常用方法：</p>
+<h5 id="depth-fusion-depth-maps-to-tsdf">Depth Fusion （depth maps to TSDF）<a class="headerlink" href="#depth-fusion-depth-maps-to-tsdf" title="Permanent link">¶</a></h5>
+<p>【对于图中】：</p>
+<ul>
+<li>可以计算每一个体素到相机中心的距离 <span class="arithmatex">\(d_p\)</span></li>
+<li>根据小孔成像规则，可以得到与当前体素所对应的像素，记对应的像素的深度为 <span class="arithmatex">\(D_k(u)\)</span></li>
+<li>则该体素的 TSDF 值截断前为 <span class="arithmatex">\(D_k(u) - d_p\)</span></li>
+<li>在多图情况下，每一张图的结果做加权计算</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">思路</p>
+<p>之前也有类似的内容。一个总结性的想法是，当你需要把「分辨率」低的东西投影到「分辨率」高到地方去时，应当枚举「分辨率」高的那一侧的单元，然后利用「分辨率」低的这一侧去计算，而不是从低到高。</p>
+</div>
+<h5 id="poisson-reconstruction-depth-maps-to-occupancy-volume">Poisson reconstruction （depth maps to occupancy volume）<a class="headerlink" href="#poisson-reconstruction-depth-maps-to-occupancy-volume" title="Permanent link">¶</a></h5>
+<p>柏松重建</p>
+<ul>
+<li>深度图 -&gt; 带法向量的点云<ul>
+<li>Oriented points 那里的箭头是表面法向量（深度的梯度）</li>
+</ul>
+</li>
+<li>用优化的方式求解 indicator function （大概就是最终结果的那个物体的表面发向量函数）<ul>
+<li>这里有一个点就是，体素的曲面是闭合的，所以会有内外之分，内部实心外部空心，所以 indicator function 就是想同时表达 表面 和 内外 两件事。</li>
+</ul>
+</li>
+</ul>
+<h4 id="体素表示---三维网格">体素表示 -&gt; 三维网格<a class="headerlink" href="#体素表示---三维网格" title="Permanent link">¶</a></h4>
+<p>常用方法：</p>
+<p>Marching cubes</p>
+<ul>
+<li>以 2D 为例，如果一个「边」的两边，黑白不一致（黑表示外部，白表示内部），则说明这里存在一个边界，于是标一个点，然后将所有的这样的点按照特定顺序连接起来，就得到的了边界。</li>
+<li>具体标在边界的哪个位置，如果是 SDF 的话可以计算知道，否则可能只能在中间了</li>
+<li>
+<p>但是需要注意一个格子如果有多个点的时候怎么连的问题，有一个表可以查，撑死也就 2^4=16 种情况</p>
+</li>
+<li>
+<p>在 3D 情况下，就是在立方体里连接三个点形成三角面，然后也有一个表可以查，撑死也就 2^8=256 种情况。</p>
+</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../93.gif"><img alt="" src="../93.gif"/></a></p>
+<h3 id="texture-mapping">Texture mapping<a class="headerlink" href="#texture-mapping" title="Permanent link">¶</a></h3>
+<p>展开 get 纹理图（二维坐标能够对应一个网格面） using 参数化</p>
+<hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月22日 22:07:42</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月8日 11:51:02</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
