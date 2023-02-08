@@ -1,8 +1,5 @@
 # Lecture 7 | Structure From Motion
 
-!!! warning "注意"
-    本文尚未完全整理好！
-
 !!! tip "前言"
     个人感觉这一章的内容虽然脉络清晰，但是需要不断引入新的内容，如果直接采用“用到什么讲什么”的顺序阐述，可能会有些杂乱，不方便知识索引和复习，所以我大致按照拓扑排序的顺序排列内容，倾向于完整地介绍一下前置，再引入之后的内容并阶段性小结，可能看起来比较唐突，但是大概对回头查知识点比较方便。
 
@@ -1128,15 +1125,178 @@ $$
 
 ---
 
-#### 三角剖分
+#### 三角测量
 
+我们知道，如果假设数据都是准确的，那么 $O_l X_l$ 和 $O_r X_r$ 应当相交于空间点 $X$。而三角测量描述的就是如何通过这样一个过程得到空间点 $X$。
 
+我们在 [极线约束](#极线约束) 里已经知道了 $\mathbf{x}_l$ 和 $\mathbf{x}_r$ 的变换关系，也就是说我们现在已经有了 $O_l X_l$ 和 $O_r X_r$ 的方程了。那么应当能够解出这个 $X$，不过由于实际数据有误差，所以我们可能只能通过优化的方法得到近似解。
 
+具体的推理步骤如下：
+
+???+ note "求解步骤"
+
+    首先我们使用齐次坐标改写变换方程，并最终写成关于 $\mathbf{u}$ 的形式 
+    $$
+    \begin{aligned}
+        \text{Left Camera}
+        \\
+        \because
+        \begin{bmatrix}
+            u_l \\ v_l \\ 1
+        \end{bmatrix}
+        &=
+        \begin{bmatrix}
+            f_x^{(l)} & 0 & o_x^{(l)} & 0 \\
+            0 & f_y^{(l)} & o_y^{(l)} & 0 \\
+            0 & 0 & 1 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            x_l \\ y_l \\ z_l \\ 1
+        \end{bmatrix}
+        ,\ \ 
+        \begin{bmatrix}
+            x_l \\ y_l \\ z_l \\ 1
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            r_{11} & r_{12} & r_{13} & t_x \\
+            r_{21} & r_{22} & r_{23} & t_y \\
+            r_{31} & r_{32} & r_{33} & t_z \\
+            0 & 0 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            x_r \\ y_r \\ z_r \\ 1
+        \end{bmatrix}
+        \\
+        \therefore
+        \begin{bmatrix}
+            u_l \\ v_l \\ 1
+        \end{bmatrix}
+        &=
+        \begin{bmatrix}
+            f_x^{(l)} & 0 & o_x^{(l)} & 0 \\
+            0 & f_y^{(l)} & o_y^{(l)} & 0 \\
+            0 & 0 & 1 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            r_{11} & r_{12} & r_{13} & t_x \\
+            r_{21} & r_{22} & r_{23} & t_y \\
+            r_{31} & r_{32} & r_{33} & t_z \\
+            0 & 0 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            x_r \\ y_r \\ z_r \\ 1
+        \end{bmatrix}
+        \\
+        \text{i.e. } \mathbf{\tilde u}_l &= 
+        P_l \mathbf{\tilde x}_r
+        \\
+        \text{Right Camera}
+        \\
+        \begin{bmatrix}
+            u_r \\ v_r \\ 1
+        \end{bmatrix}
+        &=
+        \begin{bmatrix}
+            f_x^{(r)} & 0 & o_x^{(r)} & 0 \\
+            0 & f_y^{(r)} & o_y^{(r)} & 0 \\
+            0 & 0 & 1 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            x_r \\ y_r \\ z_r \\ 1
+        \end{bmatrix}
+        \\
+        \text{i.e. } \mathbf{\tilde u}_r &= 
+        M_{int_r} \mathbf{\tilde x}_r
+    \end{aligned}
+    $$
+
+    稍作总结，就是得到了下面这两个关系：
+
+    $$
+    \mathbf{\tilde u}_l = P_l \mathbf{\tilde x}_r
+    \\
+    \begin{bmatrix}
+        u_r \\ v_r \\ 1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        m_{11} & m_{12} & m_{13} & m_{14} \\
+        m_{21} & m_{22} & m_{23} & m_{24} \\
+        m_{31} & m_{32} & m_{33} & m_{34} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_r \\ y_r \\ z_r \\ 1
+    \end{bmatrix}
+    \\ \\
+    \mathbf{\tilde u}_l = M_{int_r} \mathbf{\tilde x}_r
+    \\
+    \begin{bmatrix}
+    u_l \\ v_l \\ 1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    p_{11} & p_{12} & p_{13} & p_{14} \\
+    p_{21} & p_{22} & p_{23} & p_{24} \\
+    p_{31} & p_{32} & p_{33} & p_{34} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+    x_r \\ y_r \\ z_r \\ 1
+    \end{bmatrix}
+    $$
+
+    我们发现，除了 $\mathbf{x}_r$ 的部分都是已知的，此时我们就可以「联立」这两个方程，将他们重排列为如下形式：
+
+    $$
+    \underbrace{
+    \begin{bmatrix}
+        u_r m_{31} - m_{11} & u_r m_{32} - m_{12} & u_r m_{33} - m_{13} \\ 
+        v_r m_{31} - m_{21} & v_r m_{32} - m_{22} & v_r m_{33} - m_{23} \\ 
+        u_l p_{31} - p_{11} & u_l p_{32} - p_{12} & u_l p_{33} - p_{13} \\  
+        v_l p_{31} - p_{21} & v_l p_{32} - p_{22} & v_l p_{33} - p_{23}
+    \end{bmatrix}
+    }_{A_{4\times 3}}
+    \underbrace{
+    \begin{bmatrix}
+        x_r \\ y_r \\ z_r
+    \end{bmatrix}
+    }_{\mathbf{x}_r}
+    =
+    \underbrace{
+    \begin{bmatrix}
+        m_{14} - m_{34} \\
+        m_{24} - m_{34} \\  
+        p_{14} - p_{34} \\ 
+        p_{24} - p_{34}
+    \end{bmatrix}
+    }_{\mathbf{b}}
+    $$
+
+    我们已知 $A_{4 \times 3}$ 和 $\mathbf{b}$，需要求 $\mathbf{x}_r$。
+
+    我们之前已经提到，由于实际数据存在误差，所以我们没发直接求其解析解，而是可以使用最小二乘的结论，得到：
+    
+    $$
+    \mathbf{x}_r = (A^TA)^{-1}A^T\mathbf{b}
+    $$
+
+    ---
+
+    还有一种改进，就是将它转化成最小化 **再投影误差(Reprojection Error)** 的优化问题。
+
+    换句话来说，就是求一个 $X$ 使得它在两个成像平面上的投影和实际的投影之间的误差最小。
+
+    ![](95.png)
+
+    定义再投影误差为：
+
+    $$
+    cost(P) = dist(\mathbf{u}_l, \cap{\mathbf{u}_l})^2 + dist(\mathbf{u}_r, \cap{\mathbf{u}_r})^2
+    $$
 
 ---
 
 ### 具体步骤
-
 
 !!! example "前提"
     两个相机的 **[内参矩阵](#内参矩阵)** $K$ 已知。
@@ -1161,23 +1321,34 @@ $$
     按照 [#极线约束/求解过程](#极线约束) 提到的步骤，求解两个相机坐标的变换参数 $R$ 和 $\mathbf{t}$。
 
 !!! example "步骤三"
+    
+    接下来对于每一对匹配的关键点，按照 [#三角测量](#三角测量) 提到的方法，求解空间点 $X_i$。
 
+于是我们就得到了所有匹配的关键点计算得到的空间点，最终得到一份稀疏的空间点云。
 
-4. 根据已知寻找 3D 点
-    - 直接最小二乘法
-    - 或做最小化再投影误差的优化问题
-
+---
 
 ## 多目三维重建
-
-根据多张图片重建
 
 Sequential SfM：
 
 1. 从其中两张开始，对场景进行重建
 2. 之后不断拿出新的图像，根据已知计算 camera pose，再进一步优化之前重建出来的 3D 点，以及增加一些新的点
-3. 进一步优化和调整
-    - **集束优化(Bundle Adjustment)** LM algorithm
+3. 使用集束优化进一步优化和调整
+
+---
+
+### 集束优化
+
+**集束优化(Bundle Adjustment)** 也就是在多目情况下，对于所有点的 再投影误差 优化问题：
+
+![](96.png)
+
+$$
+\mathop{minimize} \limits_\mathbf{P} E(P_{proj}, \mathbf{P}) = \sum^m_{i=1}\sum^n_{j=1} dist(u_j^{(i)}, P_{proj}^{(i)}\mathbf{P}_j)^2
+$$
+
+其求解可以使用 LM algorithm。
 
 ---
 
