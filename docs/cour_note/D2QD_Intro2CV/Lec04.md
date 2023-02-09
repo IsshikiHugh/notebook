@@ -2,10 +2,10 @@
 
 ## 优化 
 
-首先我们来定义一个 **优化(Optimization)** 问题的模型：
+首先我们来定义一个**优化(Optimization)**问题的模型：
 
 !!! info ""
-    设 **目标函数** $f_0(\vec x)$ 满足 **约束条件**：
+    设**目标函数**$f_0(\vec x)$ 满足**约束条件**：
     
     $$
     \left\{
@@ -36,26 +36,26 @@
 
 为了研究分析实际问题，我们需要对问题进行一个建模，更具体的来说就是根据实际情况，寻找数据之间的关系，并建立数学模型。
 
-一个数学 **模型(model)** 描述问题中输入和输出的关系，例如：线性模型(linear model) $b = a^T x$ 就描述了输入(input) $a$ 和输出(output) $b$ 关于模型参数(model parameter) $x$ 的关系。
+一个数学**模型(model)**描述问题中输入和输出的关系，例如：线性模型(linear model) $b = a^T x$ 就描述了输入(input) $a$ 和输出(output) $b$ 关于模型参数(model parameter) $x$ 的关系。
 
-而实际的结果很难严格满足数学模型，这是由多方原因导致的，所以我们往往做的是对实际情况进行 **模型拟合(model fitting)**。
+而实际的结果很难严格满足数学模型，这是由多方原因导致的，所以我们往往做的是对实际情况进行**模型拟合(model fitting)**。
 
 更具体的来说，我们可能已经有一个先验的假设，即数据符合哪种模型，接下来根据数据来分析得到合适的 model parameters，而这个步骤也常常被称为 learning。
 
-一种比较经典的逼近方法（[最小二乘法](https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95)）是求使 **[均方误差(mean square error)MSE](https://zh.wikipedia.org/wiki/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE)** 最小的 model parameters：
+一种比较经典的逼近方法（[最小二乘法](https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95)）是求使**[均方误差(mean square error)MSE](https://zh.wikipedia.org/wiki/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE)**最小的 model parameters：
 
 $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
-而如果我们假设数据中的噪声是高斯分布的（实际上大部分噪声在基数足够大的情况下都可以看作为高斯分布的），那么可以与统计学的 **极大似然估计(maximum likelihood estimation)MLE** 相统一.
+而如果我们假设数据中的噪声是高斯分布的（实际上大部分噪声在基数足够大的情况下都可以看作为高斯分布的），那么可以与统计学的**极大似然估计(maximum likelihood estimation)MLE**相统一.
 
 !!! tip "MSE vs. MLE"
     [MSE vs MLE for linear regression](https://medium.com/analytics-vidhya/mse-vs-mle-for-linear-regression-f4ce3f6b990e)
 
-具体来说，$b_i = a_i^T x + n, \;\; n \sim G(0,\sigma)$，而对于给定的 $x$，其 **似然(likehood)** $P[(a_i,b_i)|x] = P[b_i-a_i^Tx] \propto \exp \left( - \frac{(b_i-a_i^Tx)^2}{2\sigma^2} \right)$，表示在 model parameter 为 $x$ 的情况下，数据符合 $(a_i,b_i)$ 的可能性。
+具体来说，$b_i = a_i^T x + n, \;\; n \sim G(0,\sigma)$，而对于给定的 $x$，其**似然(likehood)**$P[(a_i,b_i)|x] = P[b_i-a_i^Tx] \propto \exp \left( - \frac{(b_i-a_i^Tx)^2}{2\sigma^2} \right)$，表示在 model parameter 为 $x$ 的情况下，数据符合 $(a_i,b_i)$ 的可能性。
 
 ???+ note "Maximum Likelihood Estimation"
     <!--Copy from https://github.com/sakuratsuyu/Note/blob/master/docs/Computer_Science_Courses/ICV/4_Model_Fitting_and_Optimization.md?plain=1-->
-	If the data points are **independent**,
+	If the data points are**independent**,
 	
 	$$
 	\begin{align}
@@ -83,12 +83,12 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 上一小节介绍了如何对实际问题进行数学建模，接下来需要介绍的是如何求解数学模型。
 
-我们知道，对于一些比较简单的模型，我们可以直接求其 **解析解(analytical solution)**，比如使用求导等方法。
+我们知道，对于一些比较简单的模型，我们可以直接求其**解析解(analytical solution)**，比如使用求导等方法。
 
 !!! example "🌰"
     以刚才的线性 MSE 为例，$\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$ 等效于求解等式 $A^TAx=A^Tb$。
 
-然而，实际情况是大部分问题过于复杂，我们没法直接求其解析解，所以我们需要采用一些即采用一些 **数值方法(numerical methods)**。
+然而，实际情况是大部分问题过于复杂，我们没法直接求其解析解，所以我们需要采用一些即采用一些**数值方法(numerical methods)**。
 
 ---
 
@@ -96,7 +96,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 > 由于相关领域的“函数”等基本上都是高维的，所以我们一般使用二维函数图像的方法来形象表示函数，即使用“等高线”的形式来可视化函数。
 
-虽然没法直接求解析解，但是一般函数都具有一些局部性质，例如极值点临域的梯度都指向极值点。模糊地来说，只要我们随着“梯度”去“下降”，就有可能找到极值点，这就是通过 **梯度下降(gradient descent)** 的方法来解决优化问题。
+虽然没法直接求解析解，但是一般函数都具有一些局部性质，例如极值点临域的梯度都指向极值点。模糊地来说，只要我们随着“梯度”去“下降”，就有可能找到极值点，这就是通过**梯度下降(gradient descent)**的方法来解决优化问题。
 
 简单描述梯度下降的过程：
 
@@ -126,7 +126,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 - first-order approximation: $F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x$
 - second-order approximation: $F(x_k + \Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^T H_F \Delta x$
 
-其中 $J_F$ 是 **[雅各比矩阵](https://zh.m.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94%E7%9F%A9%E9%98%B5)**，可以理解为多维向量函数的导数；$H_F$ 是 **[海森矩阵](https://zh.m.wikipedia.org/zh-hans/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%99%A3)**，可以理解为多位向量函数的二阶导数。
+其中 $J_F$ 是**[雅各比矩阵](https://zh.m.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94%E7%9F%A9%E9%98%B5)**，可以理解为多维向量函数的导数；$H_F$ 是**[海森矩阵](https://zh.m.wikipedia.org/zh-hans/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%99%A3)**，可以理解为多位向量函数的二阶导数。
 
 接下来以 first-order approximation 为例继续分析。
 
@@ -153,7 +153,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 ---
 
-上面使用 first-order approximation 为例介绍的这套方法就是 **最速梯度下降法(steepest descent method)**。
+上面使用 first-order approximation 为例介绍的这套方法就是**最速梯度下降法(steepest descent method)**。
 
 !!! note "最速梯度下降法"
     $\vec p = -J_F^T$；
@@ -167,7 +167,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
     这是因为，最速梯度下降法主要采用的是 first-order approximation，没有体现曲率特征。
 
-因而一种很自然的改进方法就是使用 second-order approximation，即 **牛顿法(Newton Method)**。
+因而一种很自然的改进方法就是使用 second-order approximation，即**牛顿法(Newton Method)**。
 
 !!! note "牛顿法"
     $F(x_k + \Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^T H_F \Delta x$
@@ -181,7 +181,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
     - 缺点
         - Hessian matrix 的计算需要相当算力，甚至有时候无法计算；
 
-由此发现，牛顿法的表现会好很多，如果能够避免计算黑塞矩阵，就可以进一步提高牛顿法的效果，于是就出现了 **高斯牛顿法(Gauss-Newton method)**。
+由此发现，牛顿法的表现会好很多，如果能够避免计算黑塞矩阵，就可以进一步提高牛顿法的效果，于是就出现了**高斯牛顿法(Gauss-Newton method)**。
 
 !!! note "高斯牛顿法"
     > 对于解决最小二乘法 $\hat x = \mathop{\arg \min\limits_x} ||R(x)||^2_2$ 的问题表现非常好。
@@ -212,7 +212,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
         简单来说，LM 就是综合了最速梯度下降法和牛顿法的优点，在远离目标点的时候使用最速梯度下降法，保证启动速度快；在靠近目标点的时候使用牛顿法，保证收敛速度足够快；并且保证 $J_R^TJ_R+\lambda I$ 正定，所以始终能够使牛顿法成立。
 
 !!! tip "带约束的优化问题"
-    对于 **带约束的优化问题(constrained optimization)**，则需要 **根据实际问题** 求解。
+    对于**带约束的优化问题(constrained optimization)**，则需要**根据实际问题**求解。
 
     - 我们可能可以转化问题，使用更简单的表达式去拟合原来的表达式，来求解；
     - 其中，（凹）凸函数是一定能找到最优解的，我们称这种问题为凸优化问题(Convex optimization)
@@ -229,7 +229,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 ## 鲁棒估计
 
-**[鲁棒估计(robust estimation)](https://en.wikipedia.org/wiki/Robust_statistics)** 是对从各种概率分布（尤其是非正态分布）中提取的数据具有良好性能的统计。
+**[鲁棒估计(robust estimation)](https://en.wikipedia.org/wiki/Robust_statistics)**是对从各种概率分布（尤其是非正态分布）中提取的数据具有良好性能的统计。
 
 在拟合模型中，难免出现一些不符合预期的点，而它们会对拟合结果产生或多或小的影响，而如何权衡这些噪声与真正有用的数据点之间的关系，就是鲁棒估计的课题。
 
@@ -268,7 +268,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 ### 随机抽样一致
 
-**[随机抽样一致(random sample consensus)RANSAC](https://zh.wikipedia.org/wiki/%E9%9A%A8%E6%A9%9F%E6%8A%BD%E6%A8%A3%E4%B8%80%E8%87%B4)** 采用迭代的方式从包含外点的数据中估计数学模型参数，是一个对于存在明显外点的数据非常有效的方法。
+**[随机抽样一致(random sample consensus)RANSAC](https://zh.wikipedia.org/wiki/%E9%9A%A8%E6%A9%9F%E6%8A%BD%E6%A8%A3%E4%B8%80%E8%87%B4)**采用迭代的方式从包含外点的数据中估计数学模型参数，是一个对于存在明显外点的数据非常有效的方法。
 
 !!! summary "RANSAC procedure"
 
@@ -283,23 +283,23 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 ## 病态问题
 
-如果一个问题的解不唯一，那么这个问题是一个 **病态问题(ill-posed problem)**。特别的，在线性问题中，一个线性方程（组）的解如果不唯一（不满秩），则同样是一个病态问题。
+如果一个问题的解不唯一，那么这个问题是一个**病态问题(ill-posed problem)**。特别的，在线性问题中，一个线性方程（组）的解如果不唯一（不满秩），则同样是一个病态问题。
 
 当然，对于线性方程组，根据线性代数的知识，我们可以增加方程，即增加约束。而这种约束一般来自于对变量的先验约束，比如：
 
 !!! note "L2 regularization"
-    **L2 norm**: $||x||_2 = \sum_i x_i^2$;
+**L2 norm**: $||x||_2 = \sum_i x_i^2$;
 
-    **L2 regularization**: $\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_2 \leq 1$;
+**L2 regularization**: $\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_2 \leq 1$;
 
     ![](63.png){ width=200px }
 
     > 通过让选择的解尽可能接近原点，而让我们没有用的解的维度尽可能接近 0，以减小没用的变量的影响，抑制冗余变量。
 
 !!! note "L1 regularization"
-    **L1 norm**: $||x||_1=\sum_i|x_i|$;
+**L1 norm**: $||x||_1=\sum_i|x_i|$;
 
-    **L1 regularization**: $\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_1 \leq 1$
+**L1 regularization**: $\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_1 \leq 1$
 
     ![](64.png){ width=200px }
 
@@ -319,7 +319,7 @@ $$
 
 ### 过拟合和欠拟合
 
-在这个过程中，也要小心 **过拟合(overfitting)** 和 **欠拟合(underfitting)**，它们的含义非常直白：
+在这个过程中，也要小心**过拟合(overfitting)**和**欠拟合(underfitting)**，它们的含义非常直白：
 
 ![](65.png)
 
@@ -327,7 +327,7 @@ $$
 
 ## 插值
 
-**插值(interpolation)** 其实已经在 [lec 3 的笔记](Lec03.md#放大图片向上采样--插值) 里提到过了。
+**插值(interpolation)**其实已经在 [lec 3 的笔记](Lec03.md#放大图片向上采样--插值) 里提到过了。
 
 这里先略过。
 
@@ -344,11 +344,11 @@ $$
 
 ### 图像标签问题
 
-**图像标签问题(image labeling problems)** 即通过图片信息给每一个像素分配标签，实际上就是一个对图像内容的分类和识别问题。
+**图像标签问题(image labeling problems)**即通过图片信息给每一个像素分配标签，实际上就是一个对图像内容的分类和识别问题。
 
 ![](66.png)
 
-其中一个比较强的 **先验(prior)** 是：相邻且相似的像素应当拥有相同的标签。
+其中一个比较强的**先验(prior)**是：相邻且相似的像素应当拥有相同的标签。
 
 而图割和马可夫随机场可以建模这种先验。
 
@@ -357,7 +357,7 @@ $$
 ### 图割
 
 
-**图割(Graphcut)** 的核心思想是，把一张图片的每一个像素看作一个 graph 中的 vertex，并在像素之间建 edge，并将 weight 定义为两像素之间的相似性或关联性(affinity or similarity)。
+**图割(Graphcut)**的核心思想是，把一张图片的每一个像素看作一个 graph 中的 vertex，并在像素之间建 edge，并将 weight 定义为两像素之间的相似性或关联性(affinity or similarity)。
 
 !!! success "measuring affinity"
     比如，我们可以这样衡量像素的相似性：
@@ -389,7 +389,7 @@ $$
 
 ### 马可夫随机场
 
-**马可夫随机场(Markov Random Field)MRF** 是一种更通用的解决方案，可惜我第一次没听懂，等我听懂了再来补充这里的内容。
+**马可夫随机场(Markov Random Field)MRF**是一种更通用的解决方案，可惜我第一次没听懂，等我听懂了再来补充这里的内容。
 
 ??? bug "sketch"
     Markov chains

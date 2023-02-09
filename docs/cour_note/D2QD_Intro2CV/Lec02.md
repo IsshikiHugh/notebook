@@ -4,7 +4,7 @@
 
 ### 小孔成像
 
-如果我们直接拿一块平面来记录自然界的光信息，不难发现，由于光线是向四面八方传播的，所以接收到的信息也乱七八糟，所以我们需要通过一个小孔，也就是如今的 **光圈(aperture)** 来对光线进行一个过滤。这就是早期 **针孔摄像机(pinhole camera)** 的原理。
+如果我们直接拿一块平面来记录自然界的光信息，不难发现，由于光线是向四面八方传播的，所以接收到的信息也乱七八糟，所以我们需要通过一个小孔，也就是如今的**光圈(aperture)**来对光线进行一个过滤。这就是早期**针孔摄像机(pinhole camera)**的原理。
 
 <center markdown>![](6.png){width=300px}   ![](7.png){width=326px}</center>
 
@@ -23,11 +23,11 @@ $$
 \frac{1}{i} + \frac{1}{o} = \frac{1}{f}
 $$
 
-其中 $i$ 为 **像距(img dis)**，$o$ 为 **物距(obj dis)**，$f$ 为 **焦距(focal len)**。
+其中 $i$ 为**像距(img dis)**，$o$ 为**物距(obj dis)**，$f$ 为**焦距(focal len)**。
 
 而对于平行光，或者说 $o\to +\infty$ 时，就会有 $i=f$。通过这种方法，我们可以通过测量平行光透过凸透镜汇聚的位置来测量焦距。
 
-同时再引入一个 **放大率(Magnification)**：$m=\frac{h_i}{h_o}=\frac{i}{o}$。
+同时再引入一个**放大率(Magnification)**：$m=\frac{h_i}{h_o}=\frac{i}{o}$。
 
 ![](9.png)
 > Source: https://fpcv.cs.columbia.edu/
@@ -41,7 +41,7 @@ $$
 
 可以发现，焦距的大小会影响视野的大小和放大率的大小。
 
-50mm/46° 与人的视野相近，因此它被称为 **标准镜头(standard lens)**.
+50mm/46° 与人的视野相近，因此它被称为**标准镜头(standard lens)**.
 
 此外，即使在画面中保证一个物体的大小不变，选用不同的焦距也会导致画面的变化——背景的大小，通过下面这张图的三个画面我们可以很清晰的感受到这一点。
 
@@ -51,14 +51,14 @@ $$
 
 ### F 数
 
-**F 数(F-Number)** 用来描述光圈的相对大小，其定义式为 $N=\frac{f}{D}$。
+**F 数(F-Number)**用来描述光圈的相对大小，其定义式为 $N=\frac{f}{D}$。
 
 ### 对焦
 
 ![](12.png)
 > Source: https://fpcv.cs.columbia.edu/
 
-由相似三角形，没有对上焦而形成的 **光斑(Blur Circle)** 的计算公式为：
+由相似三角形，没有对上焦而形成的**光斑(Blur Circle)**的计算公式为：
 
 $$
 \begin{align}
@@ -73,7 +73,7 @@ $$
 
 ### 景深 DoF
 
-根据上一小节得到的结论，理论上我们好像只有清晰成像一个特定平面上的内容，但是实际上相机上会有一段距离上的内容都是清晰的，这段距离就是 **景深 DoF(Depth of Field)**。而之所以有景深，是因为底片的感光元件是有极限的，当光斑小雨这个极限时，拍摄出来的就仍然是清晰的。
+根据上一小节得到的结论，理论上我们好像只有清晰成像一个特定平面上的内容，但是实际上相机上会有一段距离上的内容都是清晰的，这段距离就是**景深 DoF(Depth of Field)**。而之所以有景深，是因为底片的感光元件是有极限的，当光斑小雨这个极限时，拍摄出来的就仍然是清晰的。
 
 而景深的大小可以这么计算：
 
@@ -88,15 +88,15 @@ $$
 
     而这种“描述”需要基于一个投影模型。或者说说一种映射关系，简单来说就好像“点光源投影”和“平行光源投影”。
 
-    但是需要注意，无论是哪一种模型，由于我们将三维信息通过 **不可逆的线性变换** 压缩到了二维信息，所以一定是存在信息缺失的。通常来说，指的是深度缺失。
+    但是需要注意，无论是哪一种模型，由于我们将三维信息通过**不可逆的线性变换**压缩到了二维信息，所以一定是存在信息缺失的。通常来说，指的是深度缺失。
 
 ## 透视投影
 
 ![](15.png)
 
-如图是 3D 坐标通过透视投影到 2D 坐标到示意图。其中 $x,y,Z$ 用来描述空间坐标信息，方便起见，我们用他们表示相对于 **相机中心(camera center)** 的正交坐标，其中 $Z$ 和 **光轴(optical axis)** 方向相同，我们也可以称之为深度。
+如图是 3D 坐标通过透视投影到 2D 坐标到示意图。其中 $x,y,Z$ 用来描述空间坐标信息，方便起见，我们用他们表示相对于**相机中心(camera center)**的正交坐标，其中 $Z$ 和**光轴(optical axis)**方向相同，我们也可以称之为深度。
 
-同时，光轴应当垂直于成像平面，而光轴与成像平面的交点为 **图像中心(img center)**。
+同时，光轴应当垂直于成像平面，而光轴与成像平面的交点为**图像中心(img center)**。
 
 可以发现，$P$ 与 $p$ 的关系如下：
 
@@ -209,7 +209,7 @@ $$
 
 我们可以发现，小孔成像的模型视图其实还是比较麻烦的。现在我们把这个定角相似对折，变成 A 字型相似来表示这个模型，以简化不必要的信息，同时也能更清晰地表示透视关系。
 
-规定我们讨论的问题中物距总是大于像距，则可以将像表示为相机中心到物体的放射连线中的 **截面**。
+规定我们讨论的问题中物距总是大于像距，则可以将像表示为相机中心到物体的放射连线中的**截面**。
 
 它比较好地表达了透视关系，即 <u>相机中心</u> <u>物点B</u> <u>像点B'</u> 始终共线。这也是在之后的内容中更加常见的可视化表现方法。
 
@@ -227,7 +227,7 @@ $$
 
 ### 灭点与灭线
 
-在透视中一个很有意思的现象是 **灭点(vanishing point)** 和 **灭线(vanishing line)**。
+在透视中一个很有意思的现象是**灭点(vanishing point)**和**灭线(vanishing line)**。
 
 ![](18.png){width=400px align=left }
 
@@ -326,16 +326,16 @@ $$
 
 光度图像生成考虑的主要是光强和颜色两个方面的问题。
 
-硬件上，它们都通过 **图像传感器(img sensor)** 实现。
+硬件上，它们都通过**图像传感器(img sensor)**实现。
 
 - 主要分为 CMOS(Complimentary Metal-Oxide Semiconductor) 和 CCD(Charge Coupled Device) 两种，区别在于 Electron to Voltage Conversion 是否公用；
 
 ---
 
 !!! summary "引入"
-    **着色(shading)** 中所说的光强，主要有两个方面：一方面与距离光源的距离有关，理想情况下符合平方反比定律，这种特征我们称之为 Light Falloff；另一方面实际上是需要我们计算光的反射行为。
+    **着色(shading)**中所说的光强，主要有两个方面：一方面与距离光源的距离有关，理想情况下符合平方反比定律，这种特征我们称之为 Light Falloff；另一方面实际上是需要我们计算光的反射行为。
 
-    理论上，我们会需要 **双向反射分布函数 BRDF(Bidirectional Reflectance Distribution Function)** 来计算，BRDF 的输入大致可以分为如下几个：
+    理论上，我们会需要**双向反射分布函数 BRDF(Bidirectional Reflectance Distribution Function)**来计算，BRDF 的输入大致可以分为如下几个：
 
     - 观测角度(viewer direction)：$\vec v$
     - 表面法向量(surface normal)：$\vec n$
@@ -359,8 +359,8 @@ $$
 
 对成分做解释：
 
-- $L_d$ 为 **漫反射光强(diffusely reflected light)**；
-- $k_d$ 为 **漫发射系数(diffuse coefficient)**，如颜色；
+- $L_d$ 为**漫反射光强(diffusely reflected light)**；
+- $k_d$ 为**漫发射系数(diffuse coefficient)**，如颜色；
 - $\frac{I}{r^2}$ 为 到达着色点的光强；
 - $\max(0,n \cdot l)$ 为 着色点吸收的光强；
 
@@ -381,7 +381,7 @@ $$
 
 高光反射(specular reflection) 类似我们认知中的镜面反射，它的特征是基本符合镜反射的规律。
 
-在高光反射中，我们需要定义 **半程向量(half vec)** $\vec h = bisector(\vec v,\vec l) = \frac{\vec v + \vec l}{||\vec v + \vec l||}$ 
+在高光反射中，我们需要定义**半程向量(half vec)**$\vec h = bisector(\vec v,\vec l) = \frac{\vec v + \vec l}{||\vec v + \vec l||}$ 
 
 当 $\vec h$ 与 $\vec n$ 非常接近时，即 $\alpha = <\vec n, \vec h>$ 很小时，我们称之符合高光反射。
 
@@ -393,8 +393,8 @@ $$
 
 对成分做解释：
 
-- $L_s$ 为 **高光反射光强(specularly reflected light)**；
-- $k_s$ 为 **高光发射系数(specular coefficient)**；
+- $L_s$ 为**高光反射光强(specularly reflected light)**；
+- $k_s$ 为**高光发射系数(specular coefficient)**；
 
 分析可得，$p$ 越大，高光越集中。
 
@@ -402,7 +402,7 @@ $$
 
 ### Blinn-Phong 反射
 
-**Blinn-Phong 反射模型(Blinn-Phong Reflection Model)** 可以说集合了前两者，此外还引入了 **环境光(ambient part)**。
+**Blinn-Phong 反射模型(Blinn-Phong Reflection Model)**可以说集合了前两者，此外还引入了**环境光(ambient part)**。
 
 $$
 L_a=k_aI_a
@@ -423,12 +423,12 @@ $$
 
 ### 颜色
 
-为了描述颜色，我们需要定义 **色彩空间(color spaces)**，常见的有 [RGB](https://zh.wikipedia.org/wiki/%E4%B8%89%E5%8E%9F%E8%89%B2%E5%85%89%E6%A8%A1%E5%BC%8F) 和 [HSV](https://zh.wikipedia.org/wiki/HSL%E5%92%8CHSV%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4) 等，对相机来说我们更常用的是 RGB。
+为了描述颜色，我们需要定义**色彩空间(color spaces)**，常见的有 [RGB](https://zh.wikipedia.org/wiki/%E4%B8%89%E5%8E%9F%E8%89%B2%E5%85%89%E6%A8%A1%E5%BC%8F) 和 [HSV](https://zh.wikipedia.org/wiki/HSL%E5%92%8CHSV%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4) 等，对相机来说我们更常用的是 RGB。
 
 ??? note "in py"
     在算法中，我们用矩阵来存储图像信息，其中左上角的元素坐标为 `(0, 0, :)`，其中第三维用来指定颜色通道(channel)，所以第 i 行 j 列的像素点表示为 `(i-1, j-1, :)`；
     
-在硬件上，颜色传感主要通过 **拜尔滤镜(Bayer filter)** 实现。也就是通过在传感器前安装一个单色滤镜，来接收单一色光。常见的做法是以田字格的四个传感器为单位，分配 `R*1` `G*2` `B*1` 的滤镜。
+在硬件上，颜色传感主要通过**拜尔滤镜(Bayer filter)**实现。也就是通过在传感器前安装一个单色滤镜，来接收单一色光。常见的做法是以田字格的四个传感器为单位，分配 `R*1` `G*2` `B*1` 的滤镜。
 
 ![](25.png)
 > Source: https://en.wikipedia.org/wiki/Bayer_filter

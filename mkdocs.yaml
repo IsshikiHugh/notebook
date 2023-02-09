@@ -74,7 +74,7 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.betterem:
-      smart_enable: all
+      # smart_enable: all
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details

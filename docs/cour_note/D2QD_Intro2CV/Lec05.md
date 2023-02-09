@@ -5,7 +5,7 @@
 
 ## 图像特征匹配
 
-本节的课题是 **特征匹配(feature matching)**，关键在于找到图片之间点和点的匹配关系。该问题是很多问题的基石，例如：
+本节的课题是**特征匹配(feature matching)**，关键在于找到图片之间点和点的匹配关系。该问题是很多问题的基石，例如：
 
 ???+ summary "applications"
     - Image alignment / Panoramas
@@ -18,8 +18,8 @@
 
 特征匹配的主要环节是：
 
-1. **检测(detection)**: 找到 **兴趣点(interest points)**
-2. **表达(description)**: 提取每个兴趣点周围的向量 **特征描述符(feature descriptor)**
+1. **检测(detection)**: 找到**兴趣点(interest points)**
+2. **表达(description)**: 提取每个兴趣点周围的向量**特征描述符(feature descriptor)**
 3. **匹配(matching)**: 决定两个视角下特征描述符的关联并匹配
 
 ---
@@ -29,7 +29,7 @@
 
 > 推荐阅读：https://zhuanlan.zhihu.com/p/36382429
 
-**检测(detection)** 的首要问题是如何选择 **关键点(interest points/feature points)**。
+**检测(detection)**的首要问题是如何选择**关键点(interest points/feature points)**。
 
 总体来说，关键点需要由这么两个特征：
 
@@ -51,7 +51,7 @@
 其中一种关键点就是尖角，或者说角落，这一类关键点的<u>局部</u>独特性可以通过下面这个方式来衡量：
 
 !!! note "Local measures of uniqueness(rough):"
-    我们认为一个 **区域**，如果向任何方向滑动窗口，都会产生较大变化，那么其 uniqueness 较强。
+    我们认为一个**区域**，如果向任何方向滑动窗口，都会产生较大变化，那么其 uniqueness 较强。
 
     ![](68.png)
 
@@ -95,12 +95,12 @@
 
 可以发现，第三个情况的两个特征值都很大。
 
-更一般的，我们通过判断特征值的大小情况来判断一个区域是否包含一个 **角(corner)**，又或者是一些 **边(edge)**，甚至是 **平面(flag)**：
+更一般的，我们通过判断特征值的大小情况来判断一个区域是否包含一个**角(corner)**，又或者是一些**边(edge)**，甚至是**平面(flag)**：
 
 ![](71.png)
 > Corner detection.
 
-为了能够量化地表达上面这张图的分类规则，我们引入 **哈里斯算子(Harris operator)**:
+为了能够量化地表达上面这张图的分类规则，我们引入**哈里斯算子(Harris operator)**:
 
 $$
 f = \frac{\lambda_1\lambda_2}{\lambda_1+\lambda_2} = \frac{determinant(H)}{trace(H)}
@@ -123,7 +123,7 @@ $$
     \end{bmatrix}\right) = a+d
     $$
 
-如上这套方法就是 **[Harris corner detector](https://zh.wikipedia.org/wiki/%E5%93%88%E9%87%8C%E6%96%AF%E9%82%8A%E8%A7%92%E5%81%B5%E6%B8%AC)** 的实现。
+如上这套方法就是**[Harris corner detector](https://zh.wikipedia.org/wiki/%E5%93%88%E9%87%8C%E6%96%AF%E9%82%8A%E8%A7%92%E5%81%B5%E6%B8%AC)**的实现。
 
 归纳一下，其步骤就是：
 
@@ -153,7 +153,7 @@ $$
 
 而关于不变性，它们的结论是：
 
->  **Partially** invariant to affine intensity change.
+> **Partially** invariant to affine intensity change.
 > 
 > Corner response is invariant w.r.t. translation.
 > 
@@ -167,15 +167,15 @@ $$
 
 一种方案是，不断尝试不同的 window size，然后取得 response 曲线，假设 response 的大小只与 scale 有关，则曲线都应该是单峰的，而取出这个峰值（特征最明显的时候），就可以当他为对应的 scale 以及对应的 response。
 
-不过一般实际的做法是固定窗口大小，而改变图片的大小，再在得到的 **图像金字塔** 上进行这个方法的计算，即对不同分辨率的图片上分别进行哈里斯检测。（相当于增加了一个维度）
+不过一般实际的做法是固定窗口大小，而改变图片的大小，再在得到的**图像金字塔**上进行这个方法的计算，即对不同分辨率的图片上分别进行哈里斯检测。（相当于增加了一个维度）
 
 ---
 
 #### 斑点检测
 
-除了角落，**斑点(blob)** 也是一个比较好的特性，非常适合作为兴趣点。
+除了角落，**斑点(blob)**也是一个比较好的特性，非常适合作为兴趣点。
 
-而斑点的寻找我们则可以利用滤波器来实现，让我们回顾 **[第三章边缘提取](Lec03.md#边缘提取)** 的相关内容，我们可以利用类似的做法，使用一个中间负四周正的滤波器来提取斑点。
+而斑点的寻找我们则可以利用滤波器来实现，让我们回顾**[第三章边缘提取](Lec03.md#边缘提取)**的相关内容，我们可以利用类似的做法，使用一个中间负四周正的滤波器来提取斑点。
 
 通常来说，我们使用 Gaussian 滤波器的 Laplacian，即 Laplacian of Gaussian Filter(LoG)，来作为滤波器和图像进行卷积。
 
@@ -206,11 +206,11 @@ $$
 
 选定匹配点后，我们需要考虑如何描述表达这些点。
 
-一种朴素的思想是将窗口内的像素作为一个 **特性向量(feature vector)** 进行比较，但是这样做对偏移的误差过于敏感。也就是说，也许两张图片很像，但是因为一点位移误差，导致向量刚好错开，导致结果显示两个点差别很大。这是因为这种做法对像素点在窗口中的位置很敏感，决定了其在向量中的位置，即绝对排列顺序影响结果；然而实际情况下更重要的是相对排布顺序，但向量的做法比较难实现。
+一种朴素的思想是将窗口内的像素作为一个**特性向量(feature vector)**进行比较，但是这样做对偏移的误差过于敏感。也就是说，也许两张图片很像，但是因为一点位移误差，导致向量刚好错开，导致结果显示两个点差别很大。这是因为这种做法对像素点在窗口中的位置很敏感，决定了其在向量中的位置，即绝对排列顺序影响结果；然而实际情况下更重要的是相对排布顺序，但向量的做法比较难实现。
 
 ![](78.png){ width=500px }
 
-另外更好的做法是 尺度不变的特征变换(Scale Invariant Feature Transform)SIFT descriptor，不再使用像素值，而是使用区域中的梯度的分布作为一个描述，可以表示为一张 $[0,2\pi)$ 的，**循环的** 直方图。此时小的平移和缩放都不会对它产生很大影响，而旋转只会导致直方图的循环平移，不过这是很好处理的，比如我们可以选中最大的分量作为参考，并将整个直方图平移对齐。而这种做法相比于上面那个做法，**鲁棒性** 和 **效率** 都更高。
+另外更好的做法是 尺度不变的特征变换(Scale Invariant Feature Transform)SIFT descriptor，不再使用像素值，而是使用区域中的梯度的分布作为一个描述，可以表示为一张 $[0,2\pi)$ 的，**循环的**直方图。此时小的平移和缩放都不会对它产生很大影响，而旋转只会导致直方图的循环平移，不过这是很好处理的，比如我们可以选中最大的分量作为参考，并将整个直方图平移对齐。而这种做法相比于上面那个做法，**鲁棒性**和**效率**都更高。
 
 ![](77.png)
 
@@ -225,9 +225,9 @@ $$
         - Herbert Bay, Andreas Ess, Tinne Tuytelaars, Luc Van Gool, "SURF: Speeded Up Robust Features", Computer Vision and Image Understanding (CVIU), Vol. 110, No. 3, pp. 346--359, 2008 
     - **FAST (corner detector)**
         - Rosten. Machine Learning for High-speed Corner Detection, 2006. 
-    - **ORB: an efficient alternative to SIFT or SURF** 
+    - **ORB: an efficient alternative to SIFT or SURF**
         - Ethan Rublee, Vincent Rabaud, Kurt Konolige, Gary R. Bradski: ORB: An efficient alternative to SIFT or SURF. ICCV 2011 
-    - **Fast Retina Key- point (FREAK)** 
+    - **Fast Retina Key- point (FREAK)**
         - A. Alahi, R. Ortiz, and P. Vandergheynst. FREAK: Fast Retina Keypoint. In IEEE Conference on Computer Vision and Pattern Recognition, 2012. CVPR 2012 Open Source Award Winner.
 
 
@@ -235,16 +235,16 @@ $$
 
 ### 匹配
 
-所谓的 **匹配(matching)** 就是字面上的将两张图中对应的点建立起匹配关系。而评估方法就是寻找「距离」最接近的点。
+所谓的**匹配(matching)**就是字面上的将两张图中对应的点建立起匹配关系。而评估方法就是寻找「距离」最接近的点。
 
-而这里的「距离函数」是用来衡量两个兴趣点经过 **[表达](#表达)** 后的差异的函数，一般使用 L2 distance，即 $||f_1 - f_2||$。
+而这里的「距离函数」是用来衡量两个兴趣点经过**[表达](#表达)**后的差异的函数，一般使用 L2 distance，即 $||f_1 - f_2||$。
 
 !!! warning "重复性纹理"
-    然而需要特别注意点一个问题是，很有可能某个特征图案是重复出现的，这种问题叫做 **重复性纹理**。这就导致可能有很多兴趣点能和这个兴趣点实现匹配，这个时候我们就需要用 Ratio score = $\frac{ ||f_1 - f_2|| }{ ||f_1 - f_2'|| }$，比较最接近的两种匹配。
+    然而需要特别注意点一个问题是，很有可能某个特征图案是重复出现的，这种问题叫做**重复性纹理**。这就导致可能有很多兴趣点能和这个兴趣点实现匹配，这个时候我们就需要用 Ratio score = $\frac{ ||f_1 - f_2|| }{ ||f_1 - f_2'|| }$，比较最接近的两种匹配。
 
     如果 Ratio score 接近1，说明并不可靠，只能丢掉这个兴趣点。
 
-此外，为了增加匹配的准确性，我们还有一个判定规则：两点 **相互最相似**，则该匹配十分可信。（在 I2 中你最像我，在 I1 中我最像你）
+此外，为了增加匹配的准确性，我们还有一个判定规则：两点**相互最相似**，则该匹配十分可信。（在 I2 中你最像我，在 I1 中我最像你）
 
 ---
 
