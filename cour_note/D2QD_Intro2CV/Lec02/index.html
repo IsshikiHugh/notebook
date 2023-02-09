@@ -833,7 +833,7 @@
 <h1 id="lecture-2--image-formation">Lecture 2 | Image Formation<a class="headerlink" href="#lecture-2--image-formation" title="Permanent link">¶</a></h1>
 <h2 id="相机与光学原理">相机与光学原理<a class="headerlink" href="#相机与光学原理" title="Permanent link">¶</a></h2>
 <h3 id="小孔成像">小孔成像<a class="headerlink" href="#小孔成像" title="Permanent link">¶</a></h3>
-<p>如果我们直接拿一块平面来记录自然界的光信息，不难发现，由于光线是向四面八方传播的，所以接收到的信息也乱七八糟，所以我们需要通过一个小孔，也就是如今的 <strong>光圈(aperture)</strong> 来对光线进行一个过滤。这就是早期 <strong>针孔摄像机(pinhole camera)</strong> 的原理。</p>
+<p>如果我们直接拿一块平面来记录自然界的光信息，不难发现，由于光线是向四面八方传播的，所以接收到的信息也乱七八糟，所以我们需要通过一个小孔，也就是如今的<strong>光圈(aperture)</strong>来对光线进行一个过滤。这就是早期<strong>针孔摄像机(pinhole camera)</strong>的原理。</p>
 <p><center markdown=""><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../6.png"><img alt="" src="../6.png" width="300px"/></a> <a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../7.png"><img alt="" src="../7.png" width="326px"/></a></center></p>
 <p>这也就是我们很早就学过的，小孔成像原理。而光圈越小，成像也会越来越清楚，但也不能太小，否则会导致亮度不足<s>甚至衍射</s>。</p>
 <h3 id="透镜">透镜<a class="headerlink" href="#透镜" title="Permanent link">¶</a></h3>
@@ -846,9 +846,9 @@
 <div class="arithmatex">\[
 \frac{1}{i} + \frac{1}{o} = \frac{1}{f}
 \]</div>
-<p>其中 <span class="arithmatex">\(i\)</span> 为 <strong>像距(img dis)</strong>，<span class="arithmatex">\(o\)</span> 为 <strong>物距(obj dis)</strong>，<span class="arithmatex">\(f\)</span> 为 <strong>焦距(focal len)</strong>。</p>
+<p>其中 <span class="arithmatex">\(i\)</span> 为<strong>像距(img dis)</strong>，<span class="arithmatex">\(o\)</span> 为<strong>物距(obj dis)</strong>，<span class="arithmatex">\(f\)</span> 为<strong>焦距(focal len)</strong>。</p>
 <p>而对于平行光，或者说 <span class="arithmatex">\(o\to +\infty\)</span> 时，就会有 <span class="arithmatex">\(i=f\)</span>。通过这种方法，我们可以通过测量平行光透过凸透镜汇聚的位置来测量焦距。</p>
-<p>同时再引入一个 <strong>放大率(Magnification)</strong>：<span class="arithmatex">\(m=\frac{h_i}{h_o}=\frac{i}{o}\)</span>。</p>
+<p>同时再引入一个<strong>放大率(Magnification)</strong>：<span class="arithmatex">\(m=\frac{h_i}{h_o}=\frac{i}{o}\)</span>。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../9.png"><img alt="" src="../9.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://fpcv.cs.columbia.edu/">https://fpcv.cs.columbia.edu/</a></p>
@@ -860,18 +860,18 @@
 <p>Source: <a href="https://snapsnapsnap.photos/">https://snapsnapsnap.photos/</a></p>
 </blockquote>
 <p>可以发现，焦距的大小会影响视野的大小和放大率的大小。</p>
-<p>50mm/46° 与人的视野相近，因此它被称为 <strong>标准镜头(standard lens)</strong>.</p>
+<p>50mm/46° 与人的视野相近，因此它被称为<strong>标准镜头(standard lens)</strong>.</p>
 <p>此外，即使在画面中保证一个物体的大小不变，选用不同的焦距也会导致画面的变化——背景的大小，通过下面这张图的三个画面我们可以很清晰的感受到这一点。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../11.png"><img alt="" src="../11.png"/></a></p>
 <p>此外，传感器的大小，或者说底片的大小，也会影响 FoV。而且一般来说，越大的底片能够提供更高的分辨率。</p>
 <h3 id="f-数">F 数<a class="headerlink" href="#f-数" title="Permanent link">¶</a></h3>
-<p><strong>F 数(F-Number)</strong> 用来描述光圈的相对大小，其定义式为 <span class="arithmatex">\(N=\frac{f}{D}\)</span>。</p>
+<p><strong>F 数(F-Number)</strong>用来描述光圈的相对大小，其定义式为 <span class="arithmatex">\(N=\frac{f}{D}\)</span>。</p>
 <h3 id="对焦">对焦<a class="headerlink" href="#对焦" title="Permanent link">¶</a></h3>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../12.png"><img alt="" src="../12.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://fpcv.cs.columbia.edu/">https://fpcv.cs.columbia.edu/</a></p>
 </blockquote>
-<p>由相似三角形，没有对上焦而形成的 <strong>光斑(Blur Circle)</strong> 的计算公式为：</p>
+<p>由相似三角形，没有对上焦而形成的<strong>光斑(Blur Circle)</strong>的计算公式为：</p>
 <div class="arithmatex">\[
 \begin{align}
     &amp;\because \frac{b}{D}=frac{|i'-i|}{i'} \\
@@ -881,7 +881,7 @@
 <p>而对焦，就是将失焦的内容重新汇聚到底片上。</p>
 <hr/>
 <h3 id="景深-dof">景深 DoF<a class="headerlink" href="#景深-dof" title="Permanent link">¶</a></h3>
-<p>根据上一小节得到的结论，理论上我们好像只有清晰成像一个特定平面上的内容，但是实际上相机上会有一段距离上的内容都是清晰的，这段距离就是 <strong>景深 DoF(Depth of Field)</strong>。而之所以有景深，是因为底片的感光元件是有极限的，当光斑小雨这个极限时，拍摄出来的就仍然是清晰的。</p>
+<p>根据上一小节得到的结论，理论上我们好像只有清晰成像一个特定平面上的内容，但是实际上相机上会有一段距离上的内容都是清晰的，这段距离就是<strong>景深 DoF(Depth of Field)</strong>。而之所以有景深，是因为底片的感光元件是有极限的，当光斑小雨这个极限时，拍摄出来的就仍然是清晰的。</p>
 <p>而景深的大小可以这么计算：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../13.png"><img alt="" src="../13.png"/></a></p>
 <p>我们可以发现，景深的大小 大致与 光圈大小、物像 正相关，与 焦距 负相关。</p>
@@ -890,12 +890,12 @@
 <p class="admonition-title">引言</p>
 <p>由于我们考虑的是成像问题，所以更多的是在描述三维真实信息与二维平面信息之间的互相表达。</p>
 <p>而这种“描述”需要基于一个投影模型。或者说说一种映射关系，简单来说就好像“点光源投影”和“平行光源投影”。</p>
-<p>但是需要注意，无论是哪一种模型，由于我们将三维信息通过 <strong>不可逆的线性变换</strong> 压缩到了二维信息，所以一定是存在信息缺失的。通常来说，指的是深度缺失。</p>
+<p>但是需要注意，无论是哪一种模型，由于我们将三维信息通过<strong>不可逆的线性变换</strong>压缩到了二维信息，所以一定是存在信息缺失的。通常来说，指的是深度缺失。</p>
 </div>
 <h2 id="透视投影">透视投影<a class="headerlink" href="#透视投影" title="Permanent link">¶</a></h2>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../15.png"><img alt="" src="../15.png"/></a></p>
-<p>如图是 3D 坐标通过透视投影到 2D 坐标到示意图。其中 <span class="arithmatex">\(x,y,Z\)</span> 用来描述空间坐标信息，方便起见，我们用他们表示相对于 <strong>相机中心(camera center)</strong> 的正交坐标，其中 <span class="arithmatex">\(Z\)</span> 和 <strong>光轴(optical axis)</strong> 方向相同，我们也可以称之为深度。</p>
-<p>同时，光轴应当垂直于成像平面，而光轴与成像平面的交点为 <strong>图像中心(img center)</strong>。</p>
+<p>如图是 3D 坐标通过透视投影到 2D 坐标到示意图。其中 <span class="arithmatex">\(x,y,Z\)</span> 用来描述空间坐标信息，方便起见，我们用他们表示相对于<strong>相机中心(camera center)</strong>的正交坐标，其中 <span class="arithmatex">\(Z\)</span> 和<strong>光轴(optical axis)</strong>方向相同，我们也可以称之为深度。</p>
+<p>同时，光轴应当垂直于成像平面，而光轴与成像平面的交点为<strong>图像中心(img center)</strong>。</p>
 <p>可以发现，<span class="arithmatex">\(P\)</span> 与 <span class="arithmatex">\(p\)</span> 的关系如下：</p>
 <div class="arithmatex">\[
 p = 
@@ -988,7 +988,7 @@ A
 <h3 id="可视化表示">可视化表示<a class="headerlink" href="#可视化表示" title="Permanent link">¶</a></h3>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../16.png"><img align="right" alt="" src="../16.png"/></a></p>
 <p>我们可以发现，小孔成像的模型视图其实还是比较麻烦的。现在我们把这个定角相似对折，变成 A 字型相似来表示这个模型，以简化不必要的信息，同时也能更清晰地表示透视关系。</p>
-<p>规定我们讨论的问题中物距总是大于像距，则可以将像表示为相机中心到物体的放射连线中的 <strong>截面</strong>。</p>
+<p>规定我们讨论的问题中物距总是大于像距，则可以将像表示为相机中心到物体的放射连线中的<strong>截面</strong>。</p>
 <p>它比较好地表达了透视关系，即 <u>相机中心</u> <u>物点B</u> <u>像点B'</u> 始终共线。这也是在之后的内容中更加常见的可视化表现方法。</p>
 <h3 id="信息缺失">信息缺失<a class="headerlink" href="#信息缺失" title="Permanent link">¶</a></h3>
 <p>由于在透视投影系统中，物体的真实线度大小与图像线度大小的比例由深度决定，但深度又不能直接从图中获取，所以有时候我们无法比较图像中两个物体的真实线度差。换句话来说，长度信息和角度信息是丢失的。</p>
@@ -996,7 +996,7 @@ A
 <p>然而仍然有些性质是保留的，例如直线仍然是直线，但是实际上，如果你能想象的话，虽然直线仍然是直线，但是它的“线密度”不一样了。</p>
 <p>所以，如果是曲线，它虽然不会变成折线，但是特征可能已经变了，比如圆是会扭曲的。</p>
 <h3 id="灭点与灭线">灭点与灭线<a class="headerlink" href="#灭点与灭线" title="Permanent link">¶</a></h3>
-<p>在透视中一个很有意思的现象是 <strong>灭点(vanishing point)</strong> 和 <strong>灭线(vanishing line)</strong>。</p>
+<p>在透视中一个很有意思的现象是<strong>灭点(vanishing point)</strong>和<strong>灭线(vanishing line)</strong>。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../18.png"><img align="left" alt="" src="../18.png" width="400px"/></a></p>
 <p>可以发现，在图像中一条不断衍生的直线，在像中最终会终结于一个点，这个点就是“灭点”。几何上，灭点与相机中心的连线应当平行于该直线。</p>
 <p>而现实中相互平行的两条直线，最终会在图像中终止于同一个灭点。</p>
@@ -1082,15 +1082,15 @@ r^2 &amp; = {x'}_n^2 + {y'}_n^2 \\
 </ul>
 <h2 id="光度图像生成与着色">光度图像生成与着色<a class="headerlink" href="#光度图像生成与着色" title="Permanent link">¶</a></h2>
 <p>光度图像生成考虑的主要是光强和颜色两个方面的问题。</p>
-<p>硬件上，它们都通过 <strong>图像传感器(img sensor)</strong> 实现。</p>
+<p>硬件上，它们都通过<strong>图像传感器(img sensor)</strong>实现。</p>
 <ul>
 <li>主要分为 CMOS(Complimentary Metal-Oxide Semiconductor) 和 CCD(Charge Coupled Device) 两种，区别在于 Electron to Voltage Conversion 是否公用；</li>
 </ul>
 <hr/>
 <div class="admonition summary">
 <p class="admonition-title">引入</p>
-<p><strong>着色(shading)</strong> 中所说的光强，主要有两个方面：一方面与距离光源的距离有关，理想情况下符合平方反比定律，这种特征我们称之为 Light Falloff；另一方面实际上是需要我们计算光的反射行为。</p>
-<p>理论上，我们会需要 <strong>双向反射分布函数 BRDF(Bidirectional Reflectance Distribution Function)</strong> 来计算，BRDF 的输入大致可以分为如下几个：</p>
+<p><strong>着色(shading)</strong>中所说的光强，主要有两个方面：一方面与距离光源的距离有关，理想情况下符合平方反比定律，这种特征我们称之为 Light Falloff；另一方面实际上是需要我们计算光的反射行为。</p>
+<p>理论上，我们会需要<strong>双向反射分布函数 BRDF(Bidirectional Reflectance Distribution Function)</strong>来计算，BRDF 的输入大致可以分为如下几个：</p>
 <ul>
 <li>观测角度(viewer direction)：<span class="arithmatex">\(\vec v\)</span></li>
 <li>表面法向量(surface normal)：<span class="arithmatex">\(\vec n\)</span></li>
@@ -1109,8 +1109,8 @@ L_d = k_d \cdot \frac{I}{r^2} \cdot \max(0,n\cdot l)
 \]</div>
 <p>对成分做解释：</p>
 <ul>
-<li><span class="arithmatex">\(L_d\)</span> 为 <strong>漫反射光强(diffusely reflected light)</strong>；</li>
-<li><span class="arithmatex">\(k_d\)</span> 为 <strong>漫发射系数(diffuse coefficient)</strong>，如颜色；</li>
+<li><span class="arithmatex">\(L_d\)</span> 为<strong>漫反射光强(diffusely reflected light)</strong>；</li>
+<li><span class="arithmatex">\(k_d\)</span> 为<strong>漫发射系数(diffuse coefficient)</strong>，如颜色；</li>
 <li><span class="arithmatex">\(\frac{I}{r^2}\)</span> 为 到达着色点的光强；</li>
 <li><span class="arithmatex">\(\max(0,n \cdot l)\)</span> 为 着色点吸收的光强；</li>
 </ul>
@@ -1127,7 +1127,7 @@ L_d = k_d \cdot \frac{I}{r^2} \cdot \max(0,n\cdot l)
 <hr/>
 <h3 id="高光反射">高光反射<a class="headerlink" href="#高光反射" title="Permanent link">¶</a></h3>
 <p>高光反射(specular reflection) 类似我们认知中的镜面反射，它的特征是基本符合镜反射的规律。</p>
-<p>在高光反射中，我们需要定义 <strong>半程向量(half vec)</strong> <span class="arithmatex">\(\vec h = bisector(\vec v,\vec l) = \frac{\vec v + \vec l}{||\vec v + \vec l||}\)</span> </p>
+<p>在高光反射中，我们需要定义<strong>半程向量(half vec)</strong><span class="arithmatex">\(\vec h = bisector(\vec v,\vec l) = \frac{\vec v + \vec l}{||\vec v + \vec l||}\)</span> </p>
 <p>当 <span class="arithmatex">\(\vec h\)</span> 与 <span class="arithmatex">\(\vec n\)</span> 非常接近时，即 <span class="arithmatex">\(\alpha = &lt;\vec n, \vec h&gt;\)</span> 很小时，我们称之符合高光反射。</p>
 <p>高光反射的强度公式大致如下：</p>
 <div class="arithmatex">\[
@@ -1135,13 +1135,13 @@ L_s = k_s \cdot \frac{I}{r^2} \cdot \max(0, \cos\alpha)^p=k_s \cdot \frac{I}{r^2
 \]</div>
 <p>对成分做解释：</p>
 <ul>
-<li><span class="arithmatex">\(L_s\)</span> 为 <strong>高光反射光强(specularly reflected light)</strong>；</li>
-<li><span class="arithmatex">\(k_s\)</span> 为 <strong>高光发射系数(specular coefficient)</strong>；</li>
+<li><span class="arithmatex">\(L_s\)</span> 为<strong>高光反射光强(specularly reflected light)</strong>；</li>
+<li><span class="arithmatex">\(k_s\)</span> 为<strong>高光发射系数(specular coefficient)</strong>；</li>
 </ul>
 <p>分析可得，<span class="arithmatex">\(p\)</span> 越大，高光越集中。</p>
 <hr/>
 <h3 id="blinn-phong-反射">Blinn-Phong 反射<a class="headerlink" href="#blinn-phong-反射" title="Permanent link">¶</a></h3>
-<p><strong>Blinn-Phong 反射模型(Blinn-Phong Reflection Model)</strong> 可以说集合了前两者，此外还引入了 <strong>环境光(ambient part)</strong>。</p>
+<p><strong>Blinn-Phong 反射模型(Blinn-Phong Reflection Model)</strong>可以说集合了前两者，此外还引入了<strong>环境光(ambient part)</strong>。</p>
 <div class="arithmatex">\[
 L_a=k_aI_a
 \]</div>
@@ -1155,12 +1155,12 @@ L &amp; = L_a + L_d + L_s \\
 \]</div>
 <hr/>
 <h3 id="颜色">颜色<a class="headerlink" href="#颜色" title="Permanent link">¶</a></h3>
-<p>为了描述颜色，我们需要定义 <strong>色彩空间(color spaces)</strong>，常见的有 <a href="https://zh.wikipedia.org/wiki/%E4%B8%89%E5%8E%9F%E8%89%B2%E5%85%89%E6%A8%A1%E5%BC%8F">RGB</a> 和 <a href="https://zh.wikipedia.org/wiki/HSL%E5%92%8CHSV%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4">HSV</a> 等，对相机来说我们更常用的是 RGB。</p>
+<p>为了描述颜色，我们需要定义<strong>色彩空间(color spaces)</strong>，常见的有 <a href="https://zh.wikipedia.org/wiki/%E4%B8%89%E5%8E%9F%E8%89%B2%E5%85%89%E6%A8%A1%E5%BC%8F">RGB</a> 和 <a href="https://zh.wikipedia.org/wiki/HSL%E5%92%8CHSV%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4">HSV</a> 等，对相机来说我们更常用的是 RGB。</p>
 <details class="note">
 <summary>in py</summary>
 <p>在算法中，我们用矩阵来存储图像信息，其中左上角的元素坐标为 <code>(0, 0, :)</code>，其中第三维用来指定颜色通道(channel)，所以第 i 行 j 列的像素点表示为 <code>(i-1, j-1, :)</code>；</p>
 </details>
-<p>在硬件上，颜色传感主要通过 <strong>拜尔滤镜(Bayer filter)</strong> 实现。也就是通过在传感器前安装一个单色滤镜，来接收单一色光。常见的做法是以田字格的四个传感器为单位，分配 <code>R*1</code> <code>G*2</code> <code>B*1</code> 的滤镜。</p>
+<p>在硬件上，颜色传感主要通过<strong>拜尔滤镜(Bayer filter)</strong>实现。也就是通过在传感器前安装一个单色滤镜，来接收单一色光。常见的做法是以田字格的四个传感器为单位，分配 <code>R*1</code> <code>G*2</code> <code>B*1</code> 的滤镜。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../25.png"><img alt="" src="../25.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://en.wikipedia.org/wiki/Bayer_filter">https://en.wikipedia.org/wiki/Bayer_filter</a></p>
@@ -1172,7 +1172,7 @@ L &amp; = L_a + L_d + L_s \\
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月11日 15:19:53</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月9日 12:22:27</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年10月31日 14:53:50</span>

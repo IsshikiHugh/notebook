@@ -716,7 +716,7 @@
 <p>本文尚未完全整理好！</p>
 </div>
 <h2 id="图像特征匹配">图像特征匹配<a class="headerlink" href="#图像特征匹配" title="Permanent link">¶</a></h2>
-<p>本节的课题是 <strong>特征匹配(feature matching)</strong>，关键在于找到图片之间点和点的匹配关系。该问题是很多问题的基石，例如：</p>
+<p>本节的课题是<strong>特征匹配(feature matching)</strong>，关键在于找到图片之间点和点的匹配关系。该问题是很多问题的基石，例如：</p>
 <details class="summary" open="open">
 <summary>applications</summary>
 <ul>
@@ -731,8 +731,8 @@
 </details>
 <p>特征匹配的主要环节是：</p>
 <ol>
-<li><strong>检测(detection)</strong>: 找到 <strong>兴趣点(interest points)</strong></li>
-<li><strong>表达(description)</strong>: 提取每个兴趣点周围的向量 <strong>特征描述符(feature descriptor)</strong></li>
+<li><strong>检测(detection)</strong>: 找到<strong>兴趣点(interest points)</strong></li>
+<li><strong>表达(description)</strong>: 提取每个兴趣点周围的向量<strong>特征描述符(feature descriptor)</strong></li>
 <li><strong>匹配(matching)</strong>: 决定两个视角下特征描述符的关联并匹配</li>
 </ol>
 <hr/>
@@ -740,7 +740,7 @@
 <blockquote>
 <p>推荐阅读：<a href="https://zhuanlan.zhihu.com/p/36382429">https://zhuanlan.zhihu.com/p/36382429</a></p>
 </blockquote>
-<p><strong>检测(detection)</strong> 的首要问题是如何选择 <strong>关键点(interest points/feature points)</strong>。</p>
+<p><strong>检测(detection)</strong>的首要问题是如何选择<strong>关键点(interest points/feature points)</strong>。</p>
 <p>总体来说，关键点需要由这么两个特征：</p>
 <ol>
 <li><strong>独特性(uniqueness)</strong>，这个点需要能够表征某个图案的某个特性；</li>
@@ -760,7 +760,7 @@
 <p>其中一种关键点就是尖角，或者说角落，这一类关键点的<u>局部</u>独特性可以通过下面这个方式来衡量：</p>
 <div class="admonition note">
 <p class="admonition-title">Local measures of uniqueness(rough):</p>
-<p>我们认为一个 <strong>区域</strong>，如果向任何方向滑动窗口，都会产生较大变化，那么其 uniqueness 较强。</p>
+<p>我们认为一个<strong>区域</strong>，如果向任何方向滑动窗口，都会产生较大变化，那么其 uniqueness 较强。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../68.png"><img alt="" src="../68.png"/></a></p>
 </div>
 <p>这是一个相对模糊的定义，而为了对其进行建模，我们进一步地赋予其数学含义：</p>
@@ -796,12 +796,12 @@ H = \begin{bmatrix}
 <p>对于上面的三种情况，它们做主成分分析后得到的结果是：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../70.png"><img alt="" src="../70.png"/></a></p>
 <p>可以发现，第三个情况的两个特征值都很大。</p>
-<p>更一般的，我们通过判断特征值的大小情况来判断一个区域是否包含一个 <strong>角(corner)</strong>，又或者是一些 <strong>边(edge)</strong>，甚至是 <strong>平面(flag)</strong>：</p>
+<p>更一般的，我们通过判断特征值的大小情况来判断一个区域是否包含一个<strong>角(corner)</strong>，又或者是一些<strong>边(edge)</strong>，甚至是<strong>平面(flag)</strong>：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../71.png"><img alt="" src="../71.png"/></a></p>
 <blockquote>
 <p>Corner detection.</p>
 </blockquote>
-<p>为了能够量化地表达上面这张图的分类规则，我们引入 <strong>哈里斯算子(Harris operator)</strong>:</p>
+<p>为了能够量化地表达上面这张图的分类规则，我们引入<strong>哈里斯算子(Harris operator)</strong>:</p>
 <div class="arithmatex">\[
 f = \frac{\lambda_1\lambda_2}{\lambda_1+\lambda_2} = \frac{determinant(H)}{trace(H)}
 \]</div>
@@ -821,7 +821,7 @@ trace\left(\begin{bmatrix}
 \end{bmatrix}\right) = a+d
 \]</div>
 </details>
-<p>如上这套方法就是 <strong><a href="https://zh.wikipedia.org/wiki/%E5%93%88%E9%87%8C%E6%96%AF%E9%82%8A%E8%A7%92%E5%81%B5%E6%B8%AC">Harris corner detector</a></strong> 的实现。</p>
+<p>如上这套方法就是<strong><a href="https://zh.wikipedia.org/wiki/%E5%93%88%E9%87%8C%E6%96%AF%E9%82%8A%E8%A7%92%E5%81%B5%E6%B8%AC">Harris corner detector</a></strong>的实现。</p>
 <p>归纳一下，其步骤就是：</p>
 <div class="admonition note">
 <p class="admonition-title">Harris detector </p>
@@ -859,11 +859,11 @@ trace\left(\begin{bmatrix}
 <p>所以我们在使用这个方法的过程中需要注意尺度，即窗口的大小选定。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../72.png"><img alt="" src="../72.png" width="200px"/></a></p>
 <p>一种方案是，不断尝试不同的 window size，然后取得 response 曲线，假设 response 的大小只与 scale 有关，则曲线都应该是单峰的，而取出这个峰值（特征最明显的时候），就可以当他为对应的 scale 以及对应的 response。</p>
-<p>不过一般实际的做法是固定窗口大小，而改变图片的大小，再在得到的 <strong>图像金字塔</strong> 上进行这个方法的计算，即对不同分辨率的图片上分别进行哈里斯检测。（相当于增加了一个维度）</p>
+<p>不过一般实际的做法是固定窗口大小，而改变图片的大小，再在得到的<strong>图像金字塔</strong>上进行这个方法的计算，即对不同分辨率的图片上分别进行哈里斯检测。（相当于增加了一个维度）</p>
 <hr/>
 <h4 id="斑点检测">斑点检测<a class="headerlink" href="#斑点检测" title="Permanent link">¶</a></h4>
-<p>除了角落，<strong>斑点(blob)</strong> 也是一个比较好的特性，非常适合作为兴趣点。</p>
-<p>而斑点的寻找我们则可以利用滤波器来实现，让我们回顾 <strong><a href="../Lec03/#边缘提取">第三章边缘提取</a></strong> 的相关内容，我们可以利用类似的做法，使用一个中间负四周正的滤波器来提取斑点。</p>
+<p>除了角落，<strong>斑点(blob)</strong>也是一个比较好的特性，非常适合作为兴趣点。</p>
+<p>而斑点的寻找我们则可以利用滤波器来实现，让我们回顾<strong><a href="../Lec03/#边缘提取">第三章边缘提取</a></strong>的相关内容，我们可以利用类似的做法，使用一个中间负四周正的滤波器来提取斑点。</p>
 <p>通常来说，我们使用 Gaussian 滤波器的 Laplacian，即 Laplacian of Gaussian Filter(LoG)，来作为滤波器和图像进行卷积。</p>
 <p>👉 <strong><a href="https://zh.wikipedia.org/wiki/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90">Laplacian 算子</a></strong></p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../73.png"><img alt="" src="../73.png"/></a></p>
@@ -879,9 +879,9 @@ trace\left(\begin{bmatrix}
 <hr/>
 <h3 id="表达">表达<a class="headerlink" href="#表达" title="Permanent link">¶</a></h3>
 <p>选定匹配点后，我们需要考虑如何描述表达这些点。</p>
-<p>一种朴素的思想是将窗口内的像素作为一个 <strong>特性向量(feature vector)</strong> 进行比较，但是这样做对偏移的误差过于敏感。也就是说，也许两张图片很像，但是因为一点位移误差，导致向量刚好错开，导致结果显示两个点差别很大。这是因为这种做法对像素点在窗口中的位置很敏感，决定了其在向量中的位置，即绝对排列顺序影响结果；然而实际情况下更重要的是相对排布顺序，但向量的做法比较难实现。</p>
+<p>一种朴素的思想是将窗口内的像素作为一个<strong>特性向量(feature vector)</strong>进行比较，但是这样做对偏移的误差过于敏感。也就是说，也许两张图片很像，但是因为一点位移误差，导致向量刚好错开，导致结果显示两个点差别很大。这是因为这种做法对像素点在窗口中的位置很敏感，决定了其在向量中的位置，即绝对排列顺序影响结果；然而实际情况下更重要的是相对排布顺序，但向量的做法比较难实现。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../78.png"><img alt="" src="../78.png" width="500px"/></a></p>
-<p>另外更好的做法是 尺度不变的特征变换(Scale Invariant Feature Transform)SIFT descriptor，不再使用像素值，而是使用区域中的梯度的分布作为一个描述，可以表示为一张 <span class="arithmatex">\([0,2\pi)\)</span> 的，<strong>循环的</strong> 直方图。此时小的平移和缩放都不会对它产生很大影响，而旋转只会导致直方图的循环平移，不过这是很好处理的，比如我们可以选中最大的分量作为参考，并将整个直方图平移对齐。而这种做法相比于上面那个做法，<strong>鲁棒性</strong> 和 <strong>效率</strong> 都更高。</p>
+<p>另外更好的做法是 尺度不变的特征变换(Scale Invariant Feature Transform)SIFT descriptor，不再使用像素值，而是使用区域中的梯度的分布作为一个描述，可以表示为一张 <span class="arithmatex">\([0,2\pi)\)</span> 的，<strong>循环的</strong>直方图。此时小的平移和缩放都不会对它产生很大影响，而旋转只会导致直方图的循环平移，不过这是很好处理的，比如我们可以选中最大的分量作为参考，并将整个直方图平移对齐。而这种做法相比于上面那个做法，<strong>鲁棒性</strong>和<strong>效率</strong>都更高。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../77.png"><img alt="" src="../77.png"/></a></p>
 <div class="admonition tip">
 <p class="admonition-title">注意，完整的 SIFT 是包括「检测」步骤的。</p>
@@ -902,11 +902,11 @@ trace\left(\begin{bmatrix}
 <li>Rosten. Machine Learning for High-speed Corner Detection, 2006. </li>
 </ul>
 </li>
-<li><strong>ORB: an efficient alternative to SIFT or SURF</strong> <ul>
+<li><strong>ORB: an efficient alternative to SIFT or SURF</strong><ul>
 <li>Ethan Rublee, Vincent Rabaud, Kurt Konolige, Gary R. Bradski: ORB: An efficient alternative to SIFT or SURF. ICCV 2011 </li>
 </ul>
 </li>
-<li><strong>Fast Retina Key- point (FREAK)</strong> <ul>
+<li><strong>Fast Retina Key- point (FREAK)</strong><ul>
 <li>A. Alahi, R. Ortiz, and P. Vandergheynst. FREAK: Fast Retina Keypoint. In IEEE Conference on Computer Vision and Pattern Recognition, 2012. CVPR 2012 Open Source Award Winner.</li>
 </ul>
 </li>
@@ -914,14 +914,14 @@ trace\left(\begin{bmatrix}
 </details>
 <hr/>
 <h3 id="匹配">匹配<a class="headerlink" href="#匹配" title="Permanent link">¶</a></h3>
-<p>所谓的 <strong>匹配(matching)</strong> 就是字面上的将两张图中对应的点建立起匹配关系。而评估方法就是寻找「距离」最接近的点。</p>
-<p>而这里的「距离函数」是用来衡量两个兴趣点经过 <strong><a href="#表达">表达</a></strong> 后的差异的函数，一般使用 L2 distance，即 <span class="arithmatex">\(||f_1 - f_2||\)</span>。</p>
+<p>所谓的<strong>匹配(matching)</strong>就是字面上的将两张图中对应的点建立起匹配关系。而评估方法就是寻找「距离」最接近的点。</p>
+<p>而这里的「距离函数」是用来衡量两个兴趣点经过<strong><a href="#表达">表达</a></strong>后的差异的函数，一般使用 L2 distance，即 <span class="arithmatex">\(||f_1 - f_2||\)</span>。</p>
 <div class="admonition warning">
 <p class="admonition-title">重复性纹理</p>
-<p>然而需要特别注意点一个问题是，很有可能某个特征图案是重复出现的，这种问题叫做 <strong>重复性纹理</strong>。这就导致可能有很多兴趣点能和这个兴趣点实现匹配，这个时候我们就需要用 Ratio score = <span class="arithmatex">\(\frac{ ||f_1 - f_2|| }{ ||f_1 - f_2'|| }\)</span>，比较最接近的两种匹配。</p>
+<p>然而需要特别注意点一个问题是，很有可能某个特征图案是重复出现的，这种问题叫做<strong>重复性纹理</strong>。这就导致可能有很多兴趣点能和这个兴趣点实现匹配，这个时候我们就需要用 Ratio score = <span class="arithmatex">\(\frac{ ||f_1 - f_2|| }{ ||f_1 - f_2'|| }\)</span>，比较最接近的两种匹配。</p>
 <p>如果 Ratio score 接近1，说明并不可靠，只能丢掉这个兴趣点。</p>
 </div>
-<p>此外，为了增加匹配的准确性，我们还有一个判定规则：两点 <strong>相互最相似</strong>，则该匹配十分可信。（在 I2 中你最像我，在 I1 中我最像你）</p>
+<p>此外，为了增加匹配的准确性，我们还有一个判定规则：两点<strong>相互最相似</strong>，则该匹配十分可信。（在 I2 中你最像我，在 I1 中我最像你）</p>
 <hr/>
 <h3 id="learning-based-matching">Learning based matching<a class="headerlink" href="#learning-based-matching" title="Permanent link">¶</a></h3>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../79.png"><img alt="" src="../79.png"/></a></p>
@@ -983,7 +983,7 @@ Ad=b \rightarrow \min\limits_d ||Ad-b||^2
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月19日 16:40:17</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月9日 12:22:27</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>

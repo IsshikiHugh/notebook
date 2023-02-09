@@ -826,9 +826,9 @@
 </a>
 <h1 id="lecture-4--model-fitting-and-optimization">Lecture 4 | Model Fitting and Optimization<a class="headerlink" href="#lecture-4--model-fitting-and-optimization" title="Permanent link">¶</a></h1>
 <h2 id="优化">优化<a class="headerlink" href="#优化" title="Permanent link">¶</a></h2>
-<p>首先我们来定义一个 <strong>优化(Optimization)</strong> 问题的模型：</p>
+<p>首先我们来定义一个<strong>优化(Optimization)</strong>问题的模型：</p>
 <div class="admonition info">
-<p>设 <strong>目标函数</strong> <span class="arithmatex">\(f_0(\vec x)\)</span> 满足 <strong>约束条件</strong>：</p>
+<p>设<strong>目标函数</strong><span class="arithmatex">\(f_0(\vec x)\)</span> 满足<strong>约束条件</strong>：</p>
 <div class="arithmatex">\[
 \left\{
 \begin{array}{ll}
@@ -854,21 +854,21 @@
 <hr/>
 <h3 id="模型拟合">模型拟合<a class="headerlink" href="#模型拟合" title="Permanent link">¶</a></h3>
 <p>为了研究分析实际问题，我们需要对问题进行一个建模，更具体的来说就是根据实际情况，寻找数据之间的关系，并建立数学模型。</p>
-<p>一个数学 <strong>模型(model)</strong> 描述问题中输入和输出的关系，例如：线性模型(linear model) <span class="arithmatex">\(b = a^T x\)</span> 就描述了输入(input) <span class="arithmatex">\(a\)</span> 和输出(output) <span class="arithmatex">\(b\)</span> 关于模型参数(model parameter) <span class="arithmatex">\(x\)</span> 的关系。</p>
-<p>而实际的结果很难严格满足数学模型，这是由多方原因导致的，所以我们往往做的是对实际情况进行 <strong>模型拟合(model fitting)</strong>。</p>
+<p>一个数学<strong>模型(model)</strong>描述问题中输入和输出的关系，例如：线性模型(linear model) <span class="arithmatex">\(b = a^T x\)</span> 就描述了输入(input) <span class="arithmatex">\(a\)</span> 和输出(output) <span class="arithmatex">\(b\)</span> 关于模型参数(model parameter) <span class="arithmatex">\(x\)</span> 的关系。</p>
+<p>而实际的结果很难严格满足数学模型，这是由多方原因导致的，所以我们往往做的是对实际情况进行<strong>模型拟合(model fitting)</strong>。</p>
 <p>更具体的来说，我们可能已经有一个先验的假设，即数据符合哪种模型，接下来根据数据来分析得到合适的 model parameters，而这个步骤也常常被称为 learning。</p>
-<p>一种比较经典的逼近方法（<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95">最小二乘法</a>）是求使 <strong><a href="https://zh.wikipedia.org/wiki/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE">均方误差(mean square error)MSE</a></strong> 最小的 model parameters：</p>
+<p>一种比较经典的逼近方法（<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95">最小二乘法</a>）是求使<strong><a href="https://zh.wikipedia.org/wiki/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE">均方误差(mean square error)MSE</a></strong>最小的 model parameters：</p>
 <p><span class="arithmatex">\(\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2\)</span></p>
-<p>而如果我们假设数据中的噪声是高斯分布的（实际上大部分噪声在基数足够大的情况下都可以看作为高斯分布的），那么可以与统计学的 <strong>极大似然估计(maximum likelihood estimation)MLE</strong> 相统一.</p>
+<p>而如果我们假设数据中的噪声是高斯分布的（实际上大部分噪声在基数足够大的情况下都可以看作为高斯分布的），那么可以与统计学的<strong>极大似然估计(maximum likelihood estimation)MLE</strong>相统一.</p>
 <div class="admonition tip">
 <p class="admonition-title">MSE vs. MLE</p>
 <p><a href="https://medium.com/analytics-vidhya/mse-vs-mle-for-linear-regression-f4ce3f6b990e">MSE vs MLE for linear regression</a></p>
 </div>
-<p>具体来说，<span class="arithmatex">\(b_i = a_i^T x + n, \;\; n \sim G(0,\sigma)\)</span>，而对于给定的 <span class="arithmatex">\(x\)</span>，其 <strong>似然(likehood)</strong> <span class="arithmatex">\(P[(a_i,b_i)|x] = P[b_i-a_i^Tx] \propto \exp \left( - \frac{(b_i-a_i^Tx)^2}{2\sigma^2} \right)\)</span>，表示在 model parameter 为 <span class="arithmatex">\(x\)</span> 的情况下，数据符合 <span class="arithmatex">\((a_i,b_i)\)</span> 的可能性。</p>
+<p>具体来说，<span class="arithmatex">\(b_i = a_i^T x + n, \;\; n \sim G(0,\sigma)\)</span>，而对于给定的 <span class="arithmatex">\(x\)</span>，其<strong>似然(likehood)</strong><span class="arithmatex">\(P[(a_i,b_i)|x] = P[b_i-a_i^Tx] \propto \exp \left( - \frac{(b_i-a_i^Tx)^2}{2\sigma^2} \right)\)</span>，表示在 model parameter 为 <span class="arithmatex">\(x\)</span> 的情况下，数据符合 <span class="arithmatex">\((a_i,b_i)\)</span> 的可能性。</p>
 <details class="note" open="open">
 <summary>Maximum Likelihood Estimation</summary>
 <p><!--Copy from https://github.com/sakuratsuyu/Note/blob/master/docs/Computer_Science_Courses/ICV/4_Model_Fitting_and_Optimization.md?plain=1-->
-If the data points are <strong>independent</strong>,</p>
+If the data points are<strong>independent</strong>,</p>
 <div class="arithmatex">\[
 \begin{align}
 P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\limits_iP[b_i - a_{i^{Tx]}} \\
@@ -892,18 +892,18 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <hr/>
 <h2 id="数值方法">数值方法<a class="headerlink" href="#数值方法" title="Permanent link">¶</a></h2>
 <p>上一小节介绍了如何对实际问题进行数学建模，接下来需要介绍的是如何求解数学模型。</p>
-<p>我们知道，对于一些比较简单的模型，我们可以直接求其 <strong>解析解(analytical solution)</strong>，比如使用求导等方法。</p>
+<p>我们知道，对于一些比较简单的模型，我们可以直接求其<strong>解析解(analytical solution)</strong>，比如使用求导等方法。</p>
 <div class="admonition example">
 <p class="admonition-title">🌰</p>
 <p>以刚才的线性 MSE 为例，<span class="arithmatex">\(\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2\)</span> 等效于求解等式 <span class="arithmatex">\(A^TAx=A^Tb\)</span>。</p>
 </div>
-<p>然而，实际情况是大部分问题过于复杂，我们没法直接求其解析解，所以我们需要采用一些即采用一些 <strong>数值方法(numerical methods)</strong>。</p>
+<p>然而，实际情况是大部分问题过于复杂，我们没法直接求其解析解，所以我们需要采用一些即采用一些<strong>数值方法(numerical methods)</strong>。</p>
 <hr/>
 <h3 id="梯度下降">梯度下降<a class="headerlink" href="#梯度下降" title="Permanent link">¶</a></h3>
 <blockquote>
 <p>由于相关领域的“函数”等基本上都是高维的，所以我们一般使用二维函数图像的方法来形象表示函数，即使用“等高线”的形式来可视化函数。</p>
 </blockquote>
-<p>虽然没法直接求解析解，但是一般函数都具有一些局部性质，例如极值点临域的梯度都指向极值点。模糊地来说，只要我们随着“梯度”去“下降”，就有可能找到极值点，这就是通过 <strong>梯度下降(gradient descent)</strong> 的方法来解决优化问题。</p>
+<p>虽然没法直接求解析解，但是一般函数都具有一些局部性质，例如极值点临域的梯度都指向极值点。模糊地来说，只要我们随着“梯度”去“下降”，就有可能找到极值点，这就是通过<strong>梯度下降(gradient descent)</strong>的方法来解决优化问题。</p>
 <p>简单描述梯度下降的过程：</p>
 <ol>
 <li>初始化起点坐标 x；</li>
@@ -932,7 +932,7 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <li>first-order approximation: <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x\)</span></li>
 <li>second-order approximation: <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^T H_F \Delta x\)</span></li>
 </ul>
-<p>其中 <span class="arithmatex">\(J_F\)</span> 是 <strong><a href="https://zh.m.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94%E7%9F%A9%E9%98%B5">雅各比矩阵</a></strong>，可以理解为多维向量函数的导数；<span class="arithmatex">\(H_F\)</span> 是 <strong><a href="https://zh.m.wikipedia.org/zh-hans/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%99%A3">海森矩阵</a></strong>，可以理解为多位向量函数的二阶导数。</p>
+<p>其中 <span class="arithmatex">\(J_F\)</span> 是<strong><a href="https://zh.m.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94%E7%9F%A9%E9%98%B5">雅各比矩阵</a></strong>，可以理解为多维向量函数的导数；<span class="arithmatex">\(H_F\)</span> 是<strong><a href="https://zh.m.wikipedia.org/zh-hans/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%99%A3">海森矩阵</a></strong>，可以理解为多位向量函数的二阶导数。</p>
 <p>接下来以 first-order approximation 为例继续分析。</p>
 <p>观察 <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x\)</span>，发现当 <span class="arithmatex">\(J_F\Delta x &lt; 0\)</span> 时， <span class="arithmatex">\(F(x_0 + \Delta x)\)</span> 大概率比 <span class="arithmatex">\(F(x_0)\)</span> 小，即“下降”，所以在 first-order approximation 的情况下，一般选择方向 <span class="arithmatex">\(\vec p = -J_F^T\)</span>，于是位移量 <span class="arithmatex">\(movement = -J_F \cdot J_F^T \cdot step\)</span>。</p>
 <hr/>
@@ -953,7 +953,7 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <p>换句话说就是，符合预期的最大步长，这个“预期”，就是通过 <span class="arithmatex">\(\gamma\)</span> 体现的。图中红色虚线和黑色细线分别是 <span class="arithmatex">\(\gamma\)</span> 取边界值时的情况，而红色实线则表示我们的预期随 <span class="arithmatex">\(\alpha\)</span> 的变化。</p>
 </blockquote>
 <hr/>
-<p>上面使用 first-order approximation 为例介绍的这套方法就是 <strong>最速梯度下降法(steepest descent method)</strong>。</p>
+<p>上面使用 first-order approximation 为例介绍的这套方法就是<strong>最速梯度下降法(steepest descent method)</strong>。</p>
 <div class="admonition note">
 <p class="admonition-title">最速梯度下降法</p>
 <p><span class="arithmatex">\(\vec p = -J_F^T\)</span>；</p>
@@ -971,7 +971,7 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 </ul>
 <p>这是因为，最速梯度下降法主要采用的是 first-order approximation，没有体现曲率特征。</p>
 </div>
-<p>因而一种很自然的改进方法就是使用 second-order approximation，即 <strong>牛顿法(Newton Method)</strong>。</p>
+<p>因而一种很自然的改进方法就是使用 second-order approximation，即<strong>牛顿法(Newton Method)</strong>。</p>
 <div class="admonition note">
 <p class="admonition-title">牛顿法</p>
 <p><span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^T H_F \Delta x\)</span></p>
@@ -988,7 +988,7 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 </li>
 </ul>
 </div>
-<p>由此发现，牛顿法的表现会好很多，如果能够避免计算黑塞矩阵，就可以进一步提高牛顿法的效果，于是就出现了 <strong>高斯牛顿法(Gauss-Newton method)</strong>。</p>
+<p>由此发现，牛顿法的表现会好很多，如果能够避免计算黑塞矩阵，就可以进一步提高牛顿法的效果，于是就出现了<strong>高斯牛顿法(Gauss-Newton method)</strong>。</p>
 <div class="admonition note">
 <p class="admonition-title">高斯牛顿法</p>
 <blockquote>
@@ -1030,7 +1030,7 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 </div>
 <div class="admonition tip">
 <p class="admonition-title">带约束的优化问题</p>
-<p>对于 <strong>带约束的优化问题(constrained optimization)</strong>，则需要 <strong>根据实际问题</strong> 求解。</p>
+<p>对于<strong>带约束的优化问题(constrained optimization)</strong>，则需要<strong>根据实际问题</strong>求解。</p>
 <ul>
 <li>我们可能可以转化问题，使用更简单的表达式去拟合原来的表达式，来求解；</li>
 <li>其中，（凹）凸函数是一定能找到最优解的，我们称这种问题为凸优化问题(Convex optimization)</li>
@@ -1044,7 +1044,7 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <p>分多个 batch 来处理，大量撒点，然后比较每一个 batch 的结果，最终取最好的一个即可。</p>
 <hr/>
 <h2 id="鲁棒估计">鲁棒估计<a class="headerlink" href="#鲁棒估计" title="Permanent link">¶</a></h2>
-<p><strong><a href="https://en.wikipedia.org/wiki/Robust_statistics">鲁棒估计(robust estimation)</a></strong> 是对从各种概率分布（尤其是非正态分布）中提取的数据具有良好性能的统计。</p>
+<p><strong><a href="https://en.wikipedia.org/wiki/Robust_statistics">鲁棒估计(robust estimation)</a></strong>是对从各种概率分布（尤其是非正态分布）中提取的数据具有良好性能的统计。</p>
 <p>在拟合模型中，难免出现一些不符合预期的点，而它们会对拟合结果产生或多或小的影响，而如何权衡这些噪声与真正有用的数据点之间的关系，就是鲁棒估计的课题。</p>
 <hr/>
 <h3 id="内点--外点">内点 &amp; 外点<a class="headerlink" href="#内点--外点" title="Permanent link">¶</a></h3>
@@ -1076,7 +1076,7 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 </details>
 <hr/>
 <h3 id="随机抽样一致">随机抽样一致<a class="headerlink" href="#随机抽样一致" title="Permanent link">¶</a></h3>
-<p><strong><a href="https://zh.wikipedia.org/wiki/%E9%9A%A8%E6%A9%9F%E6%8A%BD%E6%A8%A3%E4%B8%80%E8%87%B4">随机抽样一致(random sample consensus)RANSAC</a></strong> 采用迭代的方式从包含外点的数据中估计数学模型参数，是一个对于存在明显外点的数据非常有效的方法。</p>
+<p><strong><a href="https://zh.wikipedia.org/wiki/%E9%9A%A8%E6%A9%9F%E6%8A%BD%E6%A8%A3%E4%B8%80%E8%87%B4">随机抽样一致(random sample consensus)RANSAC</a></strong>采用迭代的方式从包含外点的数据中估计数学模型参数，是一个对于存在明显外点的数据非常有效的方法。</p>
 <div class="admonition summary">
 <p class="admonition-title">RANSAC procedure</p>
 <ol>
@@ -1088,26 +1088,26 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <p>由 outlier 拟合出来的直线一般 votes 比较少，因为 outlier 之间很难一致；但是inlier之间容易一致，因而得分往往更高，于是将它们区分开来。<del>这不就是 Voting Tree (逃</del></p>
 <hr/>
 <h2 id="病态问题">病态问题<a class="headerlink" href="#病态问题" title="Permanent link">¶</a></h2>
-<p>如果一个问题的解不唯一，那么这个问题是一个 <strong>病态问题(ill-posed problem)</strong>。特别的，在线性问题中，一个线性方程（组）的解如果不唯一（不满秩），则同样是一个病态问题。</p>
+<p>如果一个问题的解不唯一，那么这个问题是一个<strong>病态问题(ill-posed problem)</strong>。特别的，在线性问题中，一个线性方程（组）的解如果不唯一（不满秩），则同样是一个病态问题。</p>
 <p>当然，对于线性方程组，根据线性代数的知识，我们可以增加方程，即增加约束。而这种约束一般来自于对变量的先验约束，比如：</p>
 <div class="admonition note">
 <p class="admonition-title">L2 regularization</p>
+</div>
 <p><strong>L2 norm</strong>: <span class="arithmatex">\(||x||_2 = \sum_i x_i^2\)</span>;</p>
 <p><strong>L2 regularization</strong>: <span class="arithmatex">\(\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_2 \leq 1\)</span>;</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../63.png"><img alt="" src="../63.png" width="200px"/></a></p>
-<blockquote>
-<p>通过让选择的解尽可能接近原点，而让我们没有用的解的维度尽可能接近 0，以减小没用的变量的影响，抑制冗余变量。</p>
-</blockquote>
-</div>
+<div class="highlight"><pre><span></span><code>![](63.png){ width=200px }
+
+&gt; 通过让选择的解尽可能接近原点，而让我们没有用的解的维度尽可能接近 0，以减小没用的变量的影响，抑制冗余变量。
+</code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">L1 regularization</p>
+</div>
 <p><strong>L1 norm</strong>: <span class="arithmatex">\(||x||_1=\sum_i|x_i|\)</span>;</p>
 <p><strong>L1 regularization</strong>: <span class="arithmatex">\(\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_1 \leq 1\)</span></p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../64.png"><img alt="" src="../64.png" width="200px"/></a></p>
-<blockquote>
-<p>L1 可视化中可以发现，坐标轴上比较容易抓住解，此时意味着有些变量(维度)是 0，换句话来说能让解变得“<strong>稀疏(sparse)</strong>”，即在维度上的分布只比较集中于个别项。</p>
-</blockquote>
-</div>
+<div class="highlight"><pre><span></span><code>![](64.png){ width=200px }
+
+&gt; L1 可视化中可以发现，坐标轴上比较容易抓住解，此时意味着有些变量(维度)是 0，换句话来说能让解变得“**稀疏(sparse)**”，即在维度上的分布只比较集中于个别项。
+</code></pre></div>
 <p>不过，将他们作为约束条件参与求解，不如直接加进去作为一个项，其效果是等价的：</p>
 <div class="arithmatex">\[
 \begin{matrix}
@@ -1118,11 +1118,11 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 \]</div>
 <hr/>
 <h3 id="过拟合和欠拟合">过拟合和欠拟合<a class="headerlink" href="#过拟合和欠拟合" title="Permanent link">¶</a></h3>
-<p>在这个过程中，也要小心 <strong>过拟合(overfitting)</strong> 和 <strong>欠拟合(underfitting)</strong>，它们的含义非常直白：</p>
+<p>在这个过程中，也要小心<strong>过拟合(overfitting)</strong>和<strong>欠拟合(underfitting)</strong>，它们的含义非常直白：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../65.png"><img alt="" src="../65.png"/></a></p>
 <hr/>
 <h2 id="插值">插值<a class="headerlink" href="#插值" title="Permanent link">¶</a></h2>
-<p><strong>插值(interpolation)</strong> 其实已经在 <a href="../Lec03/#放大图片向上采样--插值">lec 3 的笔记</a> 里提到过了。</p>
+<p><strong>插值(interpolation)</strong>其实已经在 <a href="../Lec03/#放大图片向上采样--插值">lec 3 的笔记</a> 里提到过了。</p>
 <p>这里先略过。</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: 再细说。</li>
@@ -1135,13 +1135,13 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <p>上面是连续优化问题，下面是离散优化问题</p>
 <h2 id="图割--马可夫随机场">图割 &amp; 马可夫随机场<a class="headerlink" href="#图割--马可夫随机场" title="Permanent link">¶</a></h2>
 <h3 id="图像标签问题">图像标签问题<a class="headerlink" href="#图像标签问题" title="Permanent link">¶</a></h3>
-<p><strong>图像标签问题(image labeling problems)</strong> 即通过图片信息给每一个像素分配标签，实际上就是一个对图像内容的分类和识别问题。</p>
+<p><strong>图像标签问题(image labeling problems)</strong>即通过图片信息给每一个像素分配标签，实际上就是一个对图像内容的分类和识别问题。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../66.png"><img alt="" src="../66.png"/></a></p>
-<p>其中一个比较强的 <strong>先验(prior)</strong> 是：相邻且相似的像素应当拥有相同的标签。</p>
+<p>其中一个比较强的<strong>先验(prior)</strong>是：相邻且相似的像素应当拥有相同的标签。</p>
 <p>而图割和马可夫随机场可以建模这种先验。</p>
 <hr/>
 <h3 id="图割">图割<a class="headerlink" href="#图割" title="Permanent link">¶</a></h3>
-<p><strong>图割(Graphcut)</strong> 的核心思想是，把一张图片的每一个像素看作一个 graph 中的 vertex，并在像素之间建 edge，并将 weight 定义为两像素之间的相似性或关联性(affinity or similarity)。</p>
+<p><strong>图割(Graphcut)</strong>的核心思想是，把一张图片的每一个像素看作一个 graph 中的 vertex，并在像素之间建 edge，并将 weight 定义为两像素之间的相似性或关联性(affinity or similarity)。</p>
 <div class="admonition success">
 <p class="admonition-title">measuring affinity</p>
 <p>比如，我们可以这样衡量像素的相似性：</p>
@@ -1171,7 +1171,7 @@ NCut(V_A,V_B) = \frac{cut(V_A,V_B)}{assoc(V_A,V)} + \frac{cut(V_A,V_B)}{assoc(V_
 </ul>
 <hr/>
 <h3 id="马可夫随机场">马可夫随机场<a class="headerlink" href="#马可夫随机场" title="Permanent link">¶</a></h3>
-<p><strong>马可夫随机场(Markov Random Field)MRF</strong> 是一种更通用的解决方案，可惜我第一次没听懂，等我听懂了再来补充这里的内容。</p>
+<p><strong>马可夫随机场(Markov Random Field)MRF</strong>是一种更通用的解决方案，可惜我第一次没听懂，等我听懂了再来补充这里的内容。</p>
 <details class="bug">
 <summary>sketch</summary>
 <p>Markov chains</p>
@@ -1181,7 +1181,7 @@ NCut(V_A,V_B) = \frac{cut(V_A,V_B)}{assoc(V_A,V)} + \frac{cut(V_A,V_B)}{assoc(V_
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月20日 16:27:03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月9日 12:22:27</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>

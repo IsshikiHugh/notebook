@@ -894,7 +894,7 @@ R_{\theta,anti-clockwise} =
     t_y 
 \end{bmatrix}
 \]</div>
-<p>为了让仿射变换也能写成 <span class="arithmatex">\(a=Mb\)</span> 的形式以简化运算，我们可以用 <span class="arithmatex">\(n+1\)</span> 维向量来表示 <span class="arithmatex">\(n\)</span> 维点，即使用 <strong>齐次坐标(homogenous coordinates)</strong>：</p>
+<p>为了让仿射变换也能写成 <span class="arithmatex">\(a=Mb\)</span> 的形式以简化运算，我们可以用 <span class="arithmatex">\(n+1\)</span> 维向量来表示 <span class="arithmatex">\(n\)</span> 维点，即使用<strong>齐次坐标(homogenous coordinates)</strong>：</p>
 <div class="arithmatex">\[
 \begin{bmatrix}
     x'\\
@@ -926,12 +926,12 @@ R_{\theta,anti-clockwise} =
 <ul>
 <li><span class="arithmatex">\(\begin{bmatrix}x\\y\\k\end{bmatrix}\)</span> 等价于 <span class="arithmatex">\(\begin{bmatrix}x/k\\y/k\\1\end{bmatrix}\)</span>，当然，<span class="arithmatex">\(k\not=0\)</span>；</li>
 </ul>
-<p>而引入这种想法后，我们就知道为什么通过齐次坐标化就能把平移变成线性变换——我们可以将 <span class="arithmatex">\(n\)</span> 维 <strong>点</strong> 的 <strong>平移</strong> 看作 <span class="arithmatex">\(n+1\)</span> 维 <strong>射线</strong> 的 <strong>旋转</strong>，而旋转显然是一个线性变换。</p>
+<p>而引入这种想法后，我们就知道为什么通过齐次坐标化就能把平移变成线性变换——我们可以将 <span class="arithmatex">\(n\)</span> 维<strong>点</strong>的<strong>平移</strong>看作 <span class="arithmatex">\(n+1\)</span> 维<strong>射线</strong>的<strong>旋转</strong>，而旋转显然是一个线性变换。</p>
 <p>而关于该性质的其他应用，可以看 Lecture 2 的<a href="../Lec02/#应用齐次坐标">第二小节</a>。</p>
 </div>
 <hr/>
 <h3 id="逆变换">逆变换<a class="headerlink" href="#逆变换" title="Permanent link">¶</a></h3>
-<p>线性变换 <span class="arithmatex">\(T\)</span> 的 <strong>逆变换(Inverse Transform)</strong> 就是其变换矩阵的逆 <span class="arithmatex">\(T^{-1}\)</span>，显然，并不是所有变换都是可逆的。</p>
+<p>线性变换 <span class="arithmatex">\(T\)</span> 的<strong>逆变换(Inverse Transform)</strong>就是其变换矩阵的逆 <span class="arithmatex">\(T^{-1}\)</span>，显然，并不是所有变换都是可逆的。</p>
 <p>形象地理解，一个变换矩阵如果不满秩（不可逆），那么就会有几个基在变换中合并，或者说多个点被映射为同一个点，导致无法还原。</p>
 <hr/>
 <h3 id="行列式的几何含义">行列式的几何含义<a class="headerlink" href="#行列式的几何含义" title="Permanent link">¶</a></h3>
@@ -939,7 +939,7 @@ R_{\theta,anti-clockwise} =
 <p><strong>行列式(Determinant)</strong> 的值等于这个方阵中的向量对应的 平行图形/几何体/... 的 面积/体积/...</p>
 <hr/>
 <h3 id="特征值和特征向量">特征值和特征向量<a class="headerlink" href="#特征值和特征向量" title="Permanent link">¶</a></h3>
-<p><strong>特征向量(eigenvector)</strong> 和 <strong>特征值(eigenvalue)</strong> 的定义如下：</p>
+<p><strong>特征向量(eigenvector)</strong>和<strong>特征值(eigenvalue)</strong>的定义如下：</p>
 <p>对于矩阵 <span class="arithmatex">\(A\in R^{N\times N}\)</span>，如果有向量 <span class="arithmatex">\(v\in R^{N}\)</span> 和实数 <span class="arithmatex">\(\lambda \not = 0\)</span>，满足：</p>
 <div class="arithmatex">\[
 Av = \lambda v
@@ -948,17 +948,17 @@ Av = \lambda v
 <p>从几何变换的角度来理解这个定义式，可以描述为：向量 <span class="arithmatex">\(v\)</span> 经过变换 <span class="arithmatex">\(A\)</span> 得到的结果，等于直接对 <span class="arithmatex">\(v\)</span> 进行缩放（而没有改变方向）。</p>
 <div class="admonition tip">
 <p class="admonition-title">工程计算方法</p>
-<p>令人惊喜的是，我们在实际运用时，可以直接使用数学库中的 <strong>特征值分解(eigen decomposition)</strong> 方法，其大致会做这样一件事：</p>
+<p>令人惊喜的是，我们在实际运用时，可以直接使用数学库中的<strong>特征值分解(eigen decomposition)</strong>方法，其大致会做这样一件事：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../4.png"><img alt="" src="../4.png"/></a></p>
 <p>将矩阵 <span class="arithmatex">\(A\)</span> 分解为 <span class="arithmatex">\(Q\Lambda Q^{-1}\)</span>，其中 <span class="arithmatex">\(Q\)</span> 中的每一列即为 <span class="arithmatex">\(A\)</span> 的特征向量，对角阵 <span class="arithmatex">\(\Lambda\)</span> 中的第 <span class="arithmatex">\(i\)</span> 项就是第 <span class="arithmatex">\(i\)</span> 个特征向量的特征值。</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">特征值与特征向量的应用：主成分分析(principal component analysis)</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../5.png"><img align="right" alt="" src="../5.png" width="310px"/></a></p>
-<p><strong>主成分(principal component)</strong> 等于协方差矩阵的 特征值最大的 那个特征向量。</p>
+<p><strong>主成分(principal component)</strong>等于协方差矩阵的 特征值最大的 那个特征向量。</p>
 <ul>
 <li>如图，我们要从图中找到一个方向，使得所有数据点在这个方向上的投影，方差最大（换言之，找到这些数据的一个“方向”）；</li>
-<li>记所有数据点为 <span class="arithmatex">\(A\)</span>，则 <span class="arithmatex">\(A^{T}A\)</span> 为 <strong>协方差矩阵(covariance matrix)</strong>，其特征向量中，特征值最大的那个，就是这组数据的主成分；</li>
+<li>记所有数据点为 <span class="arithmatex">\(A\)</span>，则 <span class="arithmatex">\(A^{T}A\)</span> 为<strong>协方差矩阵(covariance matrix)</strong>，其特征向量中，特征值最大的那个，就是这组数据的主成分；</li>
 </ul>
 </div>
 <hr/>
@@ -966,7 +966,7 @@ Av = \lambda v
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月20日 16:27:03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月9日 12:22:27</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月12日 23:31:11</span>

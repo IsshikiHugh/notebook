@@ -844,7 +844,7 @@
 <p>不过在此之前，我们需要先介绍一个工具——<strong>卷积(convolution)</strong>，之后一些操作都依赖于此。</p>
 <hr/>
 <h3 id="卷积">卷积<a class="headerlink" href="#卷积" title="Permanent link">¶</a></h3>
-<p>数学上对 <strong>卷积(convolution)</strong> 给出的定义是：</p>
+<p>数学上对<strong>卷积(convolution)</strong>给出的定义是：</p>
 <div class="arithmatex">\[
 (f*g)(x)=\int_{-\infty}^{\infty} f(y)g(x-y)\mathrm{d}y
 \]</div>
@@ -852,7 +852,7 @@
 <div class="admonition note">
 <p><strong>一言以蔽之：<span class="arithmatex">\((f*g)(x)\)</span> 是 <span class="arithmatex">\(g(x)\)</span> 在滤波规则 <span class="arithmatex">\(f(y)\)</span> 下的加权均值函数。</strong></p>
 <ul>
-<li>我们一般称 <span class="arithmatex">\(f(y)\)</span> 为 <strong>滤波器(filter)</strong>，这是因为我们本质上是在求 <span class="arithmatex">\(g(x)\)</span> 在这个滤波规则下加权求均值生成的新函数。</li>
+<li>我们一般称 <span class="arithmatex">\(f(y)\)</span> 为<strong>滤波器(filter)</strong>，这是因为我们本质上是在求 <span class="arithmatex">\(g(x)\)</span> 在这个滤波规则下加权求均值生成的新函数。</li>
 <li>所以，<span class="arithmatex">\(f(y)\)</span> 一般是根据需求而决定的一些特殊函数，比如高斯函数、特定区间内的常函数等。</li>
 </ul>
 </div>
@@ -1100,10 +1100,10 @@ f(x) =
 </div>
 <hr/>
 <h3 id="增加对比度">增加对比度<a class="headerlink" href="#增加对比度" title="Permanent link">¶</a></h3>
-<p><strong>增加对比度(increase contrast)</strong> 即让画面中的颜色向两个极端偏移，通俗来说就是黑的更黑，白的更白。</p>
+<p><strong>增加对比度(increase contrast)</strong>即让画面中的颜色向两个极端偏移，通俗来说就是黑的更黑，白的更白。</p>
 <p>体感上让一张雾蒙蒙的照片变得更加黑白分明。</p>
 <p>上面也说了，是将色彩向两个极端偏移，实际上就是讲原来的颜色进行一个映射，令 <span class="arithmatex">\(color'(x,y) = f[color(x,y)]\)</span>。</p>
-<p>那么一般来说，我们采用 <strong>S 曲线(S curve)</strong> 来进行这个映射，也就是将原本均匀分布的点按照 S 曲线进行拉伸和压缩，这样，白的会更白，黑的就会更黑。</p>
+<p>那么一般来说，我们采用<strong>S 曲线(S curve)</strong>来进行这个映射，也就是将原本均匀分布的点按照 S 曲线进行拉伸和压缩，这样，白的会更白，黑的就会更黑。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../27.png"><img alt="" src="../27.png"/></a></p>
 <blockquote>
 <p>图中横坐标表示原来的颜色，纵坐标表示映射后的颜色，可以发现黑色部分的颜色都向黑色偏移，白色部分亦然。</p>
@@ -1111,7 +1111,7 @@ f(x) =
 </blockquote>
 <hr/>
 <h3 id="反色">反色<a class="headerlink" href="#反色" title="Permanent link">¶</a></h3>
-<p>顾名思义，<strong>图像取反色(image invert)</strong> 就是将颜色取反，黑变白，白变黑。</p>
+<p>顾名思义，<strong>图像取反色(image invert)</strong>就是将颜色取反，黑变白，白变黑。</p>
 <hr/>
 <h3 id="边缘提取">边缘提取<a class="headerlink" href="#边缘提取" title="Permanent link">¶</a></h3>
 <p>边缘提取 Edge detection</p>
@@ -1129,7 +1129,7 @@ f(x) =
 </div>
 <hr/>
 <h3 id="模糊">模糊<a class="headerlink" href="#模糊" title="Permanent link">¶</a></h3>
-<p>所谓的 <strong>模糊(blur)</strong>，像是将某个位置的像素和周围混合起来，更数学的表述来说，需要与周围进行加权求平均，没错，我们需要使用卷积来实现。</p>
+<p>所谓的<strong>模糊(blur)</strong>，像是将某个位置的像素和周围混合起来，更数学的表述来说，需要与周围进行加权求平均，没错，我们需要使用卷积来实现。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../29.png"><img alt="" src="../29.png"/></a></p>
 <blockquote>
 <p>Source: Stanford CS248, Winter 202</p>
@@ -1171,7 +1171,7 @@ f(i,j)=\frac{1}{2\pi \sigma^2}e^{-\frac{i^2+j^2}{2\sigma^2}}
     0 &amp; -1 &amp; 0
 \end{bmatrix}
 \]</div>
-<p>如果边缘的点和矩阵中心的点不一样，则矩阵中心的点的特征会被强调，即会放大相邻点的区别，这就是 <strong>锐化(sharpen)</strong> 的原理。</p>
+<p>如果边缘的点和矩阵中心的点不一样，则矩阵中心的点的特征会被强调，即会放大相邻点的区别，这就是<strong>锐化(sharpen)</strong>的原理。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../30.png"><img alt="" src="../30.png"/></a></p>
 <blockquote>
 <p>Source: Stanford CS248, Winter 202</p>
@@ -1180,7 +1180,7 @@ f(i,j)=\frac{1}{2\pi \sigma^2}e^{-\frac{i^2+j^2}{2\sigma^2}}
 <p class="admonition-title">模糊与锐化的联系</p>
 <ul>
 <li>如果定义原本的图像为 <span class="arithmatex">\(I\)</span>，模糊后的图像为 <span class="arithmatex">\(I_b\)</span></li>
-<li>定义图像中的 <strong>高频(high frequencies)</strong> 为 I_h = I - I_b；</li>
+<li>定义图像中的<strong>高频(high frequencies)</strong>为 I_h = I - I_b；</li>
 <li>则锐化的图像 <span class="arithmatex">\(I_s = I + I_h\)</span>；</li>
 <li>即有 <span class="arithmatex">\(2I = I_s + I_h\)</span>，可以发现，又一个类似于互补的关系；</li>
 <li>而这里的高频可以理解为图像中变化比较明显的地方；</li>
@@ -1264,23 +1264,23 @@ f(i,j)=\frac{1}{2\pi \sigma^2}e^{-\frac{i^2+j^2}{2\sigma^2}}
 <hr/>
 <div class="admonition summary">
 <p class="admonition-title">引入</p>
-<p><strong>图像采样(sampling)</strong> 分为 <strong>向上采样(up-sampling)</strong> 和 <strong>向下采样(down-sampling)</strong> 两种。</p>
-<p>更通俗的来说，就是在保持图像特征的情况下对图片进行缩放。显然，在缩放图像时，会出现像素数量的变化，那要如何添加像素、如何减少像素，就是图像采样考虑的事情。</p>
-<p>此外，将两者结合，还会有例如改变图片长宽比，进行拉伸这种问题。</p>
 </div>
+<p><strong>图像采样(sampling)</strong>分为<strong>向上采样(up-sampling)</strong>和<strong>向下采样(down-sampling)</strong>两种。</p>
+<div class="highlight"><pre><span></span><code>更通俗的来说，就是在保持图像特征的情况下对图片进行缩放。显然，在缩放图像时，会出现像素数量的变化，那要如何添加像素、如何减少像素，就是图像采样考虑的事情。
+
+此外，将两者结合，还会有例如改变图片长宽比，进行拉伸这种问题。
+</code></pre></div>
 <h2 id="缩小图片向下采样">缩小图片：向下采样<a class="headerlink" href="#缩小图片向下采样" title="Permanent link">¶</a></h2>
 <p>向下采样也就是让图片变小，这里主要需要考虑的问题是如何缩小图片，如何避免出现信号走样的问题。</p>
 <h3 id="信号走样">信号走样<a class="headerlink" href="#信号走样" title="Permanent link">¶</a></h3>
 <p>说到让图像变小，最简单的一个想法就是——比如，让图片的线度缩小一半，可以每四个格子就采一个格子的样本。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../37.png"><img alt="" src="../37.png"/></a></p>
 <p>而这种粗暴的做法则有可能导致：</p>
-<ul>
-<li><strong>摩尔纹(Moiré Patterns)</strong>。</li>
-<li><strong>马车轮错觉(Wagon Wheel Illusion)</strong></li>
-<li>...</li>
-</ul>
-<p>而这些由采样导致的问题，我们称之为 <strong>信号走样(aliasing)</strong>。</p>
-<p>从本质上来说，信号走样的发生，是因为 <strong>采样频率跟不上图像频率</strong> 导致的。</p>
+<p>-<strong>摩尔纹(Moiré Patterns)</strong>。
+-<strong>马车轮错觉(Wagon Wheel Illusion)</strong>
+- ...</p>
+<p>而这些由采样导致的问题，我们称之为<strong>信号走样(aliasing)</strong>。</p>
+<p>从本质上来说，信号走样的发生，是因为<strong>采样频率跟不上图像频率</strong>导致的。</p>
 <blockquote>
 <p>Signals are changing too fast but sampled too slow.</p>
 </blockquote>
@@ -1301,16 +1301,16 @@ f(i,j)=\frac{1}{2\pi \sigma^2}e^{-\frac{i^2+j^2}{2\sigma^2}}
 </div>
 <hr/>
 <h3 id="fourier-变换">Fourier 变换<a class="headerlink" href="#fourier-变换" title="Permanent link">¶</a></h3>
-<p>最简单直白地理解 <strong>傅立叶变换(Fourier Transform)</strong>，实际上就是将任意可以进行傅立叶变换的函数，变化为一个正弦、余弦函数级数的形式。</p>
+<p>最简单直白地理解<strong>傅立叶变换(Fourier Transform)</strong>，实际上就是将任意可以进行傅立叶变换的函数，变化为一个正弦、余弦函数级数的形式。</p>
 <p>例如最经典的，使用不同频率的正弦波来拟合一个方波。</p>
 <div class="admonition note">
 <p><del>这里引流一个 xg 的视频：<a href="https://www.bilibili.com/video/BV1Y7411W73U/">https://www.bilibili.com/video/BV1Y7411W73U/</a></del></p>
 </div>
-<p>此时你可能会问，正余弦函数的级数也不保证有周期啊，但是请注意，我们的目的并不是找到一个周期，而是能够使用频率来 <strong>表达</strong> 这个函数的某些特征。</p>
+<p>此时你可能会问，正余弦函数的级数也不保证有周期啊，但是请注意，我们的目的并不是找到一个周期，而是能够使用频率来<strong>表达</strong>这个函数的某些特征。</p>
 <p>我们知道，正余弦函数是具有周期性的，那么我们就可以用这个级数中的正余弦函数的频率来表达这个函数。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../39.png"><img alt="" src="../39.png"/></a></p>
 <blockquote>
-<p>下面这张图片就是编码后的 <strong>频谱</strong>。</p>
+<p>下面这张图片就是编码后的<strong>频谱</strong>。</p>
 </blockquote>
 <p>而在欧拉公式 <span class="arithmatex">\(e^{i\theta} = \cos\theta + i\sin\theta\)</span> 的统一下，Fourier 变换可以表示为：</p>
 <div class="arithmatex">\[
@@ -1373,7 +1373,7 @@ B ===&gt;|"Inverse transform"| A</code></pre>
 <p>在信号处理领域，采样是将信号从连续时间域上的模拟信号转换到离散时间域上的离散信号的过程。</p>
 </blockquote>
 <p>显然，我们这里采样的定义和这里的定义并不一样。与之不同的是，我们需要从原始的，近似连续的图片中提取出具有特征的一些同样是离散的的信息，以此来实现我们将图片进行放大缩小变换的目的。</p>
-<p>关于采样更数学的定义，就是使用（梳形）<strong>脉冲函数(Dirac comb function)</strong> 去乘被采样的函数。</p>
+<p>关于采样更数学的定义，就是使用（梳形）<strong>脉冲函数(Dirac comb function)</strong>去乘被采样的函数。</p>
 <ul>
 <li>脉冲函数经过 Fourier 变换后仍然是梳形的。</li>
 </ul>
@@ -1382,7 +1382,7 @@ B ===&gt;|"Inverse transform"| A</code></pre>
 <li>通过脉冲函数，我们将特定频率的内容给过滤下来，将一个“连续”的内容采样为了一个“离散”的内容。</li>
 </ul>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../43.png"><img alt="" src="../43.png"/></a></p>
-<p>取决于脉冲函数的频率，采样又被分为 <strong>密集采样(Dense sampling)</strong> 和 <strong>稀疏采样(Sparse sampling)</strong>，也就分别对应着之前提到的，采样频率较高和采样频率较低的情况。</p>
+<p>取决于脉冲函数的频率，采样又被分为<strong>密集采样(Dense sampling)</strong>和<strong>稀疏采样(Sparse sampling)</strong>，也就分别对应着之前提到的，采样频率较高和采样频率较低的情况。</p>
 <p>而稀疏采样导致的信号走样问题，就是采样结果再频率域中出现了交集。</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: 理解并解释这一点。</li>
@@ -1397,11 +1397,11 @@ B ===&gt;|"Inverse transform"| A</code></pre>
 </ol>
 <hr/>
 <p>首先我们回顾知道，走样是由于采样频率低于图像高频导致的，那么我们只需要提高采样频率就能解决这个问题了。</p>
-<p>而具体需要提高到多少呢？就需要 <strong>奈奎斯采样定理(Nyquies-Shannon Theorem)</strong>。</p>
+<p>而具体需要提高到多少呢？就需要<strong>奈奎斯采样定理(Nyquies-Shannon Theorem)</strong>。</p>
 <div class="admonition summary">
 <p class="admonition-title">奈奎斯采样定理</p>
 <h4 id="奈奎斯采样定理">奈奎斯采样定理<a class="headerlink" href="#奈奎斯采样定理" title="Permanent link">¶</a></h4>
-<p>首先规定 <strong>频带限制信号(band-limited signal)</strong> <span class="arithmatex">\(f_0\)</span> 是图像频率的一个上界；则奈奎斯采样定理指出，如果采样频率大于 <span class="arithmatex">\(2f_0\)</span>，则该采样得到的结果可以完美表征原函数的特征，即 "perfectly reconstruct"。</p>
+<p>首先规定<strong>频带限制信号(band-limited signal)</strong> <span class="arithmatex">\(f_0\)</span> 是图像频率的一个上界；则奈奎斯采样定理指出，如果采样频率大于 <span class="arithmatex">\(2f_0\)</span>，则该采样得到的结果可以完美表征原函数的特征，即 "perfectly reconstruct"。</p>
 </div>
 <hr/>
 <p>当然，为了跨过一个更高的门槛我们也不一定需要增长自己的腿。在能够接受的情况下，我们也可以选择降低门槛——即，先将高频滤波，再进行采样。</p>
@@ -1417,26 +1417,24 @@ B ===&gt;|"Inverse transform"| A</code></pre>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../46.png"><img alt="" src="../46.png"/></a></p>
 <p>它将超过奈奎斯频率的部分滤波后，明显发现采样保留的原本图像的特征更多了。</p>
 </details>
-<p>而这里就产生了一个比较贴近日常生活的词，叫 <strong>抗锯齿(anti-aliasing)</strong>，或者说反走样。</p>
+<p>而这里就产生了一个比较贴近日常生活的词，叫<strong>抗锯齿(anti-aliasing)</strong>，或者说反走样。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../47.png"><img alt="" src="../47.png"/></a></p>
 <hr/>
 <h2 id="放大图片向上采样--插值">放大图片：向上采样 / 插值<a class="headerlink" href="#放大图片向上采样--插值" title="Permanent link">¶</a></h2>
-<p><strong>图像放大(image magnification)</strong> 是图像缩小的逆变换(废话)，但是实际上并不能严格地说是逆变换，因为图像缩小与图像放大都是不可逆的——即，图片缩小必然带啦像素损失，图像放大必然带来一些通过计算得到的近似像素，而这些像素在变换得到的结果图像中与原本像素是无法区分的。</p>
-<p>那么，单就图像放大来说，我们就需要根据已有的像素，进行一些 <strong>插值(interpolation)</strong> 操作，以生成那些放大过程中新出现的像素。</p>
+<p><strong>图像放大(image magnification)</strong>是图像缩小的逆变换(废话)，但是实际上并不能严格地说是逆变换，因为图像缩小与图像放大都是不可逆的——即，图片缩小必然带啦像素损失，图像放大必然带来一些通过计算得到的近似像素，而这些像素在变换得到的结果图像中与原本像素是无法区分的。</p>
+<p>那么，单就图像放大来说，我们就需要根据已有的像素，进行一些<strong>插值(interpolation)</strong>操作，以生成那些放大过程中新出现的像素。</p>
 <p>我们从对一个一元一维函数插值的角度来看这个问题，即把这个问题抽象为在采样当中插入点的问题。例如，我们现在有一个来自于正弦函数的采样，现在我们希望在 <span class="arithmatex">\(x\in(x_i,x_{i+1})\)</span> 中插入一个点 <span class="arithmatex">\((x_{ip}, y_{ip})\)</span> 使得它尽可能符合原本的正弦函数——又或者说，使得它看起来尽可能合理。</p>
-<p>而这个问题，我们再进一步地思考，实际上就是利用现有的点去 <strong>拟合一个新的函数</strong>，然后再用这个函数上取的点作为插入的点。</p>
+<p>而这个问题，我们再进一步地思考，实际上就是利用现有的点去<strong>拟合一个新的函数</strong>，然后再用这个函数上取的点作为插入的点。</p>
 <div class="admonition summary">
 <p>那么比较常见的“拟合”方法有这么几种：</p>
-<ol>
-<li><strong>最近插值(nearest-neighbor interpolation)</strong>；</li>
-<li><strong>线性插值(linear interpolation)</strong>；</li>
-<li><strong>(3次)多项式插值(cubic interpolation)</strong>；</li>
-</ol>
+<p>1.<strong>最近插值(nearest-neighbor interpolation)</strong>；
+2.<strong>线性插值(linear interpolation)</strong>；
+3.<strong>(3次)多项式插值(cubic interpolation)</strong>；</p>
 </div>
 <p>接下来我们一一介绍。</p>
 <hr/>
 <h3 id="最近插值">最近插值<a class="headerlink" href="#最近插值" title="Permanent link">¶</a></h3>
-<p>所谓的 <strong>最近插值(nearest-neighbor interpolation)</strong>，实际上与 KNN 的 K=1 的特殊情况。即，<span class="arithmatex">\(y(x) = y(x_{\mathop{argmin}(|x-x_i|)})\)</span>。说人话就是横坐标离哪个近，就和哪个一样。</p>
+<p>所谓的<strong>最近插值(nearest-neighbor interpolation)</strong>，实际上与 KNN 的 K=1 的特殊情况。即，<span class="arithmatex">\(y(x) = y(x_{\mathop{argmin}(|x-x_i|)})\)</span>。说人话就是横坐标离哪个近，就和哪个一样。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../48.png"><img alt="" src="../48.png"/></a></p>
 <blockquote>
 <p>其中红色为原有的采样点，蓝色为我们的所有插值构成的曲线。</p>
@@ -1449,7 +1447,7 @@ B ===&gt;|"Inverse transform"| A</code></pre>
 <p>而且拍脑瓜想想也能感受到，这种插值的方法并不优雅——一张图片放大后一个像素的颜色取决于最近的采样像素颜色——在多数情况下，我们并不希望有这样的结果。</p>
 <hr/>
 <h3 id="线性插值">线性插值<a class="headerlink" href="#线性插值" title="Permanent link">¶</a></h3>
-<p><strong>线性插值(linear interpolation)</strong> 就是直接做连线，将相邻的点两两用直线连起来，绘制出一个折线图。</p>
+<p><strong>线性插值(linear interpolation)</strong>就是直接做连线，将相邻的点两两用直线连起来，绘制出一个折线图。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../49.png"><img alt="" src="../49.png"/></a></p>
 <blockquote>
 <p>其中红色为原有的采样点，蓝色为我们的所有插值构成的曲线。</p>
@@ -1462,7 +1460,7 @@ B ===&gt;|"Inverse transform"| A</code></pre>
 <p>于是我们继续改进。</p>
 <hr/>
 <h3 id="3次多项式插值">(3次)多项式插值<a class="headerlink" href="#3次多项式插值" title="Permanent link">¶</a></h3>
-<p>顾名思义，<strong>(3次)多项式插值(cubic interpolation)</strong> 就是使用多项式函数段来拟合采样区间。</p>
+<p>顾名思义，<strong>(3次)多项式插值(cubic interpolation)</strong>就是使用多项式函数段来拟合采样区间。</p>
 <p>这里需要做一个辨析：并不是用一个多项式来拟合所有的采样点，而是用多项式来拟合一对采样点，即一个 interval。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../50.png"><img alt="" src="../50.png"/></a></p>
 <blockquote>
@@ -1481,7 +1479,7 @@ B ===&gt;|"Inverse transform"| A</code></pre>
 </div>
 <hr/>
 <h3 id="双线性插值">双线性插值<a class="headerlink" href="#双线性插值" title="Permanent link">¶</a></h3>
-<p><strong>双线性插值(bilinear interpolation)</strong> 就是在二维平面内做<a href="#线性插值">线性插值</a>，思路非常简单。</p>
+<p><strong>双线性插值(bilinear interpolation)</strong>就是在二维平面内做<a href="#线性插值">线性插值</a>，思路非常简单。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../51.png"><img alt="" src="../51.png"/></a></p>
 <p>如图，我们希望在红点处进行插值，那么我们就会选取与之相邻的四个点，<span class="arithmatex">\(u_{ij},\;\; i,j\in \{0,1\}\)</span>，再根据这个点在这个矩阵中的位置进行求值。</p>
 <details class="note">
@@ -1492,7 +1490,7 @@ B ===&gt;|"Inverse transform"| A</code></pre>
 <hr/>
 <h3 id="双3次多项式插值">双(3次)多项式插值<a class="headerlink" href="#双3次多项式插值" title="Permanent link">¶</a></h3>
 <p><a href="https://en.wikipedia.org/wiki/Bicubic_interpolation">wiki 🔗</a></p>
-<p><strong>双(3次)多项式插值(bicubic interpolation)</strong> 即在二维平面做<a href="#3次多项式插值">(3次)多项式插值</a>，实现思路与双线性插值是类似的。</p>
+<p><strong>双(3次)多项式插值(bicubic interpolation)</strong>即在二维平面做<a href="#3次多项式插值">(3次)多项式插值</a>，实现思路与双线性插值是类似的。</p>
 <div class="arithmatex">\[
 p(x,y) = \sum_{i=0}^{3}\sum_{j=0}^{3}a_{i,j}x^iy^j
 \]</div>
@@ -1502,20 +1500,20 @@ p(x,y) = \sum_{i=0}^{3}\sum_{j=0}^{3}a_{i,j}x^iy^j
 <hr/>
 <div class="admonition tip">
 <p class="admonition-title">超分辨率</p>
-<p>在得到这些插值策略后，我们就可以引出 <strong>超分辨率(Super-Resolution)</strong> 这个概念，即通过插值，我们将一张图片的分辨率提高，得到超过原有图片分辨率的一张图片。</p>
+<p>在得到这些插值策略后，我们就可以引出<strong>超分辨率(Super-Resolution)</strong>这个概念，即通过插值，我们将一张图片的分辨率提高，得到超过原有图片分辨率的一张图片。</p>
 <p>例如，通过下面这个对比，我们会发现，多项式插值的表现比线性插值的表现好不少。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../54.png"><img alt="" src="../54.png"/></a></p>
 </div>
 <hr/>
 <h2 id="改变图像长宽比">改变图像长宽比<a class="headerlink" href="#改变图像长宽比" title="Permanent link">¶</a></h2>
-<p>改变 <strong>图像长宽比(aspect ratio)</strong> 这件事貌似可以直接通过单维度上进行缩放来实现（进行一维插值or采样），但是是否存在别的方法，不大幅改变整体图像形状的情况下，实现该彼岸长宽比呢？</p>
+<p>改变<strong>图像长宽比(aspect ratio)</strong>这件事貌似可以直接通过单维度上进行缩放来实现（进行一维插值or采样），但是是否存在别的方法，不大幅改变整体图像形状的情况下，实现该彼岸长宽比呢？</p>
 <p>实际上，有一个做法就是偷偷删掉几行/几列像素，对人眼来说这貌似是难以察觉的。</p>
 <p>接下来，我们来做一些改进，我们这次不是暴力的删除一行或一列，而是有选择性的，在每一行里删除几个像素。为了保证图像不错位，我们希望这些选中的像素可以被看作图像上的“裂缝”，即一条弯弯曲曲的曲线。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../55.png"><img alt="" src="../55.png"/></a></p>
-<p>这种做法叫 <strong>seam carving</strong>，我们需要找到比较不重要的一连串连续像素。而这里的“不重要”，指的就是那些变化不那么剧烈的像素，即与周围十分相近的点。</p>
+<p>这种做法叫<strong>seam carving</strong>，我们需要找到比较不重要的一连串连续像素。而这里的“不重要”，指的就是那些变化不那么剧烈的像素，即与周围十分相近的点。</p>
 <p>更数学的表述是：</p>
 <ul>
-<li>我们定义 <strong>edge energy</strong> <span class="arithmatex">\(E(I) = \big|\frac{\partial I}{\partial x}\big| + \big| \frac{\partial I}{\partial y} \big|\)</span>；</li>
+<li>我们定义<strong>edge energy</strong><span class="arithmatex">\(E(I) = \big|\frac{\partial I}{\partial x}\big| + \big| \frac{\partial I}{\partial y} \big|\)</span>；</li>
 <li>找到从顶到底的一条联通（就是下一个点肯定与上一个点相邻或者共同顶点）路径，使得 edge energy 最小；</li>
 <li>然后将这条路径从图片中删除，就好像将这个裂缝两边拼起来；</li>
 </ul>
@@ -1525,7 +1523,7 @@ p(x,y) = \sum_{i=0}^{3}\sum_{j=0}^{3}a_{i,j}x^iy^j
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月27日 23:15:12</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月9日 12:22:27</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>

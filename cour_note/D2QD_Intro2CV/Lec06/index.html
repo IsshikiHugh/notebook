@@ -621,7 +621,7 @@
 <div class="admonition note">
 <p class="admonition-title">过程概述</p>
 <p>我们这里考虑的图像拼接问题，更多指的是两张图片拥有共同刻画目标的情况下进行拼接，即两张照片存在交集。</p>
-<p>首先，我们通过 <strong><a href="../Lec05/">图像特征匹配</a></strong> 相关技术，找到这两张图片的共同部分，接下来通过转化为优化问题，求解这些共同部分如何实现转化（相当于在做“对齐”）。</p>
+<p>首先，我们通过<strong><a href="../Lec05/">图像特征匹配</a></strong>相关技术，找到这两张图片的共同部分，接下来通过转化为优化问题，求解这些共同部分如何实现转化（相当于在做“对齐”）。</p>
 </div>
 <ul>
 <li>图像拼接的两个方面：<ul>
@@ -633,7 +633,7 @@
 <li>除了能够用仿射变换描述的变换，还有投影变换(Projective Transformation)，或者说单应变换(Homography)，它无法用仿射变换描述。<ul>
 <li>单应矩阵在平面图形中也是一个 3*3 的矩阵，但是没有必须为 0 的元素约束（区别于齐次坐标）：</li>
 <li><span class="arithmatex">\(\begin{bmatrix}x'_i \\ y'_i \\ 1 \end{bmatrix} \cong \begin{bmatrix} h_{00} &amp; h_{01} &amp; h_{02} \\ h_{10} &amp; h_{11} &amp; h_{12} \\ h_{20} &amp; h_{21} &amp; h_{22} \end{bmatrix}\begin{bmatrix}x_i \\ y_i \\ 1\end{bmatrix}\)</span>，由于 <span class="arithmatex">\(h_{22}\)</span> 实际上可以是任意实数，所以实际上的自由度为 8，所以为了让解具有唯一性，我们约束 <span class="arithmatex">\(||\bmatrix{h_{00} &amp; h_{01} &amp; ... &amp; h_{21} &amp; h_{22}}||_2 = 1\)</span>，这样就能保证自由度为 8 且对应的解唯一；</li>
-<li>实际上，可以理解为它是在三维空间下，相机 <strong>不平移只旋转</strong> 的一个视角变化，即 change projection plane；<ul>
+<li>实际上，可以理解为它是在三维空间下，相机<strong>不平移只旋转</strong>的一个视角变化，即 change projection plane；<ul>
 <li>如果相机平移且旋转，那情况非常复杂，甚至不一定具有点点对应关系；</li>
 <li>但是有一个特殊情况，就是我观测到场景本身就是平面（或者特别远的景观），场景不存在遮挡，这个时候也可以使用 homography；</li>
 <li>如上就是为什么手机拍摄全景照片时要求不要移动只转动相机</li>
@@ -668,7 +668,7 @@
 </ul>
 </li>
 <li>然而上面这些做法都是将图片投影到一个平面上，也就是说将图像拼接为一个更大都平面图像；但是在全景这种案例中，这么做会让边缘拉伸越来愈明显（近大远小），所以对于这种案例，我们要先将它投射到柱面上，然后在柱面上进行拼接，TODO:公式记得抄上来；</li>
-<li>还有一个问题是误差累积，导致 <strong>漂移(drift)</strong>，解决办法就是最后一张和第一张之间也计算一次 T 来进行约束，这种想法叫回路闭合； </li>
+<li>还有一个问题是误差累积，导致<strong>漂移(drift)</strong>，解决办法就是最后一张和第一张之间也计算一次 T 来进行约束，这种想法叫回路闭合； </li>
 </ul>
 </li>
 </ul>
@@ -678,7 +678,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月1日 16:50:43</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月9日 12:22:27</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>

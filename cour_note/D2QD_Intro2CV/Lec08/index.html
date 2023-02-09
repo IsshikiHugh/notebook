@@ -451,15 +451,34 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#depth-estimation">
-    Depth estimation
+<a class="md-nav__link" href="#立体视觉">
+    立体视觉
   </a>
-<nav aria-label="Depth estimation" class="md-nav">
+<nav aria-label="立体视觉" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#stereo-matching">
-    Stereo matching
+<a class="md-nav__link" href="#视差">
+    视差
   </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#立体匹配">
+    立体匹配
+  </a>
+<nav aria-label="立体匹配" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#搜索">
+    搜索
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#匹配">
+    匹配
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -653,15 +672,34 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#depth-estimation">
-    Depth estimation
+<a class="md-nav__link" href="#立体视觉">
+    立体视觉
   </a>
-<nav aria-label="Depth estimation" class="md-nav">
+<nav aria-label="立体视觉" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#stereo-matching">
-    Stereo matching
+<a class="md-nav__link" href="#视差">
+    视差
   </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#立体匹配">
+    立体匹配
+  </a>
+<nav aria-label="立体匹配" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#搜索">
+    搜索
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#匹配">
+    匹配
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -734,49 +772,169 @@
 <p>本文尚未完全整理好！</p>
 </div>
 <hr/>
-<p>稀疏的点云 + 图像 ----&gt; 稠密结果</p>
-<h2 id="depth-estimation">Depth estimation<a class="headerlink" href="#depth-estimation" title="Permanent link">¶</a></h2>
-<p>深度在深度图上的表现十分稠密，每一个像素都具有深度属性。</p>
-<blockquote>
-<p>Active depth sensing 主动深度探测 （非视觉方法）</p>
+<div class="admonition info">
+<p class="admonition-title">引入</p>
+<p>在 <a href="../Lec07/">上一章</a> 中，我们已经介绍了如何重建得到关键点的点云，但是此时我们得到的只是一个稀疏的点云，而本章需要解决的问题就是如何“稠密”地进行重建。</p>
+<p>而在稠密重建过程中，我们不能单单着眼于关键点，而是要广泛地面向图像中的所有像素，而其中最重要的一个技术就是<strong>深度估计(Depth Estimation)</strong>。</p>
+<hr/>
+<p>「深度」这个概念和它的字面意思几乎一样，而在「深度估计」中，我们需要做的是对于给定的图像，标记<strong>每一个</strong>像素的深度。而将其可视化，就是深度图。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../97.png"><img alt="" src="../97.png"/></a></p>
+<p>只不过有时候深度指的是空间点到相机中间或者相机平面的距离，也有的时候指的是某个空间坐标轴向的深度，具体应当根据实际情况来。</p>
+<hr/>
+<p>按照深度感知的手段分类，有<strong>主动深度探测方法(Active depth sensing)</strong>和<strong>被动深度探测方法(Passive depth sensing)</strong>两种，其中我们将要展开的视觉方法都是被动探测方法。</p>
+<div class="admonition summary">
+<p class="admonition-title">主动探测方法 / 非视觉方法</p>
 <ul>
 <li>LiDAR</li>
 <li>Structured light</li>
 <li>Active stereo</li>
 </ul>
-</blockquote>
-<p>Passive depth sensing 被动深度探测</p>
+</div>
+<div class="admonition summary">
+<p class="admonition-title">被动探测方法 / 视觉方法</p>
 <ul>
 <li>Stereo</li>
 <li>Multi-view stereo</li>
 <li>Monocular</li>
 </ul>
-<h3 id="stereo-matching">Stereo matching<a class="headerlink" href="#stereo-matching" title="Permanent link">¶</a></h3>
+</div>
+</div>
+<p>逻辑链：</p>
+<p>(双目视觉 -&gt; 深度感知) =&gt; ((双视角匹配点 + 视差 -&gt; 深度) + (对所有像素进行匹配)) =&gt; 极线上寻找匹配点</p>
+<h2 id="立体视觉">立体视觉<a class="headerlink" href="#立体视觉" title="Permanent link">¶</a></h2>
+<p>我们已经有了稀疏重建的方法，想要得到稠密重建的方法，一个最暴力的方法就是尝试着去匹配所有像素，当然这看起来时间开销非常大。但是毋庸置疑的是，在目前还没有介入人工智能技术的情况下，我们仍然需要像素的匹配关系。</p>
+<p>以及还有一个需要解决的问题就是，如何得到匹配点的深度信息。</p>
+<p>所以总结下来，有两个问题需要解决：</p>
+<div class="admonition note">
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 如何高效地得到匹配关系；</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 如何根据匹配点计算点深度；</li>
+</ul>
+</div>
+<p>由于匹配中会有部分优化内容涉及到深度计算的内容，所以我想先从深度计算开始讲，也就是从视差开始讲。</p>
+<hr/>
+<h3 id="视差">视差<a class="headerlink" href="#视差" title="Permanent link">¶</a></h3>
+<p>首先，我们都知道人的<strong>双</strong>眼赋予了人类视觉上深度感知的能力，也就是立体视觉(stereo vision)。一个比较家喻户晓的实验就是单眼穿针会变得十分困难。</p>
+<p>在单目视觉下，体现远近最简单的原理描述就是「近大远小」，而在动态的情况下，这也体现在移动相同的距离，近处的物体移动更明显，而远处的更不明显。然而这个信息和单纯的“大小”信息是可以混淆的，或者说在“大小”变化不明显的情况下，这个信息是很难被识别出来的。</p>
+<p>而在双目视觉下，我们有有一个更近一步的原理，也就是<strong>视差(disparity)</strong>，通过视差，我们可以更精确地感受到“距离”（实际上也是对极几何那一套），接下来阐述其原理。</p>
+<p>首先，我们绘制一个简单的模型：</p>
+<blockquote>
+<p>在这个模型中，我们假设两个图像中的匹配点符合之后会在<strong>立体匹配</strong>一节里提到的<strong><a href="#搜索">最简情况(simplest case)</a></strong>，但是可以不用管这个最简情况是什么，直接当作这是一个俯视视角下的简化，直接看下面的模型即可。</p>
+</blockquote>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../102.png"><img alt="" src="../102.png"/></a></p>
+<blockquote>
+<p>(1) 中 OL 和 OR 分别是两相机中心，淡蓝色线条表示成像平面，XL 和 XR 分别表示实际点 X 在成像平面上的投影，橙色线条表示他们的横向坐标（假设他们都在同一水平线上），z 表示实际点 X 到基线的距离，这里我们暂且称之为“深度”（反正不管怎么定义深度，有 z 都能算）。</p>
+<p>(2) 中我画图的时候忘记区分两个 XR 了，所以关于 (2) 图中的 XR 一律指左边那个 XR。</p>
+</blockquote>
+<p>我们将 OR 的成像模型平移到左侧，即图 (2)，发现橙色的三角形和红色的三角形相似：<span class="arithmatex">\(\Delta O X_L X_R \cong \Delta X O_L O_R\)</span> （注意，实际情况不一定等腰！）</p>
+<p>于是我们得到，在这种情况下：</p>
+<div class="arithmatex">\[
+\frac{\overline{X_L X_R}}{f} = \frac{\overline{O_L O_R}}{z} \\
+\text{ i.e. }\; disparity = \Delta{\mathbf{x}} = |\mathbf{x}_l - \mathbf{x}_r| = |x_l - x_r| = \frac{B \cdot f}{z} \\
+\text{where }B\text{ is the length of baseline} \\
+\text{ i.e. }\; z = \frac{B \cdot f}{|x_l-x_r|}
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p>虽然是个简化情况，但是在<strong><a href="#搜索">最简情况(simplest case)</a></strong>下是可以直接挪用结论的，稍后我会提醒回顾这一节来理解这一点，所以安心顺着读下去即可。</p>
+</div>
+<p>至此，我们在<a href="#立体视觉">本节开头</a>提到的两个问题，已经解决一个了。</p>
+<div class="admonition note">
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 如何高效地得到匹配关系；</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 如何根据匹配点计算点深度；</li>
+</ul>
+</div>
+<hr/>
+<h3 id="立体匹配">立体匹配<a class="headerlink" href="#立体匹配" title="Permanent link">¶</a></h3>
+<p>首先我们做一个假设，也就是在匹配过程中，我们的两个 view 的距离相差不大，也就是说局部特征仍然是相似的。</p>
+<hr/>
+<h4 id="搜索">搜索<a class="headerlink" href="#搜索" title="Permanent link">¶</a></h4>
+<p><strong>立体匹配(Stereo Matching)</strong>的原理就是，选定第一个图像内的某一点，然后去另外一张图像对应的对极线上搜索找到能够和它匹配的点。没错，我们只需要在一条直线上搜索找到匹配的点即可，这大大优化了复杂度。而它的根据恰好就是对极线的定义。</p>
+<p>👉 回顾<strong><a href="../Lec07/#对极几何">对极几何</a></strong>！</p>
+<p>没错，我们现在已知了 <span class="arithmatex">\(X_L\)</span>（由我们选定的），那么 <span class="arithmatex">\(X_R\)</span> 的轨迹便是对极线，于是我们只需要先找到我们选定的 <span class="arithmatex">\(X_L\)</span> 在另外一张图像上对应的对极线，然后再在这条线上搜索特征与 <span class="arithmatex">\(X_L\)</span> 最匹配的那个点即可。（这里我们也没有必要使用 SIFT，直接做差就够了）</p>
+<p>但是话又说回来，计算对极线这件事也并非十分简单，如果对于每个点我们都需要去计算对极线，那么将带来不小的常数，而且由于这件事没法“整体地预处理”，所以我们还需要优化这件事。</p>
+<div class="admonition note">
+<p class="admonition-title">最简情况</p>
+<p>首先考虑<strong>最简情况(simplest case)</strong>这个特殊情况：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../98.png"><img align="right" alt="" src="../98.png" width="380px"/></a></p>
+<ol>
+<li>两个相机的焦距相同；</li>
+<li>相机位置在同一水平面上，即高度相同；</li>
+<li>两个成像平面和基线，三者相互平行，或者说两个成像平面共面（此时对极点不存在）；</li>
+</ol>
+<p>此时，对极线也水平，而且两条对极线也共线（可以思考一下为什么）。</p>
+<p>换句话来说，在这种情况下，当我们选定左图中的某个点 <span class="arithmatex">\(X_L\)</span>，那么 <span class="arithmatex">\(X_R\)</span> 的候选位置就在右图中同一高度的那条水平线上。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../99.png"><img alt="" src="../99.png" width="315px"/></a></p>
+</div>
+<p>那么如何解决这种情况以外的情况呢？既然我都这么排了，那解决办法自然就是转化为最简情况来做了。</p>
+<div class="admonition tip">
+<p class="admonition-title">转化思想</p>
+<p>又是一个突然的想法，很多时候我们或许可以不从整体去思考，而是先解决一个最简情况，再转化问题。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">一般情况</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../100.png"><img align="right" alt="" src="../100.png" width="380px"/></a></p>
+<p>这个问题被称为<strong><a href="Stereo Image Rectification">立体影像矫正</a></strong>，这里并不展开，可以参考这篇文章：</p>
+<p>C. Loop and Z. Zhang. <a href="https://www.microsoft.com/en-us/research/publication/computing-rectifying-homographies-for-stereo-vision/">Computing Rectifying Homographies for Stereo Vision.</a> IEEE Conf. Computer Vision and Pattern Recognition, 1999.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../101.png"><img alt="" src="../101.png" width="315px"/></a></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">回顾</p>
+<p>相信现在你对“最简情况”已经有更深刻的理解了，不妨回过头去理解一下为什么我们之前提到的那个简化的视差模型可以直接挪用结论？</p>
+<p>👉 <strong><a href="#视差">视差</a></strong></p>
+</div>
+<hr/>
+<h4 id="匹配">匹配<a class="headerlink" href="#匹配" title="Permanent link">¶</a></h4>
+<p>所谓的寻找匹配，就是在充斥着候选点的对极线上搜索匹配最好的一个点，或者说差异最小的一个点。</p>
+<p>常见的差异衡量方法有这么几种：</p>
+<div class="admonition success">
+<p class="admonition-title">SSD: Sum of Squared Differences</p>
+<div class="arithmatex">\[
+diff = \sum_{x,y} |W_1(x,y) - W_2(x,2)|^2
+\]</div>
+</div>
+<div class="admonition success">
+<p class="admonition-title">SAD: Sum of Absolute Differences</p>
+<div class="arithmatex">\[
+diff = \sum_{x,y} |W_1(x,y) - W_2(x,y)|
+\]</div>
+</div>
+<div class="admonition success">
+<p class="admonition-title">ZNCC: Zero-mean Normalized Cross Correlation</p>
+<div class="arithmatex">\[
+diff = \frac{(W_1(x,y)-\overline{W_1})(W_2(x,y)-\overline{W_2})}{\sigma_{W_1}\sigma_{W_2}} \\
+\text{where  } \overline{W_i} = \frac{1}{n}\sum_{x,y} W_i \;\;\; \sigma_{W_i} = \sqrt{\frac{1}{n}\sum_{x,y}(W_i-\overline{W_i})^2}
+\]</div>
+<p>其中，ZNCC 相比其他方法，优越性在于它对图像整体的光强度不敏感，因为我们可以发现，<span class="arithmatex">\(W_i\)</span> 在参与计算前都减去了 <span class="arithmatex">\(\overline{W_i}\)</span>，所以消除了图像整体亮度带来的影响。</p>
+<details class="question">
+<summary>个人疑惑</summary>
+<p>这里所谓的“消除亮度影响”，是否是对于 multi-view 的情况来说的？因为如果只有两张图片，且亮度差距整体恒定的话，虽然计算出来的 diff 会偏大，但是整体上的大小关系好像也没有变化？我没有想清楚这一点。</p>
+</details>
+</div>
+<p>TODO: 优化</p>
+<hr/>
+<p>于是我们得到结论和大致流程——首先我们通过立体影像矫正技术，将两张图片转化为最简情况，然后再对每一个像素进行匹配，只需要在同高度的对极线上搜索匹配局部特征最相似的另外一个点即可。</p>
+<p>不过这里还有一个遗留下来问题，读者可以先思考一下目前这个流程有什么问题，再打开下面的提示框。</p>
+<details class="tip">
+<summary>一个尚未被解决的问题</summary>
+<p>让我们回到第五章的<strong><a href="../Lec05/#关键点检测">关键点匹配</a></strong>——为什么我们只找关键点？</p>
+<p>我个人的想法是，首先，关键点能够一定程度上表达一个物体的特征，或者说它是勾勒一个物体非常重要的一个部分；还有一个原因是，关键点特征明显，其表达具有一定的独特性（也就是关键点的<strong>独特性(uniqueness)</strong>）。</p>
+<p>而现在我们做匹配的内容是任意的、广泛的，例如我们现在在做匹配的很可能是一面白墙上的某一个点，这样的点又要如何找到它的匹配点呢？这是我们目前没有解决的问题，不过我们会在之后提到，我们需要<strong>结构光(structured light)</strong>来实现这一点。</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: 考虑能不能把结构光放到前面来。</li>
+</ul>
+</details>
+<p>至此，我们在<a href="#立体视觉">本节开头</a>提到的两个问题，已经全部解决了。</p>
+<div class="admonition note">
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 如何高效地得到匹配关系；</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 如何根据匹配点计算点深度；</li>
+</ul>
+</div>
+<hr/>
 <ul>
-<li>Stereo vision<ul>
-<li>“视差”</li>
-<li>原理是三角测量</li>
-<li>继续使用之前的方法，很难有效计算所有的像素点的对应关系，而高效实现这一点，就是 stereo matching，立体匹配</li>
-<li>回顾 <strong><a href="../Lec07/#对极几何">对极几何</a></strong></li>
-<li>在本节，我们需要重点关注对极线</li>
-<li>已知 <span class="arithmatex">\(X_L\)</span>，<span class="arithmatex">\(X_R\)</span> 的位置一定在 R 平面的对极线上，其线方程正是 <span class="arithmatex">\(X_L^T F X_R\)</span>。而这个结论可以大大降低查找 pixel 的复杂度。我们只需要在一条线上搜索比较匹配即可。</li>
-<li>然而如果对于每个点都需要计算对极线，那也非常糟糕，所以我们希望能有一些特殊情况——比如，（……）相机如果只有水平移动和旋转，那么对极线都会是水平的，Simplest Case 会让一切相关计算和步骤变简单<ul>
-<li>disparity 视差 = x2 - x1（对于各自的坐标系）</li>
-<li>通过视差可以计算深度（相似三角形）</li>
-</ul>
-</li>
-<li>而对于并非 simplest case 的一般情况，我们可以考虑把当前情况转化为 simplest case——使用 stereo image rectification，细节不展开</li>
-</ul>
-</li>
-<li>基础的 Stereo matching 算法<ul>
-<li>计算相似度，查找相似度最小的地方</li>
-<li>常见的 Matching Scores<ul>
-<li>SSD(Sum of Squared Differences)</li>
-<li>SAD(Sum of Absolute Differences)</li>
-<li>ZNCC(Zero-mean Normalized Cross Correlation) （协方差？，互相关？）对图像整体亮度差异不大敏感</li>
-</ul>
-</li>
-<li>还有一个问题是选取的窗口大小，有一个精确度和平滑度的 trade-off</li>
+<li>还有一个问题是选取的窗口大小，有一个精确度和平滑度的 trade-off<ul>
 <li>于是有一个改进就是考虑空间上的连续性，方法就是转化为优化问题，在目标函数同时考虑匹配度和在临域的平滑度（视差剧烈程度）<ul>
 <li>而求解这个最优化的问题，在上面提到的「临域」只涉及像素点左侧和右侧，即线性约束时，可以使用 DP 来做，但是在非线性约束下，这个问题变成 NP-hard 问题，只能求近似解，可以使用图割来做</li>
 </ul>
@@ -896,7 +1054,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月8日 11:51:02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月9日 12:22:27</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
