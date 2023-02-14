@@ -16,9 +16,22 @@ comments: false
     <div align="center" style="font-size:12px">
         我们登上高塔，看到的却只有黑夜。  ——安德烈·纪德《地粮》
     </div>
-    <br><br><br>
+    <br><br>
 
-- [个人主页](https://isshikihugh.github.io/homepageSrc/)
+!!! example "相关链接"
+    <div class="flink-list">
+
+    <div class="flink-list-item">
+        <div class="flink-item-icon">
+            ![](_assets/iro/IroPatch_Green.png)
+        </div>
+    <a href="https://blog.isshikih.top/" title="颉时人影" target="_blank">
+        <div class="flink-item-name">颉时人影</div>
+        <div class="flink-item-desc">这是我的博客！时不时更新一些和技术没关系的文章。</div>
+    </a>
+    </div>
+
+    </div>
 
 ??? summary "<center>@Isshiki修</center>" 
     

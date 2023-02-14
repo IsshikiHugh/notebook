@@ -9,6 +9,7 @@ edit_uri: blob/main/docs
 theme: 
   name: material
   language: zh
+  favicon: _assets/iro/IroPatch_Brown.ico
   icon: 
     # logo: material/pac-man
     logo: octicons/paper-airplane-16
