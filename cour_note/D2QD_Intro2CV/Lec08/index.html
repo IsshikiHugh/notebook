@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
 <link href="https://note.isshikih.top/cour_note/D2QD_Intro2CV/Lec08/" rel="canonical"/>
-<link href="../../../assets/images/favicon.png" rel="icon"/>
+<link href="../../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.1, mkdocs-material-8.5.7" name="generator"/>
 <title>Lecture 8 | Depth Estimation - Isshiki修's Notebook</title>
 <link href="../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
@@ -1068,12 +1068,15 @@ diff = \frac{(W_1(x,y)-\overline{W_1})(W_2(x,y)-\overline{W_2})}{\sigma_{W_1}\si
 </details>
 <hr/>
 <h3 id="多视角">多视角<a class="headerlink" href="#多视角" title="Permanent link">¶</a></h3>
+<p><strong>多视角立体(Multi-view Stereo)MVS</strong>重建，顾名思义就是利用更多的视角来进行重建，相比于前面提到的双目模型，它有更强的约束、能在多个候选中选择最合适的方案，以及能得到更完整的 3D</p>
+<p>我们在双目匹配中，首先寻找能够匹配的点对再做接下来的事情，但是在多视角中，找到「匹配的一系列点」是比较困难且耗时的，因为 n 个点有 <span class="arithmatex">\(C_n^2\)</span> 对匹配关系。所以我们要变换思路，我们需要以某一个视角为基础，并枚举这个点的深度，计算重投影误差，找到使重投影误差最优秀的那个深度作为这个点的深度（而不是在每一个对极线上找，可以思考为什么）。</p>
+<div class="admonition question">
+<p class="admonition-title">个人疑问</p>
+<p>话说这个重投影误差指的是什么啊，是需要先算好匹配点然后 L2 距离的误差还是相似度的误差？如果是相似度的误差，那怎么解决形变？</p>
+</div>
 <ul>
 <li>multi-view stereo  MVS<ul>
-<li>好处是约束更强、选择更多、构建更完整</li>
 <li>具体做法是<ul>
-<li>枚举一个视角里对极线上的深度，然后用在其他视角里的重投影匹配度做评估，找到效果最好的深度</li>
-<li>其中一个问题是如何高效的计算所有的误差</li>
 <li>可以使用 Plane-Sweep<ul>
 <li>对于每一个其他视角，构造一个关于 x-y-z 的三维表，能够查询对于参考图片<code>[x][y]</code>处的像素，如果处于深度<code>[z]</code>时的情况</li>
 <li>利用两次投影，先在“A”字里相似到远处，然后再斜着投影到每个视角里</li>
@@ -1165,7 +1168,7 @@ diff = \frac{(W_1(x,y)-\overline{W_1})(W_2(x,y)-\overline{W_2})}{\sigma_{W_1}\si
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月10日 10:55:33</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月14日 14:35:57</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
