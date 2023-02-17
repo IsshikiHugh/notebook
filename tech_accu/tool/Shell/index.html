@@ -7,13 +7,14 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
 <link href="https://note.isshikih.top/tech_accu/tool/Shell/" rel="canonical"/>
+<link href="../Git/Commands/" rel="prev"/>
+<link href="../Colab/" rel="next"/>
 <link href="../../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
-<meta content="mkdocs-1.4.1, mkdocs-material-8.5.7" name="generator"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
 <title>Shell - Isshiki修's Notebook</title>
-<link href="../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
-<link href="../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
-<meta content="#795649" name="theme-color"/>
-<style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64h-64c-35.3 0-64-28.7-64-64V216z"/></svg>');}</style>
+<link href="../../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64h-64c-35.3 0-64-28.7-64-64V216z"/></svg>');}</style>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Share+Tech:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Share Tech";--md-code-font:"JetBrains Mono"}</style>
@@ -24,12 +25,15 @@
 <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
 <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
-            .gdesc-inner { font-size: 0.75rem; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
             .gslide-image img { background: white; }
             
                 .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
                 </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="brown" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
@@ -45,7 +49,7 @@
 <header class="md-header" data-md-component="header">
 <nav aria-label="页眉" class="md-header__inner md-grid">
 <a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Isshiki修's Notebook">
-<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1.592 2.712 2.38 7.25h4.87a.75.75 0 1 1 0 1.5H2.38l-.788 4.538L13.929 8 1.592 2.712zM.989 8 .064 2.68a1.341 1.341 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.341 1.341 0 0 1-1.85-1.463L.99 8z" fill-rule="evenodd"></path></svg>
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
@@ -93,7 +97,7 @@
 <div class="md-search-result__meta">
             正在初始化搜索引擎
           </div>
-<ol class="md-search-result__list"></ol>
+<ol class="md-search-result__list" role="presentation"></ol>
 </div>
 </div>
 </div>
@@ -102,7 +106,7 @@
 <div class="md-header__source">
 <a class="md-source" data-md-component="source" href="https://github.com/IsshikiHugh/notebook" title="前往仓库">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 480 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"></path></svg>
+<svg viewbox="0 0 480 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"></path></svg>
 </div>
 <div class="md-source__repository">
     IsshikiHugh/notebook
@@ -156,14 +160,14 @@
 <nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
 <a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Isshiki修's Notebook">
-<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1.592 2.712 2.38 7.25h4.87a.75.75 0 1 1 0 1.5H2.38l-.788 4.538L13.929 8 1.592 2.712zM.989 8 .064 2.68a1.341 1.341 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.341 1.341 0 0 1-1.85-1.463L.99 8z" fill-rule="evenodd"></path></svg>
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"></path></svg>
 </a>
     Isshiki修's Notebook
   </label>
 <div class="md-nav__source">
 <a class="md-source" data-md-component="source" href="https://github.com/IsshikiHugh/notebook" title="前往仓库">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 480 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"></path></svg>
+<svg viewbox="0 0 480 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"></path></svg>
 </div>
 <div class="md-source__repository">
     IsshikiHugh/notebook
@@ -172,14 +176,14 @@
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" id="__nav_1" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../..">💠 封面</a>
 <label for="__nav_1">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-label="💠 封面" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_1">
 <span class="md-nav__icon md-icon"></span>
           💠 封面
@@ -194,42 +198,42 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../">📚 技术积累</a>
 <label for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-label="📚 技术积累" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
           📚 技术积累
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../">常用工具</a>
 <label for="__nav_2_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-label="常用工具" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_2_2">
 <span class="md-nav__icon md-icon"></span>
           常用工具
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_2" id="__nav_2_2_2" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__nav_2_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../Git/">Git Something</a>
 <label for="__nav_2_2_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-label="Git Something" class="md-nav" data-md-level="3">
+<nav aria-expanded="false" aria-labelledby="__nav_2_2_2_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_2_2_2">
 <span class="md-nav__icon md-icon"></span>
           Git Something
@@ -249,7 +253,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
           Shell
           <span class="md-nav__icon md-icon"></span>
@@ -471,11 +475,11 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" id="__nav_2_3" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../standard/BVH_format/">标准 | 格式 | 规范</a>
 </div>
-<nav aria-label="标准 | 格式 | 规范" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_2_3">
 <span class="md-nav__icon md-icon"></span>
           标准 | 格式 | 规范
@@ -485,14 +489,14 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" id="__nav_2_4" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../ai/">人工智能</a>
 <label for="__nav_2_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-label="人工智能" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_2_4">
 <span class="md-nav__icon md-icon"></span>
           人工智能
@@ -510,14 +514,14 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../../cour_note/">🗒 课程笔记</a>
 <label for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-label="🗒 课程笔记" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
           🗒 课程笔记
@@ -544,14 +548,14 @@
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" id="__nav_3_6" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__nav_3_6" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../../cour_note/D2QD_DigitalDesign/">[大二秋冬] 数字逻辑设计 | Digital Design</a>
 <label for="__nav_3_6">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-label="[大二秋冬] 数字逻辑设计 | Digital Design" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_3_6_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_6">
 <span class="md-nav__icon md-icon"></span>
           [大二秋冬] 数字逻辑设计 | Digital Design
@@ -596,14 +600,14 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_7" id="__nav_3_7" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__nav_3_7" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../../cour_note/D2QD_Intro2CV/">[大二秋冬] 计算机视觉导论 | I2CV</a>
 <label for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-label="[大二秋冬] 计算机视觉导论 | I2CV" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_3_7_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
           [大二秋冬] 计算机视觉导论 | I2CV
@@ -683,11 +687,11 @@
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_9" id="__nav_3_9" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__nav_3_9" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../../cour_note/D2CX_ComputerOrganization/">[大二春夏] 计算机组成 | Computer Organization</a>
 </div>
-<nav aria-label="[大二春夏] 计算机组成 | Computer Organization" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_3_9_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_9">
 <span class="md-nav__icon md-icon"></span>
           [大二春夏] 计算机组成 | Computer Organization
@@ -700,14 +704,14 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../../pape_read/">📝 论文阅读</a>
 <label for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-label="📝 论文阅读" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
           📝 论文阅读
@@ -727,14 +731,14 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../../others/">📦 杂项专题</a>
 <label for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-label="📦 杂项专题" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
           📦 杂项专题
@@ -749,12 +753,12 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
-<label class="md-nav__link" for="__nav_6">
+<input class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
           🚧 施工中...
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="🚧 施工中..." class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           🚧 施工中...
@@ -985,10 +989,10 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/IsshikiHugh/notebook/blob/main/docs/tech_accu/tool/Shell/index.md" title="编辑此页">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
-</a>
 <h1 id="shell">Shell<a class="headerlink" href="#shell" title="Permanent link">¶</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4930 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 462 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 22 分钟</p>
+</div>
 <div class="admonition summary">
 <p class="admonition-title">文章目标</p>
 <p>在完成本文学习后，我们期待您对 Shell 能有更具体的认识，并能做到通过 Command Line 实现基础交互并了解如何学习 Shell。除此之外，也可以通过撰写 Shell 脚本来实现一些自动化。</p>
@@ -1007,7 +1011,7 @@
 <h3 id="shell-vs-terminal">Shell vs Terminal<a class="headerlink" href="#shell-vs-terminal" title="Permanent link">¶</a></h3>
 <p>在正式开始介绍 Shell 之前，我认为有必要做一些辨析。</p>
 <p>在现代的计算机系统中，想要使用 Shell，你需要借助 Terminal，即终端（更准确的说，是 terminal emulator，不过在本文中我们并不会就此展开）。Terminal 之于 Shell，就好像电话之于通讯服务。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="1.png"><img alt="" src="1.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="1.png"><img alt="" src="1.png"/></a></p>
 <p>例如，图中打开的这个“窗口”就是一个叫做 iTerm2 的 terminal emulator，而我使用的 <code>fish</code> 则是一种 Shell。</p>
 <p>能与这两个东西进行比较和辨析的东西其实还有很多，但并非本文主题，所以不再展开。</p>
 <h2 id="以-bash-为例">以 Bash 为例<a class="headerlink" href="#以-bash-为例" title="Permanent link">¶</a></h2>
@@ -1023,12 +1027,12 @@
 <p>当然，我们最推荐的还是您可以配置一个 Linux 环境以进行实践和学习。</p>
 <p>当您完成这些工作后，您可能看到类似于如下列举的内容的情况：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 也许是这样</span>
-xxx:~$ <span class="o">{</span>你的光标在这里<span class="o">}</span>
+xxx:~$<span class="w"> </span><span class="o">{</span>你的光标在这里<span class="o">}</span>
 <span class="c1"># 或者这样</span>
-<span class="o">[</span>xxx@yyy<span class="o">]</span>~$ <span class="o">{</span>你的光标在这里<span class="o">}</span>
+<span class="o">[</span>xxx@yyy<span class="o">]</span>~$<span class="w"> </span><span class="o">{</span>你的光标在这里<span class="o">}</span>
 <span class="c1"># 又或者这样</span>
-xxxx yyyy ~
-$ <span class="o">{</span>你的光标在这里<span class="o">}</span>
+xxxx<span class="w"> </span>yyyy<span class="w"> </span>~
+$<span class="w"> </span><span class="o">{</span>你的光标在这里<span class="o">}</span>
 <span class="c1"># ...</span>
 </code></pre></div>
 <p>实际情况还有很多种，因为这些“形式”都是可以被设置的。比如这里的 <code>$</code> 被称为 prompt，在本文第一张图片中我就将它设置为了一个 Emoji 图标。而我们发现这里还有一个 <code>~</code> ，它表示的是您的“家目录”。更准确的说，它的含义是您当前所在的位置是您的家目录。关于这一点我们将在接下来展开。</p>
@@ -1064,27 +1068,27 @@ DESCRIPTION
 <h3 id="打印字符串--echo">打印字符串 | echo<a class="headerlink" href="#打印字符串--echo" title="Permanent link">¶</a></h3>
 <p><code>echo</code> 即回响，这个单词非常形象地描述了这个命令的作用，将其接受到的内容“回响”出来。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># echo 会将它拿到的参数全都当作字符串打印出来，但成对引号并不会</span>
-$ <span class="nb">echo</span> &lt;something&gt;
-$ <span class="nb">echo</span> <span class="s2">"something 1 2 3"</span>
-something <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
-$ <span class="nb">echo</span> something <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
-something <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>&lt;something&gt;
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"something 1 2 3"</span>
+something<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>something<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>
+something<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>
 
 <span class="c1"># 如果你只输入了一个引号，它会等你把他补完再输出</span>
 <span class="c1"># 如果想输出引号，需要使用 \" 转义</span>
-$ <span class="nb">echo</span> <span class="s2">"</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span>
 <span class="s2">Fine, \"I\" will finish the string.</span>
 <span class="s2">"</span>
-Fine, <span class="s2">"I"</span> will finish the string.
+Fine,<span class="w"> </span><span class="s2">"I"</span><span class="w"> </span>will<span class="w"> </span>finish<span class="w"> </span>the<span class="w"> </span>string.
 
 <span class="c1"># echo 支持输出参数，以 $ 开头，在命令行环境下他们指环境变量，在脚本环境下还可以进行一些参数传递</span>
 <span class="c1"># 下面的命令输出了当前用户，USER 是一个值为当前用户的用户名的环境变量。</span>
-<span class="nb">echo</span> <span class="nv">$USER</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$USER</span>
 isshikih
 </code></pre></div>
 <h3 id="查看当前路径--pwd">查看当前路径 | pwd<a class="headerlink" href="#查看当前路径--pwd" title="Permanent link">¶</a></h3>
 <p>在这里我们想介绍的第二个指令是 <code>pwd</code>，它的效果是输出您当前的位置。</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">pwd</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">pwd</span>
 <span class="c1"># 比如我的环境下，在 ~ 下输出如下</span>
 /Users/isshikih
 <span class="c1"># 表示我当前的位置是 /Users/isshikih</span>
@@ -1093,30 +1097,30 @@ isshikih
 <p><strong>👉 事实上，有相当一部分 Shell 语法是围绕着文件展开的。</strong></p>
 <h3 id="切换目录--cd">切换目录 | cd<a class="headerlink" href="#切换目录--cd" title="Permanent link">¶</a></h3>
 <p><code>cd</code> 是 change directory 的缩写，它的效果是将您当前的位置转移到目标目录中。它的写法如下：</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="o">{</span>target directory<span class="o">}</span>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="o">{</span>target<span class="w"> </span>directory<span class="o">}</span>
 
 <span class="c1"># eg 1: =========================================</span>
-$ <span class="nb">pwd</span>
+$<span class="w"> </span><span class="nb">pwd</span>
 /home/username
 
-$ <span class="nb">cd</span> /home/username/aaa
-$ <span class="nb">pwd</span>
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/home/username/aaa
+$<span class="w"> </span><span class="nb">pwd</span>
 /home/username/aaa
 
 <span class="c1"># eg 2: =========================================</span>
-$ <span class="nb">pwd</span>
+$<span class="w"> </span><span class="nb">pwd</span>
 /home/username
 
-$ <span class="nb">cd</span> ./aaa/bbb
-$ <span class="nb">pwd</span>
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>./aaa/bbb
+$<span class="w"> </span><span class="nb">pwd</span>
 /home/username/aaa/bbb
 
 <span class="c1"># eg 3: =========================================</span>
-$ <span class="nb">pwd</span>
+$<span class="w"> </span><span class="nb">pwd</span>
 /home/username
 
-$ <span class="nb">cd</span> ./../aaa
-$ <span class="nb">pwd</span>
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>./../aaa
+$<span class="w"> </span><span class="nb">pwd</span>
 /home/aaa
 </code></pre></div>
 <p>接下来对上面 eg 的部分符号做一下解释：</p>
@@ -1137,50 +1141,50 @@ $ <span class="nb">pwd</span>
 <span class="c1"># 文件 .hidden 和文件 file1.md</span>
 <span class="c1"># 文件夹 dir1，里面有个文件 file2.md</span>
 
-$ ls
-dir1        file1.md
+$<span class="w"> </span>ls
+dir1<span class="w">        </span>file1.md
 
-$ ls -a
-.               ..      .hiden1     dir1        file1.md
+$<span class="w"> </span>ls<span class="w"> </span>-a
+.<span class="w">               </span>..<span class="w">      </span>.hiden1<span class="w">     </span>dir1<span class="w">        </span>file1.md
 
-$ ls -l
-drwxr-xr-x  <span class="m">2</span> isshikih  staff  <span class="m">64</span> <span class="m">10</span> <span class="m">12</span> <span class="m">12</span>:15 dir1
--rw-r--r--  <span class="m">1</span> isshikih  staff   <span class="m">7</span> <span class="m">10</span> <span class="m">12</span> <span class="m">12</span>:16 file1.md
+$<span class="w"> </span>ls<span class="w"> </span>-l
+drwxr-xr-x<span class="w">  </span><span class="m">2</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">  </span><span class="m">64</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">12</span>:15<span class="w"> </span>dir1
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">   </span><span class="m">7</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">12</span>:16<span class="w"> </span>file1.md
 
-$ ls -la
-drwxr-xr-x  <span class="m">5</span> isshikih  staff  <span class="m">160</span> <span class="m">10</span> <span class="m">12</span> <span class="m">12</span>:15 .
-drwxr-xr-x  <span class="m">6</span> isshikih  staff  <span class="m">192</span> <span class="m">10</span> <span class="m">12</span> <span class="m">12</span>:14 ..
--rw-r--r--  <span class="m">1</span> isshikih  staff    <span class="m">0</span> <span class="m">10</span> <span class="m">12</span> <span class="m">12</span>:15 .hiden1
-drwxr-xr-x  <span class="m">2</span> isshikih  staff   <span class="m">96</span> <span class="m">10</span> <span class="m">12</span> <span class="m">12</span>:15 dir1
--rw-r--r--  <span class="m">1</span> isshikih  staff    <span class="m">7</span> <span class="m">10</span> <span class="m">12</span> <span class="m">12</span>:16 file1.md
+$<span class="w"> </span>ls<span class="w"> </span>-la
+drwxr-xr-x<span class="w">  </span><span class="m">5</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">  </span><span class="m">160</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">12</span>:15<span class="w"> </span>.
+drwxr-xr-x<span class="w">  </span><span class="m">6</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">  </span><span class="m">192</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">12</span>:14<span class="w"> </span>..
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">    </span><span class="m">0</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">12</span>:15<span class="w"> </span>.hiden1
+drwxr-xr-x<span class="w">  </span><span class="m">2</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">   </span><span class="m">96</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">12</span>:15<span class="w"> </span>dir1
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">    </span><span class="m">7</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">12</span>:16<span class="w"> </span>file1.md
 
 <span class="c1"># 如果后面跟着一个文件夹，则显示目标路径下的内容，否则显示当前路径下的内容。</span>
-$ ls dir1
+$<span class="w"> </span>ls<span class="w"> </span>dir1
 file2.md
 </code></pre></div>
 <ul>
 <li>有时，我们会为 <code>ls -l</code> 设置一个 alias，即 <code>alias ll="ls -l"</code> ，这样，我们就可以更方便的 <code>ll</code> 了。</li>
 <li>其中， <code>l</code> 中的具体格式如下：</li>
 </ul>
-<div class="highlight"><pre><span></span><code>-rw-------   <span class="m">1</span> me       me            <span class="m">576</span> Apr <span class="m">17</span>  <span class="m">2019</span> weather.txt
-drwxr-xr-x   <span class="m">6</span> me       me           <span class="m">1024</span> Oct  <span class="m">9</span>  <span class="m">2019</span> web_page
--rw-rw-r--   <span class="m">1</span> me       me         <span class="m">276480</span> Feb <span class="m">11</span> <span class="m">20</span>:41 web_site.tar
--rw-------   <span class="m">1</span> me       me           <span class="m">5743</span> Dec <span class="m">16</span>  <span class="m">2018</span> xmas_file.txt
+<div class="highlight"><pre><span></span><code>-rw-------<span class="w">   </span><span class="m">1</span><span class="w"> </span>me<span class="w">       </span>me<span class="w">            </span><span class="m">576</span><span class="w"> </span>Apr<span class="w"> </span><span class="m">17</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>weather.txt
+drwxr-xr-x<span class="w">   </span><span class="m">6</span><span class="w"> </span>me<span class="w">       </span>me<span class="w">           </span><span class="m">1024</span><span class="w"> </span>Oct<span class="w">  </span><span class="m">9</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>web_page
+-rw-rw-r--<span class="w">   </span><span class="m">1</span><span class="w"> </span>me<span class="w">       </span>me<span class="w">         </span><span class="m">276480</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">20</span>:41<span class="w"> </span>web_site.tar
+-rw-------<span class="w">   </span><span class="m">1</span><span class="w"> </span>me<span class="w">       </span>me<span class="w">           </span><span class="m">5743</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">16</span><span class="w">  </span><span class="m">2018</span><span class="w"> </span>xmas_file.txt
 
-----------  -------  -------     -------- ------------ -------------
-<span class="p">|</span>          <span class="p">|</span>        <span class="p">|</span>            <span class="p">|</span>         <span class="p">|</span>             <span class="p">|</span>
-<span class="p">|</span>          <span class="p">|</span>        <span class="p">|</span>            <span class="p">|</span>         <span class="p">|</span>
-<span class="p">|</span>          <span class="p">|</span>        <span class="p">|</span>            <span class="p">|</span>         <span class="p">|</span>           文件名
-<span class="p">|</span>          <span class="p">|</span>        <span class="p">|</span>            <span class="p">|</span>         <span class="p">|</span>
-<span class="p">|</span>          <span class="p">|</span>        <span class="p">|</span>            <span class="p">|</span>         +---       修改时间
-<span class="p">|</span>          <span class="p">|</span>        <span class="p">|</span>            <span class="p">|</span>
-<span class="p">|</span>          <span class="p">|</span>        <span class="p">|</span>            +-------------   文件大小<span class="o">(</span><span class="k">in</span> bytes<span class="o">)</span>
-<span class="p">|</span>          <span class="p">|</span>        <span class="p">|</span>
-<span class="p">|</span>          <span class="p">|</span>        +--------------------------       所属用户组
-<span class="p">|</span>          <span class="p">|</span>
-<span class="p">|</span>          +-----------------------------------       所属用户
+----------<span class="w">  </span>-------<span class="w">  </span>-------<span class="w">     </span>--------<span class="w"> </span>------------<span class="w"> </span>-------------
+<span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">        </span><span class="p">|</span><span class="w">            </span><span class="p">|</span><span class="w">         </span><span class="p">|</span><span class="w">             </span><span class="p">|</span>
+<span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">        </span><span class="p">|</span><span class="w">            </span><span class="p">|</span><span class="w">         </span><span class="p">|</span>
+<span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">        </span><span class="p">|</span><span class="w">            </span><span class="p">|</span><span class="w">         </span><span class="p">|</span><span class="w">           </span>文件名
+<span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">        </span><span class="p">|</span><span class="w">            </span><span class="p">|</span><span class="w">         </span><span class="p">|</span>
+<span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">        </span><span class="p">|</span><span class="w">            </span><span class="p">|</span><span class="w">         </span>+---<span class="w">       </span>修改时间
+<span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">        </span><span class="p">|</span><span class="w">            </span><span class="p">|</span>
+<span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">        </span><span class="p">|</span><span class="w">            </span>+-------------<span class="w">   </span>文件大小<span class="o">(</span><span class="k">in</span><span class="w"> </span>bytes<span class="o">)</span>
+<span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">        </span><span class="p">|</span>
+<span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">        </span>+--------------------------<span class="w">       </span>所属用户组
+<span class="p">|</span><span class="w">          </span><span class="p">|</span>
+<span class="p">|</span><span class="w">          </span>+-----------------------------------<span class="w">       </span>所属用户
 <span class="p">|</span>
-+----------------------------------------------       文件权限
++----------------------------------------------<span class="w">       </span>文件权限
 <span class="c1"># Edited from https://linuxcommand.org/lc3_lts0030.php</span>
 </code></pre></div>
 <ul>
@@ -1189,7 +1193,7 @@ drwxr-xr-x   <span class="m">6</span> me       me           <span class="m">1024
 <h3 id="打印文件内容--cat">打印文件内容 | cat<a class="headerlink" href="#打印文件内容--cat" title="Permanent link">¶</a></h3>
 <p><code>cat</code> 指令会连接文件并将内容打印到标准输出流。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;filename&gt; 是目标文件的名字。</span>
-$ cat &lt;filename&gt;
+$<span class="w"> </span>cat<span class="w"> </span>&lt;filename&gt;
 </code></pre></div>
 <ul>
 <li>而实际上 <code>cat</code> 命令最重要的作用并不是 <strong>显示</strong> 文件内容，仔细观察描述，它的作用是 <strong>打印到标准输出流</strong>，其作用在之后介绍了重定向之后会凸显出来。</li>
@@ -1198,34 +1202,34 @@ $ cat &lt;filename&gt;
 <p><code>head</code> 和 <code>tail</code> 语法类似，功能类似，分别为查看目标文件的开头部分的内容和结尾部分的内容。不过由于我们对文本文件除了读写，还有一个叫做“追加”的操作（类比 C 语言中 <code>fopen()</code> 的 <code>‘a’</code> 模式） <code>tail</code> 会持续打印新追加进文件的内容，所以花样稍微比 <code>head</code> 多一点。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># `head` 和 `tail` 都有默认参数 `-n 10`</span>
 <span class="c1"># 也就是，下面两个指令是等价的，它们都会打印目标文件的前 10 行</span>
-$ head &lt;filename&gt;
-$ head -n <span class="m">10</span> &lt;filename&gt;
+$<span class="w"> </span>head<span class="w"> </span>&lt;filename&gt;
+$<span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>&lt;filename&gt;
 <span class="c1"># 下面这两条指令也是等价的，它们都会打印目标文件的末 10 行</span>
-$ tail &lt;filename&gt;
-$ tail -n <span class="m">10</span> &lt;filename&gt;
+$<span class="w"> </span>tail<span class="w"> </span>&lt;filename&gt;
+$<span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>&lt;filename&gt;
 
 <span class="c1"># 将 10 改成其他数字就可以修改显示的行数，例如下面的指令会打印目标文件的首/末 4 行</span>
-$ head -n <span class="m">4</span> &lt;filename&gt;
-$ tail -n <span class="m">4</span> &lt;filename&gt;
+$<span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>&lt;filename&gt;
+$<span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>&lt;filename&gt;
 
 <span class="c1"># 除了行数，你也可以指定打印的字节数，如下面指令会打印目标文件的首/末 20 个字节</span>
-$ head -c <span class="m">20</span> &lt;filename&gt;
-$ tail -c <span class="m">20</span> &lt;filename&gt;
+$<span class="w"> </span>head<span class="w"> </span>-c<span class="w"> </span><span class="m">20</span><span class="w"> </span>&lt;filename&gt;
+$<span class="w"> </span>tail<span class="w"> </span>-c<span class="w"> </span><span class="m">20</span><span class="w"> </span>&lt;filename&gt;
 </code></pre></div>
 <p><div class="highlight"><pre><span></span><code><span class="c1"># `tail` 比 `head` 还要多一些参数，比如 `-f`</span>
 <span class="c1"># `-f` 在打印完已有的文件内容后会阻塞，等待目标文件的更新</span>
 <span class="c1"># 一旦有内容追加进目标文件，`tail` 就会将它打印出来</span>
-$ tail -f &lt;filename&gt;
+$<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>&lt;filename&gt;
 </code></pre></div>
 <center>
-<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="2.gif"><img alt="" src="2.gif"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="2.gif"><img alt="" src="2.gif"/></a>
 </center></p>
 <p>注意，这里的 echo 开头的语句是在做追加操作，之后会讲到。</p>
 <p>而至于具体的引用场景，比如有些工具的日志会不断追加到某个日志文件中，这时候就可以用 <code>tail -f</code> 来实时跟踪日志信息。</p>
 <h3 id="查看文本文件内容--less">查看文本文件内容 | less<a class="headerlink" href="#查看文本文件内容--less" title="Permanent link">¶</a></h3>
 <p><code>less</code> 则是真正用来显示文件内容的指令，它会以文本文件的形式展示文件内容——这意味着你如果强行使用 <code>less</code> 来查看一个二进制文件，则会得到一堆乱码。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;textFilename&gt; 为目标文件的名字</span>
-$ less &lt;textFilename&gt;
+$<span class="w"> </span>less<span class="w"> </span>&lt;textFilename&gt;
 </code></pre></div>
 <p>使用 <code>less</code> 查看文件时，你会发现你打开了一个很像 <code>man</code> 的界面（相信你已经注意到了这个说法有点本末颠倒），那实际上浏览的方式也是类似的，这里再多介绍一些在浏览文件的时候可能用到的技巧：</p>
 <ul>
@@ -1241,98 +1245,98 @@ $ less &lt;textFilename&gt;
 </ul>
 <h3 id="修改文件时间属性创建文件--touch">修改文件时间属性(创建文件) | touch<a class="headerlink" href="#修改文件时间属性创建文件--touch" title="Permanent link">¶</a></h3>
 <p><code>touch</code>实际上是用来修改文件和目录的时间属性的，但是由于它具有“如果文件不存在则创建一个”的特性，所以也常常用来创建一个新档案。</p>
-<div class="highlight"><pre><span></span><code>$ ls -l
-total <span class="m">0</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-l
+total<span class="w"> </span><span class="m">0</span>
 
 <span class="c1"># 如果当前目录下没有叫做 &lt;filename&gt; 的文件，则创建一个 &lt;filename&gt;</span>
-$ touch file
-$ ls -l
-total <span class="m">0</span>
--rw-r--r--  <span class="m">1</span> isshikih  staff  <span class="m">0</span> <span class="m">10</span> <span class="m">25</span> <span class="m">10</span>:07 file
+$<span class="w"> </span>touch<span class="w"> </span>file
+$<span class="w"> </span>ls<span class="w"> </span>-l
+total<span class="w"> </span><span class="m">0</span>
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">10</span>:07<span class="w"> </span>file
 <span class="c1"># 其中文件的时间为系统的当前时间</span>
 
 <span class="c1"># 如果此时再次 touch &lt;filename&gt;，则会更新其时间为当前系统时间</span>
-$ touch file
-$ ls -l
-total <span class="m">0</span>
--rw-r--r--  <span class="m">1</span> isshikih  staff  <span class="m">0</span> <span class="m">10</span> <span class="m">25</span> <span class="m">10</span>:10 file
+$<span class="w"> </span>touch<span class="w"> </span>file
+$<span class="w"> </span>ls<span class="w"> </span>-l
+total<span class="w"> </span><span class="m">0</span>
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">10</span>:10<span class="w"> </span>file
 </code></pre></div>
 <h3 id="创建文件夹--mkdir">创建文件夹 | mkdir<a class="headerlink" href="#创建文件夹--mkdir" title="Permanent link">¶</a></h3>
 <p><code>mkdir</code>是 make directory 的缩写，也就是创建一个“文件夹”。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;dirname&gt; 可以是一个复杂路径下的目录，但是一定要求其前置目录都存在</span>
-$ mkdir &lt;dirname&gt;
-$ ls -l
-total <span class="m">0</span>
-$ mkdir dir1/dir2
-mkdir: dir1: No such file or directory
+$<span class="w"> </span>mkdir<span class="w"> </span>&lt;dirname&gt;
+$<span class="w"> </span>ls<span class="w"> </span>-l
+total<span class="w"> </span><span class="m">0</span>
+$<span class="w"> </span>mkdir<span class="w"> </span>dir1/dir2
+mkdir:<span class="w"> </span>dir1:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory
 <span class="c1"># 说明目标目录 dir2 的前置路径 ./dir1 缺失</span>
 
 <span class="c1"># 我们可以依次创建这些目录</span>
-$ mkdir dir1 dir1/dir2
-$ tree      <span class="c1"># 该指令会显示当前的文件结构</span>
+$<span class="w"> </span>mkdir<span class="w"> </span>dir1<span class="w"> </span>dir1/dir2
+$<span class="w"> </span>tree<span class="w">      </span><span class="c1"># 该指令会显示当前的文件结构</span>
 .
-├── dir1
-│   ├── dir2
-│   │   └── file2
-│   └── file1
-└── newDir
-    ├── dir2
-    │   └── file2
-    └── file1
+├──<span class="w"> </span>dir1
+│<span class="w">   </span>├──<span class="w"> </span>dir2
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>file2
+│<span class="w">   </span>└──<span class="w"> </span>file1
+└──<span class="w"> </span>newDir
+<span class="w">    </span>├──<span class="w"> </span>dir2
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>file2
+<span class="w">    </span>└──<span class="w"> </span>file1
 
-<span class="m">4</span> directories, <span class="m">4</span> files
+<span class="m">4</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">4</span><span class="w"> </span>files
 
 <span class="c1"># 或者使用 -p 参数，它允许创建嵌套目录，即如果前置目录不存在它会创建一个</span>
-$ mkdir -p dir1/dir2
-$ tree      <span class="c1"># 该指令会显示当前的文件结构</span>
+$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>dir1/dir2
+$<span class="w"> </span>tree<span class="w">      </span><span class="c1"># 该指令会显示当前的文件结构</span>
 .
-├── dir1
-│   ├── dir2
-│   │   └── file2
-│   └── file1
-└── newDir
-    ├── dir2
-    │   └── file2
-    └── file1
+├──<span class="w"> </span>dir1
+│<span class="w">   </span>├──<span class="w"> </span>dir2
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>file2
+│<span class="w">   </span>└──<span class="w"> </span>file1
+└──<span class="w"> </span>newDir
+<span class="w">    </span>├──<span class="w"> </span>dir2
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>file2
+<span class="w">    </span>└──<span class="w"> </span>file1
 
-<span class="m">4</span> directories, <span class="m">4</span> files
+<span class="m">4</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">4</span><span class="w"> </span>files
 </code></pre></div>
 <h3 id="移动重命名--mv">移动(重命名) | mv<a class="headerlink" href="#移动重命名--mv" title="Permanent link">¶</a></h3>
 <p><code>mv</code>即 move，含义很明显，即改变文件或目录的位置。不过由于“位置”这件事，实际上也可以包含文件本身的名字，所以也可以用来做重命名，实际上就是修改目标位置到同一个路径下的另外一个名字。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 注意，我们在这一节临时把 &lt;path&gt; 从 &lt;filename&gt; 和 &lt;dirname&gt; 中拆出来</span>
 <span class="c1"># 该指令会将 &lt;target1&gt; 移动到 &lt;path2&gt; 并改名为 &lt;target2&gt;，当然允许同名</span>
-$ mv &lt;path1&gt;/&lt;target1&gt; &lt;path2&gt;/&lt;target2&gt;
+$<span class="w"> </span>mv<span class="w"> </span>&lt;path1&gt;/&lt;target1&gt;<span class="w"> </span>&lt;path2&gt;/&lt;target2&gt;
 
 <span class="c1"># 省略 &lt;target2&gt;，则会移动文件位置但不修改文件名，即下面两个指令等价</span>
-$ mv &lt;path1&gt;/&lt;target1&gt; &lt;path2&gt;
-$ mv &lt;path1&gt;/&lt;target1&gt; &lt;path2&gt;/&lt;target1&gt;
+$<span class="w"> </span>mv<span class="w"> </span>&lt;path1&gt;/&lt;target1&gt;<span class="w"> </span>&lt;path2&gt;
+$<span class="w"> </span>mv<span class="w"> </span>&lt;path1&gt;/&lt;target1&gt;<span class="w"> </span>&lt;path2&gt;/&lt;target1&gt;
 
 <span class="c1"># 移动到同一目录，即实现重命名，当然 &lt;path1&gt;/ 可以省略，即此时 &lt;path1&gt; 为 .</span>
-$ mv &lt;path1&gt;/&lt;target1&gt; &lt;path1&gt;/&lt;target2&gt;
+$<span class="w"> </span>mv<span class="w"> </span>&lt;path1&gt;/&lt;target1&gt;<span class="w"> </span>&lt;path1&gt;/&lt;target2&gt;
 </code></pre></div>
 <h3 id="复制--cp">复制 | cp<a class="headerlink" href="#复制--cp" title="Permanent link">¶</a></h3>
 <p><code>cp</code>即 copy，用来复制文件或目录，基本语法和<code>mv</code>类似，我们再多介绍一个<code>-r</code>参数。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 该指令会复制一个文件 &lt;filename&gt; 到 &lt;path&gt; 下</span>
-$ cp &lt;filename&gt; &lt;path&gt;
+$<span class="w"> </span>cp<span class="w"> </span>&lt;filename&gt;<span class="w"> </span>&lt;path&gt;
 
 <span class="c1"># cp 无法复制文件夹</span>
-$ cp &lt;dir&gt; &lt;path&gt;
-cp: &lt;dir&gt; is a directory <span class="o">(</span>not copied<span class="o">)</span>.
+$<span class="w"> </span>cp<span class="w"> </span>&lt;dir&gt;<span class="w"> </span>&lt;path&gt;
+cp:<span class="w"> </span>&lt;dir&gt;<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>directory<span class="w"> </span><span class="o">(</span>not<span class="w"> </span>copied<span class="o">)</span>.
 <span class="c1"># 但是使用 -r 参数可以复制 &lt;path1&gt; 下所有内容到 &lt;path2&gt; 下</span>
-$ cp -r &lt;path1&gt; &lt;path2&gt;
-$ cp -r dir1 newDir
-$ tree      <span class="c1"># 该指令会显示当前的文件结构</span>
+$<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>&lt;path1&gt;<span class="w"> </span>&lt;path2&gt;
+$<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>dir1<span class="w"> </span>newDir
+$<span class="w"> </span>tree<span class="w">      </span><span class="c1"># 该指令会显示当前的文件结构</span>
 .
-├── dir1
-│   ├── dir2
-│   │   └── file2
-│   └── file1
-└── newDir
-    ├── dir2
-    │   └── file2
-    └── file1
+├──<span class="w"> </span>dir1
+│<span class="w">   </span>├──<span class="w"> </span>dir2
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>file2
+│<span class="w">   </span>└──<span class="w"> </span>file1
+└──<span class="w"> </span>newDir
+<span class="w">    </span>├──<span class="w"> </span>dir2
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>file2
+<span class="w">    </span>└──<span class="w"> </span>file1
 
-<span class="m">4</span> directories, <span class="m">4</span> files
+<span class="m">4</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">4</span><span class="w"> </span>files
 </code></pre></div>
 <h3 id="删除--rm">删除 | rm<a class="headerlink" href="#删除--rm" title="Permanent link">¶</a></h3>
 <p>把<code>rm</code>放在最后讲是有原因的，或许你听说过 <code>rm / -rf</code> 这条指令，却不知道它的含义，那么看完这一小节你就知道这个指令有多恐怖了（千万不要跑这条指令）。</p>
@@ -1340,44 +1344,44 @@ $ tree      <span class="c1"># 该指令会显示当前的文件结构</span>
 <p>所以，一般我们都会建议使用<code>alias</code>保护<code>rm</code>指令（我写过<code>fish</code>的<code>rmalias</code>保护流程，可以参考<a href="https://www.yuque.com/isshikixiu/codes/bokmrt">这篇文章</a>）。</p>
 <p><code>rm</code>即 remove，顾名思义就是用来删除东西的，这是个非常危险的指令。常用的参数有<code>-r</code>和<code>-f</code>，分别表示递归删除和强制删除；此外，我们还将介绍一个<code>-i</code>参数。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 删除一个文件</span>
-$ rm &lt;filename&gt;
+$<span class="w"> </span>rm<span class="w"> </span>&lt;filename&gt;
 
 <span class="c1"># 删除 &lt;dirname&gt; 下所有的一级文件</span>
-$ rm &lt;dirname&gt;/*
+$<span class="w"> </span>rm<span class="w"> </span>&lt;dirname&gt;/*
 
-$ tree
+$<span class="w"> </span>tree
 .
-├── dir2
-│   └── file3
-├── file1
-└── file2
+├──<span class="w"> </span>dir2
+│<span class="w">   </span>└──<span class="w"> </span>file3
+├──<span class="w"> </span>file1
+└──<span class="w"> </span>file2
 
-<span class="m">1</span> directory, <span class="m">3</span> files
-$ rm ./*
-rm: ./dir2: is a directory
-$ tree
+<span class="m">1</span><span class="w"> </span>directory,<span class="w"> </span><span class="m">3</span><span class="w"> </span>files
+$<span class="w"> </span>rm<span class="w"> </span>./*
+rm:<span class="w"> </span>./dir2:<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>directory
+$<span class="w"> </span>tree
 .
-└── dir2
-    └── file3
+└──<span class="w"> </span>dir2
+<span class="w">    </span>└──<span class="w"> </span>file3
 
-<span class="m">1</span> directory, <span class="m">1</span> file
+<span class="m">1</span><span class="w"> </span>directory,<span class="w"> </span><span class="m">1</span><span class="w"> </span>file
 <span class="c1"># 可以发现，中途报错说 dir2 是个目录并且没有删掉，实际上，如果 dir2 是个空目录，那它是会被删掉的</span>
 <span class="c1"># 而如果要真正删除这个目录下所有的内容，就需要我们“递归”删除，即使用 -r</span>
 
 <span class="c1"># 递归删除 &lt;dirname&gt; 下所有内容</span>
-$ rm -r &lt;dirname&gt;/*
+$<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>&lt;dirname&gt;/*
 
 <span class="c1"># 递归删除 &lt;dirname&gt;</span>
-$ rm -r &lt;dirname&gt;
+$<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>&lt;dirname&gt;
 
 <span class="c1"># 危险：强制递归删除 &lt;dirname&gt;</span>
-$ rm -rf &lt;dirname&gt;
+$<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>&lt;dirname&gt;
 
 <span class="c1"># 推荐：递归删除时逐一确认</span>
-$ rm -ri dir2
-examine files <span class="k">in</span> directory dir2/? y     <span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
-remove dir2//file3? y                                   <span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
-remove dir2/? y                                             <span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
+$<span class="w"> </span>rm<span class="w"> </span>-ri<span class="w"> </span>dir2
+examine<span class="w"> </span>files<span class="w"> </span><span class="k">in</span><span class="w"> </span>directory<span class="w"> </span>dir2/?<span class="w"> </span>y<span class="w">     </span><span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
+remove<span class="w"> </span>dir2//file3?<span class="w"> </span>y<span class="w">                                   </span><span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
+remove<span class="w"> </span>dir2/?<span class="w"> </span>y<span class="w">                                             </span><span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
 </code></pre></div>
 <h2 id="重定向相关-">重定向相关 💡<a class="headerlink" href="#重定向相关-" title="Permanent link">¶</a></h2>
 <p>可以说这是 Shell 中最有意思的知识点之一了。重定向，顾名思义就是重新定向，更准确的来说是给数据流重新定向。首先，我们来看看这张图，它描述了命令运行时的数据交互。</p>
@@ -1416,66 +1420,66 @@ command --&gt;|"Standard Error (stderr)"| error</code></pre>
 <p>但是现在我们想要它被写入到一个叫 <code>chat.txt</code> 的文件里，你当然可以使用 <code>fopen()</code> 之类的东西来实现，但是现在我们想用 Shell 来实现这个效果。</p>
 <p>我们再次回忆整个过程中数据的流动：程序中的数据 → <code>stdout</code> → screen，而重定向做的事情就是改变 <code>stdout</code> → screen 这个步骤。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># "command" 的输出会被覆写进 "file"</span>
-$ <span class="nb">command</span> &gt; file
+$<span class="w"> </span><span class="nb">command</span><span class="w"> </span>&gt;<span class="w"> </span>file
 
 <span class="c1"># 下面这条指令就实现了将 "Hello World!" 写入了 chat.txt</span>
-$ <span class="nb">echo</span> <span class="s2">"Hello World!"</span> &gt; chat.txt
-$ cat chat.txt
-Hello World!
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hello World!"</span><span class="w"> </span>&gt;<span class="w"> </span>chat.txt
+$<span class="w"> </span>cat<span class="w"> </span>chat.txt
+Hello<span class="w"> </span>World!
 
 <span class="c1"># "command" 的输出会被追加进 "file"</span>
-$ <span class="nb">command</span> &gt;&gt; file
+$<span class="w"> </span><span class="nb">command</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>file
 
 <span class="c1"># 下面这条指令就实现了将 "Hello World!" 追加进 chat.txt</span>
-$ <span class="nb">echo</span> <span class="s2">"Hello Human!"</span> &gt;&gt; chat.txt
-$ cat chat.txt
-Hello World!
-Hello Human!
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hello Human!"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>chat.txt
+$<span class="w"> </span>cat<span class="w"> </span>chat.txt
+Hello<span class="w"> </span>World!
+Hello<span class="w"> </span>Human!
 
 <span class="c1"># 下面这条指令实现了将当前目录下的文件/文件夹列表写入 "index.txt"</span>
-$ ls -al &gt; index.txt
+$<span class="w"> </span>ls<span class="w"> </span>-al<span class="w"> </span>&gt;<span class="w"> </span>index.txt
 </code></pre></div>
 <p>诶等等，上面怎么突然出现了“追加”这个词？别急。让我们回顾一下 <code>fopen()</code> 。如果需要创建一个可写文件，<code>fopen()</code> 的模式参数一般是 <code>w</code> ，或者是 <code>a</code>。他们分别代表 write 和 append，即覆写和追加。前者将目标文件的内容全部覆盖，写入新的内容，即相当于清空目标文件然后写入内容；后者是在目标文件的尾部开始写入新内容，旧的内容仍然保留。所以上面的代码会出现 “Hello Human!” 被追加在 “Hello World!” 后面的情况。</p>
 <p>现在，如果你想让你的 <code>a.exe</code> 输出的东西被写入 <code>out.txt</code> 中，也可以尝试这样运行它：</p>
-<div class="highlight"><pre><span></span><code>$ a.exe &gt; out.txt
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>a.exe<span class="w"> </span>&gt;<span class="w"> </span>out.txt
 </code></pre></div>
 <h3 id="标准输入流重定向--">标准输入流重定向 | &lt;<a class="headerlink" href="#标准输入流重定向--" title="Permanent link">¶</a></h3>
 <p>与输出相对应，如果我们想从文件中读取数据而非从 Keyboard 写入的缓冲区读取内容，而是从某个文件，我们也可以使用 <code>&lt;</code> 来重定向输入。</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// 假设 a.exe 的源码是这样的</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"></span>
-<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">str</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span><span class="w"></span>
-<span class="w">        </span><span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"Hello %s!"</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">str</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+<span class="w">        </span><span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"Hello %s!"</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1">// 假设 in.txt 中的内容为如下</span>
-<span class="n">isshikih</span><span class="w"></span>
+<span class="n">isshikih</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1"># "file" 会被当作 "command" 的输入参数</span>
-$ <span class="nb">command</span> &lt; file
+$<span class="w"> </span><span class="nb">command</span><span class="w"> </span>&lt;<span class="w"> </span>file
 
 <span class="c1"># "a.exe" 会读入 "chat.txt" 的内容作为输入</span>
-$ a.exe &lt; <span class="k">in</span>.txt
-Hello isshikh!
+$<span class="w"> </span>a.exe<span class="w"> </span>&lt;<span class="w"> </span><span class="k">in</span>.txt
+Hello<span class="w"> </span>isshikh!
 
 <span class="c1"># 综合起来，我们还可以这样</span>
-$ a.exe &lt; <span class="k">in</span>.txt &gt; out.txt
-$ cat out.txt
-Hello isshikih! 
+$<span class="w"> </span>a.exe<span class="w"> </span>&lt;<span class="w"> </span><span class="k">in</span>.txt<span class="w"> </span>&gt;<span class="w"> </span>out.txt
+$<span class="w"> </span>cat<span class="w"> </span>out.txt
+Hello<span class="w"> </span>isshikih!<span class="w"> </span>
 </code></pre></div>
 <h3 id="标准错误流重定向--2-2">标准错误流重定向 | 2&gt; 2&gt;&gt;<a class="headerlink" href="#标准错误流重定向--2-2" title="Permanent link">¶</a></h3>
 <p><code>stderr</code> 的重定向基本上和 <code>stdout</code> 是一样的。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># "command" 的错误流会被覆写进 "file"</span>
-$ <span class="nb">command</span> <span class="m">2</span>&gt; file
+$<span class="w"> </span><span class="nb">command</span><span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>file
 
 <span class="c1"># "command" 的错误流会被追加进 "file"</span>
-$ <span class="nb">command</span> &gt;&gt; file
+$<span class="w"> </span><span class="nb">command</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>file
 </code></pre></div>
 <p>但对于 <code>stderr</code> ，我们使用重定向的目的也可能是为了让他不要在屏幕上显示出来，即将它重定向到别的地方去。</p>
 <p>这里需要介绍一个特殊的“文件”， <code>/dev/null</code> ——任何写入到它的内容都会被丢弃。也就是说，只要我们将 <code>stderr</code> 重定向到 <code>/dev/null</code> ，就能实现类似于“忽略错误流”的效果。 </p>
 <div class="highlight"><pre><span></span><code><span class="c1"># "command" 的错误信息都会被丢弃</span>
-$ <span class="nb">command</span> <span class="m">2</span>&gt; /dev/null
+$<span class="w"> </span><span class="nb">command</span><span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/dev/null
 </code></pre></div>
 <h3 id="合并--">合并 | &lt;&amp; &gt;&amp;<a class="headerlink" href="#合并--" title="Permanent link">¶</a></h3>
 <p>此外，还有 <code>&lt;&amp;</code> 和 <code>&gt;&amp;</code> 这两个符号，由于篇幅有限，我不打算展开讲这件事。这里引用这一批回答：</p>
@@ -1492,35 +1496,35 @@ $ <span class="nb">command</span> <span class="m">2</span>&gt; /dev/null
 <p>That would be the case in cases where fd 0 points to the terminal device, because terminal emulators or <code>getty</code> would generally open the terminal device in read+write mode and assign fds 0, 1 and 2 to it.</p>
 <p>So maybe whoever wrote that wanted to redirect stdout to the terminal assuming that stdin was pointing to it.</p>
 <p>One place where <code>n&gt;&amp;n</code> makes sense is with zsh and its <code>mult_IOs</code> feature. In <code>zsh</code>:</p>
-<div class="highlight"><pre><span></span><code>some-cmd &gt;<span class="p">&amp;</span><span class="m">1</span> &gt; some-file
+<div class="highlight"><pre><span></span><code>some-cmd<span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span>&gt;<span class="w"> </span>some-file
 <span class="c1"># that is: some-cmd 1&gt;&amp;1 1&gt; some-file</span>
 </code></pre></div>
 <p>Redirects the standard output of <code>some-cmd</code> to both whatever stdout was before (&amp;1) and <code>some-file</code>, as if you had written:</p>
-<div class="highlight"><pre><span></span><code>some-cmd <span class="p">|</span> tee some-file
+<div class="highlight"><pre><span></span><code>some-cmd<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>some-file
 </code></pre></div>
 <p>While</p>
-<div class="highlight"><pre><span></span><code>some-cmd &lt;<span class="p">&amp;</span><span class="m">0</span> &lt; some-file
+<div class="highlight"><pre><span></span><code>some-cmd<span class="w"> </span>&lt;<span class="p">&amp;</span><span class="m">0</span><span class="w"> </span>&lt;<span class="w"> </span>some-file
 <span class="c1"># that is: some-cmd 0&lt;&amp;0 0&lt; some-file</span>
 </code></pre></div>
 <p>would feed first the original stdin and then <code>some-file</code> as input to <code>some-cmd</code> as if you had written:</p>
-<div class="highlight"><pre><span></span><code>cat - some-file <span class="p">|</span> some-cmd
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>-<span class="w"> </span>some-file<span class="w"> </span><span class="p">|</span><span class="w"> </span>some-cmd
 </code></pre></div>
 <p>But in <code>cmd &lt;&amp;0 &gt;&amp;0</code>, fd 0 is redirected only once, so that does not apply.</p>
 <p><code>n&gt;&amp;n</code> can also have an interesting side effect in some shells (<code>ksh</code>, <code>zsh</code>, not <code>dash</code>, <code>bash</code> nor <code>yash</code>) in that it triggers an error and gives up running the command if the file descriptor <code>n</code> is not open. So, in those shells,</p>
-<div class="highlight"><pre><span></span><code>cmd <span class="m">0</span>&lt;<span class="p">&amp;</span><span class="m">0</span>
+<div class="highlight"><pre><span></span><code>cmd<span class="w"> </span><span class="m">0</span>&lt;<span class="p">&amp;</span><span class="m">0</span>
 </code></pre></div>
 <p>would avoid running <code>cmd</code> in the pathological condition where <code>stdin</code> is closed:</p>
-<div class="highlight"><pre><span></span><code>$ ksh -c <span class="s1">'cat file - &lt;&amp;0'</span> &lt;<span class="p">&amp;</span>-
-ksh: <span class="m">0</span>: cannot open <span class="o">[</span>Bad file descriptor<span class="o">]</span>
-$ mksh -c <span class="s1">'cat file - &lt;&amp;0'</span> &lt;<span class="p">&amp;</span>-
-mksh: &lt;<span class="p">&amp;</span><span class="m">0</span> : bad file descriptor
-$ zsh -c <span class="s1">'cat file - &lt;&amp;0'</span> &lt;<span class="p">&amp;</span>-
-zsh:1: <span class="m">0</span>: bad file descriptor
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ksh<span class="w"> </span>-c<span class="w"> </span><span class="s1">'cat file - &lt;&amp;0'</span><span class="w"> </span>&lt;<span class="p">&amp;</span>-
+ksh:<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>cannot<span class="w"> </span>open<span class="w"> </span><span class="o">[</span>Bad<span class="w"> </span>file<span class="w"> </span>descriptor<span class="o">]</span>
+$<span class="w"> </span>mksh<span class="w"> </span>-c<span class="w"> </span><span class="s1">'cat file - &lt;&amp;0'</span><span class="w"> </span>&lt;<span class="p">&amp;</span>-
+mksh:<span class="w"> </span>&lt;<span class="p">&amp;</span><span class="m">0</span><span class="w"> </span>:<span class="w"> </span>bad<span class="w"> </span>file<span class="w"> </span>descriptor
+$<span class="w"> </span>zsh<span class="w"> </span>-c<span class="w"> </span><span class="s1">'cat file - &lt;&amp;0'</span><span class="w"> </span>&lt;<span class="p">&amp;</span>-
+zsh:1:<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>bad<span class="w"> </span>file<span class="w"> </span>descriptor
 
-$ bash -c <span class="s1">'cat file - &lt;&amp;0'</span> &lt;<span class="p">&amp;</span>-
-contents of file
-cat: -: Bad file descriptor
-cat: closing standard input: Bad file descriptor
+$<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">'cat file - &lt;&amp;0'</span><span class="w"> </span>&lt;<span class="p">&amp;</span>-
+contents<span class="w"> </span>of<span class="w"> </span>file
+cat:<span class="w"> </span>-:<span class="w"> </span>Bad<span class="w"> </span>file<span class="w"> </span>descriptor
+cat:<span class="w"> </span>closing<span class="w"> </span>standard<span class="w"> </span>input:<span class="w"> </span>Bad<span class="w"> </span>file<span class="w"> </span>descriptor
 </code></pre></div>
 <ul>
 <li><strong>Copy from the top answer from: <a href="https://unix.stackexchange.com/questions/84620/what-does-sh-a-sh-0-0-mean">https://unix.stackexchange.com/questions/84620/what-does-sh-a-sh-0-0-mean</a></strong></li>
@@ -1529,36 +1533,36 @@ cat: closing standard input: Bad file descriptor
 <h3 id="管道符--">管道符 | |<a class="headerlink" href="#管道符--" title="Permanent link">¶</a></h3>
 <p>前面讲了如何将输入输出重定向至 <strong>文件</strong>，即数据的流动是 <strong>从命令到文件</strong> 或是 <strong>从文件到命令</strong>。而管道符 <code>|</code> 则实现了将数据的流动定向为 <strong>从命令到命令</strong>。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># "command_1" 的输出会作为 "command_2" 的输入</span>
-$ command_1 <span class="p">|</span> command_2
+$<span class="w"> </span>command_1<span class="w"> </span><span class="p">|</span><span class="w"> </span>command_2
 
 <span class="c1"># 使用 less 来查看当前目录下的文件/文件夹列表</span>
-$ ls -al <span class="p">|</span> less
+$<span class="w"> </span>ls<span class="w"> </span>-al<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
 
 <span class="c1"># 一个常用的用法是搭 grep 在日志中找到你想要的一行</span>
 <span class="c1"># 比如下面的命令会在 xxx.log 文件中找到带有关键词 "lean_shell" 的若干行</span>
-$ cat xxx.log <span class="p">|</span> grep <span class="s2">"lean_shell"</span>
-Let us learn_shell together!
-Learn_shell means learn_shell and learn_shell!
-$ cat xxx.log
-Command line is powerful!
-Let us learn_shell together!
-Have you ever see this?
-Learn_shell means learn_shell and learn_shell!
+$<span class="w"> </span>cat<span class="w"> </span>xxx.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"lean_shell"</span>
+Let<span class="w"> </span>us<span class="w"> </span>learn_shell<span class="w"> </span>together!
+Learn_shell<span class="w"> </span>means<span class="w"> </span>learn_shell<span class="w"> </span>and<span class="w"> </span>learn_shell!
+$<span class="w"> </span>cat<span class="w"> </span>xxx.log
+Command<span class="w"> </span>line<span class="w"> </span>is<span class="w"> </span>powerful!
+Let<span class="w"> </span>us<span class="w"> </span>learn_shell<span class="w"> </span>together!
+Have<span class="w"> </span>you<span class="w"> </span>ever<span class="w"> </span>see<span class="w"> </span>this?
+Learn_shell<span class="w"> </span>means<span class="w"> </span>learn_shell<span class="w"> </span>and<span class="w"> </span>learn_shell!
 
 <span class="c1"># 又或者计算当前目录下有多少文件夹和文件</span>
-$ ls -a <span class="p">|</span> wc -w
+$<span class="w"> </span>ls<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-w
 <span class="m">5</span>
-$ ls -a
-.   ..  x   xx  xxx.log
+$<span class="w"> </span>ls<span class="w"> </span>-a
+.<span class="w">   </span>..<span class="w">  </span>x<span class="w">   </span>xx<span class="w">  </span>xxx.log
 
 <span class="c1"># 再比如，统计当前目录下各个文件夹的大小，并输出从大到小的 10 项</span>
-$ du <span class="p">|</span> sort -nr <span class="p">|</span> head
+$<span class="w"> </span>du<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-nr<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
 <span class="c1"># 找出当前目录下（递归）所有叫做 "xxx" 的文件并删除</span>
-$ find . -name <span class="s2">"xxx"</span>  <span class="p">|</span> xargs rm -f
+$<span class="w"> </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">"xxx"</span><span class="w">  </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>rm<span class="w"> </span>-f
 </code></pre></div>
 <h3 id="筛选器">筛选器<a class="headerlink" href="#筛选器" title="Permanent link">¶</a></h3>
 <p>可以发现，重定向的功能非常强大。同时，这里也有很多筛选器供你选择，他们经常搭配管道符使用，以辅助管道符进行一些更复杂的工作。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="3.png"><img alt="Source: https://linuxcommand.org/lc3_lts0070.php" src="3.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="3.png"><img alt="Source: https://linuxcommand.org/lc3_lts0070.php" src="3.png"/></a></p>
 <p>Source: <a href="https://linuxcommand.org/lc3_lts0070.php">https://linuxcommand.org/lc3_lts0070.php</a></p>
 <h2 id="脚本-shell">脚本 Shell<a class="headerlink" href="#脚本-shell" title="Permanent link">¶</a></h2>
 <p>简单来说，Shell 脚本可以看作一条条 Shell 指令的集合，我们在运行 Shell 脚本时，Shell 脚本中的指令按照特定顺序一行一行的被执行下来。</p>
@@ -1575,52 +1579,52 @@ $ find . -name <span class="s2">"xxx"</span>  <span class="p">|</span> xargs rm 
 </ul>
 <h3 id="流程控制---条件语句">流程控制 - 条件语句<a class="headerlink" href="#流程控制---条件语句" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 条件分支语句</span>
-<span class="k">if</span> condition1
+<span class="k">if</span><span class="w"> </span>condition1
 <span class="k">then</span>
-    commands
-<span class="k">elif</span> condition2
+<span class="w">    </span>commands
+<span class="k">elif</span><span class="w"> </span>condition2
 <span class="k">then</span>
-        commands 
+<span class="w">        </span>commands<span class="w"> </span>
 <span class="k">else</span>
-        commands
+<span class="w">        </span>commands
 <span class="k">fi</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1"># 当 $var 为 "A" 时执行第一块，当 $var 为 "B" 时执行第二块，*) 即其他情况</span>
-<span class="k">case</span> <span class="nv">$var</span> <span class="k">in</span> 
-    <span class="s2">"A"</span><span class="o">)</span>
-        commands
-    <span class="p">;;</span>
-    <span class="s2">"B"</span><span class="o">)</span>
-        commands
-    <span class="p">;;</span> 
-    *<span class="o">)</span>
-        commands
-    <span class="p">;;</span>
+<span class="k">case</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>
+<span class="w">    </span><span class="s2">"A"</span><span class="o">)</span>
+<span class="w">        </span>commands
+<span class="w">    </span><span class="p">;;</span>
+<span class="w">    </span><span class="s2">"B"</span><span class="o">)</span>
+<span class="w">        </span>commands
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span>
+<span class="w">    </span>*<span class="o">)</span>
+<span class="w">        </span>commands
+<span class="w">    </span><span class="p">;;</span>
 <span class="k">esac</span>
 </code></pre></div>
 <h3 id="流程控制---循环语句">流程控制 - 循环语句<a class="headerlink" href="#流程控制---循环语句" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 依次枚举若干 item，var 表示正在枚举的内容</span>
-<span class="k">for</span> var <span class="k">in</span> item1 item2 ... itemN
+<span class="k">for</span><span class="w"> </span>var<span class="w"> </span><span class="k">in</span><span class="w"> </span>item1<span class="w"> </span>item2<span class="w"> </span>...<span class="w"> </span>itemN
 <span class="k">do</span>
-    commands
+<span class="w">    </span>commands
 <span class="k">done</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1"># 运行到 condition 为假时结束</span>
-<span class="k">while</span> condition
+<span class="k">while</span><span class="w"> </span>condition
 <span class="k">do</span>
-    commands
+<span class="w">    </span>commands
 <span class="k">done</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1"># 运行到 condition 为真时结束</span>
-<span class="k">until</span> condition
+<span class="k">until</span><span class="w"> </span>condition
 <span class="k">do</span>
-    commands
+<span class="w">    </span>commands
 <span class="k">done</span>
 </code></pre></div>
 <h3 id="流程控制---函数">流程控制 - 函数<a class="headerlink" href="#流程控制---函数" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 定义了一个叫做 foo 的函数，function 可以不写</span>
-<span class="k">function</span> foo<span class="o">(){</span>
-      commands
+<span class="k">function</span><span class="w"> </span>foo<span class="o">(){</span>
+<span class="w">      </span>commands
 <span class="o">}</span>
 </code></pre></div>
 <h3 id="参数传递">参数传递<a class="headerlink" href="#参数传递" title="Permanent link">¶</a></h3>
@@ -1629,22 +1633,22 @@ $ find . -name <span class="s2">"xxx"</span>  <span class="p">|</span> xargs rm 
 <li>假设 <code>script.sh</code> 的内容如下</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="ch">#! /bin/bash</span>
-<span class="nb">echo</span> <span class="nv">$1</span>
-<span class="nb">echo</span> <span class="nv">$2</span>
-<span class="nb">echo</span> <span class="nv">$3</span>
-<span class="nb">echo</span> <span class="nv">$4</span>
-<span class="nb">echo</span> <span class="nv">$5</span>
-<span class="nb">echo</span> <span class="nv">$6</span>
-<span class="nb">echo</span> <span class="nv">$7</span>
-<span class="nb">echo</span> <span class="nv">$8</span>
-<span class="nb">echo</span> <span class="nv">$9</span>
-<span class="nb">echo</span> <span class="nv">$10</span>
-<span class="nb">echo</span> <span class="si">${</span><span class="nv">10</span><span class="si">}</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$1</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$2</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$3</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$4</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$5</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$6</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$7</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$8</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$9</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$10</span>
+<span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">10</span><span class="si">}</span>
 </code></pre></div>
 <ul>
 <li>则如下运行结果如下：</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ ./foo.sh a b c d e f g h i j
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./foo.sh<span class="w"> </span>a<span class="w"> </span>b<span class="w"> </span>c<span class="w"> </span>d<span class="w"> </span>e<span class="w"> </span>f<span class="w"> </span>g<span class="w"> </span>h<span class="w"> </span>i<span class="w"> </span>j
 a
 b
 c
@@ -1661,26 +1665,26 @@ j
 <li>假设 <code>script.sh</code> 的内容如下</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="ch">#! /bin/bash</span>
-<span class="k">function</span> foo<span class="o">(){</span>
-        <span class="nb">echo</span> <span class="nv">$1</span>
-        <span class="nb">echo</span> <span class="nv">$2</span>
-        <span class="nb">echo</span> <span class="nv">$3</span>
-        <span class="nb">echo</span> <span class="nv">$4</span>
-        <span class="nb">echo</span> <span class="nv">$5</span>
-        <span class="nb">echo</span> <span class="nv">$6</span>
-        <span class="nb">echo</span> <span class="nv">$7</span>
-        <span class="nb">echo</span> <span class="nv">$8</span>
-        <span class="nb">echo</span> <span class="nv">$9</span>
-        <span class="nb">echo</span> <span class="nv">$10</span>
-        <span class="nb">echo</span> <span class="si">${</span><span class="nv">10</span><span class="si">}</span>
+<span class="k">function</span><span class="w"> </span>foo<span class="o">(){</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$1</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$2</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$3</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$4</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$5</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$6</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$7</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$8</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$9</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$10</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">10</span><span class="si">}</span>
 <span class="o">}</span>
 
-foo a b c d e f g h i j
+foo<span class="w"> </span>a<span class="w"> </span>b<span class="w"> </span>c<span class="w"> </span>d<span class="w"> </span>e<span class="w"> </span>f<span class="w"> </span>g<span class="w"> </span>h<span class="w"> </span>i<span class="w"> </span>j
 </code></pre></div>
 <ul>
 <li>则如下运行结果如下：</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ ./script.sh
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./script.sh
 a
 b
 c
@@ -1705,17 +1709,17 @@ C
 <ul>
 <li>执行下列语句</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> var <span class="k">in</span> <span class="sb">`</span>cat file<span class="sb">`</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>var<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>cat<span class="w"> </span>file<span class="sb">`</span>
 <span class="k">do</span>
-    <span class="nb">echo</span> - var 
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-<span class="w"> </span>var<span class="w"> </span>
 <span class="k">done</span>
 </code></pre></div>
 <ul>
 <li>结果为</li>
 </ul>
-<div class="highlight"><pre><span></span><code>- A
-- B
-- C
+<div class="highlight"><pre><span></span><code>-<span class="w"> </span>A
+-<span class="w"> </span>B
+-<span class="w"> </span>C
 </code></pre></div>
 <h3 id="指定执行脚本所使用的-shell">指定执行脚本所使用的 Shell<a class="headerlink" href="#指定执行脚本所使用的-shell" title="Permanent link">¶</a></h3>
 <p>可以发现，在前面给出的若干脚本样例中，我们的第一行都有一行奇怪的注释：</p>
@@ -1729,16 +1733,16 @@ C
 <span class="c1"># get current direction</span>
 <span class="nv">curDir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 <span class="c1"># get shell direction</span>
-<span class="nv">workDir</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="s2">"</span><span class="k">$(</span>dirname <span class="s2">"</span><span class="nv">$0</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="p">;</span><span class="nb">pwd</span><span class="k">)</span>
+<span class="nv">workDir</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>dirname<span class="w"> </span><span class="s2">"</span><span class="nv">$0</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="p">;</span><span class="nb">pwd</span><span class="k">)</span>
 
-<span class="nb">cd</span> <span class="nv">$workDir</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$workDir</span>
 
 <span class="c1"># Write your script here.</span>
 
-<span class="nb">cd</span> <span class="nv">$curDir</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$curDir</span>
 </code></pre></div>
 <h2 id="其他">其他<a class="headerlink" href="#其他" title="Permanent link">¶</a></h2>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="4.png"><img alt="" src="4.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="4.png"><img alt="" src="4.png"/></a></p>
 <p>命令行常见快捷键，Source: <a href="https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line">https://lym.readthedocs.io/en/latest/startingcommands.html?highlight=mkdir#moving-around-in-the-command-line</a></p>
 <ul>
 <li><a href="https://wangchujiang.com/linux-command/">Linux 命令大全</a></li>
@@ -1811,34 +1815,6 @@ C
           </a>
 </main>
 <footer class="md-footer">
-<nav aria-label="页脚" class="md-footer__inner md-grid">
-<a aria-label="上一页: Git Commands" class="md-footer__link md-footer__link--prev" href="../Git/Commands/" rel="prev">
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
-</div>
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                上一页
-              </span>
-              Git Commands
-            </div>
-</div>
-</a>
-<a aria-label="下一页: Google Colaboratory" class="md-footer__link md-footer__link--next" href="../Colab/" rel="next">
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                下一页
-              </span>
-              Google Colaboratory
-            </div>
-</div>
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
-</div>
-</a>
-</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
@@ -1854,7 +1830,7 @@ C
 </div>
 <div class="md-social">
 <a class="md-social__link" href="https://github.com/IsshikiHugh" rel="noopener" target="_blank" title="Github">
-<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
 </a>
 </div>
 </div>
@@ -1864,9 +1840,9 @@ C
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
-<script src="../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script src="../../../_js/extra.js"></script>
-<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>
