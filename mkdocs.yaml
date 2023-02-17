@@ -47,6 +47,7 @@ theme:
   custom_dir: overrides
 
 plugins:
+  - statistics
   - glightbox
   - search
   - git-revision-date-localized:

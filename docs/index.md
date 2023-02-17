@@ -1,12 +1,10 @@
 ---
 comments: false
+statistics: True
 ---
 
 # 欢迎！
 
-<center>
-内容还在迁移过程中，最近更新可能比较频繁。
-</center>
 
 !!! note "" 
     <br><br>
@@ -32,6 +30,10 @@ comments: false
     </div>
 
     </div>
+
+<center>
+本站目前共 {{pages}} 页，累计 {{words}} 字！
+</center>
 
 ??? summary "<center>@Isshiki修</center>" 
     
