@@ -86,43 +86,47 @@
 所以在这种模型下，我们需要定义两个东西：
 
 !!! definition "Trouble Maker & Trouble Finder"
-    以 🌰 来说明，下图为一个 AVL 树：
-
-    ```mermaid
-    graph TD;
-    A(("8, BF=1"))
-    B(("4, BF=0"))
-    C(("9, BF=0"))
-    D(("2, BF=0"))
-    E(("6, BF=0"))
-    A --- B
-    A --- C
-    B --- D
-    B --- E
-    ```
+    以 🌰 来说明。
     
-    现在我们插入 `5`：
+    !!! note ""
+        === "Status 1"
+            下图为一个 AVL 树：
 
-    ```mermaid
-    graph TD;
-    A(("8, BF=2"))
-    B(("4, BF=1"))
-    C(("9, BF=0"))
-    D(("2, BF=0"))
-    E(("6, BF=1"))
-    F(("5, BF=0"))
-    A --- B
-    A --- C
-    B --- D
-    B --- E
-    E --- F
-    E --- NULL
-    ```
+            ```mermaid
+            graph TD;
+            A(("8, BF=1"))
+            B(("4, BF=0"))
+            C(("9, BF=0"))
+            D(("2, BF=0"))
+            E(("6, BF=0"))
+            A --- B
+            A --- C
+            B --- D
+            B --- E
+            ```
+        
+        === "Status 2"
+            现在我们插入 `5`：
 
-    我们发现，此时 `8` 的「平衡因子」变成了2，不再符合 AVL 树的要求，而这一切都是 `5` 的插入导致的——于是我们称像这里的 `8` 一样，由于某个点的插入，其「平衡因子」不再符合要求的点，为 Trouble Finder；而像这里的 `5` 一样，导致 Trouble Finder 出现的点，被称之为 Trouble Maker。
+            ```mermaid
+            graph TD;
+            A(("8, BF=2"))
+            B(("4, BF=1"))
+            C(("9, BF=0"))
+            D(("2, BF=0"))
+            E(("6, BF=1"))
+            F(("5, BF=0"))
+            A --- B
+            A --- C
+            B --- D
+            B --- E
+            E --- F
+            E --- NULL
+            ```
+
+            我们发现，此时 `8` 的「平衡因子」变成了2，不再符合 AVL 树的要求，而这一切都是 `5` 的插入导致的——于是我们称像这里的 `8` 一样，由于某个点的插入，其「平衡因子」不再符合要求的点，为 Trouble Finder；而像这里的 `5` 一样，导致 Trouble Finder 出现的点，被称之为 Trouble Maker。
 
     形象地描述这件事就是，在动态插入 `5` 这个过程中，出现了一个 "Trouble"，导致这个树不再是 AVL 树，而 `5` 是这个 "Trouble" 的 "Maker"，`8` 是 "Finder"。
-
 
 ---
 
