@@ -26,7 +26,7 @@ theme:
       danger: fontawesome/solid/virus
       bug: fontawesome/solid/robot
       example: fontawesome/solid/flask
-      quote: fontawesome/solid/quote-left
+      quote: fontawesome/solid/link
   font:
     text: Share Tech
     code: JetBrains Mono
@@ -187,6 +187,9 @@ nav:
     - cour_note/D2HJ_WritingInTheSciences/index.md
     - "[大二春夏] 计算机组成 | Computer Organization":
       - cour_note/D2CX_ComputerOrganization/index.md
+    - "[大二春夏] 高级数据结构 | Advanced Data Structure":
+      - cour_note/D2CX_AdvancedDataStructure/index.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec01.md
   - "📝 论文阅读":
     - pape_read/index.md
     - pape_read/arXiv:2003.08934/index.md

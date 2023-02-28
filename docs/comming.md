@@ -7,9 +7,13 @@ comments: false
 !!! failure "Missing"
     本部分的内容正在编辑中，尚未上传！
 
-??? extra "自定义 admonition"
+???+ extra "自定义 admonition"
 
     !!! definition "definition"
+
+    !!! proof "proof"
+
+    !!! feature "feature"
 
     !!! extra "extra"
 
@@ -19,7 +23,6 @@ comments: false
 
     !!! advice "advice"
 
-    !!! disadvice "disadvice"
+    !!! not-advice "not-advice"
 
     !!! eg "eg"
-    
