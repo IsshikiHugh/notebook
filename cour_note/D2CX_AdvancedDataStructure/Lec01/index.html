@@ -607,6 +607,20 @@
 <a class="md-nav__link" href="#ll--rr">
     LL &amp; RR
   </a>
+<nav aria-label="LL &amp; RR" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#旋转视角">
+    “旋转”视角
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#换根视角">
+    “换根”视角
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#lr--rl">
@@ -615,6 +629,11 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#其他问题">
+    其他问题
+  </a>
 </li>
 </ul>
 </nav>
@@ -756,6 +775,20 @@
 <a class="md-nav__link" href="#ll--rr">
     LL &amp; RR
   </a>
+<nav aria-label="LL &amp; RR" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#旋转视角">
+    “旋转”视角
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#换根视角">
+    “换根”视角
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#lr--rl">
@@ -764,6 +797,11 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#其他问题">
+    其他问题
+  </a>
 </li>
 </ul>
 </nav>
@@ -787,7 +825,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-1--avl-trees--splay-trees--amortized-analysis">Lecture 1 | AVL Trees &amp; Splay Trees &amp; Amortized Analysis<a class="headerlink" href="#lecture-1--avl-trees--splay-trees--amortized-analysis" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1996 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 176 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 9 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 2892 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 385 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 14 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">阅读建议</p>
@@ -1020,7 +1058,13 @@ E === NULL</code></pre>
 </div>
 <hr/>
 <h4 id="ll--rr">LL &amp; RR<a class="headerlink" href="#ll--rr" title="Permanent link">¶</a></h4>
-<p>这两种情况相对直观。由于它们的操作是对称的，所以我这里以 <code>LL</code> 为例。</p>
+<div class="admonition tip">
+<p class="admonition-title">废话</p>
+<p>大部分教材都倾向于继续用“旋转”来概括这些方法，确实其实从抽象角度来讲至少 <code>LL</code> 和 <code>RR</code> 部分也还是像的，但是我觉得这并不利于记忆和理解这个过程，尤其是对于 <code>LR</code> 和 <code>RL</code> 的部分。</p>
+<p>所以在 <code>LL</code> 和 <code>RR</code> 部分，我还是会先介绍一下比较传统的，用“旋转”的方式来理解，之后我将尝试着用我自己的思路来讲。</p>
+</div>
+<h5 id="旋转视角">“旋转”视角<a class="headerlink" href="#旋转视角" title="Permanent link">¶</a></h5>
+<p><code>LL</code> 和 <code>RR</code> 这两种情况相对直观。由于它们的操作是对称的，所以我这里以 <code>LL</code> 为例。</p>
 <pre class="mermaid"><code>    flowchart TD
         A((("Trouble\nFinder")))
         C[/"Right Subtree"\]
@@ -1142,11 +1186,286 @@ E === NULL</code></pre>
 </details>
 <p>而 RR Single Rotation 完全对称，所以不再赘述。</p>
 <hr/>
-<h4 id="lr--rl">LR &amp; RL<a class="headerlink" href="#lr--rl" title="Permanent link">¶</a></h4>
-<div class="admonition tip">
-<p class="admonition-title">废话</p>
-<p>大部分教材都倾向于继续用“旋转”来概括 LR 和 RL 的处理方法，确实其实从抽象角度来讲也还是像的，但是我觉得这并不利于记忆和理解这个过程。所以我将尝试着用我自己的思路来讲。</p>
+<h5 id="换根视角">“换根”视角<a class="headerlink" href="#换根视角" title="Permanent link">¶</a></h5>
+<p>现在我想尝试着用我自己的方式来理解这个问题。</p>
+<p>首先让我们人力动画一下这个过程（划掉）：</p>
+<div class="admonition section">
+<p class="admonition-title">LL Single Rotation</p>
+<blockquote>
+<p>此外，这里要素的命名都是基于 Frame 1 的，对于 Frame 4 来说 L Right Subtree 显然已经不是 L Right Subtree 了。</p>
+</blockquote>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:5"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><input id="__tabbed_5_3" name="__tabbed_5" type="radio"><input id="__tabbed_5_4" name="__tabbed_5" type="radio"><input id="__tabbed_5_5" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">Frame 1</label><label for="__tabbed_5_2">Frame 2</label><label for="__tabbed_5_3">Frame 3</label><label for="__tabbed_5_4">Frame 4</label><label for="__tabbed_5_5">Frame 5</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        C[/"Right Subtree"\]
+        D[/"L Left Subtree"\]
+        H(("Trouble\nMaker"))
+        E[/"L Right Subtree"\]
+
+        A === B
+        A === C
+        B === D === H
+        B === E</code></pre>
 </div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        C[/"Right Subtree"\]
+        D[/"L Left Subtree"\]
+        H(("Trouble\nMaker"))
+        E[/"L Right Subtree"\]
+
+        A --- B
+        A === C
+        B === D === H
+        B === E</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        B((("Left\nChild")))
+        D[/"L Left Subtree"\]
+        E[/"L Right Subtree"\]
+        H(("Trouble\nMaker"))
+        A((("Trouble\nFinder")))
+        C[/"Right Subtree"\]
+
+        A === C
+        B === D === H
+        B === E</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        B((("Left\nChild")))
+        D[/"L Left Subtree"\]
+        E[/"L Right Subtree"\]
+        H(("Trouble\nMaker"))
+        A((("Trouble\nFinder")))
+        C[/"Right Subtree"\]
+
+        A === C
+        B === D === H
+        A === E</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        C[/"Right Subtree"\]
+        D[/"L Left Subtree"\]
+        E[/"L Right Subtree"\]
+        H(("Trouble\nMaker"))
+
+        B === D === H
+        B === A
+        A === E
+        A === C
+</code></pre>
+</div>
+</div>
+</input></input></input></input></input></div>
+</div>
+<p>首先，我们遇到的问题是什么？是 Trouble Maker 进来以后，Trouble Finder 发现 <span class="arithmatex">\(h(T_L) - h(T_R) = 2\)</span>了，用通俗的话来说就是左子树太高了，然而在这种情况下，左子树依然还站在一个台子（Trouble Finder）上和Trouble Finder 比身高，所以我们需要将它从台子上请下来。也就是说，既然左子树太高了，那么我们就不<strong>希望</strong>让它再成为谁的子树，因为成为谁的子树必然意味着这条路径会更长。</p>
+<p>那么现在我们把它从台子上请下来，也就是说割裂它和 Trouble Finder 的父子关系（对应 Frame 2）让它们同台“对抗”（这一步在 <code>LL</code> 和 <code>RR</code> 可能显得比较多余，但是在 <code>LR</code> 和 <code>RL</code> 就会让问题清晰很多）。</p>
+<p>然而我们仍然需要让这个森林重新变回一个树，所以就需要重新从里面找到根节点，显然，只能选择 Trouble Finder <strong>旁边</strong> 的 Left Child。但是为了继续维护二叉搜索树的性质，所以我们需要将 L Right Subtree 移植到 Trouble Finder 必定空缺（因为这里原先是 Left Child）的左指针上。</p>
+<p>OK，你可能觉得这个解释对于 LL Single Rotation 来说显得十分多此一举，但是这都是为了给后面做的铺垫，虽然这个方法看起来繁琐冗余，但是已经足以解释原先的 Single Rotation 无法解释的 LR &amp; RL 操作方法。</p>
+<hr/>
+<h4 id="lr--rl">LR &amp; RL<a class="headerlink" href="#lr--rl" title="Permanent link">¶</a></h4>
+<p>首先我们需要知道为什么之前的方法不行，也是我觉得“旋转”这个做法在这个推进过程中比较割裂的地方：（对照 <strong><a href="#旋转视角">#旋转视角</a></strong> 的内容阅读）我们发现，由于 LL 中的 Trouble Maker 在左侧子树上，所以在旋转过程中，相当于把它“拽”上来了。然而对于 L Right Subtree，无论是旋转前还是旋转后，为了维护二叉搜索树的性质，它都被接在了深度为 1 的节点上，换句话来说 L Right Subtree 贡献的高度并没有改变。对于 RL 的情况也是同理的。所以我们并不能使用 LL Single Rotation 的方法来解决这个问题。</p>
+<p>那么我们换一个思路，用<strong><a href="#换根视角">“换根”视角</a></strong>来看待这个问题：</p>
+<div class="admonition section">
+<p class="admonition-title">LR Rotation</p>
+<blockquote>
+<p>这里两个 Subtree 接到同一个 Trouble Maker 的意思是 Trouble Maker 可以出现在两者任一中。</p>
+</blockquote>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:5"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"/><input id="__tabbed_6_3" name="__tabbed_6" type="radio"/><input id="__tabbed_6_4" name="__tabbed_6" type="radio"/><input id="__tabbed_6_5" name="__tabbed_6" type="radio"/><div class="tabbed-labels"><label for="__tabbed_6_1">Frame 1</label><label for="__tabbed_6_2">Frame 2</label><label for="__tabbed_6_3">Frame 3</label><label for="__tabbed_6_4">Frame 4</label><label for="__tabbed_6_5">Frame 5</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        C[/"Right Subtree"\]
+        D(("L Left\nChild"))
+        DA[/"L Left Subtree"\]
+        H(("Trouble\nMaker"))
+        E((("L Right\nChild")))
+        EA[/"L Left Subtree"\]
+        EB[/"L Right Subtree"\]
+
+        A === B
+        A === C
+        B === D === DA
+        B === E === EA --- H
+        E === EB --- H</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        C[/"Right Subtree"\]
+        D(("L Left\nChild"))
+        DA[/"L Left Subtree"\]
+        H(("Trouble\nMaker"))
+        E((("L Right\nChild")))
+        EA[/"L Left Subtree"\]
+        EB[/"L Right Subtree"\]
+
+        A --- B
+        A === C
+        B === D === DA
+        B --- E === EA --- H
+        E === EB --- H</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+
+        B((("Left\nChild")))
+        D(("L Left\nChild"))
+        DA[/"L Left Subtree"\]
+        H(("Trouble\nMaker"))
+        E((("L Right\nChild")))
+        EA[/"L Left Subtree"\]
+        EB[/"L Right Subtree"\]
+        A((("Trouble\nFinder")))
+        C[/"Right Subtree"\]
+
+        A === C
+        B === D === DA
+        E === EA --- H
+        E === EB --- H</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+
+        B((("Left\nChild")))
+        D(("L Left\nChild"))
+        DA[/"L Left Subtree"\]
+        H(("Trouble\nMaker"))
+        E((("L Right\nChild")))
+        EA[/"L Left Subtree"\]
+        EB[/"L Right Subtree"\]
+        A((("Trouble\nFinder")))
+        C[/"Right Subtree"\]
+
+        A === C
+        B === D === DA
+        E --- EA --- H
+        E --- EB --- H</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+
+        D(("L Left\nChild"))
+        B((("Left\nChild")))
+        DA[/"L Left Subtree"\]
+        E((("L Right\nChild")))
+        EA[/"L Left Subtree"\]
+        EB[/"L Right Subtree"\]
+        H(("Trouble\nMaker"))
+        A((("Trouble\nFinder")))
+        C[/"Right Subtree"\]
+
+        E === B
+        E === A
+        B === D === DA
+        B === EA --- H
+        A === EB --- H
+        A === C</code></pre>
+</div>
+</div>
+</input></div>
+</div>
+<details class="extra" open="open">
+<summary>关于记忆</summary>
+<p>记忆这个操作如何做的话，我的记忆方法是这样的：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"/><input id="__tabbed_7_2" name="__tabbed_7" type="radio"/><input id="__tabbed_7_3" name="__tabbed_7" type="radio"/><input id="__tabbed_7_4" name="__tabbed_7" type="radio"/><div class="tabbed-labels"><label for="__tabbed_7_1">Frame 1</label><label for="__tabbed_7_2">Frame 2</label><label for="__tabbed_7_3">Frame 3</label><label for="__tabbed_7_4">Frame 4</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        C[/"Right Subtree"\]
+        D(("L Left\nChild"))
+        DA[/"L Left Subtree"\]
+        H(("Trouble\nMaker"))
+        E((("L Right\nChild")))
+        EA[/"L Left Subtree"\]
+        EB[/"L Right Subtree"\]
+
+        A === B
+        A === C
+        B === D === DA
+        B === E === EA --- H
+        E === EB --- H</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        C[/"Right Subtree"\]
+        D(("L Left\nChild"))
+        DA[/"L Left Subtree"\]
+        H(("Trouble\nMaker"))
+        E((("L Right\nChild")))
+        EA[/"L Left Subtree"\]
+        EB[/"L Right Subtree"\]
+
+        A --- B
+        A --- E
+        A === C
+        B === D === DA
+        B --- E === EA --- H
+        E === EB --- H</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        D(("L Left\nChild"))
+        DA[/"L Left Subtree"\]
+        H(("Trouble\nMaker"))
+        E((("L Right\nChild")))
+        EA[/"L Left Subtree"\]
+        EB[/"L Right Subtree"\]
+        C[/"Right Subtree"\]
+
+        A --- B
+        E --- B 
+        E --- A
+        B === D === DA
+        B --- EA --- H
+        A --- EB --- H
+        A === C</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        D(("L Left\nChild"))
+        DA[/"L Left Subtree"\]
+        H(("Trouble\nMaker"))
+        E((("L Right\nChild")))
+        EA[/"L Left Subtree"\]
+        EB[/"L Right Subtree"\]
+        C[/"Right Subtree"\]
+
+        E --- B 
+        E --- A
+        B === D === DA
+        B --- EA --- H
+        A --- EB --- H
+        A === C</code></pre>
+</div>
+</div>
+</div>
+<p>用语言概括就是，找到关键的那三个点，然后把最下面的顶到上面去，剩下两个作为左右子树，原先的那个点的左右子树则对应地，左子树接到左边空缺的右子树上，右子树接到右边空缺的左子树上。</p>
+</details>
+<hr/>
+<h3 id="其他问题">其他问题<a class="headerlink" href="#其他问题" title="Permanent link">¶</a></h3>
+<p>多个 Trouble Finder 时？</p>
 <hr/>
 <h2 id="splay-trees">Splay Trees<a class="headerlink" href="#splay-trees" title="Permanent link">¶</a></h2>
 <hr/>
@@ -1156,7 +1475,7 @@ E === NULL</code></pre>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 21:56:05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 23:54:59</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 19:52:59</span>
