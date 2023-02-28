@@ -14,7 +14,7 @@
 <title>Lecture 7 | Structure From Motion - Isshiki修's Notebook</title>
 <link href="../../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
-<style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64h-64c-35.3 0-64-28.7-64-64V216z"/></svg>');}</style>
+<style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6 31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0l112.3-112.3zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5 50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0 27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>');}</style>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Share+Tech:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Share Tech";--md-code-font:"JetBrains Mono"}</style>
@@ -323,10 +323,62 @@
         [大一秋冬] C小程 琐碎知识点整理
       </a>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../D1CX_ProbabilityAndStatistics/">[大一春夏] 概率论与数理统计</a>
+<label for="__nav_3_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_3">
+<span class="md-nav__icon md-icon"></span>
+          [大一春夏] 概率论与数理统计
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/">
-        [大一春夏] 概率论与数理统计
+<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap01/">
+        [1.x] 概率论的基本概念
       </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap02/">
+        [2.x] 随机变量及其概率分布
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap03/">
+        [3.x] 多元随机变量及其分布
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap04/">
+        [4.x] 随机变量的数字特征
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap05/">
+        [5.x] 大数定律及中心极限定理
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap06/">
+        [6.x] 统计量与抽样分布
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap07/">
+        [7.x] 参数估计.md
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap08/">
+        [8.x] 假设检验
+      </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../D1SJ_cs231n/">
@@ -632,6 +684,28 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_10" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../D2CX_AdvancedDataStructure/">[大二春夏] 高级数据结构 | Advanced Data Structure</a>
+<label for="__nav_3_10">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_10_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_10">
+<span class="md-nav__icon md-icon"></span>
+          [大二春夏] 高级数据结构 | Advanced Data Structure
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec01/">
+        Lecture 1 | AVL Trees &amp; Splay Trees &amp; Amortized Analysis
+      </a>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </li>
@@ -869,7 +943,7 @@
 <blockquote>
 <p>在机器人领域，一个相关的领域是 <a href="https://zh.wikipedia.org/wiki/%E5%90%8C%E6%97%B6%E5%AE%9A%E4%BD%8D%E4%B8%8E%E5%9C%B0%E5%9B%BE%E6%9E%84%E5%BB%BA">同时定位与地图构建(Simultaneous Localization and Mapping)SLAM</a>。</p>
 </blockquote>
-<div class="admonition info">
+<div class="admonition key-point">
 <p class="admonition-title">三个关键问题</p>
 <ol>
 <li>如何描述相机的投影行为，也就是<strong><a href="../Lec02/#透视投影">相机模型</a></strong>的相关内容，本小结指透视模型；</li>
@@ -967,7 +1041,7 @@
     x_w \\ y_w \\ z_w \\ 1
 \end{bmatrix}
 \]</div>
-<div class="admonition note">
+<div class="admonition key-point">
 <p class="admonition-title">外参矩阵</p>
 <p>其中，新得到的这个 4<em>4 的矩阵就被称为</em><em>外参矩阵(Extrinsic Matrix)</em>*，也被写作：</p>
 <div class="arithmatex">\[
@@ -1061,7 +1135,7 @@ M_{ext} =
     1
 \end{bmatrix}
 \]</div>
-<div class="admonition note">
+<div class="admonition key-point">
 <p class="admonition-title">内参矩阵</p>
 <p>这里得到的，包含 <span class="arithmatex">\(f\)</span> 和 <span class="arithmatex">\(m\)</span> 的矩阵才是<strong>内参矩阵(Intrinsic Matrix)</strong>，也被写作：</p>
 <div class="arithmatex">\[
@@ -1150,7 +1224,7 @@ M_{ext} =
 <hr/>
 <h4 id="投影矩阵">投影矩阵<a class="headerlink" href="#投影矩阵" title="Permanent link">¶</a></h4>
 <p>总结应用两个矩阵的两个阶段：</p>
-<div class="admonition note">
+<div class="admonition section">
 <p class="admonition-title">Camera to Pixel: Intrinsic Matrix</p>
 <div class="arithmatex">\[
 \mathbf{\tilde{u}} = M_{int} \mathbf{\tilde{x}}_c \;\;\;\;i.e.\;\;\;\;
@@ -1171,7 +1245,7 @@ M_{ext} =
 \end{bmatrix}
 \]</div>
 </div>
-<div class="admonition note">
+<div class="admonition section">
 <p class="admonition-title">World to Camera: Extrinsic Matrix</p>
 <div class="arithmatex">\[
 \mathbf{\tilde{x}}_c = M_{ext} \mathbf{\tilde{x}}_w \;\;\;\;i.e.\;\;\;\;
@@ -1214,7 +1288,7 @@ M_{ext} =
 <hr/>
 <h3 id="相机标定与位置估计_1">相机标定与位置估计<a class="headerlink" href="#相机标定与位置估计_1" title="Permanent link">¶</a></h3>
 <p>根据<strong><a href="#投影矩阵">投影矩阵</a></strong>我们得到了像素点与 3D 景物世界坐标的转化关系，而相机标定与位置估计就是利用这个关系式求解投影矩阵。所以这就要求我们同时知道若干点的像素点位置和 3D 景物世界坐标，一般来说相机标定与位置估计是这么实现的：</p>
-<div class="admonition success">
+<div class="admonition section">
 <p class="admonition-title">步骤一</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../84.jpeg"><img align="right" alt="" src="../84.jpeg" width="160px"/></a></p>
 <p>给定一个几何特性已知的标定板，人为定义其世界坐标系。</p>
@@ -1222,14 +1296,14 @@ M_{ext} =
 <p>由于坐标都是由我们人为给定的，所以我们可以按照尽可能方便的原则进行规划。此外，为了方便之后的计算，标定板的内容一般是简单明了的。</p>
 <p>例如图中，定义世界坐标系后，每一格的边长为 5cm，所以紫色点的坐标为 <span class="arithmatex">\((0, 15, 20) cm\)</span>。</p>
 </div>
-<div class="admonition success">
+<div class="admonition section">
 <p class="admonition-title">步骤二</p>
 <p>寻找特定关键点的对应关系，也就是做<strong><a href="../Lec05/#图像特征匹配">特征匹配</a></strong>，即若干点对，每一个点对都是一个 3D 点和一个 2D 点的对应。</p>
 <hr/>
 <p>需要说明的一点是，我们已知的特征匹配是建立在两张二维图片上的，而现在要做的是 3D 到 2D 的匹配。一种想法是，我们可以将 3D 景象按照我们希望的方法映射为 2D 景象，例如在这个问题中我们可以直接拿这个标定板的 zy 平面来进行特征匹配。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../85.jpg"><img alt="" src="../85.jpg"/></a></p>
 </div>
-<div class="admonition success">
+<div class="admonition section">
 <p class="admonition-title">步骤三</p>
 <p>根据刚刚得到的若干对兴趣点，建立方程，求解投影矩阵。</p>
 <hr/>
@@ -1263,7 +1337,7 @@ i.e. \;\;\;\;
 \]</div>
 <p>由于投影矩阵有 12 个自由度，所以至少需要 6 对关键点 12 个等式。</p>
 </div>
-<div class="admonition success">
+<div class="admonition section">
 <p class="admonition-title">步骤四</p>
 <p>将若干方程重新排列为矩阵形式，方便之后的计算。</p>
 <hr/>
@@ -1293,7 +1367,7 @@ i.e. \;\;\;\;
 \]</div>
 <p>我们将其简写，也就是 <span class="arithmatex">\(A\mathbf{p} = 0\)</span>。</p>
 </div>
-<div class="admonition success">
+<div class="admonition section">
 <p class="admonition-title">步骤五</p>
 <p>求解 <span class="arithmatex">\(A\mathbf{p} = 0\)</span> 得到 <span class="arithmatex">\(\mathbf{p}\)</span>。</p>
 <hr/>
@@ -1387,24 +1461,24 @@ P =
 <h3 id="多点透视成像问题">多点透视成像问题<a class="headerlink" href="#多点透视成像问题" title="Permanent link">¶</a></h3>
 <p><strong>多点透视成像问题(Perspective-n-Point Problem)</strong>，即 PnP 问题，指的是已知内参求外参的视觉定位问题。</p>
 <p>常见的解决方案有如下几种。</p>
-<div class="admonition success">
+<div class="admonition section">
 <p class="admonition-title">DLT Direct Linear Transform</p>
 <p>也就是上面提到的做法。</p>
 </div>
-<div class="admonition success">
+<div class="admonition section">
 <p class="admonition-title">P3P</p>
 <p>至少需要 3 组对应关系才能求解相机位置，此外，我们还需要一个额外的点来保证答案的唯一性（否则一般来说会有四个解）</p>
 <p>其主要思路是根据图像，使用余弦定律进行求解。</p>
 <p><strong><a href="https://sakuratsuyu.github.io/Note/Computer_Science_Courses/ICV/7_Structure_from_Motion/#p3p">懒得写了，直接贴麦哥的笔记了！</a></strong></p>
 </div>
-<div class="admonition success">
+<div class="admonition section">
 <p class="admonition-title">PnP</p>
 <p>n &gt; 3 的情况的做法。</p>
 <p>转化为优化问题，求解理论和实际的点误差——<strong>重投影误差(reprojection error)</strong>最小时的外参，注意将齐次坐标转化为二维坐标。</p>
 <p>Initialized by P3P, optimized by Gauss-Newton。</p>
 <p><strong><a href="https://sakuratsuyu.github.io/Note/Computer_Science_Courses/ICV/7_Structure_from_Motion/#pnp">懒得写了，直接贴麦哥的笔记了！</a></strong></p>
 </div>
-<div class="admonition success">
+<div class="admonition section">
 <p class="admonition-title">EPnP</p>
 <p>目前最受欢迎的做法，O(N) 十分高效也十分准确，大概是用四个控制点表示其他点。</p>
 <p><strong><a href="https://sakuratsuyu.github.io/Note/Computer_Science_Courses/ICV/7_Structure_from_Motion/#epnp">懒得写了，直接贴麦哥的笔记了！</a></strong></p>
@@ -1433,20 +1507,20 @@ P =
 </blockquote>
 </div>
 <p>首先，我们需要介绍对极几何中的几个概念，我们将借助上图进行说明。</p>
-<div class="admonition note">
+<div class="admonition definition">
 <p class="admonition-title">基线</p>
 <p><strong>基线(Baseline)</strong>是两个相机中心的连线，即 <span class="arithmatex">\(OO'\)</span>。</p>
 </div>
-<div class="admonition note">
+<div class="admonition definition">
 <p class="admonition-title">对极点</p>
 <p><strong>对极点(Epipole)</strong>指的是：其中一个相机的<strong>相机中心</strong>在 另外一个相机的<strong>成像平面上</strong>的投影点，即 <span class="arithmatex">\(e_l\)</span> 和 <span class="arithmatex">\(e_r\)</span>，且他们在既定的具体双目模型下是唯一的。</p>
 </div>
-<div class="admonition note">
+<div class="admonition definition">
 <p class="admonition-title">对极面</p>
 <p><strong>对极面(Epipolar Plane)</strong>指的是两个相机中心 <span class="arithmatex">\(O_L\)</span> 和 <span class="arithmatex">\(O_R\)</span>，以及景物中的某个空间点 <span class="arithmatex">\(X\)</span> 这三个点所确定的空间平面。</p>
 <p>其中有一个性质，对极面总是经过相机中心连线 <span class="arithmatex">\(O_L O_R\)</span>，所以对于某个景物中的点 <span class="arithmatex">\(X_i\)</span>，其对极面都是唯一的。（显然，反过来不成立。）</p>
 </div>
-<div class="admonition note">
+<div class="admonition definition">
 <p class="admonition-title">对极线</p>
 <p><strong>对极线(Epipolar Line)</strong>是关于动点 <span class="arithmatex">\(X\)</span> 来说的，体现为对极面与成像平面的交线。</p>
 <p>假设我们只知道 <span class="arithmatex">\(X_L\)</span> 而不知道 <span class="arithmatex">\(X_R\)</span>，那么 <span class="arithmatex">\(X\)</span> 可能在 <span class="arithmatex">\(O_L X_L\)</span> 这条线上的任一点；而这条线在 <span class="arithmatex">\(R\)</span> 平面上的投影就是一条对极线，它的含义是可能的 <span class="arithmatex">\(X_R\)</span> 的轨迹。</p>
@@ -1463,7 +1537,7 @@ P =
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../90.png"><img alt="" src="../90.png"/></a></p>
 <p>其中两侧的相机理所当然的都拥有自己的坐标系，现在我们寻找一种变换，使得：<span class="arithmatex">\(\mathbf{x}_l = R\mathbf{x}_r + \mathbf{t}\)</span>，其中 <span class="arithmatex">\(\mathbf{t} = \overrightarrow{O_r O_l}\)</span>（图中貌似标错了方向），<span class="arithmatex">\(\mathbf{x}_l = \overrightarrow{O_l P}\)</span> 而 <span class="arithmatex">\(\mathbf{x}_r = \overrightarrow{O_r P}\)</span> 。</p>
 <p>下面开始 <del>变魔法</del> 进行一些变化：</p>
-<details class="note" open="open">
+<details class="section" open="open">
 <summary>形式 ② 推理过程</summary>
 <p>首先，在同一个（任何一个）笛卡尔坐标系中，都有 <span class="arithmatex">\(\mathbf{x}_l \cdot (\mathbf{t} \times \mathbf{x}_l) = 0\)</span>。</p>
 <p>具体来说，<span class="arithmatex">\(\mathbf{t}\)</span> 和 <span class="arithmatex">\(\mathbf{x}_l\)</span> 都是对极面内的两个不平行（我们假定这一点恒成立）的向量，那么 <span class="arithmatex">\(\mathbf{t} \times \mathbf{x}_l\)</span> 的结果必然是一个垂直于对极面的向量。而这个向量必然垂直于对极面上任意一个向量，所以上式结果为 <span class="arithmatex">\(0\)</span>。而将这个式子写成矩阵向量运算的形式，就是：</p>
@@ -1634,7 +1708,7 @@ E=T_{\times}R=
 \;\;\;\text{i.e.} \;\;\;
 \mathbf{x}_l^T E \mathbf{x}_r = 0
 \]</div>
-<div class="admonition note">
+<div class="admonition key-point">
 <p class="admonition-title">本征矩阵的性质</p>
 <p>由于 Essential Matrix 的定义具有如下特征：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../91.png"><img alt="" src="../91.png"/></a></p>
@@ -1653,7 +1727,7 @@ E=T_{\times}R=
 <p>形式 ②：求解 <span class="arithmatex">\(E\)</span> 使得 <span class="arithmatex">\(\mathbf{x}_l^T E \mathbf{x}_r = 0\)</span>，其中 <span class="arithmatex">\(E = T_{\times}R\)</span>，其中 <span class="arithmatex">\(T\)</span> 是 <span class="arithmatex">\(\mathbf{t}\)</span> 的矩阵形式；</p>
 </blockquote>
 <p>然而我们并不知道 <span class="arithmatex">\(\mathbf{x}_l\)</span> 和 <span class="arithmatex">\(\mathbf{x}_r\)</span>，所以还需要进一步变化。</p>
-<details class="note" open="open">
+<details class="section" open="open">
 <summary>形式 ③ 推理过程</summary>
 <p>根据<strong><a href="../Lec02/#透视投影">透视投影</a></strong>的相关内容，我们可以得到：</p>
 <div class="arithmatex">\[
@@ -1780,7 +1854,7 @@ F = (K_l^{-1})^T E K_r^{-1}
 </details>
 <p>这时，我们发现，<span class="arithmatex">\(\mathbf{u}_l\)</span> 和 <span class="arithmatex">\(\mathbf{u}_r\)</span> 终于是我们已知的东西了，这下我们可以求解基本矩阵 <span class="arithmatex">\(F\)</span>，而由于两个相机的内参矩阵也是已知的，所以我们还可以倒过来接着得到本征矩阵 <span class="arithmatex">\(E\)</span>，最后通过 SV 分解得到我们想要的 <span class="arithmatex">\(R\)</span> 和 <span class="arithmatex">\(\mathbf{t}\)</span>。</p>
 <p>具体来说，求解基本矩阵、本征矩阵、坐标变换的步骤如下：</p>
-<details class="note" open="open">
+<details class="section" open="open">
 <summary>求解步骤</summary>
 <p>对于关键点 <span class="arithmatex">\(i\)</span>，我们需要求解：</p>
 <div class="arithmatex">\[
@@ -1846,7 +1920,7 @@ f_{31} u_r^{(i)} + f_{32} v_r^{(i)} + f_33 = 0.
 <p>我们知道，如果假设数据都是准确的，那么 <span class="arithmatex">\(O_l X_l\)</span> 和 <span class="arithmatex">\(O_r X_r\)</span> 应当相交于空间点 <span class="arithmatex">\(X\)</span>。而三角测量描述的就是如何通过这样一个过程得到空间点 <span class="arithmatex">\(X\)</span>。</p>
 <p>我们在 <a href="#极线约束">极线约束</a> 里已经知道了 <span class="arithmatex">\(\mathbf{x}_l\)</span> 和 <span class="arithmatex">\(\mathbf{x}_r\)</span> 的变换关系，也就是说我们现在已经有了 <span class="arithmatex">\(O_l X_l\)</span> 和 <span class="arithmatex">\(O_r X_r\)</span> 的方程了。那么应当能够解出这个 <span class="arithmatex">\(X\)</span>，不过由于实际数据有误差，所以我们可能只能通过优化的方法得到近似解。</p>
 <p>具体的推理步骤如下：</p>
-<details class="note" open="open">
+<details class="section" open="open">
 <summary>求解步骤</summary>
 <p>首先我们使用齐次坐标改写变换方程，并最终写成关于 <span class="arithmatex">\(\mathbf{u}\)</span> 的形式 
 <script type="math/tex; mode=display">
@@ -1997,25 +2071,25 @@ cost(P) = dist(\mathbf{u}_l, \cap{\mathbf{u}_l})^2 + dist(\mathbf{u}_r, \cap{\ma
 </details>
 <hr/>
 <h3 id="具体步骤">具体步骤<a class="headerlink" href="#具体步骤" title="Permanent link">¶</a></h3>
-<div class="admonition example">
+<div class="admonition eg">
 <p class="admonition-title">前提</p>
 <p>两个相机的<strong><a href="#内参矩阵">内参矩阵</a></strong><span class="arithmatex">\(K\)</span> 已知。</p>
 <p>这意味着我们可以根据这些参数将相机成像可视化，如下图。</p>
 <p>其中下标为 <span class="arithmatex">\(l\)</span> 的表示左侧相机的相关关键点，下标为 <span class="arithmatex">\(r\)</span> 的表示右侧相机的相关关键点。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../87.png"><img alt="" src="../87.png"/></a></p>
 </div>
-<div class="admonition success">
+<div class="admonition section">
 <p class="admonition-title">步骤一</p>
 <p>对两张图片进行 <a href="../Lec05/#图像特征匹配">关键点匹配</a>，找到至少 8 对匹配特征。</p>
 <hr/>
 <p>「为什么需要 8 对」这个问题我们在 <a href="#极线约束">#极线约束/求解过程</a> 中已经说明。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../88.png"><img alt="" src="../88.png"/></a></p>
 </div>
-<div class="admonition success">
+<div class="admonition section">
 <p class="admonition-title">步骤二</p>
 <p>按照 <a href="#极线约束">#极线约束/求解过程</a> 提到的步骤，求解两个相机坐标的变换参数 <span class="arithmatex">\(R\)</span> 和 <span class="arithmatex">\(\mathbf{t}\)</span>。</p>
 </div>
-<div class="admonition success">
+<div class="admonition section">
 <p class="admonition-title">步骤三</p>
 <p>接下来对于每一对匹配的关键点，按照 <a href="#三角测量">#三角测量</a> 提到的方法，求解空间点 <span class="arithmatex">\(X_i\)</span>。</p>
 </div>
@@ -2037,7 +2111,7 @@ cost(P) = dist(\mathbf{u}_l, \cap{\mathbf{u}_l})^2 + dist(\mathbf{u}_r, \cap{\ma
 \]</div>
 <p>其求解可以使用 LM algorithm。</p>
 <hr/>
-<div class="admonition info">
+<div class="admonition extra">
 <p class="admonition-title">A modern SfM system: COLMAP</p>
 <ul>
 <li>GitHub Repo: <a href="https://github.com/colmap/colmap">https://github.com/colmap/colmap</a></li>
@@ -2052,7 +2126,7 @@ cost(P) = dist(\mathbf{u}_l, \cap{\mathbf{u}_l})^2 + dist(\mathbf{u}_r, \cap{\ma
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月9日 12:22:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 13:05:10</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
