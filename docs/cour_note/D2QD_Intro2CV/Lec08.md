@@ -160,17 +160,17 @@ $$
 
 常见的差异衡量方法有这么几种：
 
-!!! success "SSD: Sum of Squared Differences"
+!!! section "SSD: Sum of Squared Differences"
     $$
     diff = \sum_{x,y} |W_1(x,y) - W_2(x,2)|^2
     $$
 
-!!! success "SAD: Sum of Absolute Differences"
+!!! section "SAD: Sum of Absolute Differences"
     $$
     diff = \sum_{x,y} |W_1(x,y) - W_2(x,y)|
     $$
 
-!!! success "ZNCC: Zero-mean Normalized Cross Correlation"
+!!! section "ZNCC: Zero-mean Normalized Cross Correlation"
     $$
     diff = \frac{(W_1(x,y)-\overline{W_1})(W_2(x,y)-\overline{W_2})}{\sigma_{W_1}\sigma_{W_2}} \\
     \text{where  } \overline{W_i} = \frac{1}{n}\sum_{x,y} W_i \;\;\; \sigma_{W_i} = \sqrt{\frac{1}{n}\sum_{x,y}(W_i-\overline{W_i})^2}
@@ -186,8 +186,6 @@ $$
 #### 匹配的改进
 
 然而，匹配过程中还有一个额外的问题需要解决。
-
-
 
 !!! error "窗口搜索的弊端"
     窗口搜索的效果实际上常常不尽如人意，有一种基于图割的做法，效果相对稍好。

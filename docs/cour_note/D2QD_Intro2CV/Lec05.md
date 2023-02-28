@@ -57,7 +57,7 @@
 
 这是一个相对模糊的定义，而为了对其进行建模，我们进一步地赋予其数学含义：
 
-!!! note "Local measures of uniqueness(detail):"
+!!! definition "Local measures of uniqueness(detail):"
     关注区域内的梯度分布：
 
     ![](69.png)
@@ -65,7 +65,7 @@
 
 根据梯度的分布，我们可以大致观察到图形的特征。进一步的，我们可以利用数学工具（**主成分分析(Principle Component Analysis)**）去分析这些点的分散度和分散方向。
 
-!!! note "Principle Component Analysis"
+!!! key-point "Principle Component Analysis"
     ① Compute the covariance matrix at each point.
 
     $$
@@ -127,7 +127,7 @@ $$
 
 归纳一下，其步骤就是：
 
-!!! note "Harris detector "
+!!! summary "Harris detector "
     
     1. 求导 | Compute derivatives at each pixel.
     2. 协方差矩阵 | Compute covariance matrix $H$ in a Gaussian window around each pixel.
@@ -218,7 +218,7 @@ $$
 
 ---
 
-??? note "Other detectors and descriptors:"
+??? extra "Other detectors and descriptors:"
     - **HOG: Histogram of oriented gradients**
         - Dalal & Triggs, 2005 
     - **SURF: Speeded Up Robust Features**

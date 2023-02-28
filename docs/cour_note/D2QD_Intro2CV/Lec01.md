@@ -11,7 +11,7 @@
 
 ## CV 的应用
 
-??? note "Application Examples"
+??? eg "Application Examples"
     - Face Reconstruction and Recognition
     - Face ID
     - Vending Machine with Face Detection
@@ -85,7 +85,7 @@ CV 领域的几个顶会
 - 那么反过来的，我们也可以通过观察某些点在变换后的位置来感受这个“变换”的具体内容；
 - 更特别的，我们可以发现，变换矩阵（左侧矩阵）的每一列，就相当于对应的单位基（例如第 $2$ 列对应 $\vec{a}(0,1)$ 向量）经过这个变换（右乘这个变换矩阵）得到的结果；
 
-!!! note "Tips"
+!!! tip "Tips"
     实际上，从单位矩阵的角度也可以很好的理解这件事：
 
     $$

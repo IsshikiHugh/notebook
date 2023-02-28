@@ -10,7 +10,7 @@
 
 > 在机器人领域，一个相关的领域是 [同时定位与地图构建(Simultaneous Localization and Mapping)SLAM](https://zh.wikipedia.org/wiki/%E5%90%8C%E6%97%B6%E5%AE%9A%E4%BD%8D%E4%B8%8E%E5%9C%B0%E5%9B%BE%E6%9E%84%E5%BB%BA)。
 
-!!! info "三个关键问题"
+!!! key-point "三个关键问题"
     1. 如何描述相机的投影行为，也就是**[相机模型](Lec02.md#透视投影)**的相关内容，本小结指透视模型；
     2. 如何通过图像求解相机参数，这个过程被称为**相机标定(Camera Calibration)**，以及如何求解相机的空间位置与朝向，这个过程被称为**位置估计(Pose Estimation)**；
     3. 如何利用若干视角进行重建；
@@ -133,7 +133,7 @@ $$
 \end{bmatrix}
 $$
 
-!!! note "外参矩阵"
+!!! key-point "外参矩阵"
     其中，新得到的这个 4*4 的矩阵就被称为**外参矩阵(Extrinsic Matrix)**，也被写作：
 
     $$
@@ -239,7 +239,7 @@ $$
 \end{bmatrix}
 $$
 
-!!! note "内参矩阵"
+!!! key-point "内参矩阵"
     这里得到的，包含 $f$ 和 $m$ 的矩阵才是**内参矩阵(Intrinsic Matrix)**，也被写作：
 
     $$
@@ -350,7 +350,7 @@ $$
 
 总结应用两个矩阵的两个阶段：
 
-!!! note "Camera to Pixel: Intrinsic Matrix" 
+!!! section "Camera to Pixel: Intrinsic Matrix" 
     $$
     \mathbf{\tilde{u}} = M_{int} \mathbf{\tilde{x}}_c \;\;\;\;i.e.\;\;\;\;
     \begin{bmatrix}
@@ -370,7 +370,7 @@ $$
 	\end{bmatrix}
     $$
 
-!!! note "World to Camera: Extrinsic Matrix" 
+!!! section "World to Camera: Extrinsic Matrix" 
     $$
     \mathbf{\tilde{x}}_c = M_{ext} \mathbf{\tilde{x}}_w \;\;\;\;i.e.\;\;\;\;
     \begin{bmatrix} x_c \\ y_c \\ z_c \\ 1\end{bmatrix}
@@ -417,7 +417,7 @@ $$
 
 根据**[投影矩阵](#投影矩阵)**我们得到了像素点与 3D 景物世界坐标的转化关系，而相机标定与位置估计就是利用这个关系式求解投影矩阵。所以这就要求我们同时知道若干点的像素点位置和 3D 景物世界坐标，一般来说相机标定与位置估计是这么实现的：
 
-!!! success "步骤一"
+!!! section "步骤一"
 
     ![](84.jpeg){ align=right width=160px }
 
@@ -431,7 +431,7 @@ $$
 
     
 
-!!! success "步骤二"
+!!! section "步骤二"
     
     寻找特定关键点的对应关系，也就是做**[特征匹配](Lec05.md#图像特征匹配)**，即若干点对，每一个点对都是一个 3D 点和一个 2D 点的对应。
 
@@ -441,7 +441,7 @@ $$
 
     ![](85.jpg)
 
-!!! success "步骤三"
+!!! section "步骤三"
 
     根据刚刚得到的若干对兴趣点，建立方程，求解投影矩阵。
 
@@ -480,7 +480,7 @@ $$
     
     由于投影矩阵有 12 个自由度，所以至少需要 6 对关键点 12 个等式。
 
-!!! success "步骤四"
+!!! section "步骤四"
 
     将若干方程重新排列为矩阵形式，方便之后的计算。
 
@@ -514,7 +514,7 @@ $$
 
     我们将其简写，也就是 $A\mathbf{p} = 0$。
 
-!!! success "步骤五"
+!!! section "步骤五"
     求解 $A\mathbf{p} = 0$ 得到 $\mathbf{p}$。
 
     ---
@@ -619,17 +619,17 @@ $$
 
 常见的解决方案有如下几种。
 
-!!! success "DLT Direct Linear Transform"
+!!! section "DLT Direct Linear Transform"
     也就是上面提到的做法。
 
-!!! success "P3P"
+!!! section "P3P"
     至少需要 3 组对应关系才能求解相机位置，此外，我们还需要一个额外的点来保证答案的唯一性（否则一般来说会有四个解）
 
     其主要思路是根据图像，使用余弦定律进行求解。
 
     **[懒得写了，直接贴麦哥的笔记了！](https://sakuratsuyu.github.io/Note/Computer_Science_Courses/ICV/7_Structure_from_Motion/#p3p)**
 
-!!! success "PnP"
+!!! section "PnP"
     n > 3 的情况的做法。
 
     转化为优化问题，求解理论和实际的点误差——**重投影误差(reprojection error)**最小时的外参，注意将齐次坐标转化为二维坐标。
@@ -638,7 +638,7 @@ $$
 
     **[懒得写了，直接贴麦哥的笔记了！](https://sakuratsuyu.github.io/Note/Computer_Science_Courses/ICV/7_Structure_from_Motion/#pnp)**
 
-!!! success "EPnP"
+!!! section "EPnP"
     目前最受欢迎的做法，O(N) 十分高效也十分准确，大概是用四个控制点表示其他点。
 
     **[懒得写了，直接贴麦哥的笔记了！](https://sakuratsuyu.github.io/Note/Computer_Science_Courses/ICV/7_Structure_from_Motion/#epnp)**
@@ -677,18 +677,18 @@ $$
 
 首先，我们需要介绍对极几何中的几个概念，我们将借助上图进行说明。
 
-!!! note "基线"
+!!! definition "基线"
     **基线(Baseline)**是两个相机中心的连线，即 $OO'$。
 
-!!! note "对极点"
+!!! definition "对极点"
     **对极点(Epipole)**指的是：其中一个相机的**相机中心**在 另外一个相机的**成像平面上**的投影点，即 $e_l$ 和 $e_r$，且他们在既定的具体双目模型下是唯一的。
 
-!!! note "对极面"
+!!! definition "对极面"
     **对极面(Epipolar Plane)**指的是两个相机中心 $O_L$ 和 $O_R$，以及景物中的某个空间点 $X$ 这三个点所确定的空间平面。
 
     其中有一个性质，对极面总是经过相机中心连线 $O_L O_R$，所以对于某个景物中的点 $X_i$，其对极面都是唯一的。（显然，反过来不成立。）
 
-!!! note "对极线"
+!!! definition "对极线"
     **对极线(Epipolar Line)**是关于动点 $X$ 来说的，体现为对极面与成像平面的交线。
 
     假设我们只知道 $X_L$ 而不知道 $X_R$，那么 $X$ 可能在 $O_L X_L$ 这条线上的任一点；而这条线在 $R$ 平面上的投影就是一条对极线，它的含义是可能的 $X_R$ 的轨迹。
@@ -712,7 +712,7 @@ $$
 
 下面开始 ~~变魔法~~ 进行一些变化：
 
-???+ note "形式 ② 推理过程"
+???+ section "形式 ② 推理过程"
     首先，在同一个（任何一个）笛卡尔坐标系中，都有 $\mathbf{x}_l \cdot (\mathbf{t} \times \mathbf{x}_l) = 0$。
 
     具体来说，$\mathbf{t}$ 和 $\mathbf{x}_l$ 都是对极面内的两个不平行（我们假定这一点恒成立）的向量，那么 $\mathbf{t} \times \mathbf{x}_l$ 的结果必然是一个垂直于对极面的向量。而这个向量必然垂直于对极面上任意一个向量，所以上式结果为 $0$。而将这个式子写成矩阵向量运算的形式，就是：
@@ -900,7 +900,7 @@ $$
     \mathbf{x}_l^T E \mathbf{x}_r = 0
     $$
 
-    !!! note "本征矩阵的性质"
+    !!! key-point "本征矩阵的性质"
         由于 Essential Matrix 的定义具有如下特征：
 
         ![](91.png)
@@ -918,7 +918,7 @@ $$
 
 然而我们并不知道 $\mathbf{x}_l$ 和 $\mathbf{x}_r$，所以还需要进一步变化。
 
-???+ note "形式 ③ 推理过程"
+???+ section "形式 ③ 推理过程"
     根据**[透视投影](Lec02.md#透视投影)**的相关内容，我们可以得到：
 
     $$
@@ -1058,7 +1058,7 @@ $$
 
 具体来说，求解基本矩阵、本征矩阵、坐标变换的步骤如下：
 
-???+ note "求解步骤"
+???+ section "求解步骤"
     对于关键点 $i$，我们需要求解：
 
     $$
@@ -1139,7 +1139,7 @@ $$
 
 具体的推理步骤如下：
 
-???+ note "求解步骤"
+???+ section "求解步骤"
 
     首先我们使用齐次坐标改写变换方程，并最终写成关于 $\mathbf{u}$ 的形式 
     $$
@@ -1304,7 +1304,7 @@ $$
 
 ### 具体步骤
 
-!!! example "前提"
+!!! eg "前提"
     两个相机的**[内参矩阵](#内参矩阵)**$K$ 已知。
 
     这意味着我们可以根据这些参数将相机成像可视化，如下图。
@@ -1313,7 +1313,7 @@ $$
 
     ![](87.png)
 
-!!! success "步骤一"
+!!! section "步骤一"
     对两张图片进行 [关键点匹配](./Lec05.md#图像特征匹配)，找到至少 8 对匹配特征。
 
     ---
@@ -1322,11 +1322,11 @@ $$
 
     ![](88.png)
 
-!!! success "步骤二"
+!!! section "步骤二"
 
     按照 [#极线约束/求解过程](#极线约束) 提到的步骤，求解两个相机坐标的变换参数 $R$ 和 $\mathbf{t}$。
 
-!!! success "步骤三"
+!!! section "步骤三"
     
     接下来对于每一对匹配的关键点，按照 [#三角测量](#三角测量) 提到的方法，求解空间点 $X_i$。
 
@@ -1358,7 +1358,7 @@ $$
 
 ---
 
-!!! info "A modern SfM system: COLMAP"
+!!! extra "A modern SfM system: COLMAP"
 
     - GitHub Repo: https://github.com/colmap/colmap
 

@@ -148,7 +148,16 @@ nav:
   - "🗒 课程笔记":
     - cour_note/index.md
     - cour_note/D1QD_CXiaoCheng/index.md
-    - cour_note/D1CX_ProbabilityAndStatistics/index.md
+    - "[大一春夏] 概率论与数理统计":
+      - cour_note/D1CX_ProbabilityAndStatistics/index.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap01.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap02.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap03.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap04.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap05.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap06.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap07.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap08.md
     - cour_note/D1SJ_cs231n/index.md
     - cour_note/D1SJ_Intro2CS/index.md
     - "[大二秋冬] 数字逻辑设计 | Digital Design": 

@@ -4,7 +4,7 @@
 
 首先我们来定义一个**优化(Optimization)**问题的模型：
 
-!!! info ""
+!!! definition "优化问题的模型"
     设**目标函数**$f_0(\vec x)$ 满足**约束条件**：
     
     $$
@@ -23,7 +23,7 @@
 而接下来，我们需要尝试将一些复杂问题转化为优化问题，即根据问题，写出目标函数和约束条件，并通过一些方法来得到我们需要的 $\vec x$。
 
 
-!!! example "🌰 图像去模糊问题"
+!!! eg "🌰 图像去模糊问题"
     在这个 🌰 中，我们已知模糊图像 $Y$ 和模糊滤波器(卷积核) $F$，需要通过优化的方法来求卷积运算之前的清晰图像 $X$。
 
     进一步来说，就是找到清晰的图像 $X$，使得它做模糊处理后与已知的模糊图像 $Y$ 差别尽可能小，于是问题转化为：
@@ -48,12 +48,12 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 而如果我们假设数据中的噪声是高斯分布的（实际上大部分噪声在基数足够大的情况下都可以看作为高斯分布的），那么可以与统计学的**极大似然估计(maximum likelihood estimation)MLE**相统一.
 
-!!! tip "MSE vs. MLE"
+!!! success "MSE vs. MLE"
     [MSE vs MLE for linear regression](https://medium.com/analytics-vidhya/mse-vs-mle-for-linear-regression-f4ce3f6b990e)
 
 具体来说，$b_i = a_i^T x + n, \;\; n \sim G(0,\sigma)$，而对于给定的 $x$，其**似然(likehood)**$P[(a_i,b_i)|x] = P[b_i-a_i^Tx] \propto \exp \left( - \frac{(b_i-a_i^Tx)^2}{2\sigma^2} \right)$，表示在 model parameter 为 $x$ 的情况下，数据符合 $(a_i,b_i)$ 的可能性。
 
-???+ note "Maximum Likelihood Estimation"
+???+ definition "Maximum Likelihood Estimation"
     <!--Copy from https://github.com/sakuratsuyu/Note/blob/master/docs/Computer_Science_Courses/ICV/4_Model_Fitting_and_Optimization.md?plain=1-->
 	If the data points are**independent**,
 	
@@ -155,7 +155,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 上面使用 first-order approximation 为例介绍的这套方法就是**最速梯度下降法(steepest descent method)**。
 
-!!! note "最速梯度下降法"
+!!! section "最速梯度下降法"
     $\vec p = -J_F^T$；
 
     - 优点
@@ -169,7 +169,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 因而一种很自然的改进方法就是使用 second-order approximation，即**牛顿法(Newton Method)**。
 
-!!! note "牛顿法"
+!!! section "牛顿法"
     $F(x_k + \Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^T H_F \Delta x$
 
     对它求导得到 $\frac{\partial F}{\partial \Delta x} = J_F^T+H_F\Delta x = 0$。
@@ -183,7 +183,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 由此发现，牛顿法的表现会好很多，如果能够避免计算黑塞矩阵，就可以进一步提高牛顿法的效果，于是就出现了**高斯牛顿法(Gauss-Newton method)**。
 
-!!! note "高斯牛顿法"
+!!! section "高斯牛顿法"
     > 对于解决最小二乘法 $\hat x = \mathop{\arg \min\limits_x} ||R(x)||^2_2$ 的问题表现非常好。
 
     对于这类问题，高斯牛顿法使用 $J_R^TJ_R$ 来近似代替 $H_F$，得到下降方向为 $\vec p = -(J_R^TJ_R)^{-1}J_R^T,\;\;\text{where }J_R\text{ is the Jacobian of }R(x)$。
