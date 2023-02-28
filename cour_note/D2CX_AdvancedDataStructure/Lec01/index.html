@@ -601,6 +601,20 @@
 <a class="md-nav__link" href="#操作">
     操作
   </a>
+<nav aria-label="操作" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ll--rr">
+    LL &amp; RR
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lr--rl">
+    LR &amp; RL
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -736,6 +750,20 @@
 <a class="md-nav__link" href="#操作">
     操作
   </a>
+<nav aria-label="操作" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ll--rr">
+    LL &amp; RR
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lr--rl">
+    LR &amp; RL
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -759,7 +787,24 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-1--avl-trees--splay-trees--amortized-analysis">Lecture 1 | AVL Trees &amp; Splay Trees &amp; Amortized Analysis<a class="headerlink" href="#lecture-1--avl-trees--splay-trees--amortized-analysis" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 981 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 29 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 4 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1996 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 176 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 9 分钟</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">阅读建议</p>
+<p>因为没法在这里用代码写动画，所以我用 <a href="https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/?h=%3D%3D%3D#tabbed">Tab</a> 模拟了一下动画帧，可以手动切换这些标签来动态观察。一般这种内容的 Tab 标题都会是 <code>Frame {}</code>。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Frame 1</label><label for="__tabbed_1_2">Frame 2</label><label for="__tabbed_1_3">Frame 3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Like</p>
+</div>
+<div class="tabbed-block">
+<p>Like this</p>
+</div>
+<div class="tabbed-block">
+<p>Like this!</p>
+</div>
+</div>
+</input></input></input></div>
 </div>
 <h2 id="avl-trees">AVL Trees<a class="headerlink" href="#avl-trees" title="Permanent link">¶</a></h2>
 <h3 id="概念">概念<a class="headerlink" href="#概念" title="Permanent link">¶</a></h3>
@@ -808,8 +853,8 @@ BF(Tp) = h(T_L) - h(T_R)
 A(("Root"))
 B[/"Left Subtree"\]
 C[/"Right Subtree"\]
-A --- B
-A --- C</code></pre>
+A === B
+A === C</code></pre>
 </div>
 <p>我们记 <span class="arithmatex">\(F_h\)</span> 是高度为 <span class="arithmatex">\(h\)</span> 的 AVL 树所包含的最少节点数，则有如下递推关系：</p>
 <div class="arithmatex">\[
@@ -836,7 +881,7 @@ F_h \approx \frac{1}{\sqrt{5}}\left( \frac{1+\sqrt{5}}{2} \right)^h
 <p class="admonition-title">Trouble Maker &amp; Trouble Finder</p>
 <p>以 🌰 来说明。</p>
 <div class="admonition note">
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Status 1</label><label for="__tabbed_1_2">Status 2</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">Frame 1</label><label for="__tabbed_2_2">Frame 2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>下图为一个 AVL 树：</p>
@@ -846,10 +891,10 @@ B(("4, BF=0"))
 C(("9, BF=0"))
 D(("2, BF=0"))
 E(("6, BF=0"))
-A --- B
-A --- C
-B --- D
-B --- E</code></pre>
+A === B
+A === C
+B === D
+B === E</code></pre>
 </div>
 <div class="tabbed-block">
 <p>现在我们插入 <code>5</code>：</p>
@@ -860,12 +905,12 @@ C(("9, BF=0"))
 D(("2, BF=0"))
 E(("6, BF=1"))
 F(("5, BF=0"))
-A --- B
-A --- C
-B --- D
-B --- E
-E --- F
-E --- NULL</code></pre>
+A === B
+A === C
+B === D
+B === E
+E === F
+E === NULL</code></pre>
 <p>我们发现，此时 <code>8</code> 的「平衡因子」变成了2，不再符合 AVL 树的要求，而这一切都是 <code>5</code> 的插入导致的——于是我们称像这里的 <code>8</code> 一样，由于某个点的插入，其「平衡因子」不再符合要求的点，为 Trouble Finder；而像这里的 <code>5</code> 一样，导致 Trouble Finder 出现的点，被称之为 Trouble Maker。</p>
 </div>
 </div>
@@ -875,6 +920,233 @@ E --- NULL</code></pre>
 </div>
 <hr/>
 <h3 id="操作">操作<a class="headerlink" href="#操作" title="Permanent link">¶</a></h3>
+<p>本小节所需要讲的内容就是<strong><a href="#视角">#视角</a></strong>中提到的“重新变为 AVL 树”这一视角，也就是 AVL 树的维护。</p>
+<p>首先， 我们需要对 AVL 树的破坏情况进行分类，根据 "Trouble Finder"、"Related Trouble Finder's Child"、"Trouble Maker"这三个点的相对关系，分为 <code>LL</code>、<code>RR</code>、<code>LR</code>、<code>RL</code> 四种：</p>
+<div class="admonition note">
+<blockquote>
+<p>同心圆表示这个点是需要我们在后续操作中关注的。</p>
+<p>此外，虽然实际情况下可能出现多个 Trouble Finder，但是为了简化问题，我们这里假设只有一个 Trouble Finder，或者说我们只关注<strong>以「距离案发现场最近的 Trouble Finder」为根的子树</strong>（这句话非常重要）。</p>
+</blockquote>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><input id="__tabbed_3_4" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">LL</label><label for="__tabbed_3_2">RR</label><label for="__tabbed_3_3">LR</label><label for="__tabbed_3_4">RL</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<pre class="mermaid"><code>flowchart TD
+    A((("Trouble\nFinder")))
+    B((("Left\nChild")))
+    C(("Right\nChild"))
+    D(("L Left\nChild"))
+    DA[/"Left and Right Subtrees"\]
+    E(("L Right\nChild"))
+    EA[/"Left and Right Subtrees"\]
+    F(("R Left\nChild"))
+    FA[/"Left and Right Subtrees"\]
+    G(("R Right\nChild"))
+    GA[/"Left and Right Subtrees"\]
+    H(("Trouble\nMaker"))
+    A === B
+    A === C
+    B === D === DA === H
+    B === E === EA
+    C === F === FA
+    C === G === GA</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>flowchart TD
+    A((("Trouble\nFinder")))
+    B(("Left\nChild"))
+    C((("Right\nChild")))
+    D(("L Left\nChild"))
+    DA[/"Left and Right Subtrees"\]
+    E(("L Right\nChild"))
+    EA[/"Left and Right Subtrees"\]
+    F(("R Left\nChild"))
+    FA[/"Left and Right Subtrees"\]
+    G(("R Right\nChild"))
+    GA[/"Left and Right Subtrees"\]
+    H(("Trouble\nMaker"))
+    A === B
+    A === C
+    B === D === DA
+    B === E === EA
+    C === F === FA
+    C === G === GA === H</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>flowchart TD
+    A((("Trouble\nFinder")))
+    B((("Left\nChild")))
+    C(("Right\nChild"))
+    D(("L Left\nChild"))
+    DA[/"Left and Right Subtrees"\]
+    E((("L Right\nChild")))
+    EA[/"Left and Right Subtrees"\]
+    F(("R Left\nChild"))
+    FA[/"Left and Right Subtrees"\]
+    G(("R Right\nChild"))
+    GA[/"Left and Right Subtrees"\]
+    H(("Trouble\nMaker"))
+    A === B
+    A === C
+    B === D === DA
+    B === E === EA === H
+    C === F === FA
+    C === G === GA</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>flowchart TD
+    A((("Trouble\nFinder")))
+    B(("Left\nChild"))
+    C((("Right\nChild")))
+    D(("L Left\nChild"))
+    DA[/"Left and Right Subtrees"\]
+    E(("L Right\nChild"))
+    EA[/"Left and Right Subtrees"\]
+    F((("R Left\nChild")))
+    FA[/"Left and Right Subtrees"\]
+    G(("R Right\nChild"))
+    GA[/"Left and Right Subtrees"\]
+    H(("Trouble\nMaker"))
+    A === B
+    A === C
+    B === D === DA
+    B === E === EA
+    C === F === FA === H
+    C === G === GA</code></pre>
+</div>
+</div>
+</input></input></input></input></div>
+<p>稍作解释，例如 <code>LR</code>，表示的是 Trouble Maker 在 Trouble Finder 的 L 子节点的 R 子树中。</p>
+<p>另外，对于我只在 <code>LR</code> 和 <code>RL</code> 中着重二级子节点，并不是笔误。之后会详细介绍。</p>
+</div>
+<hr/>
+<h4 id="ll--rr">LL &amp; RR<a class="headerlink" href="#ll--rr" title="Permanent link">¶</a></h4>
+<p>这两种情况相对直观。由于它们的操作是对称的，所以我这里以 <code>LL</code> 为例。</p>
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        C[/"Right Subtree"\]
+
+        subgraph SA["New Left Subtree"]
+
+            subgraph SB["New L Left Subtree"]
+                D[/"L Left Subtree"\]
+                H(("Trouble\nMaker"))
+            end
+
+            B((("Left\nChild")))
+            E[/"L Right Subtree"\]
+        end
+
+        A === B
+        A === C
+        B === D === H
+        B === E</code></pre>
+<p>根据相关性质，我们得到这个模型有如下性质：</p>
+<div class="admonition feature">
+<p class="admonition-title">一些性质</p>
+<ol>
+<li><span class="arithmatex">\(BF(\text{Trouble Finder}) = h(\text{New Left Subtree}) - h(\text{Right Subtree}) = 2\)</span>；</li>
+<li><span class="arithmatex">\(h(\text{New L Left Subtree}) - h(\text{L Right Subtree}) = 1\)</span>；<ul>
+<li>如果此差为 0，则不应当成为 Trouble Maker，若此差为 2，则 Left Child 应当为 Trouble Finder；</li>
+</ul>
+</li>
+</ol>
+</div>
+<p>现在我们希望在保留二叉搜索树的性质下，要让 <span class="arithmatex">\(|BF(\text{Trouble Finder})|\)</span> 变小，一个很自然的想法就是让 <span class="arithmatex">\(h(\text{New Left Subtree})\)</span> 去 +1，让 <span class="arithmatex">\(h(\text{Right Subtree})\)</span> 去 -1。</p>
+<p>于是我们发现，这样的操作刚好：</p>
+<div class="admonition section">
+<p class="admonition-title">LL Single Rotation</p>
+<blockquote>
+<p>在 Frame 2 和 Frame 3 之间添加的细线是为了表示这里 L Right Subtree 的转移方法，让 2 ~ 3 帧的“旋转”过程中更加清晰。</p>
+<p>此外，这里要素的命名都是基于 Frame 1 的，对于 Frame 4 来说 L Right Subtree 显然已经不是 L Right Subtree 了。</p>
+</blockquote>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><input id="__tabbed_4_3" name="__tabbed_4" type="radio"><input id="__tabbed_4_4" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">Frame 1</label><label for="__tabbed_4_2">Frame 2</label><label for="__tabbed_4_3">Frame 3</label><label for="__tabbed_4_4">Frame 4</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        C[/"Right Subtree"\]
+        D[/"L Left Subtree"\]
+        H(("Trouble\nMaker"))
+        E[/"L Right Subtree"\]
+
+        A === B
+        A === C
+        B === D === H
+        B === E</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        C[/"Right Subtree"\]
+        D[/"L Left Subtree"\]
+        E[/"L Right Subtree"\]
+        H(("Trouble\nMaker"))
+
+        A === B
+        A --- E
+        A === C
+        B === D === H
+        B === E</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        C[/"Right Subtree"\]
+        D[/"L Left Subtree"\]
+        E[/"L Right Subtree"\]
+        H(("Trouble\nMaker"))
+
+        B === D === H
+        B --- E
+        B === A
+        A === E
+        A === C
+</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>    flowchart TD
+        A((("Trouble\nFinder")))
+        B((("Left\nChild")))
+        C[/"Right Subtree"\]
+        D[/"L Left Subtree"\]
+        E[/"L Right Subtree"\]
+        H(("Trouble\nMaker"))
+
+        B === D === H
+        B === A
+        A === E
+        A === C
+</code></pre>
+</div>
+</div>
+</input></input></input></input></div>
+<blockquote>
+<p>你甚至能从整个框在 2 ~ 3 帧的变短感受到这个树的高度减少了x（逃）</p>
+</blockquote>
+</div>
+<p>那么还有一个问题是，如何证明这样变换能够保持 AVL 的性质呢？</p>
+<p>我个人认为主要有两个维度，一是保持二叉搜索树的性质，二是保持平衡的性质，我的证明内容折叠起来了，建议读者可以先自己思考一下再展开看看我的想法。</p>
+<details class="proof">
+<summary>二叉搜索树性质的保持</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/1.png"><img align="right" alt="" src="../img/1.png" width="30%"/></a></p>
+<p>不知道读者是否发现，对于一个排列的当的二叉搜索树，如果我从左到右，使用一条竖直的扫描线扫描整个树，将会得到一个单调序列，这也正对应着这个二叉搜索树所维护的有序数列。</p>
+<p>基于这种论调，再回头看上面那个动态的过程，甚至是观察我在 2 ~ 3 帧画出来的这个三角形的旋转，就会发现这种旋转实际上只是在将节点上下移动，所以不改变二叉搜索树的性质。</p>
+</details>
+<details class="proof">
+<summary>平衡的保持</summary>
+<p>让我们先回顾一下在上面给出的一些性质中的第 2 条： <span class="arithmatex">\(h(\text{New L Left Subtree}) - h(\text{L Right Subtree}) = 1\)</span>。</p>
+<p>在仔细思考整个旋转过程中每一个 Subtree 的高度的变化，即可得到证明。    </p>
+</details>
+<p>而 RR Single Rotation 完全对称，所以不再赘述。</p>
+<hr/>
+<h4 id="lr--rl">LR &amp; RL<a class="headerlink" href="#lr--rl" title="Permanent link">¶</a></h4>
+<div class="admonition tip">
+<p class="admonition-title">废话</p>
+<p>大部分教材都倾向于继续用“旋转”来概括 LR 和 RL 的处理方法，确实其实从抽象角度来讲也还是像的，但是我觉得这并不利于记忆和理解这个过程。所以我将尝试着用我自己的思路来讲。</p>
+</div>
 <hr/>
 <h2 id="splay-trees">Splay Trees<a class="headerlink" href="#splay-trees" title="Permanent link">¶</a></h2>
 <hr/>
@@ -884,7 +1156,7 @@ E --- NULL</code></pre>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 20:17:07</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 21:56:05</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 19:52:59</span>
