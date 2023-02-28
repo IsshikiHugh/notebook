@@ -677,7 +677,14 @@ OK，你可能觉得这个解释对于 LL Single Rotation 来说显得十分多�
 
 ### 其他问题
 
-多个 Trouble Finder 时？
+!!! question "如果一个 Trouble 产生后，出现了多个 Trouble Finder，该如何处理？"
+
+    首先，请回顾一下 **[#操作](#操作)** 中被加粗的这一句话，「以「距离案发现场最近的 Trouble Finder」为根的子树」。也就是说，我们现在已经有了解决最近的 Trouble Finder 的方案。
+
+    感性的思考，AVL 的“平衡”可以由递归形式定义，具体来说衡量的是左右子树的“高度”差。当我们解决了一个 Trouble Finder，意味着我们让 Trouble Finder 的最高的那个子树高度 -1，这也意味着以 Trouble Finder 为根的那个子树高度 -1，这也意味着其所有父节点的平衡因子都会相应地变化。
+
+    一个 Trouble 当且仅有一个 Trouble Maker，而且它必定是 Trouble Finder 所关注的那个“最长路径”的端点，这也意味着所有的子 Trouble Finder 都在对应的父 Trouble Finder 的“最长路径”上。而现在我们让子 Trouble Finder 唯一（如果不唯一，那在这个 Trouble Maker 到来之前就已经存在 Trouble 了）的最长路径也应当会 -1。而这必将导致其平衡因子的绝对值 -1。
+
 
 ---
 
