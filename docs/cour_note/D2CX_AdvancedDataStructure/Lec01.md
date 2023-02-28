@@ -248,7 +248,14 @@
 
 #### LL & RR
 
-这两种情况相对直观。由于它们的操作是对称的，所以我这里以 `LL` 为例。
+!!! tip "废话"
+    大部分教材都倾向于继续用“旋转”来概括这些方法，确实其实从抽象角度来讲至少 `LL` 和 `RR` 部分也还是像的，但是我觉得这并不利于记忆和理解这个过程，尤其是对于 `LR` 和 `RL` 的部分。
+    
+    所以在 `LL` 和 `RR` 部分，我还是会先介绍一下比较传统的，用“旋转”的方式来理解，之后我将尝试着用我自己的思路来讲。
+
+##### “旋转”视角
+
+`LL` 和 `RR` 这两种情况相对直观。由于它们的操作是对称的，所以我这里以 `LL` 为例。
 
 ```mermaid
     flowchart TD
@@ -378,14 +385,299 @@
 
 ---
 
+##### “换根”视角
+
+现在我想尝试着用我自己的方式来理解这个问题。
+
+首先让我们人力动画一下这个过程（划掉）：
+
+!!! section "LL Single Rotation"
+
+    > 此外，这里要素的命名都是基于 Frame 1 的，对于 Frame 4 来说 L Right Subtree 显然已经不是 L Right Subtree 了。
+
+    === "Frame 1"
+        ```mermaid
+            flowchart TD
+                A((("Trouble\nFinder")))
+                B((("Left\nChild")))
+                C[/"Right Subtree"\]
+                D[/"L Left Subtree"\]
+                H(("Trouble\nMaker"))
+                E[/"L Right Subtree"\]
+                
+                A === B
+                A === C
+                B === D === H
+                B === E
+        ```
+    === "Frame 2"
+        ```mermaid
+            flowchart TD
+                A((("Trouble\nFinder")))
+                B((("Left\nChild")))
+                C[/"Right Subtree"\]
+                D[/"L Left Subtree"\]
+                H(("Trouble\nMaker"))
+                E[/"L Right Subtree"\]
+                
+                A --- B
+                A === C
+                B === D === H
+                B === E
+        ```
+    === "Frame 3"
+        ```mermaid
+            flowchart TD
+                B((("Left\nChild")))
+                D[/"L Left Subtree"\]
+                E[/"L Right Subtree"\]
+                H(("Trouble\nMaker"))
+                A((("Trouble\nFinder")))
+                C[/"Right Subtree"\]
+
+                A === C
+                B === D === H
+                B === E
+        ```
+    === "Frame 4"
+        ```mermaid
+            flowchart TD
+                B((("Left\nChild")))
+                D[/"L Left Subtree"\]
+                E[/"L Right Subtree"\]
+                H(("Trouble\nMaker"))
+                A((("Trouble\nFinder")))
+                C[/"Right Subtree"\]
+
+                A === C
+                B === D === H
+                A === E
+        ```
+    === "Frame 5"
+        ```mermaid
+            flowchart TD
+                A((("Trouble\nFinder")))
+                B((("Left\nChild")))
+                C[/"Right Subtree"\]
+                D[/"L Left Subtree"\]
+                E[/"L Right Subtree"\]
+                H(("Trouble\nMaker"))
+                
+                B === D === H
+                B === A
+                A === E
+                A === C
+                
+        ```
+
+首先，我们遇到的问题是什么？是 Trouble Maker 进来以后，Trouble Finder 发现 $h(T_L) - h(T_R) = 2$了，用通俗的话来说就是左子树太高了，然而在这种情况下，左子树依然还站在一个台子（Trouble Finder）上和Trouble Finder 比身高，所以我们需要将它从台子上请下来。也就是说，既然左子树太高了，那么我们就不**希望**让它再成为谁的子树，因为成为谁的子树必然意味着这条路径会更长。
+
+那么现在我们把它从台子上请下来，也就是说割裂它和 Trouble Finder 的父子关系（对应 Frame 2）让它们同台“对抗”（这一步在 `LL` 和 `RR` 可能显得比较多余，但是在 `LR` 和 `RL` 就会让问题清晰很多）。
+
+然而我们仍然需要让这个森林重新变回一个树，所以就需要重新从里面找到根节点，显然，只能选择 Trouble Finder **旁边** 的 Left Child。但是为了继续维护二叉搜索树的性质，所以我们需要将 L Right Subtree 移植到 Trouble Finder 必定空缺（因为这里原先是 Left Child）的左指针上。
+
+OK，你可能觉得这个解释对于 LL Single Rotation 来说显得十分多此一举，但是这都是为了给后面做的铺垫，虽然这个方法看起来繁琐冗余，但是已经足以解释原先的 Single Rotation 无法解释的 LR & RL 操作方法。
+
+---
+
 #### LR & RL
 
-!!! tip "废话"
-    大部分教材都倾向于继续用“旋转”来概括 LR 和 RL 的处理方法，确实其实从抽象角度来讲也还是像的，但是我觉得这并不利于记忆和理解这个过程。所以我将尝试着用我自己的思路来讲。
+首先我们需要知道为什么之前的方法不行，也是我觉得“旋转”这个做法在这个推进过程中比较割裂的地方：（对照 **[#旋转视角](#旋转视角)** 的内容阅读）我们发现，由于 LL 中的 Trouble Maker 在左侧子树上，所以在旋转过程中，相当于把它“拽”上来了。然而对于 L Right Subtree，无论是旋转前还是旋转后，为了维护二叉搜索树的性质，它都被接在了深度为 1 的节点上，换句话来说 L Right Subtree 贡献的高度并没有改变。对于 RL 的情况也是同理的。所以我们并不能使用 LL Single Rotation 的方法来解决这个问题。
 
+那么我们换一个思路，用**[“换根”视角](#换根视角)**来看待这个问题：
 
+!!! section "LR Rotation"
+    > 这里两个 Subtree 接到同一个 Trouble Maker 的意思是 Trouble Maker 可以出现在两者任一中。
 
+    === "Frame 1"
+        ```mermaid
+            flowchart TD
+                A((("Trouble\nFinder")))
+                B((("Left\nChild")))
+                C[/"Right Subtree"\]
+                D(("L Left\nChild"))
+                DA[/"L Left Subtree"\]
+                H(("Trouble\nMaker"))
+                E((("L Right\nChild")))
+                EA[/"L Left Subtree"\]
+                EB[/"L Right Subtree"\]
+                
+                A === B
+                A === C
+                B === D === DA
+                B === E === EA --- H
+                E === EB --- H
+        ```
+    === "Frame 2"
+        ```mermaid
+            flowchart TD
+                A((("Trouble\nFinder")))
+                B((("Left\nChild")))
+                C[/"Right Subtree"\]
+                D(("L Left\nChild"))
+                DA[/"L Left Subtree"\]
+                H(("Trouble\nMaker"))
+                E((("L Right\nChild")))
+                EA[/"L Left Subtree"\]
+                EB[/"L Right Subtree"\]
+                
+                A --- B
+                A === C
+                B === D === DA
+                B --- E === EA --- H
+                E === EB --- H
+        ```
+    === "Frame 3"
+        ```mermaid
+            flowchart TD
+                
+                B((("Left\nChild")))
+                D(("L Left\nChild"))
+                DA[/"L Left Subtree"\]
+                H(("Trouble\nMaker"))
+                E((("L Right\nChild")))
+                EA[/"L Left Subtree"\]
+                EB[/"L Right Subtree"\]
+                A((("Trouble\nFinder")))
+                C[/"Right Subtree"\]
+                
+                A === C
+                B === D === DA
+                E === EA --- H
+                E === EB --- H
+        ```
+    === "Frame 4"
+        ```mermaid
+            flowchart TD
+                
+                B((("Left\nChild")))
+                D(("L Left\nChild"))
+                DA[/"L Left Subtree"\]
+                H(("Trouble\nMaker"))
+                E((("L Right\nChild")))
+                EA[/"L Left Subtree"\]
+                EB[/"L Right Subtree"\]
+                A((("Trouble\nFinder")))
+                C[/"Right Subtree"\]
+                
+                A === C
+                B === D === DA
+                E --- EA --- H
+                E --- EB --- H
+        ```
+    === "Frame 5"
+        ```mermaid
+            flowchart TD
+                
+                D(("L Left\nChild"))
+                B((("Left\nChild")))
+                DA[/"L Left Subtree"\]
+                E((("L Right\nChild")))
+                EA[/"L Left Subtree"\]
+                EB[/"L Right Subtree"\]
+                H(("Trouble\nMaker"))
+                A((("Trouble\nFinder")))
+                C[/"Right Subtree"\]
+                
+                E === B
+                E === A
+                B === D === DA
+                B === EA --- H
+                A === EB --- H
+                A === C
+        ```
 
+???+ extra "关于记忆"
+    记忆这个操作如何做的话，我的记忆方法是这样的：
+
+    === "Frame 1"
+        ```mermaid
+            flowchart TD
+                A((("Trouble\nFinder")))
+                B((("Left\nChild")))
+                C[/"Right Subtree"\]
+                D(("L Left\nChild"))
+                DA[/"L Left Subtree"\]
+                H(("Trouble\nMaker"))
+                E((("L Right\nChild")))
+                EA[/"L Left Subtree"\]
+                EB[/"L Right Subtree"\]
+                
+                A === B
+                A === C
+                B === D === DA
+                B === E === EA --- H
+                E === EB --- H
+        ```
+    === "Frame 2"
+        ```mermaid
+            flowchart TD
+                A((("Trouble\nFinder")))
+                B((("Left\nChild")))
+                C[/"Right Subtree"\]
+                D(("L Left\nChild"))
+                DA[/"L Left Subtree"\]
+                H(("Trouble\nMaker"))
+                E((("L Right\nChild")))
+                EA[/"L Left Subtree"\]
+                EB[/"L Right Subtree"\]
+                
+                A --- B
+                A --- E
+                A === C
+                B === D === DA
+                B --- E === EA --- H
+                E === EB --- H
+        ```
+    === "Frame 3"
+        ```mermaid
+            flowchart TD
+                A((("Trouble\nFinder")))
+                B((("Left\nChild")))
+                D(("L Left\nChild"))
+                DA[/"L Left Subtree"\]
+                H(("Trouble\nMaker"))
+                E((("L Right\nChild")))
+                EA[/"L Left Subtree"\]
+                EB[/"L Right Subtree"\]
+                C[/"Right Subtree"\]
+                
+                A --- B
+                E --- B 
+                E --- A
+                B === D === DA
+                B --- EA --- H
+                A --- EB --- H
+                A === C
+        ```
+    === "Frame 4"
+        ```mermaid
+            flowchart TD
+                A((("Trouble\nFinder")))
+                B((("Left\nChild")))
+                D(("L Left\nChild"))
+                DA[/"L Left Subtree"\]
+                H(("Trouble\nMaker"))
+                E((("L Right\nChild")))
+                EA[/"L Left Subtree"\]
+                EB[/"L Right Subtree"\]
+                C[/"Right Subtree"\]
+                
+                E --- B 
+                E --- A
+                B === D === DA
+                B --- EA --- H
+                A --- EB --- H
+                A === C
+        ```
+
+    用语言概括就是，找到关键的那三个点，然后把最下面的顶到上面去，剩下两个作为左右子树，原先的那个点的左右子树则对应地，左子树接到左边空缺的右子树上，右子树接到右边空缺的左子树上。
+
+---
+
+### 其他问题
+
+多个 Trouble Finder 时？
 
 ---
 
