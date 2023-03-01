@@ -573,10 +573,10 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#avl-trees">
-    AVL Trees
+<a class="md-nav__link" href="#avl-树">
+    AVL 树
   </a>
-<nav aria-label="AVL Trees" class="md-nav">
+<nav aria-label="AVL 树" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#概念">
@@ -585,7 +585,7 @@
 <nav aria-label="概念" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#avl-树">
+<a class="md-nav__link" href="#avl-树_1">
     AVL 树
   </a>
 </li>
@@ -639,14 +639,47 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#splay-trees">
-    Splay Trees
+<a class="md-nav__link" href="#splay-树">
+    Splay 树
+  </a>
+<nav aria-label="Splay 树" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#基本操作">
+    基本操作
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#amortized-analysis">
-    Amortized Analysis
+<a class="md-nav__link" href="#对点操作">
+    对点操作
   </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#摊还分析">
+    摊还分析
+  </a>
+<nav aria-label="摊还分析" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#聚合法">
+    聚合法
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#核法">
+    核法
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#势能法">
+    势能法
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -741,10 +774,10 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#avl-trees">
-    AVL Trees
+<a class="md-nav__link" href="#avl-树">
+    AVL 树
   </a>
-<nav aria-label="AVL Trees" class="md-nav">
+<nav aria-label="AVL 树" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#概念">
@@ -753,7 +786,7 @@
 <nav aria-label="概念" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#avl-树">
+<a class="md-nav__link" href="#avl-树_1">
     AVL 树
   </a>
 </li>
@@ -807,14 +840,47 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#splay-trees">
-    Splay Trees
+<a class="md-nav__link" href="#splay-树">
+    Splay 树
+  </a>
+<nav aria-label="Splay 树" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#基本操作">
+    基本操作
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#amortized-analysis">
-    Amortized Analysis
+<a class="md-nav__link" href="#对点操作">
+    对点操作
   </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#摊还分析">
+    摊还分析
+  </a>
+<nav aria-label="摊还分析" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#聚合法">
+    聚合法
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#核法">
+    核法
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#势能法">
+    势能法
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -825,7 +891,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-1--avl-trees--splay-trees--amortized-analysis">Lecture 1 | AVL Trees &amp; Splay Trees &amp; Amortized Analysis<a class="headerlink" href="#lecture-1--avl-trees--splay-trees--amortized-analysis" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3189 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 385 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 15 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4978 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 385 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 21 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">阅读建议</p>
@@ -844,9 +910,10 @@
 </div>
 </input></input></input></div>
 </div>
-<h2 id="avl-trees">AVL Trees<a class="headerlink" href="#avl-trees" title="Permanent link">¶</a></h2>
+<h2 id="avl-树">AVL 树<a class="headerlink" href="#avl-树" title="Permanent link">¶</a></h2>
 <h3 id="概念">概念<a class="headerlink" href="#概念" title="Permanent link">¶</a></h3>
-<div class="admonition note">
+<div class="admonition quote">
+<p class="admonition-title">link</p>
 <p>OI Wiki: <a href="https://oi-wiki.org/ds/avl/">https://oi-wiki.org/ds/avl/</a></p>
 </div>
 <p>我们知道，对于一颗二叉搜索树，其对点的操作代价为 <span class="arithmatex">\(O(\log n)\)</span>。然而在最坏情况下，它会退化成 <span class="arithmatex">\(O(n)\)</span>，例如这是一颗只有左子树的链型二叉树，那么操作这里唯一的叶子节点就是 <span class="arithmatex">\(O(n)\)</span>。</p>
@@ -860,7 +927,7 @@
 </blockquote>
 </div>
 <hr/>
-<h4 id="avl-树">AVL 树<a class="headerlink" href="#avl-树" title="Permanent link">¶</a></h4>
+<h4 id="avl-树_1">AVL 树<a class="headerlink" href="#avl-树_1" title="Permanent link">¶</a></h4>
 <p>而 AVL Tree 是一种<strong>平衡(balanced)</strong>的二叉搜索树，通过「高度」这个量，定义了「平衡」这件事。</p>
 <div class="admonition definition">
 <p class="admonition-title">AVL Tree</p>
@@ -1472,15 +1539,128 @@ E === NULL</code></pre>
 <p>一个 Trouble 当且仅有一个 Trouble Maker，而且它必定是 Trouble Finder 所关注的那个“最长路径”的端点，这也意味着所有的子 Trouble Finder 都在对应的父 Trouble Finder 的“最长路径”上。而现在我们让子 Trouble Finder 唯一（如果不唯一，那在这个 Trouble Maker 到来之前就已经存在 Trouble 了）的最长路径也应当会 -1。而这必将导致其平衡因子的绝对值 -1。</p>
 </div>
 <hr/>
-<h2 id="splay-trees">Splay Trees<a class="headerlink" href="#splay-trees" title="Permanent link">¶</a></h2>
+<h2 id="splay-树">Splay 树<a class="headerlink" href="#splay-树" title="Permanent link">¶</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">link</p>
+<p>OI Wiki: <a href="https://oi-wiki.org/ds/splay/">https://oi-wiki.org/ds/splay/</a></p>
+</div>
+<p>Splay 树，即伸展树，想要解决的问题和 AVL 树类似，只不过 Splay 树希望达到的目标是在<strong>摊还(Amortized)</strong>复杂度<span class="arithmatex">\(O(\log N)\)</span>的情况下完成大部分对点操作。</p>
+<p>我们知道，为使 AVL 保持平衡，我们需要维护从根节点到 Trouble Maker 这条路径上所有点的平衡因子。而 Splay 则不再维护这些信息，这意味着我们无法保证 Splay 树的状态都是平衡的，但是我们希望它尽可能平衡。具体来说就是对于 <span class="arithmatex">\(M\)</span> 次任意操作，其时间复杂度都为 <span class="arithmatex">\(O(M\log N)\)</span>，均摊下来这 <span class="arithmatex">\(M\)</span> 个操作每一个都需要 <span class="arithmatex">\(O(\log N)\)</span>。</p>
+<p>对于一个树，我们对其节点进行的操作可能是：<strong>增</strong>点、<strong>删</strong>点、<strong>改</strong>点、<strong>查</strong>点等等，而不同类型的操作开销可能不尽相同。简单的计算其平均值则忽略了这些操作之间互相的影响或者是操作频率的问题，所以我们这里使用<strong><a href="#摊还">摊还</a></strong>复杂度来描述其效率。</p>
+<blockquote>
+<p>关于摊还的问题我们还会在之后进一步深入。</p>
+</blockquote>
+<p>那么说了这么多，Splay 是怎么实现这一目标的呢？</p>
+<p>Splay 的核心思想就是，每当我们访问一个节点（比如查询某个点、插入某个点，甚至是删除某个点），我们就通过一系列操作将目标点转移到根部，形象上理解就是不断旋转整个树的构造，知道把点转到根部。</p>
+<div class="admonition eg">
+<p>例如我们查询点 <span class="arithmatex">\(k_1\)</span>，则会通过旋转将它转到根。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:3"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"/><input id="__tabbed_8_2" name="__tabbed_8" type="radio"/><input id="__tabbed_8_3" name="__tabbed_8" type="radio"/><div class="tabbed-labels"><label for="__tabbed_8_1">Frame 1</label><label for="__tabbed_8_2">Frame 2</label><label for="__tabbed_8_3">Frame 3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/2.png"><img alt="" src="../img/2.png"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/3.png"><img alt="" src="../img/3.png"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/4.png"><img alt="" src="../img/4.png"/></a></p>
+</div>
+</div>
+</div>
+<p>可以发现，Frame 1 ~ 2 就是我们前面提到过的 <strong><a href="#lr--rl">LR Rotation</a></strong>，而 Frame 2 ~ 3 就是经过了两次 <strong><a href="#ll--rr">LL Rotation</a></strong>。当然，在 Splay 里这些操作都有了新的名字。</p>
+</div>
+<p>这个例子只是为了给读者一个初始印象，之后我们将更详细、准确的介绍操作。</p>
+<blockquote>
+<p>（没玩过可能听不太懂）不知道大家有没有玩过那种电子游戏，就是有好多转盘，相邻转盘之间有交界处，这些交界点上都会有圆球，当一个转盘旋转的时候，其圆周上的球体都会跟着这个圆周转动。通过不停转动相邻的圆盘，我们可以实现把某个位置的圆球转移到另外一个位置。而 Splay 差不多是这么个感觉。</p>
+</blockquote>
 <hr/>
-<h2 id="amortized-analysis">Amortized Analysis<a class="headerlink" href="#amortized-analysis" title="Permanent link">¶</a></h2>
+<h3 id="基本操作">基本操作<a class="headerlink" href="#基本操作" title="Permanent link">¶</a></h3>
+<p>首先我们做一个约定，对于任意一个节点 X，我们记其父节点为 P(Parent)，其父节点的父节点为 G(Grandparent)。</p>
+<ul>
+<li>当我们访问到某个点 X 时：<ul>
+<li>如果 P 是根节点，则直接进行一次 <a href="#ll--rr">Single Rotation</a>，将 X 转到根节点；</li>
+<li>如果 P 不是根节点：<ul>
+<li>当情况为 LR / RL 时，进行一次 <a href="#lr--rl">LR Rotation 或 RL Rotation</a>，我们称之为 zig-zag；</li>
+<li>当情况为 LL / RR 时，进行两次 <a href="#ll--rr">Single Rotation</a>，我们称之为 zig-zig；</li>
+</ul>
+</li>
+<li>不断对 X 进行 Splay 操作，直到 X 成为根节点；</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/5.png"><img alt="" src="../img/5.png"/></a></p>
+<p>可以发现，其具体操作基本就和 AVL 树的相关操作有很大重合。</p>
+<hr/>
+<h3 id="对点操作">对点操作<a class="headerlink" href="#对点操作" title="Permanent link">¶</a></h3>
+<div class="admonition section">
+<p class="admonition-title">Find X</p>
+<p>通过 Splay，将 X 旋转至 Root，于是直接取出 Root 即为结果。</p>
+</div>
+<div class="admonition section">
+<p class="admonition-title">Remove X</p>
+<p>通过 Splay，将 X 旋转至 Root，接下来删除 Root 节点，并合并左右子树即可。</p>
+</div>
+<div class="admonition section">
+<p class="admonition-title">Find Max</p>
+<p>最大的元素作为根时，它没有右子树。</p>
+</div>
+<p>...</p>
+<hr/>
+<h2 id="摊还分析">摊还分析<a class="headerlink" href="#摊还分析" title="Permanent link">¶</a></h2>
+<div class="admonition link">
+<p class="admonition-title">link</p>
+<p>Wikipedia: <a href="https://zh.wikipedia.org/wiki/%E5%B9%B3%E6%91%8A%E5%88%86%E6%9E%90">https://zh.wikipedia.org/wiki/%E5%B9%B3%E6%91%8A%E5%88%86%E6%9E%90</a></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">不好意思</p>
+<p>我实在不知道怎么清晰地讲明白“摊还”是什么，感觉讲不太清楚，所以就比较简单的介绍了，但是我仍然会指出我学习过程中认为对我启发性比较大的地方。</p>
+</div>
+<p>所谓的摊还分析，分析的是摊还边界，或者说瘫痪时间复杂度。平常我们分析时间复杂度时，针对的往往是某个具体的操作。而摊还分析的对象则是一个数据结构的一系列操作，而这一系列操作中有成本较低的，也有成本较高的，而且操作之间也可能有互相影响。</p>
+<p>而摊还分析则是以一个更全局的角度来计算“平均”的操作代价，它计算的是从初始状态开始，连续的 M 次任意操作最多有 的代价。需要注意的是，它不同于平均时间分析（所有可能的操作出现概率平均，也就是直接求平均）和概率算法的概率分析（平均话所有可能的随机选择，也就是加权求平均）不同，摊还分析和概率完全无关。</p>
+<p>容易得到如下等式：</p>
+<div class="arithmatex">\[
+\text{worst-case bound} \geq \text{amortized bound} \geq \text{average-case bound}
+\]</div>
+<p>我们知道，由于 amortized bound 限制了所有的 M 次操作，所以其上界就等于最差的情况发生 M 次（当然，很多情况下不一定能取到全都是最差情况）；同样的，由于需要对任意组合都成立，所以一定不会小于统计学意义上的平均情况。</p>
+<blockquote>
+<p>刚开始学到摊还分析的时候，看着这些内容有一种莫名其妙的感觉，不知道它在干嘛，后来我才发现我误解了摊还分析的目的。所以我感觉还是需要就此给出我自己的理解。</p>
+<div class="admonition tip">
+<p class="admonition-title">摊还分析</p>
+<p>在我理解中，摊还分析实际上是一系列<strong>证明方法</strong>，更进一步的说，在我们之后会讲到的三个分析方法中，有一些可能难以直接得到摊还复杂度。但是实际上，他们的过程更像是已知一个摊还边界，并证明它确实是边界。</p>
+</div>
+</blockquote>
+<p>常见的摊还分析有三种：聚合(aggregate)法、核(accounting)法、势能(potential)法，接下来一一介绍。</p>
+<hr/>
+<h3 id="聚合法">聚合法<a class="headerlink" href="#聚合法" title="Permanent link">¶</a></h3>
+<p>聚合法相对简单，就是直接累积连续 M 次操作的代价，再除以 M。</p>
+<div class="arithmatex">\[
+T_{amortized} = \frac{\sum_i{T_i}}{n}
+\]</div>
+<hr/>
+<h3 id="核法">核法<a class="headerlink" href="#核法" title="Permanent link">¶</a></h3>
+<div class="admonition link">
+<p class="admonition-title">link</p>
+<p>关于 Accounting Analysis 可以参考这篇文章：<a href="https://www.baeldung.com/cs/amortized-analysis">https://www.baeldung.com/cs/amortized-analysis</a></p>
+</div>
+<p>做一个比喻的话，可以这么理解：</p>
+<blockquote>
+<p>你去吃午饭，吃素菜要 ¥1（对标消耗较小的操作），吃荤菜要 ¥4（对表消耗较大的操作），现在你知道你每天吃午饭的摊还开销为 ¥2（从证明的角度来理解）。那么你今天吃素菜，账户入账 ¥1（2 - 1 = 1）；明天你也吃素菜，账户也入账 ¥1；后天你吃荤菜了，那么账户就出账 ¥2（2 - 4 = -2）……</p>
+</blockquote>
+<p>核法大概就是按照这么一个思路来证明，不过具体细节和上面这个案例还是有区别的，可以详细参考上面那片文章，我觉得配图和说明都很详细。</p>
+<hr/>
+<h3 id="势能法">势能法<a class="headerlink" href="#势能法" title="Permanent link">¶</a></h3>
+<div class="admonition link">
+<p class="admonition-title">link</p>
+<p>关于 Potential Analysis 可以参考这篇文章：<a href="https://en.wikipedia.org/wiki/Potential_method">https://en.wikipedia.org/wiki/Potential_method</a>
+以及 ltgg 的这期周报讲的也很好：<a href="https://www.yuque.com/xianyuxuan/saltfish_shop/weekly002_amortized_analysis#KmnY6">https://www.yuque.com/xianyuxuan/saltfish_shop/weekly002_amortized_analysis#KmnY6</a></p>
+</div>
+<p>势能法强推 ltgg 的这篇文章，讲的非常好。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月1日 11:16:07</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月1日 20:19:51</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 19:52:59</span>
