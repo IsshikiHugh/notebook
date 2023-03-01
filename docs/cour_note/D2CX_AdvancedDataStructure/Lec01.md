@@ -70,17 +70,17 @@
     $$
     F_i = \left\{
 	    \begin{array}{l}
-            1                   & (i = 1) \\
-            2                   & (i = 2) \\
-            F_{i-1} + F_{i-2}   & (i > 2)
+            1                       & (i = 1) \\
+            2                       & (i = 2) \\
+            F_{i-1} + F_{i-2} + 1   & (i > 2)
         \end{array}
     \right.
     $$
 
-    可以发现，这是一个斐波那契数列，于是由斐波那契数列通项公式得：
+    可以发现，${F_i + 1}$ 是一个斐波那契数列，于是由斐波那契数列通项公式得：
     
     $$
-    F_h \approx \frac{1}{\sqrt{5}}\left( \frac{1+\sqrt{5}}{2} \right)^h
+    F_h \approx \frac{1}{\sqrt{5}}\left( \frac{1+\sqrt{5}}{2} \right)^h - 1
     $$
 
     也就是 $N \approx \frac{1}{\sqrt{5}}\left( \frac{1+\sqrt{5}}{2} \right)^h$，所以 $h = O(\log N)$。
