@@ -737,6 +737,9 @@ Splay 的核心思想就是，每当我们访问一个节点（比如查询某�
 
 可以发现，其具体操作基本就和 AVL 树的相关操作有很大重合。
 
+!!! feature "效果"
+    Splaying not only moves the accessed node to the root, but also roughly halves the depth of most nodes on the path.
+
 ---
 
 ### 对点操作
