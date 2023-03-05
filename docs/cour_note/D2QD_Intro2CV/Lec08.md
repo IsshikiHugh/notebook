@@ -1,4 +1,4 @@
-# Lecture 8 | Depth Estimation
+# Lecture 8 | Depth Estimation & 3D Reconstruction
 
 !!! warning "注意"
     本文尚未完全整理好！
