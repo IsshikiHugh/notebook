@@ -3,59 +3,65 @@
 !!! warning "注意"
     本文尚未完全整理好！
 
-## Machine Learning
+## 机器学习概述
 
-- What is machine learning
-  - Learning a program (model) from data
-- What is supervised learning
-  - Supervision signal from labeled data
-- How to solve a problem
-  - Modeling: describe the problem by a mathematical model
-  - Training: find the optimal model parameters (model fitting)
-  - Testing: apply the trained model to new data
-- Next: how to solve the classification problem?
+!!! info "说明"
+    本课程不会详细介绍关于机器学习的所有知识，但仍然对基础概念有所要求，所以在此仅做概念性对简介。
 
-重要的概念：
+**机器学习(Machine Learning)ML** 粗略的来说就是通过对大量数据进行学习，在一定规则下生成程序，对于机器学习来说，学习出来的这个“程序”结果是**模型(model)**。
 
-- Model
-  - 回归 / 分类
-- 监督学习 Supervised learning
-    - 训练数据的标签是给定的
-    - 阶段：训练(模型拟合) / 测试(模型推理)
+而如果用来学习的是**被标注过的数据(labeled data)**，则称之为**(有)监督(的)学习(supervised learning)**。
 
-通常的工作流
-
-- 定义问题
-- 收集数据集
-- 设计模型
-- 模型训练
-  -  损失函数
-  -  优化问题
-- 测试
-
-
-### Image Classification
-
-难就难在很难定义这样一个东西，或者说很难用硬编码来描述一个识别“猫”的程序。
-
-解决办法是 data-driven approach
-
-pipeline
-
-## Linear Classifier
-
-最早叫感知机
-
-简单 & 基本
+无论是机器学习技术还是传统的编程技术，都是为了解决某个问题而存在的。而解决一个复杂问题——正如我们之前强调的——需要对问题进行抽象建模。而一个机器学习学习出来的**模型(model)**可以被视作一个关于输入和输出的描述：
 
 $$
-f(x,W) = W x + b
+\text{Input } X \rightarrow f_w \rightarrow \text{Output } Y
 $$
 
-合适比较大？
+而根据这里提到的“输出”的不同，按照连续与离散，我们将所解决的问题区分为**回归(regression)问题（结果 $y$ 是连续的数值）**和**分类(classification)问题（结果 $y$ 是离散的标签）**，
 
-- $x$ 与 $W$ 的对应行相似时
-- 决策边界：$w^Tx+b = 0$ ~ A line in 2D, a plane in 3D or hyperplane ...
+更具题的来说，一般机器学习的 pipeline 是这样的：
+
+1. 对问题进行定义；
+2. 收集（和处理）用来学习的数据集；
+3. 对问题建模，并设计模型；
+    - 抽象地来说是决定输入输出的关联形式；
+4. 模型训练；
+    - 设计损失函数来评估模型的效果；
+    - 用优化技术求解使模型效果最好的参数；
+5. 模型测试；
+    - 也就是用测试数据集测试它的表现；
+
+---
+
+## 线性分类器
+
+**线性分类器(Linear Classifier)**最早叫**感知机(Perceptron)**，它是 ML 中一个最简单也是最基本的构成。
+
+$$
+y = f(x, W) = W x + b \\
+\begin{aligned}
+  & \text{where } x \text{ means inputs, such as image, } \\
+  & y \text{ means outputs, such as the class of the object, } \\
+  & \text{and } W \text{ is the parameters matrix.}
+\end{aligned}
+$$
+
+可以发现，其数学描述就解释了它为什么叫「线性」分类器。
+
+更详细的解释不在这里展开，可以查看 [cs231n 笔记](../D1SJ_cs231n/index.md)的相关介绍
+
+!!! question "何时输出比较大？"
+    输出大，或者说对于某行大，换句话来说就是分类到这一行的可能性更大，一般是 $x$ 与 $W$ 的对应行相似时。
+
+    这里有一个特殊的概念是**决策边界(Decision Boundary)**：
+    
+    - $w^Tx+b = 0$
+    - It's a line in 2D, a plane in 3D or hyperplane ...
+
+    ![](111.png)
+
+---
 
 ### Training
 
@@ -72,7 +78,8 @@ $$
 评价两个概率分布是否相似，常用的是交叉差，cross entropy as loss function
 
 $$
-...
+S \sim S(y) \\
+D(S,L) = -\sum_i L_i \log S_i
 $$
 
 
@@ -94,7 +101,8 @@ $$
 ### 多层感知机 Multi-layer perceptron
 
 $$
-...
+\sigma \text{ is a nonlinear transform.}
+f(x) = \sigma(w^T x + b)
 $$
 
 hidden layers
@@ -130,7 +138,7 @@ Neural Networks
 1 个网络 -> 3 个网络，with weight sharing，因为 3 个网络都是用来识别同样的东西的，或者说功能相同。
 
 $$
-... P58
+y = \sigma(x \otimes w + b)
 $$
 
 padding & pooling & stride
@@ -174,7 +182,7 @@ optimization
 This training method is called 后向/反向传播 back-propagation
 
 $$
-... P83
+\mathbf{w}^{t+1} = \mathbf{w}^t - \eta_t\frac{\partial L}{\partial \mathbf{w}}\mathbf{w}^t 
 $$
 
 求梯度-》复合函数求导-》链式法则
