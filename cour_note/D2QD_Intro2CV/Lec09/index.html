@@ -512,24 +512,15 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#machine-learning">
-    Machine Learning
-  </a>
-<nav aria-label="Machine Learning" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#image-classification">
-    Image Classification
+<a class="md-nav__link" href="#机器学习概述">
+    机器学习概述
   </a>
 </li>
-</ul>
-</nav>
-</li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#linear-classifier">
-    Linear Classifier
+<a class="md-nav__link" href="#线性分类器">
+    线性分类器
   </a>
-<nav aria-label="Linear Classifier" class="md-nav">
+<nav aria-label="线性分类器" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#training">
@@ -784,24 +775,15 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#machine-learning">
-    Machine Learning
-  </a>
-<nav aria-label="Machine Learning" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#image-classification">
-    Image Classification
+<a class="md-nav__link" href="#机器学习概述">
+    机器学习概述
   </a>
 </li>
-</ul>
-</nav>
-</li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#linear-classifier">
-    Linear Classifier
+<a class="md-nav__link" href="#线性分类器">
+    线性分类器
   </a>
-<nav aria-label="Linear Classifier" class="md-nav">
+<nav aria-label="线性分类器" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#training">
@@ -911,59 +893,66 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-9--deep-learning">Lecture 9 | Deep Learning<a class="headerlink" href="#lecture-9--deep-learning" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1376 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 5 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1827 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 6 分钟</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
 <p>本文尚未完全整理好！</p>
 </div>
-<h2 id="machine-learning">Machine Learning<a class="headerlink" href="#machine-learning" title="Permanent link">¶</a></h2>
-<ul>
-<li>What is machine learning</li>
-<li>Learning a program (model) from data</li>
-<li>What is supervised learning</li>
-<li>Supervision signal from labeled data</li>
-<li>How to solve a problem</li>
-<li>Modeling: describe the problem by a mathematical model</li>
-<li>Training: find the optimal model parameters (model fitting)</li>
-<li>Testing: apply the trained model to new data</li>
-<li>Next: how to solve the classification problem?</li>
-</ul>
-<p>重要的概念：</p>
-<ul>
-<li>Model</li>
-<li>回归 / 分类</li>
-<li>监督学习 Supervised learning<ul>
-<li>训练数据的标签是给定的</li>
-<li>阶段：训练(模型拟合) / 测试(模型推理)</li>
+<h2 id="机器学习概述">机器学习概述<a class="headerlink" href="#机器学习概述" title="Permanent link">¶</a></h2>
+<div class="admonition info">
+<p class="admonition-title">说明</p>
+<p>本课程不会详细介绍关于机器学习的所有知识，但仍然对基础概念有所要求，所以在此仅做概念性对简介。</p>
+</div>
+<p><strong>机器学习(Machine Learning)ML</strong> 粗略的来说就是通过对大量数据进行学习，在一定规则下生成程序，对于机器学习来说，学习出来的这个“程序”结果是<strong>模型(model)</strong>。</p>
+<p>而如果用来学习的是<strong>被标注过的数据(labeled data)</strong>，则称之为<strong>(有)监督(的)学习(supervised learning)</strong>。</p>
+<p>无论是机器学习技术还是传统的编程技术，都是为了解决某个问题而存在的。而解决一个复杂问题——正如我们之前强调的——需要对问题进行抽象建模。而一个机器学习学习出来的<strong>模型(model)</strong>可以被视作一个关于输入和输出的描述：</p>
+<div class="arithmatex">\[
+\text{Input } X \rightarrow f_w \rightarrow \text{Output } Y
+\]</div>
+<p>而根据这里提到的“输出”的不同，按照连续与离散，我们将所解决的问题区分为<strong>回归(regression)问题（结果 <span class="arithmatex">\(y\)</span> 是连续的数值）</strong>和<strong>分类(classification)问题（结果 <span class="arithmatex">\(y\)</span> 是离散的标签）</strong>，</p>
+<p>更具题的来说，一般机器学习的 pipeline 是这样的：</p>
+<ol>
+<li>对问题进行定义；</li>
+<li>收集（和处理）用来学习的数据集；</li>
+<li>对问题建模，并设计模型；<ul>
+<li>抽象地来说是决定输入输出的关联形式；</li>
 </ul>
 </li>
+<li>模型训练；<ul>
+<li>设计损失函数来评估模型的效果；</li>
+<li>用优化技术求解使模型效果最好的参数；</li>
 </ul>
-<p>通常的工作流</p>
-<ul>
-<li>定义问题</li>
-<li>收集数据集</li>
-<li>设计模型</li>
-<li>模型训练</li>
-<li>损失函数</li>
-<li>优化问题</li>
-<li>测试</li>
+</li>
+<li>模型测试；<ul>
+<li>也就是用测试数据集测试它的表现；</li>
 </ul>
-<h3 id="image-classification">Image Classification<a class="headerlink" href="#image-classification" title="Permanent link">¶</a></h3>
-<p>难就难在很难定义这样一个东西，或者说很难用硬编码来描述一个识别“猫”的程序。</p>
-<p>解决办法是 data-driven approach</p>
-<p>pipeline</p>
-<h2 id="linear-classifier">Linear Classifier<a class="headerlink" href="#linear-classifier" title="Permanent link">¶</a></h2>
-<p>最早叫感知机</p>
-<p>简单 &amp; 基本</p>
+</li>
+</ol>
+<hr/>
+<h2 id="线性分类器">线性分类器<a class="headerlink" href="#线性分类器" title="Permanent link">¶</a></h2>
+<p><strong>线性分类器(Linear Classifier)</strong>最早叫<strong>感知机(Perceptron)</strong>，它是 ML 中一个最简单也是最基本的构成。</p>
 <div class="arithmatex">\[
-f(x,W) = W x + b
+y = f(x, W) = W x + b \\
+\begin{aligned}
+  &amp; \text{where } x \text{ means inputs, such as image, } \\
+  &amp; y \text{ means outputs, such as the class of the object, } \\
+  &amp; \text{and } W \text{ is the parameters matrix.}
+\end{aligned}
 \]</div>
-<p>合适比较大？</p>
+<p>可以发现，其数学描述就解释了它为什么叫「线性」分类器。</p>
+<p>更详细的解释不在这里展开，可以查看 <a href="../../D1SJ_cs231n/">cs231n 笔记</a>的相关介绍</p>
+<div class="admonition question">
+<p class="admonition-title">何时输出比较大？</p>
+<p>输出大，或者说对于某行大，换句话来说就是分类到这一行的可能性更大，一般是 <span class="arithmatex">\(x\)</span> 与 <span class="arithmatex">\(W\)</span> 的对应行相似时。</p>
+<p>这里有一个特殊的概念是<strong>决策边界(Decision Boundary)</strong>：</p>
 <ul>
-<li><span class="arithmatex">\(x\)</span> 与 <span class="arithmatex">\(W\)</span> 的对应行相似时</li>
-<li>决策边界：<span class="arithmatex">\(w^Tx+b = 0\)</span> ~ A line in 2D, a plane in 3D or hyperplane ...</li>
+<li><span class="arithmatex">\(w^Tx+b = 0\)</span></li>
+<li>It's a line in 2D, a plane in 3D or hyperplane ...</li>
 </ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../111.png"><img alt="" src="../111.png"/></a></p>
+</div>
+<hr/>
 <h3 id="training">Training<a class="headerlink" href="#training" title="Permanent link">¶</a></h3>
 <p>如何找到最佳的参数？</p>
 <ul>
@@ -977,7 +966,8 @@ f(x,W) = W x + b
 </ul>
 <p>评价两个概率分布是否相似，常用的是交叉差，cross entropy as loss function</p>
 <div class="arithmatex">\[
-...
+S \sim S(y) \\
+D(S,L) = -\sum_i L_i \log S_i
 \]</div>
 <h2 id="neural-networks">Neural Networks<a class="headerlink" href="#neural-networks" title="Permanent link">¶</a></h2>
 <p>线性分类最早叫感知机，perceptron</p>
@@ -991,7 +981,8 @@ f(x,W) = W x + b
 <p>多类别表示</p>
 <h3 id="多层感知机-multi-layer-perceptron">多层感知机 Multi-layer perceptron<a class="headerlink" href="#多层感知机-multi-layer-perceptron" title="Permanent link">¶</a></h3>
 <div class="arithmatex">\[
-...
+\sigma \text{ is a nonlinear transform.}
+f(x) = \sigma(w^T x + b)
 \]</div>
 <p>hidden layers</p>
 <blockquote>
@@ -1022,7 +1013,7 @@ Layer Types:
 <p>在 CV 中，有时候图像的局部特征就够我们进行分类。这意味着我们可能不需要让网络连上所有的部分。</p>
 <p>1 个网络 -&gt; 3 个网络，with weight sharing，因为 3 个网络都是用来识别同样的东西的，或者说功能相同。</p>
 <div class="arithmatex">\[
-... P58
+y = \sigma(x \otimes w + b)
 \]</div>
 <p>padding &amp; pooling &amp; stride</p>
 <p>好处是参数比全连层少很多</p>
@@ -1050,7 +1041,7 @@ Layer Types:
 <p>最小化 loss function，使用各种梯度下降</p>
 <p>This training method is called 后向/反向传播 back-propagation</p>
 <div class="arithmatex">\[
-... P83
+\mathbf{w}^{t+1} = \mathbf{w}^t - \eta_t\frac{\partial L}{\partial \mathbf{w}}\mathbf{w}^t 
 \]</div>
 <p>求梯度-》复合函数求导-》链式法则</p>
 <p>对于现在的深度学习工具来说，反向传播与求导等过程都可以自动实现，也就是说我们只需要设计好网络结构和 loss function 即可，而优化部分则可以通过工具实现。</p>
@@ -1118,7 +1109,7 @@ Layer Types:
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月5日 18:25:42</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月6日 17:05:06</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
