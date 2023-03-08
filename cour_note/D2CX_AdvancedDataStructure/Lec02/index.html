@@ -7,6 +7,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
 <link href="https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/Lec02/" rel="canonical"/>
+<link href="../Lec01/" rel="prev"/>
+<link href="../../../pape_read/" rel="next"/>
 <link href="../../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
 <title>Lecture 2 | Red Black Tree &amp; B+ Tree - Isshiki修's Notebook</title>
@@ -128,7 +130,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../">
+<a class="md-tabs__link md-tabs__link--active" href="../../">
         🗒 课程笔记
       </a>
 </li>
@@ -302,15 +304,15 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../">🗒 课程笔记</a>
 <label for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
           🗒 课程笔记
@@ -541,15 +543,15 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3_10" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_10" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../">[大二春夏] 高级数据结构 | Advanced Data Structure</a>
 <label for="__nav_3_10">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_3_10_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_3_10_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_10">
 <span class="md-nav__icon md-icon"></span>
           [大二春夏] 高级数据结构 | Advanced Data Structure
@@ -559,6 +561,62 @@
 <a class="md-nav__link" href="../Lec01/">
         Lecture 1 | AVL Trees &amp; Splay Trees &amp; Amortized Analysis
       </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Lecture 2 | Red Black Tree &amp; B+ Tree
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Lecture 2 | Red Black Tree &amp; B+ Tree
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#红黑树">
+    红黑树
+  </a>
+<nav aria-label="红黑树" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#概念">
+    概念
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#操作">
+    操作
+  </a>
+<nav aria-label="操作" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#插入">
+    插入
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#删除">
+    删除
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#b-tree">
+    B+ Tree
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -696,7 +754,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-2--red-black-tree--b-tree">Lecture 2 | Red Black Tree &amp; B+ Tree<a class="headerlink" href="#lecture-2--red-black-tree--b-tree" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1694 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 27 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 6 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 2110 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 27 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 7 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">说明</p>
@@ -730,6 +788,10 @@
 <blockquote>
 <p>ch 老师说，希望我们能把这五条性质熟练记住，<del>但是让我记住编号是不可能的</del>。</p>
 </blockquote>
+<div class="admonition warning">
+<p class="admonition-title">说明</p>
+<p>由于这里的“叶子结点”被重新定义了，为了描述方便，我现在称所有两个子结点都是 <code>NIL</code> 的结点为<strong>末端结点</strong>。而这个定义<strong>只是我自己说说的</strong>！</p>
+</div>
 <details class="extra">
 <summary>@Wiki</summary>
 </details>
@@ -817,7 +879,7 @@
 <p>以及，由于我们并不确定附近的节点是否真的有子节点</p>
 <hr/>
 <h4 id="插入">插入<a class="headerlink" href="#插入" title="Permanent link">¶</a></h4>
-<p>我们知道，对<strong>黑高</strong>有贡献的只有黑色节点，因此 <code>NIL</code> 节点和红色节点的互换并不会改变一颗红黑树的黑高，然而对于红色节点，却有着红色结点不能相邻的限制。</p>
+<p>我们知道，对<strong>黑高</strong>有贡献的只有黑色节点，因此 <code>NIL</code> 节点被一个<strong>红色</strong>节点置换并不会改变一颗红黑树的黑高，然而对于红色节点，却有着红色结点不能相邻的限制。</p>
 <p>因此，“插入”操作的主要思路就是，先将整个红黑树当作一个普通的二叉搜索树，将目标数据插入到树的末端（也就是置换一个 <code>NIL</code> 节点），并将它染为红色，再调整使之在保证<strong>黑高不变</strong>的情况下，满足<strong>红色节点不能相邻</strong>的要求。</p>
 <p>现在，我们记这个被插入的节点为 <code>x</code>，任意一个节点 <code>node</code> 的父节点为 <code>node.p</code>，则：</p>
 <ol>
@@ -851,7 +913,7 @@
 <p>此时可以保证这整个子树必定是黑高不变（我们暂时包括根节点）、红点不邻的。然而我们并不知道这个根的父亲是否是红色节点，倘若其根的父亲是红色节点，那么我们还需要继续调整。若这子树的根没有父节点，则直接染黑红根即可。但倘若子树根节点的父亲是黑节点，那么我们就调整完毕了。</p>
 </details>
 <p>在这三个过程中，我们观察到，只有 case 1 的转化会导致我们递归向上，而 case 2 向 case 3 的转化并不会导致我们改变关注的子树的范围。</p>
-<p>于是我们可以画一个状态机：</p>
+<p>为了更清晰地看出各个方法之间的转化关系，于是我们可以画一个状态机：</p>
 <div class="admonition key-point">
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">不分离初始状态</label><label for="__tabbed_4_2">分离初始状态</label></div>
 <div class="tabbed-content">
@@ -894,6 +956,17 @@ C ===&gt;|"C&amp;R"| D</code></pre>
 <h4 id="删除">删除<a class="headerlink" href="#删除" title="Permanent link">¶</a></h4>
 <p>关于删除操作，下面这个视频讲的很清晰！</p>
 <p>👉 <strong><a href="https://www.bilibili.com/video/BV1uZ4y1P7rr/?spm_id_from=333.880.my_history.page.click&amp;vd_source=13807e82155f985591ed6f1b4e3434ed">黑树快速入门 - 04删除</a></strong></p>
+<p>首先，如果我们要删除的结点是不是一个末端结点，也就是说它的两个儿子都不是叶子结点，那么可以将它与左子树的最大值或者右子树的最小值的<strong>值互换</strong>（颜色不换），可以证明在二叉搜索树里这个操作是可行的。此时我们要删除的点就被转化到末端结点了，也就是说现在我们要删的结点的两个子节点都是叶结点。</p>
+<p>于是，我们把所有情况都转化为了<strong>删除末端结点</strong>的情况。</p>
+<p>接下来我们来考虑这个末端结点的颜色。如果这个末端结点是<strong>红色</strong>节点，那么我们知道，<strong>直接删除</strong>这个节点是没有问题的（<a href="#插入">#插入</a>的第一句话）；而如果这个末端结点是<strong>黑色</strong>的，那么显然，直接删除是不行的。</p>
+<p>因此，现在我们只需要讨论删除一个<strong>黑色</strong>的<strong>末端结点</strong>（其两个子节点都是 <code>NIL</code>）该如何操作。</p>
+<div class="admonition warning">
+<p class="admonition-title">说明</p>
+<p>虽然我想尽可能拟合 cy 的 ppt，但是我实在没看懂，所以 case 的编号我就按照上面那个视频来了。</p>
+</div>
+<p>我们根据情况，将情况分为四种：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/12.png"><img alt="" src="../img/12.png"/></a></p>
+<p>接下来我们逐个分析变化。</p>
 <hr/>
 <h2 id="b-tree">B+ Tree<a class="headerlink" href="#b-tree" title="Permanent link">¶</a></h2>
 <hr/>
@@ -901,7 +974,7 @@ C ===&gt;|"C&amp;R"| D</code></pre>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月8日 18:50:58</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月8日 20:18:29</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月8日 10:06:23</span>
