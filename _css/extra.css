@@ -76,7 +76,7 @@ li {
     box-shadow: var(--md-shadow-z2);
 }
 
-.md-typeset img,
+/* .md-typeset img, */
 .md-typeset video {
     box-shadow: var(--md-shadow-z1);
     border-radius: 5px;
