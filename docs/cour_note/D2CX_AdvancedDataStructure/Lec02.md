@@ -41,18 +41,18 @@
             由于这里的“叶子结点”被重新定义了，为了描述方便，我现在称所有两个子结点都是 `NIL` 的结点为**末端结点**。而这个定义**只是我自己说说的**！
 
         ??? extra "\@Wiki"
-           1. Every node is either red or black.
-           2. All `NIL` nodes (figure above) are considered black.
-           3. A red node does not have a red child.
-           4. Every path from a given node to any of its descendant `NIL` nodes goes through the same number of black nodes.
+            1. Every node is either red or black.
+            2. All `NIL` nodes (figure above) are considered black.
+            3. A red node does not have a red child.
+            4. Every path from a given node to any of its descendant `NIL` nodes goes through the same number of black nodes.
 
 
         ??? extra "\@OI Wiki"
 
-           1. 每一个节点要么是**红**色，要么是**黑**色；
-           2. `NIL` 节点（空叶子节点）为**黑**色；
-           3. **红**色节点的子节点必须为**黑**色；
-           4. 从根节点到 `NIL` 节点的每条路径上的**黑**色节点数量相同；
+            1. 每一个节点要么是**红**色，要么是**黑**色；
+            2. `NIL` 节点（空叶子节点）为**黑**色；
+            3. **红**色节点的子节点必须为**黑**色；
+            4. 从根节点到 `NIL` 节点的每条路径上的**黑**色节点数量相同；
 
 !!! definition "black height, bh"
     特定节点的黑高，等于该节点到叶结点到简单路径中（**不包括自身**），黑色节点到数量。
@@ -333,8 +333,146 @@
 
     其中，任何一个情况都可以作为一个初始情况。所以可以数出，到达 finish 的路径中，最多出现 3 次 Rotation（case 4 -> case 3 -> case 2 -> finish）。
 
-   
+---
+
+根据前面状态机的相关内容，我们不难得到这张表格，它统计的是 Rotation 在不同数据结构、不同操作中出现的数量：
+
+|Option|AVL Tree|RB Tree|
+|----|----|----|
+|Insertion|$\leq 2$|$\leq 2$|
+|Deletion|$O(\log N)$|$\leq 3$|
 
 ---
 
 ## B+ Tree
+
+!!! quote "link"
+    OI Wiki: https://oi-wiki.org/ds/bplus-tree/
+    
+    Wiki: https://en.wikipedia.org/wiki/B%2B_tree
+
+---
+
+### 概念
+
+B+ 树是一种用树状形式维护有序数列比较信息的数据结构，其增改操作拥相对于二叉树结构更加稳定的对数时间复杂度，通常用于数据库和操作系统的文件系统中。
+
+!!! definition "B+ Tree"
+    
+    如下图就是一颗 $M=4$ 的 B+ 树，可以对照着这个例子来理解性质。
+
+    ![](img/16.svg)
+
+    更一般地来说，B+ 树满足如下性质：
+
+    !!! feature "property of B+ Tree"
+        @cy's PPT
+
+        1. The root is either a leaf or has between $2$ and $M$ children.
+        2. All nonleaf nodes (except the root) have between $\lceil M/2 \rceil$ and M children.
+        3. All leaves are at the same depth.
+        
+        > Assume each nonroot leaf also has between $\lceil M/2 \rceil$ and $M$ children.
+
+    所有真实的数据都被存储在叶子结点中，形成一个有序的数列。而非叶子结点中第 `i` 个键值等于其第 `i+1` 棵子树的最小值（在上图中表现为颜色相同的一对上下结点），因此非叶结点最多存 $M-1$ 个值。
+
+    ??? tip "发现"
+        于是我们发现这样一个性质：在存储数值不重复的情况下，非叶结点存储的键值都不相同。
+
+        证明很简单，对于任意一个非叶子结点，它存储的值必定不会被它的子节点存储（如果它的子节点不是叶子），因为它存的是它的子节点的第一个子树的最小值，而它的子节点存的是第二个子树开始的最小值。
+
+    我们称这样的树为一个 $M$ 阶(order) B+ 树。对于常见的 $M$，比如一棵 $4$ 阶 B+ 树，我们也称之为一棵 2-3-4 树，一般 $M$ 的选择为 3 或 4。
+
+    特别说明，对于 B+ 树，将它的叶子结点拼接起来，实际上就是一个有序数列。
+
+抽象地来说就是，我们把一个数列相对均匀的分为 $m$ 块，然后把分界的数拿出来。当我们去查找或插入时，只需要和这些边界数进行比较，就知道它应该放在哪一块里。再不断细化粒度，用类似于“$m$ 分”的思想来找到目标位置。
+
+在我看来这个定义非常清晰，就是将整个序列按照不同粒度划分，然后由大到小进行逼近。
+
+!!! feature "depth of B+ Tree"
+    由于它在空间最浪费的情况下是一棵 $\lceil M/2 \rceil$ 叉树，所以 B+ 树的深度是 $O(\lceil \log_{\lceil M/2 \rceil} N \rceil)$。
+
+---
+
+### 操作
+
+由于 B+ 树的性质十分自然，所以它的操作从思想层面上来说也非常简单。其更多的难度在于实现上。
+
+此外，在讨论这些操作时，先让我们忽略如何从空建立起一个 B+ 树。
+
+---
+
+#### 查找
+
+和二叉树的查找十分相似，所以这里只模拟一下举个例子。
+
+![](img/16.svg)
+
+例如，我们在上面这棵树中找 `43` 这个值，橙色部分表示我们的焦点。
+
+!!! section "Find(43)"
+    === "Frame 1"
+        ![](img/17_1.svg)
+        
+        我们发现有 $21 \leq 43 < 48$，所以顺着标识的橙色指针向下。
+    === "Frame 2"
+        ![](img/17_2.svg)
+
+        我们发现有 $41 \leq 43$，所以顺着标识的橙色指针向下。
+    === "Frame 3"
+        ![](img/17_3.svg)
+
+        已经走到叶子结点，最后发现我们要找的 `43`。
+
+---
+
+#### 插入
+
+插入的方法也相对朴素简单，就是找到该插入的地方以后插入即可。
+
+只不过需要注意一件事，当这个插入，导致了 B+ 树的性质不再成立时，即导致其父节点的子节点数量为 $M+1$ 时，我们需要将这个结点平均分裂成两个，此时显然有两个子树的节点数量都不小于 $\lceil M+1 \rceil$。但这还不够，分裂导致父节点的父节点的子节点变多，所以我们还得向上递归。
+
+依然是进行一个模拟，我们模拟插入 `46` 和 `44`。
+
+!!! section "Insert(46), no split"
+    === "Frame 1"
+        ![](img/18_1.svg)
+        
+        同查找，略。
+    === "Frame 2"
+        ![](img/18_2.svg)
+        
+        同查找，略。
+    === "Frame 3"
+        ![](img/18_3.svg)
+
+        找到要塞的位置了，发现要塞的地方是 `45` 的后面，插入以后发现一共 4 个数，而 $M=4$，不需要分裂。
+
+!!! section "Insert(44), split"
+    === "Frame 1"
+        ![](img/19_1.svg)
+        
+        同查找，略。
+    === "Frame 2"
+        ![](img/19_2.svg)
+        
+        同查找，略。
+    === "Frame 3"
+        ![](img/19_3.svg)
+
+        找到要塞的位置了，发现要塞的地方是 `45` 的前面，插入以后发现一共 5 个数，而 $M=4$，需要分裂！
+    === "Frame 4"
+        ![](img/19_4.svg)
+
+        向上递归，我们悲痛地发现，这个节点在分裂后有了 `5` 个子节点，不得不再次分裂。
+    === "Frame 5"
+        ![](img/19_5.svg)
+
+        向上递归，我的老天爷呀，怎么还没到头！这下我们要分裂根部了！
+    === "Frame 6"
+        ![](img/19_6.svg)
+
+        由于根部被裂开了，所以我们需要添加一个新的根，这也意味着树的层数增高了。
+
+        现在，我们终于完成了插入。
+

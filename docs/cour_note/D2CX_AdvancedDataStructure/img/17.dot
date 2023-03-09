@@ -1,0 +1,105 @@
+graph G {
+    rankdir=TD;
+    splines=false;
+    node [shape=plaintext];
+
+    node0 [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="black"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="1" BGCOLOR="black" PORT="H"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="black"></TD></TR>
+        <TR>
+            <TD ALIGN="CENTER" PORT="f0"></TD>
+            <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="blue">21</FONT></TD>
+            <TD ALIGN="CENTER" PORT="f1"></TD>
+            <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="blue">48</FONT></TD>
+            <TD ALIGN="CENTER" PORT="f2"></TD>
+            <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="blue">72</FONT></TD>
+            <TD ALIGN="CENTER" PORT="f3"></TD>
+        </TR>
+    </TABLE>>];
+
+    node1 [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="black"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="1" BGCOLOR="black" PORT="H"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="black"></TD></TR>
+        <TR>
+            <TD ALIGN="CENTER" PORT="f0"></TD>
+            <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="red">12</FONT></TD>
+            <TD ALIGN="CENTER" PORT="f1"></TD>
+            <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="red">15</FONT></TD>
+            <TD ALIGN="CENTER" PORT="f2"></TD>
+            <TD ALIGN="CENTER" WIDTH="20">-</TD>
+            <TD ALIGN="CENTER" PORT="f3" BGCOLOR="grey"></TD>
+        </TR>
+    </TABLE>>];
+
+    node2 [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="black"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="1" BGCOLOR="black" PORT="H"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="black"></TD></TR>
+        <TR>
+            <TD ALIGN="CENTER" PORT="f0"></TD>
+            <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="red">25</FONT></TD>
+            <TD ALIGN="CENTER" PORT="f1"></TD>
+            <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="red">31</FONT></TD>
+            <TD ALIGN="CENTER" PORT="f2"></TD>
+            <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="red">41</FONT></TD>
+            <TD ALIGN="CENTER" PORT="f3"></TD>
+        </TR>
+    </TABLE>>];
+
+    node3 [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="black"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="1" BGCOLOR="black" PORT="H"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="black"></TD></TR>
+        <TR>
+            <TD ALIGN="CENTER" PORT="f0"></TD>
+            <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="red">59</FONT></TD>
+            <TD ALIGN="CENTER" PORT="f1"></TD>
+            <TD ALIGN="CENTER" WIDTH="20">-</TD>
+            <TD ALIGN="CENTER" PORT="f2" BGCOLOR="grey"></TD>
+            <TD ALIGN="CENTER" WIDTH="20">-</TD>
+            <TD ALIGN="CENTER" PORT="f3" BGCOLOR="grey"></TD>
+        </TR>
+    </TABLE>>];
+
+    node4 [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="black"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="1" BGCOLOR="black" PORT="H"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="black"></TD></TR>
+        <TR>
+            <TD ALIGN="CENTER" PORT="f0"></TD>
+            <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="red">84</FONT></TD>
+            <TD ALIGN="CENTER" PORT="f1"></TD>
+            <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="red">91</FONT></TD>
+            <TD ALIGN="CENTER" PORT="f2"></TD>
+            <TD ALIGN="CENTER" WIDTH="20">-</TD>
+            <TD ALIGN="CENTER" PORT="f3" BGCOLOR="grey"></TD>
+        </TR>
+    </TABLE>>];
+
+    arr [label=<<TABLE>
+        <TR>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f0">1, 4, 8, 11</TD>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f1"><FONT COLOR="red">12</FONT>, 13</TD>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f2"><FONT COLOR="red">15</FONT>, 18, 19</TD>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f3"><FONT COLOR="blue">21</FONT>, 24</TD>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f4"><FONT COLOR="red">25</FONT>, 26</TD>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f5"><FONT COLOR="red">31</FONT>, 38</TD>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f6"><FONT COLOR="red">41</FONT>, <FONT COLOR="ORANGE">43</FONT>, 46</TD>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f7"><FONT COLOR="blue">48</FONT>, 49, 50</TD>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f8"><FONT COLOR="red">59</FONT>, 68</TD>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f9"><FONT COLOR="blue">72</FONT>, 78</TD>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f10"><FONT COLOR="red">84</FONT>, 88</TD>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f11"><FONT COLOR="red">91</FONT>, 92, 99</TD>
+        </TR>
+    </TABLE>>];
+
+    node0:f0 -- node1:H
+    node1:f0 -- arr:f0
+    node1:f1 -- arr:f1
+    node1:f2 -- arr:f2
+    node0:f1 -- node2:H
+    node2:f0 -- arr:f3
+    node2:f1 -- arr:f4
+    node2:f2 -- arr:f5
+    node2:f3 -- arr:f6
+    node0:f2 -- node3:H
+    node3:f0 -- arr:f7
+    node3:f1 -- arr:f8
+    node0:f3 -- node4:H
+    node4:f0 -- arr:f9
+    node4:f1 -- arr:f10
+    node4:f2 -- arr:f11
+
+}
