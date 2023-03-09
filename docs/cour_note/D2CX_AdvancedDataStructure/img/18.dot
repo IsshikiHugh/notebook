@@ -8,7 +8,7 @@ digraph G {
         <TR>
             <TD ALIGN="CENTER" PORT="f0"></TD>
             <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="blue">21</FONT></TD>
-            <TD ALIGN="CENTER" PORT="f1" BGCOLOR="ORANGE"></TD>
+            <TD ALIGN="CENTER" PORT="f1"></TD>
             <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="blue">48</FONT></TD>
             <TD ALIGN="CENTER" PORT="f2"></TD>
             <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="blue">72</FONT></TD>
@@ -29,8 +29,8 @@ digraph G {
         </TR>
     </TABLE>>];
 
-    node2 [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" COLOR="ORANGE">
-        <TR><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="orange"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="1" BGCOLOR="orange" PORT="H"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="orange"></TD></TR>
+    node2 [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="black"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="1" BGCOLOR="black" PORT="H"></TD><TD HEIGHT="0.5"  BORDER="1" COLSPAN="3" BGCOLOR="black"></TD></TR>
         <TR>
             <TD ALIGN="CENTER" PORT="f0"></TD>
             <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="red">25</FONT></TD>
@@ -38,7 +38,7 @@ digraph G {
             <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="red">31</FONT></TD>
             <TD ALIGN="CENTER" PORT="f2"></TD>
             <TD ALIGN="CENTER" WIDTH="20"><FONT COLOR="red">41</FONT></TD>
-            <TD ALIGN="CENTER" PORT="f3"></TD>
+            <TD ALIGN="CENTER" PORT="f3" BGCOLOR="ORANGE"></TD>
         </TR>
     </TABLE>>];
 
@@ -76,7 +76,7 @@ digraph G {
             <TD WIDTH="5" ALIGN="CENTER" PORT="f3"><FONT COLOR="blue">21</FONT>, 24</TD>
             <TD WIDTH="5" ALIGN="CENTER" PORT="f4"><FONT COLOR="red">25</FONT>, 26</TD>
             <TD WIDTH="5" ALIGN="CENTER" PORT="f5"><FONT COLOR="red">31</FONT>, 38</TD>
-            <TD WIDTH="5" ALIGN="CENTER" PORT="f6"><FONT COLOR="red">41</FONT>, 43, 45</TD>
+            <TD WIDTH="5" ALIGN="CENTER" PORT="f6" COLOR="orange"><FONT COLOR="red">41</FONT>, 43, 45</TD>
             <TD WIDTH="5" ALIGN="CENTER" PORT="f7"><FONT COLOR="blue">48</FONT>, 49, 50</TD>
             <TD WIDTH="5" ALIGN="CENTER" PORT="f8"><FONT COLOR="red">59</FONT>, 68</TD>
             <TD WIDTH="5" ALIGN="CENTER" PORT="f9"><FONT COLOR="blue">72</FONT>, 78</TD>
@@ -91,11 +91,11 @@ digraph G {
     node1:f0 -> arr:f0 [arrowtail=none, arrowhead=none]
     node1:f1 -> arr:f1 [arrowtail=none, arrowhead=none]
     node1:f2 -> arr:f2 [arrowtail=none, arrowhead=none]
-    node0:f1 -> node2:H [arrowtail=none, arrowhead=none, color="orange"]
+    node0:f1 -> node2:H [arrowtail=none, arrowhead=none]
     node2:f0 -> arr:f3 [arrowtail=none, arrowhead=none]
     node2:f1 -> arr:f4 [arrowtail=none, arrowhead=none]
     node2:f2 -> arr:f5 [arrowtail=none, arrowhead=none]
-    node2:f3 -> arr:f6 [arrowtail=none, arrowhead=none]
+    node2:f3 -> arr:f6 [arrowtail=none, arrowhead=none, color="orange"]
     node0:f2 -> node3:H [arrowtail=none, arrowhead=none]
     node3:f0 -> arr:f7 [arrowtail=none, arrowhead=none]
     node3:f1 -> arr:f8 [arrowtail=none, arrowhead=none]
@@ -104,6 +104,6 @@ digraph G {
     node4:f1 -> arr:f10 [arrowtail=none, arrowhead=none]
     node4:f2 -> arr:f11 [arrowtail=none, arrowhead=none]
 
-    x -> node0:H [color="orange"]
+    x -> node2:H [color="orange"]
 
 }
