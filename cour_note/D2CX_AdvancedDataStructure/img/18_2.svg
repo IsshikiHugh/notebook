@@ -73,7 +73,7 @@
 <polygon fill="none" stroke="black" points="291.5,-76 291.5,-97 297.5,-97 297.5,-76 291.5,-76"/>
 <polygon fill="none" stroke="black" points="297.5,-76 297.5,-97 317.5,-97 317.5,-76 297.5,-76"/>
 <text text-anchor="start" x="300.5" y="-82.8" font-family="Times,serif" font-size="14.00" fill="red">41</text>
-<polygon fill="orange" stroke="none" points="317.5,-76 317.5,-97 323.5,-97 323.5,-76 317.5,-76"/>
+<polygon fill="ORANGE" stroke="none" points="317.5,-76 317.5,-97 323.5,-97 323.5,-76 317.5,-76"/>
 <polygon fill="none" stroke="black" points="317.5,-76 317.5,-97 323.5,-97 323.5,-76 317.5,-76"/>
 </g>
 <!-- node0&#45;&gt;node2 -->
@@ -154,8 +154,7 @@
 <polygon fill="none" stroke="black" points="273.5,-7 273.5,-28 315.5,-28 315.5,-7 273.5,-7"/>
 <text text-anchor="start" x="276.5" y="-14.8" font-family="Times,serif" font-size="14.00" fill="red">31</text>
 <text text-anchor="start" x="290.5" y="-14.8" font-family="Times,serif" font-size="14.00">, 38</text>
-<polygon fill="orange" stroke="none" points="317.5,-7 317.5,-28 380.5,-28 380.5,-7 317.5,-7"/>
-<polygon fill="none" stroke="black" points="317.5,-7 317.5,-28 380.5,-28 380.5,-7 317.5,-7"/>
+<polygon fill="none" stroke="orange" points="317.5,-7 317.5,-28 380.5,-28 380.5,-7 317.5,-7"/>
 <text text-anchor="start" x="320.5" y="-14.8" font-family="Times,serif" font-size="14.00" fill="red">41</text>
 <text text-anchor="start" x="334.5" y="-14.8" font-family="Times,serif" font-size="14.00">, 43, 45</text>
 <polygon fill="none" stroke="black" points="382.5,-7 382.5,-28 445.5,-28 445.5,-7 382.5,-7"/>
