@@ -214,7 +214,7 @@
 
 关于删除操作，下面这个视频讲的很清晰！只不过我个人感觉它的 case 1 不是很清楚。
 
-👉 **[黑树快速入门 - 04删除](https://www.bilibili.com/video/BV1uZ4y1P7rr/?spm_id_from=333.880.my_history.page.click&vd_source=13807e82155f985591ed6f1b4e3434ed)**
+👉 **[红黑树快速入门 - 04删除](https://www.bilibili.com/video/BV1uZ4y1P7rr/?spm_id_from=333.880.my_history.page.click&vd_source=13807e82155f985591ed6f1b4e3434ed)**
 
 首先，如果我们要删除的结点出度为 2（不算 `NIL`），那么可以将它与左子树的最大值或者右子树的最小值的**值互换**（颜色不换）；如果要删除的结点出度为 1（不算 `NIL`），则可以直接用它唯一的非叶子节点替换它。可以证明在二叉搜索树里这些操作是可行的。此时我们要删除的点的所有情况就都被转化到末端结点了，也就是说现在我们要删的结点的两个子节点都是叶结点。
 
