@@ -366,7 +366,7 @@ B+ 树是一种用树状形式维护有序数列比较信息的数据结构，�
     更一般地来说，B+ 树满足如下性质：
 
     !!! feature "property of B+ Tree"
-        @cy's PPT
+        \@cy's PPT
 
         1. The root is either a leaf or has between $2$ and $M$ children.
         2. All nonleaf nodes (except the root) have between $\lceil M/2 \rceil$ and M children.
