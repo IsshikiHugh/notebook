@@ -1063,7 +1063,7 @@ C ---&gt;|"C&amp;R"| D</code></pre>
 <p><center><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/12.png"><img alt="" src="../img/12.png" width="90%"/></a></center></p>
 <p>需要做一下简单说明，类比我们在<strong><a href="#插入">#插入</a></strong>，在删除过程中也存在需要向上递归的情况。与「被插入的红色节点」类似的，我们这里的「需要被删除的目标点」，也应当被看作「导致调整出现的子树」，更进一步的，可以定义成「<strong>由于删除结点，黑高 -1 的子树</strong>」，请记住这个定义，这会让之后的递归操作变得自然。</p>
 <div class="admonition question">
-<p class="admonition-title">合适删除那个结点？</p>
+<p class="admonition-title">何时删除那个结点？</p>
 <p>虽然我们对「需要被删除的目标点」进行了递归的扩展定义，但是在第一层我们就可以直接将它删掉了。而这个点被删除造成的影响，已经由「<strong>由于删除结点，黑高 -1 的子树</strong>」继承了。</p>
 </div>
 <p>类似于我们在「Insertion / case 3」里提到的“下放”黑节点，删除操作的思路基本上是“上放”黑节点，或者说“吸纳”黑节点。这个“吸纳”的行为，指的是一个黑点，原来只为右子树中的所有路径提供了黑高，现在通过将黑色转移到父亲节点，同时为左子树的所有路径也提供了黑高。</p>
@@ -1311,7 +1311,7 @@ D ===&gt;|"C&amp;R"| C</code></pre>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月9日 13:17:32</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月11日 13:42:22</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月8日 10:06:23</span>
