@@ -6,6 +6,8 @@
 	- **授课**：周晓巍
 	- **教材**：[📙](https://szeliski.org/Book/) [.](https://www.aliyundrive.com/s/fT6RkyihatM)
 
+    - 推荐资源：https://paperswithcode.com/
+
 !!! note "Notes"
     - :material-label: [Lec1](Lec01.md)
     - :material-label: [Lec2](Lec02.md)

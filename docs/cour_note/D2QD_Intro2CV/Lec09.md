@@ -271,3 +271,9 @@ Reduce internal covariate shift，以减少 channal 之间的发散性，更稳�
 ---
 
 NAS: Neural Architecture Search 自动化网络结构设计，learning to learn
+
+
+
+## why deep learning is powerful?
+
+End-to-end learning，端到端学习
