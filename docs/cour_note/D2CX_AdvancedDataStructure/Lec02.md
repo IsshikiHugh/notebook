@@ -97,7 +97,7 @@
         > [关于黑高和点数的关系](https://stackoverflow.com/questions/70944386/maximum-height-of-a-node-in-a-red-black-tree)。
         
         1. 首先我们有 $N \geq 2^{bh}-1$，也就是 $bh \leq \log_2 (N+1)$；
-        2. 然后显然有 $bh(Tree) >= h(Tree)$
+        2. 然后显然有 $2 bh(Tree) >= h(Tree)$
 
 ---
 
