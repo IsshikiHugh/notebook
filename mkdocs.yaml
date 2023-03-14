@@ -120,10 +120,9 @@ extra_css:
   - _css/flink.css
 
 extra_javascript: 
-  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
   - _js/extra.js
-
-
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 
 nav:
@@ -140,6 +139,10 @@ nav:
         - tech_accu/tool/Git/Commands/index.md
       - tech_accu/tool/Shell/index.md
       - tech_accu/tool/Colab/index.md
+    - "编程语言":
+      - C++:
+        - tech_accu/language/cpp/index.md
+        - tech_accu/language/cpp/Part0.md
     - "标准 | 格式 | 规范":
       - tech_accu/standard/BVH_format/index.md
     - "人工智能":
@@ -187,10 +190,11 @@ nav:
     - cour_note/D2HJ_WritingInTheSciences/index.md
     - "[大二春夏] 计算机组成 | Computer Organization":
       - cour_note/D2CX_ComputerOrganization/index.md
-    - "[大二春夏] 高级数据结构 | Advanced Data Structure":
+    - "[大二春夏] 高级数据结构 | Advanced Data Structure": 
       - cour_note/D2CX_AdvancedDataStructure/index.md
       - cour_note/D2CX_AdvancedDataStructure/Lec01.md
       - cour_note/D2CX_AdvancedDataStructure/Lec02.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec03.md
   - "📝 论文阅读":
     - pape_read/index.md
     - pape_read/arXiv:2003.08934/index.md
