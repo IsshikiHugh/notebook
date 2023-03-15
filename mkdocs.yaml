@@ -147,11 +147,20 @@ nav:
     - tech_accu/index.md
     - "常用工具":
       - tech_accu/tool/index.md
+      - tech_accu/tool/Shell/index.md
       - "Git Something":
         - tech_accu/tool/Git/index.md
         - tech_accu/tool/Git/Workflow/index.md
         - tech_accu/tool/Git/Commands/index.md
-      - tech_accu/tool/Shell/index.md
+      - "MinIO":
+        - "🔗 Website": https://www.minio.org.cn/
+        - "🔗 Docs": http://docs.minio.org.cn/minio/baremetal/
+        - "🔗 Notes of MinIO x Golang": https://juejin.cn/post/7002026185391603749
+      - "Docker":
+        - "🔗 Docker build with Mac M1": https://medium.com/geekculture/docker-build-with-mac-m1-d668c802ab96
+      - "makefile":
+        - "🔗 What is a Makefile and how does it work?": https://opensource.com/article/18/8/what-how-makefile
+        - "🔗 makefile 介绍": https://seisman.github.io/how-to-write-makefile/introduction.html#
       - tech_accu/tool/Colab/index.md
     - "编程语言":
       - C++:
@@ -159,6 +168,8 @@ nav:
         - tech_accu/language/cpp/Part0.md
     - "标准 | 格式 | 规范":
       - tech_accu/standard/BVH_format/index.md
+      - "👉 OAuth": https://www.yuque.com/isshikixiu/codes/gd5vxi
+      - "🔗 MIME": https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
     - "人工智能":
       - tech_accu/ai/index.md
       - tech_accu/ai/pytorch/index.md
