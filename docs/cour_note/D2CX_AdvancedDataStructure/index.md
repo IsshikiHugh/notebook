@@ -6,7 +6,7 @@
     分数构成：
 
     - 5% = HW
-    - 5% = Quiz
+    - ~~5% = Quiz~~（划分到哪里还不知道）
     - 10% = Discussions
     - 30% = Research Project & Peer Review
     - 10% = max(期中，期末)
@@ -20,3 +20,5 @@
 !!! note "Notes"
     - :material-label: [Lecture 1 | AVL Trees & Splay Trees & Amortized Analysis](Lec01.md)
     - :material-label: [Lecture 2 | Red Black Tree & B+ Tree](Lec02.md)
+    - :material-label: [Lecture 3 | Inverted File Index](Lec03.md)
+    - :material-label: [Lecture 4 | Leftist Heaps & Skew Heaps](Lec04.md)
