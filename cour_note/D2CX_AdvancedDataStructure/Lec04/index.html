@@ -927,7 +927,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-4--leftist-heaps--skew-heaps">Lecture 4 | Leftist Heaps &amp; Skew Heaps<a class="headerlink" href="#lecture-4--leftist-heaps--skew-heaps" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 2089 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 97 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 8 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 2898 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 97 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 11 分钟</p>
 </div>
 <h2 id="leftist-heaps">Leftist Heaps<a class="headerlink" href="#leftist-heaps" title="Permanent link">¶</a></h2>
 <div class="admonition quote">
@@ -937,8 +937,8 @@
 </div>
 <hr/>
 <h3 id="概念">概念<a class="headerlink" href="#概念" title="Permanent link">¶</a></h3>
-<p>左偏树，或者说<strong>左偏堆(Leftist Heaps)</strong>，它相比于普通的堆，更好的一点在于它支持快速的堆合并操作。</p>
-<p>由于左偏堆不再事一个完全二叉树，所以我们不能再像维护大根堆小跟堆那样用数组来维护它了。</p>
+<p>左偏堆，或者说<strong>左偏堆(Leftist Heaps)</strong>，它相比于普通的堆，更好的一点在于它支持快速的堆合并操作。“左偏”，并不断往右侧合并，来实现每次都是往相对小的那一侧塞进东西，进而保相对证了这个</p>
+<p>由于左偏堆不再是一个完全二叉树，所以我们不能再像维护大根堆小跟堆那样用数组来维护它了。</p>
 <p>一个左偏堆的结点维护了左右子堆的地址、自身的键值、和一个“<strong>距离(dist)</strong>”。</p>
 <div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">LeftistHeap</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">ElementType</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
@@ -976,13 +976,15 @@
 </blockquote>
 </div>
 </div>
+<p>简单思考一下，为什么左偏堆会这么设计呢？实际上，合并堆需要考虑的非常重要的一个点就是要能在之后的操作中尽可能地维护堆的“平衡”，否则我们把堆维护成了一个链，那显然是非常糟糕的。</p>
+<p>而左偏堆通过维护整个堆“左偏”，并不断往右侧合并，来实现每次都是往相对小的那一侧塞进东西，进而保证了这个堆的相对平衡性。</p>
 <hr/>
 <h3 id="操作">操作<a class="headerlink" href="#操作" title="Permanent link">¶</a></h3>
 <p>左偏堆的核心操作就是合并。而其它操作都可以看作是合并的特殊情况。因此我们首先讨论任意两个左偏堆的合并。</p>
 <hr/>
 <h4 id="合并">合并<a class="headerlink" href="#合并" title="Permanent link">¶</a></h4>
-<p>作为左偏堆的核心操作，合并操作自然就是要在满足性质的条件下，合并两个左偏堆。大致思路就是先维护堆的性质，在回溯时维护左偏性质。</p>
-<p>按照实现方法，左偏树的合并可以分为 递归式 和 迭代式 两种。其中前者可能更为直觉，而后者可视化后则更为直观。</p>
+<p>作为左偏堆的核心操作，合并操作自然就是要在满足性质的条件下，合并两个左偏堆。大致思路就是先维护堆的性质，在回溯时维护左偏性质，所以实际上它是一个先自上而下再自下而上的过程。</p>
+<p>按照实现方法，左偏堆的合并可以分为 递归式 和 迭代式 两种。其中前者可能更为直觉，而后者可视化后则更为直观。“左偏”，并不断往右侧合并，来实现每次都是往相对小的那一侧塞进东西，进而保相对证了这个</p>
 <p>为了方便后续的代码描述，我们首先给出左偏堆结点在本文中的定义：</p>
 <div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">LeftistHeap</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">ElementType</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
@@ -1192,12 +1194,37 @@
 <p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Skew_heap">https://en.wikipedia.org/wiki/Skew_heap</a></p>
 </div>
 <p><strong>斜堆(Skew Heaps)</strong>是比左偏堆更为一般的数据结构，它同样有着能够快速合并的性质。</p>
+<div class="admonition tip">
+<p class="admonition-title">头脑风暴</p>
+<p>让我们回顾一下左偏堆，由于需要自下而上地维护 dist，所以我们无法进行并发操作。回顾 AVL 树，同样为了维护它比较严格的平衡性质，我们也无法进行并发操作，而红黑树则通过一个能够仅仅通过变色就能调整的黑高来规避了必须自下而上维护的问题，实现了并发。</p>
+<p>换句话来说，要想将左偏堆改变地能够进行自上而下维护，就需要改变甚至放弃它的左偏性质的严格性——而这就是斜堆的由来。</p>
+</div>
+<p>斜堆的实际上就是普通的堆，它也需要满足大根堆（小根堆）的性质，而它的合并和左偏堆的合并也十分类似，只不过我们这次<strong>无条件的交换左右子树</strong>，换句话来说，不管左偏性质如何变化，我们都会选择交换参与合并的左右子树，这样我们就不需要在回溯的时候才进行左右子树的交换，于是就实现了完全的自上而下。</p>
+<p>让我们来看看 wiki 里给出的 🌰：</p>
+<div class="admonition eg">
+<p class="admonition-title">🌰 from wikipedia</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">Frame 0</label><label for="__tabbed_4_2">Frame 1</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="39.svg"><img alt="" src="39.svg"/></a></p>
+<p>这是我们需要合并的两个堆。</p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="40.svg"><img alt="" src="40.svg"/></a></p>
+<p>省略了中间的步骤，可以尝试模拟一下，每一次合并操作结束之后都交换左右子树。</p>
+<p>我们总是先往右侧子树递归下去地合并，没完成一次合并就交换这个子树和它的兄弟姐妹，而它的兄弟姐妹在这次交换完以后就不会再发生改变，而这个子树则会继续进行下一次合并。</p>
+</div>
+</div>
+</input></input></div>
+</div>
+<p><del>省略上面的绘图显然是我懒得画了，相信大家在了解左偏堆的合并以后也能很快感受到斜堆是如何合并的。</del></p>
+<p>当然，它也是支持迭代的写法的，和是和之前的做法类似，我们可以排序每一“条”，然后再合并。Wikipedia 上提供了一系列的过程图，但是那个过程图有点自下而上的意思，但是实际上自上而下做也是一样的。如果有兴趣可以去看看 Wiki 上的过程：<a href="https://en.wikipedia.org/wiki/Skew_heap#Non-recursive_merging">🔗</a>。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月21日 20:38:11</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月22日 12:35:51</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月21日 20:38:11</span>
