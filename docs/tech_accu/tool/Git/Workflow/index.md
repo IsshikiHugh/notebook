@@ -11,6 +11,8 @@
 
     由于 mkdocs 并没有标签功能，所以其实还是语雀上的文章更好看，但是我并不打算更新语雀了，故这里只放一个以前的指路链接：[🔗](https://www.yuque.com/isshikixiu/codes/mp01wg)。
 
+    Git branch 可视化练习网站：https://note.isshikih.top/tech_accu/tool/Git/Workflow/
+
 ## 何为 'Git Workflow'
 
 Git Workflow 是一种 **规范** 的 **工作流程**，而并不是一个具体的工具或者技术，当然貌似有一个叫做 [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) 的工具，但在本文中暂时不介绍。
