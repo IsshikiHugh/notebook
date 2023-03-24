@@ -8,20 +8,20 @@
 
     - 推荐资源：https://paperswithcode.com/
 
-!!! note "Notes"
-    - :material-label: [Lec1](Lec01.md)
-    - :material-label: [Lec2](Lec02.md)
-    - :material-label: [Lec3](Lec03.md)
-    - :material-label: [Lec4](Lec04.md)
-    - :material-label: [Lec5](Lec05.md)
-    - :material-label: [Lec6](Lec06.md)
-    - :material-label: [Lec7](Lec07.md)
-    - :material-label: [Lec8](Lec08.md)
-    - :material-label: [Lec9](Lec09.md)
-    - :material-label: [Lec10](Lec10.md)
-    - :material-label: [Lec11](Lec11.md)
-    - :material-label: [Lec12](Lec12.md)
-    - :material-label: [Lec13](Lec13.md)
+!!! note "List"
+    - [x] :material-label: [Lecture 1 | Introduction](Lec01.md)
+    - [x] :material-label: [Lecture 2 | Image Formation](Lec02.md)
+    - [x] :material-label: [Lecture 3 | Image Processing](Lec03.md)
+    - [x] :material-label: [Lecture 4 | Model Fitting and Optimization](Lec04.md)
+    - [ ] :material-label: [Lecture 5 | Feature Matching and Motion Estimation](Lec05.md)
+    - [ ] :material-label: [Lecture 6 | Image Alignment and Stitching](Lec06.md)
+    - [x] :material-label: [Lecture 7 | Structure From Motion](Lec07.md)
+    - [ ] :material-label: [Lecture 8 | Depth Estimation & 3D Reconstruction](Lec08.md)
+    - [ ] :material-label: [Lecture 9 | Deep Learning](Lec09.md)
+    - [ ] :material-label: [Lecture 10 | Recognition](Lec10.md)
+    - [ ] :material-label: [Lecture 11 | 3D Deep Learning](Lec11.md)
+    - [ ] :material-label: [Lecture 12 | Computational Photography 1](Lec12.md)
+    - [ ] :material-label: [Lecture 13 | Computational Photography 2](Lec13.md)
 
 !!! tip "Lab"
     - :material-label: [Lab Code](https://github.com/IsshikiHugh/Learning/tree/master/ICV_2022FallWinterTerm)

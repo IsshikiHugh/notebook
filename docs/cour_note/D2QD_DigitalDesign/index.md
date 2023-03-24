@@ -13,14 +13,14 @@
 
     很显然，我烂尾了，第五章内容很简陋，第七章基本没写，实在是考前来不及写完了。但是我可以保证除此之外的内容我都是仔细推敲后才写出来的orz。
 
-!!! note "Notes"
+!!! note "List"
     > 补天时候的一点想法，因为课本每一章都有一个 summary，所以如果要看书的话或许可以先看那个 summary 再看具体的。
 
-    - :material-label: [Chap1](Chap01.md)
-    - :material-label: [Chap2](Chap02.md)
-    - :material-label: [Chap3](Chap03.md)
-    - :material-label: [Chap4](Chap04.md)
-    - :material-label: [Chap5](Chap05.md) （略简略）
-    - :material-label: [Chap6](Chap06.md)
-    - :material-label: [Chap7](Chap07.md) （没写）
-    - :material-label: [Glossary](glossary.md)
+    - [x] :material-label: [Chap 1 Digital Systems and Information](Chap01.md)
+    - [x] :material-label: [Chap 2 Combinational Logic Circuits](Chap02.md)
+    - [x] :material-label: [Chap 3 Combinational Logic Design](Chap03.md)
+    - [x] :material-label: [Chap 4 Sequential Circuits](Chap04.md)
+    - [x] :material-label: [Chap 5 Digital Hardware Implementation](Chap05.md) （略简略）
+    - [x] :material-label: [Chap 6 Registers & Register Transfers](Chap06.md)
+    - [ ] :material-label: [Chap 7 Memory Basics](Chap07.md) （没写）
+    - [x] :material-label: [Glossary](glossary.md)

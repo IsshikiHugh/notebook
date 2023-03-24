@@ -17,8 +17,8 @@
     
     - https://www.yuque.com/xianyuxuan/saltfish_shop/course_res_index#cIhfl
 
-!!! note "Notes"
-    - :material-label: [Lecture 1 | AVL Trees & Splay Trees & Amortized Analysis](Lec01.md)
-    - :material-label: [Lecture 2 | Red Black Tree & B+ Tree](Lec02.md)
-    - :material-label: [Lecture 3 | Inverted File Index](Lec03.md)
-    - :material-label: [Lecture 4 | Leftist Heaps & Skew Heaps](Lec04.md)
+!!! note "List"
+    - [x] :material-label: [Lecture 1 | AVL Trees & Splay Trees & Amortized Analysis](Lec01.md)
+    - [x] :material-label: [Lecture 2 | Red Black Tree & B+ Tree](Lec02.md)
+    - [x] :material-label: [Lecture 3 | Inverted File Index](Lec03.md)
+    - [ ] :material-label: [Lecture 4 | Leftist Heaps & Skew Heaps](Lec04.md)
