@@ -1316,22 +1316,22 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 <p>当然，对于线性方程组，根据线性代数的知识，我们可以增加方程，即增加约束。而这种约束一般来自于对变量的先验约束，比如：</p>
 <div class="admonition note">
 <p class="admonition-title">L2 regularization</p>
-</div>
 <p><strong>L2 norm</strong>: <span class="arithmatex">\(||x||_2 = \sum_i x_i^2\)</span>;</p>
 <p><strong>L2 regularization</strong>: <span class="arithmatex">\(\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_2 \leq 1\)</span>;</p>
-<div class="highlight"><pre><span></span><code>![](63.png){ width=200px }
-
-&gt; 通过让选择的解尽可能接近原点，而让我们没有用的解的维度尽可能接近 0，以减小没用的变量的影响，抑制冗余变量。
-</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../63.png"><img alt="" src="../63.png" width="200px"/></a></p>
+<blockquote>
+<p>通过让选择的解尽可能接近原点，而让我们没有用的解的维度尽可能接近 0，以减小没用的变量的影响，抑制冗余变量。</p>
+</blockquote>
+</div>
 <div class="admonition note">
 <p class="admonition-title">L1 regularization</p>
-</div>
 <p><strong>L1 norm</strong>: <span class="arithmatex">\(||x||_1=\sum_i|x_i|\)</span>;</p>
 <p><strong>L1 regularization</strong>: <span class="arithmatex">\(\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_1 \leq 1\)</span></p>
-<div class="highlight"><pre><span></span><code>![](64.png){ width=200px }
-
-&gt; L1 可视化中可以发现，坐标轴上比较容易抓住解，此时意味着有些变量(维度)是 0，换句话来说能让解变得“**稀疏(sparse)**”，即在维度上的分布只比较集中于个别项。
-</code></pre></div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../64.png"><img alt="" src="../64.png" width="200px"/></a></p>
+<blockquote>
+<p>L1 可视化中可以发现，坐标轴上比较容易抓住解，此时意味着有些变量(维度)是 0，换句话来说能让解变得“<strong>稀疏(sparse)</strong>”，即在维度上的分布只比较集中于个别项。</p>
+</blockquote>
+</div>
 <p>不过，将他们作为约束条件参与求解，不如直接加进去作为一个项，其效果是等价的：</p>
 <div class="arithmatex">\[
 \begin{matrix}
@@ -1405,7 +1405,7 @@ NCut(V_A,V_B) = \frac{cut(V_A,V_B)}{assoc(V_A,V)} + \frac{cut(V_A,V_B)}{assoc(V_
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 13:05:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月3日 20:43:13</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>

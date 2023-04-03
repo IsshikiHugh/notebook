@@ -629,8 +629,8 @@
 <nav aria-label="关键点检测" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#角落检测">
-    角落检测
+<a class="md-nav__link" href="#角点检测">
+    角点检测
   </a>
 </li>
 <li class="md-nav__item">
@@ -642,36 +642,22 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#表达">
-    表达
+<a class="md-nav__link" href="#关键点表达">
+    关键点表达
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#匹配">
-    匹配
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#learning-based-matching">
-    Learning based matching
+<a class="md-nav__link" href="#关键点匹配">
+    关键点匹配
   </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#运动估计-motion-estimation">
-    运动估计 motion estimation
+<a class="md-nav__link" href="#运动估计">
+    运动估计
   </a>
-<nav aria-label="运动估计 motion estimation" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#the-brightness-constancy">
-    The brightness constancy
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -879,8 +865,8 @@
 <nav aria-label="关键点检测" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#角落检测">
-    角落检测
+<a class="md-nav__link" href="#角点检测">
+    角点检测
   </a>
 </li>
 <li class="md-nav__item">
@@ -892,36 +878,22 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#表达">
-    表达
+<a class="md-nav__link" href="#关键点表达">
+    关键点表达
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#匹配">
-    匹配
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#learning-based-matching">
-    Learning based matching
+<a class="md-nav__link" href="#关键点匹配">
+    关键点匹配
   </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#运动估计-motion-estimation">
-    运动估计 motion estimation
+<a class="md-nav__link" href="#运动估计">
+    运动估计
   </a>
-<nav aria-label="运动估计 motion estimation" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#the-brightness-constancy">
-    The brightness constancy
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -932,15 +904,15 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-5--feature-matching-and-motion-estimation">Lecture 5 | Feature Matching and Motion Estimation<a class="headerlink" href="#lecture-5--feature-matching-and-motion-estimation" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 2731 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 9 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3967 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 13 分钟</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
 <p>本文尚未完全整理好！</p>
 </div>
 <h2 id="图像特征匹配">图像特征匹配<a class="headerlink" href="#图像特征匹配" title="Permanent link">¶</a></h2>
-<p>本节的课题是<strong>特征匹配(feature matching)</strong>，关键在于找到图片之间点和点的匹配关系。该问题是很多问题的基石，例如：</p>
-<details class="summary" open="open">
+<p>本节的课题是<strong>特征匹配(feature matching)</strong>，具体来说是找到两张图像中可能指代同一客体的部分，关键在于找到图片之间点和点的匹配关系。该问题是很多问题的基石，例如：</p>
+<details class="eg">
 <summary>applications</summary>
 <ul>
 <li>Image alignment / Panoramas</li>
@@ -952,61 +924,90 @@
 <li>...</li>
 </ul>
 </details>
-<p>特征匹配的主要环节是：</p>
+<div class="admonition tip">
+<p class="admonition-title">头脑风暴</p>
+<p>究其根本，特征匹配“联通”了两张图片，使它们原本孤立表达的信息连结起来。</p>
+<p>简单的应用如图像拼接，再往后，我们会发现三维重建中也会应用到特征匹配到相关内容。</p>
+</div>
+<p>概括传统特征匹配主要环节，大概可以分为如下三步：</p>
 <ol>
-<li><strong>检测(detection)</strong>: 找到<strong>兴趣点(interest points)</strong></li>
-<li><strong>表达(description)</strong>: 提取每个兴趣点周围的向量<strong>特征描述符(feature descriptor)</strong></li>
-<li><strong>匹配(matching)</strong>: 决定两个视角下特征描述符的关联并匹配</li>
+<li><strong>检测(detection)</strong>: 找到<strong>关键点(interest points)</strong>，即可能会被匹配的“特征点”；</li>
+<li><strong>表达(description)</strong>: 提取每个关键点周围的向量<strong>特征描述符(feature descriptor)</strong>，即将“特征”数据化；</li>
+<li><strong>匹配(matching)</strong>: 决定两个视角下特征描述符的关联并匹配，即构建“特征”之间的匹配关系；</li>
 </ol>
 <hr/>
 <h3 id="关键点检测">关键点检测<a class="headerlink" href="#关键点检测" title="Permanent link">¶</a></h3>
 <blockquote>
-<p>推荐阅读：<a href="https://zhuanlan.zhihu.com/p/36382429">https://zhuanlan.zhihu.com/p/36382429</a></p>
+<p>推荐阅读：<a href="https://zhuanlan.zhihu.com/p/36382429">【计算机视觉】2. 特征点检测：Harris, SIFT, SURF, ORB</a></p>
 </blockquote>
-<p><strong>检测(detection)</strong>的首要问题是如何选择<strong>关键点(interest points/feature points)</strong>。</p>
+<p><strong>检测(detection)</strong>的首要问题是如何选择<strong>关键点(interest points/feature points)</strong>，或者说，一个点什么情况下会被认为是一个特征点。</p>
 <p>总体来说，关键点需要由这么两个特征：</p>
 <ol>
-<li><strong>独特性(uniqueness)</strong>，这个点需要能够表征某个图案的某个特性；</li>
-<li>对于大部分变换不敏感，即对于一个客观上的关键点，在不同图片中它都应当（尽可能地）被识别为兴趣点；</li>
+<li><strong>独特性(uniqueness)</strong>，即这个点需要能够表征一定特性；</li>
+<li>对于变换不敏感，即对于一个客观上的关键点，即使图片被旋转、压缩、适当的扭曲，它都应当（尽可能地）被识别为关键点；</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">关键点</p>
-<p>虽然说是关键“点”，但是实际上指的是一小块区域。</p>
+<p>虽然说是关键“点”，但是实际上指的是一小块区域。既然作为一个能表达局部特征的点，它必然需要囊括一定范围内的信息。</p>
 </div>
-<p>而常见的检测方法主要包括如下两种：</p>
+<p>首先我们讨论如何衡量一个点的<strong>独特性(uniqueness)</strong>，本文会介绍两种检测器：</p>
 <ol>
-<li>Harris corner detector;</li>
-<li>Blog detector (LoG or DoG);</li>
+<li>着眼于图像的角点 - Harris corner detector；</li>
+<li>着眼于图像的斑点 - Blob detector(LoG or DoG)；</li>
 </ol>
 <hr/>
-<h4 id="角落检测">角落检测<a class="headerlink" href="#角落检测" title="Permanent link">¶</a></h4>
-<p>其中一种关键点就是尖角，或者说角落，这一类关键点的<u>局部</u>独特性可以通过下面这个方式来衡量：</p>
+<h4 id="角点检测">角点检测<a class="headerlink" href="#角点检测" title="Permanent link">¶</a></h4>
+<div class="admonition quote">
+<p class="admonition-title">推荐阅读</p>
+<p><a href="https://www.cs.cmu.edu/~16385/s17/Slides/6.2_Harris_Corner_Detector.pdf">Harris Corners @ 16-385 Computer Vision (Kris Kitani) @ Carnegie Mellon University</a></p>
+</div>
+<p>角点检测的基本思路是，我们称某个点比较独特时，它相对于周围一定又一些“不同”的地方。或者说存在一些高频特征，而且这种高频特征不会各向同性或者说几个向同性。</p>
+<p>在模式化的描述这个思路就是：</p>
 <div class="admonition note">
 <p class="admonition-title">Local measures of uniqueness(rough):</p>
-<p>我们认为一个<strong>区域</strong>，如果向任何方向滑动窗口，都会产生较大变化，那么其 uniqueness 较强。</p>
+<p>我们以窗口的形式对目标点及其邻域进行采样，当无论往哪个方向移动窗口，采样结果都会产生较大变化时，我们就认为这个点独特性强。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../68.png"><img alt="" src="../68.png"/></a></p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Flag</strong></th>
+<th align="center"><strong>Edge</strong></th>
+<th align="center"><strong>Corner</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">无论向哪个方向移动，都不会有太大变化</td>
+<td align="center">当沿着“Edge”的方向移动时，不太有变化</td>
+<td align="center">无论向哪个方向移动，都会导致较大的变化</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>这是一个相对模糊的定义，而为了对其进行建模，我们进一步地赋予其数学含义：</p>
+<p>不过这仍然是一个相对模糊的定义，为了对其进行建模，我们进一步地对上面提到的“变化幅度”赋予数学含义：</p>
 <div class="admonition definition">
 <p class="admonition-title">Local measures of uniqueness(detail):</p>
-<p>关注区域内的梯度分布：</p>
+<p>所谓变化大，实际上指的是相同的单位长度里，色彩值的差更大，为什么我们不用梯度来衡量呢？关注区域内的梯度分布：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../69.png"><img alt="" src="../69.png"/></a></p>
 </div>
-<p>根据梯度的分布，我们可以大致观察到图形的特征。进一步的，我们可以利用数学工具（<strong>主成分分析(Principle Component Analysis)</strong>）去分析这些点的分散度和分散方向。</p>
+<p>根据梯度的分布，我们可以大致观察到图形的特征，，包括存在多少个 Edge 以及这些 Edge 的方向。</p>
+<p>不过纯粹根据梯度来寻找角点有时候可能会收到噪声的影响，进一步的，我们可以用<strong>主成分分析(Principle Component Analysis)</strong>来优化这个过程。。</p>
 <div class="admonition key-point">
 <p class="admonition-title">Principle Component Analysis</p>
-<p>① Compute the covariance matrix at each point.</p>
+<p>① Subtract off the mean for each data point.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../112.png"><img alt="" src="../112.png"/></a></p>
+<p>② Compute the covariance matrix at each point.</p>
 <div class="arithmatex">\[
 H = \sum_{(u,v)}w(u,v) \begin{bmatrix}
     I_x^2 &amp; I_xI_y \\
     I_xI_y &amp; I_y^2
-\end{bmatrix} \text{     where  } 
+\end{bmatrix} \text{           where  } 
 I_x = \frac{\partial f}{\partial x}, I_y = \frac{\partial y}{\partial y}
 \]</div>
 <blockquote>
 <p><span class="arithmatex">\(w(u,v)\)</span> 一般是高斯权重。</p>
 </blockquote>
-<p>② Compute eigenvalues.</p>
+<p>③ Compute eigenvalues.</p>
 <div class="arithmatex">\[
 H = \begin{bmatrix}
     a &amp; b \\
@@ -1015,14 +1016,22 @@ H = \begin{bmatrix}
     (a+d) \pm \sqrt{4bc + (a-d)^2}   
 \right)
 \]</div>
+<details class="extra">
+<summary>error function approximation</summary>
+<p><strong><a href="https://www.cs.cmu.edu/~16385/s17/Slides/6.2_Harris_Corner_Detector.pdf">Carnegie Mellon University 的 slides P18 </a></strong> 开始还提到了不同位移下的误差函数，并给出了三种情况下误差函数的热力图。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../113.png"><img alt="" src="../113.png"/></a></p>
+</details>
+<p>④ Components are the eigenvectors ranked by the eigenvalues.</p>
+<hr/>
+<p>在本节的语境下，形象地叙述主成分分析得到的结果就是：第一个主成分指向方差最大的方向，第二个主成分指向垂直于第一个主成分的方向，它们的大小则与这些方差正相关。</p>
 </div>
 <p>对于上面的三种情况，它们做主成分分析后得到的结果是：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../70.png"><img alt="" src="../70.png"/></a></p>
 <p>可以发现，第三个情况的两个特征值都很大。</p>
-<p>更一般的，我们通过判断特征值的大小情况来判断一个区域是否包含一个<strong>角(corner)</strong>，又或者是一些<strong>边(edge)</strong>，甚至是<strong>平面(flag)</strong>：</p>
+<p>我们通过判断两个特征值的大小关系情况来判断一个区域是否包含一个<strong>角(corner)</strong>、<strong>边(edge)</strong>或<strong>平面(flat)</strong>，可以将他们放到一个直方图中，根据两个特征值形成的点对在整个象限中出现的位置来判断角点情况：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../71.png"><img alt="" src="../71.png"/></a></p>
 <blockquote>
-<p>Corner detection.</p>
+<p>Figure from Carnegie Mellon University's slides. Corner detection.</p>
 </blockquote>
 <p>为了能够量化地表达上面这张图的分类规则，我们引入<strong>哈里斯算子(Harris operator)</strong>:</p>
 <div class="arithmatex">\[
@@ -1060,32 +1069,26 @@ trace\left(\begin{bmatrix}
 <li>C.Harris and M.Stephens. “<strong><a href="http://www.bmva.org/bmvc/1988/avc-88-023.pdf">A Combined Corner and Edge Detector.</a></strong>” Proceedings of the 4<sup>th</sup> Alvey Vision Conference: pages 147—151, 1988.</li>
 </ul>
 </div>
-<p>一个关键问题是特征匹配的可重复问题（因为同一个点不一定在两张图里都是 interest point，所以只有重复的点才能匹配）</p>
-<p>我们希望这些 repeatable 的点的 response 在 image transformation 中具有一定的不变性。</p>
-<p>我们已知的 transformation 主要包括这么几个：</p>
-<ul>
-<li>强度变化</li>
-<li>几何变化<ul>
-<li>旋转</li>
-<li>放大缩小</li>
-<li>平移</li>
-</ul>
-</li>
-</ul>
-<p>而关于不变性，它们的结论是：</p>
+<p>另一个关键问题是，通过这个方法得到的关键点，具有对变换不敏感性吗？</p>
+<p>对此，结论是：</p>
 <blockquote>
-<p><strong>Partially</strong> invariant to affine intensity change.</p>
-<p>Corner response is invariant w.r.t. translation.</p>
-<p>Corner response is invariant w.r.t. image rotation.</p>
-<p>Corner response is <strong>NOT</strong> invariant to scaling.</p>
+<ol>
+<li><strong>Partially</strong> invariant to affine intensity change.</li>
+<li>Corner response is invariant w.r.t. translation.</li>
+<li>Corner response is invariant w.r.t. image rotation.</li>
+<li>Corner response is <strong>NOT</strong> invariant to scaling.</li>
+</ol>
 </blockquote>
-<p>所以我们在使用这个方法的过程中需要注意尺度，即窗口的大小选定。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../72.png"><img alt="" src="../72.png" width="200px"/></a></p>
-<p>一种方案是，不断尝试不同的 window size，然后取得 response 曲线，假设 response 的大小只与 scale 有关，则曲线都应该是单峰的，而取出这个峰值（特征最明显的时候），就可以当他为对应的 scale 以及对应的 response。</p>
-<p>不过一般实际的做法是固定窗口大小，而改变图片的大小，再在得到的<strong>图像金字塔</strong>上进行这个方法的计算，即对不同分辨率的图片上分别进行哈里斯检测。（相当于增加了一个维度）</p>
+<div class="admonition advice">
+<p class="admonition-title">对尺度变化敏感的解决方案</p>
+<p>针对结论 4，由于 Harris detector 对尺度变化敏感，所以我们在使用这个方法的过程中需要注意尺度，即窗口的大小选定。</p>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../72.png"><img alt="" src="../72.png" width="30%"/></a> </center></p>
+<p>一种设想的方案是，不断尝试不同的 window size，然后取得 response 曲线，假设 response 的大小只与 scale 有关，则曲线都应该是单峰的，而取出这个峰值（特征最明显的时候），就可以当他为对应的 scale 以及对应的 response。</p>
+<p>不过一般实际的做法是固定窗口大小，而改变图片的大小，再在得到的<strong>图像金字塔</strong>上进行这个方法的计算，即对不同分辨率的图片上分别进行哈里斯检测。（相当于给图片增加了一个维度，本质上和上面的方法是一样的，只不过用了一个更合理的实现角度。）</p>
+</div>
 <hr/>
 <h4 id="斑点检测">斑点检测<a class="headerlink" href="#斑点检测" title="Permanent link">¶</a></h4>
-<p>除了角落，<strong>斑点(blob)</strong>也是一个比较好的特性，非常适合作为兴趣点。</p>
+<p>除了角点，<strong>斑点(blob)</strong>也是一个比较好的特性，非常适合作为关键点。</p>
 <p>而斑点的寻找我们则可以利用滤波器来实现，让我们回顾<strong><a href="../Lec03/#边缘提取">第三章边缘提取</a></strong>的相关内容，我们可以利用类似的做法，使用一个中间负四周正的滤波器来提取斑点。</p>
 <p>通常来说，我们使用 Gaussian 滤波器的 Laplacian，即 Laplacian of Gaussian Filter(LoG)，来作为滤波器和图像进行卷积。</p>
 <p>👉 <strong><a href="https://zh.wikipedia.org/wiki/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90">Laplacian 算子</a></strong></p>
@@ -1100,18 +1103,18 @@ trace\left(\begin{bmatrix}
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../75.png"><img alt="" src="../75.png"/></a></p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../76.png"><img alt="" src="../76.png"/></a></p>
 <hr/>
-<h3 id="表达">表达<a class="headerlink" href="#表达" title="Permanent link">¶</a></h3>
-<p>选定匹配点后，我们需要考虑如何描述表达这些点。</p>
-<p>一种朴素的思想是将窗口内的像素作为一个<strong>特性向量(feature vector)</strong>进行比较，但是这样做对偏移的误差过于敏感。也就是说，也许两张图片很像，但是因为一点位移误差，导致向量刚好错开，导致结果显示两个点差别很大。这是因为这种做法对像素点在窗口中的位置很敏感，决定了其在向量中的位置，即绝对排列顺序影响结果；然而实际情况下更重要的是相对排布顺序，但向量的做法比较难实现。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../78.png"><img alt="" src="../78.png" width="500px"/></a></p>
-<p>另外更好的做法是 尺度不变的特征变换(Scale Invariant Feature Transform)SIFT descriptor，不再使用像素值，而是使用区域中的梯度的分布作为一个描述，可以表示为一张 <span class="arithmatex">\([0,2\pi)\)</span> 的，<strong>循环的</strong>直方图。此时小的平移和缩放都不会对它产生很大影响，而旋转只会导致直方图的循环平移，不过这是很好处理的，比如我们可以选中最大的分量作为参考，并将整个直方图平移对齐。而这种做法相比于上面那个做法，<strong>鲁棒性</strong>和<strong>效率</strong>都更高。</p>
+<h3 id="关键点表达">关键点表达<a class="headerlink" href="#关键点表达" title="Permanent link">¶</a></h3>
+<p>选定关键点后，我们需要考虑如何描述和表达这些点，以使对应对关键点表达相近，而不相关对关键点表达相远。</p>
+<p>一种朴素的思想是将窗口内的像素作为一个<strong>特性向量(feature vector)</strong>进行比较，但是这样做对偏移的误差过于敏感。也就是说，也许两张图片很像，但是因为一点位移误差，导致向量刚好错开，导致结果显示两个点差别很大。这是因为这种做法对像素点在窗口中的位置很敏感，但是显然位置并不是关键点的特征之所在。</p>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../78.png"><img alt="" src="../78.png" width="40%"/></a> </center></p>
+<p>另外更好的做法是<strong>尺度不变的特征变换(Scale Invariant Feature Transform)SIFT descriptor</strong>，不再使用像素值，而是使用区域中的梯度的分布作为一个描述，可以表示为一张 <span class="arithmatex">\([0,2\pi)\)</span> 的，<strong>循环的</strong>直方图。此时小的平移和缩放都不会对它产生很大影响，而旋转只会导致直方图的循环平移——不过这种循环平移是很好处理的，比如我们可以选中最大的分量作为参考，并将整个直方图平移对齐。相比直接将像素转化为特征向量 SIFT 鲁棒性更高。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../77.png"><img alt="" src="../77.png"/></a></p>
-<div class="admonition tip">
-<p class="admonition-title">注意，完整的 SIFT 是包括「检测」步骤的。</p>
-</div>
+<blockquote>
+<p>完整的 SIFT 是包括「检测」步骤的。</p>
+</blockquote>
 <hr/>
-<details class="extra">
-<summary>Other detectors and descriptors:</summary>
+<div class="admonition extra">
+<p class="admonition-title">Other detectors and descriptors:</p>
 <ul>
 <li><strong>HOG: Histogram of oriented gradients</strong><ul>
 <li>Dalal &amp; Triggs, 2005 </li>
@@ -1134,79 +1137,140 @@ trace\left(\begin{bmatrix}
 </ul>
 </li>
 </ul>
-</details>
+</div>
 <hr/>
-<h3 id="匹配">匹配<a class="headerlink" href="#匹配" title="Permanent link">¶</a></h3>
+<h3 id="关键点匹配">关键点匹配<a class="headerlink" href="#关键点匹配" title="Permanent link">¶</a></h3>
 <p>所谓的<strong>匹配(matching)</strong>就是字面上的将两张图中对应的点建立起匹配关系。而评估方法就是寻找「距离」最接近的点。</p>
-<p>而这里的「距离函数」是用来衡量两个兴趣点经过<strong><a href="#表达">表达</a></strong>后的差异的函数，一般使用 L2 distance，即 <span class="arithmatex">\(||f_1 - f_2||\)</span>。</p>
+<p>而这里的「距离函数」是<u>用来衡量两个关键点的<strong><a href="#关键点表达">表达</a></strong>的差异</u>的函数，一般使用 L2 distance，即 <span class="arithmatex">\(||f_1 - f_2||\)</span>。</p>
 <div class="admonition warning">
 <p class="admonition-title">重复性纹理</p>
-<p>然而需要特别注意点一个问题是，很有可能某个特征图案是重复出现的，这种问题叫做<strong>重复性纹理</strong>。这就导致可能有很多兴趣点能和这个兴趣点实现匹配，这个时候我们就需要用 Ratio score = <span class="arithmatex">\(\frac{ ||f_1 - f_2|| }{ ||f_1 - f_2'|| }\)</span>，比较最接近的两种匹配。</p>
-<p>如果 Ratio score 接近1，说明并不可靠，只能丢掉这个兴趣点。</p>
+<p>然而需要特别注意点一个问题是，很有可能出现某个特征图案重复出现的情况，这类问题叫做<strong>重复性纹理问题</strong>。</p>
+<p>在这种情况下可能有很<strong>多</strong>关键点能和这个关键点实现匹配（表达相近），这个时候我们就需要用 Ratio score = <span class="arithmatex">\(\frac{ ||f_1 - f_2|| }{ ||f_1 - f_2'|| }\)</span>，比较最接近的两种匹配。</p>
+<p>如果 Ratio score 接近 1，说明 <span class="arithmatex">\(f_1, F_2,f_2'\)</span> 的表达都很接近，这个匹配并不可靠，只能丢掉这个关键点。</p>
+<p>在传统 CV 技术中，我们很难处理这一类重复性纹理的问题，所以遇到这种难以寻找匹配关系的情况，我们只能选择不匹配它们。</p>
 </div>
 <p>此外，为了增加匹配的准确性，我们还有一个判定规则：两点<strong>相互最相似</strong>，则该匹配十分可信。（在 I2 中你最像我，在 I1 中我最像你）</p>
 <hr/>
-<h3 id="learning-based-matching">Learning based matching<a class="headerlink" href="#learning-based-matching" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../79.png"><img alt="" src="../79.png"/></a></p>
-<hr/>
-<h2 id="运动估计-motion-estimation">运动估计 motion estimation<a class="headerlink" href="#运动估计-motion-estimation" title="Permanent link">¶</a></h2>
-<p>运动的成因：</p>
+<h2 id="运动估计">运动估计<a class="headerlink" href="#运动估计" title="Permanent link">¶</a></h2>
+<p>先前，我们着眼于单张图片，或者说几张图片，仍然是以一个静态的视角来观察图像。</p>
+<p>而当我们把研究对象从图片改变为视频或者说图片序列的时候，图片就被赋予了<strong>运动</strong>的属性，而这就引出了<strong>运动估计(motion estimation)</strong>问题。</p>
+<p>首先，运动按照成因<strong>主要</strong>可以分为相机运动和场景运动两个维度。</p>
+<table>
+<thead>
+<tr>
+<th align="center">相机运动</th>
+<th align="center">场景运动</th>
+<th align="center">eg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><input disabled="" type="checkbox"/></td>
+<td align="center"><input disabled="" type="checkbox"/></td>
+<td align="center">(光线变化等影响视频每一帧的内容存在光影差异等)</td>
+</tr>
+<tr>
+<td align="center"><input checked="" disabled="" type="checkbox"/></td>
+<td align="center"><input disabled="" type="checkbox"/></td>
+<td align="center">静景“运镜”</td>
+</tr>
+<tr>
+<td align="center"><input disabled="" type="checkbox"/></td>
+<td align="center"><input checked="" disabled="" type="checkbox"/></td>
+<td align="center">监控录像</td>
+</tr>
+<tr>
+<td align="center"><input checked="" disabled="" type="checkbox"/></td>
+<td align="center"><input checked="" disabled="" type="checkbox"/></td>
+<td align="center">体育赛事镜头跟踪</td>
+</tr>
+</tbody>
+</table>
+<p>而针对运动估计问题，有这么几种解决的视角：</p>
 <ul>
-<li>相机运动 x 场景运动</li>
+<li>特征跟踪，在每一帧中进行关键点匹配，以跟踪特定关键点的变化——这一类方法得到的结果相对稀疏，毕竟关键点总是少的；</li>
+<li><strong>光流(optical flow)</strong>技术，通过对相邻帧的像素进行匹配，以跟踪像素的变化——这一类方法得到的结果相对密集；</li>
 </ul>
-<p>Motion estimation problems:</p>
-<ul>
-<li>Feature-tracking 稀疏</li>
-<li>光流 Optical flow 稠密</li>
-</ul>
-<p>而两个问题都可以使用 Lucas-Kanade method 解决。</p>
-<p>运动估计问题的定义：</p>
-<p>视频的两帧，关键点的变化量。</p>
-<p>不同于关键点匹配，动作估计中存在对时序关系的捕捉。</p>
-<p>LK method 假设：</p>
+<p>而两个视角都可以使用 <strong><a href="https://hal.science/hal-03697340/">Lucas-Kanade method</a></strong> 解决。</p>
+<p>首先，我们需要给<strong>运动估计(motion estimation)</strong>问题一个更明确的定义：</p>
+<div class="admonition definition">
+<p class="admonition-title">motion estimation</p>
+<p>Wiki: <a href="https://en.wikipedia.org/wiki/Motion_estimation">https://en.wikipedia.org/wiki/Motion_estimation</a></p>
+<p>运动估计是指从一个 2D 图像到另一个 2D 图像的转换中确定描述运动的运动矢量的过程，通常是从视频序列中相邻的帧中提取。</p>
+<p>假设我们有匹配点 <span class="arithmatex">\(P(x,y,t)\)</span> 和 <span class="arithmatex">\(P(x+u, y+v, t+1)\)</span>，则运动估计则是求解 <span class="arithmatex">\((u,v)\)</span> 的过程。</p>
+<p>不同于关键点的匹配，运动估计更侧重于对关键点的时序关系的匹配与描述。</p>
+</div>
+<p>而我们之后的探讨，都需要基于 LK 假设展开：</p>
+<div class="admonition feature">
+<p class="admonition-title">Key Asumptions of Lucas-Kanade</p>
 <ol>
-<li>Small motion 相邻帧运动距离小</li>
-<li>Brightness constancy 相邻帧的点的亮度倾向于不变</li>
-<li>Spatial coherence 相邻的点倾向于运动类似</li>
+<li>[Small motion] 相邻帧，匹配点的运动距离小；</li>
+<li>[Brightness constancy] 相邻帧，点的亮度倾向于不变，即变化微小；</li>
+<li>[Spatial coherence] 相邻的点倾向于运动相似；</li>
 </ol>
-<p>使用公式表述：</p>
-<h3 id="the-brightness-constancy">The brightness constancy<a class="headerlink" href="#the-brightness-constancy" title="Permanent link">¶</a></h3>
+</div>
+<p>接下来，基于 LK 假设，我们来研究运动估计问题的求解。</p>
+<p>首先，我们将第二条假设表达式化，即有：</p>
 <div class="arithmatex">\[
 I(x,y,t) = I(x+u, y+v, t+1)
 \]</div>
-<p>为了求解 u 和 v，LK Method 对其作泰勒展开：</p>
+<p>为了求解 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span>，LK Method 对其作泰勒展开：</p>
 <div class="arithmatex">\[
-I(x+u,y+v,t+1) \approx I(x,y,t) + I_x\cdot u + I_y \cdot v + I_t \\
-I(x+u,y+v,t+1) - I(x,y,t) = I_x\cdot u + I_y \cdot v + I_t \approx 0 \\
+I(x+u,y+v,t+1) \approx I(x,y,t) + I_x\cdot u + I_y \cdot v + I_t
+\]</div>
+<p>移项：</p>
+<div class="arithmatex">\[
+I(x+u,y+v,t+1) - I(x,y,t) = I_x\cdot u + I_y \cdot v + I_t
+\]</div>
+<p>根据假设 2，得到：</p>
+<div class="arithmatex">\[
+I_x\cdot u + I_y \cdot v + I_t \approx 0
+\]</div>
+<p>即：</p>
+<div class="arithmatex">\[
 \nabla I \cdot \begin{bmatrix}
     u &amp; v
 \end{bmatrix}^T + I_t = 0
 \]</div>
-<p>于是得到了关于 u 和 v 的一个较简单的等式。</p>
-<p>然而未知元有 2，等式有 1，所以无法求解。</p>
-<div class="admonition question">
-<p class="admonition-title">PPT 里那个u' v'的例子是什么意思？</p>
-</div>
-<p><strong>孔径问题(Aperture problem)</strong></p>
-<p>solution:</p>
-<p>More equation</p>
-<p>利用假设 Spatial coherence，我可以利用窗口内的大量像素都带入上面那个等式求解 u 和 v。</p>
-<p>但是这下方程数又大于变量数了，于是我们转化问题，把解方程的问题转化为优化问题。</p>
+<p>于是我们得到了关于 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span> 的一个较简单的等式。</p>
+<p>然而我们只有一个等式，但需要求解的未知元 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span> 有两个。</p>
+<p>于是我们引入了假设 3，即相邻的点倾向于运动相似。</p>
+<p>于是我们可以把窗口内的像素都带入上面那个等式，尝试来求解（大致都相似的）<span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span>。此时我们的方程数量就非常充裕了。此时我们可以将问题转化为优化问题。</p>
 <div class="arithmatex">\[
 Ad=b \rightarrow \min\limits_d ||Ad-b||^2
 \]</div>
 <p><strong>Least squares solution(前面提到过的最小二乘法的近似解)</strong> for d given by <span class="arithmatex">\((A^TA)d = A^Tb\)</span>.</p>
-<p>*在这里补一个公式</p>
-<div class="admonition tip">
-<p class="admonition-title">而这个公式有解恰好意味着它是个角点。</p>
+<p>而这个解是否存在的条件是：</p>
+<div class="admonition note">
+<div class="arithmatex">\[
+\underbar{
+    \begin{bmatrix}
+        \sum I_x I_x &amp; \sum \sum I_x I_x \\
+        \sum I_x I_y &amp; \sum I_y I_y
+    \end{bmatrix}
+}{A^T A}
+\begin{bmatrix}
+    u \\
+    v
+\end{bmatrix}
+=
+\underbar{
+    \begin{bmatrix}
+        \sum I_x I_t \\
+        \sum I_y I_t
+    \end{bmatrix}
+}{A^T b}
+\]</div>
+<p>在该式中，<span class="arithmatex">\(A^T A\)</span> 需要是可逆的，并且它的两个特征值都不能太小。也就该点能够被 <strong><a href="#角点检测">Harris corner detector</a></strong> 检测到点角点！</p>
 </div>
-<p>理论上我们对假设1的要求是，两帧之间的运动差距应该小于一个像素，然而这个条件非常苛刻。所以我们的做法是先对图片进行模糊/缩小处理，像素足够“大”之后就可以满足这个假设1。然而只根据这个条件来计算也不行，所以我们要在像素金字塔上进行逐层次的做法。</p>
+<p>因此，倘若使用 LK 方法，我们需要保证 <span class="arithmatex">\(A^T A\)</span> 可逆，且图像中不能有太多噪点。</p>
+<p>此外，关于对假设 1 的约束，原则上两帧之间的运动差距应该小于一个像素，然而这个条件非常苛刻。所以我们的可以先对图片进行模糊/缩小处理，像素足够“大”之后就可以满足这个假设 1。然而在这个过程中会丢失很多信息，所以只根据这个条件来计算也不行，所以我们可以在像素金字塔上进行逐层次估计，再不断细化的做法。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 13:05:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月3日 20:43:13</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
