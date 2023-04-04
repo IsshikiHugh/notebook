@@ -1057,11 +1057,11 @@
 <h2 id="相机与光学原理">相机与光学原理<a class="headerlink" href="#相机与光学原理" title="Permanent link">¶</a></h2>
 <h3 id="小孔成像">小孔成像<a class="headerlink" href="#小孔成像" title="Permanent link">¶</a></h3>
 <p>如果我们直接拿一块平面来记录自然界的光信息，不难发现，由于光线是向四面八方传播的，所以接收到的信息也乱七八糟，所以我们需要通过一个小孔，也就是如今的<strong>光圈(aperture)</strong>来对光线进行一个过滤。这就是早期<strong>针孔摄像机(pinhole camera)</strong>的原理。</p>
-<p><center markdown=""><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../6.png"><img alt="" src="../6.png" width="300px"/></a> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../7.png"><img alt="" src="../7.png" width="326px"/></a></center></p>
+<p><center markdown=""><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/6.png"><img alt="" src="../img/6.png" width="40%"/></a> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/7.png"><img alt="" src="../img/7.png" width="40.75%"/></a></center></p>
 <p>这也就是我们很早就学过的，小孔成像原理。而光圈越小，成像也会越来越清楚，但也不能太小，否则会导致亮度不足<s>甚至衍射</s>。</p>
 <h3 id="透镜">透镜<a class="headerlink" href="#透镜" title="Permanent link">¶</a></h3>
 <p>凸透镜具有汇聚光线的作用，在满足特定光学几何关系的前提下具有和小孔成像类似的效果，但是能够汇聚更多的光线。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../8.png"><img alt="" src="../8.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/8.png"><img alt="" src="../img/8.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://fpcv.cs.columbia.edu/">https://fpcv.cs.columbia.edu/</a></p>
 </blockquote>
@@ -1072,25 +1072,25 @@
 <p>其中 <span class="arithmatex">\(i\)</span> 为<strong>像距(img dis)</strong>，<span class="arithmatex">\(o\)</span> 为<strong>物距(obj dis)</strong>，<span class="arithmatex">\(f\)</span> 为<strong>焦距(focal len)</strong>。</p>
 <p>而对于平行光，或者说 <span class="arithmatex">\(o\to +\infty\)</span> 时，就会有 <span class="arithmatex">\(i=f\)</span>。通过这种方法，我们可以通过测量平行光透过凸透镜汇聚的位置来测量焦距。</p>
 <p>同时再引入一个<strong>放大率(Magnification)</strong>：<span class="arithmatex">\(m=\frac{h_i}{h_o}=\frac{i}{o}\)</span>。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../9.png"><img alt="" src="../9.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/9.png"><img alt="" src="../img/9.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://fpcv.cs.columbia.edu/">https://fpcv.cs.columbia.edu/</a></p>
 </blockquote>
 <h3 id="视野-fovfield-of-view">视野 FoV(field of view)<a class="headerlink" href="#视野-fovfield-of-view" title="Permanent link">¶</a></h3>
 <p>焦距和底片的线度共同决定了 FoV 的大小。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../10.png"><img alt="" src="../10.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/10.png"><img alt="" src="../img/10.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://snapsnapsnap.photos/">https://snapsnapsnap.photos/</a></p>
 </blockquote>
 <p>可以发现，焦距的大小会影响视野的大小和放大率的大小。</p>
 <p>50mm/46° 与人的视野相近，因此它被称为<strong>标准镜头(standard lens)</strong>.</p>
 <p>此外，即使在画面中保证一个物体的大小不变，选用不同的焦距也会导致画面的变化——背景的大小，通过下面这张图的三个画面我们可以很清晰的感受到这一点。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../11.png"><img alt="" src="../11.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/11.png"><img alt="" src="../img/11.png"/></a></p>
 <p>此外，传感器的大小，或者说底片的大小，也会影响 FoV。而且一般来说，越大的底片能够提供更高的分辨率。</p>
 <h3 id="f-数">F 数<a class="headerlink" href="#f-数" title="Permanent link">¶</a></h3>
 <p><strong>F 数(F-Number)</strong>用来描述光圈的相对大小，其定义式为 <span class="arithmatex">\(N=\frac{f}{D}\)</span>。</p>
 <h3 id="对焦">对焦<a class="headerlink" href="#对焦" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../12.png"><img alt="" src="../12.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/12.png"><img alt="" src="../img/12.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://fpcv.cs.columbia.edu/">https://fpcv.cs.columbia.edu/</a></p>
 </blockquote>
@@ -1106,7 +1106,7 @@
 <h3 id="景深-dof">景深 DoF<a class="headerlink" href="#景深-dof" title="Permanent link">¶</a></h3>
 <p>根据上一小节得到的结论，理论上我们好像只有清晰成像一个特定平面上的内容，但是实际上相机上会有一段距离上的内容都是清晰的，这段距离就是<strong>景深 DoF(Depth of Field)</strong>。而之所以有景深，是因为底片的感光元件是有极限的，当光斑小雨这个极限时，拍摄出来的就仍然是清晰的。</p>
 <p>而景深的大小可以这么计算：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../13.png"><img alt="" src="../13.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/13.png"><img alt="" src="../img/13.png"/></a></p>
 <p>我们可以发现，景深的大小 大致与 光圈大小、物像 正相关，与 焦距 负相关。</p>
 <hr/>
 <div class="admonition info">
@@ -1116,7 +1116,7 @@
 <p>但是需要注意，无论是哪一种模型，由于我们将三维信息通过<strong>不可逆的线性变换</strong>压缩到了二维信息，所以一定是存在信息缺失的。通常来说，指的是深度缺失。</p>
 </div>
 <h2 id="透视投影">透视投影<a class="headerlink" href="#透视投影" title="Permanent link">¶</a></h2>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../15.png"><img alt="" src="../15.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/15.png"><img alt="" src="../img/15.png"/></a></p>
 <p>如图是 3D 坐标通过透视投影到 2D 坐标到示意图。其中 <span class="arithmatex">\(x,y,Z\)</span> 用来描述空间坐标信息，方便起见，我们用他们表示相对于<strong>相机中心(camera center)</strong>的正交坐标，其中 <span class="arithmatex">\(Z\)</span> 和<strong>光轴(optical axis)</strong>方向相同，我们也可以称之为深度。</p>
 <p>同时，光轴应当垂直于成像平面，而光轴与成像平面的交点为<strong>图像中心(img center)</strong>。</p>
 <p>可以发现，<span class="arithmatex">\(P\)</span> 与 <span class="arithmatex">\(p\)</span> 的关系如下：</p>
@@ -1209,7 +1209,7 @@ A
 <p>于是，我们就成功的通过线性变换将 <span class="arithmatex">\(P\)</span> 和 <span class="arithmatex">\(p\)</span> 统一了起来。</p>
 <hr/>
 <h3 id="可视化表示">可视化表示<a class="headerlink" href="#可视化表示" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../16.png"><img align="right" alt="" src="../16.png" width="60%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/16.png"><img align="right" alt="" src="../img/16.png" width="50%"/></a></p>
 <p>我们可以发现，小孔成像的模型视图其实还是比较麻烦的。现在我们把这个定角相似对折，变成 A 字型相似来表示这个模型，以简化不必要的信息，同时也能更清晰地表示透视关系。</p>
 <p>规定我们讨论的问题中物距总是大于像距，则可以将像表示为相机中心到物体的放射连线中的<strong>截面</strong>。</p>
 <p>它比较好地表达了透视关系，即 <u>相机中心</u> <u>物点B</u> <u>像点B'</u> 始终共线。这也是在之后的内容中更加常见的可视化表现方法。</p>
@@ -1220,12 +1220,12 @@ A
 <p>所以，如果是曲线，它虽然不会变成折线，但是特征可能已经变了，比如圆是会扭曲的。</p>
 <h3 id="灭点与灭线">灭点与灭线<a class="headerlink" href="#灭点与灭线" title="Permanent link">¶</a></h3>
 <p>在透视中一个很有意思的现象是<strong>灭点(vanishing point)</strong>和<strong>灭线(vanishing line)</strong>。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../18.png"><img align="left" alt="" src="../18.png" width="60%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/18.png"><img align="left" alt="" src="../img/18.png" width="60%"/></a></p>
 <p>可以发现，在图像中一条不断衍生的直线，在像中最终会终结于一个点，这个点就是“灭点”。几何上，灭点与相机中心的连线应当平行于该直线。</p>
 <p>而现实中相互平行的两条直线，最终会在图像中终止于同一个灭点。</p>
 <p>灭点未必在图像中，甚至可能无限远。</p>
 <p> </p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../20.png"><img align="right" alt="" src="../20.png" width="60%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/20.png"><img align="right" alt="" src="../img/20.png" width="60%"/></a></p>
 <p>刚才提到，平行线共享灭点这意味着有多少组平行线就有多少灭点。</p>
 <p>如果我们将一个平面像棋盘那样，划出两组平行线，那么就会得到两个灭点，如图中的 <span class="arithmatex">\(v_1\)</span> 和 <span class="arithmatex">\(v_2\)</span>。这意味着，对于一个平面，我们可以从中取出无数组平行线，因而无限大的平面会产生无数多的灭点，而这些灭点连成线就成了“灭线”。常见的灭线就比如照片上的海天界线。</p>
 <p>因此，如果说灭点象征了一组平行线，那灭线就是象征了一块平面。而我们就可以通过看平面上的内容出现在灭线以上还是灭线一下，来判断平面在我们的相机中心以下还是以上（可以思考一下为什么）。</p>
@@ -1235,7 +1235,7 @@ A
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>观察如下图片，判断 🪂(跳伞者) 在 📷 以上还是以下，并阐明理由。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../21.png"><img alt="" src="../21.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/21.png"><img alt="" src="../img/21.png"/></a></p>
 </div>
 <div class="tabbed-block">
 <p>显然，🪂(跳伞者) 在 📷 以下，直接依据是 人 在 天际线 以下，具体理由如下：</p>
@@ -1265,7 +1265,7 @@ A
 <p>在建筑拍摄方面，我们的解决办法是下移传感器，使底片中心在光轴交点以下，这种镜头称为移轴镜头。</p>
 <p>另外一种透视畸变体现在曲线的形变上，也就是我们常感受到的，站在边上的人脸总是更大一点。而这种畸变在断镜头下更常见，所以人像更多用的是长焦镜头（其一原因，其他的还有 FoV 小所以背景更干净等）。</p>
 <h3 id="枕型畸变和桶型畸变">枕型畸变和桶型畸变<a class="headerlink" href="#枕型畸变和桶型畸变" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../22.png"><img alt="" src="../22.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/22.png"><img alt="" src="../img/22.png"/></a></p>
 <div class="arithmatex">\[
 \begin{align}
 r^2 &amp; = {x'}_n^2 + {y'}_n^2 \\
@@ -1342,7 +1342,7 @@ L_d = k_d \cdot \frac{I}{r^2} \cdot \max(0,n\cdot l)
 <p>一开始没仔细想的时候还觉得很自然，但是仔细一想为什么能这样表述？于是和同学探讨了一下，感觉一个可以接受的解释是这样的：</p>
 <p>首先，这里与其说与角度相关，不如说与单位面积受到的光照强度有关。换句话来说，对于同一束光，倾斜的面上会有更大的面积被照射到，均摊下来单位面积上的光强度就小，或许可以将它理解成类似于“密度”的概念。</p>
 <p>带着这样的想法，再来看这张图，就比较清晰了。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../24.png"><img alt="" src="../24.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/24.png"><img alt="" src="../img/24.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://sites.cs.ucsb.edu/~lingqi/teaching/games101.html">https://sites.cs.ucsb.edu/~lingqi/teaching/games101.html</a></p>
 </blockquote>
@@ -1369,7 +1369,7 @@ L_s = k_s \cdot \frac{I}{r^2} \cdot \max(0, \cos\alpha)^p=k_s \cdot \frac{I}{r^2
 L_a=k_aI_a
 \]</div>
 <p>Blinn-Phong 反射模型的大致成分如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../23.png"><img alt="" src="../23.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/23.png"><img alt="" src="../img/23.png"/></a></p>
 <div class="arithmatex">\[
 \begin{align}
 L &amp; = L_a + L_d + L_s \\
@@ -1384,7 +1384,7 @@ L &amp; = L_a + L_d + L_s \\
 <p>在算法中，我们用矩阵来存储图像信息，其中左上角的元素坐标为 <code>(0, 0, :)</code>，其中第三维用来指定颜色通道(channel)，所以第 i 行 j 列的像素点表示为 <code>(i-1, j-1, :)</code>；</p>
 </details>
 <p>在硬件上，颜色传感主要通过<strong>拜尔滤镜(Bayer filter)</strong>实现。也就是通过在传感器前安装一个单色滤镜，来接收单一色光。常见的做法是以田字格的四个传感器为单位，分配 <code>R*1</code> <code>G*2</code> <code>B*1</code> 的滤镜。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../25.png"><img alt="" src="../25.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/25.png"><img alt="" src="../img/25.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://en.wikipedia.org/wiki/Bayer_filter">https://en.wikipedia.org/wiki/Bayer_filter</a></p>
 <p>可以发现，绿色的滤镜更多，因为太阳光中绿色波段更多，于是人眼对绿色更敏感。</p>
@@ -1395,7 +1395,7 @@ L &amp; = L_a + L_d + L_s \\
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月6日 17:05:06</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月4日 17:28:06</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年10月31日 14:53:50</span>

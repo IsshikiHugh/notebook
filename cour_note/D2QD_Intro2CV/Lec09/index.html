@@ -1105,7 +1105,7 @@ y = f(x, W) = W x + b \\
 <li><span class="arithmatex">\(w^Tx+b = 0\)</span></li>
 <li>It's a line in 2D, a plane in 3D or hyperplane ...</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../111.png"><img alt="" src="../111.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/111.png"><img alt="" src="../img/111.png"/></a></p>
 </div>
 <hr/>
 <h3 id="training">Training<a class="headerlink" href="#training" title="Permanent link">¶</a></h3>
@@ -1127,7 +1127,7 @@ D(S,L) = -\sum_i L_i \log S_i
 <h2 id="neural-networks">Neural Networks<a class="headerlink" href="#neural-networks" title="Permanent link">¶</a></h2>
 <p>线性分类最早叫感知机，perceptron</p>
 <p>然而有些分类可能是非线性的，如图</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href=""><img alt="" src=""/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/"><img alt="" src="img/"/></a></p>
 <p>这种时候我们可能会使用一个函数将它与线性分类映射起来，这种函数一般叫激活函数 activation functions</p>
 <ul>
 <li>ReLU</li>
@@ -1164,7 +1164,7 @@ Layer Types:
 2. Pooling layer
 3. Fully-connected layer</p>
 </blockquote>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href=""><img alt="" src=""/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/"><img alt="" src="img/"/></a></p>
 <p>在 CV 中，有时候图像的局部特征就够我们进行分类。这意味着我们可能不需要让网络连上所有的部分。</p>
 <p>1 个网络 -&gt; 3 个网络，with weight sharing，因为 3 个网络都是用来识别同样的东西的，或者说功能相同。</p>
 <div class="arithmatex">\[
@@ -1175,13 +1175,13 @@ y = \sigma(x \otimes w + b)
 <p>感受野 Receptive fields</p>
 <ul>
 <li>层数越多，一般越大</li>
-<li><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href=""><img alt="" src=""/></a> P69</li>
+<li><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/"><img alt="" src="img/"/></a> P69</li>
 </ul>
 <h3 id="池化层">池化层<a class="headerlink" href="#池化层" title="Permanent link">¶</a></h3>
 <p>把不同地饭的结果结合在一起，将响应图的多个结果合并为同一个</p>
 <hr/>
 <p>CNN 一般过程 </p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href=""><img alt="" src=""/></a> P71</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/"><img alt="" src="img/"/></a> P71</p>
 <p>CNN 经典网络：AlexNet, VGG, </p>
 <hr/>
 <p>不同 channel 单独做 ----&gt; <a href="#batch-normalization">Batch Normalization</a></p>
@@ -1213,7 +1213,7 @@ y = \sigma(x \otimes w + b)
 <p>如何分割数据集？(cross validation: train &amp; validation &amp; test)</p>
 </blockquote>
 <p>Data split idea * 3</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href=""><img alt="" src=""/></a> P89（cs231n also）</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/"><img alt="" src="img/"/></a> P89（cs231n also）</p>
 <blockquote>
 <p>一种违和感，validation 参与自动反馈，test 难道不算一种人为反馈吗？</p>
 </blockquote>
@@ -1266,7 +1266,7 @@ y = \sigma(x \otimes w + b)
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月13日 21:13:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月4日 17:28:06</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
