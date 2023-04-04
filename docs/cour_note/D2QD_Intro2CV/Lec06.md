@@ -20,7 +20,7 @@
 - 图像拼接的两个方面：
     - 将两张图片对齐，找到重合的部分 image warping (change shape of image)
         - 一般来说是 参数化parametric 或者说 全局global 的 warping，由一个含有参数的方程决定：$p' = T(p)$；
-            - ![](80.png)
+            - ![](img/80.png)
             - translation / affine / projective
             - [](Lec01.md#线性变换) [](Lec01.md#仿射变换与齐次坐标)
             - 除了能够用仿射变换描述的变换，还有投影变换(Projective Transformation)，或者说单应变换(Homography)，它无法用仿射变换描述。

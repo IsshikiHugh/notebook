@@ -59,7 +59,7 @@ $$
     - $w^Tx+b = 0$
     - It's a line in 2D, a plane in 3D or hyperplane ...
 
-    ![](111.png)
+    ![](img/111.png)
 
 ---
 
@@ -89,7 +89,7 @@ $$
 
 然而有些分类可能是非线性的，如图
 
-![]()
+![](img/)
 
 这种时候我们可能会使用一个函数将它与线性分类映射起来，这种函数一般叫激活函数 activation functions
 
@@ -131,7 +131,7 @@ Neural Networks
 > 2. Pooling layer
 > 3. Fully-connected layer
 
-![]()
+![](img/)
 
 在 CV 中，有时候图像的局部特征就够我们进行分类。这意味着我们可能不需要让网络连上所有的部分。
 
@@ -148,7 +148,7 @@ padding & pooling & stride
 感受野 Receptive fields
 
 - 层数越多，一般越大
-- ![]() P69
+- ![](img/) P69
 
 ### 池化层
 
@@ -158,7 +158,7 @@ padding & pooling & stride
 
 CNN 一般过程 
 
-![]() P71
+![](img/) P71
 
 CNN 经典网络：AlexNet, VGG, 
 
@@ -209,7 +209,7 @@ How to prevent overfitting?
 
 Data split idea * 3
 
-![]() P89（cs231n also）
+![](img/) P89（cs231n also）
 
 > 一种违和感，validation 参与自动反馈，test 难道不算一种人为反馈吗？
 

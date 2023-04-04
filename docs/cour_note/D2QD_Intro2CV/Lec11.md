@@ -17,7 +17,7 @@ use deep learning to improve feature matching
 
 传统方法的缺点就是因为这些方法都是 handcrafted 的。所以我们希望能够用 deep learning 来增强效果。
 
-![](_slides 对比图)
+![](img/_slides 对比图)
 
 example: SuperPoint、SuperGlue
 

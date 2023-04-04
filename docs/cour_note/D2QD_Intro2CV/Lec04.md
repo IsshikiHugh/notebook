@@ -106,7 +106,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
     2. 决定下降步长 ⍺；
     3. 更新 x = x + ⍺*p*；
 
-![](56.png)
+<center> ![](img/56.png) </center>
 > Sourece: https://commons.wikimedia.org/w/index.php?curid=2283984
 
 其中有三件事需要特殊说明：
@@ -138,7 +138,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 即使但从下降速率来考虑，步长太长或太小也都有明显的问题：
 
-![](57.png)
+<center> ![](img/57.png) </center>
 
 所以步长的选择对下降速率的十分关键。
 
@@ -148,7 +148,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 2. 不断减小 $\alpha$ 直到 $\phi(\alpha) \leq \phi(0) + \gamma\phi'(0)\alpha$；
     - 其中 $\gamma\in(0,1)$ 是一个固定的参数；
 
-![](58.png){ width=300px }
+<center> ![](img/58.png){ width=40% } </center>
 > 换句话说就是，符合预期的最大步长，这个“预期”，就是通过 $\gamma$ 体现的。图中红色虚线和黑色细线分别是 $\gamma$ 取边界值时的情况，而红色实线则表示我们的预期随 $\alpha$ 的变化。
 
 ---
@@ -242,12 +242,12 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 - 内点(inlier)：符合我们预期的模型拟合的点；
 - 外点(outlier)：完全不符合我们预期模型的点，又叫离群；
 
-![](59.png)
+![](img/59.png)
 
 !!! error "外点的影响"
     由于外点偏离很大，而最小二乘法中存在平方操作，所以最小二乘法拟合受这些外点影响很大：
 
-    ![](60.png)
+    ![](img/60.png)
 
 ---
 
@@ -260,7 +260,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
     - L2 loss 即将偏差取平方，即 $L_2 = |f(x)-Y|^2$，L2 loss 在拐点处则是光滑可导的，且收敛相对稳定光滑，但是且在某些时候具有比较好的几何意义，但是对于偏差较大的点更敏感；
     - Huber loss 又叫 smooth L1 loss，即使用分段函数，在拐点附近使用 L2 loss，在远端使用 L1 loss；
 
-    ![](61.png)
+    ![](img/61.png)
 
     - 相关文章：https://zhuanlan.zhihu.com/p/48426076
 
@@ -275,7 +275,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
     1. 首先随机找两个点拟合一条直线，然后检查有多少点符合这条直线，并对其进行 vote；
     2. 重复这个步骤，最后选择票数最高的拟合；
 
-    ![](62.png)
+    ![](img/62.png)
 
 由 outlier 拟合出来的直线一般 votes 比较少，因为 outlier 之间很难一致；但是inlier之间容易一致，因而得分往往更高，于是将它们区分开来。~~这不就是 Voting Tree (逃~~
 
@@ -292,7 +292,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
     **L2 regularization**: $\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_2 \leq 1$;
 
-    ![](63.png){ width=200px }
+    <center> ![](img/63.png){ width=30% } </center>
 
     > 通过让选择的解尽可能接近原点，而让我们没有用的解的维度尽可能接近 0，以减小没用的变量的影响，抑制冗余变量。
 
@@ -301,7 +301,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
     **L1 regularization**: $\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_1 \leq 1$
 
-    ![](64.png){ width=200px }
+    <center> ![](img/64.png){ width=30% } </center>
 
     > L1 可视化中可以发现，坐标轴上比较容易抓住解，此时意味着有些变量(维度)是 0，换句话来说能让解变得“**稀疏(sparse)**”，即在维度上的分布只比较集中于个别项。
 
@@ -321,7 +321,7 @@ $$
 
 在这个过程中，也要小心**过拟合(overfitting)**和**欠拟合(underfitting)**，它们的含义非常直白：
 
-![](65.png)
+![](img/65.png)
 
 ---
 
@@ -346,7 +346,7 @@ $$
 
 **图像标签问题(image labeling problems)**即通过图片信息给每一个像素分配标签，实际上就是一个对图像内容的分类和识别问题。
 
-![](66.png)
+![](img/66.png)
 
 其中一个比较强的**先验(prior)**是：相邻且相似的像素应当拥有相同的标签。
 
@@ -373,7 +373,7 @@ $$
 !!! warning "Problem with min-cut"
     > Bias to cut small, isolated segments.
 
-    ![](67.png)
+    ![](img/67.png)
 
 由于 min-cut 的这个问题，我们还需要衡量这个子集是否足够稠密，所以我们倾向于使用 normalized-cut。
 

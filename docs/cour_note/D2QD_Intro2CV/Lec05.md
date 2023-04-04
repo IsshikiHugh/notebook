@@ -63,7 +63,7 @@
 !!! note "Local measures of uniqueness(rough):"
     我们以窗口的形式对目标点及其邻域进行采样，当无论往哪个方向移动窗口，采样结果都会产生较大变化时，我们就认为这个点独特性强。
 
-    ![](68.png)
+    ![](img/68.png)
 
     |**Flag**                      |**Edge**                       |**Corner**                     |
     |:----------------------------:|:-----------------------------:|:-----------------------------:|
@@ -74,7 +74,7 @@
 !!! definition "Local measures of uniqueness(detail):"
     所谓变化大，实际上指的是相同的单位长度里，色彩值的差更大，为什么我们不用梯度来衡量呢？关注区域内的梯度分布：
 
-    ![](69.png)
+    ![](img/69.png)
 
 根据梯度的分布，我们可以大致观察到图形的特征，，包括存在多少个 Edge 以及这些 Edge 的方向。
 
@@ -83,7 +83,7 @@
 !!! key-point "Principle Component Analysis"
     ① Subtract off the mean for each data point.
     
-    ![](112.png)
+    ![](img/112.png)
 
     ② Compute the covariance matrix at each point.
 
@@ -111,7 +111,7 @@
     ??? extra "error function approximation"
         **[Carnegie Mellon University 的 slides P18 ](https://www.cs.cmu.edu/~16385/s17/Slides/6.2_Harris_Corner_Detector.pdf)** 开始还提到了不同位移下的误差函数，并给出了三种情况下误差函数的热力图。
 
-        ![](113.png)
+        ![](img/113.png)
 
     ④ Components are the eigenvectors ranked by the eigenvalues.
 
@@ -122,13 +122,13 @@
 
 对于上面的三种情况，它们做主成分分析后得到的结果是：
 
-![](70.png)
+![](img/70.png)
 
 可以发现，第三个情况的两个特征值都很大。
 
 我们通过判断两个特征值的大小关系情况来判断一个区域是否包含一个**角(corner)**、**边(edge)**或**平面(flat)**，可以将他们放到一个直方图中，根据两个特征值形成的点对在整个象限中出现的位置来判断角点情况：
 
-![](71.png)
+![](img/71.png)
 > Figure from Carnegie Mellon University's slides. Corner detection.
 
 为了能够量化地表达上面这张图的分类规则，我们引入**哈里斯算子(Harris operator)**:
@@ -182,7 +182,7 @@ $$
 !!! advice "对尺度变化敏感的解决方案"
     针对结论 4，由于 Harris detector 对尺度变化敏感，所以我们在使用这个方法的过程中需要注意尺度，即窗口的大小选定。
 
-    <center> ![](72.png){ width=30% } </center>
+    <center> ![](img/72.png){ width=30% } </center>
 
     一种设想的方案是，不断尝试不同的 window size，然后取得 response 曲线，假设 response 的大小只与 scale 有关，则曲线都应该是单峰的，而取出这个峰值（特征最明显的时候），就可以当他为对应的 scale 以及对应的 response。
 
@@ -200,7 +200,7 @@ $$
 
 👉 **[Laplacian 算子](https://zh.wikipedia.org/wiki/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90)**
 
-![](73.png)
+![](img/73.png)
 
 
 实际上也等效于先对图片作高斯模糊（减小噪声影响），再计算其拉普拉斯算子，即：
@@ -211,13 +211,13 @@ $$
 
 其中，LoG 的 scale 是通过高斯函数的 $\sigma$ 控制的，也同样通过像素金字塔来实现。
 
-![](74.png)
+![](img/74.png)
 
 又或者可以使用 Difference of Gaussian(DoG)，即将 Laplacian of Gaussian Filter 替换为一个由两个高斯函数做差得到的 Filter，相对来说效率更高。
 
-![](75.png)
+![](img/75.png)
 
-![](76.png)
+![](img/76.png)
 
 ---
 
@@ -227,11 +227,11 @@ $$
 
 一种朴素的思想是将窗口内的像素作为一个**特性向量(feature vector)**进行比较，但是这样做对偏移的误差过于敏感。也就是说，也许两张图片很像，但是因为一点位移误差，导致向量刚好错开，导致结果显示两个点差别很大。这是因为这种做法对像素点在窗口中的位置很敏感，但是显然位置并不是关键点的特征之所在。
 
-<center> ![](78.png){ width=40% } </center>
+<center> ![](img/78.png){ width=40% } </center>
 
 另外更好的做法是**尺度不变的特征变换(Scale Invariant Feature Transform)SIFT descriptor**，不再使用像素值，而是使用区域中的梯度的分布作为一个描述，可以表示为一张 $[0,2\pi)$ 的，**循环的**直方图。此时小的平移和缩放都不会对它产生很大影响，而旋转只会导致直方图的循环平移——不过这种循环平移是很好处理的，比如我们可以选中最大的分量作为参考，并将整个直方图平移对齐。相比直接将像素转化为特征向量 SIFT 鲁棒性更高。
 
-![](77.png)
+![](img/77.png)
 
 > 完整的 SIFT 是包括「检测」步骤的。
 

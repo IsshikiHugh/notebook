@@ -108,10 +108,10 @@ CV 领域的几个顶会
     我们来试着运用上面的技巧求一个旋转变换对应的变换矩阵。
 
     === "题面"
-        ![](1.png){width="100px" align="left"}
+        ![](img/1.png){width=20% align="left"}
         假设该矩阵让目标图形顺时针旋转 $\theta$ ，则其表达式为？
     === "答案"
-        ![](2.png){width="144px" align="left"}
+        ![](img/2.png){width=28.8% align="left"}
    
         我们做此分析：
 
@@ -197,7 +197,7 @@ $$
 
     此时，我们就可以人为的定义一个每一个平面内的点的映射关系（我们只考虑第一象限），从原点引一条射线，直线上与每一个平面的交点我们都认为对应着二维平面上的同一点。
 
-    ![](14.png){width=320px align=right}
+    ![](img/14.png){width=40% align=right}
     
     换句话来说，**我们用 $n+1$ 维空间中 从原点发出的一条 <u>射线</u> 来<u>描述</u> $n$ 维空间中的一个<u>点</u>。**
     
@@ -222,7 +222,7 @@ $$
 
 ### 行列式的几何含义
 
-![](3.png){width=360px}
+<center> ![](img/3.png){ width=30% } </center>
 
 **行列式(Determinant)** 的值等于这个方阵中的向量对应的 平行图形/几何体/... 的 面积/体积/...
 
@@ -245,12 +245,12 @@ $$
 !!! tip "工程计算方法"
     令人惊喜的是，我们在实际运用时，可以直接使用数学库中的**特征值分解(eigen decomposition)**方法，其大致会做这样一件事：
     
-    ![](4.png)
+    ![](img/4.png)
     
     将矩阵 $A$ 分解为 $Q\Lambda Q^{-1}$，其中 $Q$ 中的每一列即为 $A$ 的特征向量，对角阵 $\Lambda$ 中的第 $i$ 项就是第 $i$ 个特征向量的特征值。
 
 !!! note "特征值与特征向量的应用：主成分分析(principal component analysis)"
-    ![](5.png){width=310px align=right}
+    ![](img/5.png){width=40% align=right}
 
     **主成分(principal component)**等于协方差矩阵的 特征值最大的 那个特征向量。
     

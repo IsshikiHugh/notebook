@@ -36,7 +36,7 @@
 
 !!! summary "回顾"
 
-    ![](16.png){ align=right }
+    ![](img/16.png){ align=right width=50% }
     
     我们可以发现，小孔成像的模型视图其实还是比较麻烦的。现在我们把这个定角相似对折，变成 A 字型相似来表示这个模型，以简化不必要的信息，同时也能更清晰地表示透视关系。
     
@@ -46,7 +46,7 @@
 
 它提供了一种将相机模型成像原理可视化的方法，接下来我们将它放到 3D 空间中：
 
-![](81.png)
+![](img/81.png)
 
 这张图大致描述了：在特定**位置**有着特定**朝向**的**相机模型**如何拍到已知 3D 景象的**特定画面**，但需要注意的是，这里的「Picture」代表的是 Image Plane，也就是成像平面，此时「坐标」的单位是长度，如毫米——与以「像素」为基本单元的“图片”有一定区别。
 
@@ -72,7 +72,7 @@ graph LR
 
 为了实现世界坐标向相机坐标的转换，我们需要知道相机坐标在世界坐标中的方向与位置，不难发现，实际上这就要求我们知道相机的外参。
 
-![](82.png)
+![](img/82.png)
 
 更进一步的，实际上我们就是寻找一种变换，能够实现世界坐标系下的坐标向相机坐标系下坐标的转换：
 
@@ -166,7 +166,7 @@ $$
 
 #### 相机坐标 to 成像平面
 
-![](83.png){ align=right width=400px }
+![](img/83.png){ align=right width=50% }
 
 实际上这一步就是我们在**[相机模型](Lec02.md#透视投影)**介绍过的内容，我们在上一步已经做好了齐次坐标的铺垫，所以这一步格外简单。
 
@@ -419,7 +419,7 @@ $$
 
 !!! section "步骤一"
 
-    ![](84.jpeg){ align=right width=160px }
+    ![](img/84.jpeg){ align=right width=20% }
 
     给定一个几何特性已知的标定板，人为定义其世界坐标系。
 
@@ -439,7 +439,7 @@ $$
 
     需要说明的一点是，我们已知的特征匹配是建立在两张二维图片上的，而现在要做的是 3D 到 2D 的匹配。一种想法是，我们可以将 3D 景象按照我们希望的方法映射为 2D 景象，例如在这个问题中我们可以直接拿这个标定板的 zy 平面来进行特征匹配。
 
-    ![](85.jpg)
+    ![](img/85.jpg)
 
 !!! section "步骤三"
 
@@ -654,7 +654,7 @@ $$
 
 **双目视觉(Stereo Vision)**：已知两个相机的内参，根据两张图像求解两个相机的外参和目标的 3D 结构。
 
-![](86.png)
+![](img/86.png)
 
 ---
 
@@ -667,7 +667,7 @@ $$
 !!! quote "WIKI page"
     https://en.wikipedia.org/wiki/Epipolar_geometry
 
-    ![](89.png){ align=right }
+    ![](img/89.png){ align=right }
     
     > Epipolar geometry is the geometry of stereo vision. When two cameras view a 3D scene from two distinct positions, there are a number of geometric relations between the 3D points and their projections onto the 2D images that lead to constraints between the image points. These relations are derived based on the assumption that the cameras can be approximated by the pinhole camera model.
     >
@@ -706,7 +706,7 @@ $$
 
 现在我们关注对极面，着眼于解决下面这样一个问题。
 
-![](90.png)
+![](img/90.png)
 
 其中两侧的相机理所当然的都拥有自己的坐标系，现在我们寻找一种变换，使得：$\mathbf{x}_l = R\mathbf{x}_r + \mathbf{t}$，其中 $\mathbf{t} = \overrightarrow{O_r O_l}$（图中貌似标错了方向），$\mathbf{x}_l = \overrightarrow{O_l P}$ 而 $\mathbf{x}_r = \overrightarrow{O_r P}$ 。
 
@@ -903,7 +903,7 @@ $$
     !!! key-point "本征矩阵的性质"
         由于 Essential Matrix 的定义具有如下特征：
 
-        ![](91.png)
+        ![](img/91.png)
         > $T_{\times}$ 反对称(Skew-Symmetric)，$R$ 正交(Orthonormal)。
 
         所以我们可以使用**奇异值分解(Singular Value Decomposition)**或者说 SV 分解来去耦合。
@@ -1292,7 +1292,7 @@ $$
 
     换句话来说，就是求一个 $X$ 使得它在两个成像平面上的投影和实际的投影之间的误差最小。
 
-    ![](95.png)
+    ![](img/95.png)
 
     定义再投影误差为：
 
@@ -1311,7 +1311,7 @@ $$
 
     其中下标为 $l$ 的表示左侧相机的相关关键点，下标为 $r$ 的表示右侧相机的相关关键点。
 
-    ![](87.png)
+    ![](img/87.png)
 
 !!! section "步骤一"
     对两张图片进行 [关键点匹配](./Lec05.md#图像特征匹配)，找到至少 8 对匹配特征。
@@ -1320,7 +1320,7 @@ $$
 
     「为什么需要 8 对」这个问题我们在 [#极线约束/求解过程](#极线约束) 中已经说明。
 
-    ![](88.png)
+    ![](img/88.png)
 
 !!! section "步骤二"
 
@@ -1348,7 +1348,7 @@ Sequential SfM：
 
 **集束优化(Bundle Adjustment)**也就是在多目情况下，对于所有点的 再投影误差 优化问题：
 
-![](96.png)
+![](img/96.png)
 
 $$
 \mathop{minimize} \limits_\mathbf{P} E(P_{proj}, \mathbf{P}) = \sum^m_{i=1}\sum^n_{j=1} dist(u_j^{(i)}, P_{proj}^{(i)}\mathbf{P}_j)^2
@@ -1364,4 +1364,4 @@ $$
 
     > COLMAP is a general-purpose Structure-from-Motion (SfM) and Multi-View Stereo (MVS) pipeline with a graphical and command-line interface. It offers a wide range of features for reconstruction of ordered and unordered image collections. 
 
-    ![](94.png)
+    ![](img/94.png)
