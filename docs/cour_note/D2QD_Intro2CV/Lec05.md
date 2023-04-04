@@ -31,8 +31,8 @@
 
 ### 关键点检测
 
-
-> 推荐阅读：[【计算机视觉】2. 特征点检测：Harris, SIFT, SURF, ORB](https://zhuanlan.zhihu.com/p/36382429)
+!!! quote "推荐阅读"
+    [【计算机视觉】2. 特征点检测：Harris, SIFT, SURF, ORB](https://zhuanlan.zhihu.com/p/36382429)
 
 **检测(detection)**的首要问题是如何选择**关键点(interest points/feature points)**，或者说，一个点什么情况下会被认为是一个特征点。
 
