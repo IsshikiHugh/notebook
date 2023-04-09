@@ -13,7 +13,7 @@
     - [x] :material-label: [Lecture 2 | Image Formation](Lec02.md)
     - [x] :material-label: [Lecture 3 | Image Processing](Lec03.md)
     - [x] :material-label: [Lecture 4 | Model Fitting and Optimization](Lec04.md)
-    - [ ] :material-label: [Lecture 5 | Feature Matching and Motion Estimation](Lec05.md)
+    - [x] :material-label: [Lecture 5 | Feature Matching and Motion Estimation](Lec05.md)
     - [ ] :material-label: [Lecture 6 | Image Alignment and Stitching](Lec06.md)
     - [x] :material-label: [Lecture 7 | Structure From Motion](Lec07.md)
     - [ ] :material-label: [Lecture 8 | Depth Estimation & 3D Reconstruction](Lec08.md)
