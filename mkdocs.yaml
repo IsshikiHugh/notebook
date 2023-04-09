@@ -36,7 +36,7 @@ theme:
     accent: deep orange
   features:
     - content.code.annotate
-    # - navigation.instant
+    # - navigation.instant # This will cause LaTeX render fail at the first try.
     - navigation.tracking
     - navigation.tabs
     # - navigation.tabs.sticky

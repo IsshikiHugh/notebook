@@ -362,28 +362,31 @@ $$
 而这个解是否存在的条件是：
 
 !!! note ""
+    
     $$
-    \underbar{
+    \underbrace{
         \begin{bmatrix}
             \sum I_x I_x & \sum \sum I_x I_x \\
             \sum I_x I_y & \sum I_y I_y
         \end{bmatrix}
-    }{A^T A}
+    }_{A^T A}
     \begin{bmatrix}
         u \\
         v
     \end{bmatrix}
     =
-    \underbar{
+    \underbrace{
         \begin{bmatrix}
             \sum I_x I_t \\
             \sum I_y I_t
         \end{bmatrix}
-    }{A^T b}
+    }_{A^T b}
     $$
 
-    在该式中，$A^T A$ 需要是可逆的，并且它的两个特征值都不能太小。也就该点能够被 **[Harris corner detector](#角点检测)** 检测到点角点！
 
-因此，倘若使用 LK 方法，我们需要保证 $A^T A$ 可逆，且图像中不能有太多噪点。
+    在该式中，$A^TA$ 需要是可逆的，并且它的两个特征值都不能太小。也就该点能够被 **[Harris corner detector](#角点检测)** 检测到点角点！
+
+
+因此，倘若使用 LK 方法，我们需要保证 $A^TA$ 可逆，且图像中不能有太多噪点。
 
 此外，关于对假设 1 的约束，原则上两帧之间的运动差距应该小于一个像素，然而这个条件非常苛刻。所以我们的可以先对图片进行模糊/缩小处理，像素足够“大”之后就可以满足这个假设 1。然而在这个过程中会丢失很多信息，所以只根据这个条件来计算也不行，所以我们可以在像素金字塔上进行逐层次估计，再不断细化的做法。
