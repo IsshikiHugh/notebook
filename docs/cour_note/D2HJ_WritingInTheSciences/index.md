@@ -1,4 +1,4 @@
-# 斯坦福 SCI 论文写作公开课
+# [大二寒假] 斯坦福 SCI 论文写作公开课
 
 !!! info ""
     - 官方网站：[🔗](https://online.stanford.edu/courses/som-y0010-writing-sciences)
