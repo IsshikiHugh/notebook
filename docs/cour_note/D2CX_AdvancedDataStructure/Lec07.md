@@ -221,16 +221,16 @@ $$
    3. 若 $f(N)=\Omega(N^{(\log_b{a})+\varepsilon}), \text{ for }\varepsilon>0$ 且 $af(\frac{N}{b})<cf(N), \text{ for } c<1 \text{ and } \forall N > N_0$，那么 $T(N)=\Theta(f(N))$；
 
 ??? eg "examples for form 1"
-  - 【eg1】$a = b = 2,\; f(N) = N$；
-      - $f(N) = N = \Theta(N^{\log_2{2}})$，适用于情况 2；
-      - 因此得到结果 $T(N) = \Theta(N \log N)$；
-  - 【eg2】$a = b = 2,\; f(N) = N \log N$；
-      - $f(N) = N \log N$，虽然 $N \log N = \Omega(N^{\log_2{2}})$，但是 $N \log N \neq \Omega(N^{(\log_2{2}) - \varepsilon})$，所以不适用于情况 3；
-          - 具体来说，$\lim \limits_{N\to \infty} \frac{N \log N}{N^{1+\varepsilon}}=\lim \limits_{N\to \infty} \frac{\log N}{N^{\varepsilon}} = 0 \text{ for fixed } \varepsilon > 0$；
-          - 这个例子体现出了 $\varepsilon$ 的一定作用；
+    - 【eg1】$a = b = 2,\; f(N) = N$；
+        - $f(N) = N = \Theta(N^{\log_2{2}})$，适用于情况 2；
+        - 因此得到结果 $T(N) = \Theta(N \log N)$；
+    - 【eg2】$a = b = 2,\; f(N) = N \log N$；
+        - $f(N) = N \log N$，虽然 $N \log N = \Omega(N^{\log_2{2}})$，但是 $N \log N \neq \Omega(N^{(\log_2{2}) - \varepsilon})$，所以不适用于情况 3；
+            - 具体来说，$\lim \limits_{N\to \infty} \frac{N \log N}{N^{1+\varepsilon}}=\lim \limits_{N\to \infty} \frac{\log N}{N^{\varepsilon}} = 0 \text{ for fixed } \varepsilon > 0$；
+            - 这个例子体现出了 $\varepsilon$ 的一定作用；
 
 !!! proof "proof for form 1"
-    [ ] 咕咕咕
+    - [ ] 咕咕咕
 
 !!! definition "Form 2"
-    [ ] 咕咕咕
+    - [ ] 咕咕咕
