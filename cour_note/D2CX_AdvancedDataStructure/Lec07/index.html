@@ -961,7 +961,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-7--divide--conquer">Lecture 7 | Divide &amp; Conquer<a class="headerlink" href="#lecture-7--divide--conquer" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 2531 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 8 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 2682 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 9 分钟</p>
 </div>
 <p><del>感觉这几节课上的内容都挺宽泛的啊x</del></p>
 <hr/>
@@ -1224,6 +1224,25 @@ T(N)
 T(N) = \Theta(N^{\log_b{a}}) + \sum_{j = 0}^{(\log_b{N})-1} a^j f(\frac{N}{b^j})
 \]</div>
 <p>而我们有条件 <span class="arithmatex">\(f(N)=\Theta(N^{\log_b{a}})\)</span>，将它代入到上式中得到：</p>
+<div class="arithmatex">\[\begin{aligned}
+T(N)
+&amp;= \Theta(N^{\log_b{a}}) + \sum_{j=0}^{(\log_b{N})-1}a^j\Theta\left(\left(\frac{N}{b^j}\right)^{\log_b{a}}\right) \\
+&amp;= \Theta(N^{\log_b{a}}) + \Theta\left(
+    N^{\log_b{a}} \times
+    \sum_{j=0}^{(\log_b{N})-1}\left(\frac{a}{b^{\log_b{a}}}\right)^j
+\right) \\
+&amp;= \Theta(N^{\log_b{a}}) + \Theta\left(
+    N^{\log_b{a}} \times
+    \log_b{N}
+\right) \\
+&amp;= \Theta(N^{\log_b{a}}\log{N})
+\end{aligned}\]</div>
+<p>至此，情况二证明完毕。</p>
+</details>
+<details class="section">
+<summary>情况三</summary>
+<p><strong>🎯 目标</strong>：若 <span class="arithmatex">\(f(N)=\Omega(N^{(\log_b{a})+\varepsilon}), \text{ for }\varepsilon&gt;0\)</span> 且 <span class="arithmatex">\(af(\frac{N}{b})&lt;cf(N), \text{ for } c&lt;1 \text{ and } \forall N &gt; N_0\)</span>，那么 <span class="arithmatex">\(T(N)=\Theta(f(N))\)</span>；</p>
+<p><strong>🪧 证明</strong>：情况三的证明，从条件的变化就可以看出来和前面稍许有些不同了。</p>
 </details>
 </div>
 <hr/>
@@ -1248,7 +1267,7 @@ T(N) = \Theta(N^{\log_b{a}}) + \sum_{j = 0}^{(\log_b{N})-1} a^j f(\frac{N}{b^j})
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月12日 15:04:44</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月12日 16:29:47</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月11日 22:39:40</span>
