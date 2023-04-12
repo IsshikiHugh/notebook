@@ -77,7 +77,7 @@ $$
 $$
 f(x) = 
 \left\{
-    \begin{array}{**l**}
+    \begin{array}{}
         1 &|x| \leq 0.5\\
         0 &otherwise
     \end{array}
