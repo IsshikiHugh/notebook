@@ -315,8 +315,27 @@ $$
 
         而我们有条件 $f(N)=\Theta(N^{\log_b{a}})$，将它代入到上式中得到：
 
+        \begin{aligned}
+        T(N)
+        &= \Theta(N^{\log_b{a}}) + \sum_{j=0}^{(\log_b{N})-1}a^j\Theta\left(\left(\frac{N}{b^j}\right)^{\log_b{a}}\right) \\
+        &= \Theta(N^{\log_b{a}}) + \Theta\left(
+            N^{\log_b{a}} \times
+            \sum_{j=0}^{(\log_b{N})-1}\left(\frac{a}{b^{\log_b{a}}}\right)^j
+        \right) \\
+        &= \Theta(N^{\log_b{a}}) + \Theta\left(
+            N^{\log_b{a}} \times
+            \log_b{N}
+        \right) \\
+        &= \Theta(N^{\log_b{a}}\log{N})
+        \end{aligned}
 
+        至此，情况二证明完毕。
 
+    ??? section "情况三"
+
+        **🎯 目标**：若 $f(N)=\Omega(N^{(\log_b{a})+\varepsilon}), \text{ for }\varepsilon>0$ 且 $af(\frac{N}{b})<cf(N), \text{ for } c<1 \text{ and } \forall N > N_0$，那么 $T(N)=\Theta(f(N))$；
+
+        **🪧 证明**：情况三的证明，从条件的变化就可以看出来和前面稍许有些不同了。
 
 
 ---
