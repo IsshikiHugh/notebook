@@ -61,6 +61,8 @@ plugins:
         - link.md
         - tech_accu/index.md
         - cour_note/index.md
+        - pape_read/index.md
+        - others/index.md
 
 markdown_extensions:
   - toc:
@@ -144,7 +146,7 @@ extra_javascript:
 nav:
   - "💠 封面": 
     - "💠 封面": index.md
-    - "💬 交流区": link.md
+    - "💬 交流": link.md
   - "📚 技术积累":
     - tech_accu/index.md
     - "常用工具":

@@ -1,8 +1,5 @@
 ---
 comments: false
-hide:
-  - feedback
-
 ---
 
 # 扉页

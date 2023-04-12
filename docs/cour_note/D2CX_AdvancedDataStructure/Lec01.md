@@ -759,7 +759,7 @@ Splay 的核心思想就是，每当我们访问一个节点（比如查询某�
 
 ## 摊还分析
 
-!!! link "link"
+!!! quote "link"
     Wikipedia: https://zh.wikipedia.org/wiki/%E5%B9%B3%E6%91%8A%E5%88%86%E6%9E%90
 
 !!! warning "不好意思"
@@ -798,7 +798,7 @@ $$
 
 ### 核法
 
-!!! link "link"
+!!! quote "link"
     关于 Accounting Analysis 可以参考这篇文章：https://www.baeldung.com/cs/amortized-analysis
 
 做一个比喻的话，可以这么理解：
@@ -811,7 +811,7 @@ $$
 
 ### 势能法
 
-!!! link "link"
+!!! quote "link"
     关于 Potential Analysis 可以参考这篇文章：https://en.wikipedia.org/wiki/Potential_method
     以及 ltgg 的这期周报讲的也很好：https://www.yuque.com/xianyuxuan/saltfish_shop/weekly002_amortized_analysis#KmnY6
 

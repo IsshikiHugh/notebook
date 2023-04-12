@@ -26,13 +26,13 @@
 
 ---
 
-#### 朴素
+#### 朴素方法
 
 最朴素的做法当然是枚举所有的点对，一共需要 $C_{N}^{2} = {{N}\choose{2}} = \frac{N(N-1)}{2}$ 即复杂度为 $O(N^2)$。
 
 ---
 
-#### 分治
+#### 分治方法
 
 现在我们类比最大子序列和问题的分治做法。
 
@@ -191,7 +191,7 @@ $$
 
     此时由于分治的策略是相对均匀的，所以我们可以认为得到的是一个完美三叉树。
 
-    显然，树的深度为 $\log_4 N$，每个分治节点的 combine 开销已经标注在图的节点位置，横向箭头标记的是对该层所有节点的开销的求和。特别的，对于最底层，即叶子层，它表示的是 conquer 部分的开销（虽然我个人觉得没必要区分这俩）。
+    显然，树高为 $\log_4 N$，根记为 $0$，每个分治节点的 combine 开销已经标注在图的节点位置，横向箭头标记的是对该层所有节点的开销的求和。特别的，对于最底层，即叶子层，它表示的是 conquer 部分的开销（虽然我个人觉得没必要区分这俩）。
 
     于是我们可以根据下式的形式，对其进行求和，得到图片中下方的式子。
 
@@ -206,19 +206,23 @@ $$
 
 ### 主方法
 
-!!! link "link"
+!!! quote "link"
     OI Wiki: https://oi-wiki.org/basic/complexity/#主定理-master-theorem
 
     Wikipedia: https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)
 
 **主方法(master method)**之所以叫“主”，是因为它分析的是 combine 和 conquer 部分孰为主导。
 
+---
+
+#### 形式一
+
 !!! definition "Form 1"
     对于形如 $T(N)=aT(N/b)+f(N)$ 的递推式：
 
-  1. 若 $f(N)=O(N^{(\log_b{a})-\varepsilon}), \text{ for }\varepsilon>0$，那么 $T(N)=\Theta(N^{\log_b{a}})$；
-   2. 若 $f(N)=\Theta(N^{\log_b{a}})$，那么 $T(N)=\Theta(N^{\log_b{a}}\log{N})$；
-   3. 若 $f(N)=\Omega(N^{(\log_b{a})+\varepsilon}), \text{ for }\varepsilon>0$ 且 $af(\frac{N}{b})<cf(N), \text{ for } c<1 \text{ and } \forall N > N_0$，那么 $T(N)=\Theta(f(N))$；
+    1. 若 $f(N)=O(N^{(\log_b{a})-\varepsilon}), \text{ for }\varepsilon>0$，那么 $T(N)=\Theta(N^{\log_b{a}})$；
+    2. 若 $f(N)=\Theta(N^{\log_b{a}})$，那么 $T(N)=\Theta(N^{\log_b{a}}\log{N})$；
+    3. 若 $f(N)=\Omega(N^{(\log_b{a})+\varepsilon}), \text{ for }\varepsilon>0$ 且 $af(\frac{N}{b})<cf(N), \text{ for } c<1 \text{ and } \forall N > N_0$，那么 $T(N)=\Theta(f(N))$；
 
 ??? eg "examples for form 1"
     - 【eg1】$a = b = 2,\; f(N) = N$；
@@ -229,8 +233,103 @@ $$
             - 具体来说，$\lim \limits_{N\to \infty} \frac{N \log N}{N^{1+\varepsilon}}=\lim \limits_{N\to \infty} \frac{\log N}{N^{\varepsilon}} = 0 \text{ for fixed } \varepsilon > 0$；
             - 这个例子体现出了 $\varepsilon$ 的一定作用；
 
+---
+
+##### 证明
+
 !!! proof "proof for form 1"
-    - [ ] 咕咕咕
+    对于形如 $T(N)=aT(N/b)+f(N)$ 的递推式，我们需要依次证明，此处我们使用递归树法进行证明。
+
+    ??? section "情况一"
+
+        **🎯 目标**：若 $f(N)=O(N^{(\log_b{a})-\varepsilon}), \text{ for }\varepsilon>0$，那么 $T(N)=\Theta(N^{\log_b{a}})$；
+
+        **🪧 证明**：我们首先需要绘制出对应的递归树，或者搞清楚展开后的情况，因为懒得画图所以我这里采用文字叙述。
+
+        树高 $\log_b{N}$，共 $\log_b{N} + 1$ 层，则有：
+
+        - 第 $0$ 层（根）一共 $1$ 项，combine 的开销为 $f(N)$；
+        - 第 $1$ 层一共 $a$ 项，combine 的开销为 $a\times f(\frac{N}{b})$；
+        - 第 $2$ 层一共 $a^2$ 项，combine 的开销为 $a^2 \times f(\frac{N}{b^2})$；
+        - ......
+        - 第 $j$ 层一共 $a^j$ 项，combine 的开销为 $a^j \times f(\frac{N}{b^j})$；
+        - ......
+        - 第 $(\log_b{N}) - 1$ 层一共 $a^{(\log_b{N}) - 1}$ 项，combine 的开销为 $a^{(\log_b{N}) - 1} \times f(\frac{N}{b^{(\log_b{N}) - 1}})$；
+        - 第 $\log_b{N}$ 层，即为叶子层，一共 $a^{\log_b{N}} = N^{\log_b{a}}$ 项，conquer 的开销为 $N^{\log_b{a}} \times \Theta(1) = \Theta(N^{\log_b{a}})$；
+
+        得到求和式：
+
+        $$
+        T(N) = \Theta(N^{\log_b{a}}) + \sum_{j = 0}^{(\log_b{N})-1} a^j f(\frac{N}{b^j})
+        $$
+
+        而我们有条件 $f(N)=O(N^{(\log_b{a})-\varepsilon}), \text{ for }\varepsilon>0$，将它代入到上式中得到：
+
+        $$
+        \begin{aligned}
+        T(N) 
+        &= \Theta(N^{\log_b{a}}) + \sum_{j = 0}^{(\log_b{N})-1} a^j O\left(\left(\frac{N}{b^j}\right)^{(\log_b{a})-\varepsilon}\right)\\
+        &= \Theta(N^{\log_b{a}}) + O\left(
+            N^{(\log_b{a}) - \varepsilon}
+            \times
+            \sum_{j = 0}^{(\log_b{N})-1} \left(\frac{a}{b^{(\log_b{a})-\varepsilon}}\right)^j
+        \right) \\
+        &= \Theta(N^{\log_b{a}}) + O\left(
+            N^{(\log_b{a}) - \varepsilon}
+            \times
+            \sum_{j = 0}^{(\log_b{N})-1} (b^{\varepsilon})^j
+        \right) \\
+        &= \Theta(N^{\log_b{a}}) + O\left(
+            N^{(\log_b{a}) - \varepsilon}
+            \times
+            \frac{1\times(1-(b^\varepsilon)^{\log_b{N}})}{1-b^\varepsilon}
+        \right) \\
+        &= \Theta(N^{\log_b{a}}) + O\left(
+            N^{(\log_b{a}) - \varepsilon}
+            \times
+            \frac{N^\varepsilon-1}{b^\varepsilon-1}
+        \right) \\
+        &= \Theta(N^{\log_b{a}}) + O\left(
+            N^{(\log_b{a}) - \varepsilon}
+            \times
+            N^\varepsilon
+        \right) \\
+        &= \Theta(N^{\log_b{a}}) + O\left(
+            N^{\log_b{a}}
+        \right) \\
+        &= \Theta(N^{\log_b{a}})
+        \end{aligned}
+        $$
+
+        至此，情况一证明完毕。
+
+    ??? section "情况二"
+
+        **🎯 目标**：若 $f(N)=\Theta(N^{\log_b{a}})$，那么 $T(N)=\Theta(N^{\log_b{a}}\log{N})$；
+
+        **🪧 证明**：前面的部分和情况一的类似，我们通过相同的步骤得到相同的求和式：
+
+        $$
+        T(N) = \Theta(N^{\log_b{a}}) + \sum_{j = 0}^{(\log_b{N})-1} a^j f(\frac{N}{b^j})
+        $$
+
+        而我们有条件 $f(N)=\Theta(N^{\log_b{a}})$，将它代入到上式中得到：
+
+
+
+
+
+---
+
+#### 形式二
 
 !!! definition "Form 2"
-    - [ ] 咕咕咕
+    对于形如 $T(N) = aT(\frac{N}{b}) + f(N)$ 的递推式：
+
+    1. 若 $af(\frac{N}{b}) = \kappa f(N) \text{ for fixed } \kappa < 1$，那么 $T(N) = \Theta(f(N))$；
+    2. 若 $af(\frac{N}{b}) = \Kappa f(N) \text{ for fixed } \Kappa < 1$，那么 $T(N) = \Theta(N^{\log_b{a}})$；
+    3. 若 $af(\frac{N}{b}) = f(N)$，那么 $T(N) = \Theta(f(N) \log_b N)$；
+
+    !!! extra "增强"
+        - [ ] 咕咕咕
+
