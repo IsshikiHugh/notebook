@@ -224,6 +224,8 @@ $$
     2. 若 $f(N)=\Theta(N^{\log_b{a}})$，那么 $T(N)=\Theta(N^{\log_b{a}}\log{N})$；
     3. 若 $f(N)=\Omega(N^{(\log_b{a})+\varepsilon}), \text{ for }\varepsilon>0$ 且 $af(\frac{N}{b})<cf(N), \text{ for } c<1 \text{ and } \forall N > N_0$，那么 $T(N)=\Theta(f(N))$；
 
+回顾我们在前面说的那句话，「**主方法(master method)**之所以叫“主”，是因为它分析的是 combine 和 conquer 部分孰为主导」，观察三种情况的区分条件都是比较 $f(N)$（每一次的 combine 开销） 和 $N^{\log_b{a}}$（即求和式中的 conquer 的开销），当 $f(N)$ 足够小时，以 conquer 开销为主（i.e. case 1）；当足够大时，以 combine 为主（i.e. case 3）；而其中还有一个中间状态（i.e. case 2）。
+
 ??? eg "examples for form 1"
     - 【eg1】$a = b = 2,\; f(N) = N$；
         - $f(N) = N = \Theta(N^{\log_2{2}})$，适用于情况 2；
@@ -335,8 +337,56 @@ $$
 
         **🎯 目标**：若 $f(N)=\Omega(N^{(\log_b{a})+\varepsilon}), \text{ for }\varepsilon>0$ 且 $af(\frac{N}{b})<cf(N), \text{ for } c<1 \text{ and } \forall N > N_0$，那么 $T(N)=\Theta(f(N))$；
 
-        **🪧 证明**：情况三的证明，从条件的变化就可以看出来和前面稍许有些不同了。
+        **🪧 证明**：情况三的证明，从条件的变化就可以看出来和前面稍许有些不同了。不过求和式的得到还是一样，通过和之前一样的方法，我们首先得到求和式：
 
+        $$
+        T(N) = \Theta(N^{\log_b{a}}) + \sum_{j = 0}^{(\log_b{N})-1} a^j f(\frac{N}{b^j})
+        $$
+
+        接下来的步骤和之前不同。在继续之前，我们首先观察不等式 $af(\frac{N}{b})<cf(N)$，在我们的求和式中，我们观察到我们有大量的形如 $a^jf(\frac{N}{b^j})$ 的项，而这些项都可以通过迭代上面那个不等式来实现，即：
+
+        $$
+        a^jf(\frac{N}{b^j}) < c\times a^{j-1}f(\frac{N}{b^{j-1}}) < ... < c^j f(N)
+        $$
+
+        将这个不等式应用于求和式中，我们能够得到：
+
+        $$
+        \begin{aligned}
+            T(N) 
+            &< \Theta(N^{\log_b{a}}) + \sum_{j=0}^{(\log_b{N})-1}c^j f(N) \\
+            &= \Theta(N^{\log_b{a}}) + f(N) \sum_{j=0}^{(\log_b{N})-1}c^j \\
+            &= \Theta(N^{\log_b{a}}) + f(N) \times \frac{c^{1-\log_b{N}}}{1-c} \\
+            &= \Theta(N^{\log_b{a}}) + f(N) \times \frac{1-N^{\log_b{c}}}{1-c}
+        \end{aligned}        
+        $$
+
+        而由于 $c<1$，所以 $\log_b{c} < 0$；而 $N > 0$，而且一般非常大，所以 $N^{\log_b{c}} \in (0,1)$。因此，对于确定的常数 $c$，我们有 $\frac{1-N^{\log_b{c}}}{1-c} \in \left(0, \frac{1}{1-c}\right)$；
+
+        因此，上式便能改变为：
+
+        $$
+        \begin{aligned}
+            T(N) 
+            &< \Theta(N^{\log_b{a}}) + f(N) \times \frac{1-N^{\log_b{c}}}{1-c} \\
+            &< \Theta(N^{\log_b{a}}) + f(N) \times \frac{1}{1-c}
+        \end{aligned}
+        $$
+
+        并且，由于 $f(N)=\Omega(N^{(\log_b{a})+\varepsilon}), \text{ for }\varepsilon>0$，所以根据**[符号定义](https://oi-wiki.org/basic/complexity/#%E6%B8%90%E8%BF%9B%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%AE%9A%E4%B9%89)**可以得到 $T(N) = O(f(N))$。
+
+        而我们知道，要证明 $T(N) = \Theta(f(N))$ 还需要证明 $T(N) = \Omega(f(N))$：
+
+        $$
+        \begin{aligned}
+        T(N)
+        &= \Theta(N^{\log_b{a}}) + \sum_{j = 0}^{(\log_b{N})-1} a^j f(\frac{N}{b^j})
+        &\geq \sum_{j = 0}^{(\log_b{N})-1} a^j f(\frac{N}{b^j})
+        &\geq f(N)
+        \end{aligned}
+        $$
+
+        由此得到 $T(N) = \Omega(f(N))$，最终证得 $T(N) = \Theta(f(N))$，至此，情况三证明完毕。
 
 ---
 
