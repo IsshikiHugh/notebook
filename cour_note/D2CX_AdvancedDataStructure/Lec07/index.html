@@ -961,7 +961,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-7--divide--conquer">Lecture 7 | Divide &amp; Conquer<a class="headerlink" href="#lecture-7--divide--conquer" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 2682 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 9 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3044 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 10 分钟</p>
 </div>
 <p><del>感觉这几节课上的内容都挺宽泛的啊x</del></p>
 <hr/>
@@ -1136,6 +1136,7 @@ T(N) = ... =
 <li>若 <span class="arithmatex">\(f(N)=\Omega(N^{(\log_b{a})+\varepsilon}), \text{ for }\varepsilon&gt;0\)</span> 且 <span class="arithmatex">\(af(\frac{N}{b})&lt;cf(N), \text{ for } c&lt;1 \text{ and } \forall N &gt; N_0\)</span>，那么 <span class="arithmatex">\(T(N)=\Theta(f(N))\)</span>；</li>
 </ol>
 </div>
+<p>回顾我们在前面说的那句话，「<strong>主方法(master method)</strong>之所以叫“主”，是因为它分析的是 combine 和 conquer 部分孰为主导」，观察三种情况的区分条件都是比较 <span class="arithmatex">\(f(N)\)</span>（每一次的 combine 开销） 和 <span class="arithmatex">\(N^{\log_b{a}}\)</span>（即求和式中的 conquer 的开销），当 <span class="arithmatex">\(f(N)\)</span> 足够小时，以 conquer 开销为主（i.e. case 1）；当足够大时，以 combine 为主（i.e. case 3）；而其中还有一个中间状态（i.e. case 2）。</p>
 <details class="eg">
 <summary>examples for form 1</summary>
 <ul>
@@ -1242,7 +1243,44 @@ T(N)
 <details class="section">
 <summary>情况三</summary>
 <p><strong>🎯 目标</strong>：若 <span class="arithmatex">\(f(N)=\Omega(N^{(\log_b{a})+\varepsilon}), \text{ for }\varepsilon&gt;0\)</span> 且 <span class="arithmatex">\(af(\frac{N}{b})&lt;cf(N), \text{ for } c&lt;1 \text{ and } \forall N &gt; N_0\)</span>，那么 <span class="arithmatex">\(T(N)=\Theta(f(N))\)</span>；</p>
-<p><strong>🪧 证明</strong>：情况三的证明，从条件的变化就可以看出来和前面稍许有些不同了。</p>
+<p><strong>🪧 证明</strong>：情况三的证明，从条件的变化就可以看出来和前面稍许有些不同了。不过求和式的得到还是一样，通过和之前一样的方法，我们首先得到求和式：</p>
+<div class="arithmatex">\[
+T(N) = \Theta(N^{\log_b{a}}) + \sum_{j = 0}^{(\log_b{N})-1} a^j f(\frac{N}{b^j})
+\]</div>
+<p>接下来的步骤和之前不同。在继续之前，我们首先观察不等式 <span class="arithmatex">\(af(\frac{N}{b})&lt;cf(N)\)</span>，在我们的求和式中，我们观察到我们有大量的形如 <span class="arithmatex">\(a^jf(\frac{N}{b^j})\)</span> 的项，而这些项都可以通过迭代上面那个不等式来实现，即：</p>
+<div class="arithmatex">\[
+a^jf(\frac{N}{b^j}) &lt; c\times a^{j-1}f(\frac{N}{b^{j-1}}) &lt; ... &lt; c^j f(N)
+\]</div>
+<p>将这个不等式应用于求和式中，我们能够得到：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    T(N) 
+    &amp;&lt; \Theta(N^{\log_b{a}}) + \sum_{j=0}^{(\log_b{N})-1}c^j f(N) \\
+    &amp;= \Theta(N^{\log_b{a}}) + f(N) \sum_{j=0}^{(\log_b{N})-1}c^j \\
+    &amp;= \Theta(N^{\log_b{a}}) + f(N) \times \frac{c^{1-\log_b{N}}}{1-c} \\
+    &amp;= \Theta(N^{\log_b{a}}) + f(N) \times \frac{1-N^{\log_b{c}}}{1-c}
+\end{aligned}        
+\]</div>
+<p>而由于 <span class="arithmatex">\(c&lt;1\)</span>，所以 <span class="arithmatex">\(\log_b{c} &lt; 0\)</span>；而 <span class="arithmatex">\(N &gt; 0\)</span>，而且一般非常大，所以 <span class="arithmatex">\(N^{\log_b{c}} \in (0,1)\)</span>。因此，对于确定的常数 <span class="arithmatex">\(c\)</span>，我们有 <span class="arithmatex">\(\frac{1-N^{\log_b{c}}}{1-c} \in \left(0, \frac{1}{1-c}\right)\)</span>；</p>
+<p>因此，上式便能改变为：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    T(N) 
+    &amp;&lt; \Theta(N^{\log_b{a}}) + f(N) \times \frac{1-N^{\log_b{c}}}{1-c} \\
+    &amp;&lt; \Theta(N^{\log_b{a}}) + f(N) \times \frac{1}{1-c}
+\end{aligned}
+\]</div>
+<p>并且，由于 <span class="arithmatex">\(f(N)=\Omega(N^{(\log_b{a})+\varepsilon}), \text{ for }\varepsilon&gt;0\)</span>，所以根据<strong><a href="https://oi-wiki.org/basic/complexity/#%E6%B8%90%E8%BF%9B%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%AE%9A%E4%B9%89">符号定义</a></strong>可以得到 <span class="arithmatex">\(T(N) = O(f(N))\)</span>。</p>
+<p>而我们知道，要证明 <span class="arithmatex">\(T(N) = \Theta(f(N))\)</span> 还需要证明 <span class="arithmatex">\(T(N) = \Omega(f(N))\)</span>：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+T(N)
+&amp;= \Theta(N^{\log_b{a}}) + \sum_{j = 0}^{(\log_b{N})-1} a^j f(\frac{N}{b^j})
+&amp;\geq \sum_{j = 0}^{(\log_b{N})-1} a^j f(\frac{N}{b^j})
+&amp;\geq f(N)
+\end{aligned}
+\]</div>
+<p>由此得到 <span class="arithmatex">\(T(N) = \Omega(f(N))\)</span>，最终证得 <span class="arithmatex">\(T(N) = \Theta(f(N))\)</span>，至此，情况三证明完毕。</p>
 </details>
 </div>
 <hr/>
@@ -1267,7 +1305,7 @@ T(N)
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月12日 16:29:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月12日 19:22:29</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月11日 22:39:40</span>
