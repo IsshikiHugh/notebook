@@ -24,4 +24,4 @@
     - [ ] :material-label: [Lecture 4 | Leftist Heaps & Skew Heaps](Lec04.md)
     - [ ] :material-label: [Lecture 5 | Binominal Trees](Lec05.md)
     - [ ] :material-label: [Lecture 6 | Backtracing](Lec06.md)
-    - [ ] :material-label: [Lecture 7 | Divide & Conquer](Lec07.md)
+    - [x] :material-label: [Lecture 7 | Divide & Conquer](Lec07.md)

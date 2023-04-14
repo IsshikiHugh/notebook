@@ -226,6 +226,8 @@ $$
     2. 若 $f(N)=\Theta(N^{\log_b{a}})$，那么 $T(N)=\Theta(N^{\log_b{a}}\log{N})$；
     3. 若 $f(N)=\Omega(N^{(\log_b{a})+\varepsilon}), \text{ for }\varepsilon>0$ 且 $af(\frac{N}{b})<cf(N), \text{ for } c<1 \text{ and } \forall N > N_0$，那么 $T(N)=\Theta(f(N))$；
 
+    > 情况三的后面那个条件又叫 regularity condition。
+
 回顾我们在前面说的那句话，「**主方法(master method)**之所以叫“主”，是因为它分析的是 combine 和 conquer 部分孰为主导」，观察三种情况的区分条件都是比较 $f(N)$（每一次的 combine 开销） 和 $N^{\log_b{a}}$（即求和式中的 conquer 的开销），当 $f(N)$ 足够小时，以 conquer 开销为主（i.e. case 1）；当足够大时，以 combine 为主（i.e. case 3）；而其中还有一个中间状态（i.e. case 2）。
 
 ??? eg "examples for form 1"
