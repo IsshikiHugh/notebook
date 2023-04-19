@@ -29,6 +29,16 @@
 
     <div class="flink-list-item">
             <div class="flink-item-icon">
+                ![](./_assets/avatars/zicx.jpeg)
+            </div>
+        <a href="https://zicx.top/notebook/" title="Zicx 的 笔记本" target="_blank">
+            <div class="flink-item-name">Zicx 的 笔记本</div>
+            <div class="flink-item-desc"> 🤤 是超强旭宝！</div>
+        </a>
+    </div>
+
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
                 ![](./_assets/avatars/sakuratsuyu.jpeg)
             </div>
         <a href="https://sakuratsuyu.github.io/Note/" title="sakuratsuyu 的 笔记本" target="_blank">
