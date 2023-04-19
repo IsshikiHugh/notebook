@@ -415,3 +415,14 @@ reveal-md your-md-file.md --static your-static-dir
 例如上方这个仓库对应的 `URL` 是 `https://isshikihugh.github.io/myReveal-md/projectsTutorial_CNewbieHelper/slides/slides.html`。
 
 利用 Pages 服务，就可以快速便捷地分享你的 Slides，对于不懂技术的人来说不仅表现效果不差，而且还有一丝逼格。不过在国内或许访问不太稳定，所以可以考虑使用 Gitee Pages 来实现。不过 Gitee Pages 服务每一次都需要你自己去更新一下，还有一些审核机制。
+
+---
+
+## 一些坑
+
+`reveal-md` 已经有大概一年的时间没有维护了，其中也遇到一些问题，我遇到了一些就记下来。
+
+- 这个问题我还提了个 issue，里面也附了解决的办法：[--static with --theme generate the `index.html` with the wrong path of `theme.css`](https://github.com/webpro/reveal-md/issues/439)
+- 在使用 gh-page 进行部署，并且指定了额外的 `css` 文件的时候，一定要添加 `--assets-dir assets`，否则默认的素材文件夹的名字是 `_assets`，而 `_` 开头的文件夹会被 gh-page 忽略。
+
+
