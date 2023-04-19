@@ -256,6 +256,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://note.isshikih.top/others/tools/</loc>
+         <lastmod>2023-04-19</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://note.isshikih.top/others/reveal-md2Slides/</loc>
          <lastmod>2023-04-19</lastmod>
          <changefreq>daily</changefreq>
