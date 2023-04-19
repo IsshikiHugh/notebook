@@ -82,7 +82,7 @@ $$
     y_w \\
     z_w
 \end{bmatrix}\;}_{\text{World Coordinates}}
-\xrightarrow{\text{Rotation & Movement}}
+\xrightarrow{\text{Rotation \& Movement}}
 \underbrace{\;\mathbf{x}_c = \begin{bmatrix}
     x_c \\
     y_c \\
