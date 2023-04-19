@@ -961,11 +961,10 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-2--red-black-tree--b-tree">Lecture 2 | Red Black Tree &amp; B+ Tree<a class="headerlink" href="#lecture-2--red-black-tree--b-tree" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4805 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 61 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 17 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4781 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 61 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 17 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">说明</p>
-<p>上一节使用的用 Tab 绘图的方式时间成本太高了，所以我应该会放弃使用这种画图的方法。</p>
 <p>而为了提高笔记整理效率，可能会考虑用更多的引用和更简单的语言。如果您觉得有哪里说的不够清楚，请直接在评论区狠狠 blame 我！</p>
 </div>
 <hr/>
@@ -980,7 +979,9 @@
 <p>顾名思义，<strong>红黑树(Red Black Tree)</strong>就是一种节点分类为红黑两色的，比较平衡的二叉搜索树。只不过不同于 AVL 树，红黑树的“平衡”性质是通过<strong>黑高(black height)</strong>来定义的。接下来依次给出红黑树的定义和黑高的定义。</p>
 <div class="admonition definition">
 <p class="admonition-title">Red Black Tree</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/6.png"><img alt="" src="../img/6.png"/></a></p>
+<p><center>!
+    <a href="../img/6.png"></a>
+</center></p>
 <p>红黑树是满足如下性质的一种二叉搜索树：</p>
 <div class="admonition feature">
 <p class="admonition-title">Properties of RBTree</p>
@@ -997,7 +998,7 @@
 </blockquote>
 <div class="admonition warning">
 <p class="admonition-title">说明</p>
-<p>由于这里的“叶子结点”被重新定义了，为了描述方便，我现在称所有两个子结点都是 <code>NIL</code> 的结点为<strong>末端结点</strong>。而这个定义<strong>只是我自己说说的</strong>！</p>
+<p>由于这里的“叶子结点”被重新定义了，为了描述方便，我现在称所有两个子结点都是 <code>NIL</code> 的结点为<strong>末端结点</strong>（也就是通俗意义上的叶子结点）。而这个定义<strong>只是我自己说说的</strong>！</p>
 </div>
 <details class="extra">
 <summary>@Wiki</summary>
@@ -1095,7 +1096,7 @@
 <li>此时因为原来的树符合红黑树的性质，<code>x.p.p</code> 显然是黑色的；</li>
 </ol>
 <p>根据这些讨论，我们就能列举出来一个红色的点被插入后，在 <code>2.</code> 的情况下所有的<strong>初始情况</strong>，即下面第一张图。</p>
-<p><center><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/8.png"><img alt="" loading="lazy" src="../img/8.png"/></a></center></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/8.png"><img alt="" loading="lazy" src="../img/8.png"/></a></p>
 <p>由于红黑树的操作中，有一部分需要进行递归转移，而其中中间步骤出现了很多同构的结构，所以为了化简 pipeline，我们对其进行一下统一，也就是上面第二张图。</p>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
@@ -1468,7 +1469,7 @@ D ===&gt;|"C&amp;R"| C</code></pre>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月13日 21:20:09</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月19日 14:23:01</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月8日 10:06:23</span>
