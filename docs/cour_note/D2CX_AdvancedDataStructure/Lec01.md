@@ -946,20 +946,26 @@ $$
         \end{aligned}
         $$
 
-    看到这里出现了一个 $-2$ 我们就能长舒一口气了，这下 ${c_{\text{zig-zag}}}_i = 2$ 死到临头咯！
+    看到这里出现了一个 $-2$ 我们就能长舒一口气了，这下 ${c_{\text{zig-zag}}}_i = 2$ 死到临头咯！对照配图看，我们可以得到：
     
-    接下来我们继续分析，对照配图看，我们可以继续分析得到这些相等或不等关系：
+    $$
+    \begin{aligned}
+        Rank_{i}(P) + Rank_{i}(G)   &= \log{Size_{i}(P)} + \log{Size_{i}(G)} \\
+                                    &\leq 2\log{\left(Size_{i}(P)+Size_{i}(G)\right)} - 2 & \text{(Lemma 1)}\\
+                                    &\leq 2\log{\left(Size_{i}(P)+Size_{i}(G)+1\right)} - 2 \\
+                                    &\leq 2\log{Size_{i}(X)} - 2 \\
+                                    &\leq 2Rank_{i}(X) - 2 \\
+    \end{aligned}
+    $$
+
+    因此，我们能够得到这些相等或不等关系：
 
     $$
     \left\{
         \begin{aligned}
             Rank_{i}(X) &= Rank_{i-1}(G) \\
-            Rank_{i}(P) + Rank_{i}(G)   &= \log{Size_{i}(P)} + \log{Size_{i}(G)} \\
-                                        &\leq 2\log{\left(Size_{i}(P)+Size_{i}(G)\right)} - 2 & \text{(Lemma 1)}\\
-                                        &\leq 2\log{\left(Size_{i}(P)+Size_{i}(G)+1\right)} - 2 \\
-                                        &\leq 2\log{Size_{i}(X)} - 2 \\
-                                        &\leq 2Rank_{i}(X) - 2 \\
-            Rank_{i-1}(P) + Rank_{i-1}(X) &\geq 2Rank_{i-1}(X) \\
+            Rank_{i}(P) + Rank_{i}(G) &\leq 2Rank_{i}(X) - 2 \\
+            Rank_{i-1}(P) + Rank_{i-1}(X) &\geq 2Rank_{i-1}(X)
         \end{aligned}
     \right.
     $$
@@ -1020,9 +1026,9 @@ $$
     \left\{
         \begin{aligned}
             Rank_{i}(X) &= Rank_{i-1}(G) \\
-            Rank_{i}(G) \leq 2Rank_{i}(X) - Rank_{i-1}(X) - 2 \\
-            Rank_{i}(P) \leq Rank_{i}(X) \\
-            Rank_{i-1}(P) \geq Rank_{i-1}(X)
+            Rank_{i}(G) &\leq 2Rank_{i}(X) - Rank_{i-1}(X) - 2 \\
+            Rank_{i}(P) &\leq Rank_{i}(X) \\
+            Rank_{i-1}(P) &\geq Rank_{i-1}(X)
         \end{aligned}
     \right.
     $$
