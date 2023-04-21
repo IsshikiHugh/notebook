@@ -140,7 +140,7 @@ extra_javascript:
   - _js/extra.js
   - _js/katex.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.js
+  - https://gcore.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js
 
 
 nav:

@@ -364,7 +364,7 @@ LeftistHeap * del(LeftistHeap * cur, ElementType x) {
 
 #### 摊还分析
 
-- 前情提要：**[Lec01/摊还分析](Lec01.md#摊还分析)**
+- 前情提要：**[Ex01/摊还分析](Ex01.md#摊还分析)**
 
 这里我们采用**[势能法](https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/Lec01/#%E5%8A%BF%E8%83%BD%E6%B3%95)**进行分析。
 
