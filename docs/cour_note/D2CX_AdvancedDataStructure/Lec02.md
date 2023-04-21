@@ -19,32 +19,31 @@
 顾名思义，**红黑树(Red Black Tree)**就是一种节点分类为红黑两色的，比较平衡的二叉搜索树。只不过不同于 AVL 树，红黑树的“平衡”性质是通过**黑高(black height)**来定义的。接下来依次给出红黑树的定义和黑高的定义。
 
 !!! definition "Red Black Tree"
-    <center>!
-        [](img/6.png)
+    <center>
+        ![](img/6.png)
     </center>
 
     红黑树是满足如下性质的一种二叉搜索树：
 
     !!! feature "Properties of RBTree"
 
-        \@cy's PPT
-        
-        1. Every node is either red or black.
-        2. The root is black.
-        3. Every leaf (`NIL`) is black.
-        4. if a node is red, then both its children are black.
-        5. For each node, all simple paths from the node to descendant leaves contain the same number of black nodes.
+        !!! extra \@cy's PPT
+            1. Every node is either red or black.
+            2. The root is black.
+            3. Every leaf (`NIL`) is black.
+            4. if a node is red, then both its children are black.
+            5. For each node, all simple paths from the node to descendant leaves contain the same number of black nodes.
 
-        > ch 老师说，希望我们能把这五条性质熟练记住，~~但是让我记住编号是不可能的~~。
+        > ch 老师说，希望我们能把这五条性质熟练记住，<s>怎么可能（逃）</s>。
 
         !!! warning "说明"
             由于这里的“叶子结点”被重新定义了，为了描述方便，我现在称所有两个子结点都是 `NIL` 的结点为**末端结点**（也就是通俗意义上的叶子结点）。而这个定义**只是我自己说说的**！
 
         ??? extra "\@Wiki"
-            1. Every node is either red or black.
-            2. All `NIL` nodes (figure above) are considered black.
-            3. A red node does not have a red child.
-            4. Every path from a given node to any of its descendant `NIL` nodes goes through the same number of black nodes.
+            6. Every node is either red or black.
+            7. All `NIL` nodes (figure above) are considered black.
+            8. A red node does not have a red child.
+            9. Every path from a given node to any of its descendant `NIL` nodes goes through the same number of black nodes.
 
 
         ??? extra "\@OI Wiki"
@@ -86,7 +85,11 @@
 
     根据 T1 的解析，我们得到这样一个结论：
 
-    **合法红黑树不存在只有一个非叶儿子的红色节点！**
+    **合法红黑树不存在只有一个非叶子节点的红色节点！**
+
+    or
+
+    **合法红黑树的红色节点的两个子节点一定都是叶子或都不是叶子！**
 
 此外，关于红黑树的高，我们有如下性质：
 

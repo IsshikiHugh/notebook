@@ -781,7 +781,7 @@ Splay 的核心思想就是，每当我们访问一个节点（比如查询某�
 
 ---
 
-### 摊还复杂度分析
+### 摊还分析
 
 !!! advice "前置阅读"
     关于摊还分析的基本知识，请查看 **[Topic 1 | Amortized Analysis](Ex01.md#摊还分析)**。
@@ -909,7 +909,7 @@ $$
 !!! key-point "真的需要都缩放到相同的 k 吗"
     随之而来的，一个需要讨论的问题是「$\text{where } k \text{ is fixed for all the terms}$」真的重要吗，换句话来说，我们必须保证三个部分缩放出来都具有相同的 $k$ 吗？
     
-    首先，重要肯定是重要的，只不过在这个问题中，由于我们旋转的方向都是向上，所以 $Rank_{i}(X) \geq Rank_{i-1}(X)$，因此我们只需要最后将它们一起都缩放到 $k_{overall}\max\{k_\text{zig}, k_\text{zig-zag}, k_\text{zig-zig} \}$ 就可以了。
+    首先，重要肯定是重要的，只不过在这个问题中，由于我们旋转的方向都是向上，所以 $Rank_{i}(X) \geq Rank_{i-1}(X)$，因此我们只需要最后将它们一起都缩放到 $k_{overall} = \max\{k_\text{zig}, k_\text{zig-zag}, k_\text{zig-zig} \}$ 就可以了。
 
 ---
 
