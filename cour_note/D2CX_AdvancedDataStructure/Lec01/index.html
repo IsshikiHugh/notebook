@@ -802,8 +802,8 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#合并">
-    合并
+<a class="md-nav__link" href="#结论">
+    结论
   </a>
 </li>
 </ul>
@@ -1043,8 +1043,8 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#合并">
-    合并
+<a class="md-nav__link" href="#结论">
+    结论
   </a>
 </li>
 </ul>
@@ -1064,12 +1064,11 @@
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
 <p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7085 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 385 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 28 分钟</p>
 </div>
-<div class="admonition key-point">
+<div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>原先安排在这一章节的摊还分析现在被迁移到了这个地方：<a href="../Ex01/">Topic 1 | Amortized Analysis</a>。</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">阅读建议</p>
+<div class="admonition tip">
+<p class="admonition-title">阅读技巧</p>
 <p>因为没法在这里用代码写动画，所以我用 <a href="https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/?h=%3D%3D%3D#tabbed">Tab</a> 模拟了一下动画帧，可以手动切换这些标签来动态观察。一般这种内容的 Tab 标题都会是 <code>Frame {}</code>。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Frame 1</label><label for="__tabbed_1_2">Frame 2</label><label for="__tabbed_1_3">Frame 3</label></div>
 <div class="tabbed-content">
@@ -1084,6 +1083,7 @@
 </div>
 </div>
 </input></input></input></div>
+</div>
 </div>
 <h2 id="avl-树">AVL 树<a class="headerlink" href="#avl-树" title="Permanent link">¶</a></h2>
 <h3 id="概念">概念<a class="headerlink" href="#概念" title="Permanent link">¶</a></h3>
@@ -1827,7 +1827,7 @@ T_{\text{rotate }x\text{ to root}} = T_{\text{zig}} + \sum{ {T_{\text{zig-zag}}}
 <ul>
 <li>开销大的操作应当倾向让势能降，开销小的操作应当倾向让势能升；</li>
 <li>势能高倾向于让某些操作开销大，势能低倾向于让某些操作开销小；</li>
-<li><span class="arithmatex">\(\Phi(final) &gt; \Phi(0)\)</span>；</li>
+<li><span class="arithmatex">\(\Phi(final) &gt; \Phi(initial)\)</span>；</li>
 </ul>
 <p>于是这里我们设计的势能函数为：</p>
 <div class="arithmatex">\[
@@ -2037,7 +2037,7 @@ T_{\text{rotate }x\text{ to root}} = T_{\text{zig}} + \sum{ {T_{\text{zig-zag}}}
 <p>😩 至此，我们总算是把牛鬼蛇神的 <code>zig-zig</code> 的证明也给搞定了。</p>
 </div>
 <hr/>
-<h4 id="合并">合并<a class="headerlink" href="#合并" title="Permanent link">¶</a></h4>
+<h4 id="结论">结论<a class="headerlink" href="#结论" title="Permanent link">¶</a></h4>
 <div class="admonition section">
 <p class="admonition-title">Amortized Analysis for Splay</p>
 <p>至此，对于三种操作，我们都得到了它们的均摊上界：</p>
@@ -2074,7 +2074,7 @@ T_{\text{rotate }x\text{ to root}} = T_{\text{zig}} + \sum{ {T_{\text{zig-zag}}}
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月21日 23:26:35</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月22日 11:09:30</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 19:52:59</span>
