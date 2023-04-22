@@ -885,7 +885,7 @@ Wikipedia: <a href="https://en.wikipedia.org/wiki/Backtracking">https://en.wikip
 <p>问题的名字很绕，叫 The Turnpike Reconstruction Problem，描述的是一条抽象为直线的公路上，有 <span class="arithmatex">\(N\)</span> 个收费站（<span class="arithmatex">\(x_1, x_2, ..., x_N\)</span>）。现在给出任意两个收费站之间的距离的可重集合 <span class="arithmatex">\(D\)</span>，（可想而知，一共有 <span class="arithmatex">\(\frac{N(N-1)}{2}\)</span> 个元素），求收费站的位置，即给定任意两点的距离集合，求出这些点的坐标。</p>
 <div class="admonition tip">
 <p class="admonition-title">solution</p>
-<p>大概思路就是，首先假设 <span class="arithmatex">\(x_1 = 0\)</span>，那么很显然 <span class="arithmatex">\(x_N = \mathop{max} D\)</span>。同时我们也得到这条线段的长度为 <span class="arithmatex">\(\mathop{max} D\)</span>。接下来 <span class="arithmatex">\(D\)</span> 中从大到小取出元素，则必定追加在 <span class="arithmatex">\(x_1\)</span> 右侧或 <span class="arithmatex">\(x_N\)</span> 左侧，以此类推。（反证法可以证明在完全安排好之前都是追加在左侧或者右侧的既定边界之间的）。而每一次追加的选择都代表决策树中的一个分支，可以利用其它条件进行剪枝（例如 <span class="arithmatex">\(D\)</span> 中有 <span class="arithmatex">\(x_p - x_0\)</span> 就一定有 <span class="arithmatex">\(x_N - x_p\)</span>）。</p>
+<p>大概思路就是，首先假设 <span class="arithmatex">\(x_1 = 0\)</span>，那么很显然 <span class="arithmatex">\(x_N = \mathop{max} \{D\}\)</span>。同时我们也得到这条线段的长度为 <span class="arithmatex">\(\mathop{max} \{D\}\)</span>。接下来 <span class="arithmatex">\(D\)</span> 中从大到小取出元素，则必定追加在 <span class="arithmatex">\(x_1\)</span> 右侧或 <span class="arithmatex">\(x_N\)</span> 左侧，以此类推。（反证法可以证明在完全安排好之前都是追加在左侧或者右侧的既定边界之间的）。而每一次追加的选择都代表决策树中的一个分支，可以利用其它条件进行剪枝（例如 <span class="arithmatex">\(D\)</span> 中有 <span class="arithmatex">\(x_p - x_0\)</span> 就一定有 <span class="arithmatex">\(x_N - x_p\)</span>）。</p>
 </div>
 <hr/>
 <h2 id="ɑ-β-剪枝">ɑ-β 剪枝<a class="headerlink" href="#ɑ-β-剪枝" title="Permanent link">¶</a></h2>
@@ -901,7 +901,7 @@ Wikipedia: <a href="https://en.wikipedia.org/wiki/Backtracking">https://en.wikip
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月11日 22:39:40</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月22日 19:25:13</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月4日 21:49:01</span>

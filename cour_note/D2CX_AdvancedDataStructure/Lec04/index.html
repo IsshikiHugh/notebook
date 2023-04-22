@@ -984,7 +984,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-4--leftist-heaps--skew-heaps">Lecture 4 | Leftist Heaps &amp; Skew Heaps<a class="headerlink" href="#lecture-4--leftist-heaps--skew-heaps" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3703 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 97 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 14 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3754 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 97 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 14 分钟</p>
 </div>
 <h2 id="leftist-heaps">Leftist Heaps<a class="headerlink" href="#leftist-heaps" title="Permanent link">¶</a></h2>
 <div class="admonition quote">
@@ -1034,7 +1034,7 @@
 </div>
 </div>
 <p>简单思考一下，为什么左偏堆会这么设计呢？实际上，合并堆需要考虑的非常重要的一个点就是要能在之后的操作中尽可能地维护堆的“平衡”，否则我们把堆维护成了一个链，那显然是非常糟糕的。</p>
-<p>而左偏堆通过维护整个堆“左偏”，并不断往右侧合并，来实现每次都是往相对小的那一侧塞进东西，进而保证了这个堆的相对平衡性。</p>
+<p>而左偏堆通过维护整个堆“左偏”，并不断往右侧合并，来实现每次都是往 dist 相对小的那一侧塞进东西，进而保证了这个堆的相对平衡性。</p>
 <hr/>
 <h3 id="操作">操作<a class="headerlink" href="#操作" title="Permanent link">¶</a></h3>
 <p>左偏堆的核心操作就是合并。而其它操作都可以看作是合并的特殊情况。因此我们首先讨论任意两个左偏堆的合并。</p>
@@ -1106,6 +1106,7 @@
 <div class="tabbed-block">
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/29.svg"><img alt="" src="../img/29.svg"/></a></p>
 <p>继续往回走，发现 <font color="#2ECC71"><strong>❷</strong></font> 和 <font color="#2E86C1"><strong>❸</strong></font> 的 dist 相同，满足性质，就不需要改变了。</p>
+<p>从这里也可以看出来，并不是看上去更大的子树一定在左侧。</p>
 </div>
 </div>
 </input></input></input></input></input></input></div>
@@ -1113,7 +1114,7 @@
 <hr/>
 <h5 id="迭代式">迭代式<a class="headerlink" href="#迭代式" title="Permanent link">¶</a></h5>
 <p>迭代式是根据它的实现方法来命名的，但是我认为从可视化的角度来理解迭代式可能更有意思。</p>
-<p>迭代式维护两个额外的指针，分别指向两棵树还没被合并的子树的根，并不断选择较小的那个合并进去，直到两个指针都为空。可以发现，这个过程和归并排序的后半部分非常相似，实际上当我们从可视化的角度去看这件事以后，会发现这里做的就是一个归并。</p>
+<p>迭代式维护两个额外的指针，分别指向两棵树还没被合并的子树的根，并不断选择较小的那个合并进去，直到两个指针都为空。可以发现，这个过程和归并排序的后半部分非常相似，实际上当我们从可视化的角度去看这件事以后，会发现这里做的<strong>就是一个归并</strong>。</p>
 <div class="highlight"><pre><span></span><code><span class="n">LeftistHeap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="n">LeftistHeap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">LeftistHeap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// `tx` &amp; `ty` are the pointers to the roots of the subtrees that haven't been merged.</span>
 <span class="w">    </span><span class="n">LeftistHeap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
@@ -1256,7 +1257,7 @@
 <p>让我们回顾一下左偏堆，由于需要自下而上地维护 dist，所以我们无法进行并发操作。回顾 AVL 树，同样为了维护它比较严格的平衡性质，我们也无法进行并发操作，而红黑树则通过一个能够仅仅通过变色就能调整的黑高来规避了必须自下而上维护的问题，实现了并发。</p>
 <p>换句话来说，要想将左偏堆改变地能够进行自上而下维护，就需要改变甚至放弃它的左偏性质的严格性——而这就是斜堆的由来。</p>
 </div>
-<p>斜堆的实际上就是普通的堆，它也需要满足大根堆（小根堆）的性质，而它的合并和左偏堆的合并也十分类似，只不过我们这次<strong>无条件的交换左右子树</strong>，换句话来说，不管左偏性质如何变化，我们都会选择交换参与合并的左右子树，这样我们就不需要在回溯的时候才进行左右子树的交换，于是就实现了完全的自上而下。</p>
+<p>斜堆也需要满足大根堆（小根堆）的性质，而它的合并和左偏堆的合并也十分类似，只不过我们这次<strong>无条件的交换左右子树</strong>，换句话来说，不管左偏性质如何变化，我们都会选择交换参与合并的左右子树，这样我们就不需要在回溯的时候才进行左右子树的交换，于是就实现了完全的自上而下。</p>
 <p>让我们来看看 wiki 里给出的 🌰：</p>
 <div class="admonition eg">
 <p class="admonition-title">🌰 from wikipedia</p>
@@ -1279,9 +1280,10 @@
 <hr/>
 <h3 id="合理性分析">合理性分析<a class="headerlink" href="#合理性分析" title="Permanent link">¶</a></h3>
 <p>然而，随之出现的一个问题上，我们用了这种看起来有点不管三七二十一的做法，那它的正确性如何保证呢？</p>
-<p>首先进行感性的理解。我们每次合并都是沿着右侧路径合并，即每次会被改变的子树左右顺序的节点都是最右侧的节点，而再合并过程中如果每次合并都将发生的变化转到左侧，以此来减小合并操作带来的高度“累积”。</p>
+<p>首先进行感性的理解。我们每合并两个堆都是沿着最右侧路径合并（虽然中间会被不停转到左边），即每次会被改变的子树左右顺序的节点都是最右侧的节点，而再合并过程中如果每次合并都将发生的变化转到左侧，以此来减小合并操作带来的高度“累积”。</p>
 <div class="admonition extra">
 <p class="admonition-title">进一步解释</p>
+<p>以每次只插入一个点为例子说明问题。</p>
 <p>进一步对递归旋转到左侧做解释，递归性地转到左侧，使得本来最右侧的路径变到最左侧，即使之后交换会重新访问到这个子树，但此时除了根，其他部分依然是最左侧的路径，也不会再轻易地访问到这次路径。</p>
 <p>用图来做解释的话，就是这样：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/41.svg"><img alt="" src="../img/41.svg"/></a></p>
@@ -1316,12 +1318,15 @@
 <div class="admonition definition">
 <p class="admonition-title">势能函数</p>
 </div>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: 有坑待填</li>
+</ul>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月21日 22:52:44</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月22日 19:25:13</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月21日 20:38:11</span>
