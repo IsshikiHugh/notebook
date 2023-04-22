@@ -1,17 +1,17 @@
 # Lecture 1 | AVL Trees & Splay Trees
 
-!!! key-point "说明"
+!!! info "说明"
     原先安排在这一章节的摊还分析现在被迁移到了这个地方：[Topic 1 | Amortized Analysis](./Ex01.md)。
 
-!!! info "阅读建议"
-    因为没法在这里用代码写动画，所以我用 [Tab](https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/?h=%3D%3D%3D#tabbed) 模拟了一下动画帧，可以手动切换这些标签来动态观察。一般这种内容的 Tab 标题都会是 `Frame {}`。
+    !!! tip "阅读技巧"
+        因为没法在这里用代码写动画，所以我用 [Tab](https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/?h=%3D%3D%3D#tabbed) 模拟了一下动画帧，可以手动切换这些标签来动态观察。一般这种内容的 Tab 标题都会是 `Frame {}`。
 
-    === "Frame 1"
-        Like
-    === "Frame 2"
-        Like this
-    === "Frame 3"
-        Like this!
+        === "Frame 1"
+            Like
+        === "Frame 2"
+            Like this
+        === "Frame 3"
+            Like this!
 
 ## AVL 树
 
@@ -807,7 +807,7 @@ $$
 
 - 开销大的操作应当倾向让势能降，开销小的操作应当倾向让势能升；
 - 势能高倾向于让某些操作开销大，势能低倾向于让某些操作开销小；
-- $\Phi(final) > \Phi(0)$；
+- $\Phi(final) > \Phi(initial)$；
 
 于是这里我们设计的势能函数为：
 
@@ -1057,7 +1057,7 @@ $$
 
 ---
 
-#### 合并
+#### 结论
 
 !!! section "Amortized Analysis for Splay"
     至此，对于三种操作，我们都得到了它们的均摊上界：

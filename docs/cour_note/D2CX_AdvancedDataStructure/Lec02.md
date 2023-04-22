@@ -27,7 +27,7 @@
 
     !!! feature "Properties of RBTree"
 
-        !!! extra \@cy's PPT
+        !!! extra "\@cy's PPT"
             1. Every node is either red or black.
             2. The root is black.
             3. Every leaf (`NIL`) is black.
