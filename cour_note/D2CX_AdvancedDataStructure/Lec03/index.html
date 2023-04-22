@@ -920,7 +920,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-3--inverted-file-index">Lecture 3 | Inverted File Index<a class="headerlink" href="#lecture-3--inverted-file-index" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1443 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 5 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1461 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 5 分钟</p>
 </div>
 <h2 id="倒排索引">倒排索引<a class="headerlink" href="#倒排索引" title="Permanent link">¶</a></h2>
 <blockquote>
@@ -1049,32 +1049,31 @@
 <p>我们观察到，我们存下来的这些内容中，有一些东西频繁地出现在所有文档中，在特定情况下，这些词可能并不会成为一个索引，例如正常的英文文章中的 <code>a</code>，<code>the</code> 等。所以，对于这一类词——我们称之为<strong>停用词(stop words)</strong>，对于停用词，我们就不需要将他们存下了。</p>
 <div class="admonition question">
 <p class="admonition-title">哪些词会成为停用词？</p>
-<p>这个问题没有一个标准答案，因为这取决于我们的应用场景。例如，如果我们的应用场景是搜索引擎，那么我们就可以将 <code>a</code>，<code>the</code>，<code>an</code> 等词作为停用词。但是如果我们的应用场景是搜索论文，那么我们就可以将 <code>a</code>，<code>the</code>，<code>an</code>，<code>in</code>，<code>on</code> 等词作为停用词。</p>
-<p>一个共通点是它们<strong>通常</strong>都有着相当高的出现频率。</p>
+<p>一般一个词成为停用词，是因为它无法成为一个有效的检索关键字，它可能是在大量资料中大量出现，导致我们无法利用它找出我们想要的资料。换句话来说，一个共通点是它们<strong>通常</strong>都有着相当高的出现频率。</p>
 </div>
 <blockquote>
 <p>但是我们也不能盲目地将所有的词都作为停用词，因为有些词它在某些含义下适合作为一种停用词，但是在另一些含义下，它就不适合作为停用词了，不过这个问题就变得比较复杂了，所以这里并不展开。</p>
 </blockquote>
 <hr/>
 <h4 id="词干分析">词干分析<a class="headerlink" href="#词干分析" title="Permanent link">¶</a></h4>
-<p><strong>词干分析(word stemming)</strong>是一种将单词转换为其词干的技术。例如，词干分析可以将单词 <code>trouble</code>，<code>troubled</code>，<code>troubles</code>，<code>troubling</code> 转换为 <code>trouble</code>。相同词干的词虽然有不同形式，但却有着类似的含义。我在检索 <code>troubled</code> 的时候，我当然也可能想找到包含 <code>trouble</code> 的文档。此外，这种技术也可以让多个单词共享同一条索引记录。</p>
-<p>不过在具体操作方面，这个东西就显得比较复杂和暴力了，这里我们就不展开了。</p>
+<p><strong>词干分析(word stemming)</strong>是一种将单词转换为其词干的技术。例如，词干分析可以将单词 <code>trouble</code>，<code>troubled</code>，<code>troubles</code>，<code>troubling</code> 都转换为 <code>trouble</code>（甚至是 <code>troubl</code>，核心目的是让它们变成同一个单词）。相同词干的词有着类似的含义，在检索 <code>troubled</code> 的时候，当然也可能想找到包含 <code>trouble</code> 的文档。这种技术也可以让多个单词共享同一条索引记录，在存和找的过程中都能优化效果。</p>
+<p>不过在具体操作方面，这个东西就显得比较繁杂和暴力了，我们只能根据语法规范进行暴力匹配和判断，这里我们就不展开了。</p>
 <hr/>
 <h3 id="分布式">分布式<a class="headerlink" href="#分布式" title="Permanent link">¶</a></h3>
 <p>可想而知，对于一个搜索引擎来说，它所需要索引的文料是非常庞大的，所以我们通常需要将其分布式地存储和索引。</p>
-<p>而这里有两种分布式的策略，其一是根据单词的内容进行分布式，其二是根据文档的内容进行分布式。</p>
-<p>显然根据单词的内容进行分布式，能够提高索引效率，但是这样的话，我们就需要将所有接近的单词都存储在一个地方，这样就会造成单点故障，所以这种方式并不是很好。</p>
+<p>而这里有两种分布式的策略，其一是根据单词的字典序进行分布式，其二是根据文档进行分布式。</p>
+<p>显然根据单词的内容进行分布式，能够提高索引效率，但是这样的话，我们就需要将所有形式接近的单词都存储在一个地方，这样就会造成单点故障，容灾能力很差，所以这种方式并不是很好。</p>
 <p>而第二种办法则有较强的容灾性能。即使一台机器无法工作，也不会剧烈影响到整个系统的工作。</p>
 <hr/>
 <h2 id="性能评估">性能评估<a class="headerlink" href="#性能评估" title="Permanent link">¶</a></h2>
 <p>和统计学的假设检验类似，也和机器学习领域的 Average Precision 类似。</p>
-<p>这些内容可以很好的类比，不再展开。</p>
+<p>这些内容可以很好的类比，暂时不再展开。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月15日 19:22:20</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月22日 13:12:18</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月14日 15:46:45</span>
