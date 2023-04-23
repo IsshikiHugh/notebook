@@ -131,6 +131,8 @@ extra:
       link: https://github.com/IsshikiHugh
       name: Github
 
+# KaTeX cdn from: [ https://www.bootcdn.cn/KaTeX/ ]
+
 extra_css:
   - _css/extra.css
   - _css/flink.css
