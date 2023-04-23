@@ -13,7 +13,7 @@ comments: false
 
     !!! proof "proof"
 
-    !!! feature "feature"
+    !!! property "property"
 
     !!! extra "extra"
 

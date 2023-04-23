@@ -1,6 +1,6 @@
-# Lecture 4 | Leftist Heaps & Skew Heaps
+# Lecture 4 | Leftist Heap & Skew Heap
 
-## Leftist Heaps
+## Leftist Heap
 
 !!! quote "link"
     OI Wiki: https://oi-wiki.org/ds/leftist-tree/
@@ -11,7 +11,7 @@
 
 ### 概念
 
-左偏堆，或者说**左偏堆(Leftist Heaps)**，它相比于普通的堆，更好的一点在于它支持快速的堆合并操作。“左偏”，并不断往右侧合并，来实现每次都是往相对小的那一侧塞进东西，进而保相对证了这个
+左偏堆，或者说**左偏堆(Leftist Heap)**，它相比于普通的堆，更好的一点在于它支持快速的堆合并操作。“左偏”，并不断往右侧合并，来实现每次都是往相对小的那一侧塞进东西，进而保相对证了这个
 
 由于左偏堆不再是一个完全二叉树，所以我们不能再像维护大根堆小跟堆那样用数组来维护它了。
 
@@ -35,12 +35,12 @@ struct LeftistHeap {
 
 而左偏堆就建立在这些性质上：
 
-!!! definition "Leftist Heaps"
+!!! definition "Leftist Heap"
     左偏堆是结点的键值应当不大于（不小于）其孩子结点的键值的堆，且满足「左偏」性质——结点的左孩子的 dist 不小于右孩子的 dist。
 
     因此，回顾 dist 的定义，我们可以得到扩展性质：
 
-    !!! feature "properties"
+    !!! property "properties"
         1. 结点的 dist 等于 $dist_\text{right child} + 1$（假设 $dist_\text{NULL} = -1$）；
         2. 如果 $dist_i = N$，则以 $i$ 为根的子树**至少**是一个 $N+1$ 层的完美二叉树，至少有 $2^{N+1}-1$ 个结点；
 
@@ -293,12 +293,12 @@ LeftistHeap * del(LeftistHeap * cur, ElementType x) {
 
 ---
 
-## Skew Heaps
+## Skew Heap
 
 !!! quote "link"
     Wikipedia: https://en.wikipedia.org/wiki/Skew_heap
 
-**斜堆(Skew Heaps)**是比左偏堆更为一般的数据结构，它同样有着能够快速合并的性质。
+**斜堆(Skew Hea)**是比左偏堆更为一般的数据结构，它同样有着能够快速合并的性质。
 
 !!! tip "头脑风暴"
     让我们回顾一下左偏堆，由于需要自下而上地维护 dist，所以我们无法进行并发操作。回顾 AVL 树，同样为了维护它比较严格的平衡性质，我们也无法进行并发操作，而红黑树则通过一个能够仅仅通过变色就能调整的黑高来规避了必须自下而上维护的问题，实现了并发。
@@ -372,8 +372,69 @@ LeftistHeap * del(LeftistHeap * cur, ElementType x) {
 
 这里我们采用**[势能法](https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/Lec01/#%E5%8A%BF%E8%83%BD%E6%B3%95)**进行分析。
 
-首先我们需要定义势能函数：
+分析 skew heap 的均摊复杂度，主要就是分析**合并**操作的复杂度，因为其他操作都可以转化为合并操作。
+
+接下来我们需要定义势能函数：
 
 !!! definition "势能函数"
+    我们定义 $\Phi(Heap) = \text{number of heavy node in } Heap$。
 
-- [ ] TODO: 有坑待填
+其中，额外需要定义 heavy node 和 light node：
+
+!!! definition "heavy node & light node"
+    对于一个子堆 $H$，如果 $size(H.\text{right\_descendant}) \geq \frac{1}{2}size(H)$，则 $H$ 是 heavy node，否则是 light node。 
+
+    ??? extra "\@ cy'ppt"
+        A node p is heavy if the number of descendants of p’s right subtree is at least half of the number of descendants of p, and light otherwise.  Note that the number of descendants of a node includes the node itself.
+
+显然，对于 heavy node 和 light node，以及合并操作，有这么一些性质：
+
+!!! property "properties"
+    1. 如果一个节点是 heavy node，并且在其右子树发生了合并（包括翻转），那么它**一定**变为一个 light node；
+    2. 如果一个节点是 light node，并且在其右子树发生了合并（包括翻转），那么它**可能**变为一个 heavy node；
+    3. 合并过程中，如果一个节点的 heavy/light 发生变化，那么它**原先**一定在堆的最右侧路径上；
+
+列出公式：
+
+$$
+\hat{c} = c + \Phi(H_{merged}) - \Phi(H_x) - \Phi(H_y)
+$$
+
+其中，$c$ 为合并操作的（最坏）复杂度，$H_{merged}$ 为合并后的堆的势能，$H_x$ 和 $H_y$ 分别为合并前的两个堆的势能。
+
+根据 property 3，在合并过程中并非所有节点都收到影响。我们可以单独记录 $l_{x}$ 为 $H_x$ 最右侧路径上的 light node 数量，$h_{x}$ 为 $H_x$ 最右侧路径上的 heavy node 数量，$h^0_{x}$ 为 $H_x$ 所有不在最右侧路径上的 heavy node 数量（即 $\text{count of heavy nodes of } H_x = H_x + H^0_x$）。
+
+于是，我们可以将上式写开：
+
+$$
+\left\{
+    \begin{aligned}
+        c &= l_x + h_x + l_y + h_y &(1)\\
+        \Phi(H_{merged}) &\leq l_x + h^0_x + l_y + h^0_y &(2)\\
+        \Phi(H_x) &= h_x + h^0_{x} &(3)\\
+        \Phi(H_y) &= h_y + h^0_{y} &(4)
+    \end{aligned}
+\right.
+$$
+
+其中稍微做一些解释：
+
+1. $(1)$：$c$ 为合并操作的（最坏）复杂度，即我们的枚举涉及了两个堆所有的右侧路径；
+2. $(2)$：在合并操作以后，根据 property 1 和 property 2，可以得到这个不等式；
+3. $(3)\&(4)$：根据势能函数的定义得到；
+
+于是，将它们代入得到结果：
+
+$$
+\begin{aligned}
+\hat{c} 
+    &= c + \Phi(H_{merged}) - \Phi(H_x) - \Phi(H_y) \\
+    &\leq (l_x + h_x + l_y + h_y)
+    + (l_x + h^0_x + l_y + h^0_y)
+    - (h_x + h^0_{x})
+    - (h_y + h^0_{y}) \\
+    &\leq 2(l_x + l_y) \\
+\hat{c}
+    &= O(\log{N})
+\end{aligned}
+$$

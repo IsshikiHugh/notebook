@@ -305,7 +305,7 @@ $$
 
 而我们之后的探讨，都需要基于 LK 假设展开：
 
-!!! feature "Key Asumptions of Lucas-Kanade"
+!!! property "Key Asumptions of Lucas-Kanade"
     1. [Small motion] 相邻帧，匹配点的运动距离小；
     2. [Brightness constancy] 相邻帧，点的亮度倾向于不变，即变化微小；
     3. [Spatial coherence] 相邻的点倾向于运动相似；

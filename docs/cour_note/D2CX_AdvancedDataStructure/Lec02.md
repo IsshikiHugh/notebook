@@ -25,7 +25,7 @@
 
     红黑树是满足如下性质的一种二叉搜索树：
 
-    !!! feature "Properties of RBTree"
+    !!! property "Properties of RBTree"
 
         !!! extra "\@cy's PPT"
             1. Every node is either red or black.
@@ -93,7 +93,7 @@
 
 此外，关于红黑树的高，我们有如下性质：
 
-!!! feature "property about height of RBTree"
+!!! property "property about height of RBTree"
     一个有 $N$ 个内部节点（不包括叶子结点）的红黑树，其高度最大为 $2\log_2 (N+1)$，即是最“歪”的情况下。
 
     ??? proof "the proof of the property"
@@ -343,7 +343,7 @@ B+ 树是一种用树状形式维护有序数列比较信息的数据结构，�
 
     更一般地来说，B+ 树满足如下性质：
 
-    !!! feature "property of B+ Tree"
+    !!! property "property of B+ Tree"
         \@cy's PPT
 
         1. The root is either a leaf or has between $2$ and $M$ children.
@@ -367,7 +367,7 @@ B+ 树是一种用树状形式维护有序数列比较信息的数据结构，�
 
 在我看来这个定义非常清晰，就是将整个序列按照不同粒度划分，然后由大到小进行逼近。
 
-!!! feature "depth of B+ Tree"
+!!! property "depth of B+ Tree"
     由于它在空间最浪费的情况下是一棵 $\lceil M/2 \rceil$ 叉树，所以 B+ 树的深度是 $O(\lceil \log_{\lceil M/2 \rceil} N \rceil)$。
 
 ---

@@ -302,7 +302,7 @@
 
 根据相关性质，我们得到这个模型有如下性质：
 
-!!! feature "一些性质"
+!!! property "一些性质"
 
     1. $BF(\text{Trouble Finder}) = h(\text{New Left Subtree}) - h(\text{Right Subtree}) = 2$；
     2. $h(\text{New L Left Subtree}) - h(\text{L Right Subtree}) = 1$；
@@ -761,7 +761,7 @@ Splay 的核心思想就是，每当我们访问一个节点（比如查询某�
 
 可以发现，其具体操作基本就和 AVL 树的相关操作有很大重合。
 
-!!! feature "效果"
+!!! property "效果"
     Splaying not only moves the accessed node to the root, but also roughly halves the depth of most nodes on the path.
 
 ---
@@ -931,7 +931,7 @@ $$
 
     在这次的缩放中，根据我们之前在 `key-point` 里提到的，我们需要将它缩放到 $k(Rank_{i}(X) - Rank_{i-1}(X))$ 的形式，并且由于 `zig-zig` 会多次发生，所以我们也得想办法搞掉这里的 ${c_{\text{zig-zag}}}_i = 2$，否则最后就会出现一个 $2n$ 的 term，而我们的证明目标是 $\log{N}$，所以我们必须将这个 $2$ 消掉。而为了消除这个 $2$，我们需要先引入一个引理：
 
-    !!! feature "Lemma 1"
+    !!! property "Lemma 1"
         由于 $y = \log{x}$ 是单调的凸函数，所以有 $\frac{\log{x} + \log{b}}{2} \leq \log {\frac{a+b}{2}}$。
 
         而在 Splay 的均摊复杂度分析过程中，我们的 $\log{x}$ 指的是 $\log_2{x}$，因此有：
