@@ -827,7 +827,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Lec04/">
-        Lecture 4 | Leftist Heaps &amp; Skew Heaps
+        Lecture 4 | Leftist Heap &amp; Skew Heap
       </a>
 </li>
 <li class="md-nav__item">
@@ -1342,7 +1342,7 @@ E === NULL</code></pre>
         B === D === H
         B === E</code></pre>
 <p>根据相关性质，我们得到这个模型有如下性质：</p>
-<div class="admonition feature">
+<div class="admonition property">
 <p class="admonition-title">一些性质</p>
 <ol>
 <li><span class="arithmatex">\(BF(\text{Trouble Finder}) = h(\text{New Left Subtree}) - h(\text{Right Subtree}) = 2\)</span>；</li>
@@ -1784,7 +1784,7 @@ E === NULL</code></pre>
 </ul>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/5.png"><img alt="" src="../img/5.png"/></a></p>
 <p>可以发现，其具体操作基本就和 AVL 树的相关操作有很大重合。</p>
-<div class="admonition feature">
+<div class="admonition property">
 <p class="admonition-title">效果</p>
 <p>Splaying not only moves the accessed node to the root, but also roughly halves the depth of most nodes on the path.</p>
 </div>
@@ -1927,7 +1927,7 @@ T_{\text{rotate }x\text{ to root}} = T_{\text{zig}} + \sum{ {T_{\text{zig-zag}}}
 \]</div>
 <p>观察配图，<span class="arithmatex">\(X\)</span> 又一次绝地反击，成为它爸爸和爷爷共同的爸爸；<span class="arithmatex">\(G\)</span> 损失最惨重，丢掉了 <span class="arithmatex">\(A,\;B\)</span> 两族子嗣。</p>
 <p>在这次的缩放中，根据我们之前在 <code>key-point</code> 里提到的，我们需要将它缩放到 <span class="arithmatex">\(k(Rank_{i}(X) - Rank_{i-1}(X))\)</span> 的形式，并且由于 <code>zig-zig</code> 会多次发生，所以我们也得想办法搞掉这里的 <span class="arithmatex">\({c_{\text{zig-zag}}}_i = 2\)</span>，否则最后就会出现一个 <span class="arithmatex">\(2n\)</span> 的 term，而我们的证明目标是 <span class="arithmatex">\(\log{N}\)</span>，所以我们必须将这个 <span class="arithmatex">\(2\)</span> 消掉。而为了消除这个 <span class="arithmatex">\(2\)</span>，我们需要先引入一个引理：</p>
-<div class="admonition feature">
+<div class="admonition property">
 <p class="admonition-title">Lemma 1</p>
 <p>由于 <span class="arithmatex">\(y = \log{x}\)</span> 是单调的凸函数，所以有 <span class="arithmatex">\(\frac{\log{x} + \log{b}}{2} \leq \log {\frac{a+b}{2}}\)</span>。</p>
 <p>而在 Splay 的均摊复杂度分析过程中，我们的 <span class="arithmatex">\(\log{x}\)</span> 指的是 <span class="arithmatex">\(\log_2{x}\)</span>，因此有：</p>
@@ -2074,7 +2074,7 @@ T_{\text{rotate }x\text{ to root}} = T_{\text{zig}} + \sum{ {T_{\text{zig-zag}}}
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月22日 11:09:30</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月23日 17:01:04</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 19:52:59</span>

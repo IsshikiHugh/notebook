@@ -779,7 +779,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Lec04/">
-        Lecture 4 | Leftist Heaps &amp; Skew Heaps
+        Lecture 4 | Leftist Heap &amp; Skew Heap
       </a>
 </li>
 <li class="md-nav__item">
@@ -988,7 +988,7 @@
 <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/6.png"><img alt="" src="../img/6.png"/></a>
 </center></p>
 <p>红黑树是满足如下性质的一种二叉搜索树：</p>
-<div class="admonition feature">
+<div class="admonition property">
 <p class="admonition-title">Properties of RBTree</p>
 <div class="admonition extra">
 <p class="admonition-title">@cy's PPT</p>
@@ -1072,7 +1072,7 @@
 <p><strong>合法红黑树的红色节点的两个子节点一定都是叶子或都不是叶子！</strong></p>
 </div>
 <p>此外，关于红黑树的高，我们有如下性质：</p>
-<div class="admonition feature">
+<div class="admonition property">
 <p class="admonition-title">property about height of RBTree</p>
 <p>一个有 <span class="arithmatex">\(N\)</span> 个内部节点（不包括叶子结点）的红黑树，其高度最大为 <span class="arithmatex">\(2\log_2 (N+1)\)</span>，即是最“歪”的情况下。</p>
 <details class="proof">
@@ -1344,7 +1344,7 @@ D ===&gt;|"C&amp;R"| C</code></pre>
 <p>如下图就是一颗 <span class="arithmatex">\(M=4\)</span> 的 B+ 树，可以对照着这个例子来理解性质。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/16.svg"><img alt="" src="../img/16.svg"/></a></p>
 <p>更一般地来说，B+ 树满足如下性质：</p>
-<div class="admonition feature">
+<div class="admonition property">
 <p class="admonition-title">property of B+ Tree</p>
 <p>@cy's PPT</p>
 <ol>
@@ -1367,7 +1367,7 @@ D ===&gt;|"C&amp;R"| C</code></pre>
 </div>
 <p>抽象地来说就是，我们把一个数列相对均匀的分为 <span class="arithmatex">\(m\)</span> 块，然后把分界的数拿出来。当我们去查找或插入时，只需要和这些边界数进行比较，就知道它应该放在哪一块里。再不断细化粒度，用类似于“<span class="arithmatex">\(m\)</span> 分”的思想来找到目标位置。</p>
 <p>在我看来这个定义非常清晰，就是将整个序列按照不同粒度划分，然后由大到小进行逼近。</p>
-<div class="admonition feature">
+<div class="admonition property">
 <p class="admonition-title">depth of B+ Tree</p>
 <p>由于它在空间最浪费的情况下是一棵 <span class="arithmatex">\(\lceil M/2 \rceil\)</span> 叉树，所以 B+ 树的深度是 <span class="arithmatex">\(O(\lceil \log_{\lceil M/2 \rceil} N \rceil)\)</span>。</p>
 </div>
@@ -1466,7 +1466,7 @@ D ===&gt;|"C&amp;R"| C</code></pre>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月22日 13:12:18</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月23日 17:01:04</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月8日 10:06:23</span>
