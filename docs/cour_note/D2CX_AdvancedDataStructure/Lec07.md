@@ -469,11 +469,13 @@ $$
     其复杂度有结论：
 
     $$
-    T(N) = \begin{aligned}
-        & O(N^{\log_b{a}}) & \text{if } a > b^{k} \\
-        & O(N^k \log^{p+1}{N}) & \text{if } a = b^{k} \\
-        & O(N^k \log^{p}{N}) & \text{if } a < b^{k}
-    \end{aligned}
+    T(N) = \left\{
+        \begin{aligned}
+            & O(N^{\log_b{a}}) & \text{if } a > b^{k} \\
+            & O(N^k \log^{p+1}{N}) & \text{if } a = b^{k} \\
+            & O(N^k \log^{p}{N}) & \text{if } a < b^{k}
+        \end{aligned}
+    \right.
     $$
 
     实际上这个式子也非常好认，属于形式二的一种特殊形式。可以对照着看，非常容易看出关系。
