@@ -146,6 +146,8 @@
 ???+ section "Insertion / case 2"
     对于 case 2，我们可以直接进行一个 Rotation 操作将它转化为 case 3。
 
+    但是实际上，细心的小朋友已经发现了，从 case 2 -> case 3 -> done 的过程 实际上就是一个 LR Rotation！
+
     ![](img/10.png)
 
 ???+ section "Insertion / case 1"
