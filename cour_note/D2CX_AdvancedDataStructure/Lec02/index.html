@@ -1151,7 +1151,7 @@ A ===&gt;|"C"| C ---&gt;|"C&amp;R"| D</code></pre>
 <h4 id="删除">删除<a class="headerlink" href="#删除" title="Permanent link">¶</a></h4>
 <p>关于删除操作，下面这个视频讲的很清晰！只不过 case 1 可能还有些细节需要注意。</p>
 <p>👉 <strong><a href="https://www.bilibili.com/video/BV1uZ4y1P7rr/?spm_id_from=333.880.my_history.page.click&amp;vd_source=13807e82155f985591ed6f1b4e3434ed">红黑树快速入门 - 04删除</a></strong></p>
-<p>要删除某个节点 x，我们首先要找到它，在 BFT 中找到某个 x 的开销为 <span class="arithmatex">\(O(\log N)\)</span>。接下来我们要删除这个任意位置的节点，这势必让红黑树的结构发生变化。此外，红黑性质的维护也是一个让人头疼的问题，因此，我们对这些情况做分类讨论：</p>
+<p>要删除某个节点 x，我们首先要找到它，在 BST 中找到某个 x 的开销为 <span class="arithmatex">\(O(\log N)\)</span>。接下来我们要删除这个任意位置的节点，这势必让红黑树的结构发生变化。此外，红黑性质的维护也是一个让人头疼的问题，因此，我们对这些情况做分类讨论：</p>
 <table>
 <thead>
 <tr>
@@ -1164,7 +1164,7 @@ A ===&gt;|"C"| C ---&gt;|"C&amp;R"| D</code></pre>
 <tr>
 <td align="left">直接用<code>NIL</code>替代</td>
 <td align="left">直接删除，用子节点替代它</td>
-<td align="left">将值与左子树最小值或右子<br/>树最大值交换，颜色不换，<br/>然后删除目标点</td>
+<td align="left">将值与左子树最大值或右子<br/>树最小值交换，颜色不换，<br/>然后删除目标点</td>
 </tr>
 </tbody>
 </table>
@@ -1466,7 +1466,7 @@ D ===&gt;|"C&amp;R"| C</code></pre>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月23日 17:01:04</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月25日 10:21:44</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月8日 10:06:23</span>

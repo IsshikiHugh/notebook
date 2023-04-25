@@ -1790,18 +1790,18 @@ E === NULL</code></pre>
 </div>
 <hr/>
 <h3 id="对点操作">对点操作<a class="headerlink" href="#对点操作" title="Permanent link">¶</a></h3>
-<p>由于 Splay Tree 除了在完成所有操作以后都需要进行一次 Splay 操作，其他部分都和 BFT 一样，所以这里只简单介绍一下 Splay 的部分。</p>
+<p>由于 Splay Tree 除了在完成所有操作以后都需要进行一次 Splay 操作，其他部分都和 BST 一样，所以这里只简单介绍一下 Splay 的部分。</p>
 <div class="admonition section">
 <p class="admonition-title">Find X</p>
-<p>根据 BFT 的性质，可以在 <span class="arithmatex">\(O(\log N)\)</span> 的时间里找到 <span class="arithmatex">\(X\)</span>，接下来通过旋转操作，将 <span class="arithmatex">\(X\)</span> 不断旋转至根，最终直接取出 Root 即为结果。   </p>
+<p>根据 BST 的性质，可以在 <span class="arithmatex">\(O(\log N)\)</span> 的时间里找到 <span class="arithmatex">\(X\)</span>，接下来通过旋转操作，将 <span class="arithmatex">\(X\)</span> 不断旋转至根，最终直接取出 Root 即为结果。   </p>
 </div>
 <div class="admonition section">
 <p class="admonition-title">Remove X</p>
-<p>根据 BFT 的性质，可以在 <span class="arithmatex">\(O(\log N)\)</span> 的时间里找到 <span class="arithmatex">\(X\)</span>，接下来通过旋转操作，将 <span class="arithmatex">\(X\)</span> 不断旋转至根，接下来删除 Root 节点，并在维护 BFT 性质的情况下递归地合并左右子树即可。</p>
+<p>根据 BST 的性质，可以在 <span class="arithmatex">\(O(\log N)\)</span> 的时间里找到 <span class="arithmatex">\(X\)</span>，接下来通过旋转操作，将 <span class="arithmatex">\(X\)</span> 不断旋转至根，接下来删除 Root 节点，并在维护 BST 性质的情况下递归地合并左右子树即可。</p>
 </div>
 <div class="admonition section">
 <p class="admonition-title">Find Max</p>
-<p>根据 BFT 的性质，可以在 <span class="arithmatex">\(O(\log N)\)</span> 的时间里找到最大值，将它旋转到根部以后，可以发现它没有右子树，直接删掉就行。</p>
+<p>根据 BST 的性质，可以在 <span class="arithmatex">\(O(\log N)\)</span> 的时间里找到最大值，将它旋转到根部以后，可以发现它没有右子树，直接删掉就行。</p>
 </div>
 <hr/>
 <h3 id="摊还分析">摊还分析<a class="headerlink" href="#摊还分析" title="Permanent link">¶</a></h3>
@@ -2074,7 +2074,7 @@ T_{\text{rotate }x\text{ to root}} = T_{\text{zig}} + \sum{ {T_{\text{zig-zag}}}
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月23日 17:01:04</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月25日 10:21:44</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 19:52:59</span>

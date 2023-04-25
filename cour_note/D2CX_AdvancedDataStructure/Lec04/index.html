@@ -1051,7 +1051,7 @@
 </code></pre></div>
 <hr/>
 <h5 id="递归式">递归式<a class="headerlink" href="#递归式" title="Permanent link">¶</a></h5>
-<p>递归式先比较当前两个待合并子树的根结点的键值，选择较小（较大）的那个作为根结点，其左子树依然为左子树，又子树更新为「右子树和另一个待合并子树的合并结果」。</p>
+<p>递归式先比较当前两个待合并子树的根结点的键值，选择较小（较大）的那个作为根结点，其左子树依然为左子树，右子树更新为「右子树和另一个待合并子树的合并结果」。</p>
 <p>当然，在递归地更新完后，我们需要检查左子树和右子树是否满足 <span class="arithmatex">\(dist_\text{left child} \geq dist_\text{right child}\)</span> 的性质，如果不满足，我们则需要交换左右子树来维持性质。</p>
 <div class="highlight"><pre><span></span><code><span class="n">LeftistHeap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="n">LeftistHeap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">LeftistHeap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Recursive exit. If any is NULL, return the other as the new root of subtree.</span>
@@ -1380,7 +1380,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月23日 17:01:04</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月23日 20:11:14</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月21日 20:38:11</span>

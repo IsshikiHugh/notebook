@@ -1012,7 +1012,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-7--divide--conquer">Lecture 7 | Divide &amp; Conquer<a class="headerlink" href="#lecture-7--divide--conquer" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3613 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 12 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3645 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 12 分钟</p>
 </div>
 <p><del>感觉这几节课上的内容都挺宽泛的啊x</del></p>
 <hr/>
@@ -1396,20 +1396,23 @@ f(N) \sim \Theta(a^{\log_b{N}}) = \Theta(N^{\log_b{a}})
 \]</div>
 <p>其复杂度有结论：</p>
 <div class="arithmatex">\[
-T(N) = \begin{aligned}
-    &amp; O(N^{\log_b{a}}) &amp; \text{if } a &gt; b^{k} \\
-    &amp; O(N^k \log^{p+1}{N}) &amp; \text{if } a = b^{k} \\
-    &amp; O(N^k \log^{p}{N}) &amp; \text{if } a &lt; b^{k}
-\end{aligned}
+T(N) = \left\{
+    \begin{aligned}
+        &amp; O(N^{\log_b{a}}) &amp; \text{if } a &gt; b^{k} \\
+        &amp; O(N^k \log^{p+1}{N}) &amp; \text{if } a = b^{k} \\
+        &amp; O(N^k \log^{p}{N}) &amp; \text{if } a &lt; b^{k}
+    \end{aligned}
+\right.
 \]</div>
 <p>实际上这个式子也非常好认，属于形式二的一种特殊形式。可以对照着看，非常容易看出关系。</p>
+<p>只不过对于特殊情况，这个形式的约束更加精确，证明过程有缘再补吧x</p>
 </div>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月22日 19:25:13</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月23日 20:13:40</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月11日 22:39:40</span>
