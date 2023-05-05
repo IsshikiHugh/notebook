@@ -262,12 +262,12 @@ $$
     假设我们需要计算 $a \cdot b$，且 $a$，$b$ 都是整数，则可以将 $b$ 写成二进制形式 $(b_{n-1}b_{n-2}...b_1b_0)_2$，于是：
 
     $$
-    \begin{array}{l}
-        a \cdot b & = & a \cdot (b_{n-1}b_{n-2}...b_1b_0)_2 \\
-                  & = & a \cdot \left[ (b_{n-1}0...00)_2 + \cdot (0b_{n-2}...00)_2 + ... + \cdot (00...b_10)_2 + \cdot(00...0b_0)_2 \right]\\
-                  & = & a \cdot \sum_{i = 0} ^{n-1} b_i \cdot 2^{i} \\
-                  & = & a \cdot \sum_{i = 0} ^{n-1} b_i \;\mathrm{<<}\; i \;\;\; \text{where "<<" means "Shift Left"}
-    \end{array}
+    \begin{aligned}
+        a \cdot b &= a \cdot (b_{n-1}b_{n-2}...b_1b_0)_2 \\
+                  &= a \cdot \left[ (b_{n-1}0...00)_2 + \cdot (0b_{n-2}...00)_2 + ... + \cdot (00...b_10)_2 + \cdot(00...0b_0)_2 \right]\\
+                  &= a \cdot \sum_{i = 0} ^{n-1} b_i \cdot 2^{i} \\
+                  &= a \cdot \sum_{i = 0} ^{n-1} b_i \;\mathrm{<<}\; i \;\;\; \text{where "<<" means "Shift Left"}
+    \end{aligned}
     $$
 
     于是就可以通过 **[位移](#位移)** 的相关知识来实现。
