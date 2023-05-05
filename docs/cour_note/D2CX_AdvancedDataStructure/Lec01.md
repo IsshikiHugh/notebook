@@ -308,7 +308,7 @@
     2. $h(\text{New L Left Subtree}) - h(\text{L Right Subtree}) = 1$；
         - 如果此差为 0，则不应当成为 Trouble Maker，若此差为 2，则 Left Child 应当为 Trouble Finder；
 
-现在我们希望在保留二叉搜索树的性质下，要让 $|BF(\text{Trouble Finder})|$ 变小，一个很自然的想法就是让 $h(\text{New Left Subtree})$ 去 +1，让 $h(\text{Right Subtree})$ 去 -1。
+现在我们希望在保留二叉搜索树的性质下，要让 $|BF(\text{Trouble Finder})|$ 变小，一个很自然的想法就是让 $h(\text{New Left Subtree})$ 去 -1，让 $h(\text{Right Subtree})$ 去 +1。
 
 于是我们发现，这样的操作刚好：
 
