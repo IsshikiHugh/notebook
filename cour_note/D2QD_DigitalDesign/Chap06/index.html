@@ -1326,14 +1326,14 @@ K_1 : R2 \leftarrow R1
 </blockquote>
 <p>与 <code>MUX</code> 实现相对比，三态门实现方式如下：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../108.png"><img alt="" src="../108.png"/></a></p>
-<p>进行简单说明，<span class="arithmatex">\(c) 中对三态门的表示进行了简化，含义参考 \(a\)</span>。它想表达的主要含义是，当 <code>EN</code> 为 <code>1</code> 时，表示输出；反之表示输入（当然，真正决定是否读入寄存器的还是 <code>LD</code>）。</p>
+<p>进行简单说明，(c) 中对三态门的表示进行了简化，含义参考 (a)。它想表达的主要含义是，当 <code>EN</code> 为 <code>1</code> 时，表示输出；反之表示输入（当然，真正决定是否读入寄存器的还是 <code>LD</code>）。</p>
 <details class="question">
 <summary>个人疑惑</summary>
 <p>书中的表述是：</p>
 <blockquote>
 <p>If the three-state buffers are enabled, then the lines are outputs; if the three-state buffers are disabled, then the lines can be inputs.</p>
 </blockquote>
-<p>但是看 <span class="arithmatex">\(a\)</span> 的表达，不管 <code>EN</code> 是什么，它应当都有输入才对，真正决定是否输入进来的应该还是 <code>LD</code>？</p>
+<p>但是看 (a) 的表达，不管 <code>EN</code> 是什么，它应当都有输入才对，真正决定是否输入进来的应该还是 <code>LD</code>？</p>
 </details>
 <p>对比来看，三态门的实现大大降低了总线的实现成本，精简了电路的实现，所以通常来说更常用。</p>
 <details class="note">
@@ -1675,7 +1675,7 @@ K_1 : R2 \leftarrow R1
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月9日 15:24:37</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年5月5日 20:03:32</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月31日 15:18:46</span>
