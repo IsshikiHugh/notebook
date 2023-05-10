@@ -142,7 +142,7 @@ extra_javascript:
   - _js/extra.js
   # - _js/mathjax.js
   - _js/katex.js
-  - https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js
 
 
 nav:
