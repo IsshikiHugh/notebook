@@ -232,11 +232,13 @@ nav:
       - cour_note/D2CX_AdvancedDataStructure/Lec07.md
       - cour_note/D2CX_AdvancedDataStructure/Lec08.md
       - cour_note/D2CX_AdvancedDataStructure/Lec09.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec10.md
       - cour_note/D2CX_AdvancedDataStructure/Ex01.md
   - "📝 论文阅读":
     - pape_read/index.md
     - pape_read/arXiv:2003.08934/index.md
     - pape_read/arXiv:2104.05670/index.md
+    - pape_read/SAMP/index.md
   - "📦 杂项专题":
     - others/index.md
     - others/reveal-md2Slides/index.md

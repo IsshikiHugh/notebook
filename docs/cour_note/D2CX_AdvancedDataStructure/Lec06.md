@@ -2,6 +2,7 @@
 
 !!! quote "link"
     OI Wiki: https://oi-wiki.org/search/backtracking/
+    
     Wikipedia: https://en.wikipedia.org/wiki/Backtracking
 
 这一节的内容比较散，因为回溯是一个很基础而且很泛用的东西，所以感觉怎么讲都不太合适。更多的是需要在具体问题、具体模型中去体会。
@@ -15,7 +16,7 @@
 非常经典的问题，相信接触过算法的同学基本上都绕不开这个东西。
 
 !!! quote "link"
-    Wiki: https://en.wikipedia.org/wiki/Eight_queens_puzzle
+    Wikipedia: https://en.wikipedia.org/wiki/Eight_queens_puzzle
 
 ---
 
@@ -31,6 +32,6 @@
 ## ɑ-β 剪枝
 
 !!! quote "link"
-    Wiki: https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning
+    Wikipedia: https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning
 
 - 实际上就类似于求解不能连续向右的，从根到叶子的路径。

@@ -26,3 +26,7 @@
     - [x] :material-label: [Lecture 6 | Backtracing](Lec06.md)
     - [x] :material-label: [Lecture 7 | Divide & Conquer](Lec07.md)
     - [ ] :material-label: [Lecture 8 | Dynamic Programming](Lec08.md)
+    - [ ] :material-label: [Lecture 9 | Greedy Algorithms](Lec09.md)
+    - [ ] :material-label: [Lecture 10 | NP Completeness](Lec10.md)
+
+    - [x] :material-label: [Topic 1 | Amortized Analysis](Ex01.md)

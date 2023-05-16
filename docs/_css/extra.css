@@ -82,6 +82,17 @@ li {
     border-radius: 5px;
 }
 
+.md-typeset .md-button {
+    border: .15rem solid;
+    border-radius: .0rem;
+    color: var(--md-primary-fg-color);
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    padding: .225em 2em;
+    transition: color 125ms,background-color 125ms,border-color 125ms;
+}
+
 :root,
 [data-md-color-scheme=default] {
     --md-default-fg-color: rgba(72, 52, 52, .78);
