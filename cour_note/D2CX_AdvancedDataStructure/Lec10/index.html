@@ -760,6 +760,25 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#hamilton-cycle-problem">
+    Hamilton Cycle Problem
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#traveling-salesman-problem">
+    Traveling Salesman Problem
+  </a>
+<nav aria-label="Traveling Salesman Problem" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#判定版本的-npc-证明">
+    判定版本的 NPC 证明
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#circuit-sat">
     Circuit-SAT
   </a>
@@ -905,6 +924,25 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#hamilton-cycle-problem">
+    Hamilton Cycle Problem
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#traveling-salesman-problem">
+    Traveling Salesman Problem
+  </a>
+<nav aria-label="Traveling Salesman Problem" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#判定版本的-npc-证明">
+    判定版本的 NPC 证明
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#circuit-sat">
     Circuit-SAT
   </a>
@@ -940,7 +978,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-10--np-completeness">Lecture 10 | NP Completeness<a class="headerlink" href="#lecture-10--np-completeness" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1752 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 10 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 6 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 2705 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 10 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 9 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -998,7 +1036,7 @@
 <p>如果我们试图证明一个问题是 NPC 问题，我们可以通过这种手段：</p>
 <ol>
 <li>判定该问题是一个 NP 问题；</li>
-<li>判定一个已知的 NPC 问题可以<strong><a href="#多项式时间归约">多项式时间归约🔍</a></strong>为该问题；</li>
+<li>判定一个已知的 NPC 问题可以<strong><a href="#多项式时间归约">多项式时间归约🔍</a></strong>为该问题，或者说判定该问题是 NPH 问题；</li>
 </ol>
 <blockquote>
 <p>第一个被证明是 NPC 的问题是 <strong><a href="#circuit-sat">Circuit-SAT🔍</a></strong> 问题。</p>
@@ -1013,6 +1051,7 @@
 <p class="admonition-title">NPH</p>
 <p>NPH 即 NP hard，NP 困难，它不一定需要是 NP 问题。而所有 NP 问题都可以<strong><a href="#多项式时间归约">多项式时间归约🔍</a></strong>为 NPH 问题。</p>
 </div>
+<p>也就是说 <span class="arithmatex">\(NPC = NP \cap NPH\)</span>。</p>
 <hr/>
 <h2 id="课内案例">课内案例<a class="headerlink" href="#课内案例" title="Permanent link">¶</a></h2>
 <h3 id="halting-problem">Halting Problem<a class="headerlink" href="#halting-problem" title="Permanent link">¶</a></h3>
@@ -1030,8 +1069,116 @@
 <span class="w">    </span><span class="k">return</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>接下来，如果我们想知道 <code>foo()</code> 是否会停机，就会执行 <code>willHalt(foo)</code>。然而在 <code>foo()</code> 内部也运行了一次 <code>willHalt(foo)</code>，如果它认为 <code>foo()</code> 会停机，则构造一个死循环；而如果它认为 <code>foo()</code> 不会停机，则选择让它立刻停机，于是这里就产生了矛盾。</p>
+<p>接下来，如果我们想知道 <code>foo()</code> 是否会停机，就会执行 <code>willHalt(foo)</code>。然而在 <code>foo()</code> 内部也有一个 <code>willHalt(foo)</code>，如果它认为 <code>foo()</code> 会停机，则构造一个死循环；而如果它认为 <code>foo()</code> 不会停机，则选择让它立刻停机，于是这里就产生了矛盾。</p>
 <p>理解上面这段内容的关键就是，这里虽然不存在事实意义上的“死循环”，但可以理解为这里存在一个逻辑上的递归，而这种“逻辑上的递归”，正是导致停机问题成为一个不可计算问题的原因。</p>
+<hr/>
+<h3 id="hamilton-cycle-problem">Hamilton Cycle Problem<a class="headerlink" href="#hamilton-cycle-problem" title="Permanent link">¶</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">links</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Hamiltonian_path_problem">https://en.wikipedia.org/wiki/Hamiltonian_path_problem</a></p>
+<p>OI Wiki: <a href="https://oi-wiki.org/graph/hamilton">https://oi-wiki.org/graph/hamilton</a></p>
+</div>
+<div class="admonition definition">
+<p class="admonition-title">哈密顿回路问题</p>
+<p>给定一个图，判断是否存在一条路径，使得它经过图中的每个点恰好一次，且最后回到起点。</p>
+</div>
+<p>哈密顿回路问题是一个 NPC 问题。</p>
+<hr/>
+<h3 id="traveling-salesman-problem">Traveling Salesman Problem<a class="headerlink" href="#traveling-salesman-problem" title="Permanent link">¶</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Links</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">https://en.wikipedia.org/wiki/Travelling_salesman_problem</a></p>
+</div>
+<div class="admonition definition">
+<p class="admonition-title">旅行商问题</p>
+<p>旅行商问题有<strong>两种</strong>定义，其中前者是 NPH，而被称为“判定版本”的后者是 NPC。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input id="__tabbed_1_1" name="__tabbed_1" type="radio"><input checked="checked" id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">原始定义</label><label for="__tabbed_1_2">判定版本</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>给定一个<strong>完全</strong>图，判断是否存在一条路径，使得它经过图中的每个点恰好一次，且最后回到起点，且路径<strong>长度最短</strong>。</p>
+<blockquote>
+<p>"Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?"</p>
+<p>From Wikipedia</p>
+</blockquote>
+<p>该版本的 TSP 问题是一个 NPH 问题，常常出现在组合优化的语境中。</p>
+</div>
+<div class="tabbed-block">
+<p>给定一个<strong>完全</strong>图，判断是否存在一条路径，使得它经过图中的每个点恰好一次，且最后回到起点，且路径<strong>长度不超过</strong> <span class="arithmatex">\(k\)</span>。</p>
+<p>该版本的 TSP 问题是一个 NPC 问题，常常出现在复杂度理论的语境中。</p>
+</div>
+</div>
+</input></input></div>
+<div class="admonition warning">
+<p class="admonition-title">需要注意，接下来我们谈论的都是判定版本的 TSP！</p>
+</div>
+</div>
+<hr/>
+<h4 id="判定版本的-npc-证明">判定版本的 NPC 证明<a class="headerlink" href="#判定版本的-npc-证明" title="Permanent link">¶</a></h4>
+<p>现在，假设我们已知 <a href="#hamilton-cycle-problem">Hamilton Cycle Problem</a> 问题是一个 NPC 问题，尝试通过<strong><a href="#多项式时间归约">多项式时间归约🔍</a></strong>的方式来证明 TSP 也是一个 NPC 问题。</p>
+<div class="admonition quote">
+<p class="admonition-title">Recommended Reading</p>
+<p><a href="https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/hamiltonianCycle_to_TSP.html">https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/hamiltonianCycle_to_TSP.html</a></p>
+</div>
+<p>首先回顾证明 NPC 的步骤：</p>
+<ol>
+<li>判定该问题是一个 NP 问题；</li>
+<li>判定一个已知的 NPC 问题可以<strong><a href="#多项式时间归约">多项式时间归约🔍</a></strong>为该问题，或者说判定该问题是 NPH 问题；</li>
+</ol>
+<p>代入到这个问题中，也就是我们需要证明：</p>
+<ol>
+<li>TSP 是一个 NP 问题；</li>
+<li>Hamilton Cycle Problem 可以<strong><a href="#多项式时间归约">多项式时间归约🔍</a></strong>为 TSP；</li>
+</ol>
+<div class="admonition proof">
+<p class="admonition-title">TSP is NP</p>
+<p>证明 TSP 是一个 NP 问题即证明 TSP 的解可以在多项式时间内被验证。而验证一个解是 TSP 问题的解，需要证明下面两个点：</p>
+<ol>
+<li>这条路径经过了所有节点恰好一次；</li>
+<li>这条路径长度不超过<span class="arithmatex">\(k\)</span>；</li>
+</ol>
+<p>显然，这两条都只需要 <span class="arithmatex">\(O(N)\)</span> 的开销就能验证。</p>
+<p>于是，我们得到结论：<span class="arithmatex">\(\text{TSP} \in \text{NP}\)</span>。</p>
+</div>
+<div class="admonition proof">
+<p class="admonition-title">TSP is NPH</p>
+<p>要证明 TSP 是一个 NPH 问题，我们可以通过证明 Hamilton Cycle Problem(HCP) 可以<strong><a href="#多项式时间归约">多项式时间归约🔍</a></strong>为 TSP。</p>
+<p>为此，我们需要对比 HCP 和 TSP 的差异。</p>
+<p>以 HCP 为基础描述 TSP，实际上就是在一张<strong>完全图</strong>上寻找<strong>总长不超过</strong> <span class="arithmatex">\(k\)</span> 的哈密顿环路，具体来说：</p>
+<table>
+<thead>
+<tr>
+<th align="center">HCP</th>
+<th align="center">TSP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">图 <span class="arithmatex">\(G(V,E)\)</span></td>
+<td align="center">完全图 <span class="arithmatex">\(G'(V',E')\)</span></td>
+</tr>
+<tr>
+<td align="center">无边权</td>
+<td align="center">有边权</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center"><span class="arithmatex">\(\sum v_i \leq k\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>而为了证明 <span class="arithmatex">\(\text{HCP} \leq_p \text{TCP}\)</span>，我们设计一个<strong>多项式时间</strong>的方法 <code>f()</code> 实现 <span class="arithmatex">\(G(V,E) \to G'(V',E')\)</span>，具体来说，它做这些事：</p>
+<ol>
+<li>连接 <span class="arithmatex">\(G\)</span> 中所有没连上的边，使 <span class="arithmatex">\(G\)</span> 成为一张无权完全图；</li>
+<li>对于无权完全图中的每一条边 <span class="arithmatex">\(v^c_i\)</span>，如果在 <span class="arithmatex">\(G\)</span> 中也有这条边，那么令它边权为 0，否则令它边权为 1，于是得到有权完全图 <span class="arithmatex">\(G'(V',E')\)</span>；</li>
+</ol>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/64.svg"><img alt="" src="../img/64.svg"/></a></p>
+<blockquote>
+<p>右图中所有的蓝边边权都为 0，绿边边权都为 1。</p>
+</blockquote>
+<p>由于完全图的边数为 <span class="arithmatex">\(\frac{n(n-1)}{2}\)</span>，所以这个步骤显然是多项式时间的。</p>
+<p>接下来，我们发现，原问题为在 <span class="arithmatex">\(G\)</span> 上寻找哈密顿环，等价于在 <span class="arithmatex">\(G' = f(G)\)</span> 上做 <span class="arithmatex">\(k = 0\)</span> 的 TSP。由此证明 <span class="arithmatex">\(\text{HCP} \leq_{p} \text{TSP}\)</span>，即 <span class="arithmatex">\(\text{TSP} \in \text{NPH}\)</span>。</p>
+</div>
+<p>综上所述，由于 <span class="arithmatex">\(\text{TSP} \in \text{NP}\)</span> 且 <span class="arithmatex">\(\text{TSP} \in \text{NPH}\)</span>，所以 <span class="arithmatex">\(\text{TSP} \in \text{NPC}\)</span>。</p>
 <hr/>
 <h3 id="circuit-sat">Circuit-SAT<a class="headerlink" href="#circuit-sat" title="Permanent link">¶</a></h3>
 <hr/>
@@ -1080,7 +1227,7 @@ A \leq_{p} B
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年5月16日 13:27:54</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年5月19日 00:36:54</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年5月16日 13:27:54</span>
