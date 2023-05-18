@@ -66,7 +66,7 @@
     如果我们试图证明一个问题是 NPC 问题，我们可以通过这种手段：
 
     1. 判定该问题是一个 NP 问题；
-    2. 判定一个已知的 NPC 问题可以**[多项式时间归约🔍](#多项式时间归约)**为该问题；
+    2. 判定一个已知的 NPC 问题可以**[多项式时间归约🔍](#多项式时间归约)**为该问题，或者说判定该问题是 NPH 问题；
 
     > 第一个被证明是 NPC 的问题是 **[Circuit-SAT🔍](#circuit-sat)** 问题。
 
@@ -77,6 +77,8 @@
 
 !!! definition "NPH"
     NPH 即 NP hard，NP 困难，它不一定需要是 NP 问题。而所有 NP 问题都可以**[多项式时间归约🔍](#多项式时间归约)**为 NPH 问题。
+
+也就是说 $NPC = NP \cap NPH$。
 
 ---
 
@@ -102,13 +104,113 @@ void foo() {
 }
 ```
 
-接下来，如果我们想知道 `foo()` 是否会停机，就会执行 `willHalt(foo)`。然而在 `foo()` 内部也运行了一次 `willHalt(foo)`，如果它认为 `foo()` 会停机，则构造一个死循环；而如果它认为 `foo()` 不会停机，则选择让它立刻停机，于是这里就产生了矛盾。
+接下来，如果我们想知道 `foo()` 是否会停机，就会执行 `willHalt(foo)`。然而在 `foo()` 内部也有一个 `willHalt(foo)`，如果它认为 `foo()` 会停机，则构造一个死循环；而如果它认为 `foo()` 不会停机，则选择让它立刻停机，于是这里就产生了矛盾。
 
 理解上面这段内容的关键就是，这里虽然不存在事实意义上的“死循环”，但可以理解为这里存在一个逻辑上的递归，而这种“逻辑上的递归”，正是导致停机问题成为一个不可计算问题的原因。
 
 ---
 
+### Hamilton Cycle Problem
+
+!!! quote "links"
+    Wikipedia: https://en.wikipedia.org/wiki/Hamiltonian_path_problem
+
+    OI Wiki: https://oi-wiki.org/graph/hamilton
+
+!!! definition "哈密顿回路问题"
+    给定一个图，判断是否存在一条路径，使得它经过图中的每个点恰好一次，且最后回到起点。
+    
+哈密顿回路问题是一个 NPC 问题。
+
+---
+
+### Traveling Salesman Problem
+
+!!! quote "Links"
+    Wikipedia: https://en.wikipedia.org/wiki/Travelling_salesman_problem
+
+!!! definition "旅行商问题"
+    旅行商问题有**两种**定义，其中前者是 NPH，而被称为“判定版本”的后者是 NPC。
+
+    === "原始定义"
+        给定一个**完全**图，判断是否存在一条路径，使得它经过图中的每个点恰好一次，且最后回到起点，且路径**长度最短**。
+
+        > "Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?"
+        > 
+        > From Wikipedia
+
+        该版本的 TSP 问题是一个 NPH 问题，常常出现在组合优化的语境中。
+
+    ===+ "判定版本"
+        给定一个**完全**图，判断是否存在一条路径，使得它经过图中的每个点恰好一次，且最后回到起点，且路径**长度不超过** $k$。
+
+        该版本的 TSP 问题是一个 NPC 问题，常常出现在复杂度理论的语境中。
+
+    !!! warning "需要注意，接下来我们谈论的都是判定版本的 TSP！"
+
+---
+
+#### 判定版本的 NPC 证明
+
+现在，假设我们已知 [Hamilton Cycle Problem](#hamilton-cycle-problem) 问题是一个 NPC 问题，尝试通过**[多项式时间归约🔍](#多项式时间归约)**的方式来证明 TSP 也是一个 NPC 问题。
+
+!!! quote "Recommended Reading"
+    https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/hamiltonianCycle_to_TSP.html
+
+
+首先回顾证明 NPC 的步骤：
+
+1. 判定该问题是一个 NP 问题；
+2. 判定一个已知的 NPC 问题可以**[多项式时间归约🔍](#多项式时间归约)**为该问题，或者说判定该问题是 NPH 问题；
+
+代入到这个问题中，也就是我们需要证明：
+
+1.  TSP 是一个 NP 问题；
+2.  Hamilton Cycle Problem 可以**[多项式时间归约🔍](#多项式时间归约)**为 TSP；
+
+!!! proof "TSP is NP"
+    证明 TSP 是一个 NP 问题即证明 TSP 的解可以在多项式时间内被验证。而验证一个解是 TSP 问题的解，需要证明下面两个点：
+
+    1. 这条路径经过了所有节点恰好一次；
+    2. 这条路径长度不超过$k$；
+
+    显然，这两条都只需要 $O(N)$ 的开销就能验证。
+
+    于是，我们得到结论：$\text{TSP} \in \text{NP}$。
+
+!!! proof "TSP is NPH"
+    要证明 TSP 是一个 NPH 问题，我们可以通过证明 Hamilton Cycle Problem(HCP) 可以**[多项式时间归约🔍](#多项式时间归约)**为 TSP。
+
+    为此，我们需要对比 HCP 和 TSP 的差异。
+
+    以 HCP 为基础描述 TSP，实际上就是在一张**完全图**上寻找**总长不超过** $k$ 的哈密顿环路，具体来说：
+
+    | HCP | TSP |
+    |:---:|:---:|
+    |图 $G(V,E)$|完全图 $G'(V',E')$ |
+    |无边权|有边权|
+    |  -  |$\sum v_i \leq k$|
+
+    而为了证明 $\text{HCP} \leq_p \text{TCP}$，我们设计一个**多项式时间**的方法 `f()` 实现 $G(V,E) \to G'(V',E')$，具体来说，它做这些事：
+
+    1. 连接 $G$ 中所有没连上的边，使 $G$ 成为一张无权完全图；
+    2. 对于无权完全图中的每一条边 $v^c_i$，如果在 $G$ 中也有这条边，那么令它边权为 0，否则令它边权为 1，于是得到有权完全图 $G'(V',E')$；
+
+    ![](img/64.svg)
+    > 右图中所有的蓝边边权都为 0，绿边边权都为 1。
+
+    由于完全图的边数为 $\frac{n(n-1)}{2}$，所以这个步骤显然是多项式时间的。
+
+    接下来，我们发现，原问题为在 $G$ 上寻找哈密顿环，等价于在 $G' = f(G)$ 上做 $k = 0$ 的 TSP。由此证明 $\text{HCP} \leq_{p} \text{TSP}$，即 $\text{TSP} \in \text{NPH}$。
+    
+综上所述，由于 $\text{TSP} \in \text{NP}$ 且 $\text{TSP} \in \text{NPH}$，所以 $\text{TSP} \in \text{NPC}$。
+
+---
+
 ### Circuit-SAT
+
+
+
 
 
 ---
