@@ -9,6 +9,8 @@
 
     其中，在 **[相关概念](#相关概念)** 之后的部分，我会保证在前面都有提及，而其之前的内容，推荐都在顺序阅读中涉及。
     
+---
+
 ## 概述
 
 !!! quote "Links"
@@ -83,6 +85,10 @@
 ---
 
 ## 课内案例
+
+接下来的内容都是课件中提到的一些具体问题和案例。
+
+---
 
 ### Halting Problem
 
@@ -247,7 +253,7 @@ $$
 
 ### A formal-language Framework
 
-
+- [ ]TODO: Finish this part.
 
 ---
 
@@ -300,5 +306,3 @@ A \leq_{p} B
 & \text{and}\; \forall f(x) \in B,\; y \in A
 \end{aligned}
 $$
-
----
