@@ -209,7 +209,43 @@ void foo() {
 
 ### Circuit-SAT
 
+!!! quote "Links"
+    Wikipedia: https://en.wikipedia.org/wiki/Circuit_satisfiability_problem
 
+Circuit-SAT 又叫 circuit satisfiability problem，它是最早被证明是 NPC 的问题，即通过 NPC 问题的定义证明。
+
+其具体描述如下：
+
+!!! definition "Circuit-SAT"
+    Circuit-SAT 即为确定给定布尔电路是否具有使输出为真的输入分配的决策的问题。
+
+    ![](65.png)
+    > Source: https://en.wikipedia.org/wiki/Circuit_satisfiability_problem
+
+    上图中，左侧电路满足条件，右侧电路不满足条件。
+
+    ---
+
+    或者，更抽象的来说，是判断一个具有 $n$ 个布尔变量的布尔表达式是否具有结果为 True 的解。
+
+---
+
+#### 3-SAT
+
+!!! quote "Links"
+    Wikipedia: https://en.wikipedia.org/wiki/Boolean_satisfiability_problem#3-satisfiability
+
+3-SAT 指的是 Circuit-SAT 问题的一个特例，它对布尔电路，或者说布尔表达式的形式有特殊要求，具体来说，它要求布尔表达式形如：
+
+$$
+(x_1 \vee x_2 \vee x_3) \wedge (x_4 \vee x_5 \vee x_6) \wedge \cdots \wedge (x_{n-2} \vee x_{n-1} \vee x_n)
+$$
+
+- 变量是否重复、是否取非不是重点，$x_1$ 可以和 $x_6$ 是同一个变量，也可以是某个变量的非，重点是这里的三个一组的形式。
+
+---
+
+### A formal-language Framework
 
 
 
