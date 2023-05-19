@@ -255,7 +255,7 @@ $$
 
 ### A formal-language Framework
 
-- [ ]TODO: Finish this part.
+- [ ] TODO: Finish this part.
 
 ---
 
