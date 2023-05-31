@@ -5,7 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;700&display=swap');
-
 .md-ellipsis,
 h1,
 .headerlink {
@@ -28,7 +27,7 @@ h1,
 
 body,
 input {
-    font-family: 'Lexend', 'Noto Sans SC', 'Source Code Pro', 'Noto Serif SC', sans-serif, -apple-system, Helvetica, Arial, sans-serif;
+    font-family: 'Noto Serif SC', serif, 'Lexend', 'Noto Sans SC', 'Source Code Pro', -apple-system, Helvetica, Arial, sans-serif;
 }
 
 center,
@@ -108,8 +107,8 @@ li {
     --md-primary-fg-color--dark: #806b65;
     --md-primary-bg-color: #FDF6EC;
     --md-primary-bg-color--light: hsla(0, 0%, 100%, .7);
-    --md-accent-fg-color: #809A6F;
-    --md-accent-fg-color--light: #b1c1a2;
+    --md-accent-fg-color: #b1c1a2;
+    --md-accent-fg-color--light: #809A6F;
     --md-accent-fg-color--transparent: rgba(82, 108, 254, .1);
     --md-accent-bg-color: #fff;
     --md-accent-bg-color--light: hsla(0, 0%, 100%, .7);
