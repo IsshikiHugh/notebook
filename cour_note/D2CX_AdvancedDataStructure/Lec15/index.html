@@ -1016,7 +1016,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-15--external-sorting">Lecture 15 | External Sorting<a class="headerlink" href="#lecture-15--external-sorting" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 5527 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 18 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 5529 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 18 分钟</p>
 </div>
 <div class="admonition quote">
 <p class="admonition-title">link</p>
@@ -1038,7 +1038,7 @@
 </div>
 <hr/>
 <h2 id="概述">概述<a class="headerlink" href="#概述" title="Permanent link">¶</a></h2>
-<p>外排序的基本思路就是将数据分为若干个小块，然后对每个小块进行排序，最后再将这些小块合并起来。而我们常说的归并排序，指的是递归地将两块合成一块，而所谓的 <strong>k 路（k-way）</strong>归并，就是将 <span class="arithmatex">\(k\)</span> 块合成一块。</p>
+<p>外排序的基本思路就是将数据分为若干个小块，然后对每个小块进行排序，最后再将这些小块合并起来。而我们常说的归并排序，指的是递归地将两块合成一块，而所谓的 <span class="arithmatex">\(k\)</span> <strong>路（k-way）</strong>归并，就是将 <span class="arithmatex">\(k\)</span> 块合成一块。</p>
 <p>那么如何归并呢？我将从两个维度来简单阐述。</p>
 <hr/>
 <h3 id="逻辑维度">逻辑维度<a class="headerlink" href="#逻辑维度" title="Permanent link">¶</a></h3>
@@ -1053,7 +1053,7 @@
 </div>
 </div>
 <p>从执行的顺序来说，<strong>内</strong>排序中的归并排序是一个自上而下不断 <span class="arithmatex">\(\frac{1}{k}\)</span> 地划分，再自下而上不断归并的过程。相反，<strong>外</strong>排序由于其特性限制，其“归并段”并不是自上而下 <span class="arithmatex">\(\frac{1}{k}\)</span> 划分出来的，而是根据硬件处理能力，直接划分好最小的归并段，然后直接自下而上归并。</p>
-<p>而这样一个将 k*c 个 run merge 成 c 个 run 的过程，我们称之为一个 <code>pass</code>。（在归并树上体现为一层。）</p>
+<p>而这样一个将 <span class="arithmatex">\(k \cdot c\)</span> 个 run merge 成 <span class="arithmatex">\(c\)</span> 个 run 的过程，我们称之为一个 <code>pass</code>。（在归并树上体现为一层。）</p>
 <hr/>
 <h3 id="物理维度">物理维度<a class="headerlink" href="#物理维度" title="Permanent link">¶</a></h3>
 <blockquote>
@@ -1358,7 +1358,7 @@
 </div>
 <hr/>
 <h4 id="霍夫曼树优化">霍夫曼树优化<a class="headerlink" href="#霍夫曼树优化" title="Permanent link">¶</a></h4>
-<p>当然，我们也可以不使用直接 k 路合并，而是采用两两归并的方法，也就是 wiki 中提到的<a href="https://en.wikipedia.org/wiki/K-way_merge_algorithm#Iterative_2-way_merge">迭代归并</a>（注意，该条目中提到的归并并没有说明是外排序背景，但是可以迁移）。 </p>
+<p>当然，我们也可以不使用直接 <span class="arithmatex">\(k\)</span> 路合并，而是采用两两归并的方法，也就是 wiki 中提到的<a href="https://en.wikipedia.org/wiki/K-way_merge_algorithm#Iterative_2-way_merge">迭代归并</a>（注意，该条目中提到的归并并没有说明是外排序背景，但是可以迁移）。 </p>
 <p>假设我们现在有若干个 run，并且我们将要进行两两归并，那么我们可以根据每一个 run 的大小，根据霍夫曼树的规律来进行归并，即总是选最小的两个进行归并。</p>
 <hr/>
 <h3 id="并行优化">并行优化<a class="headerlink" href="#并行优化" title="Permanent link">¶</a></h3>
@@ -1372,7 +1372,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 16:41:28</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 16:49:59</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 13:40:59</span>
