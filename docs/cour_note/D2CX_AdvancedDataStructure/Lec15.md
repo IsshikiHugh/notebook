@@ -34,7 +34,7 @@
 而这里的“有序序列”，在外排序中被称为“run”，即每次归并我们另 $k$ 个 run 变成一个 run。正着说就是：
 
 !!! definition "run"
-    一个 run 指的是一段待归并的有序的序列，在 k-way merge 中，我们总是将 $k$ 个 run 合并为 1 个 run。
+    一个 run 指的是一段过程中的数据，在本文中特指待归并的有序的序列，在 k-way merge 中，我们总是将 $k$ 个 run 合并为 1 个 run。
 
     !!! warning "说明"
         这里的 run 的定义是我自己脑补出来的，并不确定是否严格，但是可以保证的是： 一个 run 在参与 merge 之前肯定已经有序了，可以理解为 "have already run"，而为了不搅糊读者的脑子，我这里就以这个定义为准。
@@ -92,11 +92,18 @@
 
 ---
 
-## 基本结构
+## 具体分析
 
 ADS 中相比上面介绍的部分，又引入了一个叫 tape 的概念，tape 的中文是磁带，而在这个框架中，我更倾向于把它当作一个抽象的概念。
 
 相对应的，其实际过程与上面描述的方法可能有一些感受上的差别，如果只是了解思想的话上半部分已经足够（当然后面还有一些基于如下模型的优化讨论），但是毕竟还是面向考试，所以还是需要以 ADS 课件的方法再介绍一次。
+
+!!! warning "说明"
+    我之后会以 run 为单位，来描述合并过程。但是实际发生在计算机里的步骤更加复杂：
+
+    需要先将每一条 tape 的一部分数据读入内存的 buffer 中，然后利用这些 buffer 来进行排序；当某个 buffer 空了以后要立刻将对应 tape 的下一部分数据读入，直到没有数据可以填充为止。
+
+    也正是[#物理维度](#物理维度)所说的那些。
 
 ---
 
@@ -173,7 +180,7 @@ ADS 中相比上面介绍的部分，又引入了一个叫 tape 的概念，tape
 - merge 的过程中会多次读取 tape 中的数据，而对于计算机来说单次大量读取比多次小量读取更高效，如何优化数据读取也是一个方向；
     - [#tape-数量分析与优化](#tape-数量分析与优化)
 - 如何更高效的在 k-way merge 过程中，归并 M 个分别来自 k 个序列的数据，即内排序的策略，也上优化的一个方向；
-    - [ ] TODO
+    - [#k-路内排序优化](#k-路内排序优化) 
 - 读入、内排序、输出，这三个事务目前是停机串行的，考虑将其并行化也是一个方向；
     - [ ] TODO
 
@@ -243,6 +250,23 @@ $$
 
 然而，其中必然存在一个 trade-off 的关系，虽然 $k$ 增加可以减少 $\#pass$，但是在接下来一节中我们会知道，$k$ 过大会导致 tape 需求量增加，此外，单次 pass 所需要的 seek 次数也会增加。
 
+当然，除了暴力的增加 k 以外，我们还可以通过使用**替换选择(Replacement Selection)**算法，来生成比 $M$ 大的初始 run，以相对减少 pass 数量。
+
+#### 替换选择算法
+
+**替换选择(Replacement Selection)** 在 hw15 中被布置为编程题，所以其实现过程可以结合那道题目来学习。
+
+??? section "Replacement Selection @ PTA"
+    When the input is much too large to fit into memory, we have to do external sorting instead of internal sorting. One of the key steps in external sorting is to generate sets of sorted records (also called runs) with limited internal memory. The simplest method is to read as many records as possible into the memory, and sort them internally, then write the resulting run back to some tape. The size of each run is the same as the capacity of the internal memory.
+
+    **Replacement Selection** sorting algorithm was described in 1965 by Donald Knuth. Notice that as soon as the first record is written to an output tape, the memory it used becomes available for another record. Assume that we are sorting in ascending order, if the next record is not smaller than the record we have just output, then it can be included in the run.
+
+    For example, suppose that we have a set of input { 81, 94, 11, 96, 12, 99, 35 }, and our memory can sort 3 records only. By the simplest method we will obtain three runs: { 11, 81, 94 }, { 12, 96, 99 } and { 35 }. According to the replacement selection algorithm, we would read and sort the first 3 records { 81, 94, 11 } and output 11 as the smallest one. Then one space is available so 96 is read in and will join the first run since it is larger than 11. Now we have { 81, 94, 96 }. After 81 is out, 12 comes in but it must belong to the next run since it is smaller than 81. Hence we have { 94, 96, 12 } where 12 will stay since it belongs to the next run. When 94 is out and 99 is in, since 99 is larger than 94, it must belong to the **first run**. Eventually we will obtain two runs: the first one contains { 11, 81, 94, 96, 99 } and the second one contains { 12, 35 }.
+
+    Your job is to implement this replacement selection algorithm.
+
+利用替换选择策略以后，每一次生成的 run 一定不小于 $M$（末端余数除外），于是相对来说 $\#pass$ 就会减少。
+
 ---
 
 ### tape 数量分析与优化
@@ -306,3 +330,33 @@ $$
 
 当然，刚好能凑上 Fibonacci 的情况自然是少数，对于无法凑上 Fibonacci 的情况，我们可以将多余的部分均匀的分到较多若干 tape 上，以相对的利用 Fibonacci 数列的性质（联系思考题理解）。
 
+---
+
+### k 路内排序优化
+
+随着 $k$ 的增加，我们不能再像两路归并那样直接输出较小的那个，而是需要维护数据结构来总是输出 k 个中最小的那个——我们用堆来维护每一个 run 在内存中的数据的队首元素（同时也是最小元素），每当堆顶元素被输出，就需要从对应的 run 中读入下一个元素。
+
+!!! warning "注意"
+    需要注意，这里的堆是额外维护的，而每次推入堆中的元素都是从对应的 run 的 buffer 中拿的，而不是每次都从硬盘中拿。
+
+---
+
+#### 霍夫曼树优化
+
+当然，我们也可以不使用直接 k 路合并，而是采用两两归并的方法，也就是 wiki 中提到的[迭代归并](https://en.wikipedia.org/wiki/K-way_merge_algorithm#Iterative_2-way_merge)（注意，该条目中提到的归并并没有说明是外排序背景，但是可以迁移）。 
+
+假设我们现在有若干个 run，并且我们将要进行两两归并，那么我们可以根据每一个 run 的大小，根据霍夫曼树的规律来进行归并，即总是选最小的两个进行归并。
+
+---
+
+### 并行优化
+
+这里并行的目标主要是使算法支持数据的读-用-写的流水线，也就是说我们要想办法让读不阻塞用，用不阻塞写。
+
+先前我们需要先读入数据，**然后**进行排序，排序**完了**再写入磁盘，腾出内存空间以供下一次读入。那为什么会阻塞呢？因为我们没法读一个正在写的数据块，所以我们只需要在不同的数据块读和写就行了。对于 k-way 中的每一路，我们都提供两个 input buffer，一个用于写，一个用于排序。当排序 buffer 空了的时候，就和读满了的 input buffer 交换，无缝衔接继续输出。于此同时，刚刚被交换过去的 buffer 则可用于继续读入。
+
+因此，如果我们执行 direct k-way merge，就需要 $2k$ 个 input buffer（这里强调 direct 是因为，如果使用 iterative 的话，input buffer 只需要 4 个）。
+
+而对于输出，我们只需要 2 个 output buffer 交替使用即可，一个用来接收来自排序算法的输出，一个用来将数据写入磁盘。
+
+但是，并行优化的缺点就是占据了更多的内存空间——原先 $k + 1$ 个 buffer 平分的用于处理数据的内存，现在需要被 $2k + 2$ 个 buffer 平分，所以每一个 buffer 的大小会变小。进而导致每一次从 disk 中读取的数据变少，所以要读完数据所需要的读取次数就增加，即 seek 次数增加。
