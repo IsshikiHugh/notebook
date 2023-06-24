@@ -151,11 +151,11 @@ SR 触发器知所以是所谓的 pulse-triggered 的，是因为在 S 和 R 输
 可以发现，其中包含两个触发器 $D_A$ 和 $D_B$，以及一个组合逻辑输出 $Y$，因而可以根据电路的特征，得到下面这几个式子：
 
 $$
-\begin{array}{**l**}
-    D_A & = & AX + BX \\
-    D_B & = & \overline{A}X \\
-    Y   & = & (A + B)\overline{X}
-\end{array}
+\begin{aligned}
+    D_A & = AX + BX \\
+    D_B & = \overline{A}X \\
+    Y   & = (A + B)\overline{X}
+\end{aligned}
 $$
 
 ---
