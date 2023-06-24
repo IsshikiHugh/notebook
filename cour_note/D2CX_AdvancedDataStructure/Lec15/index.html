@@ -1016,7 +1016,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-15--external-sorting">Lecture 15 | External Sorting<a class="headerlink" href="#lecture-15--external-sorting" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 5526 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 18 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 5547 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 18 分钟</p>
 </div>
 <div class="admonition quote">
 <p class="admonition-title">link</p>
@@ -1038,7 +1038,7 @@
 </div>
 <hr/>
 <h2 id="概述">概述<a class="headerlink" href="#概述" title="Permanent link">¶</a></h2>
-<p>外排序的基本思路就是将数据分为若干个小块，然后对每个小块进行排序，最后再将这些小块合并起来。而我们常说的归并排序，指的是递归地将两块合成一块，而所谓的 <span class="arithmatex">\(k\)</span> <strong>路（k-way）</strong>归并，就是将 <span class="arithmatex">\(k\)</span> 块合成一块。</p>
+<p>外排序的基本思路就是将数据分为若干个小块，然后对每个小块进行排序，最后再将这些小块合并起来。而我们常说的归并排序，指的是递归地将两块合成一块，而所谓的 <span class="arithmatex">\(k\)</span> <strong>路（<span class="arithmatex">\(k\)</span>-way）</strong>归并，就是将 <span class="arithmatex">\(k\)</span> 块合成一块。</p>
 <p>那么如何归并呢？我将从两个维度来简单阐述。</p>
 <hr/>
 <h3 id="逻辑维度">逻辑维度<a class="headerlink" href="#逻辑维度" title="Permanent link">¶</a></h3>
@@ -1046,7 +1046,7 @@
 <p>而这里的“有序序列”，在外排序中被称为“run”，即每次归并我们另 <span class="arithmatex">\(k\)</span> 个 run 变成一个 run。正着说就是：</p>
 <div class="admonition definition">
 <p class="admonition-title">run</p>
-<p>一个 run 指的是一段过程中的数据，在本文中特指待归并的有序的序列，在 k-way merge 中，我们总是将 <span class="arithmatex">\(k\)</span> 个 run 合并为 1 个 run。</p>
+<p>一个 run 指的是一段过程中的数据，在本文中特指待归并的有序的序列，在 <span class="arithmatex">\(k\)</span>-way merge 中，我们总是将 <span class="arithmatex">\(k\)</span> 个 run 合并为 1 个 run。</p>
 <div class="admonition warning">
 <p class="admonition-title">说明</p>
 <p>这里的 run 的定义是我自己脑补出来的，并不确定是否严格，但是可以保证的是： 一个 run 在参与 merge 之前肯定已经有序了，可以理解为 "have already run"，而为了不搅糊读者的脑子，我这里就以这个定义为准。</p>
@@ -1171,7 +1171,7 @@
 <li><a href="#tape-数量分析与优化">#tape-数量分析与优化</a></li>
 </ul>
 </li>
-<li>如何更高效的在 k-way merge 过程中，归并 M 个分别来自 k 个序列的数据，即内排序的策略，也上优化的一个方向；<ul>
+<li>如何更高效的在 <span class="arithmatex">\(k\)</span>-way merge 过程中，归并 M 个分别来自 k 个序列的数据，即内排序的策略，也上优化的一个方向；<ul>
 <li><a href="#k-路内排序优化">#k-路内排序优化</a> </li>
 </ul>
 </li>
@@ -1214,7 +1214,7 @@
 </ul>
 </div>
 <p>模拟到从这里其实已经可以看出来了，对于 2-way merge 来说，排除末段情况，从第二个 pass 开始，基本上每次都是从 2 路中各取 1 个 run，并合并为 1 个 run。换句话来说，每一个 pass 会让 <span class="arithmatex">\(total(\#run)\)</span> 缩小为原来的 <span class="arithmatex">\(\frac{1}{2}\)</span>。</p>
-<p>那么，对于 k-way merge 来说，就是从第二个 pass 开始，每次从 <span class="arithmatex">\(k\)</span> 路中各取 1 个 run，并合并为 1 个 run，每一个 pass 会让 <span class="arithmatex">\(total(\#run)\)</span> 缩小为原来的 <span class="arithmatex">\(\frac{1}{k}\)</span>。</p>
+<p>那么，对于 <span class="arithmatex">\(k\)</span>-way merge 来说，就是从第二个 pass 开始，每次从 <span class="arithmatex">\(k\)</span> 路中各取 1 个 run，并合并为 1 个 run，每一个 pass 会让 <span class="arithmatex">\(total(\#run)\)</span> 缩小为原来的 <span class="arithmatex">\(\frac{1}{k}\)</span>。</p>
 <p>因此，我们可以归纳得到如下计算式：</p>
 <div class="arithmatex">\[
 \begin{aligned}
@@ -1238,8 +1238,8 @@
 \]</div>
 <p>其中，<span class="arithmatex">\(k\)</span> 表示归并路数，<span class="arithmatex">\(N\)</span> 表示数据量，<span class="arithmatex">\(M\)</span> 表示内存一次能处理的数据量。</p>
 <p>那么，减少 pass 的方法也很直观了，只需要增加 <span class="arithmatex">\(k\)</span> 即可，即采取更多路的归并，就能减少 pass。</p>
-<p>然而，其中必然存在一个 trade-off 的关系，虽然 <span class="arithmatex">\(k\)</span> 增加可以减少 <span class="arithmatex">\(\#pass\)</span>，但是在接下来一节中我们会知道，<span class="arithmatex">\(k\)</span> 过大会导致 tape 需求量增加，此外，单次 pass 所需要的 seek 次数也会增加。</p>
-<p>当然，除了暴力的增加 k 以外，我们还可以通过使用<strong>替换选择(Replacement Selection)</strong>算法，来生成比 <span class="arithmatex">\(M\)</span> 大的初始 run，以相对减少 pass 数量。</p>
+<p>然而，其中必然存在一个 trade-off 的关系，虽然 <span class="arithmatex">\(k\)</span> 增加可以减少 <span class="arithmatex">\(\#pass\)</span>，但是在接下来一节中我们会知道，<span class="arithmatex">\(k\)</span> 过大会导致 tape 需求量增加，此外，<span class="arithmatex">\(k\)</span> 的增加也会导致内排序的复杂度增加，也会增加 pass 内的 seek 次数。</p>
+<p>当然，除了暴力的增加 <span class="arithmatex">\(k\)</span> 以外，我们还可以通过使用<strong>替换选择(Replacement Selection)</strong>算法，来生成比 <span class="arithmatex">\(M\)</span> 大的初始 run，以相对减少 pass 数量。</p>
 <h4 id="替换选择算法">替换选择算法<a class="headerlink" href="#替换选择算法" title="Permanent link">¶</a></h4>
 <p><strong>替换选择(Replacement Selection)</strong> 在 hw15 中被布置为编程题，所以其实现过程可以结合那道题目来学习。</p>
 <details class="section">
@@ -1252,7 +1252,7 @@
 <p>利用替换选择策略以后，每一次生成的 run 一定不小于 <span class="arithmatex">\(M\)</span>（末端余数除外），于是相对来说 <span class="arithmatex">\(\#pass\)</span> 就会减少。</p>
 <hr/>
 <h3 id="tape-数量分析与优化">tape 数量分析与优化<a class="headerlink" href="#tape-数量分析与优化" title="Permanent link">¶</a></h3>
-<p>如果使用<a href="#朴素过程分析">#朴素过程分析</a>中的方法，那么我们使用 k-way merge 至少需要 <span class="arithmatex">\(2k\)</span> 个 tape。</p>
+<p>如果使用<a href="#朴素过程分析">#朴素过程分析</a>中的方法，那么我们使用 <span class="arithmatex">\(k\)</span>-way merge 至少需要 <span class="arithmatex">\(2k\)</span> 个 tape。</p>
 <p>这其实很好理解，我们每一个 pass 需要 <span class="arithmatex">\(k\)</span> 个 tape 来存放每一路的序列，而其结果要平分放复制到下一个 pass 所需要的 <span class="arithmatex">\(k\)</span> 个 pass 中，所以至少需要 <span class="arithmatex">\(2k\)</span> 个 tape 轮换着来存储数据。</p>
 <p>而这不利于我们通过增加 <span class="arithmatex">\(k\)</span> 来减少 <span class="arithmatex">\(\#pass\)</span>，因此我们考虑某种策略来优化 tape 的使用。</p>
 <p>在<a href="#朴素过程分析">#朴素过程分析</a>中我多次暗示，之后会对「将归并后的 run 平分到各 tape」这件事做优化。</p>
@@ -1328,7 +1328,7 @@
 </table>
 </div>
 <p>使用 Fibonacci 我们总可以滚动着将 <span class="arithmatex">\(\#run\)</span> 的规模缩小。</p>
-<p>对于 k-way merge，我们只需要构造 k 阶 Fibonacci 数列，然后按照这个数列来分配每个 tape 的 <span class="arithmatex">\(\#run\)</span> 即可。</p>
+<p>对于 <span class="arithmatex">\(k\)</span>-way merge，我们只需要构造 k 阶 Fibonacci 数列，然后按照这个数列来分配每个 tape 的 <span class="arithmatex">\(\#run\)</span> 即可。</p>
 <div class="admonition definition">
 <p class="admonition-title">k-order Fibonacci Sequence</p>
 <p>给出 k 阶 Fibonacci 数列：</p>
@@ -1363,8 +1363,8 @@
 <hr/>
 <h3 id="并行优化">并行优化<a class="headerlink" href="#并行优化" title="Permanent link">¶</a></h3>
 <p>这里并行的目标主要是使算法支持数据的读-用-写的流水线，也就是说我们要想办法让读不阻塞用，用不阻塞写。</p>
-<p>先前我们需要先读入数据，<strong>然后</strong>进行排序，排序<strong>完了</strong>再写入磁盘，腾出内存空间以供下一次读入。那为什么会阻塞呢？因为我们没法读一个正在写的数据块，所以我们只需要在不同的数据块读和写就行了。对于 k-way 中的每一路，我们都提供两个 input buffer，一个用于写，一个用于排序。当排序 buffer 空了的时候，就和读满了的 input buffer 交换，无缝衔接继续输出。于此同时，刚刚被交换过去的 buffer 则可用于继续读入。</p>
-<p>因此，如果我们执行 direct k-way merge，就需要 <span class="arithmatex">\(2k\)</span> 个 input buffer（这里强调 direct 是因为，如果使用 iterative 的话，input buffer 只需要 4 个）。</p>
+<p>先前我们需要先读入数据，<strong>然后</strong>进行排序，排序<strong>完了</strong>再写入磁盘，腾出内存空间以供下一次读入。那为什么会阻塞呢？因为我们没法读一个正在写的数据块，所以我们只需要在不同的数据块读和写就行了。对于 <span class="arithmatex">\(k\)</span>-way 中的每一路，我们都提供两个 input buffer，一个用于写，一个用于排序。当排序 buffer 空了的时候，就和读满了的 input buffer 交换，无缝衔接继续输出。于此同时，刚刚被交换过去的 buffer 则可用于继续读入。</p>
+<p>因此，如果我们执行 direct <span class="arithmatex">\(k\)</span>-way merge，就需要 <span class="arithmatex">\(2k\)</span> 个 input buffer（这里强调 direct 是因为，如果使用 iterative 的话，input buffer 只需要 4 个）。</p>
 <p>而对于输出，我们只需要 2 个 output buffer 交替使用即可，一个用来接收来自排序算法的输出，一个用来将数据写入磁盘。</p>
 <p>但是，并行优化的缺点就是占据了更多的内存空间——原先 <span class="arithmatex">\(k + 1\)</span> 个 buffer 平分的用于处理数据的内存，现在需要被 <span class="arithmatex">\(2k + 2\)</span> 个 buffer 平分，所以每一个 buffer 的大小会变小。进而导致每一次从 disk 中读取的数据变少，所以要读完数据所需要的读取次数就增加，即 seek 次数增加。</p>
 <hr/>
@@ -1372,7 +1372,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 16:59:51</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月24日 11:36:07</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 13:40:59</span>
