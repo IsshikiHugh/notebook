@@ -390,11 +390,11 @@ $$
     $$
     \left\{
     \begin{aligned}
-        r_k' &= r_1 \\
-        r_{k-1}' &= r_k - r_1 \\
-        \vdots \\
+        r_1' &= r_2 - r_1 \\
         r_2' &= r_3 - r_1 \\
-        r_1' &= r_2 - r_1
+        \vdots \\
+        r_{k-1}' &= r_k - r_1 \\
+        r_k' &= r_1
     \end{aligned}
     \right.
     $$
@@ -404,8 +404,8 @@ $$
     $$
     \left\{
     \begin{aligned}
-        r_k' &= F^k_{j-1} \\
-        r_1' &= F^k_{j-2}
+        r_1' &= F^k_{j-2} \\
+        r_k' &= F^k_{j-1}
     \end{aligned}
     \right.
     $$
