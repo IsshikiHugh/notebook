@@ -1016,7 +1016,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-15--external-sorting">Lecture 15 | External Sorting<a class="headerlink" href="#lecture-15--external-sorting" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 5547 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 18 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6283 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 21 分钟</p>
 </div>
 <div class="admonition quote">
 <p class="admonition-title">link</p>
@@ -1328,24 +1328,117 @@
 </table>
 </div>
 <p>使用 Fibonacci 我们总可以滚动着将 <span class="arithmatex">\(\#run\)</span> 的规模缩小。</p>
+<details class="extra" open="open">
+<summary>k-way merge with k-order Fibonacci Sequence</summary>
 <p>对于 <span class="arithmatex">\(k\)</span>-way merge，我们只需要构造 k 阶 Fibonacci 数列，然后按照这个数列来分配每个 tape 的 <span class="arithmatex">\(\#run\)</span> 即可。</p>
 <div class="admonition definition">
 <p class="admonition-title">k-order Fibonacci Sequence</p>
-<p>给出 k 阶 Fibonacci 数列：</p>
+<p>给出 k 阶 Fibonacci 数列（与 PPT 略有不同，主要体现在下标从谁开始，无伤大雅）：</p>
 <div class="arithmatex">\[
 \left\{
 \begin{aligned}
-    a_1 &amp;= 1 \\
-    a_2 &amp;= 1 \\
-    \vdots \\
-    a_n &amp;= a_{n-1} + a_{n-2} + \cdots + a_{n-k} \quad (n &gt; k)
+    F^k_1 &amp;= 1 \\
+    F^k_2 &amp;= 1 \\
+    &amp; \vdots\\
+    F^k_n &amp;= F^k_{n-1} + F^k_{n-2} + \cdots + F^k_{n-k} \quad (n &gt; k)
 \end{aligned}
 \right.
 \]</div>
 </div>
+<p>这个结论看起来很自然，但是实际上是怎么操作的呢？PPT 压根没讲，因此，我在询问 ch 老师以后，写下了这个部分，旨在补充 <span class="arithmatex">\(k\)</span>-way merge 使用 k 阶 Fibonacci 优化的方法。</p>
+<blockquote>
+<p>首先，做一些强调：</p>
+<ol>
+<li>该方法陈述过程中，k 路始终直接合并成一路（千万不要用“iterative”的思路来考虑，就算 iterative，迭代完了也还是 k 路归为 1 路）；</li>
+<li>我们的目的是优化每一个 pass 中每个 tape 的 <span class="arithmatex">\(\#run\)</span> 不一样带来的性能问题（例如尴尬的 <span class="arithmatex">\(n\)</span> 和 <span class="arithmatex">\(n+1\)</span> 归，下一个 pass 就得 <span class="arithmatex">\(1\)</span> 和  <span class="arithmatex">\(n\)</span> 归了）；</li>
+</ol>
+</blockquote>
+<p>对于第 <span class="arithmatex">\(i\)</span> 个 pass，有 <span class="arithmatex">\(k\)</span> 个 tape，我们记每一个 tape 的 <span class="arithmatex">\(\#run\)</span> 为 <span class="arithmatex">\(r_i\)</span>，则有：</p>
+<ul>
+<li><span class="arithmatex">\(\max\{r_i\} = F^k_j\)</span>;</li>
+<li><span class="arithmatex">\(\min\{r_i\} = F^k_{j-1}\)</span>;</li>
+</ul>
+<p>也就是说，每个 pass 最大和最小的 <span class="arithmatex">\(\#run\)</span> 分别有 k 阶 Fibonacci 中相邻的两项。</p>
+<blockquote>
+<p>这里分开用 i 和 j 是想表达这个匹配关系不重要，重要的是最大值最小值由 Fibonacci 相邻项所确定。</p>
+</blockquote>
+<p>那么夹在最大和最小的中间的其他 <span class="arithmatex">\(\#run\)</span> 要如何确定呢？首先我们进行一段推导：</p>
+<p>假设 <span class="arithmatex">\(\{r_i\}\)</span> 经过排序，并且刚好能凑上我们所需要的数量，有：</p>
+<div class="arithmatex">\[
+r_k &gt; r_{k-1} &gt; ... &gt; r_{2} &gt; r_{1}
+\text{where } r_k = F^k_j \text{ and } r_1 = F^k_{j-1}
+\]</div>
+<p>在这一个 pass 中，我们将所有 tape 的前 <span class="arithmatex">\(r1\)</span> 个 run 拿出来 merge，这样，除了 <span class="arithmatex">\(r_1\)</span> 这个 tape，其他 tape 的 <span class="arithmatex">\(\#run\)</span> 都变为 <span class="arithmatex">\(r_i-r_1\)</span>。此时有不等关系：</p>
+<div class="arithmatex">\[
+r_1 &gt; r_k - r_1 &gt; r_{k-1} - r_1 &gt; ... &gt; r_{2} - r_1
+\]</div>
+<p>这里唯一需要说明的就是 <span class="arithmatex">\(r_1 &gt; r_k - r_1\)</span>：</p>
+<details class="proof">
+<summary>proof of the relation</summary>
+<div class="arithmatex">\[
+\begin{aligned}
+    &amp;\begin{aligned}
+        \because r_1 
+        &amp;= F^k_{j-1} \\
+        &amp;= F^k_{j-2} + \cdots + F^k_{j-k} + F^k_{j-k-1}
+    \end{aligned}  &amp; (1)\\
+    &amp;\begin{aligned}
+        \text{and } r_k
+        &amp;= F^k_{j} \\
+        &amp;= F^k_{j-1} + F^k_{j-2} + \cdots + F^k_{j-k}
+    \end{aligned}  &amp; (2)\\
+    &amp;\begin{aligned}
+        \therefore r_k - r_1 
+        &amp;= F^k_{j} - F^k_{j-1} \quad \text{ i.e. } (2) - (1)\\
+        &amp;= F^k_{j-2} + \cdots + F^k_{j-k}
+    \end{aligned}  &amp; (3)\\
+    &amp;\begin{aligned}
+        \therefore r_1 - (r_k - r_1)
+        &amp;= F^k_{j-k-1} &gt; 0 \quad \text{ i.e. } (1) - (3) \\
+    \end{aligned} \\
+    &amp;\begin{aligned}
+    \therefore r_1 &gt; r_k - r_1
+    \end{aligned} \\  
+\end{aligned}
+\]</div>
+</details>
+<p>如果我们将现在这个排序后的数列记为 <span class="arithmatex">\(\{r_i'\}\)</span>，则有：</p>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+    r_k' &amp;= r_1 \\
+    r_{k-1}' &amp;= r_k - r_1 \\
+    \vdots \\
+    r_2' &amp;= r_3 - r_1 \\
+    r_1' &amp;= r_2 - r_1
+\end{aligned}
+\right.
+\]</div>
+<p>此时根据我们关于最大最小值的陈述，又有：</p>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+    r_k' &amp;= F^k_{j-1} \\
+    r_1' &amp;= F^k_{j-2}
+\end{aligned}
+\right.
+\]</div>
+<p>于是可以推得：<span class="arithmatex">\(r_2 = r_1 + F^k_{j-2} = F^k_{j-1} + F^k_{j-2}\)</span>。关于 <span class="arithmatex">\(r_3, r_4\)</span>，也是一样的办法，将 <span class="arithmatex">\(r_2\)</span> 的结论迁移到 <span class="arithmatex">\(r_2'\)</span>，再回过头得到 <span class="arithmatex">\(r_3 = r_1 + r_2'= F^k_{j-1} + F^k_{j-2} + F^k_{j-3}\)</span>，以此类推，可以得到最终结论：</p>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+    r_1 &amp;= F^k_{j-1} \\
+    r_2 &amp;= F^k_{j-1} + F^k_{j-2} \\
+    r_3 &amp;= F^k_{j-1} + F^k_{j-2} + F^k_{j-3} \\
+    \vdots \\
+    r_k &amp;= F^k_{j-1} + F^k_{j-2} + ... + F^k_{j-k} = F^k_{j}
+\end{aligned}
+\right.
+\]</div>
+</details>
 <div class="admonition question">
 <p class="admonition-title">思考题</p>
-<p>可以感受思考一下这个特性与黄金比例的关系！</p>
+<p>可以感受思考一下这个特性（考虑 2-way 即可）与黄金比例的关系！</p>
 <p>hint: 如何理解 <span class="arithmatex">\(\frac{a_n}{a_{n-1}} \approx \frac{a_{n-1}}{a_n - a_{n-1}}\)</span> 与这个性质的关系？</p>
 </div>
 <p>当然，刚好能凑上 Fibonacci 的情况自然是少数，对于无法凑上 Fibonacci 的情况，我们可以将多余的部分均匀的分到较多若干 tape 上，以相对的利用 Fibonacci 数列的性质（联系思考题理解）。</p>
@@ -1372,7 +1465,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月24日 11:36:07</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月27日 19:39:06</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 13:40:59</span>
