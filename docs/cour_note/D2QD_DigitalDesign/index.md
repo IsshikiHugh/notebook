@@ -18,11 +18,11 @@
 !!! note "List"
     > 补天时候的一点想法，因为课本每一章都有一个 summary，所以如果要看书的话或许可以先看那个 summary 再看具体的。
 
-    - [x] :material-label: [Chap 1 Digital Systems and Information](Chap01.md)
-    - [x] :material-label: [Chap 2 Combinational Logic Circuits](Chap02.md)
-    - [x] :material-label: [Chap 3 Combinational Logic Design](Chap03.md)
-    - [x] :material-label: [Chap 4 Sequential Circuits](Chap04.md)
-    - [x] :material-label: [Chap 5 Digital Hardware Implementation](Chap05.md) （略简略）
-    - [x] :material-label: [Chap 6 Registers & Register Transfers](Chap06.md)
-    - [ ] :material-label: [Chap 7 Memory Basics](Chap07.md) （没写）
-    - [x] :material-label: [Glossary](glossary.md)
+    - [x] [Chap 1 Digital Systems and Information](Chap01.md)
+    - [x] [Chap 2 Combinational Logic Circuits](Chap02.md)
+    - [x] [Chap 3 Combinational Logic Design](Chap03.md)
+    - [x] [Chap 4 Sequential Circuits](Chap04.md)
+    - [x] [Chap 5 Digital Hardware Implementation](Chap05.md) （略简略）
+    - [x] [Chap 6 Registers & Register Transfers](Chap06.md)
+    - [ ] [Chap 7 Memory Basics](Chap07.md) （没写）
+    - [x] [Glossary](glossary.md)
