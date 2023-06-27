@@ -1,8 +1,9 @@
 # Lecture 11 | Approximation
 
 !!! quote "link"
-    https://en.wikipedia.org/wiki/Approximation_algorithm
+    Wikipedia: https://en.wikipedia.org/wiki/Approximation_algorithm
 
+    Wikipedia: https://en.wikipedia.org/wiki/Polynomial-time_approximation_scheme
 
 
 

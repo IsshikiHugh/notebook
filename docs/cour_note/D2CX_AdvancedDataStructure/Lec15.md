@@ -307,24 +307,125 @@ $$
 
 使用 Fibonacci 我们总可以滚动着将 $\#run$ 的规模缩小。
 
-对于 $k$-way merge，我们只需要构造 k 阶 Fibonacci 数列，然后按照这个数列来分配每个 tape 的 $\#run$ 即可。
+???+ extra "k-way merge with k-order Fibonacci Sequence"
+    对于 $k$-way merge，我们只需要构造 k 阶 Fibonacci 数列，然后按照这个数列来分配每个 tape 的 $\#run$ 即可。
 
-!!! definition "k-order Fibonacci Sequence"
-    给出 k 阶 Fibonacci 数列：
+    !!! definition "k-order Fibonacci Sequence"
+        给出 k 阶 Fibonacci 数列（与 PPT 略有不同，主要体现在下标从谁开始，无伤大雅）：
+
+        $$
+        \left\{
+        \begin{aligned}
+            F^k_1 &= 1 \\
+            F^k_2 &= 1 \\
+            & \vdots\\
+            F^k_n &= F^k_{n-1} + F^k_{n-2} + \cdots + F^k_{n-k} \quad (n > k)
+        \end{aligned}
+        \right.
+        $$
+
+    这个结论看起来很自然，但是实际上是怎么操作的呢？PPT 压根没讲，因此，我在询问 ch 老师以后，写下了这个部分，旨在补充 $k$-way merge 使用 k 阶 Fibonacci 优化的方法。
+
+    > 首先，做一些强调：
+    > 
+    > 1. 该方法陈述过程中，k 路始终直接合并成一路（千万不要用“iterative”的思路来考虑，就算 iterative，迭代完了也还是 k 路归为 1 路）；
+    > 2. 我们的目的是优化每一个 pass 中每个 tape 的 $\#run$ 不一样带来的性能问题（例如尴尬的 $n$ 和 $n+1$ 归，下一个 pass 就得 $1$ 和  $n$ 归了）；
+
+    对于第 $i$ 个 pass，有 $k$ 个 tape，我们记每一个 tape 的 $\#run$ 为 $r_i$，则有：
+
+    - $\max\{r_i\} = F^k_j$;
+    - $\min\{r_i\} = F^k_{j-1}$;
+
+    也就是说，每个 pass 最大和最小的 $\#run$ 分别有 k 阶 Fibonacci 中相邻的两项。
+
+    > 这里分开用 i 和 j 是想表达这个匹配关系不重要，重要的是最大值最小值由 Fibonacci 相邻项所确定。
+
+    那么夹在最大和最小的中间的其他 $\#run$ 要如何确定呢？首先我们进行一段推导：
+
+    假设 $\{r_i\}$ 经过排序，并且刚好能凑上我们所需要的数量，有：
+    
+    $$
+    r_k > r_{k-1} > ... > r_{2} > r_{1}
+    \text{where } r_k = F^k_j \text{ and } r_1 = F^k_{j-1}
+    $$
+    
+    在这一个 pass 中，我们将所有 tape 的前 $r1$ 个 run 拿出来 merge，这样，除了 $r_1$ 这个 tape，其他 tape 的 $\#run$ 都变为 $r_i-r_1$。此时有不等关系：
+    
+    $$
+    r_1 > r_k - r_1 > r_{k-1} - r_1 > ... > r_{2} - r_1
+    $$
+    
+    这里唯一需要说明的就是 $r_1 > r_k - r_1$：
+
+    ??? proof "proof of the relation"
+        $$
+        \begin{aligned}
+            &\begin{aligned}
+                \because r_1 
+                &= F^k_{j-1} \\
+                &= F^k_{j-2} + \cdots + F^k_{j-k} + F^k_{j-k-1}
+            \end{aligned}  & (1)\\
+            &\begin{aligned}
+                \text{and } r_k
+                &= F^k_{j} \\
+                &= F^k_{j-1} + F^k_{j-2} + \cdots + F^k_{j-k}
+            \end{aligned}  & (2)\\
+            &\begin{aligned}
+                \therefore r_k - r_1 
+                &= F^k_{j} - F^k_{j-1} \quad \text{ i.e. } (2) - (1)\\
+                &= F^k_{j-2} + \cdots + F^k_{j-k}
+            \end{aligned}  & (3)\\
+            &\begin{aligned}
+                \therefore r_1 - (r_k - r_1)
+                &= F^k_{j-k-1} > 0 \quad \text{ i.e. } (1) - (3) \\
+            \end{aligned} \\
+            &\begin{aligned}
+            \therefore r_1 > r_k - r_1
+            \end{aligned} \\  
+        \end{aligned}
+        $$
+
+    如果我们将现在这个排序后的数列记为 $\{r_i'\}$，则有：
 
     $$
     \left\{
     \begin{aligned}
-        a_1 &= 1 \\
-        a_2 &= 1 \\
+        r_k' &= r_1 \\
+        r_{k-1}' &= r_k - r_1 \\
         \vdots \\
-        a_n &= a_{n-1} + a_{n-2} + \cdots + a_{n-k} \quad (n > k)
+        r_2' &= r_3 - r_1 \\
+        r_1' &= r_2 - r_1
     \end{aligned}
     \right.
     $$
 
+    此时根据我们关于最大最小值的陈述，又有：
+
+    $$
+    \left\{
+    \begin{aligned}
+        r_k' &= F^k_{j-1} \\
+        r_1' &= F^k_{j-2}
+    \end{aligned}
+    \right.
+    $$
+
+    于是可以推得：$r_2 = r_1 + F^k_{j-2} = F^k_{j-1} + F^k_{j-2}$。关于 $r_3, r_4$，也是一样的办法，将 $r_2$ 的结论迁移到 $r_2'$，再回过头得到 $r_3 = r_1 + r_2'= F^k_{j-1} + F^k_{j-2} + F^k_{j-3}$，以此类推，可以得到最终结论：
+
+    $$
+    \left\{
+    \begin{aligned}
+        r_1 &= F^k_{j-1} \\
+        r_2 &= F^k_{j-1} + F^k_{j-2} \\
+        r_3 &= F^k_{j-1} + F^k_{j-2} + F^k_{j-3} \\
+        \vdots \\
+        r_k &= F^k_{j-1} + F^k_{j-2} + ... + F^k_{j-k} = F^k_{j}
+    \end{aligned}
+    \right.
+    $$
+ 
 !!! question "思考题"
-    可以感受思考一下这个特性与黄金比例的关系！
+    可以感受思考一下这个特性（考虑 2-way 即可）与黄金比例的关系！
 
     hint: 如何理解 $\frac{a_n}{a_{n-1}} \approx \frac{a_{n-1}}{a_n - a_{n-1}}$ 与这个性质的关系？
 
