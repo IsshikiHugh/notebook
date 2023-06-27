@@ -835,6 +835,65 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#近似算法">
+    近似算法
+  </a>
+<nav aria-label="近似算法" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#近似范式">
+    近似范式
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#案例approximate-bin-packing">
+    【案例】Approximate Bin Packing
+  </a>
+<nav aria-label="【案例】Approximate Bin Packing" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#online-next-fit-nf">
+    [online] Next Fit (NF)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#online-first-fit-ff">
+    [online] First Fit (FF)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#online-best-fit-bf">
+    [online] Best Fit (BF)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#offline-first-fit-decreasing-ffd">
+    [offline] First Fit Decreasing (FFD)
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#案例fractional-knapsack-problem">
+    【案例】Fractional Knapsack Problem
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#案例the-k-center-problem">
+    【案例】The K-center Problem
+  </a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -843,22 +902,140 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-11--approximation">Lecture 11 | Approximation<a class="headerlink" href="#lecture-11--approximation" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 25 个字 </p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 2018 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 7 分钟</p>
 </div>
+<h2 id="近似算法">近似算法<a class="headerlink" href="#近似算法" title="Permanent link">¶</a></h2>
 <div class="admonition quote">
-<p class="admonition-title">link</p>
+<p class="admonition-title">links</p>
 <p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Approximation_algorithm">https://en.wikipedia.org/wiki/Approximation_algorithm</a></p>
+</div>
+<p>在上一章中我们介绍了 P/NP 问题，而大家普遍认为 P ≠ NP，这就意味着对于某些问题，我们无法使用多项式时间解决，而在问题规模变大时，越发不可接受。</p>
+<p>因此，我们考虑能否退而求其次，在多项式时间内求一个<strong>比较优</strong>的解。更具体的来说，我们尝试寻找一种多项式算法，使得其结果始终在关于准确解的可接受偏差范围内，对于这种算法，我们称之为<strong>近似算法(approximation algorithm)</strong>。</p>
+<p>我们设 <span class="arithmatex">\(f(n, x)\)</span> 是对输入大小为 <span class="arithmatex">\(n\)</span> 的情况下，对结果 <span class="arithmatex">\(x\)</span> 的<strong>最坏情况</strong>的一个直观量化（例如 dist, weight...），若设 <span class="arithmatex">\(x^*\)</span> 为准确解，<span class="arithmatex">\(x\)</span> 为给定算法结果，则我们定义<strong>近似比(Approximation Ratio)</strong><span class="arithmatex">\(\rho\)</span>：</p>
+<div class="arithmatex">\[
+\forall n \rho = \max\{\frac{f(n, x)}{f(n, x^*)}, \frac{f(n, x^*)}{n, f(x)}\}
+\]</div>
+<p>则称给定算法为 <span class="arithmatex">\(\rho\)</span> 近似算法(<span class="arithmatex">\(\rho\)</span>-approximation algorithm)。</p>
+<div class="admonition question">
+<p class="admonition-title">近似算法 v.s. 随机算法</p>
+<p>在看到近似算法时，我脑子里一下子浮现出了<a href="../Lec13/">随机算法</a>的概念，同样是求准确解的近似解，两者有何区别呢？</p>
+<details class="key-point">
+<summary>hint: 最坏情况</summary>
+<p>近似算法和随机算法最大的区别就是，当我们设计、分析、讨论近似算法的时候，<strong>我们关注的都是它的最坏情况</strong>。也就是说，近似算法是完全可控的，而纯粹的随机算法则是通过概率来减少坏情况出现的可能，并没有严格的约束。近似算法最坏也就坏到 <span class="arithmatex">\(\rho\)</span>，而随机算法最坏可以坏到海拉鲁大陆。</p>
+</details>
+</div>
+<hr/>
+<h3 id="近似范式">近似范式<a class="headerlink" href="#近似范式" title="Permanent link">¶</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">links</p>
 <p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Polynomial-time_approximation_scheme">https://en.wikipedia.org/wiki/Polynomial-time_approximation_scheme</a></p>
 </div>
-<p>装箱问题</p>
-<p>背包问题</p>
-<p>k-中心问题</p>
+<p><strong>近似范式(approximation scheme)</strong>指的是对于某个优化问题的一族相同模式的算法，它们满足对于确定的 <span class="arithmatex">\(\epsilon &gt; 0\)</span>，算法的近似比为 <span class="arithmatex">\(1+\epsilon\)</span>。</p>
+<blockquote>
+<p>可以粗糙地理解为：“范式”是一个输出为算法的特殊函数，而 <span class="arithmatex">\(\epsilon\)</span> 是“范式”的一个参数，对于特定的 <span class="arithmatex">\(\epsilon\)</span>，“范式”输出一个特定的算法（这些算法有着相同的模式），而这些“范式”输出的算法，都解决同一个问题，并且对于任意固定的 <span class="arithmatex">\(\epsilon\)</span> 其近似比为 <span class="arithmatex">\(1+\epsilon\)</span>。</p>
+<p>而关于 <span class="arithmatex">\(\epsilon &gt; 0\)</span> 这个约束，是因为近似比必定大于 1。</p>
+</blockquote>
+<p>而此时，这一族的算法的复杂度可以表示为 <span class="arithmatex">\(O(f(n, \epsilon))\)</span>，如 <span class="arithmatex">\(O(n^{2/\epsilon}), O((\frac{1}{\epsilon})^2n^3)\)</span>。当 <span class="arithmatex">\(f(n, \epsilon)\)</span> 关于 <span class="arithmatex">\(n\)</span> 是多项式时，我们称其为<strong>多项式时间近似范式(polynomial-time approximation scheme)PTAS</strong>。当 <span class="arithmatex">\(f(n, \epsilon)\)</span> 关于 <span class="arithmatex">\(n\)</span> 和 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 都是多项式时，我们称其为<strong>完全多项式时间近似范式(fully polynomial-time approximation scheme)FPTAS</strong>。</p>
+<p>为什么要区分 PTAS 和 FPTAS 呢？我们观察 <span class="arithmatex">\(\epsilon\)</span> 对算法的影响：随着 <span class="arithmatex">\(\epsilon\)</span> 的减小，近似比逐渐变小，即准确度提高；而 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 变大，而通常来说 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 与算法复杂度都是正相关的，因此会导致算法复杂度升高。如果说这个近似范式是 FPTAS，那么为了提高准确度而缩小 <span class="arithmatex">\(\epsilon\)</span>，导致的复杂度变化是相对可接受的（多项式级的变化，如 <span class="arithmatex">\((\frac{1}{\epsilon})^2n^3\)</span> 关于 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 是多项式级的）；然而如果它不是 FPTAS，那么 <span class="arithmatex">\(\epsilon\)</span> 的缩小可能带来恐怖的复杂度增加（如 <span class="arithmatex">\(n^{2/\epsilon}\)</span> 关于 <span class="arithmatex">\(\epsilon\)</span> 是指数级的）。</p>
+<hr/>
+<div class="admonition note">
+<p>接下来，我们以若干具体例子做分析，以便更好地理解近似算法。</p>
+</div>
+<hr/>
+<h2 id="案例approximate-bin-packing">【案例】Approximate Bin Packing<a class="headerlink" href="#案例approximate-bin-packing" title="Permanent link">¶</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">links</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Bin_packing">https://en.wikipedia.org/wiki/Bin_packing</a></p>
+</div>
+<p>装箱问题指的是，给定 <span class="arithmatex">\(N\)</span> 个 item，第 <span class="arithmatex">\(i\in [1,N]\)</span> 个 item 的 size 为 <span class="arithmatex">\(S_i \in (0,1]\)</span>，一个 bin 的大小为 <span class="arithmatex">\(1\)</span>，尝试寻找最少的，能够装载所有 item 的 bin 的数量。</p>
+<div class="admonition example">
+<p class="admonition-title">🌰</p>
+<p>给定 7 个 item，size 分别为 <span class="arithmatex">\(0.2, 0.5, 0.4, 0.7, 0.1, 0.3, 0.8\)</span>，则最少需要 3 个 bin（准确解）：</p>
+<ul>
+<li>bin 1: <span class="arithmatex">\(0.2 + 0.8\)</span>;</li>
+<li>bin 2: <span class="arithmatex">\(0.7 + 0.3\)</span>;</li>
+<li>bin 3: <span class="arithmatex">\(0.4 + 0.1 + 0.5\)</span>;</li>
+</ul>
+</div>
+<p>这是一个 NP hard 问题，现在我们考虑三种近似解法。需要注意的是，这三种都是<strong>在线(online)</strong>解法，即处理 <span class="arithmatex">\(item_i\)</span> 时我们不知道 <span class="arithmatex">\(item_{i+1}\sim item_{N}\)</span> 的情况。之后我们会再讨论<strong>离线(offline)</strong>做法，也就是我们知道所有 item 的情况以后再给出策略。</p>
+<hr/>
+<h3 id="online-next-fit-nf">[online] Next Fit (NF)<a class="headerlink" href="#online-next-fit-nf" title="Permanent link">¶</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">links</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Next-fit_bin_packing">https://en.wikipedia.org/wiki/Next-fit_bin_packing</a></p>
+</div>
+<p>NF 策略总是选择当前最后一个 bin，若能够容纳，则将当前 item 放入其中，否则新开一个 bin。</p>
+<p>NF 策略总是使用不超过 <span class="arithmatex">\(2M-1\)</span> 个 bin，其中 <span class="arithmatex">\(M\)</span> 表示准确解的 <span class="arithmatex">\(\#bin\)</span>。</p>
+<details class="proof">
+<summary>proof for 2M-1</summary>
+<p>我们从 NF 的结果出发，证明当 NF 的结果为需要 <span class="arithmatex">\(2M-1\)</span> 或 <span class="arithmatex">\(2M\)</span> 个 bin 时，准确解为至少需要 <span class="arithmatex">\(M\)</span> 个 bin。</p>
+<p>假设 <span class="arithmatex">\(S(B_i)\)</span> 表示第 <span class="arithmatex">\(i\)</span> 个 bin 的 size，则根据 NF 的定义，有：<span class="arithmatex">\(S(B_{i}) + S(B_{i+1}) &gt; 1\)</span>（是 NF 的必要不充分条件）。稍作解释，使用反证法，假设 <span class="arithmatex">\(S(B_{i}) + S(B_{i+1}) \leq 1\)</span>，这说明无论 <span class="arithmatex">\(B_{i+1}\)</span> 中有多少 item，都一定能放进 <span class="arithmatex">\(B_i\)</span>，而这与 NF “<span class="arithmatex">\(B_i\)</span> 放不下了才开始放 <span class="arithmatex">\(B_{i+1}\)</span>” 的性质相违背。于是我们将所有桶两两配对：</p>
+<p>1.当 NF 的结果是需要 <span class="arithmatex">\(2M-1\)</span> 个 bin 时：</p>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+S(B_1) + S(B_2) &amp;&gt; 1 \\
+S(B_3) + S(B_4) &amp;&gt; 1 \\
+\vdots \\
+S(B_{2M-3}) + S(B_{2M-2}) &amp;&gt; 1 \\
+S(B_{2M-1}) &amp;\leq 1
+\right. \\
+\therefore \sum_{i=1}^{2M-1} &gt; \sum_{i=1}^{2M-2} &gt; M-1 \\
+\therefore \sum_{i=1}^{2M-1} \geq M
+\]</div>
+<p>即 item 的总 size 至少为 M，即至少需要 <span class="arithmatex">\(M\)</span> 个 bin。</p>
+<p>2.而当 NF 的结果是需要 <span class="arithmatex">\(2M\)</span> 个 bin 时，可以转化为 <span class="arithmatex">\(2M-1\)</span> 的情况。</p>
+</details>
+<hr/>
+<h3 id="online-first-fit-ff">[online] First Fit (FF)<a class="headerlink" href="#online-first-fit-ff" title="Permanent link">¶</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">links</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/First-fit_bin_packing">https://en.wikipedia.org/wiki/First-fit_bin_packing</a></p>
+</div>
+<p>FF 策略总是选择第一个能放下当前 item 的 bin，若所有 bin 都无法容纳当前 item，则新开一个 bin。</p>
+<p>NF 策略总是使用不超过 <span class="arithmatex">\(\lfloor 1.7M \rfloor\)</span> 个 bin，并且存在一族能对边界取等的输入，其中 <span class="arithmatex">\(M\)</span> 表示准确解的 <span class="arithmatex">\(\#bin\)</span>。</p>
+<hr/>
+<h3 id="online-best-fit-bf">[online] Best Fit (BF)<a class="headerlink" href="#online-best-fit-bf" title="Permanent link">¶</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">links</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Best-fit_bin_packing">https://en.wikipedia.org/wiki/Best-fit_bin_packing</a></p>
+</div>
+<p>BF 策略总是选择能够容纳当前 item 且剩余空间最小的 bin（即 tightest），若所有 bin 都无法容纳当前 item，则新开一个 bin。</p>
+<p>NF 策略也总是使用不超过 <span class="arithmatex">\(\lfloor 1.7M \rfloor\)</span> 个 bin，并且存在一族能对边界取等的输入，其中 <span class="arithmatex">\(M\)</span> 表示准确解的 <span class="arithmatex">\(\#bin\)</span>。</p>
+<hr/>
+<blockquote>
+<p>虽然在线做法由于对信息把握的不全面，在不特殊构造输入的情况下甚至几乎不可能达到最优解，但是现实世界中有很多能建模为装箱问题的问题，都要求使用在线做法解决。因此，研究在线做法还是有其意义的。</p>
+</blockquote>
+<p>此外，关于在线做法，有一个结论：</p>
+<div class="admonition property">
+<p class="admonition-title">theorem</p>
+<p>对于装箱问题，如果限定使用在线做法，则<strong>最优</strong>的近似解法，其<strong>最坏情况</strong>的结果也至少需要准确解的 <span class="arithmatex">\(\frac{5}{3}\)</span>。</p>
+<blockquote>
+<p>PPT 上的原话是，无论哪种在线做法也至少需要使用 <span class="arithmatex">\(\frac{5}{3}\)</span> 的准确解给出的数量，但是显然这个 <span class="arithmatex">\(\frac{5}{3}\)</span> 是针对最坏解的讨论。回顾「近似算法 v.s. 随机算法」这个 block 里的内容，我们分析近似解，都是针对其最坏情况来说的。</p>
+</blockquote>
+</div>
+<hr/>
+<h3 id="offline-first-fit-decreasing-ffd">[offline] First Fit Decreasing (FFD)<a class="headerlink" href="#offline-first-fit-decreasing-ffd" title="Permanent link">¶</a></h3>
+<p>离线做法的优势在于它能够获得所有 item 的信息以求统筹规划。这里给出的近似做法是，将 item 按照 size 降序排序，而后使用 FF（或 BF，由于单调性，两者等价）。</p>
+<div class="admonition example">
+<p class="admonition-title">🌰</p>
+<p>给定 7 个 item（同之前的 🌰），经过排序后，它们的 size 分别为 $0.8, 0.7, 0.5, 0.4, 0.3, 0.2, 0.1，则最少需要 3 个 bin（准确解）：</p>
+<ul>
+<li>bin 1: <span class="arithmatex">\(0.8 + 0.2\)</span>;</li>
+<li>bin 2: <span class="arithmatex">\(0.7 + 0.3\)</span>;</li>
+<li>bin 3: <span class="arithmatex">\(0.5 + 0.4 + 0.1\)</span>;</li>
+</ul>
+</div>
+<p>FFD 策略总是使用不超过 <span class="arithmatex">\(\frac{11}{9}M + \frac{6}{9}\)</span> 个 bin（为啥就连 wiki 也不约 6/9），并且存在一族能对边界取等的输入，其中 <span class="arithmatex">\(M\)</span> 表示准确解的 <span class="arithmatex">\(\#bin\)</span>。</p>
+<hr/>
+<h2 id="案例fractional-knapsack-problem">【案例】Fractional Knapsack Problem<a class="headerlink" href="#案例fractional-knapsack-problem" title="Permanent link">¶</a></h2>
+<h2 id="案例the-k-center-problem">【案例】The K-center Problem<a class="headerlink" href="#案例the-k-center-problem" title="Permanent link">¶</a></h2>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月27日 19:39:06</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月28日 00:07:23</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 13:40:59</span>
