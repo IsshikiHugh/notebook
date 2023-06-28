@@ -828,6 +828,30 @@
 <a class="md-nav__link" href="#案例-the-k-center-problem">
     [案例] The K-center Problem
   </a>
+<nav aria-label="[案例] The K-center Problem" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#naive-greedy">
+    Naive Greedy"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2r-greedy">
+    2r-Greedy
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#smarter-greedy">
+    Smarter Greedy
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#总结">
+    总结
+  </a>
 </li>
 </ul>
 </nav>
@@ -1036,6 +1060,30 @@
 <a class="md-nav__link" href="#案例-the-k-center-problem">
     [案例] The K-center Problem
   </a>
+<nav aria-label="[案例] The K-center Problem" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#naive-greedy">
+    Naive Greedy"
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2r-greedy">
+    2r-Greedy
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#smarter-greedy">
+    Smarter Greedy
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#总结">
+    总结
+  </a>
 </li>
 </ul>
 </nav>
@@ -1046,7 +1094,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-11--approximation">Lecture 11 | Approximation<a class="headerlink" href="#lecture-11--approximation" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 2900 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 10 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 5370 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 18 分钟</p>
 </div>
 <h2 id="近似算法">近似算法<a class="headerlink" href="#近似算法" title="Permanent link">¶</a></h2>
 <div class="admonition quote">
@@ -1063,7 +1111,7 @@
 <div class="admonition question">
 <p class="admonition-title">近似算法 v.s. 随机算法</p>
 <p>在看到近似算法时，我脑子里一下子浮现出了<a href="../Lec13/">随机算法</a>的概念，同样是求准确解的近似解，两者有何区别呢？</p>
-<details class="key-point">
+<details class="success">
 <summary>hint: 最坏情况</summary>
 <p>近似算法和随机算法最大的区别就是，当我们设计、分析、讨论近似算法的时候，<strong>我们关注的都是它的最坏情况</strong>。也就是说，近似算法是完全可控的，而纯粹的随机算法则是通过概率来减少坏情况出现的可能，并没有严格的约束。近似算法最坏也就坏到 <span class="arithmatex">\(\rho\)</span>，而随机算法最坏可以坏到海拉鲁大陆。</p>
 </details>
@@ -1183,7 +1231,7 @@
 <p>一个与装箱问题很像的问题是背包问题。其大致描述如下：给定一个容量为 <span class="arithmatex">\(M\)</span> 的背包，以及 <span class="arithmatex">\(N\)</span> 个 item，第 <span class="arithmatex">\(i\)</span> 个 item 的重量为 <span class="arithmatex">\(w_i\)</span>，其利润为 <span class="arithmatex">\(p_i\)</span>。要求在不超过背包容量的前提下，使得背包中的利润最大化。（我也不知道为什么 PPT 上会把容量和重量关联起来，anyway，容量限制了 item 的重量和。）</p>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
-<p>或许在学习 dp 的时候你已经接触过背包问题了，但是请注意，我们这里讨论的背包问题有一个非常重要的特点就是，容量和利润都是<strong>实数</strong>，更直白的来说，你没办法通过将容量或利润作为状态来 dp 求解。</p>
+<p>或许在学习 dp 的时候你已经接触过背包问题了，但是请注意，我们这里讨论的背包问题有一个非常重要的特点就是，容量和利润都是<strong>实数</strong>，更直白的来说，你没办法通过将容量或利润作为状态来 dp 求准确解。</p>
 </div>
 <p>而根据每一个物品能否自由拆分，背包问题分为 fractional version 和 0-1 version 两类。</p>
 <hr/>
@@ -1246,14 +1294,186 @@ p_\text{max} \leq P_\text{greedy} \leq P_\text{optimal} \leq P_\text{frac}
 </blockquote>
 <hr/>
 <h4 id="动态规划做法">动态规划做法<a class="headerlink" href="#动态规划做法" title="Permanent link">¶</a></h4>
+<p><del>（真是混乱）</del></p>
+<div class="arithmatex">\[
+W_{i,p} = \text{the minimum weight of a collection from } \{1, …, i\} \text{ with total profit being  exactly } p \\
+W_{i,p} = \left\{
+\begin{aligned}
+    \infty &amp; i = 0 \\
+    W_{i-1, p} &amp; p_i &gt; p \\
+    \min\{W_{i-1, p}, w_i + W_{i-1, p-p_i}\} &amp; otherwise        
+\end{aligned}
+\right.
+i = 1, ..., n; p = 1, ..., n\cdot p_\text{max} \\
+O(n^2p_\text{max})
+\]</div>
+<p>如果 <span class="arithmatex">\(p_\text{max}\)</span> 很大，可以考虑将它们近似取整，类似于将浮点数向上取整。</p>
 <hr/>
 <h2 id="案例-the-k-center-problem">[案例] The K-center Problem<a class="headerlink" href="#案例-the-k-center-problem" title="Permanent link">¶</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">link</p>
+<p>Berkeley's: <a href="https://ugtcs.berkeley.edu/src/approx-sp19/scribe-notes-2.pdf">https://ugtcs.berkeley.edu/src/approx-sp19/scribe-notes-2.pdf</a></p>
+</div>
+<p>（二维）K 中心问题指：给定平面上的一系列 site（即点），在平面中找出 <span class="arithmatex">\(k\)</span> 个不同的 center，记 <span class="arithmatex">\(site_i\)</span> 到离它最近的 center 的距离为 <span class="arithmatex">\(dis_i\)</span>，求 <span class="arithmatex">\(\max \{dis_i\}\)</span> 的最小值。</p>
+<div class="admonition section">
+<p class="admonition-title">数学语言表达</p>
+<p>设 <span class="arithmatex">\(C = \{c_1, c_2, ..., c_k\}\)</span> 为 <span class="arithmatex">\(k\)</span> 个 center，<span class="arithmatex">\(S = \{s_1, s_2, ..., s_n\}\)</span> 为 <span class="arithmatex">\(n\)</span> 个 site，我们定义 site 到关于 center 的集合 <span class="arithmatex">\(C\)</span> 的距离为：</p>
+<div class="arithmatex">\[
+dis(s_i, C) = \min_{c_i\in C} \{ dis(s_i, c_i) \}
+\]</div>
+<p>即 <span class="arithmatex">\(s_i\)</span> 到距离它最近的 center 的距离。</p>
+<p>定义最大的最小覆盖半径为：</p>
+<div class="arithmatex">\[
+r(C) = \max_{s_i\in S} \{ dis(s_i, C) \} \\
+\]</div>
+<p>现在要寻找一个 <span class="arithmatex">\(C\)</span> 使得 <span class="arithmatex">\(r(C)\)</span> 最小（<span class="arithmatex">\(|C| = k\)</span>）。</p>
+</div>
+<p>很绕，非常绕。接下来开始说人话。</p>
+<p>平面的问题我们就用平面的思路来看，就是一个平面上有一堆点，现在我要在上面找 <span class="arithmatex">\(k\)</span> 个中心去画圆，使得这 <span class="arithmatex">\(k\)</span> 个圆能覆盖所有的点。现在要求最大的那个圆的半径最小能多小。</p>
+<details class="tip" open="open">
+<summary>关于距离</summary>
+<p>PPT 上对<strong>距离</strong>做了更进一步的说明，但是其实并不是这个问题的重点，但是为了严谨性，我还是在这里放上三条性质：</p>
+<div class="admonition property">
+<p class="admonition-title">3 property of 'distance'</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    &amp; dis(x,x) = 0 &amp;&amp; \text{(identity)} \\
+    &amp; dis(x,y) = dis(y,x) &amp;&amp; \text{(symmetry)} \\
+    &amp; dis(x,y) \leq dis(x,z) + dis(z,y) &amp;&amp; \text{(triangle inequality)}
+\end{aligned}
+\]</div>
+</div>
+</details>
+<hr/>
+<div class="admonition tip">
+<p class="admonition-title">碎碎念</p>
+<p>这个东西和聚类有点像。主要难点就在于，我们不知道应该以何种策略去覆盖这些点，要是把两个距离很远的点划在同一个圆内，那答案肯定小不了。</p>
+</div>
+<p>接下来我们来尝试解决的这个问题。</p>
+<hr/>
+<h3 id="naive-greedy">Naive Greedy"<a class="headerlink" href="#naive-greedy" title="Permanent link">¶</a></h3>
+<p>一个做法是，我们每次都选择最可能成为中心的那个点，具体来说：</p>
+<ol>
+<li>如果是第一个点，就选取所有点的中心；</li>
+<li>如果不是第一个点，就选取能一个最能让 <span class="arithmatex">\(r(C)\)</span> 下降的；</li>
+</ol>
+<p>这个做法的 bug 比较大，假设我们的点是聚类非常明显的两个点云，那么第一个点就会落在两个点云之间，这很蠢，所以我们不浪费过多时间在这个方法上。</p>
+<blockquote>
+<p>注意，随着 center 的增加，原来以 <span class="arithmatex">\(c_i\)</span> 为 center 的 site 很可能以最新插入的 <span class="arithmatex">\(c_j\)</span> 为 center。</p>
+</blockquote>
+<hr/>
+<h3 id="2r-greedy">2r-Greedy<a class="headerlink" href="#2r-greedy" title="Permanent link">¶</a></h3>
+<p>既然正向做很困难，那我们能不能反着做呢？有一种套路叫二分答案，即先猜答案，再验证是否是答案。在这个问题中我们可以迁移这个思想，即先猜一个 <span class="arithmatex">\(r\)</span>，然后尝试用 <span class="arithmatex">\(k\)</span> 个半径为 <span class="arithmatex">\(r\)</span> 的圆去覆盖剩下的所有点。</p>
+<p>更具体的来说，假设准确解对应的一个 center 集合为 <span class="arithmatex">\(C^*\)</span>，那么 <span class="arithmatex">\(\forall r(C_x) \geq r(C^*)\)</span> 的 <span class="arithmatex">\(C_x\)</span> 都必定存在覆盖方案；反过来说，如果我们能够验证对于 <span class="arithmatex">\(C_x\)</span> 能够覆盖所有的点，那么就可以约束准确解 <span class="arithmatex">\(r(C^*) \leq r(C_x)\)</span>。</p>
+<div class="admonition question">
+<p class="admonition-title">如何“验证”</p>
+<p>可是，仔细一想我们发现，二分答案的过程中，“验证对于 <span class="arithmatex">\(C_x\)</span> 能够覆盖所有的点”这件事也不好做，虽然我们有半径，但是我们也很难找到一个最好的方案来覆盖所有的点。</p>
+<details class="success">
+<summary>hint: 近似算法</summary>
+<p>于是我们的近似算法就可以大展拳脚了。但是需要注意，这里所谓的近似算法，指的是使用二分答案求解 <span class="arithmatex">\(r(C)\)</span> 这个算法，而非判断 <span class="arithmatex">\(k\)</span> 个半径为 <span class="arithmatex">\(r\)</span> 的圆能否覆盖所有点的算法。这一点非常重要！</p>
+<p>而关于算法具体如何操作，请接着看。 </p>
+</details>
+</div>
+<p>首先，我们再次梳理一下这个算法，它包含内外两层，首先外部通过在答案的<strong>候选区间（即 <span class="arithmatex">\((0, r_\text{max}]\)</span>，<span class="arithmatex">\(r_\text{max}\)</span> 为最远的两个点的距离）</strong>二分候选值，接着通过判定算法来判定接下来的二分方向。</p>
+<p>然而，由于我们很难在多项式时间实现准确的“判定”，所以我们采取这样一个启发式的策略来进行<strong>宽泛的必要条件筛选</strong>：</p>
+<div class="admonition section">
+<p class="admonition-title">流程描述</p>
+<p>设 <span class="arithmatex">\(C_x\)</span> 表示选中的 center，<span class="arithmatex">\(S_x\)</span> 表示尚未被任何圆覆盖的 site，<span class="arithmatex">\(r_x\)</span> 表示当前二分出来的，要我们判断的半径，<span class="arithmatex">\(S\)</span> 依然表示所有 site 的集合：</p>
+<ol>
+<li>初始化 <span class="arithmatex">\(C_x = \emptyset\)</span>；</li>
+<li>当 <span class="arithmatex">\(S_x \not = \emptyset\)</span> 时（即还有点没被覆盖时），重复这些操作：<ol>
+<li>随机选取一个 site <span class="arithmatex">\(s_i \in S_x\)</span>，将其插入 <span class="arithmatex">\(C_x\)</span>（即将 <span class="arithmatex">\(s_i\)</span> 当作一个 center），并从 <span class="arithmatex">\(S_x\)</span> 中将 <span class="arithmatex">\(s_i\)</span> 删除（即 <span class="arithmatex">\(s_i\)</span> 必定被覆盖）；</li>
+<li>删除 <span class="arithmatex">\(S_x\)</span> 中所有距离 <span class="arithmatex">\(s_i\)</span> 不足 <span class="arithmatex">\(r_x\)</span> 的点（即删除满足 <span class="arithmatex">\(dis(s_i, s_j) \leq r_x\)</span> 的所有 <span class="arithmatex">\(s_k \in S_x\)</span>）；</li>
+</ol>
+</li>
+<li>当所有点都被覆盖后：<ol>
+<li>如果 <span class="arithmatex">\(|C_x| \leq k\)</span>，则返回 yes；</li>
+<li>否则返回 no；</li>
+</ol>
+</li>
+</ol>
+<p>如果返回 yes，则下一个 <span class="arithmatex">\(r_x\)</span> 应当取更小的 <span class="arithmatex">\(r_x\)</span>；如果返回 no，下一次应该取更大的 <span class="arithmatex">\(r_x\)</span>（稍候会解释为什么）。</p>
+</div>
+<p>现在对其做进一步解释。这是一个启发式的做法，旨在每次寻找还没被覆盖的点作为新的 center，用一个半径为 <span class="arithmatex">\(2r_x\)</span> 的圆去覆盖剩下的点。通过判断这样所需要的 center 数量是否超过 <span class="arithmatex">\(k\)</span> 来判断是否能够覆盖。接下来很绕，请一步一步的看：</p>
+<ol>
+<li>当这个启发式搜索成功时，说明 <span class="arithmatex">\(2r_x \geq r(C^*)\)</span>，即 <span class="arithmatex">\(k\)</span> 个 <span class="arithmatex">\(2r_x\)</span> 的圆可以覆盖所有点；</li>
+<li>当这个启发式搜索失败时，<strong>不能</strong>说明 <span class="arithmatex">\(2r_x \geq r(C^*)\)</span>，即 <span class="arithmatex">\(k\)</span> 个 <span class="arithmatex">\(2r_x\)</span> 的圆不能覆盖所有点，因为启发式方案并不是最优方案；<strong>但是能说明必定不存在 <span class="arithmatex">\(r_x\)</span> 的覆盖，即 <span class="arithmatex">\(r_x \leq r(C^*)\)</span></strong>（证明见下方 lemma）；</li>
+</ol>
+<details class="property" open="open">
+<summary>lemma</summary>
+<p>假设半径为 <span class="arithmatex">\(r\)</span>，以 <span class="arithmatex">\(c\)</span> 为圆心的圆 <span class="arithmatex">\(C\)</span> 覆盖了 <span class="arithmatex">\(S\)</span> 中的所有点。</p>
+<p>那么，对于固定的半径 <span class="arithmatex">\(r'\)</span>，要想取任意的 <span class="arithmatex">\(s_i \in S\)</span> 为圆心，形成的圆 <span class="arithmatex">\(C_i\)</span>，<strong>总是</strong>能覆盖 <span class="arithmatex">\(S\)</span> 中的所有点，则 <span class="arithmatex">\(r' \geq 2r\)</span>。</p>
+<blockquote>
+<p>lemma 的证明就不在这里展开了，证明的关键是考虑两点分布在直径两端的情况。</p>
+</blockquote>
+<p>这个引理的附加结论就是：</p>
+<div class="arithmatex">\[
+\forall i \quad C \subset C_i
+\]</div>
+<p>即以 <span class="arithmatex">\(r\)</span> 为半径的最优覆盖圆，一定能被以任意 <span class="arithmatex">\(s_i\)</span> 为圆心、<span class="arithmatex">\(2r\)</span> 为半径的圆所覆盖。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/71.svg"><img alt="" src="../img/71.svg"/></a></p>
+</details>
+<p>当我们发现我们处于情况 <code>1.</code> 时，我们开心的发现我们确实得到了一个距离 <span class="arithmatex">\(r(C^*)\)</span> 更近的上界 <span class="arithmatex">\(2r_x\)</span>，由于二分的性质，我们每次通过 <code>1.</code> 确定的上界，总是越来越紧的。</p>
+<p>当我们处于情况 <code>2.</code> 时，我们不知道 <span class="arithmatex">\(2r_x\)</span> 和 <span class="arithmatex">\(r(C^*)\)</span> 的大小关系，但是知道 <span class="arithmatex">\(r_x\)</span> 和 <span class="arithmatex">\(r(C^*)\)</span> 的关系，由于二分的性质，我们每次通过 <code>2.</code> 确定的下界，也总是越来越紧的。</p>
+<p>而最终，我们会得到一个最终的 <span class="arithmatex">\(r_{x_0}\)</span>，满足：<span class="arithmatex">\(r_{x_0} \leq r(C^*) \leq 2r_{x_0}\)</span>（式中哪边能取等取决于最后落在 <code>1.</code> 还是 <code>2.</code>）。</p>
+<p>而我们最终给出的<strong>答案</strong>是 <span class="arithmatex">\(2r_{x_0}\)</span>（因为 <span class="arithmatex">\(r_{x_0}\)</span> 不满足条件，不是解，更不是近似解）。</p>
+<hr/>
+<p>现在，我们来计算近似比：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    &amp; \begin{aligned}
+        \because \;\;\;
+        &amp; r_{x_0} \leq r(C^*) \leq 2r_{x_0} \\
+        &amp; \frac{1}{2} \leq \frac{r(C^*)}{2r_{x_0}} \leq 1 \\
+        &amp; 1 \leq \frac{2r_{x_0}}{r(C^*)} \leq 2
+    \end{aligned} \\
+    &amp; \therefore \; \rho = \max\{
+            \frac{ 2 r_{x_0} }{ r(C^*) },
+            \frac{ r(C^*) }{ 2 r_{x_0} }
+        \} = 2
+\end{aligned}
+\]</div>
+<hr/>
+<h3 id="smarter-greedy">Smarter Greedy<a class="headerlink" href="#smarter-greedy" title="Permanent link">¶</a></h3>
+<p>我们关注到，上面那个做法总是随机的选取新的 <span class="arithmatex">\(c_i\)</span>，但是对于 center 的选取，我们其实可以总是选择距离已有的 center 最远的点，此外，当 <span class="arithmatex">\(|C| &gt; k\)</span> 时，我们也没必要继续做了。</p>
+<div class="admonition section">
+<p class="admonition-title">流程描述</p>
+<ol>
+<li>初始化 <span class="arithmatex">\(C_x = \emptyset\)</span>，<span class="arithmatex">\(S_x = S\)</span>；</li>
+<li>随机选取一个 site <span class="arithmatex">\(s_i \in S_x\)</span>，将其插入 <span class="arithmatex">\(C_x\)</span>，并从 <span class="arithmatex">\(S_x\)</span> 中将 <span class="arithmatex">\(s_i\)</span> 删除；</li>
+<li>当 <span class="arithmatex">\(|C_x| \leq k\)</span> 且 <span class="arithmatex">\(S_x \not = \emptyset\)</span> 时，重复以下步骤：<ol>
+<li>选取一个 site <span class="arithmatex">\(s_i \in S_x\)</span>，这个 site 满足 <span class="arithmatex">\(\forall s_j \in S_x \quad dis(s_i, C_x) \geq dis(s_j, C_x)\)</span>（即这个点是还没被覆盖的点中距离 <span class="arithmatex">\(C_x\)</span> 最远的点）；</li>
+<li>将 <span class="arithmatex">\(s_i\)</span> 插入 <span class="arithmatex">\(C_x\)</span>，并从 <span class="arithmatex">\(S_x\)</span> 中将 <span class="arithmatex">\(s_i\)</span> 删除；</li>
+</ol>
+</li>
+<li>如果 <span class="arithmatex">\(|C_x| \leq k\)</span> 且 <span class="arithmatex">\(S_x = \emptyset\)</span>，则返回 yes；否则返回 no。</li>
+</ol>
+</div>
+<p>由于这个做法实际上只是优化了一下启发式的策略，并没有改变内核，所以其近似比仍然是 <span class="arithmatex">\(2\)</span>。</p>
+<hr/>
+<h2 id="总结">总结<a class="headerlink" href="#总结" title="Permanent link">¶</a></h2>
+<p>关于算法的设计，我们考虑这三个维度：</p>
+<ol>
+<li>最优性(optimality)：即能求准确解；</li>
+<li>高效性(efficiency)：即算法是否高效；</li>
+<li>普遍性(all instances)：即算法是否普遍适用于所有的情况；</li>
+</ol>
+<p>倘若一个解法：</p>
+<ol>
+<li>同时满足最优性和高效性，那么这个算法对特殊情况能高效求准确解；</li>
+<li>同时满足最优性和普遍性，那么这个算法对所有情况都能求准确解；</li>
+<li>同时满足高效性和普遍性，那么这个算法可能是个近似算法；</li>
+</ol>
+<p>就算 N=NP 成立，我们仍然无法保证三个愿望一次满足。</p>
+<blockquote>
+<p>不是很明白最后一句话如何理解，但是这一部分应该就是看个眼熟，不是很重要。</p>
+</blockquote>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月28日 11:31:33</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月28日 23:04:32</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 13:40:59</span>
