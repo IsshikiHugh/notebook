@@ -227,7 +227,7 @@ Circuit-SAT 又叫 circuit satisfiability problem，它是最早被证明是 NPC
 !!! definition "Circuit-SAT"
     Circuit-SAT 即为确定给定布尔电路是否具有使输出为真的输入分配的决策的问题。
 
-    ![](65.png)
+    ![](img/65.png)
     > Source: https://en.wikipedia.org/wiki/Circuit_satisfiability_problem
 
     上图中，左侧电路满足条件，右侧电路不满足条件。

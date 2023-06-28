@@ -67,7 +67,7 @@ plugins:
 markdown_extensions:
   - toc:
       permalink: true # link for each title
-      slugify: !!python/name:pymdownx.slugs.uslugify # enable Unicode link
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}} # enable Unicode link
   - admonition
   - abbr
   - attr_list
