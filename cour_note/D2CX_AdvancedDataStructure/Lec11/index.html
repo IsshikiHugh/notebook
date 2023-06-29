@@ -1299,11 +1299,11 @@ p_\text{max} \leq P_\text{greedy} \leq P_\text{optimal} \leq P_\text{frac}
 W_{i,p} = \text{the minimum weight of a collection from } \{1, …, i\} \text{ with total profit being  exactly } p \\
 W_{i,p} = \left\{
 \begin{aligned}
-    \infty &amp; i = 0 \\
-    W_{i-1, p} &amp; p_i &gt; p \\
-    \min\{W_{i-1, p}, w_i + W_{i-1, p-p_i}\} &amp; otherwise        
+    &amp;\infty &amp;&amp; i = 0 \\
+    &amp;W_{i-1, p} &amp;&amp; p_i &gt; p \\
+    &amp;\min\{W_{i-1, p}, w_i + W_{i-1, p-p_i}\} &amp;&amp; otherwise        
 \end{aligned}
-\right.
+\right.\\
 i = 1, ..., n; p = 1, ..., n\cdot p_\text{max} \\
 O(n^2p_\text{max})
 \]</div>
@@ -1473,7 +1473,7 @@ r(C) = \max_{s_i\in S} \{ dis(s_i, C) \} \\
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月29日 00:11:07</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月29日 17:12:48</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 13:40:59</span>
