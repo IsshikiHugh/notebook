@@ -248,11 +248,11 @@ $$
 W_{i,p} = \text{the minimum weight of a collection from } \{1, …, i\} \text{ with total profit being  exactly } p \\
 W_{i,p} = \left\{
 \begin{aligned}
-    \infty & i = 0 \\
-    W_{i-1, p} & p_i > p \\
-    \min\{W_{i-1, p}, w_i + W_{i-1, p-p_i}\} & otherwise        
+    &\infty && i = 0 \\
+    &W_{i-1, p} && p_i > p \\
+    &\min\{W_{i-1, p}, w_i + W_{i-1, p-p_i}\} && otherwise        
 \end{aligned}
-\right.
+\right.\\
 i = 1, ..., n; p = 1, ..., n\cdot p_\text{max} \\
 O(n^2p_\text{max})
 $$
