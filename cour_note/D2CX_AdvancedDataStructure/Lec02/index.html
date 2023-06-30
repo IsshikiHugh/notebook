@@ -1016,7 +1016,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-2--red-black-tree--b-tree">Lecture 2 | Red Black Tree &amp; B+ Tree<a class="headerlink" href="#lecture-2--red-black-tree--b-tree" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4939 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 43 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 17 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4969 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 43 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 17 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">说明</p>
@@ -1147,18 +1147,18 @@
 <h4 id="插入">插入<a class="headerlink" href="#插入" title="Permanent link">¶</a></h4>
 <p>我们知道，对<strong>黑高</strong>有贡献的只有黑色节点，因此 <code>NIL</code> 节点被一个<strong>红色</strong>节点置换并不会改变一颗红黑树的黑高，因为红色节点还会有一层 <code>NIL</code> 子节点；然而对于红色节点，却有着红色结点互不相邻的限制。</p>
 <p>因此，“插入”操作的主要思路就是，先将整个红黑树当作一个普通的二叉搜索树，将目标数据插入到树的末端（也就是置换一个 <code>NIL</code> 节点），并将它染为红色，再调整使之在保证<strong>黑高不变</strong>的情况下，满足<strong>红色节点不能相邻</strong>的要求。</p>
-<p>现在，我们记这个被插入的节点为 <code>x</code>，任意一个节点 <code>node</code> 的父节点为 <code>node.p</code>，则：</p>
+<p>现在，我们记这个被插入的节点为 <code>x</code>，任意一个节点 <code>node</code> 的家长节点为 <code>node.p</code>，则：</p>
 <ol>
 <li>如果 <code>x.p</code> 是黑色的，那么我们不需要做任何调整；</li>
 <li>如果 <code>x.p</code> 是红色的，那么我们需要进行调整；<ul>
-<li>此时因为原来的树符合红黑性质，<code>x.p.p</code> 必定存在（<code>x.p</code> 不是根）且必定是黑色的；</li>
+<li>此时因为原来的树符合红黑性质，<code>x.p.p</code> 必定存在（红 <code>x.p</code> 不能是根）且必定是黑色的；</li>
 </ul>
 </li>
 </ol>
 <p>根据这些讨论，我们就能列举出来一个红色的点被插入后，在 <code>2.</code> 的情况下所有的<strong>初始情况</strong>，即下面第一张图。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/8.png"><img alt="" loading="lazy" src="../img/8.png"/></a></p>
 <p>由于红黑树的操作中，有一部分需要进行递归转移，而其中中间步骤出现了很多同构的结构，所以为了简化说明，我们对其进行统一，所有情况都被归纳为上面第二张图。</p>
-<p>而第二张图中提到的橙色结点，也就是标为“被插入的红色节点”的结点，实际过程中并不一定指的是被「插入」的那个点，也可能是在 case 1 向上递归时，简化的原来那颗子树。换句话来说，这里的“被插入的红色节点及其子树”，实际上可能是指「<strong>导致调整出现的红根子树</strong>」。</p>
+<p>而第二张图中提到的橙色结点，也就是标为“被插入的红色节点”的结点，实际过程中并不一定指的是被「插入」的那个点，也可能是在 case 1 向上递归时，简化的原来那颗子树。换句话来说，这里的“被插入的红色节点及其子树”，实际上可能是指「<strong>导致红黑性质被破坏的红根子树</strong>」。</p>
 <p>接下来我们来讨论各种情况要怎么处理。</p>
 <div class="admonition warning">
 <p class="admonition-title">说明</p>
@@ -1180,8 +1180,8 @@
 <p>对于 case 1，图中的两种情况是等价的。所以我们只展示其中一种。</p>
 <p>我们只需要将图中的根节点<strong>染红</strong>，将根的两个子节点<strong>染黑</strong>，类似于将黑节点“下放”。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/9.png"><img alt="" src="../img/9.png"/></a></p>
-<p>通过第一步操作，我们可以保证这整个子树必定<strong>平衡</strong>、<strong>不影响父节点的黑高</strong>且<strong>红点不邻</strong>的。</p>
-<p>然而我们并不知道这个根的父亲是否是红色节点，因此做分类讨论。倘若其根的父亲是红色节点，那么我们还需要向上递归，继续调整，根据实际情况转化为其他 case；若这子树的根没有父节点，则直接染黑红根即可；而倘若子树根节点的父亲是黑节点，那么我们就调整完毕了。</p>
+<p>通过第一步操作，我们可以保证这整个子树必定<strong>平衡</strong>、<strong>不影响家长节点的黑高</strong>（除了家长是根的情况）且<strong>红点不邻</strong>的。</p>
+<p>然而我们并不知道这个根的家长节点是否是红色节点，因此做分类讨论。倘若其根的家长节点是红色节点，那么我们还需要向上递归，继续调整，根据实际情况转化为其他 case；若这子树的根没有家长节点，则直接染黑红根即可；而倘若子树根节点的家长节点是黑节点，那么我们就调整完毕了。</p>
 </details>
 <p>在这三个过程中，我们观察到，只有 case 1 的转化会导致我们递归向上，而 case 2 向 case 3 的转化并不会导致我们改变关注的子树的范围。</p>
 <p>为了更清晰地看出各个方法之间的转化关系，于是我们可以画一个状态机：</p>
@@ -1266,7 +1266,7 @@ A ===&gt;|"C"| C ---&gt;|"C&amp;R"| D</code></pre>
 <p>虽然我们对「需要被删除的目标点」进行了递归的扩展定义，但是在第一层我们就可以直接将它删掉了。而这个点被删除造成的影响，已经由「<strong>由于删除结点，黑高 -1 的子树</strong>」继承了。</p>
 <p>在之后的配图中，我们都不会展示 x 是如何被删掉的，而是在结果图中保留 x。如果说 x 就是我们一开始要删除的那个点，那么我们应当删掉 x，直接换成 <code>NIL</code>；如果 x 是在传递过程中，表示「黑高 -1 的子树」的根，那么不用做额外处理。</p>
 </div>
-<p>类似于我们在「Insertion / case 3」里提到的“下放”黑节点，删除操作的思路基本上是“上放”黑节点，或者说“吸纳”黑节点。这个“吸纳”的行为，指的是一个黑点，原来只为右子树中的所有路径提供了黑高，现在由于它的 sibling 子树中少了一个黑色节点，我们将这个黑色节点转移到它们的父亲节点，于是这个节点同时为左右子树的所有路径都贡献了黑高。</p>
+<p>类似于我们在「Insertion / case 3」里提到的“下放”黑节点，删除操作的思路基本上是“上放”黑节点，或者说“吸纳”黑节点。这个“吸纳”的行为，指的是一个黑点，原来只为右子树中的所有路径提供了黑高，现在由于它的 sibling 子树中少了一个黑色节点，我们将这个黑色节点转移到它们的家长节点节点，于是这个节点同时为左右子树的所有路径都贡献了黑高。</p>
 <p>接下来我们逐个分析变化：</p>
 <div class="admonition section">
 <p class="admonition-title">Deletion / case 1</p>
@@ -1280,7 +1280,7 @@ A ===&gt;|"C"| C ---&gt;|"C&amp;R"| D</code></pre>
 <div class="admonition section">
 <p class="admonition-title">Deletion / case 1.2</p>
 <p>当 a 为<strong>黑</strong>根时，我们没有空余的位置来“吸纳” w 的黑高，但是左子树和右子树的不平衡是必须解决的，而我们绝不能寄希望于“在不知道有没有红色节点的 b 和 c 的子树中去寻找红色节点”这个想法。</p>
-<p>所以我们可以仿照「Insertion / case 3」，将整个树标记为灰色——「<strong>由于删除结点，黑高 -1 的子树</strong>」，然后进一步根据其父亲的情况递归到其他 case。其中，当我们递归到 a 是整个树的根时可以退出，因为这相当于整个树的黑高 -1，不影响红黑性质。</p>
+<p>所以我们可以仿照「Insertion / case 3」，将整个树标记为灰色——「<strong>由于删除结点，黑高 -1 的子树</strong>」，然后进一步根据其家长节点的情况递归到其他 case。其中，当我们递归到 a 是整个树的根时可以退出，因为这相当于整个树的黑高 -1，不影响红黑性质。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/15.png"><img alt="" src="../img/15.png"/></a></p>
 </div>
 </div>
@@ -1459,7 +1459,7 @@ D ===&gt;|"C&amp;R"| C</code></pre>
 <hr/>
 <h4 id="插入_1">插入<a class="headerlink" href="#插入_1" title="Permanent link">¶</a></h4>
 <p>插入的方法也相对朴素简单，就是找到该插入的地方以后插入即可。</p>
-<p>只不过需要注意一件事，当这个插入，导致了 B+ 树的性质不再成立时，即导致其父节点的子节点数量为 <span class="arithmatex">\(M+1\)</span> 时，我们需要将这个结点平均分裂成两个，此时显然有两个子树的节点数量都不小于 <span class="arithmatex">\(\lceil M+1 \rceil\)</span>。但这还不够，分裂导致父节点的父节点的子节点变多，所以我们还得向上递归。</p>
+<p>只不过需要注意一件事，当这个插入，导致了 B+ 树的性质不再成立时，即导致其家长节点的子节点数量为 <span class="arithmatex">\(M+1\)</span> 时，我们需要将这个结点平均分裂成两个，此时显然有两个子树的节点数量都不小于 <span class="arithmatex">\(\lceil M+1 \rceil\)</span>。但这还不够，分裂导致家长节点的家长节点的子节点变多，所以我们还得向上递归。</p>
 <p>依然是进行一个模拟，我们模拟插入 <code>46</code> 和 <code>44</code>。</p>
 <div class="admonition section">
 <p class="admonition-title">Insert(46), no split</p>
@@ -1517,7 +1517,7 @@ D ===&gt;|"C&amp;R"| C</code></pre>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月30日 15:48:37</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月30日 17:06:05</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月8日 10:06:23</span>

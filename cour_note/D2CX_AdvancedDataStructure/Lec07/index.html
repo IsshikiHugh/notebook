@@ -1103,7 +1103,7 @@
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/55.png"><img alt="" src="../img/55.png" width="50%"/></a> </center></p>
 <p>如图，现在我们知道，只有落在两条深绿色之间的点才可能会更新答案。</p>
 <p>现在我们需要做的是，从分界线左侧的区域里拿一个点，和分界线右边的一个点做匹配，然后取所有结果中的最小点。不过这件事仍然可以优化——在二维的数据中，仅对一个纬度做约束往往会导致事情变得不那么稳定，所以我们同样考虑在另外一个方向做约束。</p>
-<p>也是基于范围约束的考虑。假设我们以左侧的点为基准，从上往下做遍历这些点，那么对于点 <span class="arithmatex">\(p_{l_i}\)</span>，具有能够更新答案的， <span class="arithmatex">\(\mathop{dis} (p_{l_i}, p_{r_j}) \leq \delta\)</span> 的 <span class="arithmatex">\(p_{r_j}\)</span>，一定有 <span class="arithmatex">\(\mathop{dis\parallel bound}(p_{l_i}, p_{r_j}) \leq \delta\)</span>（直角三角形斜边最长）。</p>
+<p>也是基于范围约束的考虑。假设我们以左侧的点为基准，从上往下做遍历这些点，那么对于点 <span class="arithmatex">\(p_{l_i}\)</span>，具有能够更新答案的， <span class="arithmatex">\(\mathop{dis} (p_{l_i}, p_{r_j}) \leq \delta\)</span> 的 <span class="arithmatex">\(p_{r_j}\)</span>，一定有 <span class="arithmatex">\(\mathop{dis_{\parallel bound}}(p_{l_i}, p_{r_j}) \leq \delta\)</span>（直角三角形斜边最长）。</p>
 <p>因此，对于选定点 <span class="arithmatex">\(p_{l_i}\)</span>，其所有可能导致答案更新的点都被框定在一个 <span class="arithmatex">\(2\delta \times \delta\)</span> 的矩形中。</p>
 <p>而更奇妙的是，这个由参数 <span class="arithmatex">\(\delta\)</span> 指定的矩形，巧妙地约束了落在矩形中的点的最大数量。</p>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/57.svg"><img alt="" src="../img/57.svg" width="30%"/></a> </center></p>
@@ -1458,7 +1458,7 @@ T(N) = \left\{
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月30日 09:38:14</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月30日 17:06:05</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月11日 22:39:40</span>
