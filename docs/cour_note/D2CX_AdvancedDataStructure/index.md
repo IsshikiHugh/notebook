@@ -28,7 +28,7 @@
     - [ ] [Lecture 8 | Dynamic Programming](Lec08.md)
     - [ ] [Lecture 9 | Greedy Algorithms](Lec09.md)
     - [x] [Lecture 10 | NP Completeness](Lec10.md)
-    - [ ] [Lecture 11 | Approximation](Lec11.md)
+    - [x] [Lecture 11 | Approximation](Lec11.md)
     - [ ] [Lecture 12 | Local Search](Lec12.md)
     - [ ] [Lecture 13 | Randomized Algorithms](Lec13.md)
     - [ ] [Lecture 14 | Parallel](Lec14.md)
