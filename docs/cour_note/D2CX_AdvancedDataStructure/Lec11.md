@@ -13,7 +13,7 @@
 我们设 $f(n, x)$ 是对输入大小为 $n$ 的情况下，对结果 $x$ 的**最坏情况**的一个直观量化（例如 dist, weight...），若设 $x^*$ 为准确解，$x$ 为给定算法结果，则我们定义**近似比(Approximation Ratio)**$\rho$：
 
 $$
-\forall n \rho = \max\left\{\frac{f(n, x)}{f(n, x^*)}, \frac{f(n, x^*)}{n, f(x)}\right\}
+\forall n \rho = \max\left\{\frac{f(n, x)}{f(n, x^*)}, \frac{f(n, x^*)}{f(n, x)}\right\}
 $$
 
 则称给定算法为 $\rho$ 近似算法($\rho$-approximation algorithm)。
