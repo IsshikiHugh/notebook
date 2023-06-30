@@ -1112,7 +1112,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-1--avl-trees--splay-trees">Lecture 1 | AVL Trees &amp; Splay Trees<a class="headerlink" href="#lecture-1--avl-trees--splay-trees" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7085 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 385 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 28 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7100 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 385 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 28 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">说明</p>
@@ -1141,11 +1141,11 @@
 <p class="admonition-title">link</p>
 <p>OI Wiki: <a href="https://oi-wiki.org/ds/avl/">https://oi-wiki.org/ds/avl/</a></p>
 </div>
-<p>我们知道，对于一棵二叉搜索树，其对点的操作代价为 <span class="arithmatex">\(O(\log n)\)</span>。然而在最坏情况下，它会退化成 <span class="arithmatex">\(O(n)\)</span>，例如这是一棵只有左子树的链型二叉树，那么操作这里唯一的叶子节点就是 <span class="arithmatex">\(O(n)\)</span>。</p>
+<p>我们知道，对于一棵二叉搜索树，其对点的操作代价为 <span class="arithmatex">\(O(\log n)\)</span>。然而在最坏情况下，它会退化成 <span class="arithmatex">\(O(n)\)</span>，例如这是一棵只有左孩子树的链型二叉树，那么操作这里唯一的叶孩子节点就是 <span class="arithmatex">\(O(n)\)</span>。</p>
 <p>换句话来说，一棵二叉树的维护成本基本上与其高度正相关。因而一个很自然的想法是，如果我们想让一棵二叉树好维护，那么就希望它的高度尽可能低，而在点数固定的情况下，一种朴素的思想是让节点尽可能“均匀”地分布在树上。</p>
 <div class="admonition definition">
 <p class="admonition-title">height of a tree</p>
-<p><strong>树的高度(Height of Tree)</strong>等于其根节点到叶子节点的若干路径中，最大的距离（即边的数量），也就是深度最深的节点到根节点到距离。</p>
+<p><strong>树的高度(Height of Tree)</strong>等于其根节点到叶孩子节点的若干路径中，最大的距离（即边的数量），也就是深度最深的节点到根节点到距离。</p>
 <p>特别的，一棵空树的高度为 -1。</p>
 <blockquote>
 <p>说的通俗一些，就是树的层数。</p>
@@ -1158,21 +1158,21 @@
 <p class="admonition-title">AVL Tree</p>
 <ol>
 <li>一个空二叉树是一个 AVL 树；</li>
-<li>如果二叉树 <span class="arithmatex">\(T\)</span> 是一个 AVL 树，则其左右子树 <span class="arithmatex">\(T_l\)</span> 和 <span class="arithmatex">\(T_r\)</span> 也都应该是 AVL 树，且有 <span class="arithmatex">\(|h(T_l) - h(T_r)| \leq 1\)</span>；</li>
+<li>如果二叉树 <span class="arithmatex">\(T\)</span> 是一个 AVL 树，则其左右孩子树 <span class="arithmatex">\(T_l\)</span> 和 <span class="arithmatex">\(T_r\)</span> 也都应该是 AVL 树，且有 <span class="arithmatex">\(|h(T_l) - h(T_r)| \leq 1\)</span>；</li>
 </ol>
 <div class="admonition definition">
 <p class="admonition-title">Balance Factor</p>
-<p>一个节点的<strong>平衡因子(Balance Factor)BF</strong>用来描述一个节点的平衡状态，对于节点 <span class="arithmatex">\(T_p\)</span>，它的左子树为 <span class="arithmatex">\(T_l\)</span>，右子树为 <span class="arithmatex">\(T_r\)</span>，则：</p>
+<p>一个节点的<strong>平衡因子(Balance Factor)BF</strong>用来描述一个节点的平衡状态，对于节点 <span class="arithmatex">\(T_p\)</span>，它的左孩子树为 <span class="arithmatex">\(T_l\)</span>，右孩子树为 <span class="arithmatex">\(T_r\)</span>，则：</p>
 <div class="arithmatex">\[
 BF(T_p) = h(T_l) - h(T_r)
 \]</div>
 </div>
 <p>所以上面的第 2 条又可以写成：</p>
 <ul>
-<li>如果二叉树 <span class="arithmatex">\(T\)</span> 是一个 AVL 树，则其左右子树 <span class="arithmatex">\(T_l\)</span> 和 <span class="arithmatex">\(T_r\)</span> 也都应该是 AVL 树，且有 <span class="arithmatex">\(BF(T_p) \in \{0, \pm 1\}\)</span>；</li>
+<li>如果二叉树 <span class="arithmatex">\(T\)</span> 是一个 AVL 树，则其左右孩子树 <span class="arithmatex">\(T_l\)</span> 和 <span class="arithmatex">\(T_r\)</span> 也都应该是 AVL 树，且有 <span class="arithmatex">\(BF(T_p) \in \{0, \pm 1\}\)</span>；</li>
 </ul>
 <blockquote>
-<p>说的通俗一些就是，AVL 树的每一个点都平衡，而平衡与否取决于节点的两个子树层数之差是否超过 1。</p>
+<p>说的通俗一些就是，AVL 树的每一个点都平衡，而平衡与否取决于节点的两个孩子树层数之差是否超过 1。</p>
 </blockquote>
 </div>
 <p>在这种定义下，AVL 树的高度可以证明为 <span class="arithmatex">\(O(\log N)\)</span>，证明如下：</p>
@@ -1196,8 +1196,8 @@ n_h = \left\{
     \end{array}
 \right.
 \]</div>
-<p>发现 <span class="arithmatex">\(n_h + 1\)</span> 是 Fabnacci 数列。</p>
-<p>而对于如下斐波那契数列：</p>
+<p>发现 <span class="arithmatex">\(n_h + 1\)</span> 符合 Fibonacci 数列的递推公式（但是初始条件不一样），所以我们可以用 Fibonacci 对其进行一个估计。</p>
+<p>而对于如下 Fibonacci 数列：</p>
 <div class="arithmatex">\[
 F_i = \left\{
     \begin{array}{l}
@@ -1215,12 +1215,12 @@ F_i = \left\{
     \log{(F_n)} &amp;\approx n
 \end{aligned}
 \]</div>
-<p>而 <span class="arithmatex">\(n_h = F_{h+2}\)</span>，所以 <span class="arithmatex">\(h \approx \log{(n_h)}\)</span>，也就是说 <span class="arithmatex">\(h \approx \log{N}\)</span>。</p>
+<p>而 <span class="arithmatex">\(n_h + 1 \approx F_{h+2}\)</span>，所以 <span class="arithmatex">\(h \approx \log{(n_h)}\)</span>，也就是说 <span class="arithmatex">\(h \approx \log{N}\)</span>。</p>
 </div>
 <hr/>
 <h4 id="视角">视角<a class="headerlink" href="#视角" title="Permanent link">¶</a></h4>
-<p>而我们谈论 AVL 树时，我们希望以一个动态的视角来谈论 AVL 树，即讨论：某一棵树是否是 AVL 树、在某个操作后是否仍然是 AVL 树、如何将它重新变为 AVL 树。重点在于，讨论最后一个问题，即“重新变为 AVL 树”这个问题时，我们默认这棵树在一次其他操作之前是一棵 AVL 树。</p>
-<p>实际上这是对问题的一种简化建模，它成为我们解决其他问题的最小单元和基础。</p>
+<p>而我们谈论 AVL 树时，我们希望以一个动态的视角来谈论 AVL 树，即讨论：某一棵树是否是 AVL 树；在某个操作后，它是否仍然是 AVL 树；若原先是，而经过操作后不再是，那要如何将它重新变为 AVL 树。</p>
+<p>以上三个步骤是简化后的建模，它成为我们解决其他问题的最小单元和基础。</p>
 <p>所以在这种模型下，我们需要定义两个东西：</p>
 <div class="admonition definition">
 <p class="admonition-title">Trouble Maker &amp; Trouble Finder</p>
@@ -1245,7 +1245,7 @@ B === E</code></pre>
 <p>现在我们插入 <code>5</code>：</p>
 <pre class="mermaid"><code>graph TD;
 A(("8, BF=2"))
-B(("4, BF=1"))
+B(("4, BF=-1"))
 C(("9, BF=0"))
 D(("2, BF=0"))
 E(("6, BF=1"))
@@ -1270,7 +1270,7 @@ E === NULL</code></pre>
 <div class="admonition note">
 <blockquote>
 <p>同心圆表示这个点是需要我们在后续操作中关注的。</p>
-<p>此外，虽然实际情况下可能出现多个 Trouble Finder，但是为了简化问题，我们这里假设只有一个 Trouble Finder，或者说我们只关注<strong>以「距离案发现场最近的 Trouble Finder」为根的子树</strong>（这句话非常重要）。</p>
+<p>此外，虽然实际情况下可能出现多个 Trouble Finder，但是我们只关注<strong>以「距离案发现场最近的 Trouble Finder」为根的孩子树</strong>（这句话非常重要）。</p>
 </blockquote>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><input id="__tabbed_3_4" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">LL</label><label for="__tabbed_3_2">RR</label><label for="__tabbed_3_3">LR</label><label for="__tabbed_3_4">RL</label></div>
 <div class="tabbed-content">
@@ -1360,8 +1360,8 @@ E === NULL</code></pre>
 </div>
 </div>
 </input></input></input></input></div>
-<p>稍作解释，例如 <code>LR</code>，表示的是 Trouble Maker 在 Trouble Finder 的 L 子节点的 R 子树中。</p>
-<p>另外，对于我只在 <code>LR</code> 和 <code>RL</code> 中着重二级子节点，并不是笔误。之后会详细介绍。</p>
+<p>稍作解释，例如 <code>LR</code>，表示的是 Trouble Maker 在 Trouble Finder 的 L 孩子节点的 R 孩子树中。</p>
+<p>另外，对于我只在 <code>LR</code> 和 <code>RL</code> 中着重二级孩子节点，并不是笔误。之后会详细介绍。</p>
 </div>
 <hr/>
 <h4 id="ll--rr">LL &amp; RR<a class="headerlink" href="#ll--rr" title="Permanent link">¶</a></h4>
@@ -1575,13 +1575,13 @@ E === NULL</code></pre>
 </div>
 </input></input></input></input></input></div>
 </div>
-<p>首先，我们遇到的问题是什么？是 Trouble Maker 进来以后，Trouble Finder 发现 <span class="arithmatex">\(h(T_l) - h(T_r) = 2\)</span>了，用通俗的话来说就是左子树太高了，然而在这种情况下，左子树依然还站在一个台子（Trouble Finder）上和 Trouble Finder 比身高，所以我们需要将它从台子上请下来。也就是说，既然左子树太高了，那么我们就不<strong>希望</strong>让它再成为谁的子树，因为成为谁的子树必然意味着这条路径会更长。</p>
+<p>首先，我们遇到的问题是什么？是 Trouble Maker 进来以后，Trouble Finder 发现 <span class="arithmatex">\(h(T_l) - h(T_r) = 2\)</span>了，用通俗的话来说就是左孩子树太高了，然而在这种情况下，左孩子树依然还站在一个台子（Trouble Finder）上和 Trouble Finder 比身高，所以我们需要将它从台子上请下来。也就是说，既然左孩子树太高了，那么我们就不<strong>希望</strong>让它再成为谁的孩子树，因为成为谁的孩子树必然意味着这条路径会更长。</p>
 <p>那么现在我们把它从台子上请下来，也就是说割裂它和 Trouble Finder 的亲子关系（对应 Frame 2）让它们同台“对抗”（这一步在 <code>LL</code> 和 <code>RR</code> 可能显得比较多余，但是在 <code>LR</code> 和 <code>RL</code> 就会让问题清晰很多）。</p>
 <p>然而我们仍然需要让这个森林重新变回一个树，所以就需要重新从里面找到根节点，显然，只能选择 Trouble Finder <strong>旁边</strong> 的 Left Child。但是为了继续维护二叉搜索树的性质，所以我们需要将 L Right Subtree 移植到 Trouble Finder 必定空缺（因为这里原先是 Left Child）的左指针上。</p>
 <p>OK，你可能觉得这个解释对于 LL Single Rotation 来说显得十分多此一举，但是这都是为了给后面做的铺垫，虽然这个方法看起来繁琐冗余，但是已经足以解释原先的 Single Rotation 无法解释的 LR &amp; RL 操作方法。</p>
 <hr/>
 <h4 id="lr--rl">LR &amp; RL<a class="headerlink" href="#lr--rl" title="Permanent link">¶</a></h4>
-<p>首先我们需要知道为什么之前的方法不行，也是我觉得“旋转”这个做法在这个推进过程中比较割裂的地方：（对照 <strong><a href="#旋转视角">#旋转视角</a></strong> 的内容阅读）我们发现，由于 LL 中的 Trouble Maker 在左侧子树上，所以在旋转过程中，相当于把它“拽”上来了。然而对于 L Right Subtree，无论是旋转前还是旋转后，为了维护二叉搜索树的性质，它都被接在了深度为 1 的节点上，换句话来说 L Right Subtree 贡献的高度并没有改变。对于 RL 的情况也是同理的。所以我们并不能使用 LL Single Rotation 的方法来解决这个问题。</p>
+<p>首先我们需要知道为什么之前的方法不行，也是我觉得“旋转”这个做法在这个推进过程中比较割裂的地方：（对照 <strong><a href="#旋转视角">#旋转视角</a></strong> 的内容阅读）我们发现，由于 LL 中的 Trouble Maker 在左侧孩子树上，所以在旋转过程中，相当于把它“拽”上来了。然而对于 L Right Subtree，无论是旋转前还是旋转后，为了维护二叉搜索树的性质，它都被接在了深度为 1 的节点上，换句话来说 L Right Subtree 贡献的高度并没有改变。对于 RL 的情况也是同理的。所以我们并不能使用 LL Single Rotation 的方法来解决这个问题。</p>
 <div class="admonition note">
 <p class="admonition-title">关于旋转视角</p>
 <p>如果从旋转视角来考虑，确实也能考虑这个过程，但一方面过于复杂，一方面实际实现过程中也完全可以被优化，所以我希望使用换根的视角来理解这个问题。</p>
@@ -1772,14 +1772,14 @@ E === NULL</code></pre>
 </div>
 </div>
 </input></div>
-<p>用语言概括就是，找到关键的那三个点，然后把最下面的顶到上面去，剩下两个作为左右子树，原先的那个点的左右子树则对应地，左子树接到左边空缺的右子树上，右子树接到右边空缺的左子树上。</p>
+<p>用语言概括就是，找到关键的那三个点，然后把最下面的顶到上面去，剩下两个作为左右孩子树，原先的那个点的左右孩子树则对应地，左孩子树接到左边空缺的右孩子树上，右孩子树接到右边空缺的左孩子树上。</p>
 </details>
 <hr/>
 <h3 id="其他问题">其他问题<a class="headerlink" href="#其他问题" title="Permanent link">¶</a></h3>
 <div class="admonition question">
 <p class="admonition-title">如果一个 Trouble 产生后，出现了多个 Trouble Finder，该如何处理？</p>
-<p>首先，请回顾一下 <strong><a href="#操作">#操作</a></strong> 中被加粗的这一句话，「以『距离案发现场最近的 Trouble Finder』为根的子树」。也就是说，我们现在已经有了解决最近的 Trouble Finder 的方案。</p>
-<p>感性的思考，AVL 的“平衡”可以由递归形式定义，具体来说衡量的是左右子树的“高度”差。当我们解决了一个 Trouble Finder，意味着我们让 Trouble Finder 的最高的那个子树高度 -1，这也意味着以 Trouble Finder 为根的那个子树高度 -1，这也意味着其所有父节点的平衡因子都会相应地变化。</p>
+<p>首先，请回顾一下 <strong><a href="#操作">#操作</a></strong> 中被加粗的这一句话，「以『距离案发现场最近的 Trouble Finder』为根的孩子树」。也就是说，我们现在已经有了解决最近的 Trouble Finder 的方案。</p>
+<p>感性的思考，AVL 的“平衡”可以由递归形式定义，具体来说衡量的是左右孩子树的“高度”差。当我们解决了一个 Trouble Finder，意味着我们让 Trouble Finder 的最高的那个孩子树高度 -1，这也意味着以 Trouble Finder 为根的那个孩子树高度 -1，这也意味着其所有父节点的平衡因子都会相应地变化。</p>
 <p>一个 Trouble 当且仅有一个 Trouble Maker，而且它必定是 Trouble Finder 所关注的那个“最长路径”的端点，这也意味着所有的子 Trouble Finder 都在对应的父 Trouble Finder 的“最长路径”上。而现在我们让子 Trouble Finder 唯一（如果不唯一，那在这个 Trouble Maker 到来之前就已经存在 Trouble 了）的最长路径也应当会 -1。而这必将导致其平衡因子的绝对值 -1。</p>
 </div>
 <hr/>
@@ -1847,11 +1847,11 @@ E === NULL</code></pre>
 </div>
 <div class="admonition section">
 <p class="admonition-title">Remove X</p>
-<p>根据 BST 的性质，可以在 <span class="arithmatex">\(O(\log N)\)</span> 的时间里找到 <span class="arithmatex">\(X\)</span>，接下来通过旋转操作，将 <span class="arithmatex">\(X\)</span> 不断旋转至根，接下来删除 Root 节点，并在维护 BST 性质的情况下递归地合并左右子树即可。</p>
+<p>根据 BST 的性质，可以在 <span class="arithmatex">\(O(\log N)\)</span> 的时间里找到 <span class="arithmatex">\(X\)</span>，接下来通过旋转操作，将 <span class="arithmatex">\(X\)</span> 不断旋转至根，接下来删除 Root 节点，并在维护 BST 性质的情况下递归地合并左右孩子树即可。</p>
 </div>
 <div class="admonition section">
 <p class="admonition-title">Find Max</p>
-<p>根据 BST 的性质，可以在 <span class="arithmatex">\(O(\log N)\)</span> 的时间里找到最大值，将它旋转到根部以后，可以发现它没有右子树，直接删掉就行。</p>
+<p>根据 BST 的性质，可以在 <span class="arithmatex">\(O(\log N)\)</span> 的时间里找到最大值，将它旋转到根部以后，可以发现它没有右孩子树，直接删掉就行。</p>
 </div>
 <hr/>
 <h3 id="摊还分析">摊还分析<a class="headerlink" href="#摊还分析" title="Permanent link">¶</a></h3>
@@ -1888,10 +1888,10 @@ T_{\text{rotate }x\text{ to root}} = T_{\text{zig}} + \sum{ {T_{\text{zig-zag}}}
     &amp;\text{And we note } Rank(des) = \log Size(des) \approx Height(des) \text{.}
 \end{aligned}
 \]</div>
-<p>用语言描述一下就是，对于某个子树 <span class="arithmatex">\(T\)</span>，其势能函数 <span class="arithmatex">\(\Phi(T)\)</span> 等于<u>以所有它的后代为根</u>的子树的大小取对数以后求和。</p>
+<p>用语言描述一下就是，对于某个孩子树 <span class="arithmatex">\(T\)</span>，其势能函数 <span class="arithmatex">\(\Phi(T)\)</span> 等于<u>以所有它的后代为根</u>的孩子树的大小取对数以后求和。</p>
 <div class="admonition warning">
 <p class="admonition-title">Rank v.s. Height</p>
-<p>这里需要注意的一个点是，虽然 <span class="arithmatex">\(Rank(des) \approx Height(des)\)</span>，但是我们不应该用 <span class="arithmatex">\(Height()\)</span> 来代替 <span class="arithmatex">\(Rank()\)</span>，主要原因是在旋转过程中，<span class="arithmatex">\(Rank()\)</span> 不会变化（因为 <span class="arithmatex">\(Size()\)</span> 不会变化），但是 <span class="arithmatex">\(Height()\)</span> 可能变化。换句话来说，如果选用 <span class="arithmatex">\(Height()\)</span> 作为势能函数，我们就不得已考虑整棵树，而非只需要考虑当前旋转涉及的子树。</p>
+<p>这里需要注意的一个点是，虽然 <span class="arithmatex">\(Rank(des) \approx Height(des)\)</span>，但是我们不应该用 <span class="arithmatex">\(Height()\)</span> 来代替 <span class="arithmatex">\(Rank()\)</span>，主要原因是在旋转过程中，<span class="arithmatex">\(Rank()\)</span> 不会变化（因为 <span class="arithmatex">\(Size()\)</span> 不会变化），但是 <span class="arithmatex">\(Height()\)</span> 可能变化。换句话来说，如果选用 <span class="arithmatex">\(Height()\)</span> 作为势能函数，我们就不得已考虑整棵树，而非只需要考虑当前旋转涉及的孩子树。</p>
 </div>
 <p>关于正确性的说明，我会放在之后的过程中一个个插入，它们会被包裹在 <code>key-point</code> 文字框中，请注意这些内容。接下来我们就可以开始分析了，根据我们给定的目标：</p>
 <div class="arithmatex">\[
@@ -1975,7 +1975,7 @@ T_{\text{rotate }x\text{ to root}} = T_{\text{zig}} + \sum{ {T_{\text{zig-zag}}}
     &amp;= 2 + Rank_{i}(X) - Rank_{i-1}(X) + Rank_{i}(P) - Rank_{i-1}(P) + Rank_{i}(G) - Rank_{i-1}(G)
 \end{aligned}
 \]</div>
-<p>观察配图，<span class="arithmatex">\(X\)</span> 又一次绝地反击，成为它爸爸和爷爷共同的爸爸；<span class="arithmatex">\(G\)</span> 损失最惨重，丢掉了 <span class="arithmatex">\(A,\;B\)</span> 两族子嗣。</p>
+<p>观察配图，<span class="arithmatex">\(X\)</span> 又一次绝地反击，成为它家长和它家长的家长共同的家长；<span class="arithmatex">\(G\)</span> 损失最惨重，丢掉了 <span class="arithmatex">\(A,\;B\)</span> 两族子嗣。</p>
 <p>在这次的缩放中，根据我们之前在 <code>key-point</code> 里提到的，我们需要将它缩放到 <span class="arithmatex">\(k(Rank_{i}(X) - Rank_{i-1}(X))\)</span> 的形式，并且由于 <code>zig-zig</code> 会多次发生，所以我们也得想办法搞掉这里的 <span class="arithmatex">\({c_{\text{zig-zag}}}_i = 2\)</span>，否则最后就会出现一个 <span class="arithmatex">\(2n\)</span> 的 term，而我们的证明目标是 <span class="arithmatex">\(\log{N}\)</span>，所以我们必须将这个 <span class="arithmatex">\(2\)</span> 消掉。而为了消除这个 <span class="arithmatex">\(2\)</span>，我们需要先引入一个引理：</p>
 <div class="admonition property">
 <p class="admonition-title">Lemma 1</p>
@@ -2124,7 +2124,7 @@ T_{\text{rotate }x\text{ to root}} = T_{\text{zig}} + \sum{ {T_{\text{zig-zag}}}
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年5月5日 10:42:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月30日 11:13:13</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 19:52:59</span>
