@@ -54,7 +54,7 @@
             4. 从根节点到 `NIL` 节点的每条路径上的**黑**色节点数量相同；
 
 !!! definition "black height, bh"
-    特定节点的黑高，等于该节点到叶结点到简单路径中（**不包括自身**），黑色节点到数量。
+    特定节点的黑高，等于该节点到叶结点到简单路径中（**不包括自身**），黑色节点的数量。
 
 
 接下来为了加深理解，有一些辨析可以做：
@@ -94,7 +94,7 @@
 此外，关于红黑树的高，我们有如下性质：
 
 !!! property "property about height of RBTree"
-    一个有 $N$ 个内部节点（不包括叶子结点）的红黑树，其高度最大为 $2\log_2 (N+1)$，即是最“歪”的情况下。
+    一个有 $N$ 个内部节点（不包括叶子结点）的红黑树，其高度最大为 $2\log_2 (N+1)$。
 
     ??? proof "the proof of the property"
         > [关于黑高和点数的关系](https://stackoverflow.com/questions/70944386/maximum-height-of-a-node-in-a-red-black-tree)。

@@ -929,7 +929,7 @@ $$
 
     观察配图，$X$ 又一次绝地反击，成为它家长和它家长的家长共同的家长；$G$ 损失最惨重，丢掉了 $A,\;B$ 两族子嗣。
 
-    在这次的缩放中，根据我们之前在 `key-point` 里提到的，我们需要将它缩放到 $k(Rank_{i}(X) - Rank_{i-1}(X))$ 的形式，并且由于 `zig-zig` 会多次发生，所以我们也得想办法搞掉这里的 ${c_{\text{zig-zag}}}_i = 2$，否则最后就会出现一个 $2n$ 的 term，而我们的证明目标是 $\log{N}$，所以我们必须将这个 $2$ 消掉。而为了消除这个 $2$，我们需要先引入一个引理：
+    在这次的缩放中，根据我们之前在 `key-point` 里提到的，我们需要将它缩放到 $k(Rank_{i}(X) - Rank_{i-1}(X))$ 的形式，并且由于 `zig-zig` 会多次发生，所以我们也得想办法搞掉这里的 ${c_{\text{zig-zag}}}_i = 2$，否则最后就会出现一个 $2p(n)$ 的 term，而我们的证明目标是 $\log{N}$，所以我们必须将这个 $2$ 消掉。而为了消除这个 $2$，我们需要先引入一个引理：
 
     !!! property "Lemma 1"
         由于 $y = \log{x}$ 是单调的凸函数，所以有 $\frac{\log{x} + \log{b}}{2} \leq \log {\frac{a+b}{2}}$。
@@ -1009,7 +1009,7 @@ $$
             &\leq 2\log{\left( 
                 \underbrace{Size_{i}(G)}_{\mathbf{C}+\mathbf{D}+G}
               + \underbrace{Size_{i-1}(X)}_{\mathbf{A}+\mathbf{B}+X}
-            \right)} - 2 & \text{Lemma 1} \\
+            \right)} - 2 & \text{(Lemma 1)} \\
             &\leq 2\log{\left( Size_{i}(G) + Size_{i-1}(X) + 1 \right)} - 2 & \\
             &= 2\log{\left( Size_{i}(X) \right)} - 2 \\
             &= 2Rank_{i}(X) - 2 \\
