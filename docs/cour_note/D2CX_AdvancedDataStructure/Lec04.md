@@ -11,17 +11,17 @@
 
 ### 概念
 
-左偏堆，或者说**左偏堆(Leftist Heap)**，它相比于普通的堆，更好的一点在于它支持快速的堆合并操作。“左偏”，并不断往右侧合并，来实现每次都是往相对小的那一侧塞进东西，进而保相对证了这个
+左偏堆，或者说**左偏堆(Leftist Heap)**，它相比于普通的堆，更好的一点在于它支持快速的堆合并操作。“左偏”，并不断将新的东西往右侧合并，来实现每次都是往相对小的那一侧塞进东西，进而保相对证了这个
 
 由于左偏堆不再是一个完全二叉树，所以我们不能再像维护大根堆小跟堆那样用数组来维护它了。
 
 一个左偏堆的结点维护了左右子堆的地址、自身的键值、和一个“**距离(dist)**”。
 
 ```cpp
-struct LeftistHeap {
+struct LeftistHeapNode {
     ElementType val;
     int dist;
-    LeftistHeap * ls, * rs;
+    LeftistHeapNode * ls, * rs;
 };
 ```
 
@@ -36,7 +36,7 @@ struct LeftistHeap {
 而左偏堆就建立在这些性质上：
 
 !!! definition "Leftist Heap"
-    左偏堆是结点的键值应当不大于（不小于）其孩子结点的键值的堆，且满足「左偏」性质——结点的左孩子的 dist 不小于右孩子的 dist。
+    左偏堆是结点的键值应当不大于（不小于）其孩子结点的键值的二叉树（即堆的性质），且满足「左偏」性质——结点的左孩子的 dist 不小于右孩子的 dist。
 
     因此，回顾 dist 的定义，我们可以得到扩展性质：
 
@@ -63,17 +63,17 @@ struct LeftistHeap {
 
 #### 合并
 
-作为左偏堆的核心操作，合并操作自然就是要在满足性质的条件下，合并两个左偏堆。大致思路就是先维护堆的性质，在回溯时维护左偏性质，所以实际上它是一个先自上而下再自下而上的过程。
+作为左偏堆的核心操作，合并操作自然就是要在满足性质的条件下，合并两个左偏堆。大致思路就是**先维护堆的性质**，在**回溯时维护左偏性质**，所以实际上它是一个先自上而下再自下而上的过程。
 
-按照实现方法，左偏堆的合并可以分为 递归式 和 迭代式 两种。其中前者可能更为直觉，而后者可视化后则更为直观。“左偏”，并不断往右侧合并，来实现每次都是往相对小的那一侧塞进东西，进而保相对证了这个
+按照实现方法，左偏堆的合并可以分为**[递归式](#递归式)**和**[迭代式](#迭代式)**两种。其中前者可能更为直觉，而后者可视化后则更为直观。
 
 为了方便后续的代码描述，我们首先给出左偏堆结点在本文中的定义：
 
 ```cpp
-struct LeftistHeap {
+struct LeftistHeapNode {
     ElementType val;
     int dist;
-    LeftistHeap * ls, * rs;
+    LeftistHeapNode * ls, * rs;
 };
 ```
 
@@ -83,10 +83,10 @@ struct LeftistHeap {
 
 递归式先比较当前两个待合并子树的根结点的键值，选择较小（较大）的那个作为根结点，其左子树依然为左子树，右子树更新为「右子树和另一个待合并子树的合并结果」。
 
-当然，在递归地更新完后，我们需要检查左子树和右子树是否满足 $dist_\text{left child} \geq dist_\text{right child}$ 的性质，如果不满足，我们则需要交换左右子树来维持性质。
+当然，在递归地更新完后，我们需要检查左子树和右子树是否满足 $dist_\text{left child} \geq dist_\text{right child}$ 的性质，如果不满足，我们则需要**交换左右子树**来维持性质。
 
 ```cpp
-LeftistHeap * merge(LeftistHeap * x, LeftistHeap * y) {
+LeftistHeapNode * merge(LeftistHeapNode * x, LeftistHeapNode * y) {
     // Recursive exit. If any is NULL, return the other as the new root of subtree.
     if (x == NULL) return y;
     if (y == NULL) return x;
@@ -138,7 +138,11 @@ LeftistHeap * merge(LeftistHeap * x, LeftistHeap * y) {
     === "Frame 5"
         ![](img/29.svg)
 
-        继续往回走，发现 <font color=#2ECC71>**❷**</font> 和 <font color=#2E86C1>**❸**</font> 的 dist 相同，满足性质，就不需要改变了。
+        这里也跳过了两个步骤：
+
+        往回走，发现 <font color=#2ECC71>**❺**</font> 的 dist 小于 <font color=#2E86C1>**❹**</font> 的 dist，满足性质，不需要改变。
+        
+        继续往回走，发现 <font color=#2ECC71>**❷**</font> 和 <font color=#2E86C1>**❸**</font> 的 dist 相同，满足性质，也不需要改变。
         
         从这里也可以看出来，并不是看上去更大的子树一定在左侧。
         
@@ -147,16 +151,16 @@ LeftistHeap * merge(LeftistHeap * x, LeftistHeap * y) {
 
 ##### 迭代式
 
-迭代式是根据它的实现方法来命名的，但是我认为从可视化的角度来理解迭代式可能更有意思。
+迭代式是根据它的实现方法来命名的，但是我认为从可视化的角度来理解迭代式可能更有意思。事实上在很多题目中我觉得这个方法做题更加方便。
 
 迭代式维护两个额外的指针，分别指向两棵树还没被合并的子树的根，并不断选择较小的那个合并进去，直到两个指针都为空。可以发现，这个过程和归并排序的后半部分非常相似，实际上当我们从可视化的角度去看这件事以后，会发现这里做的**就是一个归并**。
 
 ```cpp
-LeftistHeap * merge(LeftistHeap * x, LeftistHeap * y) {
+LeftistHeapNode * merge(LeftistHeapNode * x, LeftistHeapNode * y) {
     // `tx` & `ty` are the pointers to the roots of the subtrees that haven't been merged.
-    LeftistHeap * tx = x, * ty = y;
+    LeftistHeapNode * tx = x, * ty = y;
     // `res` is the root of the merged final tree, while `cur` is the latest node that has been merged.
-    LeftistHeap * res = NULL, * cur = NULL;
+    LeftistHeapNode * res = NULL, * cur = NULL;
 
     // Begin merging.
     whie (tx != NULL && ty != NULL) {
@@ -273,7 +277,7 @@ LeftistHeap * merge(LeftistHeap * x, LeftistHeap * y) {
 而单点删除的操作也很简单，只需要合并需要被删除的结点的两个子结点，然后将这个新的树的根代替被删除的结点，再在回溯的过程中 bottom-up 地更新 dist 即可。
 
 ```cpp
-LeftistHeap * del(LeftistHeap * cur, ElementType x) {
+LeftistHeapNode * del(LeftistHeapNode * cur, ElementType x) {
     if (cur->val == x) {
         // Just return the merge of the children.
         return merge(cur->l, cur->r);
@@ -368,7 +372,7 @@ LeftistHeap * del(LeftistHeap * cur, ElementType x) {
 
 #### 摊还分析
 
-- 前情提要：**[Ex01/摊还分析](Ex01.md#摊还分析)**
+- 前情提要：**[Topic 1 | 摊还分析](Ex01.md#摊还分析)**
 
 这里我们采用**[势能法](https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/Lec01/#%E5%8A%BF%E8%83%BD%E6%B3%95)**进行分析。
 
