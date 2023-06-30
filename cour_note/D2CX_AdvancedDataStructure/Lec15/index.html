@@ -1036,7 +1036,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-15--external-sorting">Lecture 15 | External Sorting<a class="headerlink" href="#lecture-15--external-sorting" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6317 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 21 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6410 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 21 分钟</p>
 </div>
 <div class="admonition quote">
 <p class="admonition-title">link</p>
@@ -1465,6 +1465,11 @@ r_1 &gt; r_k - r_1 &gt; r_{k-1} - r_1 &gt; ... &gt; r_{2} - r_1
 <p>hint: 如何理解 <span class="arithmatex">\(\frac{a_n}{a_{n-1}} \approx \frac{a_{n-1}}{a_n - a_{n-1}}\)</span> 与这个性质的关系？</p>
 </div>
 <p>当然，刚好能凑上 Fibonacci 的情况自然是少数，对于无法凑上 Fibonacci 的情况，我们可以将多余的部分均匀的分到较多若干 tape 上，以相对的利用 Fibonacci 数列的性质（联系思考题理解）。</p>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>或许你已经开始产生疑问了，如果这样来做，前面对 <span class="arithmatex">\(\#pass\)</span> 的分析是不是不成立了呢？</p>
+<p>我想应该确实不再完全一样了，但是并不影响我们之后利用那个结论做定性分析，我们只需要知道，采取 Fibonacci 策略来优化会导致 <span class="arithmatex">\(\#pass\)</span> 增多即可。</p>
+</div>
 <hr/>
 <h3 id="k-路内排序优化">k 路内排序优化<a class="headerlink" href="#k-路内排序优化" title="Permanent link">¶</a></h3>
 <p>随着 <span class="arithmatex">\(k\)</span> 的增加，我们不能再像两路归并那样直接输出较小的那个，而是需要维护数据结构来总是输出 k 个中最小的那个——我们用堆来维护每一个 run 在内存中的数据的队首元素（同时也是最小元素），每当堆顶元素被输出，就需要从对应的 run 中读入下一个元素。</p>
@@ -1488,7 +1493,7 @@ r_1 &gt; r_k - r_1 &gt; r_{k-1} - r_1 &gt; ... &gt; r_{2} - r_1
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月30日 09:09:03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月30日 09:12:05</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 13:40:59</span>
