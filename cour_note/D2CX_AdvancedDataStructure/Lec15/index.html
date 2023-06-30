@@ -1036,7 +1036,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-15--external-sorting">Lecture 15 | External Sorting<a class="headerlink" href="#lecture-15--external-sorting" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6283 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 21 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6317 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 21 分钟</p>
 </div>
 <div class="admonition quote">
 <p class="admonition-title">link</p>
@@ -1214,23 +1214,26 @@
 </div>
 <div class="admonition section">
 <p class="admonition-title">Pass 2</p>
-<p>依次取 <span class="arithmatex">\(T_2\)</span> 和 <span class="arithmatex">\(T_3\)</span> 的第一段，归并得到新的 run，写到 <span class="arithmatex">\(T_1\)</span> 上，于是有：</p>
+<p>依次取 <span class="arithmatex">\(T_2\)</span> 和 <span class="arithmatex">\(T_3\)</span> 的第一段，归并得到新的 run，均分到另外两条 tape 上（未优化的做法，优化做法参考<a href="#tape-数量分析与优化">#tape-优化</a>），于是有：</p>
 <ul>
 <li><span class="arithmatex">\(T_2\)</span> 上 <span class="arithmatex">\(\#run = 3-1 = 2\)</span>；</li>
 <li><span class="arithmatex">\(T_3\)</span> 上 <span class="arithmatex">\(\#run = 2-1 = 1\)</span>；</li>
 <li><span class="arithmatex">\(T_1\)</span> 上 <span class="arithmatex">\(\#run = 0+1 = 1\)</span>；</li>
+<li><span class="arithmatex">\(T_4\)</span> 上 <span class="arithmatex">\(\#run = 0\)</span>；</li>
 </ul>
 <p>继续取，即：</p>
 <ul>
 <li><span class="arithmatex">\(T_2\)</span> 上 <span class="arithmatex">\(\#run = 2-1 = 1\)</span>；</li>
 <li><span class="arithmatex">\(T_3\)</span> 上 <span class="arithmatex">\(\#run = 1-1 = 0\)</span>；</li>
-<li><span class="arithmatex">\(T_1\)</span> 上 <span class="arithmatex">\(\#run = 1+1 = 2\)</span>；</li>
+<li><span class="arithmatex">\(T_1\)</span> 上 <span class="arithmatex">\(\#run = 1\)</span>；</li>
+<li><span class="arithmatex">\(T_4\)</span> 上 <span class="arithmatex">\(\#run = 0+1 = 1\)</span>；</li>
 </ul>
 <p><span class="arithmatex">\(T_3\)</span> 上已经没有了，但是 <span class="arithmatex">\(T_2\)</span> 还没取完，所以只从 <span class="arithmatex">\(T_2\)</span> 拿：</p>
 <ul>
 <li><span class="arithmatex">\(T_2\)</span> 上 <span class="arithmatex">\(\#run = 1-1 = 0\)</span>；</li>
 <li><span class="arithmatex">\(T_3\)</span> 上 <span class="arithmatex">\(\#run = 0\)</span>；</li>
-<li><span class="arithmatex">\(T_1\)</span> 上 <span class="arithmatex">\(\#run = 1+1 = 1\)</span>；</li>
+<li><span class="arithmatex">\(T_1\)</span> 上 <span class="arithmatex">\(\#run = 1+1 = 2\)</span>；</li>
+<li><span class="arithmatex">\(T_4\)</span> 上 <span class="arithmatex">\(\#run = 1\)</span>；</li>
 </ul>
 </div>
 <p>模拟到从这里其实已经可以看出来了，对于 2-way merge 来说，排除末段情况，从第二个 pass 开始，基本上每次都是从 2 路中各取 1 个 run，并合并为 1 个 run。换句话来说，每一个 pass 会让 <span class="arithmatex">\(total(\#run)\)</span> 缩小为原来的 <span class="arithmatex">\(\frac{1}{2}\)</span>。</p>
@@ -1485,7 +1488,7 @@ r_1 &gt; r_k - r_1 &gt; r_{k-1} - r_1 &gt; ... &gt; r_{2} - r_1
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月27日 19:44:35</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月30日 09:09:03</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 13:40:59</span>
