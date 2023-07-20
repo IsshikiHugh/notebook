@@ -1187,7 +1187,7 @@ T(N) = ... =
 + 
 \underbrace{\sum_{node_i}^{non-leaf-nodes}f(N_{node_i})}_{combine}
 \]</div>
-<p>其中，<span class="arithmatex">\(N_{leaf_i}\)</span> 都足够小，可以认为 <span class="arithmatex">\(T(N_{leaf_i})\)</span> 都是常数，于是上式又可以变化为：</p>
+<p>其中，由于末端子问题的规模一般都足够小，可以认为 <span class="arithmatex">\(T(N_{leaf_i})\)</span> 都是常数，于是上式又可以变化为：</p>
 <div class="arithmatex">\[
 T(N) = ... = 
 \underbrace{c\; N_{leaves}}_{conquer}
@@ -1195,7 +1195,7 @@ T(N) = ... =
 \underbrace{\sum_{node_i}^{non-leaf-nodes}f(N_{node_i})}_{combine}
 \]</div>
 <p>具体来说解释其含义，combine 部分就是在每一次“分治”的处理时间，如合并当前的子问题分治后的结果，体现在递推式的 <span class="arithmatex">\(f(N)\)</span> 部分；而 conquer 部分指的是当“分治”的“治”在“分”的末端的体现，即对于足够小的规模的问题，不再需要继续“分”的时候，对其处理的开销。</p>
-<p>实际上在代码层面这两部分未必有区别，不过在数学意义上，对于一个递推式子求解我们一般是需要“首项”的，或者说是“最底层”的，而这个“最底层”的部分就是 conquer 部分。</p>
+<p>实际上在代码层面这两部分可能区别不大（可能就是一个分支的事情），不过在数学意义上，对于一个递推式子求解我们一般是需要“首项”的，或者说是“最底层”的，而这个“最底层”的部分就是 conquer 部分。</p>
 <p>接下来结合 🌰 来分析一下：</p>
 <div class="admonition eg">
 <p class="admonition-title">🌰</p>
@@ -1458,7 +1458,7 @@ T(N) = \left\{
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月30日 17:06:05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月1日 07:49:19</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月11日 22:39:40</span>

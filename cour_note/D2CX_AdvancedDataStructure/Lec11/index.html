@@ -1105,7 +1105,7 @@
 <p>因此，我们考虑能否退而求其次，在多项式时间内求一个<strong>比较优</strong>的解。更具体的来说，我们尝试寻找一种多项式算法，使得其结果始终在关于准确解的可接受偏差范围内，对于这种算法，我们称之为<strong>近似算法(approximation algorithm)</strong>。</p>
 <p>我们设 <span class="arithmatex">\(f(n, x)\)</span> 是对输入大小为 <span class="arithmatex">\(n\)</span> 的情况下，对结果 <span class="arithmatex">\(x\)</span> 的<strong>最坏情况</strong>的一个直观量化（例如 dist, weight...），若设 <span class="arithmatex">\(x^*\)</span> 为准确解，<span class="arithmatex">\(x\)</span> 为给定算法结果，则我们定义<strong>近似比(Approximation Ratio)</strong><span class="arithmatex">\(\rho\)</span>：</p>
 <div class="arithmatex">\[
-\forall n \rho = \max\left\{\frac{f(n, x)}{f(n, x^*)}, \frac{f(n, x^*)}{n, f(x)}\right\}
+\forall n \rho = \max\left\{\frac{f(n, x)}{f(n, x^*)}, \frac{f(n, x^*)}{f(n, x)}\right\}
 \]</div>
 <p>则称给定算法为 <span class="arithmatex">\(\rho\)</span> 近似算法(<span class="arithmatex">\(\rho\)</span>-approximation algorithm)。</p>
 <div class="admonition question">
@@ -1475,7 +1475,7 @@ r(C) = \max_{s_i\in S} \{ dis(s_i, C) \} \\
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月30日 09:22:55</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月1日 07:49:19</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 13:40:59</span>
