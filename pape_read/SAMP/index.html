@@ -1010,6 +1010,7 @@
 <li>采样有效交互目标</li>
 <li>生成目标限制的、场景感知的、逼真的人体动作序列</li>
 </ul>
+<hr/>
 <h3 id="贡献">贡献<a class="headerlink" href="#贡献" title="Permanent link">¶</a></h3>
 <ol>
 <li>新颖的随机模型以生成<strong>实时</strong>的、多样的、<strong>goal driven</strong> 的人物对场景的交互；</li>
@@ -1017,6 +1018,7 @@
 <li>（对 1. 的细化）将具体路径规划纳入变分运动合成网络，实现在复杂场景中的导航；</li>
 <li>包含多样人体场景交互数据的新的 MoCap 数据集；</li>
 </ol>
+<hr/>
 <h3 id="方法">方法<a class="headerlink" href="#方法" title="Permanent link">¶</a></h3>
 <ul>
 <li><code>MotionNet</code>(core)：一个 cVAE，<strong>输入</strong>目标对象和动作，<code>MotionNet</code> 每一帧将<strong>采样</strong>一个潜向量，联合前一帧的动作来控制（即<strong>预测</strong>）下一个动作；<ul>
@@ -1059,10 +1061,12 @@
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：trajectory 和 path 和 pose 的区别？是指包括了动作和行动路线的轨迹吗？</li>
 </ul>
 <p>如何衡量人体动作的随机性(stochasticity)是一个有待探索的领域。</p>
+<hr/>
 <h3 id="训练策略">训练策略<a class="headerlink" href="#训练策略" title="Permanent link">¶</a></h3>
 <p>使用正常的监督训练会导致错误累积(accumulation of error)，因为一次的输出会作为输入进入到下一个网络。所以 SAMP 采用预订采样(scheduled sampling)，它能够稳定生成长时间的动作预估。</p>
 <p>具体来说，上一次的预测结果以 <span class="arithmatex">\(1-P\)</span> 的概率作为下一次预测的输入，其中 <span class="arithmatex">\(P\)</span> 的定义如下：
 <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/20230720104704.png"><img alt="" src="img/20230720104704.png"/></a></p>
+<hr/>
 <h3 id="实验和评估">实验和评估<a class="headerlink" href="#实验和评估" title="Permanent link">¶</a></h3>
 <p>在同初始条件下多次执行同一任务，使用 APD(Average Pairwise Distance) 来衡量其运动幅度：
 <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/20230720105214.png"><img alt="" src="img/20230720105214.png"/></a></p>
@@ -1111,7 +1115,7 @@ p(x) = \frac{1}{\sqrt{2\pi \sigma^2}}   \exp\left[
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月20日 14:28:17</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月22日 15:50:07</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年5月16日 13:27:54</span>

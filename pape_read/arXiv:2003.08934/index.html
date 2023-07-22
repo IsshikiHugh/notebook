@@ -785,9 +785,40 @@
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
+          <span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
         NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
       </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#论文笔记">
+    论文笔记
+  </a>
+<nav aria-label="论文笔记" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#贡献">
+    贡献
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#方法">
+    方法
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../arXiv%3A2104.05670/">
@@ -858,6 +889,31 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#论文笔记">
+    论文笔记
+  </a>
+<nav aria-label="论文笔记" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#贡献">
+    贡献
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#方法">
+    方法
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -866,7 +922,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="nerf-representing-scenes-as-neural-radiance-fields-for-view-synthesis">NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis<a class="headerlink" href="#nerf-representing-scenes-as-neural-radiance-fields-for-view-synthesis" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 234 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 1 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1719 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 6 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">文章信息</p>
@@ -879,13 +935,113 @@
 <li>代码：<a href="https://paperswithcode.com/paper/nerf-representing-scenes-as-neural-radiance">🔗</a></li>
 </ul>
 </div>
-<div class="admonition summary">
-<p class="admonition-title">相关内容</p>
+<h2 id="论文笔记">论文笔记<a class="headerlink" href="#论文笔记" title="Permanent link">¶</a></h2>
+<hr/>
+<h3 id="贡献">贡献<a class="headerlink" href="#贡献" title="Permanent link">¶</a></h3>
+<ol>
+<li>将复杂集合形状和材质的连续场景表达为 5D 神经辐射场的方法，将其参数化为基本的 MLP 网络；</li>
+<li>基于经典体积渲染技术的可微分渲染程序，我们用它从标准 RGB 图像中优化这些表示。这包括一种分层采样策略，将 MLP 的容量分配给具有可见场景内容的空间；</li>
+<li>使用<strong>位置编码(positional encoding)</strong>，将 5D 座标映射到更高维的空间，以实现更高频率的场景内容的表示；</li>
+</ol>
+<p>提出的表示方法有如下好处：</p>
 <ul>
-<li>MLP 神经网络</li>
-<li>traditional volume rendering</li>
+<li>可以表达复杂真实的几何形状</li>
+<li>适合使用投影图像做梯度优化<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：什么意思？</li>
 </ul>
-</div>
+</li>
+<li>降低了高分辨率空间图像的存储成本</li>
+</ul>
+<hr/>
+<h3 id="方法">方法<a class="headerlink" href="#方法" title="Permanent link">¶</a></h3>
+<p>使用如下一个“函数”来表示一个静态场景：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    &amp; F_{\Theta}:(\mathrm{x}, \mathrm{d}) \rightarrow (\mathrm{c}, \sigma)
+    \\
+    &amp; \text{where } \mathrm{x} = (x,y,z), \; \mathrm{d} \text{ is a 3D Cartesian unit vector}, \; \mathrm{c} = (r,g,b), \; \sigma \text{ is the density}.
+\end{aligned} 
+\]</div>
+<ul>
+<li>全是 FC；</li>
+<li>输入是 5D 座标——点的空间座标 <span class="arithmatex">\((x,y,z)\)</span> 和视角方向 <span class="arithmatex">\((\theta, \phi)\)</span>；</li>
+<li>输出是体积密度以及对应空间位置的与视角有关的辐射（或者说视角有关的 RGB 颜色）；</li>
+</ul>
+<blockquote>
+<p>为了保证多视角下观察到的内容具有一致性，做如下约束：</p>
+<ul>
+<li>关于密度 <span class="arithmatex">\(\sigma\)</span> 的函数，仅与点的空间位置 <span class="arithmatex">\(\mathrm{x} = (x,y,z)\)</span> 有关，而与视角无关；</li>
+<li>关于颜色 <span class="arithmatex">\(\mathrm{c}\)</span> 的函数，与点的空间位置 <span class="arithmatex">\(\mathrm{x} = (x,y,z)\)</span> 和观察方向 <span class="arithmatex">\(\mathrm{d}\)</span> 同时有关；<ul>
+<li>这大概与 NeRF 在不同视角上光影表现的良好也有较大关系；</li>
+</ul>
+</li>
+<li>实现上是先通过 MLP 用 <span class="arithmatex">\(\mathrm{x}\)</span> 训练出 <span class="arithmatex">\(\sigma\)</span> 和一个中间特征向量，再将这个中间向量与 <span class="arithmatex">\(\mathrm{d}\)</span> 拼接，继续放到 MLP 中；</li>
+</ul>
+</blockquote>
+<p>利用如上“函数”，具体来说操作如下：</p>
+<ul>
+<li>在场景中匹配穿过的相机光线以生成采样的 3D 点集合；</li>
+<li>使用这些点以及对应的 2D 视角方向输入到网络中，以得到颜色和密度集合；</li>
+<li>使用传统的体积渲染技术累积这些颜色和密度以得到 2D 图像；</li>
+</ul>
+<p>为了能够让 MLP 表示更高频率的函数，我们引入了<strong>位置编码(positional encoding)</strong>。</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：这里还是没弄懂，需要进一步解决。</li>
+</ul>
+<hr/>
+<p>此外，关于渲染，使用的是传统的体积渲染方法，累积一条光线上的颜色和密度，得到最终的颜色，所使用的公式如下：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    &amp; \mathrm{C}(\mathrm{r})=
+    \int_{t_n}^{t_f} 
+    T(t) \cdot \sigma\left(
+        \mathrm{r}(t) 
+    \right)  \cdot \mathrm{c} \left(
+        \mathrm{r}(t), \mathrm{d}
+    \right) \cdot \mathrm{d}t
+\end{aligned},\;\;
+\text{where } T(t) = \exp\left(
+    -\int_{t_n}^t \sigma\left(\mathrm{r}(s)\right) \; \mathrm{d}s
+\right)
+\]</div>
+<p>对这个式子稍作解释，<span class="arithmatex">\(t_n\)</span> 和 <span class="arithmatex">\(t_f\)</span> 分别表示 near 和 far 的光线边界(bound)，光线结果 <span class="arithmatex">\(C(\mathrm{r})\)</span> 通过累积这两个端点之间的按权累积得到，其权重为 <span class="arithmatex">\(T(t)\)</span>，观察其定义式可发现，随着 <span class="arithmatex">\(t\)</span> 的增大，<span class="arithmatex">\(T(t) \rightarrow 0\)</span>，即约往后的点约不容易被看到，这也是符合常识的。而累积的对象为 <span class="arithmatex">\(\sigma(\mathrm{r}(t)) \cdot \mathrm{c}(\mathrm{r}(t), \mathrm{d})\)</span>，即密度和颜色的乘积，注意两个参数——密度表征形状特征，仅与空间位置有关；而颜色同时与观察角度有关，这暗含着光影信息。</p>
+<p>然而，由于积分的操作性差，所以使用一种离散的抽样累积来实现这件事，将光线均匀划分为 <span class="arithmatex">\(N\)</span> 个区间，按均匀分布在每个点采样一个点，进行累积，即对于区间 <span class="arithmatex">\(t_i\)</span>：</p>
+<div class="arithmatex">\[
+t_i \sim U \left[ 
+    t_n + \frac{i-1}{N} \left( t_f - t_n \right), 
+    t_n + \frac{i}{N} \left( t_f - t_n \right)
+\right]
+\]</div>
+<p>对应的颜色计算公式改写为：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\hat{C}(\mathrm{r}) = \sum_{i=1}^{N} T_i \cdot (1 - \exp(-\sigma_i \delta_i)) \cdot \mathrm{c}_i, \;\;
+\text{where } T_i = \exp\left(
+    -\sum_{j=1}^{i-1} \sigma_j \delta_j
+\right) \text{ and } \delta_i = t_{i+1} - t_i
+\end{aligned}
+\]</div>
+<p>其中，<span class="arithmatex">\(\sigma(\mathrm{r}(t))\)</span> 别替换为 <span class="arithmatex">\((1-\exp(-\sigma_i\delta_i))\)</span>，在结合了区间长度的情况下又重新将密度映射回了 <span class="arithmatex">\([0,1]\)</span>。</p>
+<p>在之后的策略中，还会对采样规则做进一步优化。</p>
+<hr/>
+<p>至此为止是 NeRF 主要的方法，但是这些方法仍然不足以让它达到最先进的效果，因此这里引入两个改进措施。</p>
+<ol>
+<li>使用<strong>位置编码(positional encoding)</strong>来使 MLP 能够支持更高频的图像信息；</li>
+<li>使用<strong>结构化的采样(hierarchical sampling)</strong>使能够更有效地对这种高频表示进行采样；</li>
+</ol>
+<p>位置编码为一个 <span class="arithmatex">\(\gamma : \R \rightarrow \R^{2L}\)</span>：</p>
+<div class="arithmatex">\[
+\gamma(p) = \left( \sin(2^0 \pi p), \cos(2^0 \pi p), \cdots, \sin(2^{L-1} \pi p), \cos(2^{L-1} \pi p) \right)
+\]</div>
+<p>将 <span class="arithmatex">\(\gamma(\cdot)\)</span> 应用于 <span class="arithmatex">\(\mathrm{x}\)</span> 的三个分量（被标准化到 <span class="arithmatex">\([-1,1]\)</span> 上）和 <span class="arithmatex">\(\mathrm{d}\)</span> 的两个分量上，实现维度提升，以此优化在高频内容上的表现。在文章中提到，<span class="arithmatex">\(L_\mathrm{x} = 10, L_\mathrm{d} = 4\)</span>。</p>
+<p>而分层采样，针对的是之前的均匀划分为 <span class="arithmatex">\(N\)</span> 个区间进行均匀采样。显然，某些“空气”区域和被遮挡的区域对渲染结果并不会有很大影响，而在空间上这些内容可能占了绝大部分（尤其是没有半透明物体的情况下），均匀采样在这种情况下就显得非常低效。</p>
+<p>分层采样的大致思路是，首先使用一个粗略(coarse)的网络，利用 <span class="arithmatex">\(N_c\)</span> 个粗略(coarse)的均匀采样点，通过计算 <span class="arithmatex">\(\hat{w}_i = normalize\left( T_i \cdot (1 - \exp(-\sigma_i \delta_i)) \right)\)</span> 得到每个点的权重，而这个权重则反应了每一个采样点附近有效点的分布情况，可以看作一个概率密度函数(PDF)。接下来我们在这个分布的基础上再采样得到 <span class="arithmatex">\(N_f\)</span> 个精细(fine)采样点，与 <span class="arithmatex">\(N_c\)</span> 个粗略(coarse)点一起放到精细(fine)网络中进行训练。</p>
+<hr/>
+<p>使用的 loss 如下：</p>
+<div class="arithmatex">\[
+\mathcal{L} = \sum_\mathrm{r\in \text{Rays}} \left[ \left\| \hat{C}_c(\mathrm{r}) - C_{g.t.}(\mathrm{r}) \right\|_2^2 + \left\| \hat{C}_f(\mathrm{r}) - C_{g.t.}(\mathrm{r}) \right\|_2^2 \right]
+\]</div>
+<hr/>
 <details class="quote">
 <summary>参考资料</summary>
 <ul>
@@ -898,22 +1054,13 @@
 <li><a href="https://blog.csdn.net/weixin_44580210/article/details/122284120">https://blog.csdn.net/weixin_44580210/article/details/122284120</a> （笔记）</li>
 </ul>
 </details>
-<p>通过对多张图片进行学习，得到原始模型，然后从模型中通过 ray 上的采样与积分来获得对应的图像、光泽等。</p>
-<p>其中涉及位置信息编码。</p>
 <p>社区 Pytorch 复现代码的注释：<a href="https://github.com/IsshikiHugh/nerf-pytorch">https://github.com/IsshikiHugh/nerf-pytorch</a></p>
-<details class="question">
-<summary>存疑</summary>
-<ul>
-<li>随机均匀采样？为何能够得到连续可微？</li>
-<li>何为位置信息编码？其原理如何？</li>
-</ul>
-</details>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月7日 14:52:21</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月22日 15:50:24</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月9日 13:33:05</span>
