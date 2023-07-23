@@ -27,27 +27,27 @@
     - Slides: [🔗](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture1.pdf) 
 
 
-![](1.png)
-![](2.png)
+![](img/1.png)
+![](img/2.png)
 
 - 一些早期的关于 CV 的思考
 
-![](3.png)
+![](img/3.png)
 
 - 早期对如何表示物体，超越「Block World」的表示方法
 
 <figure markdown>
-![](4.png)
+![](img/4.png)
 其核心思想是将复杂的视觉信息简化为简单对象的组合。
 </figure>
 
 人们意识到直接识别物体比较困难，于是想到了 **分割图形(image segmentation)** ——即先做将像素分组：
 
-![](5.png)
+![](img/5.png)
 
 - 启发：视觉识别的重点可以从识别对象的一些具有识别力和不易变化的部分开始
 
-![](6.png)
+![](img/6.png)
 
 ~~有端联想 FDS 的 Voting Tree~~
 
@@ -80,13 +80,13 @@
 
 **Distance Metric** to compare images
 
-![](7.png)
+![](img/7.png)
 > 我们将分类问题看作在“空间”中的染色问题，点表示训练数据，其颜色表示其被标记的分类；而画板中其他部分的颜色则表示当点落在这个位置时候会被分类为哪一种。
 
-![](8.png)
+![](img/8.png)
 > 中间“黄色部分”这种孤立的小岛在实际对数据进行预测工作时可能不是很好。
 
-![](9.png)
+![](img/9.png)
 > 这些部分可能有噪声或是虚假的。             
 
 </figure>
@@ -95,7 +95,7 @@
     !!! info ""
         - $d_1(I_1,I_2)=\sum_{p}|I_1^{p}-I_2^{p}|$
 
-        <center> ![](10.png)![](11.png) </center>
+        <center> ![](img/10.png)![](img/11.png) </center>
         
         - 如果图像旋转，预测结果会发生改变。
 
@@ -103,7 +103,7 @@
     !!! info ""
         - $d_2(I_1,I_2)=\sum_{p}\sqrt{(I_1^p-I_2^p)^2}$
 
-        <center> ![](12.png)![](13.png)</center>
+        <center> ![](img/12.png)![](img/13.png)</center>
 
 ---
 
@@ -113,7 +113,7 @@
 
 Instead of copying label from nearest neighbor, take **majority vote** from K closest points.
 
-![](14.png)
+![](img/14.png)
 > 例如，K=1 时中间的黄色区域由于附近都是绿点，所以在 K 增长的时候绿色在计算中的权重变大，所以最后被标记为绿色。s
 
 - _当然，这种通过比较“距离”的分类方案并不仅限于图片等，对于任何需要分类的数据，例如文本，只要能定义能够量化的“距离”以及一系列相应的规则，就能使用这种方法来进行分类。_
@@ -129,10 +129,10 @@ Instead of copying label from nearest neighbor, take **majority vote** from K cl
 
 **Setting Hyperparameters (调参)**
 
-![](15.png)
+![](img/15.png)
 > 即，我们需要确保足够的训练集，并通过验证集进行调参，并在一切都完成以后才使用测试集来验证模型的准确度。
 
-![](16.png)
+![](img/16.png)
 
 ---
 
@@ -144,15 +144,15 @@ $$
 f(x,W)=Wx+b
 $$
 
-![](17.png)
+![](img/17.png)
 > 这里的 10 numbers 表示的是 CIFAR-10 中的 10 个类别对应的得分。
 
 - 即，我们构造一个函数，输入包含图像数据 $x$ 和权重参数 $W$，满足其计算结果为各个类别的预测得分
 - 最终得到一个模版，它将尝试性地适应该类里尽可能多的样本
 
-![](18.png)
+![](img/18.png)
 
-![](19.png)
+![](img/19.png)
 > 如果将高维空间的情况映射到平面的几何角度来理解，就好像在划一道道直线来进行划分。
 
 - 从这种角度来理解就很容易发现，单一的线性分类具有局限性，例如对于多模态的数据，使用单一的线性分类可能会比较吃力。
@@ -187,8 +187,8 @@ $$
 
 - 也就是说，对于某一个样本，它实际类别对应的得分如果远大于（我们需要一个边界 ，就是上图中的$+1$）某个其他类别的得分，那么该“其他类别”对损失函数的贡献即为$0$；反之，如果并没有远大于其他某个类别的得分，则需要将这个偏差作为对损失函数的贡献。
 
-![](20.png)
-![](21.png)
+![](img/20.png)
+![](img/21.png)
 
 ```python
 def L_i_Vectorized(x, y, W):
@@ -206,11 +206,11 @@ f(x,W) = Wx\\
 L = \frac{1}{N}\sum_{i=1}^{n}\sum_{j\not = y_i}\text{max}(0,f(x;W)_j-f(x_i;W)_{y_i}+1)
 $$
 
-![](22.png)
+![](img/22.png)
 
 - However, for that we only calculate a loss in terms of the data, some strange things like **overfitting** will happen.
 
-![](23.png)
+![](img/23.png)
 
 - 蓝点为模型训练数据，绿色的为验证或者实际数据等。
 - 蓝色的为过拟合后模型训练出来的预测趋势，他们完全符合训练模型的数据，但是可以发现，绿色的线条才是实际的我们希望得到的趋势。
@@ -218,10 +218,10 @@ $$
 
 To solve it, we use **regularization**.
 
-![](24.png)
+![](img/24.png)
 > The regularization term.
 
-![](25.png)
+![](img/25.png)
 > Occam's Razor
 
 - The regularization term encourages the model to somehow pick a simpler $W$ depending on the dask and the model.
@@ -252,16 +252,16 @@ Each regularization has its own feature, you should choose them depends on the p
 -  $P(Y=k|X=x_i)=\frac{e^{s_k}}{\sum_j e^{s_j}}\;,\;\;where\;s=f(x_i;W)$;
 - That is $L_i=-\log P(Y=y_i|X=x_i)=-\log(\frac{e^{s_k}}{\sum_j e^{s_j}})$;
 
-![](26.png)
+![](img/26.png)
 > eg for Softmax Classifier.
 
-![](27.png)
+![](img/27.png)
 > Compare the two.
 
 
 - 在实际使用中，SVM 在保证真实标签对应的得分高于其他得分一定量后就接受了，即存在一个明确的突变标准；而对于 Softmax 来说，它会在这个过程中不断将正确标签对应的概率向$1$逼近，不断优化自己。
 
-![](28.png)
+![](img/28.png)
 
 ### Optimization
 
@@ -295,10 +295,10 @@ while True:
 
 ### Aside: Image Features
 
-![](29.png)
-![](30.png)
-![](31.png)
-![](32.png)
+![](img/29.png)
+![](img/30.png)
+![](img/31.png)
+![](img/32.png)
 
 ---
 
@@ -310,15 +310,15 @@ while True:
 
 ### Computational graphs
 
-![](33.png)
+![](img/33.png)
 > eg. for the linear classifier.
 
 ### Backpropagation
 
 通过将算式写成这种“节点图”的形式，可以进一步让我们看清计算过程并方便我们计算梯度。具体来说，例如 $f(x,y,z)=(x+y)z$，将其写成节点图如下，并计算所需要的参数。
 
-![](34.png)
-![](35.png)
+![](img/34.png)
+![](img/35.png)
 
 然后我们从图的末端开始计算，得到这些节点数据：
 
@@ -332,36 +332,36 @@ $\left\{
 \end{aligned}
 \right.$
 
-![](36.png)
+![](img/36.png)
 
-![](37.png)
+![](img/37.png)
 > backprop (red lines)
 
 可以发现，我们在计算过程中只需要将“相邻”梯度乘以"local gradient"即可计算出所需要的新的"local gradient"。而只需要再沿着路径再将所有的"local gradient"累乘起来，就能得到每一个变量关于表达式的梯度。
 
-![](38.png)
+![](img/38.png)
 
 特别的，由于节点是我们认为定义的，而且该方法所依赖“链式法则”也允许函数的自由组合，所以我们可以人为“合并/分割”一些节点，例如在上面那个例子中，我们可以将最后四个节点合并为一个"sigmoid function"(i.e. $\frac{1}{1+e^{-x}}$)。
 
-![](39.png)
+![](img/39.png)
 
 ### Patterns in backward flow
 
-![](40.png)
+![](img/40.png)
 > 另外一种理解算符在计算图中的作用的思路。
 
 可以发现，`max()` 运算在梯度传递过程中只起到路由器的作用，也就是说将其传递到较大的那个变量那一侧，但不改变梯度的值；而对于较小的那个变量，梯度传递被阻断，目标变量的梯度为 $0$。
 
 将这个流程迁移到神经网络上，我们只需要将这些数字变为 Jacobian matrix 即可。
 
-![](41.png)![](42.png)
+![](img/41.png)![](img/42.png)
 
 - Always check: The **gradient** with respect to a variable should have the **same shape** as the variable.
    - Because each element of your gradient is **quantifying** **how much** that element is **contributing** to your final output.
 
 在具体实现中，我们一般会实现一个 `forward()` 用于计算函数的输出，以及一个 `backward()` 用于按照上面提到的方法计算梯度。
 
-![](43.png)![](44.png)
+![](img/43.png)![](img/44.png)
 
 !!! summary "Summary"
     - Neural nets will be very large: impractical to write down gradient formula by hand for all parameters.
@@ -372,16 +372,16 @@ $\left\{
 
 ### Neural Networks
 
-![](45.png)
+![](img/45.png)
 
 通过函数叠加的方式来实现神经网络。
 
-![](46.png)
+![](img/46.png)
 > 与生物神经的一个类比
 
-![](47.png)
+![](img/47.png)
 
-![](48.png)
+![](img/48.png)
 
 !!! summary "Summary"
     - We arrange neurons into **fully-connected layers**.
@@ -400,15 +400,15 @@ $\left\{
 
 - _Convolve the filter with the image. (i.e. "slide over the image spatially, computing dot products")_
 
-![](49.png)
+![](img/49.png)
 > 在某个位置获得点积，即 filter 如何作用于 input
 
-![](50.png)
+![](img/50.png)
 
 采用多个 filters 并将结果叠加，我们就可以得到多个激活图(activation maps)，作为一个处理后的数据。
 - _ConvNet is a sequence of Convolution Layers, interspersed with activation functions._
 
-![](51.png)
+![](img/51.png)
 
 关于输出的激活图的大小，有如上公式。
 
@@ -418,14 +418,14 @@ $\left\{
 
 - _The zero padding __does add some sort of extraneous features at the corners__, and we're doing our best to get some value and do, like process that region of the image. And so zero padding is kind of one way to do this. There's __also other ways__ to do this that, you know, you can try and like, mirror the values here or extend them, and so it doesn't have to be zero padding, but __in practice this is one thing that works reasonably__._
 
-![](52.png)
+![](img/52.png)
 > 注意，采用零扩展以后上一张图的公式就无法使用了。这也正是零扩展的一个特点，它可以让图像的形状不必缩小。
 
 一道测试题：
 
 === "题面"
     !!! note ""
-        ![](53.png)
+        ![](img/53.png)
         > 计算这样一层中有多少参数。
 === "答案"
     !!! success "Ans"
@@ -437,12 +437,12 @@ $\left\{
 - makes the representations smaller and more manageable
 - operates over each activation map independently:
 
-![](54.png)
+![](img/54.png)
 > just downsample
 
 A common way to do this is max pooling:
 
-![](55.png)
+![](img/55.png)
 > just take the max value
 
 对于池化层，在进行滑动窗口时我们更希望步长的设置能使 filter 没有重叠，以满足小节开头提到的"independently"。
@@ -451,7 +451,7 @@ A common way to do this is max pooling:
 
 - Contains neurons that connect to the entire input volume, as in ordinary Neural Networks.
 
-![](56.png)
+![](img/56.png)
 
 ## Assignments
 

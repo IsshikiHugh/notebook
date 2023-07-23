@@ -192,7 +192,7 @@ nav:
       - cour_note/D1CX_ProbabilityAndStatistics/Chap06.md
       - cour_note/D1CX_ProbabilityAndStatistics/Chap07.md
       - cour_note/D1CX_ProbabilityAndStatistics/Chap08.md
-    - cour_note/D1SJ_cs231n/index.md
+    - cour_note/D1SJ_CS231N/index.md
     - cour_note/D1SJ_Intro2CS/index.md
     - "[大二秋冬] 数字逻辑设计 | Digital Design": 
       - cour_note/D2QD_DigitalDesign/index.md
@@ -241,10 +241,17 @@ nav:
       - cour_note/D2CX_AdvancedDataStructure/Ex01.md
   - "📝 论文阅读":
     - pape_read/index.md
-    - pape_read/arXiv:2003.08934/index.md
-    - pape_read/arXiv:2104.05670/index.md
-    - pape_read/NSM/index.md
-    - pape_read/SAMP/index.md
+    - Reconstruction:
+      - pape_read/index.md
+      - pape_read/NeRF/index.md
+    - Generation-Motion:
+      - pape_read/index.md
+      - pape_read/ACTOR/index.md
+      - pape_read/NSM/index.md
+      - pape_read/SAMP/index.md
+    - Generation-Image:
+      - pape_read/index.md
+      - pape_read/EG3D/index.md
   - "📦 杂项专题":
     - others/index.md
     - others/reveal-md2Slides/index.md
