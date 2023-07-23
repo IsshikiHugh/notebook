@@ -244,13 +244,11 @@ nav:
     - Reconstruction:
       - pape_read/index.md
       - pape_read/NeRF/index.md
-    - Generation-Motion:
+    - Generation:
       - pape_read/index.md
       - pape_read/ACTOR/index.md
       - pape_read/NSM/index.md
       - pape_read/SAMP/index.md
-    - Generation-Image:
-      - pape_read/index.md
       - pape_read/EG3D/index.md
   - "📦 杂项专题":
     - others/index.md
