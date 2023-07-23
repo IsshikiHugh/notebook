@@ -3,10 +3,10 @@
 !!! info "文章信息"
     - 文章题目：*Stochastic Scene-Aware Motion Prediction*
     - 作者：[Mohamed Hassan](https://mohamedhassanmus.github.io/), [Duygu Ceylan](http://www.duygu-ceylan.com/), [Ruben Villegas](https://rubenvillegas.github.io/), [Jun Saito](https://research.adobe.com/person/jun-saito/), [Jimei Yang](https://research.adobe.com/person/jimei-yang/), [Yi Zhou](https://research.adobe.com/person/yi-zhou/), and [Michael Black](https://ps.is.tuebingen.mpg.de/person/black)
-    - 论文地址：[🔗](https://ps.is.mpg.de/uploads_file/attachment/attachment/652/samp.pdf)
     - 项目主页：[🔗](https://samp.is.tue.mpg.de/)
-    - Demo 代码：[🔗](https://github.com/mohamedhassanmus/SAMP)
-    - 训练代码：[🔗](https://github.com/mohamedhassanmus/SAMP_Training)
+    - 论文：[🔗](https://ps.is.mpg.de/uploads_file/attachment/attachment/652/samp.pdf)
+    - Demo：[🔗](https://github.com/mohamedhassanmus/SAMP)
+    - 代码：[🔗](https://github.com/mohamedhassanmus/SAMP_Training)
 
 ---
 
