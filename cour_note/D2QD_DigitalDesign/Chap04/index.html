@@ -507,7 +507,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1SJ_cs231n/">
+<a class="md-nav__link" href="../../D1SJ_CS231N/">
         [大一暑假] Deep Learning for Computer Vision | CS231N
       </a>
 </li>
@@ -912,13 +912,44 @@
           📝 论文阅读
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">Reconstruction</a>
+<label for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+          Reconstruction
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/arXiv%3A2003.08934/">
+<a class="md-nav__link" href="../../../pape_read/NeRF/">
         NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
       </a>
 </li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">Generation-Motion</a>
+<label for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+          Generation-Motion
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/arXiv%3A2104.05670/">
+<a class="md-nav__link" href="../../../pape_read/ACTOR/">
         Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
       </a>
 </li>
@@ -931,6 +962,31 @@
 <a class="md-nav__link" href="../../../pape_read/SAMP/">
         Stochastic Scene-Aware Motion Prediction
       </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">Generation-Image</a>
+<label for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+          Generation-Image
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../pape_read/EG3D/">
+        EG3D: Efficient Geometry-aware 3D Generative Adversarial Networks
+      </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1132,7 +1188,7 @@
 <div class="admonition summary">
 <p class="admonition-title">缓冲</p>
 <p>缓冲器(buffer) 一般通过两个非门串联，并将输入连通输出实现，这样能够实现信息的存储，然而无法修改。而锁存器就是在缓冲器的基础上，将非门替换为或非门或与非门实现的。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../79.png"><img alt="" src="../79.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/79.png"><img alt="" src="../img/79.png"/></a></p>
 <blockquote>
 <p>其中，从给定输入到更新输出有一个 <span class="arithmatex">\(t_G\)</span> 的延时。</p>
 </blockquote>
@@ -1156,12 +1212,12 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><figure markdown="">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../80.png"><img alt="" src="../80.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/80.png"><img alt="" src="../img/80.png"/></a>
 </figure></p>
 </div>
 <div class="tabbed-block">
 <p><figure markdown="">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../81.png"><img alt="" src="../81.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/81.png"><img alt="" src="../img/81.png"/></a>
 </figure></p>
 </div>
 </div>
@@ -1170,7 +1226,7 @@
 <p>一个记忆方法是，SR 的门元件对 <code>1</code> 敏感，所以是 或非门 的实现；而 S'R' 的门元件对 <code>0</code> 敏感，所以是 与非门 的实现。而通过 「当 S 为 <code>1</code> 时，Q 都会是 <code>1</code>」可以得到 S、R 与 Q、Q' 的位置。</p>
 <p>但是实际的存储元件并不是单纯的 SR/S'R' Latches，所以它们当然是存在问题的。由于电路存在延时，所以 S 和 R 的输入很难同时到达，所以我们可以在前面加一个控制端，当确保两个输入都到位的时候再使能。</p>
 <p>于是我们得到了，<strong>带控制输入的 SR 锁存器(SR Latch with Control Input)</strong>（S'R'略）：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../82.png"><img alt="" src="../82.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/82.png"><img alt="" src="../img/82.png"/></a></p>
 <blockquote>
 <p>注意！SR 锁存器通过 或非门 实现，但带输入控制的 SR 锁存器则通过 <strong>与非门</strong> 实现！</p>
 </blockquote>
@@ -1178,7 +1234,7 @@
 <h3 id="d-锁存器">D 锁存器<a class="headerlink" href="#d-锁存器" title="Permanent link">¶</a></h3>
 <p>D 锁存器实际上是带控制输入的 SR 锁存器的改进。其中我们关注到，虽然 S 和 R 起作用的有三种状态</p>
 <p>我们关注到，即使是带控制输入的 SR 锁存器，也存在一个「undefined」状态，而这是我们不希望出现的，于是我们想，能不能避免这种情况的发生。这时候我们观察到，由于可以通过 C 来控制是否保持，所以可以直接强制要求 <span class="arithmatex">\(S = \overline R\)</span>，于是就避免了 undefined 情况的出现，这就是 D 锁存器。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../83.png"><img alt="" src="../83.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/83.png"><img alt="" src="../img/83.png"/></a></p>
 <p>只有当 C 为 <code>1</code> 时，D 锁存器才能写入数据；而当 C 为 <code>0</code> 时，D 锁存器的数据就不会变化。</p>
 <hr/>
 <div class="admonition warning">
@@ -1198,7 +1254,7 @@
 </blockquote>
 <hr/>
 <h3 id="sr-主从触发器">SR 主从触发器<a class="headerlink" href="#sr-主从触发器" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../84.png"><img alt="" src="../84.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/84.png"><img alt="" src="../img/84.png"/></a></p>
 <blockquote>
 <p>虽然它叫 FF，但它并不符合 FF 的特征，然而分类上又属于 pulse-triggered FF。</p>
 </blockquote>
@@ -1210,14 +1266,14 @@
 <h3 id="边沿触发式触发器">边沿触发式触发器<a class="headerlink" href="#边沿触发式触发器" title="Permanent link">¶</a></h3>
 <p>上面已经说过了，边沿触发式触发器主要对脉冲的 上升沿 或 下降沿 敏感。</p>
 <p>下图为正边沿触发 D 触发器的大致原理图。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../85.png"><img alt="" src="../85.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/85.png"><img alt="" src="../img/85.png"/></a></p>
 <blockquote>
 <p>关注上升沿前后，上升沿前一刻，主锁存器可写，从锁存器只读；上升沿后一刻，主锁存器只读，从锁存器只写，且写入的是主锁存器存储的值——换句话来说，存的是上升沿前一刻写入主锁存器的内容。</p>
 </blockquote>
 <p>需要注意的一点是，D 触发器没有「保持」态。如果要使 D 触发器保持，可以使时钟脉冲失效或通过 <code>MUX</code> 将输出接到输入实现。其中前者不太常用，因为受门控的时钟脉冲进入触发器时有延迟，即 <strong>时钟偏移(clock skew)</strong></p>
 <hr/>
 <h3 id="标准图形符号">标准图形符号<a class="headerlink" href="#标准图形符号" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../86.png"><img alt="" src="../86.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/86.png"><img alt="" src="../img/86.png"/></a></p>
 <blockquote>
 <p>带圆圈表示负逻辑。</p>
 </blockquote>
@@ -1233,7 +1289,7 @@
 <h3 id="触发器的输入方程">触发器的输入方程<a class="headerlink" href="#触发器的输入方程" title="Permanent link">¶</a></h3>
 <p><strong>触发器的输入方程(flip-flop input equation)</strong> 主要是为其提供一个代数表达方式。它的主要想法是⓵表达每一个触发器的输入与输出之间的关系；⓶表达每一个直接输出的逻辑表达式。其中，触发器的输出符号表示了其类型（即符号）与输出（即下标）。</p>
 <p>具体来说，例如下面这个电路：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../87.png"><img alt="" src="../87.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/87.png"><img alt="" src="../img/87.png"/></a></p>
 <p>可以发现，其中包含两个触发器 <span class="arithmatex">\(D_A\)</span> 和 <span class="arithmatex">\(D_B\)</span>，以及一个组合逻辑输出 <span class="arithmatex">\(Y\)</span>，因而可以根据电路的特征，得到下面这几个式子：</p>
 <div class="arithmatex">\[
 \begin{aligned}
@@ -1246,7 +1302,7 @@
 <h3 id="状态表">状态表<a class="headerlink" href="#状态表" title="Permanent link">¶</a></h3>
 <p>当然，时序电路的逻辑有时候也可以通过状态表来描述，只不过与组合电路的 真值表 不同，<strong>状态表(state table)</strong> 有四栏：当前状态(present state)、输入(input)、下一状态(next state)、输出(output)。其含义是比较显然的，只不过需要通过电路图得到状态表，需要首先得到「当前状态」向「下一状态」转移的方程，即对于某个时刻 <span class="arithmatex">\(t\)</span> 的触发器 <span class="arithmatex">\(A\)</span> 的输出 <span class="arithmatex">\(A(t)\)</span>，需要得到它下一刻的状态 <span class="arithmatex">\(A(t+1) = f(A(t), ...)\)</span>。</p>
 <p>同样以这个电路为 🌰：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../87.png"><img alt="" src="../87.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/87.png"><img alt="" src="../img/87.png"/></a></p>
 <p>首先我们对 <span class="arithmatex">\(D_A\)</span> 得到转移方程：<span class="arithmatex">\(A(t+1) = D_A = A(t)X + B(t)X\)</span>，可以简写为 <span class="arithmatex">\(A(t+1) = D_A = AX+BX\)</span>。类似地也能得到 <span class="arithmatex">\(B\)</span> 的转移方程。</p>
 <p>于是，根据这些信息，我们可以写出它的状态表：</p>
 <table>
@@ -1321,7 +1377,7 @@
 <div class="admonition example">
 <p class="admonition-title">Mealy</p>
 <p>例如，这是一个 米勒型 的状态图，以及对应的状态表。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../89.png"><img alt="" src="../89.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/89.png"><img alt="" src="../img/89.png"/></a></p>
 <blockquote>
 <p>因为米勒型电路的 <strong>输出与当前状态和输入都有关</strong>，所以输出会和输入放在一起，即放在 edge 里。</p>
 <p>对于米勒型，node 内的二进制为 present state 中的 <code>AB</code>；edge 上分别为 input 和 output：<code>X</code>/<code>Y</code>；有向边表达了每个状态在特定输入下的下一个状态。</p>
@@ -1332,7 +1388,7 @@
 <div class="admonition example">
 <p class="admonition-title">Moore</p>
 <p>而下面是一个 摩尔型 的状态图，以及对应的状态表。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../88.png"><img alt="" src="../88.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/88.png"><img alt="" src="../img/88.png"/></a></p>
 <blockquote>
 <p>因为摩尔型电路的 <strong>输出只与当前状态有关</strong>，所以输出会和当前状态放在一起，即放在 node 里。</p>
 <p>对于摩尔型，node 内的二进制表示 present state 和 output：<code>A</code>/<code>Z</code>；edge 上列举了这种转移可能的 inputs：<code>XY</code>。</p>
@@ -1390,7 +1446,7 @@
 <p>状态机混用了米勒型和摩尔型的输出格式，优劣在 <strong><a href="#状态图">状态图</a></strong> 中有所提及。并且，有限图将状态转移方程也写入，总体上对电路设计更友好。下图是状态机的一个“范式”。</p>
 <div class="admonition note">
 <p class="admonition-title">Generic State Diagram Template</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../90.png"><img alt="" src="../90.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/90.png"><img alt="" src="../img/90.png"/></a></p>
 <p>首先解释一下这个“范式”：</p>
 <blockquote>
 <p>具体解释状态机有哪些内容，以及各个部分之间的逻辑。关于各个部分出现的位置，请参考 Template。</p>
@@ -1417,7 +1473,7 @@
 <div class="admonition warning">
 <p class="admonition-title">注意点</p>
 <p>此外，还有一个点需要辨析，由于「Transition」表示的是“下一个”状态，所以对于当前时刻，当前节点的输出和出度的输出不能冲突。例如，下图因为 Moore 输出行为的 Z 和 TC=AB 那条边的 Z' 冲突，所以非法。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../92.png"><img alt="" src="../92.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/92.png"><img alt="" src="../img/92.png"/></a></p>
 <hr/>
 <p>当然，非法状态机并不只有这一个判据。不过核心思想就是 <strong>不能有歧义或冲突且需要充分</strong>，更数学的表达是，必须满足如下两个条件：</p>
 <p>1.非交：对于每一个状态 <span class="arithmatex">\(S_i\)</span>，它的任意两个出度 <span class="arithmatex">\((T_{ij},T_{jk})\)</span> 都不能同时成立，即应有：</p>
@@ -1472,7 +1528,7 @@
 </details>
 <details class="example" open="open">
 <summary>State Machine Diagram 🌰</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../91.png"><img alt="" src="../91.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/91.png"><img alt="" src="../img/91.png"/></a></p>
 <blockquote>
 <p>注意，图中有一个错误（大概），右侧 <span class="arithmatex">\(S_1\)</span> 的 OC 应为 <span class="arithmatex">\((\overline{A}\cdot\overline{B})\)</span>。</p>
 </blockquote>
@@ -1503,7 +1559,7 @@
 <p>一篇介绍 Setup Time 和 Hold Time 的 <strong><a href="https://nandland.com/lesson-12-setup-and-hold-time/">文章</a></strong>。</p>
 </div>
 <p>根据触发器的类型不同，主要的 Setup Time 也不同：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../93.png"><img alt="" src="../93.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/93.png"><img alt="" src="../img/93.png"/></a></p>
 <p>其中比较重要的一些点是：</p>
 <ol>
 <li>这几个时间点起点/终点都是触发边缘；</li>
@@ -1517,7 +1573,7 @@
 <h3 id="时序电路延时">时序电路延时<a class="headerlink" href="#时序电路延时" title="Permanent link">¶</a></h3>
 <p>时序电路的延时计算实际上是为了计算时序电路运作的最大频率以设计时钟频率。所以我们需要算出电路能够稳定工作的最小时钟期。</p>
 <p>其计算遵循一定方法：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../94.png"><img alt="" src="../94.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/94.png"><img alt="" src="../img/94.png"/></a></p>
 <blockquote>
 <p>图中 <span class="arithmatex">\(t_{pd,FF}\)</span> 指触发器的 propagation time，<span class="arithmatex">\(t_{COMB}\)</span> 指组合电路的总传播时间（一般情况下 <span class="arithmatex">\(t_{COMB} = \max{\sum_i t_{pd,gate_i}}\)</span>），<span class="arithmatex">\(t_{s}\)</span> 指触发器的 setup time，<span class="arithmatex">\(t_{slack}\)</span> 表示电路的松弛时间。</p>
 </blockquote>
@@ -1533,7 +1589,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月24日 11:36:07</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月23日 10:38:40</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月20日 14:50:19</span>

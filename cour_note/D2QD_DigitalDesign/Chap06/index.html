@@ -507,7 +507,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1SJ_cs231n/">
+<a class="md-nav__link" href="../../D1SJ_CS231N/">
         [大一暑假] Deep Learning for Computer Vision | CS231N
       </a>
 </li>
@@ -957,13 +957,44 @@
           📝 论文阅读
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">Reconstruction</a>
+<label for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+          Reconstruction
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/arXiv%3A2003.08934/">
+<a class="md-nav__link" href="../../../pape_read/NeRF/">
         NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
       </a>
 </li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">Generation-Motion</a>
+<label for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+          Generation-Motion
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/arXiv%3A2104.05670/">
+<a class="md-nav__link" href="../../../pape_read/ACTOR/">
         Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
       </a>
 </li>
@@ -976,6 +1007,31 @@
 <a class="md-nav__link" href="../../../pape_read/SAMP/">
         Stochastic Scene-Aware Motion Prediction
       </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">Generation-Image</a>
+<label for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+          Generation-Image
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../pape_read/EG3D/">
+        EG3D: Efficient Geometry-aware 3D Generative Adversarial Networks
+      </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1215,7 +1271,7 @@
 <p>Registers are useful for storing and manipulating information; counters are employed in circuits that sequence and control operations in a digital system.</p>
 </blockquote>
 <p>实现寄存器一个最直白的想法就是公用控制线路和分列数据线路来控制多个触发器，如下图是使用 D <code>FF</code> 实现的一个 4-bit register：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../95.png"><img alt="" src="../95.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/95.png"><img alt="" src="../img/95.png"/></a></p>
 <p>我们称新数据被写入寄存器的操作为 <strong>载入(load)</strong>，而如果载入操作在同一个时钟脉冲中完成，我们称之是 <strong>并行(parallel)</strong> 的。</p>
 <hr/>
 <h3 id="保持">保持<a class="headerlink" href="#保持" title="Permanent link">¶</a></h3>
@@ -1223,7 +1279,7 @@
 <div class="admonition tip">
 <p class="admonition-title">方案 A</p>
 <p>其中一个做法是需要选择性的让它跟随时钟脉冲切换状态。做法就是将 Control 信号修改为 <span class="arithmatex">\(C = \overline{Load} + Clock\)</span>，如此而来，当 <span class="arithmatex">\(Load = 0\)</span> 时，始终有 <span class="arithmatex">\(C = 0\)</span>，脉冲消失，寄存器无法被载入。如下图，这种技术叫 <strong>门控时钟(clock gating)</strong>。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../96.png"><img alt="" src="../96.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/96.png"><img alt="" src="../img/96.png"/></a></p>
 <div class="admonition warning">
 <p class="admonition-title">clock skew</p>
 <p>然而，在门控时钟技术中，由于添加了一个额外的逻辑门，时钟脉冲到达 Control 的时候会出现额外的传播延时，即 <strong>时钟偏移(clock skew)</strong>。而这微小的延时会导致在整个同步系统中，不同组件得到的时钟脉冲有偏差，而这是我们所不希望看到的。所以在实际设计中，我们应当避免或尽可能缩小时钟偏移。</p>
@@ -1232,7 +1288,7 @@
 <div class="admonition tip">
 <p class="admonition-title">方案 B</p>
 <p>另外一个做法是，在不希望它修改的时候，不断将它的输入载入，也就是保持不变。我们可以通过一个 <code>MUX</code> 来实现这个功能，用 <code>EN</code> 使能端来选择是载入新值还是保持之前的值，如下图。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../97.png"><img alt="" src="../97.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/97.png"><img alt="" src="../img/97.png"/></a></p>
 </div>
 <hr/>
 <h2 id="寄存器单元">寄存器单元<a class="headerlink" href="#寄存器单元" title="Permanent link">¶</a></h2>
@@ -1262,7 +1318,7 @@
 </ul>
 <p>在实际实现时，分为 <code>MUX</code> 实现和时序逻辑实现两种方法。</p>
 <p>前者就是 <strong><a href="#基于-mux-实现传输">#基于 Mux 实现传输</a></strong> 中将要提到的那样，关于上面哪些内容在该小节中的体现如下图；</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../118.png"><img alt="" src="../118.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/118.png"><img alt="" src="../img/118.png"/></a></p>
 <p>也就是通过分别实现逻辑，然后通过控制信号选择数据输入来实现。</p>
 <p>而后者按照时序电路的设计方法，确定状态图后根据状态变化设计时序电路，设计优化决定状态转移方程实现，具体可以参考 <strong><a href="../Chap04/#时序电路的设计">第四章#时序电路设计</a></strong>。</p>
 <hr/>
@@ -1296,10 +1352,10 @@
 <p><a href="https://www.geeksforgeeks.org/little-and-big-endian-mystery/">Little-endian &amp; Big-endian</a></p>
 </blockquote>
 <p>我们有时候也会用这些形式来图形化的表示寄存器：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../99.png"><img alt="" src="../99.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/99.png"><img alt="" src="../img/99.png"/></a></p>
 <p>此外，常见操作用 RTL 表示方法和符号如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../100.png"><img alt="" src="../100.png"/></a></p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../98.png"><img alt="" src="../98.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/100.png"><img alt="" src="../img/100.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/98.png"><img alt="" src="../img/98.png"/></a></p>
 <p>需要额外说明的是，如果我们想表达条件语句，例如我们想表达：</p>
 <div class="arithmatex">\[
 if\, (K_1 = 1) \,then\, (R2 \leftarrow R1)
@@ -1319,9 +1375,9 @@ K_1 : R2 \leftarrow R1
 <h3 id="基于-mux-实现传输">基于 MUX 实现传输<a class="headerlink" href="#基于-mux-实现传输" title="Permanent link">¶</a></h3>
 <p>对于一个单一寄存器，它的 <strong>输入</strong> 可能有多种来源，例如其它寄存器，又或者是其他操作的结果。总而言之，它的输入很可能是不唯一的，而同一时刻我们只能接受一个来源的输入。因此，我们需要使用 <code>MUX</code> 来对输入进行选择。</p>
 <p>一个简单 🌰 如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../106.png"><img alt="" src="../106.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/106.png"><img alt="" src="../img/106.png"/></a></p>
 <p>用语言来描述这个总体架构就是，我们通过一系列 one-hot 编码（不确定，也许可能都为零？我感觉取决于 <strong><a href="#保持">保持</a></strong> 的实现。）来表示选择哪个输入源（下图中 <span class="arithmatex">\(K_0\sim K_{n-1}\)</span>），再通过 <code>Encoder</code> 将它们编码作为 <code>MUX</code> 的输入选择信号（下图中 <span class="arithmatex">\(S_m \sim S_0\)</span>），从多个输入源（下图中 0 \sim k \sim (n-1)$）中选择对应的源，并输出，给到 R0；此外，将选择信号都或起来，作为 R0 的 Load 信号输入。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../105.png"><img alt="" src="../105.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/105.png"><img alt="" src="../img/105.png"/></a></p>
 <blockquote>
 <p>其中 <code>MUX</code> 的 <span class="arithmatex">\(k \sim (n-1)\)</span> 实现了 <strong><a href="#转移">转移</a></strong> 操作。</p>
 </blockquote>
@@ -1336,7 +1392,7 @@ K_1 : R2 \leftarrow R1
 <hr/>
 <h4 id="共有-mux-实现">共有 MUX 实现<a class="headerlink" href="#共有-mux-实现" title="Permanent link">¶</a></h4>
 <p>让我们以三个寄存器的模型为例，对比通过专有 <code>MUX</code> 实现和通过 <strong>单一总线(single bus)</strong> 实现的区别：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../107.png"><img alt="" src="../107.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/107.png"><img alt="" src="../img/107.png"/></a></p>
 <p>首先对总线实现进行说明，同样是使用 <code>MUX</code>，但此时 <code>MUX</code> 不再是某个寄存器的 <strong>专有逻辑(dedicated logic)</strong>，而是三个寄存器共同使用的 <strong>共有逻辑(shared logic)</strong>。总线中的 <code>MUX</code> 在所有寄存器的输入中选择其中一个，并将它输出，给到所有寄存器；而总线通过控制 Load 信号来选择让哪个（或哪些）寄存器得到这个信号。</p>
 <p>接下来进行对比，以总线实现为主体，与 <code>MUX</code> 实现对比：</p>
 <ul>
@@ -1365,7 +1421,7 @@ K_1 : R2 \leftarrow R1
 <p>Three-state buffer outputs can be connected together to form a multiplexed output line.</p>
 </blockquote>
 <p>与 <code>MUX</code> 实现相对比，三态门实现方式如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../108.png"><img alt="" src="../108.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/108.png"><img alt="" src="../img/108.png"/></a></p>
 <p>进行简单说明，(c) 中对三态门的表示进行了简化，含义参考 (a)。它想表达的主要含义是，当 <code>EN</code> 为 <code>1</code> 时，表示输出；反之表示输入（当然，真正决定是否读入寄存器的还是 <code>LD</code>）。</p>
 <details class="question">
 <summary>个人疑惑</summary>
@@ -1402,7 +1458,7 @@ K_1 : R2 \leftarrow R1
 <p>这一部分的实现途径在 <strong><a href="#寄存器传输的实现">寄存器传输的实现</a></strong> 已经阐述。</p>
 <hr/>
 <h3 id="算术">算术<a class="headerlink" href="#算术" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../101.png"><img alt="" src="../101.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/101.png"><img alt="" src="../img/101.png"/></a></p>
 <blockquote>
 <p>Multiplication and division are not listed in Table 6-3. Multiplication can be represented by the symbol * and division by /. These two operations are not included in the basic set of arithmetic microoperations because they are assumed to be implemented by sequences of basic microoperations. However, multiplication can be considered as a microoperation if implemented by a combinational circuit. In such a case, the result is transferred into a destination register at the clock edge after all signals have propagated through the entire combinational circuit</p>
 </blockquote>
@@ -1415,7 +1471,7 @@ K_1 : R2 \leftarrow R1
     &amp;XK_1:R_1\leftarrow R_1 + \overline{R_2} + 1
 \end{array}
 \]</div>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../102.png"><img alt="" src="../102.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/102.png"><img alt="" src="../img/102.png"/></a></p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
@@ -1437,7 +1493,7 @@ K_1 : R2 \leftarrow R1
 </div>
 <hr/>
 <h3 id="逻辑">逻辑<a class="headerlink" href="#逻辑" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../103.png"><img alt="" src="../103.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/103.png"><img alt="" src="../img/103.png"/></a></p>
 <p>逻辑运算的实现相比算术更加直接，因为大部分逻辑都可以通过逻辑门来实现。</p>
 <hr/>
 <div class="admonition note">
@@ -1445,7 +1501,7 @@ K_1 : R2 \leftarrow R1
 </div>
 <hr/>
 <h3 id="位移">位移<a class="headerlink" href="#位移" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../104.png"><img alt="" src="../104.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/104.png"><img alt="" src="../img/104.png"/></a></p>
 <p>位移的实现通过 <strong>位移寄存器(Shift Register)SHR</strong> 实现。</p>
 <div class="admonition info">
 <p class="admonition-title">引入</p>
@@ -1453,7 +1509,7 @@ K_1 : R2 \leftarrow R1
 </div>
 <h4 id="串行实现">串行实现<a class="headerlink" href="#串行实现" title="Permanent link">¶</a></h4>
 <p>位移操作最简单的实现只需要与输入数相同位数的触发器实现。它的基本结构如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../109.png"><img alt="" src="../109.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/109.png"><img alt="" src="../img/109.png"/></a></p>
 <blockquote>
 <p>四个触发器首尾相连，最前面 <strong>串行输入(Serial Input)SI</strong> 数据，末端得到 <strong>串行输出(Serial Output)SO</strong>，在不同时钟周期的偏差下，连续读入的 n bits 即为不同位数位移的结果。</p>
 </blockquote>
@@ -1546,7 +1602,7 @@ K_1 : R2 \leftarrow R1
 <h4 id="并行化">并行化<a class="headerlink" href="#并行化" title="Permanent link">¶</a></h4>
 <p>并行化主要有两个方面，即 <strong>并行输出(parallel output)</strong> 和 <strong>并行载入(parallel load)</strong>，分别对应着 在同一个时间周期内 <strong>得到每一个 <code>FF</code> 的结果</strong> 和 <strong>对每一个 <code>FF</code> 载入数据</strong>。</p>
 <p>并行输出的实现非常简单，只需要给每一个 <code>FF</code> 的输出引出一条线就行了，它与串行输出可以直接同时存在；而并行输入则与串行输入冲突，一次只能实现其中一个，所以需要一些控制电路：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../110.png"><img alt="" src="../110.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/110.png"><img alt="" src="../img/110.png"/></a></p>
 <blockquote>
 <p>看起来有点复杂，但是实际上逻辑还是很清晰的。</p>
 <ul>
@@ -1575,7 +1631,7 @@ K_1 : R2 \leftarrow R1
       \overline{Shift}\cdot \overline{Load} :&amp; Q\leftarrow Q
 \end{array}
 \]</div>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../111.png"><img alt="" src="../111.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/111.png"><img alt="" src="../img/111.png"/></a></p>
 </blockquote>
 <hr/>
 <h4 id="双向位移寄存器">双向位移寄存器<a class="headerlink" href="#双向位移寄存器" title="Permanent link">¶</a></h4>
@@ -1590,7 +1646,7 @@ K_1 : R2 \leftarrow R1
 \end{array}
 \]</div>
 <p>其单元实现如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../112.png"><img alt="" src="../112.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/112.png"><img alt="" src="../img/112.png"/></a></p>
 <blockquote>
 <p>其本质上就是添加了一个 <code>MUX</code> 来选择下一个时钟是继承 <span class="arithmatex">\((i+1)\)</span>、<span class="arithmatex">\((i-1)\)</span>、<span class="arithmatex">\(D_i\)</span> 还是 <span class="arithmatex">\(Q\)</span>。</p>
 </blockquote>
@@ -1613,14 +1669,14 @@ K_1 : R2 \leftarrow R1
 <h3 id="行波计数器">行波计数器<a class="headerlink" href="#行波计数器" title="Permanent link">¶</a></h3>
 <p>行波计数器的主要思想就是将一个不断自反的 <code>FF</code> 的输出直接或间接作为下一个 <code>FF</code> 的时钟脉冲。由于形成一次脉冲需要一对 <code>0</code>&amp;<code>1</code>，所以前一个 <code>FF</code> 取反两次才能引起下一个 <code>FF</code> 取反一次，如果下一个 <code>FF</code> 是在上一个 <code>FF</code> 的输出从 <code>1</code> 变 <code>0</code> 时触发，那两个 <code>FF</code> 的变化刚好对应于二进制自增的进位规律：<code>(0,0)</code>，<code>(0,1)</code>，<code>(1,0)</code>，<code>(1,1)</code>，<code>0,0</code>，...</p>
 <p>于是，一个 4-Bit 行波计数器的逻辑图就如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../113.png"><img alt="" src="../113.png" width="200px"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/113.png"><img alt="" src="../img/113.png" width="200px"/></a></p>
 <blockquote>
 <ul>
 <li>上图中，下一个 <code>FF</code> 的时钟来自于上一个 <code>FF</code> 的输出取反，也就是对于上升沿触发的 <code>FF</code> 来说，下一个 <code>FF</code> 会在上一个 <code>FF</code> 的输出从 <code>1</code> 到 <code>0</code> 时自反，所以是 <strong>正向计时(Upward Counting)</strong>；</li>
 <li>反之，如果下一个 <code>FF</code> 的时钟来自于上一个 <code>FF</code> 的直接输出，也就是对于上升沿触发的 <code>FF</code> 来说，下一个 <code>FF</code> 会在上一个 <code>FF</code> 的输出从 <code>0</code> 到 <code>1</code> 时自反，所以是 <strong>逆向输出(Downward Counting)</strong>；</li>
 </ul>
 </blockquote>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../114.png"><img alt="" src="../114.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/114.png"><img alt="" src="../img/114.png"/></a></p>
 <p>可以发现，行波计数器的优点是电路简单，成本低；但是缺点也很明显，既然它与同步计数器相区分，就说明它不是同步电路，每一个 <code>FF</code> 都会有传播延时，随着计数范围增大，总传播延时也会增加，而为了让电路正常工作，时钟频率也要因此下降。</p>
 <p>由于这些，书上对行波计数器的评价是多数情况下行波加法器只会在低功耗电路中被采用。</p>
 <hr/>
@@ -1632,7 +1688,7 @@ K_1 : R2 \leftarrow R1
 <p>也就是说，行波计数器是建立在前一个 <code>FF</code> 的结果进行变化；而并行加法器是建立在上一刻所有关联 <code>FF</code> 的状态，对下一状态的预判。</p>
 </blockquote>
 <p>在这基础上，同步计数器的 <strong>自增器(incrementer)</strong> 有两种不同的实现方法：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../115.png"><img alt="" src="../115.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/115.png"><img alt="" src="../img/115.png"/></a></p>
 <blockquote>
 <p>(b) 的蓝色部分替换 (a) 的蓝框部分为第二种。两种分别为 门串行实现 和 门并行实现。</p>
 <p>两种实现其实原理都是一样的，只不过门串行牺牲某些情况下的运行效率，节约了门成本；而门并行提高x了门成本，减少了某些情况下的门延迟。</p>
@@ -1660,7 +1716,7 @@ K_1 : R2 \leftarrow R1
 <h4 id="同步载入">同步载入<a class="headerlink" href="#同步载入" title="Permanent link">¶</a></h4>
 <p>这里同步载入的含义可以同 <strong><a href="#并行化">位移寄存器的并行载入</a></strong> 类比，其主要目的是将计数器的当前值设为一个我们需要的数字。</p>
 <p>以门串行实现为例，添加功能控制逻辑后的设计如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../116.png"><img alt="" src="../116.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/116.png"><img alt="" src="../img/116.png"/></a></p>
 <hr/>
 <h3 id="任意计数序列">任意计数序列<a class="headerlink" href="#任意计数序列" title="Permanent link">¶</a></h3>
 <p>现在让我们回归计数器的行为：<u>随着时钟周期不断在固定的状态序列中循环</u>。也就是说，这个序列未必需要是整数自增自减序列。而实现某一序列的计数行为，实际上只要设计好有限状态和状态之间的转移即可。</p>
@@ -1669,7 +1725,7 @@ K_1 : R2 \leftarrow R1
 <h4 id="bcd-码循环计数">BCD 码循环计数<a class="headerlink" href="#bcd-码循环计数" title="Permanent link">¶</a></h4>
 <p>首先我们需要根据时序电路的设计规则，搞清楚状态序列，显然，根据 BCD 码的定义，我们可以毛毛地认为它是下确界为 <code>0</code>，上确界为 <code>9</code> 的 4 比特整数序列。换句话说，我们需要实现一个计数到 <code>9</code> 后下一个状态是 <code>0</code> 的 4 比特计数器。</p>
 <p>于是我们可以当计数器的输出为 <code>9</code> 时，下一周期让计数器载入 <code>0</code>：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../117.png"><img alt="" src="../117.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/117.png"><img alt="" src="../img/117.png"/></a></p>
 <blockquote>
 <p>按理来说这里应该是 <span class="arithmatex">\(Load = Q_0\cdot\overline{Q_1}\cdot\overline{Q_2}\cdot Q_3\)</span>，以对应 <code>9D=1001B</code>，但是由于自增过程中，<code>1001</code> 是第一个满足 <code>1??1</code> 的组合，所以可以直接简化为 <span class="arithmatex">\(Load = Q_0\cdot Q_3\)</span>。</p>
 </blockquote>
@@ -1715,7 +1771,7 @@ K_1 : R2 \leftarrow R1
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年5月5日 20:22:57</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月23日 10:38:40</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月31日 15:18:46</span>

@@ -507,7 +507,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1SJ_cs231n/">
+<a class="md-nav__link" href="../../D1SJ_CS231N/">
         [大一暑假] Deep Learning for Computer Vision | CS231N
       </a>
 </li>
@@ -962,13 +962,44 @@
           📝 论文阅读
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">Reconstruction</a>
+<label for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+          Reconstruction
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/arXiv%3A2003.08934/">
+<a class="md-nav__link" href="../../../pape_read/NeRF/">
         NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
       </a>
 </li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">Generation-Motion</a>
+<label for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+          Generation-Motion
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/arXiv%3A2104.05670/">
+<a class="md-nav__link" href="../../../pape_read/ACTOR/">
         Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
       </a>
 </li>
@@ -981,6 +1012,31 @@
 <a class="md-nav__link" href="../../../pape_read/SAMP/">
         Stochastic Scene-Aware Motion Prediction
       </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">Generation-Image</a>
+<label for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+          Generation-Image
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../pape_read/EG3D/">
+        EG3D: Efficient Geometry-aware 3D Generative Adversarial Networks
+      </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1333,10 +1389,10 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <li>fall time 等于栅极输出从 <span class="arithmatex">\(\mathrm{V_{CC}}\)</span> 的 90% 降低到 10% 所需要的时间；</li>
 </ul>
 <p>通过时序图表示就是这样：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../31.png"><img alt="" src="../31.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/31.png"><img alt="" src="../img/31.png"/></a></p>
 <hr/>
 <p>随着负载增加，转换时间也会增加（给电容充电的时间增加），而扇出定义中提到的“最大负载”，就是指它的转换时间不超过它预定的最大转换时间。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../32.png"><img alt="" src="../32.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/32.png"><img alt="" src="../img/32.png"/></a></p>
 <blockquote>
 <p>从左到右表示负载不断增加时，rise time 的变化趋势。</p>
 </blockquote>
@@ -1345,7 +1401,7 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <h4 id="传播延迟">传播延迟<a class="headerlink" href="#传播延迟" title="Permanent link">¶</a></h4>
 <p><strong>传播延迟(propagation delay)</strong> 衡量了门的输入变化导致输出变化所需要的时间。由于从低电平转化到高电平和高电平转化到低电平所需要的时间不一样，所以传播延迟同样有两个部分，分别使用 <span class="arithmatex">\(\mathrm{t_{PHL}}\)</span> 和 <span class="arithmatex">\(\mathrm{t_{PLH}} 来表示\)</span>。</p>
 <p>更具体的来说，传播延迟的计算方法是输入和输出的变化中点（即变化到 <span class="arithmatex">\(\frac{1}{2}V_{CC}\)</span> 时）的时间差，通过时序图表示就是这样：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../33.png"><img alt="" src="../33.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/33.png"><img alt="" src="../img/33.png"/></a></p>
 <blockquote>
 <p>此外，我们还可以引入 <span class="arithmatex">\(\mathrm{ t_{pd} }\)</span> 来统一表示 <span class="arithmatex">\(\mathrm{t_{PHL}}\)</span> 和 <span class="arithmatex">\(\mathrm{t_{PLH}}\)</span>。数值上，<span class="arithmatex">\(\mathrm{ t_{pd} } = average(\mathrm{t_{PHL}}, \mathrm{t_{PLH}})\)</span> 或 <span class="arithmatex">\(\mathrm{ t_{pd} } = max(\mathrm{t_{PHL}}, \mathrm{t_{PLH}})\)</span>。</p>
 </blockquote>
@@ -1354,10 +1410,10 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>根据时序图，写出门的传播延迟，此处 <span class="arithmatex">\(\mathrm{ t_{pd} } = average(\mathrm{t_{PHL}}, \mathrm{t_{PLH}})\)</span>。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../34.png"><img alt="" src="../34.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/34.png"><img alt="" src="../img/34.png"/></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../35.png"><img alt="" src="../35.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/35.png"><img alt="" src="../img/35.png"/></a></p>
 </div>
 </div>
 </input></input></div>
@@ -1366,7 +1422,7 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <p class="admonition-title">Transition Time vs. Propagation Delay</p>
 <p>转换时间专注于输出的变化，而传播延迟则包含了输入的变化和输出的变化整个过程。</p>
 <p>从时序图上的表示来看，转换时间只需要输出的时序图即可表示；但传播延迟则是通过比较输入和输出的偏差来表示的。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../36.png"><img alt="" src="../36.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/36.png"><img alt="" src="../img/36.png"/></a></p>
 </div>
 <hr/>
 <h3 id="延迟模型">延迟模型<a class="headerlink" href="#延迟模型" title="Permanent link">¶</a></h3>
@@ -1374,13 +1430,13 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <ul>
 <li>传输延迟(transport delay): 认为输入和输出之间的延迟是一个定值的；</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../37.png"><img alt="" src="../37.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/37.png"><img alt="" src="../img/37.png"/></a></p>
 <ul>
 <li>惯性延迟(inertial delay): 引入了 <strong>拒绝时间(rejection time)</strong>，只有当输入达到一定能量后，才会出发栅极输出（在这种模型下，噪音等会被过滤）；</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../38.png"><img alt="" src="../38.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/38.png"><img alt="" src="../img/38.png"/></a></p>
 <p>将不存在延迟的模型、传输延迟模型和惯性延迟模型做比较地来看，就是如下情况：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../39.png"><img alt="" src="../39.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/39.png"><img alt="" src="../img/39.png"/></a></p>
 <hr/>
 <h3 id="延迟以及相关问题">延迟以及相关问题<a class="headerlink" href="#延迟以及相关问题" title="Permanent link">¶</a></h3>
 <div class="admonition info">
@@ -1391,7 +1447,7 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <hr/>
 <h4 id="延迟计算">延迟计算<a class="headerlink" href="#延迟计算" title="Permanent link">¶</a></h4>
 <p>计算一个电路的延迟时，有两方面需要考虑，一方面是电路自身所导致的一个固定延迟，另外一方面则是由于不同的负载导致的额外延迟。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../40.png"><img alt="" src="../40.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/40.png"><img alt="" src="../img/40.png"/></a></p>
 <blockquote>
 <p>在这个例子中，0.07 为固定延迟，0.021 为一个标准负载带来的延迟系数，SL(4.5 here) 则是标准化的负载量。</p>
 </blockquote>
@@ -1400,22 +1456,22 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <h4 id="延迟带来的问题">延迟带来的问题<a class="headerlink" href="#延迟带来的问题" title="Permanent link">¶</a></h4>
 <p>由于存在延迟，许多在数学意义上没有问题的逻辑表达式在电路中就存在非常大的问题。</p>
 <p>例如，从数学角度看，<span class="arithmatex">\(\mathrm{Y=\overline{A}A}\)</span> 的值恒为 <code>0</code>，但是实际上由于延迟，其仿真波形中会出现这样一个 <strong>毛刺(glitch)</strong>，而这在工程意义上有很大的问题。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../41.png"><img alt="" src="../41.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/41.png"><img alt="" src="../img/41.png"/></a></p>
 <details class="note" open="open">
 <summary>更复杂的 🌰</summary>
 <p>让我们分析下面这个二路选择器，其功能是通过 S 控制输出表达的是 A 还是 B，在传输延迟模型下，其波形如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../42.png"><img alt="" src="../42.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/42.png"><img alt="" src="../img/42.png"/></a></p>
 <blockquote>
 <p>可以发现，Y 中出现了意料之外的毛刺。</p>
 </blockquote>
 <p>而这中毛刺可以用添加冗余项来解决：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../43.png"><img alt="" src="../43.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/43.png"><img alt="" src="../img/43.png"/></a></p>
 </details>
 <hr/>
 <h3 id="正逻辑和负逻辑">正逻辑和负逻辑<a class="headerlink" href="#正逻辑和负逻辑" title="Permanent link">¶</a></h3>
 <p><strong>正逻辑(positive logic)</strong> 就是 <code>1</code> 是有效信号，<strong>负逻辑(negative logic)</strong> 就是 <code>0</code> 是有效信号。而在正逻辑中 AND 门的作用就等效于负逻辑中 OR 门的作用，这也正是我在前面几章的笔记中提到的对称。</p>
 <p>而正逻辑的电路的符号一般就是正常的逻辑门符号，而负逻辑的逻辑门符号则可能有小三角标，即 <strong>极性指示器(polarity indicator)</strong>：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../44.png"><img alt="" src="../44.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/44.png"><img alt="" src="../img/44.png"/></a></p>
 <blockquote>
 <p>如图，左侧是正逻辑电路的符号，右侧是负逻辑电路的符号。</p>
 </blockquote>
@@ -1423,12 +1479,12 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <h3 id="工艺映射">工艺映射<a class="headerlink" href="#工艺映射" title="Permanent link">¶</a></h3>
 <p><strong>工艺映射(technology mapping)</strong> 是指将逻辑图或网表转化为可以用工艺实现的心的图或网表的过程。</p>
 <p>有时我们会使用与非门和非门替换与门和或门(因为电路层面，与门实际上就是通过与非门实现的)，然后会发现有一些连续对非门可以相互抵消，例如下面的情况：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../46.png"><img alt="" src="../46.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/46.png"><img alt="" src="../img/46.png"/></a></p>
 <blockquote>
 <p>蓝绿色块中即为被替换后的内容，然后我们发现出现了若干可以抵消的非门。</p>
 </blockquote>
 <p>当然，也可以通过或非门来实现，比如下面的情况：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../47.png"><img alt="" src="../47.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/47.png"><img alt="" src="../img/47.png"/></a></p>
 <hr/>
 <h3 id="验证正确性">验证正确性<a class="headerlink" href="#验证正确性" title="Permanent link">¶</a></h3>
 <ul class="task-list">
@@ -1461,10 +1517,10 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <p>穷举可能性，稠密 -&gt; 稠密/稀疏</p>
 <p>为了节省门输入成本，我们常常使用 <strong>分级</strong> 的思想来构造多输入多译码器。</p>
 <p>eg:</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../70.png"><img alt="" src="../70.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/70.png"><img alt="" src="../img/70.png"/></a></p>
 <p>由于底层的电路能够直接实现的运算十分局限，所以需要用译码器来实现一些基础运算，例如加法。</p>
 <p>一位加法器就可以通过译码器和或门实现，核心就是枚举输入的各种情况，然后用或门拾取 sum 和 carry 的最小项。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../71.png"><img alt="" src="../71.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/71.png"><img alt="" src="../img/71.png"/></a></p>
 <hr/>
 <h4 id="编码器">编码器<a class="headerlink" href="#编码器" title="Permanent link">¶</a></h4>
 <p>稠密/稀疏 -&gt; 稠密</p>
@@ -1477,7 +1533,7 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <div class="admonition example">
 <p class="admonition-title">中断(interrupt)判优器</p>
 <p>优先编码器的一种应用就是中断判优器。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../48.png"><img alt="" src="../48.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/48.png"><img alt="" src="../img/48.png"/></a></p>
 <blockquote>
 <p>其中 <span class="arithmatex">\(V\)</span> 表示输出是否有效，在中断判优系统中即表示是否有中断请求。</p>
 </blockquote>
@@ -1489,7 +1545,7 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 <p>通过三态门来实现 <code>MUX</code> 能够降低门输入代价。</p>
 <details class="example" open="open">
 <summary>eg</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../49.png"><img alt="" src="../49.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/49.png"><img alt="" src="../img/49.png"/></a></p>
 <blockquote>
 <p>完全使用三态门来实现四输入 <code>MUX</code>，门输入大大减少。</p>
 </blockquote>
@@ -1501,12 +1557,12 @@ B ==&gt;|"变换"| E["合适的表达式"] ===&gt;|"工艺映射"| D</code></pre
 </ul>
 <p>换句话来说，就是将原来的控制端当作输入端，并在原来的输入端写入逻辑函数的真值表，以实现任意逻辑函数。</p>
 <p>我们还可以通过把一部分的输入当作常量端来简化元件（降维）：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../50.png"><img alt="" src="../50.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/50.png"><img alt="" src="../img/50.png"/></a></p>
 <p>观察其最小项，使其输出所有最小项。但是在降维过程中并不需要全都是 C，如果卡诺图中存在双 <code>1</code> 或者双 <code>0</code>，也可以仍然使用常量。</p>
 <hr/>
 <h4 id="信号分配器">信号分配器<a class="headerlink" href="#信号分配器" title="Permanent link">¶</a></h4>
 <p>简写为 <code>DEMUX</code>，通过控制端选择输入给到若干输出中的哪一个。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../45.png"><img alt="" src="../45.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/45.png"><img alt="" src="../img/45.png"/></a></p>
 <hr/>
 <p>后续 👉 <strong><a href="../Chap05/#可重编程技术">可重编程技术</a></strong></p>
 <hr/>
@@ -1536,12 +1592,12 @@ C = XY
 </div>
 <div class="tabbed-block">
 <p><figure markdown="">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../72.png"><img alt="" src="../72.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/72.png"><img alt="" src="../img/72.png"/></a>
 </figure></p>
 </div>
 <div class="tabbed-block">
 <p><figure markdown="">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../73.png"><img alt="" src="../73.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/73.png"><img alt="" src="../img/73.png"/></a>
 </figure></p>
 </div>
 </div>
@@ -1560,12 +1616,12 @@ C = XY + XZ + YZ
 </div>
 <div class="tabbed-block">
 <p><figure markdown="">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../74.png"><img alt="" src="../74.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/74.png"><img alt="" src="../img/74.png"/></a>
 </figure></p>
 </div>
 <div class="tabbed-block">
 <p><figure markdown="">
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../75.png"><img alt="" src="../75.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/75.png"><img alt="" src="../img/75.png"/></a>
 </figure></p>
 </div>
 <div class="tabbed-block">
@@ -1585,7 +1641,7 @@ C = XY + Z(X\oplus Y)
 <h3 id="行波加法器">行波加法器<a class="headerlink" href="#行波加法器" title="Permanent link">¶</a></h3>
 <p>行波加法器是朴素的 n bits 加法器实现。其核心思想也就是模拟我们使用“竖式”来计算加法，从低位开始逐位计算，并将进位给到下一位作为输入。</p>
 <p>实际上无论是只用半加器或是只用全加器，都可以实现行波加法器，但是殊途同归，无非是通过外部器件来进行互相转化而已。如果只使用全加器来实现，则以 4 bits 行波加法器为例，其大致逻辑如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../76.png"><img alt="" src="../76.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/76.png"><img alt="" src="../img/76.png"/></a></p>
 <p>其中，在加法器中，<span class="arithmatex">\(C_0\)</span> 必然是 <code>0</code>。</p>
 <p>加减法器，或者说加法器，一般情况下在 <code>ALU</code> 中是最影响效率的部分，而且如果使用行波加法器，随着位数增加效率会越来越慢。</p>
 <p>所以会有类似于超前进位加法器之类的东西来解决这个问题。</p>
@@ -1594,9 +1650,9 @@ C = XY + Z(X\oplus Y)
 <h3 id="二进制减法">二进制减法<a class="headerlink" href="#二进制减法" title="Permanent link">¶</a></h3>
 <p>首先，在开始二进制减法的介绍之前，你需要了解 <strong>补码(2's complement)</strong>，不过这个东西实在是提过太多次了所以我不打算在这里再写一次，可以查看我的 <a href="../../D1QD_CXiaoCheng/#补码">C 小笔记的补码内容</a>。</p>
 <p>结合补码，我们再来观察行波加法器，我们需要对减数的每一位取反，并对整个数加一，再直接将它们相加即可，即将减法转化为补码下的加法。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../77.png"><img alt="" src="../77.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/77.png"><img alt="" src="../img/77.png"/></a></p>
 <p>其中加一这一步恰好可以通过在加法器中必定为 <code>0</code> 的 <span class="arithmatex">\(C_0\)</span> 来实现，然后我们再在输入中添加 <code>MUX</code>，就可以实现加减法器。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../78.png"><img alt="" src="../78.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/78.png"><img alt="" src="../img/78.png"/></a></p>
 <hr/>
 <h4 id="有符号数的表示与计算">有符号数的表示与计算<a class="headerlink" href="#有符号数的表示与计算" title="Permanent link">¶</a></h4>
 <ul class="task-list">
@@ -1608,7 +1664,7 @@ C = XY + Z(X\oplus Y)
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月15日 19:22:20</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月23日 10:38:40</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月1日 13:37:53</span>

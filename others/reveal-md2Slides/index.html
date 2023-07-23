@@ -507,7 +507,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../cour_note/D1SJ_cs231n/">
+<a class="md-nav__link" href="../../cour_note/D1SJ_CS231N/">
         [大一暑假] Deep Learning for Computer Vision | CS231N
       </a>
 </li>
@@ -783,13 +783,44 @@
           📝 论文阅读
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../pape_read/">Reconstruction</a>
+<label for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+          Reconstruction
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../pape_read/arXiv%3A2003.08934/">
+<a class="md-nav__link" href="../../pape_read/NeRF/">
         NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
       </a>
 </li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../pape_read/">Generation-Motion</a>
+<label for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+          Generation-Motion
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../pape_read/arXiv%3A2104.05670/">
+<a class="md-nav__link" href="../../pape_read/ACTOR/">
         Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
       </a>
 </li>
@@ -802,6 +833,31 @@
 <a class="md-nav__link" href="../../pape_read/SAMP/">
         Stochastic Scene-Aware Motion Prediction
       </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../pape_read/">Generation-Image</a>
+<label for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+          Generation-Image
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../pape_read/EG3D/">
+        EG3D: Efficient Geometry-aware 3D Generative Adversarial Networks
+      </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1051,7 +1107,7 @@
 <p>那么，通过代码来制作「演示」材料又怎么样呢？首先是 <code>Beamer</code>，大概也是最有名的，其基于 <span class="arithmatex">\(\LaTeX\)</span> 实现，其在排版上的可控性不言而喻，但是写过的人都知道 <span class="arithmatex">\(\LaTeX\)</span> 写起来多费心；而<a href="https://github.com/hakimel/reveal.js">reveal.js</a> 以及 <a href="https://github.com/ksky521/nodeppt">nodeppt</a> 是我找到过的两个比较满意的，通过代码来写 Slides 的工具。我并不打算在这里把他们两个都详细的介绍一遍，但是我希望简单表达一下我对这两个东西的看法。</p>
 <p>首先，在我的理解中，<code>nodeppt</code> 对美化是比 <code>reveal.js</code> 要好一些的，即，抛开花费在里面的时间不说，就结果而言，使用 <code>nodeppt</code> 会比 <code>reveal.js</code> 好看一些，排版更自由一些。但是从「效率」来说，我倾向于 <code>reveal.js</code>。
 理由很简单，<code>reveal.js</code> 的分页逻辑深得我心：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="1.png"><img alt="" src="1.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/1.png"><img alt="" src="img/1.png"/></a></p>
 <blockquote>
 <p>我自己写的某个 Slides 的结构速览</p>
 </blockquote>
@@ -1061,7 +1117,7 @@
 <p>确保您的<code>[npm](https://www.npmjs.com/)</code>能够正常使用，接下来安装<code>reveal-md</code>你只需要使用如下命令即可。</p>
 <div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>reveal-md
 </code></pre></div>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="2.png"><img alt="image.png" src="2.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/2.png"><img alt="" src="img/2.png"/></a></p>
 <p>安装完成后，你就可以将 <code>reveal-md</code> 当作一个 console app 来使用，输入 <code>reveal-md --help</code> 来查看命令详细的使用方法。</p>
 <details class="summary">
 <summary>help list</summary>
@@ -1113,15 +1169,15 @@ $<span class="w"> </span>reveal-md<span class="w"> </span>your-md-file.md<span c
 <ul>
 <li>通过点击/ 空格来选择下一页，使用 <code>h/←</code> <code>j/↓</code> <code>k/↑</code> <code>l/→</code> 或者点击右下角的方向盘来进行上下左右切换，直接点击页面底部的进度条也可以实现页面跳转。</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="3.png"><img alt="image.png" src="3.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/3.png"><img alt="" src="img/3.png"/></a></p>
 <ul>
 <li>按下 <code>f</code> 来全屏显示，按下 <code>Esc</code> 或者 <code>f</code> 退出。</li>
 </ul>
 <table>
 <thead>
 <tr>
-<th align="center"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="4.png"><img alt="image.png" src="4.png"/></a></th>
-<th align="center"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="5.png"><img alt="image.png" src="5.png"/></a></th>
+<th align="center"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/4.png"><img alt="" src="img/4.png"/></a></th>
+<th align="center"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/5.png"><img alt="" src="img/5.png"/></a></th>
 </tr>
 </thead>
 <tbody>
@@ -1134,17 +1190,17 @@ $<span class="w"> </span>reveal-md<span class="w"> </span>your-md-file.md<span c
 <ul>
 <li>按下<code>s</code>进入演讲者模式，也就是再多跳出来一个弹窗，在实际使用中可以在投影仪里放全屏，在自己电脑上展示这个窗口。修改右上角的 Layout 可以修改显示模式。<code>Notes</code> 的内容会在后面介绍，类似于 PPT 的备注。</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="6.png"><img alt="" src="6.png"/></a><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="8.png"><img alt="" src="8.png"/></a><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="7.png"><img alt="" src="7.png"/></a><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="9.png"><img alt="" src="9.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/6.png"><img alt="" src="img/6.png"/></a><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/8.png"><img alt="" src="img/8.png"/></a><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/7.png"><img alt="" src="img/7.png"/></a><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/9.png"><img alt="" src="img/9.png"/></a></p>
 <ul>
 <li>按下<code>o</code>进入总览视图，可以利用方向键进行移动，回车或点击进行选择。需要注意，这里显示的内容和实际展示的页面内容在布局上存在差异。</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="10.png"><img alt="" src="10.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/10.png"><img alt="" src="img/10.png"/></a></p>
 <ul>
 <li>按下<code>v</code>或<code>.</code>黑屏。</li>
 </ul>
 <hr/>
 <p>而在移动端（比如访问某个实例的在线部署时），基本的点击操作是一样的，此外，带有方向的滑动可以对应方向键功能。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="11.png"><img alt="image.png" src="11.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/11.png"><img alt="" src="img/11.png"/></a></p>
 <h2 id="文档编写">文档编写<a class="headerlink" href="#文档编写" title="Permanent link">¶</a></h2>
 <p>在这部分，我并不打算按照模块化、系统化的流程来编写教程，这些你在官方文档中都能找到——我并不觉得“字典”是一个很好的学习途径，就像我们一般不建议用《C++ Primer》入门 C++，更不会建议外国友人通过《新华字典》来学习汉语。
 我将按照我对这个工具的理解，按照由浅入深，按照必要程度来介绍内容。它可能看起来会又些混乱，但是我觉得它是符合实践顺序的，如果让你觉得看起来很费劲，可以搭配官方文档来使用，或者直接告诉我。
@@ -1170,7 +1226,7 @@ $<span class="w"> </span>reveal-md<span class="w"> </span>your-md-file.md<span c
 <span class="k">&gt; </span><span class="ge">Everthings seems ok!</span>
 </code></pre></div>
 <p>那么运行以后我们会得到这样一个页面：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="12.png"><img alt="" src="12.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/12.png"><img alt="" src="img/12.png"/></a></p>
 <p>可以发现，它并不像我们想的那样，向横向和纵向扩展。但是这恰好说明所有东西都是可控的，而不是莫名其妙的根据某个标题就自动换掉，进而导致一系列诡异的问题。</p>
 <p>在 reveal-md 中，有两种 separator 和 vertical separator 两种，顾名思义，分别对应着左右分页和上下分页。默认情况下，separator 是 <code>\n---\n</code>，而 vertical separator 是 <code>\n----\n</code>。所以稍微对上面的文档进行一些修改：</p>
 <div class="highlight"><pre><span></span><code><span class="gu">### Part 1</span>
@@ -1198,14 +1254,14 @@ $<span class="w"> </span>reveal-md<span class="w"> </span>your-md-file.md<span c
 <span class="k">&gt; </span><span class="ge">Everthings seems ok!</span>
 </code></pre></div>
 <p>再次运行就能发现我们的 Slides 已经有了二维的层级结构：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="13.png"><img alt="image.png" src="13.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/13.png"><img alt="" src="img/13.png"/></a></p>
 <blockquote>
 <p>虽然这里的预览图里看起来排版很丑，但是实际展示的时候都是默认居中，不喜欢的话可以改相关设置或者用 html 标签修改。</p>
 </blockquote>
 <p>那么其实到此为止，你已经能够通过<code>reveal-md</code>来实现非常快速的 Slides 编写了。但是为了定制主题，或者是使用一些更高级的东西，我们还需要介绍一些别的东西，包括对某些东西的自定义、某些模块的扩展功能、与原生<code>reveal.js</code>语法的混用。
 在正式进入下一个部分之前，我想补充介绍一下如何修改默认的 separator：
 有两种方案能实现 seperator 的自定义，一种是通过在命令行中的附加参数实现，另一种则是在<code>md</code>文件开头写好配置文件实现。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="14.png"><img alt="image.png" src="14.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/14.png"><img alt="" src="img/14.png"/></a></p>
 <div class="highlight"><pre><span></span><code>---
 separator: &lt;!--s--&gt;
 <span class="gu">verticalSeparator: &lt;!--v--&gt;</span>
@@ -1252,8 +1308,8 @@ separator: &lt;!--s--&gt;
 <table>
 <thead>
 <tr>
-<th align="right"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="15.png"><img alt="image.png" src="15.png"/></a></th>
-<th align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="16.png"><img alt="image.png" src="16.png"/></a></th>
+<th align="right"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/15.png"><img alt="" src="img/15.png"/></a></th>
+<th align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/16.png"><img alt="" src="img/16.png"/></a></th>
 </tr>
 </thead>
 <tbody>
@@ -1379,9 +1435,9 @@ revealOptions:
 </code></pre></div>
 <p>接下来，你会得到一个文件夹，包含这个 Slides 所需要的所有资源。你只需要将它传到你的 Repo 里即可。
 例如我的仓库中：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="17.png"><img alt="" src="17.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/17.png"><img alt="" src="img/17.png"/></a></p>
 <p>进入<code>repo/.../static-dir</code>，也就是上图的<code>slides</code>，我们可以看到类似这样的一些文件：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="18.png"><img alt="" src="18.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/18.png"><img alt="" src="img/18.png"/></a></p>
 <p>其中的 <code>index.html</code> 和 <code>slides.html</code> 都是 Slides 的 <code>html</code> 文件。区别貌似是 <code>index.html</code>会 有一个弹窗告诉你使用的是 <code>reveal.js</code>。</p>
 <p>接下来，设置 pages 服务以后通过 <code>https://&lt;github_id&gt;.github.io/&lt;repo_name&gt;/.../slides.html</code> 即可访问到页面啦！
 例如上方这个仓库对应的 <code>URL</code> 是 <code>https://isshikihugh.github.io/myReveal-md/projectsTutorial_CNewbieHelper/slides/slides.html</code>。</p>
@@ -1398,7 +1454,7 @@ revealOptions:
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月19日 14:45:49</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月23日 10:38:40</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月7日 10:50:31</span>

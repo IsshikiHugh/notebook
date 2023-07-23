@@ -507,7 +507,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1SJ_cs231n/">
+<a class="md-nav__link" href="../../D1SJ_CS231N/">
         [大一暑假] Deep Learning for Computer Vision | CS231N
       </a>
 </li>
@@ -955,13 +955,44 @@
           📝 论文阅读
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">Reconstruction</a>
+<label for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+          Reconstruction
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/arXiv%3A2003.08934/">
+<a class="md-nav__link" href="../../../pape_read/NeRF/">
         NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
       </a>
 </li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">Generation-Motion</a>
+<label for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+          Generation-Motion
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/arXiv%3A2104.05670/">
+<a class="md-nav__link" href="../../../pape_read/ACTOR/">
         Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
       </a>
 </li>
@@ -974,6 +1005,31 @@
 <a class="md-nav__link" href="../../../pape_read/SAMP/">
         Stochastic Scene-Aware Motion Prediction
       </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../pape_read/">Generation-Image</a>
+<label for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+          Generation-Image
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../pape_read/EG3D/">
+        EG3D: Efficient Geometry-aware 3D Generative Adversarial Networks
+      </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1232,21 +1288,21 @@
 </ul>
 <h2 id="逻辑门">逻辑门<a class="headerlink" href="#逻辑门" title="Permanent link">¶</a></h2>
 <p>逻辑门是在硬件层面上实现布尔代数的逻辑单元。其操作对象为高低电平。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../7.jpeg"><img alt="" src="../7.jpeg"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/7.jpeg"><img alt="" src="../img/7.jpeg"/></a></p>
 <blockquote>
 <p>如图，(a)中绘制了三个常用逻辑门的符号；(b)中则描述了这些运算在 <strong>时序图(timing diagram)</strong> 中的状态；(c)则描述了在延时（见下）效应下的时序图。</p>
 <p>还有一个注意点是，非门其实更多的被称为 inverter，而非 NOT。</p>
 </blockquote>
 <p>但是由于是物理层面的实现，所以会有一些逻辑运算层面不会出现的问题，比如 <strong>延时(delay)</strong>。</p>
 <div class="admonition note">
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../8.png"><img alt="" src="../8.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/8.png"><img alt="" src="../img/8.png"/></a></p>
 <blockquote>
 <p>Source: <a href="https://en.wikipedia.org/wiki/Signal_propagation_delay#Electronics">https://en.wikipedia.org/wiki/Signal_propagation_delay#Electronics</a></p>
 </blockquote>
 </div>
 <p>延时的长短与很多因素有关，取决于逻辑门的实现技术。而且通常来说，对于不同运算参数，其延时也会有不同。</p>
 <p>此外，与门和或门可能有更多的输入引脚，如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../9.jpeg"><img alt="" src="../9.jpeg"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/9.jpeg"><img alt="" src="../img/9.jpeg"/></a></p>
 <p>至此，给出了 AND, OR, NOT 三个门的符号表示，类似上一小节提到的那样，我们也可以利用这三个基础的门电路来构成其他的门电路（虽然通常来说，我们可能是通过 NAND + NOT 来实现 AND 的）。</p>
 <p>于是又引申出一个概念——<strong>通用门(Universal Gate)</strong>。一个功能完全的，能够表示其他所有门的逻辑门被称为通用门，在我们学过的逻辑门中，NAND 和 NOR 都是通用门。</p>
 <div class="admonition quote">
@@ -1264,7 +1320,7 @@
 <p>literal ~ 字面量，也就是“变量”。</p>
 </blockquote>
 <h3 id="运算律">运算律<a class="headerlink" href="#运算律" title="Permanent link">¶</a></h3>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../10.jpeg"><img alt="" src="../10.jpeg"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/10.jpeg"><img alt="" src="../img/10.jpeg"/></a></p>
 <p>这张图片总结了布尔运算中的运算律，个人感觉最需要强化记忆的是 15 条，因为布尔代数借用了普通代数的符号，但第 15 条在普通代数中并不成立，所以对于习惯这套符号的人来说可能不太 straightfoward。</p>
 <p>在记忆这套运算规律的时候，我个人的一个想法是，一定要建立 <strong>与</strong> 和 <strong>或</strong> 是对等的观念。我们习惯用“真”去理解这两个运算，但是实际上如果你以“假”为主体去分析这两个运算，会发现和“真”是完全对称的。换言之， <strong>与</strong> 和 <strong>或</strong> 是完全对称的运算，而非像他们借用的符号 <span class="arithmatex">\(\times\)</span> 和 <span class="arithmatex">\(+\)</span> 那样存在非对称关系。</p>
 <p>但是让这件事变得又没那么简单的事情是，虽然 <strong>与</strong> 和 <strong>或</strong> 是对等的，但是我们在借用普通代数符号体系的同时，又人为地给他们添加了优先级（但是这也是必要的，否则表达式就会充满括号）。</p>
@@ -1278,7 +1334,7 @@
 <p>个人感觉，这一种思路并不直觉，尤其是借用普通代数的符号体系以后更加混淆，所以可能需要一些练习来摆脱这些“刻板印象”。</p>
 <h3 id="运算律推广">运算律推广<a class="headerlink" href="#运算律推广" title="Permanent link">¶</a></h3>
 <p>除此之外，从上面提到的运算律中还能推广出如下几个模型：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../11.jpg"><img alt="" src="../11.jpg"/></a><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../12.jpg"><img alt="" src="../12.jpg"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/11.jpg"><img alt="" src="../img/11.jpg"/></a><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/12.jpg"><img alt="" src="../img/12.jpg"/></a></p>
 <blockquote>
 <p>对比前三个和后三个，我们再次发现，与 和 或 在逻辑上是对称的。</p>
 </blockquote>
@@ -1508,7 +1564,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>请分别写出如下真值表中 <span class="arithmatex">\(F\)</span> 和 <span class="arithmatex">\(\overline{F}\)</span> 的 SOM 和 POM。
-<figure markdown=""><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../13.png"><img alt="" src="../13.png"/></a></figure></p>
+<figure markdown=""><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/13.png"><img alt="" src="../img/13.png"/></a></figure></p>
 </div>
 <div class="tabbed-block">
 <p>答案：
@@ -1569,7 +1625,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p class="admonition-title">注意</p>
 <p>虽然非门也是门，但是我们通常不把非门直接计入 gate-input cost，所以接下来提到的“输入引脚”默认是不包含非门的输入引脚的。</p>
 </div>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../14.png"><img alt="" src="../14.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/14.png"><img alt="" src="../img/14.png"/></a></p>
 <p>例如这张对应表达式 <span class="arithmatex">\(F = A+BC+\overline{B}\,\overline{C}\)</span> 的图中：</p>
 <ul>
 <li>绿色原点表示一级输入引脚；</li>
@@ -1686,7 +1742,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p>我们考虑到逻辑运算律中的这个推广：<span class="arithmatex">\(XY+X\overline{Y}=X(Y+\overline{Y})=X\)</span>，也就是说，如果两个最小项只差一个字面量的非，那么他们是可以合并的；当然，对称的，根据<span class="arithmatex">\((X+\overline{Y})(X+Y)=X+Y\overline{Y}=X\)</span>，我们也可以得到这个结论对最大项也成立。</p>
 <p>是不是觉得“只差一个”很耳熟？是的！我们想到了格雷码！假设我们将 n 个字面量排列成一个 n bits 的向量，那么只需要按照格雷码排序，一旦发现有相邻的最小项，我们就可以合并他们。</p>
 <p>但这还不够充分，例如在一个有三个字面量的逻辑表达式中，“与一个表达式相邻”的表达式其实有三个，但是用线性的表示方法又没法很好的表示这一点，所以我们想到将它写成一张二维的表，即将字面量拆成两组 bit 向量，各自按照格雷码排列，形成一张二维表，这就是 <strong>卡诺图(Karnaugh Map)</strong>，也叫 <strong>K-map</strong>。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../15.png"><img alt="" src="../15.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/15.png"><img alt="" src="../img/15.png"/></a></p>
 <p>可以发现，任意两个相邻的格子都只差一个字面量的非，而且是充要的，即所有“相邻”都可以在这张图表现出来。</p>
 <div class="admonition tip">
 <p class="admonition-title">说明</p>
@@ -1773,10 +1829,10 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 </tbody>
 </table>
 <p>另外一种标注表格的方式是这样，它可能更清晰：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../16.png"><img alt="" src="../16.png" width="300px"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/16.png"><img alt="" src="../img/16.png" width="300px"/></a></p>
 <p>但是他们的本质都是格雷码。</p>
 <p>4 元字面量的卡诺图则长这个样子：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../17.png"><img alt="" src="../17.png" width="500.px"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/17.png"><img alt="" src="../img/17.png" width="500.px"/></a></p>
 <hr/>
 <h4 id="使用卡诺图优化">使用卡诺图优化<a class="headerlink" href="#使用卡诺图优化" title="Permanent link">¶</a></h4>
 <p>已经讲了思想和卡诺图的结构，那么到底要如何利用卡诺图进行优化呢？</p>
@@ -1784,14 +1840,14 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p>我们通过卡诺图，首先合并了 <span class="arithmatex">\(WXYZ\)</span> 和 <span class="arithmatex">\(WXY\overline{Z}\)</span>，<span class="arithmatex">\(WX\overline{Y}Z\)</span> 和 <span class="arithmatex">\(WX\overline{Y}\,\overline{Z}\)</span>，分别得到了 <span class="arithmatex">\(WXY\)</span> 和 <span class="arithmatex">\(WX\overline{Y}\)</span>，显然这两个东西也是可以合并的；而在卡诺图上，这表现为两个相邻的 <code>1*2</code> 的矩形。</p>
 <p>总而言之，这种迭代合并的行为最终可以划归为这样一个行为：</p>
 <p>我们在卡诺图中寻找若干 <strong>极大</strong> 的 <strong>2 幂矩形</strong>，即元素个数为 2 的幂次（自然边长也都为 2 的幂次）的矩形，而每一个矩形所覆盖的元素都应该是 <strong>最小项</strong>/最大项（一般都是做最小项）。需要注意，“循环”的性质仍然满足，即第一列和最后一列，第一行和最后一行也可以认为是相邻的。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../20.png"><img alt="" src="../20.png"/></a></p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../21.png"><img alt="" src="../21.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/20.png"><img alt="" src="../img/20.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/21.png"><img alt="" src="../img/21.png"/></a></p>
 <p>例如：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../18.png"><img alt="" src="../18.png" width="300.px"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/18.png"><img alt="" src="../img/18.png" width="300.px"/></a></p>
 <p>例如：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../19.png"><img alt="" src="../19.png" width="300.px"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/19.png"><img alt="" src="../img/19.png" width="300.px"/></a></p>
 <p>再例如：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../22.png"><img alt="" src="../22.png" width="500.px"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/22.png"><img alt="" src="../img/22.png" width="500.px"/></a></p>
 <p>都是合理的卡诺图划分。</p>
 <p>在得到这些划分后，我们就可以很方便地将这些项拎出来，写出它们的表达式。</p>
 <p>而至于如何拎出来——不难发现，如果一个方框中，某一个字面量的值既可以是 <code>0</code>，又可以是 <code>1</code> 时（这里指的是输入的值，并非输出结果），在这个优化项的结果中就可以不用写出这个字面量；反之，如果这个字面量 <span class="arithmatex">\(X\)</span> 的值都是 <code>0</code>，则结果中会包含 <span class="arithmatex">\(\overline{X}\)</span>，如果都是 <code>1</code>，则结果中会包含 <span class="arithmatex">\(X\)</span>。</p>
@@ -1803,9 +1859,9 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 </div>
 <div class="tabbed-block">
 <p>画出这个表达式对应的卡诺图：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../23.png"><img alt="" src="../23.png" width="300.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/23.png"><img alt="" src="../img/23.png" width="300.png"/></a></p>
 <p>然后划出其中的极大最小项优化项：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../24.png"><img align="left" alt="" src="../24.png" width="300.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/24.png"><img align="left" alt="" src="../img/24.png" width="300.png"/></a></p>
 <p>写出来是：</p>
 <ul>
 <li>绿：<span class="arithmatex">\(x=0,\;y=0,\;z=0/1\)</span><ul>
@@ -1839,7 +1895,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 </ul>
 <p>对于这种项，在卡诺图中用 X 来表示，在最小项之和中用 <span class="arithmatex">\(\sum d(...)\)</span> 表示。我们可以随意定义它们的输出，此时就可以利用这些项来方便我们的优化——当我们画出来的极大矩阵越大，成本就越低。</p>
 <p>例如，我们定义一个函数，当输入的 BCD 码表示的数字大于等于 5 时返回 <code>1</code>，则它可以通过这样的形式来优化：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../25.png"><img alt="" src="../25.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/25.png"><img alt="" src="../img/25.png"/></a></p>
 <p>根据结果，写出优化后的表达式为：<span class="arithmatex">\(F(W,X,Y,Z) = W + XY + XZ\)</span>。</p>
 <hr/>
 <div class="admonition tip">
@@ -1849,7 +1905,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p>具体来说就是反转 K-map 中所有的 <code>0</code> 和 <code>1</code>，然后着眼于 SOM 进行优化，最后再对结果取反，用德·摩根定律来得到结果。</p>
 <details class="example">
 <summary>eg</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../26.png"><img alt="" src="../26.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/26.png"><img alt="" src="../img/26.png"/></a></p>
 </details>
 </div>
 <hr/>
@@ -1864,7 +1920,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 </li>
 <li>基本主蕴含项是包含 只被它(基本主蕴含项)覆盖的 <code>1</code> 的主蕴含项；</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../27.png"><img alt="" src="../27.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/27.png"><img alt="" src="../img/27.png"/></a></p>
 <blockquote>
 <p>如图，左侧的两个主蕴含项因为包括了 ⓵ 和 ⓶ 这两个唯一的 <code>1</code>，所以是基本主蕴含项；</p>
 <p>而右侧的蕴含项则是一个冗余的蕴含项；</p>
@@ -1898,7 +1954,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <li>当使能端为 <code>1</code>，且输入为 <code>0</code> 时，输出为 <code>0</code>；</li>
 <li>当使能端为 <code>0</code>，输出为 <code>Hi-Z</code>/<code>Z</code>/<code>z</code>(浮动，高阻态)；</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../28.png"><img alt="" src="../28.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/28.png"><img alt="" src="../img/28.png"/></a></p>
 <div class="admonition note">
 <p class="admonition-title">作用</p>
 <p>我们可以用三态门来解决多路输出互联的问题。正如在 <a href="https://www.yuque.com/isshikixiu/codes/ics">ICS</a> 笔记中提到的，可以让多个输入在同一时刻只有一个被输出到总线中——实现的手段就是通过电路来使同一时刻只有一个使能端为 <code>1</code>。</p>
@@ -1915,14 +1971,14 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <hr/>
 <h3 id="复杂门">复杂门<a class="headerlink" href="#复杂门" title="Permanent link">¶</a></h3>
 <p>通过一些基本门组合出来的门，它们的表示方法大致如下：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../29.png"><img alt="" src="../29.png"/></a>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../30.png"><img alt="" src="../30.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/29.png"><img alt="" src="../img/29.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/30.png"><img alt="" src="../img/30.png"/></a></p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月17日 17:01:12</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月23日 10:38:40</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月8日 15:38:17</span>
