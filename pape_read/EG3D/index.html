@@ -8,7 +8,7 @@
 <meta content="Isshiki修" name="author"/>
 <link href="https://note.isshikih.top/pape_read/EG3D/" rel="canonical"/>
 <link href="../SAMP/" rel="prev"/>
-<link href="../../others/" rel="next"/>
+<link href="../SA-MHR/" rel="next"/>
 <link href="../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
 <title>EG3D: Efficient Geometry-aware 3D Generative Adversarial Networks - Isshiki修's Notebook</title>
@@ -822,9 +822,23 @@
 <a class="md-nav__link" href="#论文笔记">
     论文笔记
   </a>
+<nav aria-label="论文笔记" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tri-plane-hybrid-3d-representation">
+    Tri-plane hybrid 3D representation
+  </a>
 </li>
 </ul>
 </nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../SA-MHR/">
+        Learning Human Mesh Recovery in 3D Scenes
+      </a>
 </li>
 </ul>
 </nav>
@@ -889,6 +903,15 @@
 <a class="md-nav__link" href="#论文笔记">
     论文笔记
   </a>
+<nav aria-label="论文笔记" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tri-plane-hybrid-3d-representation">
+    Tri-plane hybrid 3D representation
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -899,8 +922,9 @@
 <article class="md-content__inner md-typeset">
 <h1 id="eg3d-efficient-geometry-aware-3d-generative-adversarial-networks">EG3D: Efficient Geometry-aware 3D Generative Adversarial Networks<a class="headerlink" href="#eg3d-efficient-geometry-aware-3d-generative-adversarial-networks" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 85 个字 </p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 478 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 2 分钟</p>
 </div>
+<p><code>3DV</code> <code>Generation</code></p>
 <div class="admonition info">
 <p class="admonition-title">文章信息</p>
 <ul>
@@ -925,6 +949,16 @@
 </div>
 <h2 id="论文笔记">论文笔记<a class="headerlink" href="#论文笔记" title="Permanent link">¶</a></h2>
 <hr/>
+<h3 id="tri-plane-hybrid-3d-representation">Tri-plane hybrid 3D representation<a class="headerlink" href="#tri-plane-hybrid-3d-representation" title="Permanent link">¶</a></h3>
+<p>讨论一下 NeRF 和 Tri-plane hybrid 3D representation 的关系。</p>
+<p>NeRF 按 ray 体积渲染过程中采样的点从训练好的 MLP 里拿；而 EG3D 则是得到三个投影方向上的特征向量，每一个投影方向上的特征向量都是沿着消失的那个维度聚合得到的，可以看作是拿到了空间中三条正交的线的特征，而之后用一个轻量 MLP 去从这三个特征向量里把这个点的颜色密度拿出来，类似于求三条线的交点。</p>
+<p>相比于 NeRF 将数据参数化，每次查询都需要走一边 MLP，EG3D Sec3 则显示的将特征存在三个二维表里，每次查询只需要 O(1) 的开销，因此效率主要取决于后面那个轻量 MLP，以此来实现效率上的提高。</p>
+<p>而实现效果上，我胡猜 EG3D 的方法好的原因：</p>
+<ol>
+<li>由于使用了座标投影，所以相对于 NeRF 的参数表达，EG3D 对于某个点的空间位置具有更强的约束，因而可能对细节的把控约束更直接，或者说直觉上我感觉 EG3D 这种表达对“特征-座标”的关系更具体；</li>
+<li>三个正交方向塞进小 MLP 里学，可能会更容易让 MLP 知道去找交点附近的那些点去学习，感觉有点类似于在一个长得像曼哈顿距离那种立方体一样的空间里去学习周围的信息；</li>
+</ol>
+<hr/>
 <div class="admonition note">
 <p class="admonition-title">参考资料</p>
 <ul>
@@ -936,7 +970,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月23日 14:17:07</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年8月2日 16:12:47</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月23日 10:38:40</span>
