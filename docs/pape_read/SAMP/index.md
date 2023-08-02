@@ -1,5 +1,7 @@
 # Stochastic Scene-Aware Motion Prediction
 
+`3DV` `Human-Motion` `Scene-Aware`
+
 !!! info "文章信息"
     - 文章题目：*Stochastic Scene-Aware Motion Prediction*
     - 作者：[Mohamed Hassan](https://mohamedhassanmus.github.io/), [Duygu Ceylan](http://www.duygu-ceylan.com/), [Ruben Villegas](https://rubenvillegas.github.io/), [Jun Saito](https://research.adobe.com/person/jun-saito/), [Jimei Yang](https://research.adobe.com/person/jimei-yang/), [Yi Zhou](https://research.adobe.com/person/yi-zhou/), and [Michael Black](https://ps.is.tuebingen.mpg.de/person/black)

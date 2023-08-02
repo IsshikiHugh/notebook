@@ -1,5 +1,7 @@
 # NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
 
+`3DV` `Reconstruction`
+
 !!! info "文章信息"
     - 文章题目：*NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis* （神经辐射场）
     - 分类：`Computer Science` > `Computer Vision and Pattern Recognition`
@@ -57,9 +59,7 @@ $$
 - 使用这些点以及对应的 2D 视角方向输入到网络中，以得到颜色和密度集合；
 - 使用传统的体积渲染技术累积这些颜色和密度以得到 2D 图像；
 
-为了能够让 MLP 表示更高频率的函数，我们引入了**位置编码(positional encoding)**。
-
-- [ ] **问题**：这里还是没弄懂，需要进一步解决。
+为了能够让 MLP 表示更高频率的函数，引入了**位置编码(positional encoding)**。
 
 ---
 

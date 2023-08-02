@@ -1,5 +1,7 @@
 # Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
 
+`3DV` `Human-Motion` `Action-Control`
+
 !!! info "文章信息"
     - 文章题目：*Action-Conditioned 3D Human Motion Synthesis with Transformer VAE*
     - 分类：`Computer Science` > `Computer Vision and Pattern Recognition`
