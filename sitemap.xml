@@ -71,17 +71,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://note.isshikih.top/cour_note/D1SJ_CS231N/</loc>
-         <lastmod>2023-08-03</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://note.isshikih.top/cour_note/D1SJ_CS231N/assignments/</loc>
-         <lastmod>2023-08-03</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://note.isshikih.top/cour_note/D1SJ_Intro2CS/</loc>
+         <lastmod>2023-08-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://note.isshikih.top/cour_note/D1SJ_StanfordCS231n/</loc>
          <lastmod>2023-08-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -176,7 +171,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://note.isshikih.top/cour_note/D2HJ_WritingInTheSciences/</loc>
+         <loc>https://note.isshikih.top/cour_note/D2HJ_StanfordWriting/</loc>
          <lastmod>2023-08-03</lastmod>
          <changefreq>daily</changefreq>
     </url>

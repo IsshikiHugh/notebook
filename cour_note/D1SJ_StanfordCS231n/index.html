@@ -6,12 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/cour_note/D2HJ_WritingInTheSciences/" rel="canonical"/>
-<link href="../D2QD_Intro2CV/Lec13/" rel="prev"/>
-<link href="../D2CX_ComputerOrganization/" rel="next"/>
+<link href="https://note.isshikih.top/cour_note/D1SJ_StanfordCS231n/" rel="canonical"/>
+<link href="../D1CX_ProbabilityAndStatistics/Chap08/" rel="prev"/>
+<link href="../D1SJ_Intro2CS/" rel="next"/>
 <link href="../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
-<title>[大二寒假] 斯坦福 SCI 论文写作公开课 - Isshiki修's Notebook</title>
+<title>[大一暑假] Deep Learning for Computer Vision | CS231N - Isshiki修's Notebook</title>
 <link href="../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6 31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0l112.3-112.3zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5 50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0 27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>');}</style>
@@ -41,7 +41,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#大二寒假-斯坦福-sci-论文写作公开课">
+<a class="md-skip" href="#大一暑假-deep-learning-for-computer-vision--cs231n">
           跳转至
         </a>
 </div>
@@ -65,7 +65,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              [大二寒假] 斯坦福 SCI 论文写作公开课
+              [大一暑假] Deep Learning for Computer Vision | CS231N
             
           </span>
 </div>
@@ -506,10 +506,139 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../D1SJ_CS231N/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          [大一暑假] Deep Learning for Computer Vision | CS231N
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         [大一暑假] Deep Learning for Computer Vision | CS231N
       </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lecture-1-introduction-to-convolutional-neural-networks-for-visual-recognition">
+    Lecture 1: Introduction to Convolutional Neural Networks for Visual Recognition
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lecture-2-image-classification-pipeline">
+    Lecture 2: Image Classification Pipeline
+  </a>
+<nav aria-label="Lecture 2: Image Classification Pipeline" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-driven-approach">
+    Data-Driven Approach
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hyperparameters">
+    Hyperparameters
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#linear-classification">
+    Linear Classification
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lecture-3-loss-functions-and-optimization">
+    Lecture 3: Loss Functions and Optimization
+  </a>
+<nav aria-label="Lecture 3: Loss Functions and Optimization" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multi-class-svm-loss">
+    Multi-class SVM Loss
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#regularization">
+    Regularization
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#softmax-classifier-multinomial-logistic-regression">
+    Softmax Classifier (Multinomial Logistic Regression)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optimization">
+    Optimization
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#aside-image-features">
+    Aside: Image Features
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lecture-4-introduction-to-neural-networks">
+    Lecture 4: Introduction to Neural Networks
+  </a>
+<nav aria-label="Lecture 4: Introduction to Neural Networks" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#computational-graphs">
+    Computational graphs
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#backpropagation">
+    Backpropagation
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#patterns-in-backward-flow">
+    Patterns in backward flow
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#neural-networks">
+    Neural Networks
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lecture-5-convolutional-neural-networks">
+    Lecture 5: Convolutional Neural Networks
+  </a>
+<nav aria-label="Lecture 5: Convolutional Neural Networks" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convolutional-neural-networks">
+    Convolutional Neural Networks
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pooling-layer">
+    Pooling layer
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fully-connected-layer-fc-layer">
+    Fully Connected Layer (FC layer)
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../D1SJ_Intro2CS/">
@@ -650,10 +779,9 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<a class="md-nav__link md-nav__link--active" href="./">
-        [大二寒假] 斯坦福 SCI 论文写作公开课
+<li class="md-nav__item">
+<a class="md-nav__link" href="../D2HJ_StanfordWriting/">
+        [大二寒假] 科学文章写作 | Writing in the Sciences
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
@@ -868,151 +996,602 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lecture-1-introduction-to-convolutional-neural-networks-for-visual-recognition">
+    Lecture 1: Introduction to Convolutional Neural Networks for Visual Recognition
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lecture-2-image-classification-pipeline">
+    Lecture 2: Image Classification Pipeline
+  </a>
+<nav aria-label="Lecture 2: Image Classification Pipeline" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-driven-approach">
+    Data-Driven Approach
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hyperparameters">
+    Hyperparameters
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#linear-classification">
+    Linear Classification
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lecture-3-loss-functions-and-optimization">
+    Lecture 3: Loss Functions and Optimization
+  </a>
+<nav aria-label="Lecture 3: Loss Functions and Optimization" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multi-class-svm-loss">
+    Multi-class SVM Loss
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#regularization">
+    Regularization
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#softmax-classifier-multinomial-logistic-regression">
+    Softmax Classifier (Multinomial Logistic Regression)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optimization">
+    Optimization
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#aside-image-features">
+    Aside: Image Features
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lecture-4-introduction-to-neural-networks">
+    Lecture 4: Introduction to Neural Networks
+  </a>
+<nav aria-label="Lecture 4: Introduction to Neural Networks" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#computational-graphs">
+    Computational graphs
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#backpropagation">
+    Backpropagation
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#patterns-in-backward-flow">
+    Patterns in backward flow
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#neural-networks">
+    Neural Networks
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lecture-5-convolutional-neural-networks">
+    Lecture 5: Convolutional Neural Networks
+  </a>
+<nav aria-label="Lecture 5: Convolutional Neural Networks" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convolutional-neural-networks">
+    Convolutional Neural Networks
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pooling-layer">
+    Pooling layer
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fully-connected-layer-fc-layer">
+    Fully Connected Layer (FC layer)
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="大二寒假-斯坦福-sci-论文写作公开课">[大二寒假] 斯坦福 SCI 论文写作公开课<a class="headerlink" href="#大二寒假-斯坦福-sci-论文写作公开课" title="Permanent link">¶</a></h1>
+<h1 id="大一暑假-deep-learning-for-computer-vision--cs231n">[大一暑假] Deep Learning for Computer Vision | CS231N<a class="headerlink" href="#大一暑假-deep-learning-for-computer-vision--cs231n" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1336 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 4 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3447 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 17 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 12 分钟</p>
 </div>
+<details class="summary" open="open">
+<summary>课程介绍</summary>
+<ul>
+<li>因为我只能找到 17 年的视频，所以是跟着 17 年的版本学。</li>
+</ul>
+<p><strong>Course Website</strong>: <a href="http://cs231n.stanford.edu/">🔗</a></p>
+<p><strong>Course Video</strong>: <a href="https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv">🔗</a></p>
+<p><strong>Course Description</strong></p>
+<ul>
+<li>Computer Vision has become ubiquitous in our society, with applications in search, image understanding, apps, mapping, medicine, drones, and self-driving cars. Core to many of these applications are visual recognition tasks such as image classification, localization and detection. Recent developments in neural network (aka “deep learning”) approaches have greatly advanced the performance of these state-of-the-art visual recognition systems. This course is a deep dive into the details of deep learning architectures with a focus on learning end-to-end models for these tasks, particularly image classification. During the 10-week course, students will learn to implement and train their own neural networks and gain a detailed understanding of cutting-edge research in computer vision. Additionally, the final assignment will give them the opportunity to train and apply multi-million parameter networks on real-world vision problems of their choice. Through multiple hands-on assignments and the final course project, students will acquire the toolset for setting up deep learning tasks and practical engineering tricks for training and fine-tuning deep neural networks.</li>
+</ul>
+<p><strong>Assignments</strong></p>
+<ul>
+<li>Assignment 1: <a href="https://cs231n.github.io/assignments2022/assignment1/">🔗</a></li>
+<li>Assignment 2: <a href="https://cs231n.github.io/assignments2022/assignment2/">🔗</a></li>
+<li>Assignment 3: <a href="https://cs231n.github.io/assignments2022/assignment3/">🔗</a></li>
+</ul>
+</details>
+<details class="note">
+<summary>参考资料</summary>
+<ul>
+<li>学长笔记：<a href="https://github.com/Zhang-Each/Awesome-CS-Course-Learning-Notes/tree/master/Stanford-CS231N-NeuralNetwork%26DL">🔗</a></li>
+</ul>
+</details>
+<h2 id="lecture-1-introduction-to-convolutional-neural-networks-for-visual-recognition">Lecture 1: Introduction to Convolutional Neural Networks for Visual Recognition<a class="headerlink" href="#lecture-1-introduction-to-convolutional-neural-networks-for-visual-recognition" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<ul>
+<li>Video: <a href="https://www.youtube.com/watch?v=vT1JzLTH4G4&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv">🔗</a> </li>
+<li>Slides: <a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture1.pdf">🔗</a> </li>
+</ul>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/1.png"><img alt="" src="img/1.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/2.png"><img alt="" src="img/2.png"/></a></p>
+<ul>
+<li>一些早期的关于 CV 的思考</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/3.png"><img alt="" src="img/3.png"/></a></p>
+<ul>
+<li>早期对如何表示物体，超越「Block World」的表示方法</li>
+</ul>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/4.png"><img alt="" src="img/4.png"/></a>
+其核心思想是将复杂的视觉信息简化为简单对象的组合。</p>
+</figure>
+<p>人们意识到直接识别物体比较困难，于是想到了 <strong>分割图形(image segmentation)</strong> ——即先做将像素分组：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/5.png"><img alt="" src="img/5.png"/></a></p>
+<ul>
+<li>启发：视觉识别的重点可以从识别对象的一些具有识别力和不易变化的部分开始</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/6.png"><img alt="" src="img/6.png"/></a></p>
+<p><del>有端联想 FDS 的 Voting Tree</del></p>
+<ul>
+<li>总的而言 <strong>对象识别</strong> 是 CV 领域的一个重要话题</li>
+<li>该课程重点为 <strong>卷积神经网络(Convolutional Neural Network / CNN)</strong></li>
+<li>具体着眼点为 <strong>图像分类问题(image classification)</strong></li>
+<li>也将涉及 <strong>对象检测(object detection)</strong>、<strong>图像字幕(image captioning)</strong> 等问题</li>
+</ul>
+<h2 id="lecture-2-image-classification-pipeline">Lecture 2: Image Classification Pipeline<a class="headerlink" href="#lecture-2-image-classification-pipeline" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<ul>
+<li>Video: <a href="https://www.youtube.com/watch?v=OoUX-nOEjG0&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=2">🔗</a> </li>
+<li>Slides: <a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture2.pdf">🔗</a> </li>
+<li>CIFAR-10 &amp; CIFAR-100: <a href="https://www.cs.toronto.edu/~kriz/cifar.html">🔗</a> </li>
+<li><strong>前置</strong>：Python Numpy Tutorial: <a href="https://cs231n.github.io/python-numpy-tutorial/">🔗</a></li>
+</ul>
+</div>
+<ul>
+<li><strong>语义鸿沟(semantic gap)</strong></li>
+</ul>
+<h3 id="data-driven-approach">Data-Driven Approach<a class="headerlink" href="#data-driven-approach" title="Permanent link">¶</a></h3>
+<ol>
+<li>Collect a dataset of images and labels;</li>
+<li>Use Machine Learning to train a classifier;</li>
+<li>Evaluate the classifier on new images;</li>
+<li>得到的模型有两个核心 API：一个用于 <strong>训练(train)</strong>，一个用于 <strong>预测(predict)</strong>。</li>
+<li>一般情况下，我们不介意训练时间长，但希望预测效率高。</li>
+</ol>
+<blockquote>
+<p>CIFAR-10 &amp; CIFAR-100: <a href="https://www.cs.toronto.edu/~kriz/cifar.html">🔗</a> </p>
+</blockquote>
+<figure>
+<p><strong>Distance Metric</strong> to compare images</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/7.png"><img alt="" src="img/7.png"/></a></p>
+<blockquote>
+<p>我们将分类问题看作在“空间”中的染色问题，点表示训练数据，其颜色表示其被标记的分类；而画板中其他部分的颜色则表示当点落在这个位置时候会被分类为哪一种。</p>
+</blockquote>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/8.png"><img alt="" src="img/8.png"/></a></p>
+<blockquote>
+<p>中间“黄色部分”这种孤立的小岛在实际对数据进行预测工作时可能不是很好。</p>
+</blockquote>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/9.png"><img alt="" src="img/9.png"/></a></p>
+<blockquote>
+<p>这些部分可能有噪声或是虚假的。             </p>
+</blockquote>
+</figure>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1"><strong>L1 (Manhattan) distance</strong>:  <em>(stupid in most cases)</em></label><label for="__tabbed_1_2"><strong>L2 (Euclidean ) distance</strong>:  <em>(better by comparison)</em></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="admonition info">
 <ul>
-<li>官方网站：<a href="https://online.stanford.edu/courses/som-y0010-writing-sciences">🔗</a></li>
-<li>视频链接：<a href="https://www.bilibili.com/video/BV1zv41177JQ">🔗</a></li>
-<li>参考笔记：<a href="https://docs.qq.com/doc/DUnJuVkJGV0luZGti">🔗</a></li>
+<li><span class="arithmatex">\(d_1(I_1,I_2)=\sum_{p}|I_1^{p}-I_2^{p}|\)</span></li>
+</ul>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/10.png"><img alt="" src="img/10.png"/></a><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/11.png"><img alt="" src="img/11.png"/></a> </center></p>
+<ul>
+<li>如果图像旋转，预测结果会发生改变。</li>
 </ul>
 </div>
-<div class="admonition quote">
-<p class="admonition-title">吐槽</p>
-<p>不是我说，我感觉这课的组织没有很清晰的逻辑，或者说实际上它并不属于能够用框架性的内容概括的，而是不断的把细节内容丢出来并在案例中分析，所以感觉笔记很难做啊，然后感觉第一单元的内容是对整个课程的大致梗概，所以这里放的主要是第一章的内容，后面如果有遇到我觉得有必要且方便记下来的东西会忘里面丢，但是我个人感觉这份笔记的质量不是很高，效果也不是很好——对于替代这门课来说。</p>
 </div>
-<hr/>
-<div class="admonition summary">
-<p class="admonition-title">梗概</p>
-<p>科学文献是为了观点交流存在的，而“文章”只是观点交流过程中的一种承载形式。我们要着重于让读者能以更小的负担理解文章的内涵，即用简明扼要的、脉络清晰的文字，表达（有可能比较复杂的）观点和逻辑。</p>
-<p>此外，我们还需要“为读者服务”，考虑到文章的阅读节奏，尽可能让文章能够被行云流水地阅读下来，而非磕磕绊绊或反反复复。</p>
-</div>
-<p>一篇科学文章是为了交流观点而存在的，所以它应当能够让人 <strong>高效</strong> 地获取核心内容，<strong>清晰</strong> 地搞清楚文章说了什么，尤其在撰写文章初稿的时候，要尤其注重这些；<u>在此基础上</u> <strong>优雅</strong> 的文风能让文章更上一层楼，而这些通常是在修改与润色中体现出来的。</p>
-<p>而为了实现「高效」和「清晰」，你首先必须清楚自己将要表达什么（Have something to say.），并且梳理清这些内容的脉络和逻辑关系（Logical thinking.），此外，为了辅助构建起一篇文章，你还需要一些写作套路（A few simple, learnable rules of style.）。</p>
-<p>这里有一些其它习惯能够帮助你更好地写作：</p>
-<ol>
-<li>日常多读多写多模仿，不一定要和科学文章有关；</li>
-<li>改正一些学习过程中养成的坏的“学术”写作习惯，讲者称之为 deprogramming step；</li>
-<li>动笔之前先尝试着用语言来讲述文章内容，比如和你的朋友谈谈；</li>
-<li>尝试让文章变得有吸引力；</li>
-<li>认识到写作不需要灵感，不要把灵感当作借口；</li>
-<li>认识到写作本身是困难的，而大家都一样；</li>
-<li>坚持反复修改，甚至是在写初稿的时候，优先把文章成品写出来，再不厌其烦地修缮；</li>
-<li>杀伐果断，不要执着于已经写出来的但是实际上不需要的文字；</li>
-<li>找一个好编辑，ta 们可能会给你好的意见和建议；</li>
-<li>去冒险，勇敢地去突破桎梏；</li>
-</ol>
-<hr/>
-<p>具体到写作时，我们要切忌句子晦涩难懂，在写作过程中我们可能无意识地用晦涩复杂的语句掩盖我们想要表达的内容，其中可能的原因有：</p>
-<div class="admonition warning">
-<p class="admonition-title">将许多动词转化为名词使用</p>
-<blockquote>
-<p>Verbs drive sentences along and nouns slow them down.</p>
-</blockquote>
-<div class="admonition fail">
-<p class="admonition-title">bad eg</p>
-<blockquote>
-<p>Adoptive cell transfer (ACT) immunotherapy is based on the ex vivo <u><strong>selection</strong></u> of tumor-reactive lymphocytes, and their <u><strong>activation</strong></u> and numerical <u><strong>expression</strong></u> before <u><strong>reinfusion</strong></u> to the autologous tumor-bearing host.</p>
-</blockquote>
-</div>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">使用模糊宽泛的词</p>
-<p>模糊宽泛的、不够具体的、不能让读者脑中产生直接印象的词会让读者感到困惑。</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">使用不必要的缩写或术语</p>
-<p>除非是一些广为人知的缩写，否则很可能为读者带来困扰。即使你在前文中已经介绍，它们很可能需要回过头来查阅才能“记起”这个缩写的含义。</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">使用被动语态</p>
-<p>违反了情绪上的 <strong>主-谓-宾</strong> 的顺序。当然要按照实际情况来说，关键是要避免不必要的语法变化。</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">主语和动词太遥远</p>
-<p>读者总是在期待找到一句话里的“动词”，而如果这个“动词”太难找，将会影响整句话的阅读效率。</p>
-</div>
-<p>换句话来说，不管你的内容是否复杂，承载这些内容的语句都不应当是复杂的。</p>
-<div class="admonition summary">
-<p class="admonition-title">总的来说，有这么些原则：</p>
-<ol>
-<li>删减不必要的词汇，对此保持 <strong>敏感</strong> 和 <strong>无情</strong>，不要抗拒重构字句；<ul>
-<li>不必要的词汇，比如：没有实际含义的词，一些只有语气作用的词等；</li>
-<li>不必要的词汇，比如：没有意义的缩写和术语；</li>
-<li>不必要的词汇，比如：前后语义重复的词；</li>
-<li>不必要的词汇，比如：adv. 们；</li>
+<div class="tabbed-block">
+<div class="admonition info">
+<ul>
+<li><span class="arithmatex">\(d_2(I_1,I_2)=\sum_{p}\sqrt{(I_1^p-I_2^p)^2}\)</span></li>
 </ul>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/12.png"><img alt="" src="img/12.png"/></a><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/13.png"><img alt="" src="img/13.png"/></a></center></p>
+</div>
+</div>
+</div>
+</input></input></div>
+<hr/>
+<p><strong>K-Nearest Neighbors</strong>: <a href="https://zh.wikipedia.org/wiki/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95">🔗</a></p>
+<blockquote>
+<p><em>Interactive Demo</em>: <a href="http://vision.stanford.edu/teaching/cs231n-demos/knn/">🔗</a></p>
+</blockquote>
+<p>Instead of copying label from nearest neighbor, take <strong>majority vote</strong> from K closest points.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/14.png"><img alt="" src="img/14.png"/></a></p>
+<blockquote>
+<p>例如，K=1 时中间的黄色区域由于附近都是绿点，所以在 K 增长的时候绿色在计算中的权重变大，所以最后被标记为绿色。s</p>
+</blockquote>
+<ul>
+<li><em>当然，这种通过比较“距离”的分类方案并不仅限于图片等，对于任何需要分类的数据，例如文本，只要能定义能够量化的“距离”以及一系列相应的规则，就能使用这种方法来进行分类。</em></li>
+<li>然而，<strong>K-临近算法</strong> 在图像分类上几乎不怎么使用，主要是因为它实际使用起来，<u>预测效率较低</u>；且<u>“距离度量”并不非常适合图像处理</u><em>（它无法完整描述图像上的距离信息或图像之间的差异）</em>；此外它还有一个比较严重的问题：<strong>维数灾难(curse of dimensionality)</strong> <a href="https://zh.wikipedia.org/wiki/%E7%BB%B4%E6%95%B0%E7%81%BE%E9%9A%BE">🔗</a> <em>（因为只有训练样本足够密集，K-临近算法才能正常运行）</em>。</li>
+</ul>
+<hr/>
+<h3 id="hyperparameters">Hyperparameters<a class="headerlink" href="#hyperparameters" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p>Choices about the algorithm that we <strong>set rather than learn</strong>.</p>
 </li>
-<li>更多地使用主动语态（主谓宾）而非被动语态；</li>
-<li>围绕 <strong>动词</strong> 写作：使用强动词，避免将动词变成名词，并将动词放在醒目的位置；</li>
-<li><del>高考英语作文怎么写，科学文献就不要怎么写</del>；</li>
-</ol>
+<li>
+<p>eg: best <strong>k</strong> to use; best <strong>distance</strong> to use (L1/L2);</p>
+</li>
+</ul>
+<p><strong>Setting Hyperparameters (调参)</strong></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/15.png"><img alt="" src="img/15.png"/></a></p>
+<blockquote>
+<p>即，我们需要确保足够的训练集，并通过验证集进行调参，并在一切都完成以后才使用测试集来验证模型的准确度。</p>
+</blockquote>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/16.png"><img alt="" src="img/16.png"/></a></p>
+<hr/>
+<h3 id="linear-classification">Linear Classification<a class="headerlink" href="#linear-classification" title="Permanent link">¶</a></h3>
+<p>Parametric Approach</p>
+<div class="arithmatex">\[
+f(x,W)=Wx+b
+\]</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/17.png"><img alt="" src="img/17.png"/></a></p>
+<blockquote>
+<p>这里的 10 numbers 表示的是 CIFAR-10 中的 10 个类别对应的得分。</p>
+</blockquote>
+<ul>
+<li>即，我们构造一个函数，输入包含图像数据 <span class="arithmatex">\(x\)</span> 和权重参数 <span class="arithmatex">\(W\)</span>，满足其计算结果为各个类别的预测得分</li>
+<li>最终得到一个模版，它将尝试性地适应该类里尽可能多的样本</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/18.png"><img alt="" src="img/18.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/19.png"><img alt="" src="img/19.png"/></a></p>
+<blockquote>
+<p>如果将高维空间的情况映射到平面的几何角度来理解，就好像在划一道道直线来进行划分。</p>
+</blockquote>
+<ul>
+<li>从这种角度来理解就很容易发现，单一的线性分类具有局限性，例如对于多模态的数据，使用单一的线性分类可能会比较吃力。</li>
+</ul>
+<h2 id="lecture-3-loss-functions-and-optimization">Lecture 3: Loss Functions and Optimization<a class="headerlink" href="#lecture-3-loss-functions-and-optimization" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<ul>
+<li>Video: <a href="https://www.youtube.com/watch?v=h7iBpEHGVNc&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=3">🔗</a> </li>
+<li>Slides: <a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture3.pdf">🔗</a> </li>
+</ul>
 </div>
-<p>减少文章中的混乱有如下方法：</p>
+<ul>
+<li>Linear classifier is an example of parametric classifier.</li>
+<li>
+<p>我们可以这样理解 Linear Classifation 中的 <span class="arithmatex">\(W\)</span>：矩阵中的每一个参数表示了每一个像素点(单个颜色通道)对于识别某个类的贡献权重。</p>
+</li>
+<li>
+<p>A loss function that quantifies our unhappiness with the scores across the training data, tells how good our current classifier is. </p>
+</li>
+<li>Given a dataset of examples <span class="arithmatex">\(\{(x_1,y_i)\}_{i=1}^N\)</span>, where <span class="arithmatex">\(x_i\)</span> is image and <span class="arithmatex">\(y_i\)</span> is label. And loss over the dataset is a sum of loss over examples: <span class="arithmatex">\(L = \frac{1}{N}\sum L_i(f(xi,W),y_i)\)</span>.</li>
+<li>Loss function 是用来度量 <span class="arithmatex">\(W\)</span> 的合适程度的，我们通过寻找在 <span class="arithmatex">\(W\)</span> 空间中损失函数取最值时的 <span class="arithmatex">\(W\)</span> 来找到我们认为最合适的 <span class="arithmatex">\(W\)</span>。</li>
+</ul>
+<h3 id="multi-class-svm-loss">Multi-class SVM Loss<a class="headerlink" href="#multi-class-svm-loss" title="Permanent link">¶</a></h3>
+<p>如何理解那张图？(hinge loss?)</p>
+<p>Let <span class="arithmatex">\(s = f(x_i,W)\)</span>, then SVM loss is:</p>
+<div class="arithmatex">\[
+L_i = \sum_{j \not = y_i } \left\{
+    \begin{align*}
+        &amp;0              &amp;\text{if } s_{y_i} \geq s_j + 1\\
+        &amp;s_j-s_{y_i}+1  &amp;\text{otherwise}
+    \end{align*}
+\right. = \sum_{j \not = y_i } \text{max}(0,s_j-s_{y_i}+1)
+\]</div>
+<ul>
+<li>也就是说，对于某一个样本，它实际类别对应的得分如果远大于（我们需要一个边界 ，就是上图中的<span class="arithmatex">\(+1\)</span>）某个其他类别的得分，那么该“其他类别”对损失函数的贡献即为<span class="arithmatex">\(0\)</span>；反之，如果并没有远大于其他某个类别的得分，则需要将这个偏差作为对损失函数的贡献。</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/20.png"><img alt="" src="img/20.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/21.png"><img alt="" src="img/21.png"/></a></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">L_i_Vectorized</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">margins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">scores</span> <span class="o">-</span> <span class="n">scores</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">margins</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">loss_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">margins</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">loss_i</span>
+</code></pre></div>
+<ul>
+<li>Overview</li>
+</ul>
+<div class="arithmatex">\[
+f(x,W) = Wx\\
+L = \frac{1}{N}\sum_{i=1}^{n}\sum_{j\not = y_i}\text{max}(0,f(x;W)_j-f(x_i;W)_{y_i}+1)
+\]</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/22.png"><img alt="" src="img/22.png"/></a></p>
+<ul>
+<li>However, for that we only calculate a loss in terms of the data, some strange things like <strong>overfitting</strong> will happen.</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/23.png"><img alt="" src="img/23.png"/></a></p>
+<ul>
+<li>蓝点为模型训练数据，绿色的为验证或者实际数据等。</li>
+<li>蓝色的为过拟合后模型训练出来的预测趋势，他们完全符合训练模型的数据，但是可以发现，绿色的线条才是实际的我们希望得到的趋势。</li>
+<li>这种预测结果过度拟合了训练数据的行为及为过拟合。</li>
+</ul>
+<p>To solve it, we use <strong>regularization</strong>.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/24.png"><img alt="" src="img/24.png"/></a></p>
+<blockquote>
+<p>The regularization term.</p>
+</blockquote>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/25.png"><img alt="" src="img/25.png"/></a></p>
+<blockquote>
+<p>Occam's Razor</p>
+</blockquote>
+<ul>
+<li>The regularization term encourages the model to somehow pick a simpler <span class="arithmatex">\(W\)</span> depending on the dask and the model.</li>
+</ul>
+<p>So your standard loss function usually has two terms, a data loss and a regularization loss, and there's a <strong>hyperparameter</strong>(mentioned already in L2) here, lambda, which trades off between the two.</p>
+<h3 id="regularization">Regularization<a class="headerlink" href="#regularization" title="Permanent link">¶</a></h3>
+<p>There are many regularizations used in practice, and the most common one is probably <strong>L2 regularization</strong> or <strong>weight decay</strong>. </p>
+<p>In common use:</p>
+<ul>
+<li>L2 regularization: <span class="arithmatex">\(R(W) = \sum_{k}\sum_lW_{k,l}^2\)</span>;</li>
+<li>L1 regularization: <span class="arithmatex">\(R(W) = \sum_k\sum_l |W_{k,l}|\)</span>;</li>
+<li>Elastic net (L1+L2): <span class="arithmatex">\(R(W) = \sum_k\sum_l (\beta W_{k,l}^2+|W_{k,l}|)\)</span>;</li>
+<li>Max norm regularization</li>
+<li>Dropout</li>
+<li>Fancier: Batch normalization, stochastic depth...</li>
+</ul>
+<p>The whole idea of regularization is just any thing that you do to your model, that sort of penalizes somehow the complexity of the model, rather than explicitly trying to fit the training data.
+Each regularization has its own feature, you should choose them depends on the problems.</p>
+<h3 id="softmax-classifier-multinomial-logistic-regression">Softmax Classifier (Multinomial Logistic Regression)<a class="headerlink" href="#softmax-classifier-multinomial-logistic-regression" title="Permanent link">¶</a></h3>
+<ul>
+<li>It normalizes the scores to a probability distribution.</li>
+<li>Then we just want the probablity of the true class is high and as close to one.</li>
+<li>scores = unnormalized log probabilities of the classes</li>
+<li><span class="arithmatex">\(P(Y=k|X=x_i)=\frac{e^{s_k}}{\sum_j e^{s_j}}\;,\;\;where\;s=f(x_i;W)\)</span>;</li>
+<li>That is <span class="arithmatex">\(L_i=-\log P(Y=y_i|X=x_i)=-\log(\frac{e^{s_k}}{\sum_j e^{s_j}})\)</span>;</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/26.png"><img alt="" src="img/26.png"/></a></p>
+<blockquote>
+<p>eg for Softmax Classifier.</p>
+</blockquote>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/27.png"><img alt="" src="img/27.png"/></a></p>
+<blockquote>
+<p>Compare the two.</p>
+</blockquote>
+<ul>
+<li>在实际使用中，SVM 在保证真实标签对应的得分高于其他得分一定量后就接受了，即存在一个明确的突变标准；而对于 Softmax 来说，它会在这个过程中不断将正确标签对应的概率向<span class="arithmatex">\(1\)</span>逼近，不断优化自己。</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/28.png"><img alt="" src="img/28.png"/></a></p>
+<h3 id="optimization">Optimization<a class="headerlink" href="#optimization" title="Permanent link">¶</a></h3>
+<ul>
+<li>Strategy <a class="magiclink magiclink-github magiclink-issue" href="https://github.com/squidfunk/mkdocs-material/issues/1" title="GitHub Issue: squidfunk/mkdocs-material #1">#1</a>: A first _very bad _idea solution: Random search</li>
+<li>Strategy <a class="magiclink magiclink-github magiclink-issue" href="https://github.com/squidfunk/mkdocs-material/issues/2" title="GitHub Issue: squidfunk/mkdocs-material #2">#2</a>: <strong>Gradient Descent</strong> / Follow the <strong>slope</strong>(gradient<span class="arithmatex">\(\nabla\)</span>)</li>
+<li>Always use analytic gradient, but check implementation with numerical gradient. This is called a <strong>gradient check.</strong></li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="c1">## Vanilla Gradient Descent</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">weights_grad</span> <span class="o">=</span> <span class="n">evaluate_gradient</span><span class="p">(</span><span class="n">loss_fun</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+    <span class="n">weights</span> <span class="o">+=</span> <span class="o">-</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">weights_grad</span> <span class="c1">## perform parameter update</span>
+</code></pre></div>
+<code>step_size</code> is a <strong>hyperparameter</strong> here, it's also called a <strong>learning rate</strong> sometimes.
+<strong>Stochastic Gradient Descent (SGD)</strong>
+- The basic Gradient Descent will be messy when <span class="arithmatex">\(N\)</span> is large!
+- So we need to start with approximate sum using a <strong>minibatch</strong> of examples.
+   - 32 / 64 / 128 common</p>
+<div class="highlight"><pre><span></span><code><span class="c1">## Vanilla Gradient Descent</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">data_batch</span> <span class="o">=</span> <span class="n">sample_training_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span> <span class="c1">## sample 256 examples</span>
+    <span class="n">weights_grad</span> <span class="o">=</span> <span class="n">evaluate_gradient</span><span class="p">(</span><span class="n">loss_fun</span><span class="p">,</span> <span class="n">data_batch</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+    <span class="n">weights</span> <span class="o">+=</span> <span class="o">-</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">weights_grad</span> <span class="c1">## perform parameter update</span>
+</code></pre></div>
+<ul>
+<li><strong>Online Demo</strong>: <a href="http://vision.stanford.edu/teching/cs231n-demos/linear-classify/">🔗</a></li>
+</ul>
+<h3 id="aside-image-features">Aside: Image Features<a class="headerlink" href="#aside-image-features" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/29.png"><img alt="" src="img/29.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/30.png"><img alt="" src="img/30.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/31.png"><img alt="" src="img/31.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/32.png"><img alt="" src="img/32.png"/></a></p>
+<hr/>
+<h2 id="lecture-4-introduction-to-neural-networks">Lecture 4: Introduction to Neural Networks<a class="headerlink" href="#lecture-4-introduction-to-neural-networks" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<ul>
+<li>Video: <a href="https://www.youtube.com/watch?v=d14TUNcbn1k&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=4">🔗</a> </li>
+<li>Slides: <a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture4.pdf">🔗</a> </li>
+</ul>
+</div>
+<h3 id="computational-graphs">Computational graphs<a class="headerlink" href="#computational-graphs" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/33.png"><img alt="" src="img/33.png"/></a></p>
+<blockquote>
+<p>eg. for the linear classifier.</p>
+</blockquote>
+<h3 id="backpropagation">Backpropagation<a class="headerlink" href="#backpropagation" title="Permanent link">¶</a></h3>
+<p>通过将算式写成这种“节点图”的形式，可以进一步让我们看清计算过程并方便我们计算梯度。具体来说，例如 <span class="arithmatex">\(f(x,y,z)=(x+y)z\)</span>，将其写成节点图如下，并计算所需要的参数。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/34.png"><img alt="" src="img/34.png"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/35.png"><img alt="" src="img/35.png"/></a></p>
+<p>然后我们从图的末端开始计算，得到这些节点数据：</p>
+<p><span class="arithmatex">\(\left\{
+\begin{aligned}
+&amp;\frac{\partial{f}}{\partial{f}}=1,\\
+&amp;\frac{\partial{f}}{\partial{z}}=q=3,\\
+&amp;\frac{\partial{f}}{\partial{q}}=z=-4,\\
+&amp;\frac{\partial{f}}{\partial{x}}=\frac{\partial{f}}{\partial{q}}\frac{\partial{q}}{\partial{x}}=-4,\\
+&amp;\frac{\partial{f}}{\partial{y}}=\frac{\partial{f}}{\partial{q}}\frac{\partial{q}}{\partial{y}}=-4
+\end{aligned}
+\right.\)</span></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/36.png"><img alt="" src="img/36.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/37.png"><img alt="" src="img/37.png"/></a></p>
+<blockquote>
+<p>backprop (red lines)</p>
+</blockquote>
+<p>可以发现，我们在计算过程中只需要将“相邻”梯度乘以"local gradient"即可计算出所需要的新的"local gradient"。而只需要再沿着路径再将所有的"local gradient"累乘起来，就能得到每一个变量关于表达式的梯度。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/38.png"><img alt="" src="img/38.png"/></a></p>
+<p>特别的，由于节点是我们认为定义的，而且该方法所依赖“链式法则”也允许函数的自由组合，所以我们可以人为“合并/分割”一些节点，例如在上面那个例子中，我们可以将最后四个节点合并为一个"sigmoid function"(i.e. <span class="arithmatex">\(\frac{1}{1+e^{-x}}\)</span>)。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/39.png"><img alt="" src="img/39.png"/></a></p>
+<h3 id="patterns-in-backward-flow">Patterns in backward flow<a class="headerlink" href="#patterns-in-backward-flow" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/40.png"><img alt="" src="img/40.png"/></a></p>
+<blockquote>
+<p>另外一种理解算符在计算图中的作用的思路。</p>
+</blockquote>
+<p>可以发现，<code>max()</code> 运算在梯度传递过程中只起到路由器的作用，也就是说将其传递到较大的那个变量那一侧，但不改变梯度的值；而对于较小的那个变量，梯度传递被阻断，目标变量的梯度为 <span class="arithmatex">\(0\)</span>。</p>
+<p>将这个流程迁移到神经网络上，我们只需要将这些数字变为 Jacobian matrix 即可。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/41.png"><img alt="" src="img/41.png"/></a><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/42.png"><img alt="" src="img/42.png"/></a></p>
+<ul>
+<li>Always check: The <strong>gradient</strong> with respect to a variable should have the <strong>same shape</strong> as the variable.</li>
+<li>Because each element of your gradient is <strong>quantifying</strong> <strong>how much</strong> that element is <strong>contributing</strong> to your final output.</li>
+</ul>
+<p>在具体实现中，我们一般会实现一个 <code>forward()</code> 用于计算函数的输出，以及一个 <code>backward()</code> 用于按照上面提到的方法计算梯度。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/43.png"><img alt="" src="img/43.png"/></a><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/44.png"><img alt="" src="img/44.png"/></a></p>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<ul>
+<li>Neural nets will be very large: impractical to write down gradient formula by hand for all parameters.</li>
+<li><strong>Backpropagation</strong> = recursive application of the chain rule along a computational graph to compute the gradients of all inputs/parameters/intermediates.</li>
+<li>Implementations maintain a graph structure, where the nodes implement the <code>forward()</code> / <code>backward()</code> API.</li>
+<li><strong>Forward</strong>: compute <strong>result</strong> of an operation and save any intermediates needed for gradient computation in memory.</li>
+<li><strong>Backward</strong>: apply the chain rule to compute the *<em>gradient *</em>of the loss function with respect to the inputs.</li>
+</ul>
+</div>
+<h3 id="neural-networks">Neural Networks<a class="headerlink" href="#neural-networks" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/45.png"><img alt="" src="img/45.png"/></a></p>
+<p>通过函数叠加的方式来实现神经网络。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/46.png"><img alt="" src="img/46.png"/></a></p>
+<blockquote>
+<p>与生物神经的一个类比</p>
+</blockquote>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/47.png"><img alt="" src="img/47.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/48.png"><img alt="" src="img/48.png"/></a></p>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<ul>
+<li>We arrange neurons into <strong>fully-connected layers</strong>.</li>
+<li>The <strong>abstraction</strong> of a <strong>layer</strong> has the nice property that it allows us to use efficient vectorized code (e.g. matrix multiplies).</li>
+<li>Neural networks are not really neural.</li>
+</ul>
+</div>
+<h2 id="lecture-5-convolutional-neural-networks">Lecture 5: Convolutional Neural Networks<a class="headerlink" href="#lecture-5-convolutional-neural-networks" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<ul>
+<li>Video: <a href="https://www.youtube.com/watch?v=bNb2fEVKeEo&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=5">🔗</a></li>
+<li>Slides: <a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture5.pdf">🔗</a></li>
+</ul>
+</div>
+<h3 id="convolutional-neural-networks">Convolutional Neural Networks<a class="headerlink" href="#convolutional-neural-networks" title="Permanent link">¶</a></h3>
+<p>之前提到过的 Fully Connected Layer 会将多维的数据拉伸为向量的形式，相比之下， Convolution Layer 则会保留输入数据的形状 <strong>特征</strong>，一般来说，filter 会与数据具有相同的深度（例如 input 是 32x32x3，那么 filter 可以为 5x5x3）。通过将 filter 与 input 的某一个同形状的子区域做点积，我们就可以得到一个数字。</p>
+<ul>
+<li><em>Convolve the filter with the image. (i.e. "slide over the image spatially, computing dot products")</em></li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/49.png"><img alt="" src="img/49.png"/></a></p>
+<blockquote>
+<p>在某个位置获得点积，即 filter 如何作用于 input</p>
+</blockquote>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/50.png"><img alt="" src="img/50.png"/></a></p>
+<p>采用多个 filters 并将结果叠加，我们就可以得到多个激活图(activation maps)，作为一个处理后的数据。
+- <em>ConvNet is a sequence of Convolution Layers, interspersed with activation functions.</em></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/51.png"><img alt="" src="img/51.png"/></a></p>
+<p>关于输出的激活图的大小，有如上公式。</p>
+<p>通过选择步长，我们可以控制滑动的速率。从某种意义上来讲这也是在控制滑动结果的分辨率，也是池化操作背后的思想之一。而具体选择大步长还是小步长是你需要对各种因素进行考量决定的。</p>
+<p>可以发现，步长为 3 时无法匹配。而在实践过程中，我们有一些手段来解决这种无法匹配的情况，如"zero pad to borders"以使大小符合步长。</p>
+<ul>
+<li><em>The zero padding <strong>does add some sort of extraneous features at the corners</strong>, and we're doing our best to get some value and do, like process that region of the image. And so zero padding is kind of one way to do this. There's <strong>also other ways</strong> to do this that, you know, you can try and like, mirror the values here or extend them, and so it doesn't have to be zero padding, but <strong>in practice this is one thing that works reasonably</strong>.</em></li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/52.png"><img alt="" src="img/52.png"/></a></p>
+<blockquote>
+<p>注意，采用零扩展以后上一张图的公式就无法使用了。这也正是零扩展的一个特点，它可以让图像的形状不必缩小。</p>
+</blockquote>
+<p>一道测试题：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">题面</label><label for="__tabbed_2_2">答案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition note">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/53.png"><img alt="" src="img/53.png"/></a></p>
+<blockquote>
+<p>计算这样一层中有多少参数。</p>
+</blockquote>
+</div>
+</div>
+<div class="tabbed-block">
 <div class="admonition success">
-<p class="admonition-title">转否定为肯定</p>
-<table>
-<thead>
-<tr>
-<th align="left">from</th>
-<th align="left">to</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">not honest</td>
-<td align="left">dishonest</td>
-</tr>
-<tr>
-<td align="left">not harmful</td>
-<td align="left">safe</td>
-</tr>
-<tr>
-<td align="left">not important</td>
-<td align="left">unimportant</td>
-</tr>
-<tr>
-<td align="left">do not have</td>
-<td align="left">lack</td>
-</tr>
-<tr>
-<td align="left">do not remember</td>
-<td align="left">forget</td>
-</tr>
-<tr>
-<td align="left">do not pay attention to</td>
-<td align="left">ignore</td>
-</tr>
-<tr>
-<td align="left">do not succeed</td>
-<td align="left">fail</td>
-</tr>
-</tbody>
-</table>
+<p class="admonition-title">Ans</p>
+<ul>
+<li>Each filter has <span class="arithmatex">\(5\times5\times3_{\text{(depth)}} + 1_{\text{(for bias)}} = 76\)</span> params.</li>
+<li>So the total number is <span class="arithmatex">\(76\times 10 = 760\)</span>.</li>
+</ul>
 </div>
-<div class="admonition success">
-<p class="admonition-title">删去过剩的 "there are" / "there is"</p>
 </div>
-<div class="admonition success">
-<p class="admonition-title">删去不必要的介词</p>
 </div>
+</input></input></div>
+<h3 id="pooling-layer">Pooling layer<a class="headerlink" href="#pooling-layer" title="Permanent link">¶</a></h3>
+<ul>
+<li>makes the representations smaller and more manageable</li>
+<li>operates over each activation map independently:</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/54.png"><img alt="" src="img/54.png"/></a></p>
+<blockquote>
+<p>just downsample</p>
+</blockquote>
+<p>A common way to do this is max pooling:</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/55.png"><img alt="" src="img/55.png"/></a></p>
+<blockquote>
+<p>just take the max value</p>
+</blockquote>
+<p>对于池化层，在进行滑动窗口时我们更希望步长的设置能使 filter 没有重叠，以满足小节开头提到的"independently"。</p>
+<h3 id="fully-connected-layer-fc-layer">Fully Connected Layer (FC layer)<a class="headerlink" href="#fully-connected-layer-fc-layer" title="Permanent link">¶</a></h3>
+<ul>
+<li>Contains neurons that connect to the entire input volume, as in ordinary Neural Networks.</li>
+</ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/56.png"><img alt="" src="img/56.png"/></a></p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月11日 22:46:36</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年8月3日 14:41:21</span>
 <br/>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年1月17日 00:18:30</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月6日 23:12:35</span>
 </small>
 </div>
 <h2 id="__comments">评论</h2>
