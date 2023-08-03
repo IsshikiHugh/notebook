@@ -457,6 +457,3 @@ A common way to do this is max pooling:
 
  - 请查看子文章：[Assignments](assignments/index.md)
 
-
-
-
