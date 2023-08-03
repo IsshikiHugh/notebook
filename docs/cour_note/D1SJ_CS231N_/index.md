@@ -453,7 +453,4 @@ A common way to do this is max pooling:
 
 ![](img/56.png)
 
-## Assignments
-
- - 请查看子文章：[Assignments](assignments/index.md)
 
