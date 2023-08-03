@@ -35,7 +35,7 @@
 
 ### 方法
 
-![](Pasted image 20230801093320.png)
+![](assets/Pasted image 20230801093320.png)
 
 - 估计人体的全局位置(absolute human position)、场景接触点(dense scene contacts)、以及一个场景感知的人体网格(scene aware human mesh)；
 - 准备工作：
@@ -71,7 +71,7 @@
 		- 使用 $r^* = \sum \limits_i c_i \cdot (o^*_i + \overline{s}_i)$ 来计算优化后的根，其中 $i$ 为 ROI 中的体素的 index（之前提到的 voting vector field refinement task）；
 		- 接触点分类包括 7 个最容易成为接触点的分类，和 1 个用来表示不接触的类别，通过取得分最高的得到点云的标签，最终得到一个有标签的点云数据作为之后的输入（之前提到的 point cloud labeling task）；
 - SA-HMR：
-	- ![](Pasted image 20230802112313.png)
+	- ![](assets/Pasted image 20230802112313.png)
 	- 受数据集限制，本部分的工作以预训练好的 METRO 为基础SA-HMR 添加一个平行的场景相关网络，使用交叉注意力机制来提高 METRO 的场景感知；
 	- METRO
 		- 使用自注意力机制实现单目的人体网格恢复；
