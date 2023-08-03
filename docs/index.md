@@ -1,6 +1,8 @@
 ---
 comments: false
 statistics: True
+hide:
+  - feedback
 ---
 
 # 欢迎！
@@ -21,7 +23,7 @@ statistics: True
         **🥺 如果非要支持一下的话……这个二维码也不是不可以扫！**
     </center>
     <figure markdown align="center">
-    ![](static/wechatPayQRCode.png){ width="200px" }
+    ![](_assets/wechatPayQRCode.png){ width="200px" }
     <figure>
 
 !!! advice "相关链接"

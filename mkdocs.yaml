@@ -112,19 +112,15 @@ extra:
   analytics:
     provider: google
     property: G-4P08GMSPJM
-    # feedback:
-    #   title: 本文对你是否有帮助?
-    #   ratings:
-    #     - icon: material/thumb-up-outline
-    #       name: 很有帮助
-    #       data: 1
-    #       note: >-
-    #         感谢肯定！笔记本封面有打赏通道，如果喜欢的话可以给我打点米吗！（小声）
-    #     - icon: material/thumb-down-outline
-    #       name: 还有一些地方需要改进！
-    #       data: 0
-    #       note: >- 
-    #         感谢反馈！如果有您认为还可以改进的地方，可以在评论区告诉我！
+    feedback:
+      title: 激励
+      ratings:
+        - icon: fontawesome/regular/hand-back-fist
+          name: 激励
+          data: 1
+          note: >- 
+            <center> 难道说……你愿意给我买一瓶快乐水吗！🫣</center>
+            <img src="https://s2.loli.net/2023/08/03/EGbIvMQXalKTsUi.png" width=200px>
 
   social:
     - icon: fontawesome/brands/github
