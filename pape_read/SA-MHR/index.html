@@ -810,9 +810,55 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Learning Human Mesh Recovery in 3D Scenes
+          <span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
         Learning Human Mesh Recovery in 3D Scenes
       </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#笔记">
+    笔记
+  </a>
+<nav aria-label="笔记" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#任务定义">
+    任务定义
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#优势与贡献">
+    优势与贡献
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#方法">
+    方法
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#数据集">
+    数据集
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#效果度量metrics">
+    效果度量(metrics)
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -868,6 +914,46 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#笔记">
+    笔记
+  </a>
+<nav aria-label="笔记" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#任务定义">
+    任务定义
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#优势与贡献">
+    优势与贡献
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#方法">
+    方法
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#数据集">
+    数据集
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#效果度量metrics">
+    效果度量(metrics)
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -876,7 +962,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="learning-human-mesh-recovery-in-3d-scenes">Learning Human Mesh Recovery in 3D Scenes<a class="headerlink" href="#learning-human-mesh-recovery-in-3d-scenes" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 48 个字 </p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1914 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 6 分钟</p>
 </div>
 <p><code>3DV</code> <code>HMR</code> <code>Scene-Aware</code></p>
 <div class="admonition info">
@@ -896,12 +982,167 @@
 </ul>
 </div>
 <hr/>
+<h2 id="笔记">笔记<a class="headerlink" href="#笔记" title="Permanent link">¶</a></h2>
+<h3 id="任务定义">任务定义<a class="headerlink" href="#任务定义" title="Permanent link">¶</a></h3>
+<ul>
+<li>SA-HMR = scene-aware human mesh recovery</li>
+<li>预先给定扫描好的场景，再根据单张照片估计人的绝对位置和姿势</li>
+</ul>
+<h3 id="优势与贡献">优势与贡献<a class="headerlink" href="#优势与贡献" title="Permanent link">¶</a></h3>
+<ul class="task-list">
+<li>相比传统的通过优化迭代的生成办法，本方法在推断过程中更加迅速；</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：最优化中的 contact regions 的 chamfer distance 约束是为了什么？ 尽可能增加一团的聚合性？</li>
+</ul>
+<p>概括贡献：</p>
+<ol>
+<li>非优化做法的，场景感知的、单照片、预给场景的人体网格恢复框架；</li>
+<li>预训练的 HMR 网络与平行网络的机遇 cross-attention 的处理设计，是西安了对人体姿势和场景几何特征的联合学习；</li>
+<li>在准确度和速度上都薄纱优化做法的基线；</li>
+</ol>
+<h3 id="方法">方法<a class="headerlink" href="#方法" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="Pasted image 20230801093320.png"><img alt="" src="Pasted image 20230801093320.png"/></a></p>
+<ul>
+<li>估计人体的全局位置(absolute human position)、场景接触点(dense scene contacts)、以及一个场景感知的人体网格(scene aware human mesh)；</li>
+<li>准备工作：<ul>
+<li>人体<ul>
+<li>使用 SMPL 来表示人体，计算网格顶点 <span class="arithmatex">\(V\in\mathrm{R}^{6890\times 3}\)</span>；</li>
+<li>使用 H36M 关键点回归矩阵(joint regression matrix) <span class="arithmatex">\(M \in \mathrm{R}^{14\times 6890}\)</span>；<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：这是什么？</li>
+</ul>
+</li>
+<li>计算 3D 关键点 <span class="arithmatex">\(J\in \mathrm{R}^{14\times 3} = MV\)</span>；</li>
+</ul>
+</li>
+<li>场景<ul>
+<li>用一个 bbox 去框选目标人体；</li>
+<li>转化为特定大小的图像 <span class="arithmatex">\(I \in \mathrm{R}^{224\times 224\times 3}\)</span>；</li>
+<li>根据给定的图像区域和相机参数，得到对应于空间中的一个视锥体空间，选取这部分点云作为输入的点云 <span class="arithmatex">\(S \in \mathrm{R}^{N_S \times 3}\)</span>；</li>
+</ul>
+</li>
+<li>人与场景的接触<ul>
+<li>使用 7 个最容易成为接触点的区域和 1 个表示不接触的区域，这 8 个标签在点云中做分割任务；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>人题根位置和场景接触点的估计：<ul>
+<li>概述<ul>
+<li>首先使用一个稀疏 3D CNN 来估计密度场景的接触点——点云标签任务(point cloud labeling task)和绝对的人体位置——投票向量场修正任务(voting vector field refinement task)，根据得到的结果，以绝对位置为中心表示接触点；<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：什么是 voting vector field refinement task？后面有写。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>粗估根<ul>
+<li>使用一个 CNN 得到一个热图和归一化的深度图；</li>
+<li>从热图中能使用 <code>argmax</code> 得到初始的人体根部座标 <span class="arithmatex">\((x,y)\)</span>，从深度图中估计出 <span class="arithmatex">\(\tilde Z\)</span>；</li>
+<li>利用相机内参可以计算出 3D 空间中的座标 <span class="arithmatex">\((X,Y,Z)\)</span>：<ul>
+<li><span class="arithmatex">\(Z = \tilde{Z} \frac{f}{w},\quad X = \frac{x - c_x}{f} \cdot Z,\quad Y = \frac{y-c_y}{f}\cdot Z\)</span></li>
+</ul>
+</li>
+<li>从结果来看，<span class="arithmatex">\((x, y)\)</span> 的估计是比较准确的，但 <span class="arithmatex">\(\tilde{Z}\)</span> 的效果比较差；</li>
+</ul>
+</li>
+<li>3D 特征构造<ul>
+<li>在点云中寻找 ROI——以 <span class="arithmatex">\(r=(X,Y,Z)\)</span> 为中心，<span class="arithmatex">\(\gamma_1\)</span> 为半径的球形区域，由 <span class="arithmatex">\(\tilde{Z}\)</span> 的估计并不准确，所以在距离 <span class="arithmatex">\(\gamma_2\)</span> 的、沿着 <span class="arithmatex">\(z\)</span> 轴的地方再采两个球形 ROI；<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：不准确的是 <span class="arithmatex">\(\tilde{Z}\)</span>，可是 <span class="arithmatex">\(X, Y\)</span> 的得到也与 <span class="arithmatex">\(\tilde{Z}\)</span> 有关呀？ 透视投影，而非正交投影。</li>
+</ul>
+</li>
+<li>接下来将 ROI 中的点云体素化，并且计算得到每一个体素的特征，特征包括两个部分：<ul>
+<li>由体素中心 <span class="arithmatex">\(\overline{s}_i\)</span> 指向根 <span class="arithmatex">\(r\)</span> 的偏移向量(offset vector) <span class="arithmatex">\(o_i = r - \overline{s}_i\)</span>；</li>
+<li>利用相机参数，将 <span class="arithmatex">\(\overline{s}_i\)</span> 投影回图片后，在特征 map 上进行双线性采样得到的不投影图像特征(unprojecting image feature) <span class="arithmatex">\(\hat{f}\)</span>；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>估计修正根和场景接触点<ul>
+<li>使用一个稀疏 3D CNN 来处理 3D 特征，以求优化根的估计并估计场景接触位置，网络的输出包括三个部分：更新后的偏移向量(updated offset vector) <span class="arithmatex">\(o_i^*\)</span>、其置信度(confidence) <span class="arithmatex">\(c_i\)</span>、以及关于八个接触位置或不接触位置的分割结果；</li>
+<li>使用 <span class="arithmatex">\(r^* = \sum \limits_i c_i \cdot (o^*_i + \overline{s}_i)\)</span> 来计算优化后的根，其中 <span class="arithmatex">\(i\)</span> 为 ROI 中的体素的 index（之前提到的 voting vector field refinement task）；</li>
+<li>接触点分类包括 7 个最容易成为接触点的分类，和 1 个用来表示不接触的类别，通过取得分最高的得到点云的标签，最终得到一个有标签的点云数据作为之后的输入（之前提到的 point cloud labeling task）；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SA-HMR：<ul>
+<li><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="Pasted image 20230802112313.png"><img alt="" src="Pasted image 20230802112313.png"/></a></li>
+<li>受数据集限制，本部分的工作以预训练好的 METRO 为基础SA-HMR 添加一个平行的场景相关网络，使用交叉注意力机制来提高 METRO 的场景感知；</li>
+<li>METRO<ul>
+<li>使用自注意力机制实现单目的人体网格恢复；</li>
+<li>提取全局的 CNN 特征 ➡️ 将特征合并到无姿势的 SMPL 网格顶点上 ➡️ 预测包含形体的姿势；</li>
+</ul>
+</li>
+<li>交叉注意力下的 METRO<ul>
+<li>首先使用 METRO 骨干部分中的 CNN 从图片中提取出图像特征，并映射、池化得到与人体 mesh 顶点个数一致的 tokens；</li>
+<li>将初始顶点与这些生成的 token 直接拼接，塞进 transformer 里，以此来让 transformer 能更好的注意到语义上更相关的部分；</li>
+<li>为了将用来估计人体姿态的 METRO 与项目提出的场景网络相结合，使用了交叉注意力(cross attention)；<ul>
+<li>即 Q 和 K 不同属一个模块，在本项目的语境下，指两个模块的 Q 和 K 都来自对方；</li>
+</ul>
+</li>
+<li>这里对 METRO 使用共享权重的回归层，具体应用在从逐点特征到点位置的回归；<ul>
+<li>因此，当特征相似的点被输入以后，输出的座标也倾向于相似，相当于说在做 scene image 和 real image 的特征匹配；</li>
+<li>这隐式地将相似的人体顶点和场景点对齐，以便于 transformer 寻找对应关系；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Loss<ul>
+<li>第一部分 · 根和接触点<ul>
+<li><span class="arithmatex">\(L_ {RC} = L_ {R2D} + w_ {RZ} \cdot L_ {RZ} + L_ {ROV} + L_ {R3D} + L_ {C}\)</span></li>
+<li><span class="arithmatex">\(L_ {R2D}\)</span> 是根的热力图的 MSE loss；</li>
+<li><span class="arithmatex">\(L_{RZ},L_{ROV},L_{R3D}\)</span> 是相对深度、偏移向量、根的 3D 座标的 L1 loss；</li>
+<li><span class="arithmatex">\(L_C\)</span> 是接触点的标签的交叉熵 loss；</li>
+</ul>
+</li>
+<li>第二部分 · HMR<ul>
+<li><span class="arithmatex">\(L_{\mathrm{HMR}}=L_\mathrm{V}+L_\mathrm{J}+L_{\mathrm{CP}}+L_\mathrm{GV}\)</span></li>
+<li>四个 term 分别是平移对齐的人体顶点的、人体关键点的、重建的接触点的、全局人体顶点的 L1 loss；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据集">数据集<a class="headerlink" href="#数据集" title="Permanent link">¶</a></h3>
+<ul>
+<li>RICH<ul>
+<li>场景：6 室外 &amp; 2 室内</li>
+<li>不处理多人、不处理 bbox 出画面的情况</li>
+</ul>
+</li>
+<li>PROX <ul>
+<li>场景：12 室内</li>
+</ul>
+</li>
+</ul>
+<h3 id="效果度量metrics">效果度量(metrics)<a class="headerlink" href="#效果度量metrics" title="Permanent link">¶</a></h3>
+<ul>
+<li>HMR<ul>
+<li>G-MPJPE: Global Mean-Per-Joint-Position-Error</li>
+<li>G-MPVE: Global Mean-Per-Vertex-Error</li>
+<li>即全局的 JP 和 V 的 L2 误差，相对的，后面还有一个非全局的误差，表示的是节点/顶点相对于 pelvis 的座标的误差，全局的误差更能体现在全局范围内的效果；</li>
+</ul>
+</li>
+<li>contact<ul>
+<li>PenE: Penetration Error <ul class="task-list">
+<li>即穿模误差，对于所有穿入模表面的点，累加其到表面的距离，越穿越坏；</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：具体来说如何衡量 v to scene 的距离？如果穿了一个扁平模是否表达不明显？ 是，所以这个标准只是示意，实际很难做。</li>
+</ul>
+</li>
+<li>ConFE: Contact Failure Error<ul class="task-list">
+<li>前一个 term 表示当这里是接触时，要尽可能接近；后一个 term 表示当这里不接触时，要尽可能不穿模；</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：第二个 term 是不是与 PenE 的功能重合了？ 有一部分重合，但是是必要的，它衡量的有两个内容：1. 属于接触点的，要尽可能“接触”；2. 不属于接触点的，要尽可能“不接触”；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年8月2日 16:12:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年8月3日 14:10:13</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年8月2日 16:12:47</span>
