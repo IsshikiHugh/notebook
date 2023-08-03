@@ -1,4 +1,4 @@
-# NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
+# [NeRF] Representing Scenes as Neural Radiance Fields for View Synthesis
 
 `3DV` `Reconstruction`
 

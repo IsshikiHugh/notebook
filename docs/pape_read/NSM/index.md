@@ -1,4 +1,4 @@
-# Neural State Machine for Character-Scene Interactions
+# [NSM] Neural State Machine for Character-Scene Interactions
 
 `3DV` `Human-Motion` `Scene-Aware`
 

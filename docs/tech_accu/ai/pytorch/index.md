@@ -1,5 +1,7 @@
 # PyTorch
 
+!!! warning "弃坑了，感觉没啥写的必要"
+
 !!! info ""
     - PyTorch 主要有两个用途：
         - 能够使用 GPU 加速的 NumPy 替代品；
@@ -139,7 +141,7 @@ print(f"Device tensor is stored on: {tensor.device}")
 
 对张量的操作方法非常之多，很难在本文中全部涉及，因而也只是放个 **[文档](https://pytorch.org/docs/stable/torch.html)** 在这边，在此只介绍比较基础的几个。
 
-#### 使用 GPU 加速" 
+#### 使用 GPU 加速
 令人幸喜的是，对张量的这些操作都可以使用 GPU 来进行加速，当然在此之前我们需要将它转移到 GPU 上——如果可以的话。
 
 ```python

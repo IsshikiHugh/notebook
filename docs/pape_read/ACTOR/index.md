@@ -1,4 +1,4 @@
-# Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
+# [ACTOR] Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
 
 `3DV` `Human-Motion` `Action-Control`
 

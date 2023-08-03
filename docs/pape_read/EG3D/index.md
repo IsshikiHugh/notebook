@@ -1,4 +1,4 @@
-# EG3D: Efficient Geometry-aware 3D Generative Adversarial Networks
+# [EG3D] Efficient Geometry-aware 3D Generative Adversarial Networks
 
 `3DV` `Generation`
 

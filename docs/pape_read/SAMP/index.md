@@ -1,4 +1,4 @@
-# Stochastic Scene-Aware Motion Prediction
+# [SAMP] Stochastic Scene-Aware Motion Prediction
 
 `3DV` `Human-Motion` `Scene-Aware`
 
