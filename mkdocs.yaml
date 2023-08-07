@@ -179,7 +179,7 @@ nav:
       - "Hydra": 
         - tech_accu/ai/hydra/index.md
       - "Pytorch Lighting":
-        - tech_accu/ai/pytorch-lightning/index.md
+        - tech_accu/ai/pytorch_lightning/index.md
   - "🗒 课程笔记":
     - cour_note/index.md
     - cour_note/D1QD_CXiaoCheng/index.md
