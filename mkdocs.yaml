@@ -177,8 +177,9 @@ nav:
       - tech_accu/ai/index.md
       - tech_accu/ai/pytorch/index.md
       - "Hydra": 
-        - "🔗 官方文档": https://hydra.cc/docs/intro/
-        - "🔗 机器学习项目配置太复杂怎么办？Facebook 开发了 Hydra 来帮你": https://cloud.tencent.com/developer/article/1587877
+        - tech_accu/ai/hydra/index.md
+      - "Pytorch Lighting":
+        - tech_accu/ai/pytorch-lightning/index.md
   - "🗒 课程笔记":
     - cour_note/index.md
     - cour_note/D1QD_CXiaoCheng/index.md
