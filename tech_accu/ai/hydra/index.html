@@ -6,12 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/cour_note/D2QD_Intro2CV/Lec10/" rel="canonical"/>
-<link href="../Lec09/" rel="prev"/>
-<link href="../Lec11/" rel="next"/>
+<link href="https://note.isshikih.top/tech_accu/ai/hydra/" rel="canonical"/>
+<link href="../pytorch/" rel="prev"/>
+<link href="../../../cour_note/" rel="next"/>
 <link href="../../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
-<title>Lecture 10 | Recognition - Isshiki修's Notebook</title>
+<title>Hydra - Isshiki修's Notebook</title>
 <link href="../../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6 31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0l112.3-112.3zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5 50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0 27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>');}</style>
@@ -41,7 +41,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#lecture-10--recognition">
+<a class="md-skip" href="#hydra">
           跳转至
         </a>
 </div>
@@ -65,7 +65,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Lecture 10 | Recognition
+              Hydra
             
           </span>
 </div>
@@ -126,12 +126,12 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../tech_accu/">
+<a class="md-tabs__link md-tabs__link--active" href="../../">
         📚 技术积累
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../../">
+<a class="md-tabs__link" href="../../../cour_note/">
         🗒 课程笔记
       </a>
 </li>
@@ -198,15 +198,15 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/">📚 技术积累</a>
+<a href="../../">📚 技术积累</a>
 <label for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
           📚 技术积累
@@ -215,7 +215,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/tool/">常用工具</a>
+<a href="../../tool/">常用工具</a>
 <label for="__nav_2_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -227,14 +227,14 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Shell/">
+<a class="md-nav__link" href="../../tool/Shell/">
         Shell
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_2_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/tool/Git/">Git Something</a>
+<a href="../../tool/Git/">Git Something</a>
 <label for="__nav_2_2_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -246,12 +246,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Git/Workflow/">
+<a class="md-nav__link" href="../../tool/Git/Workflow/">
         Git Workflow
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Git/Commands/">
+<a class="md-nav__link" href="../../tool/Git/Commands/">
         Git Commands
       </a>
 </li>
@@ -339,7 +339,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Colab/">
+<a class="md-nav__link" href="../../tool/Colab/">
         Google Colaboratory
       </a>
 </li>
@@ -361,7 +361,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_3_1" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/language/cpp/">C++</a>
+<a href="../../language/cpp/">C++</a>
 <label for="__nav_2_3_1">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -373,7 +373,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/language/cpp/Part0/">
+<a class="md-nav__link" href="../../language/cpp/Part0/">
         [pre] 前置与杂项
       </a>
 </li>
@@ -386,7 +386,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/standard/BVH_format/">标准 | 格式 | 规范</a>
+<a href="../../standard/BVH_format/">标准 | 格式 | 规范</a>
 <label for="__nav_2_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -410,31 +410,31 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/ai/">人工智能</a>
+<a href="../">人工智能</a>
 <label for="__nav_2_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_2_5_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_2_5_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_2_5">
 <span class="md-nav__icon md-icon"></span>
           人工智能
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/ai/pytorch/">
+<a class="md-nav__link" href="../pytorch/">
         PyTorch
       </a>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_2_5_3" type="checkbox"/>
-<div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/ai/hydra/">Hydra</a>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_5_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index md-nav__link--active">
+<a href="./">Hydra</a>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_2_5_3_label" class="md-nav" data-md-level="3">
+<nav aria-expanded="true" aria-labelledby="__nav_2_5_3_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_2_5_3">
 <span class="md-nav__icon md-icon"></span>
           Hydra
@@ -456,7 +456,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/ai/pytorch-lightning/index.md">
+<a class="md-nav__link" href="../pytorch-lightning/index.md">
         None
       </a>
 </li>
@@ -469,29 +469,29 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../">🗒 课程笔记</a>
+<a href="../../../cour_note/">🗒 课程笔记</a>
 <label for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
           🗒 课程笔记
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1QD_CXiaoCheng/">
+<a class="md-nav__link" href="../../../cour_note/D1QD_CXiaoCheng/">
         [大一秋冬] C小程 琐碎知识点整理
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D1CX_ProbabilityAndStatistics/">[大一春夏] 概率论与数理统计</a>
+<a href="../../../cour_note/D1CX_ProbabilityAndStatistics/">[大一春夏] 概率论与数理统计</a>
 <label for="__nav_3_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -503,42 +503,42 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap01/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap01/">
         [1.x] 概率论的基本概念
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap02/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap02/">
         [2.x] 随机变量及其概率分布
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap03/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap03/">
         [3.x] 多元随机变量及其分布
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap04/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap04/">
         [4.x] 随机变量的数字特征
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap05/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap05/">
         [5.x] 大数定律及中心极限定理
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap06/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap06/">
         [6.x] 统计量与抽样分布
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap07/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap07/">
         [7.x] 参数估计
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap08/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap08/">
         [8.x] 假设检验
       </a>
 </li>
@@ -546,19 +546,19 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1SJ_StanfordCS231n/">
+<a class="md-nav__link" href="../../../cour_note/D1SJ_StanfordCS231n/">
         [大一暑假] Deep Learning for Computer Vision | CS231N
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1SJ_Intro2CS/">
+<a class="md-nav__link" href="../../../cour_note/D1SJ_Intro2CS/">
         [大一暑假] 计算机系统概论 | Introduction to Computing Systems
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_6" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2QD_DigitalDesign/">[大二秋冬] 数字逻辑设计 | Digital Design</a>
+<a href="../../../cour_note/D2QD_DigitalDesign/">[大二秋冬] 数字逻辑设计 | Digital Design</a>
 <label for="__nav_3_6">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -570,184 +570,119 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap01/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap01/">
         Chap 1 Digital Systems and Information
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap02/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap02/">
         Chap 2 Combinational Logic Circuits
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap03/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap03/">
         Chap 3 Combinational Logic Design
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap04/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap04/">
         Chap 4 Sequential Circuits
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap05/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap05/">
         Chap 5 Digital Hardware Implementation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap06/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap06/">
         Chap 6 Registers &amp; Register Transfers
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap07/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap07/">
         Chap 7 Memory Basics
       </a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_7" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_7" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../">[大二秋冬] 计算机视觉导论 | I2CV</a>
+<a href="../../../cour_note/D2QD_Intro2CV/">[大二秋冬] 计算机视觉导论 | I2CV</a>
 <label for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_3_7_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_3_7_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
           [大二秋冬] 计算机视觉导论 | I2CV
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec01/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec01/">
         Lecture 1 | Introduction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec02/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec02/">
         Lecture 2 | Image Formation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec03/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec03/">
         Lecture 3 | Image Processing
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec04/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec04/">
         Lecture 4 | Model Fitting and Optimization
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec05/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec05/">
         Lecture 5 | Feature Matching and Motion Estimation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec06/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec06/">
         Lecture 6 | Image Alignment and Stitching
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec07/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec07/">
         Lecture 7 | Structure From Motion
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec08/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec08/">
         Lecture 8 | Depth Estimation &amp; 3D Reconstruction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec09/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec09/">
         Lecture 9 | Deep Learning
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          Lecture 10 | Recognition
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec10/">
         Lecture 10 | Recognition
       </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#semantic-segmentation">
-    Semantic segmentation
-  </a>
-<nav aria-label="Semantic segmentation" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#衡量指标-evaluation-metric-per-pixel-intersection-over-union-iou">
-    衡量指标 Evaluation metric: Per-pixel Intersection-over-union (IoU)
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#object-detection">
-    Object detection
-  </a>
-<nav aria-label="Object detection" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#evaluation-metric">
-    Evaluation metric
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#instance-segmentation">
-    Instance segmentation
-  </a>
-<nav aria-label="Instance segmentation" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#panoptic-segmentation">
-    Panoptic segmentation
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#human-pose-estimation">
-    Human pose estimation
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#optical-flow">
-    Optical flow
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../Lec11/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec11/">
         Lecture 11 | 3D Deep Learning
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec12/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec12/">
         Lecture 12 | Computational Photography 1
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec13/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec13/">
         Lecture 13 | Computational Photography 2
       </a>
 </li>
@@ -755,14 +690,14 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2HJ_StanfordWriting/">
+<a class="md-nav__link" href="../../../cour_note/D2HJ_StanfordWriting/">
         [大二寒假] 科学文章写作 | Writing in the Sciences
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_9" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2CX_ComputerOrganization/">[大二春夏] 计算机组成 | Computer Organization</a>
+<a href="../../../cour_note/D2CX_ComputerOrganization/">[大二春夏] 计算机组成 | Computer Organization</a>
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_3_9_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_9">
@@ -776,7 +711,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_10" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2CX_AdvancedDataStructure/">[大二春夏] 高级数据结构 | Advanced Data Structure</a>
+<a href="../../../cour_note/D2CX_AdvancedDataStructure/">[大二春夏] 高级数据结构 | Advanced Data Structure</a>
 <label for="__nav_3_10">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -788,82 +723,82 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec01/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec01/">
         Lecture 1 | AVL Trees &amp; Splay Trees
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec02/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec02/">
         Lecture 2 | Red Black Tree &amp; B+ Tree
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec03/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec03/">
         Lecture 3 | Inverted File Index
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec04/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec04/">
         Lecture 4 | Leftist Heap &amp; Skew Heap
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec05/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec05/">
         Lecture 5 | Binomial Queue
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec06/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec06/">
         Lecture 6 | Backtracing
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec07/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec07/">
         Lecture 7 | Divide &amp; Conquer
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec08/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec08/">
         Lecture 8 | Dynamic Programming
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec09/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec09/">
         Lecture 9 | Greedy Algorithms
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec10/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec10/">
         Lecture 10 | NP Completeness
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec11/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec11/">
         Lecture 11 | Approximation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec12/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec12/">
         Lecture 12 | Local Search
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec13/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec13/">
         Lecture 13 | Randomized Algorithms
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec14/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec14/">
         Lecture 14 | Parallel
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec15/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec15/">
         Lecture 15 | External Sorting
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Ex01/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Ex01/">
         Topic 1 | Amortized Analysis
       </a>
 </li>
@@ -977,55 +912,13 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#semantic-segmentation">
-    Semantic segmentation
-  </a>
-<nav aria-label="Semantic segmentation" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#衡量指标-evaluation-metric-per-pixel-intersection-over-union-iou">
-    衡量指标 Evaluation metric: Per-pixel Intersection-over-union (IoU)
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#object-detection">
-    Object detection
-  </a>
-<nav aria-label="Object detection" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#evaluation-metric">
-    Evaluation metric
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#instance-segmentation">
-    Instance segmentation
-  </a>
-<nav aria-label="Instance segmentation" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#panoptic-segmentation">
-    Panoptic segmentation
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#human-pose-estimation">
-    Human pose estimation
+<a class="md-nav__link" href="#关于-ab-语法">
+    关于 +A=B 语法
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#optical-flow">
-    Optical flow
+<a class="md-nav__link" href="#覆盖关系">
+    覆盖关系
   </a>
 </li>
 </ul>
@@ -1035,178 +928,145 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="lecture-10--recognition">Lecture 10 | Recognition<a class="headerlink" href="#lecture-10--recognition" title="Permanent link">¶</a></h1>
+<h1 id="hydra">Hydra<a class="headerlink" href="#hydra" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1509 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 5 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1136 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 42 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 4 分钟</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>本文尚未完全整理好！</p>
+<div class="admonition quote">
+<p class="admonition-title">相关链接</p>
+<ul>
+<li>官方文档 <a href="https://hydra.cc/docs/intro/">🔗</a></li>
+<li>笔记 <a href="https://cloud.tencent.com/developer/article/1587877">🔗</a></li>
+</ul>
 </div>
-<p>二维图像<strong>识别(Recognition)</strong>下有很多任务，主要分为这么几种：</p>
-<ul>
-<li>分类 Classification</li>
-<li>语义分割 Semantic segmentation</li>
-<li>对象检测 Object detection</li>
-<li>实例分割 Instance segmentation</li>
-</ul>
-<h2 id="semantic-segmentation">Semantic segmentation<a class="headerlink" href="#semantic-segmentation" title="Permanent link">¶</a></h2>
-<p>每个像素属于哪个类别这种信息叫语义信息。</p>
-<ul>
-<li>输入：图片</li>
-<li>输出：每个像素的类别标签，不需要区分同一类别的不同实例</li>
-</ul>
-<p>最朴素的做法是 sliding window，取出一个 window 放进分类机得到结果，但是显然由于 window 包含的信息太少，而且效率太低，这个方法非常 naive。</p>
+<div class="admonition info">
+<p class="admonition-title">简介</p>
+<p>Hydra 亦可用于其它 Python APP，但本文只以 Research 的视角来谈这个工具。</p>
+<p>在进行实验时，我们可能会希望一个项目能支持切换其中的若干部件，就好像给机器人更换不同的部件，来测试其性能。而每一个部件都有可能有自己的超参数需要设置。</p>
+<p>硬编码设置当然不可取，这太不优雅了。所以我们通常使用命令行参数，即 args 来实现超参数的传入。但随着模型越来越复杂，需要的超参数越来越多，命令行就会越来越长；而且不同的“部件”可能需要不同的超参数，因此，使用命令行参数灵活性就大大下降了。</p>
+<p>因此，我们考虑把这些东西放在文件里，需要修改时就直接修改文件，这样修改参数相对就灵活一些。更进一步的，我们还可以通过将不同的组合分别保存为一个文件，用指定特定文件的方式来选择一个已经设置好的 pipeline。</p>
+<p>但是这样还有两个问题，首先，这样写的话，配置文件的复用率是比较低的，因为各个配置之间差别可能不大，可能互相只有一小部分的不同，而复用率低的坏处就不必多说了；其次，就算我们用层次化的配置文件来解决复用的问题，我们在实际代码里也需要使用繁复的分支语句才能很好地控制配置的选择。</p>
+<p>于是，Hydra 应运而生。Hydra 会以特定的方式处理层次化的配置文件，它的行为很像 Cpp 的 <code>#include</code>，会把选中的后代 Group 里的配置文件嵌入到当前配置文件里。</p>
 <hr/>
-<p>现在标准的做法是<strong>全卷积网络(Fully Convolutional Network)</strong></p>
-<ul>
-<li>Loss function: Per-pixel cross-entropy</li>
-</ul>
-<p>局限性：</p>
-<ul>
-<li>Receptive field is linear in number of conv layers</li>
-<li>Convolution on high resolution is expensive（耗时）</li>
-</ul>
-<p>改进：</p>
-<ul>
-<li>Downsampling: pooling, strided conv</li>
-</ul>
-<p>但是由于我们最后希望得到的是一个和原图一样大的东西，所以有向下采样就肯定会有向上采样（回忆：插值）。</p>
-<blockquote>
-<p>图像向上采样以后变大以后又卷积，这个Transposed convolution</p>
-</blockquote>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/"><img alt="" src="img/"/></a> ppt P13</p>
-<p>但是很显然，在变小变大的过程中肯定有信息损失。所以现在一个比较流行的做法是 U-Net，也就是大量应用 skip-connection。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/"><img alt="" src="img/"/></a> ppt P14 <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/">https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/</a></p>
-<p>DeepLab P15</p>
-<p>考虑相邻像素之间的关联性，使用 CRF(Conditional random field) 优化 P16</p>
-<blockquote>
-<p>马可夫随机场？</p>
-</blockquote>
-<p>Unary potential: 体现自己的特性</p>
-<p>Pairwise potential: 体现关联性</p>
+<p>更具体的关于 Hydra 的规范，请参考官方文档，本文主要对官方文档做一些补充，通过实验探索一些 Hydra 文档中没有提到的性质。</p>
+</div>
 <hr/>
-<h3 id="衡量指标-evaluation-metric-per-pixel-intersection-over-union-iou">衡量指标 Evaluation metric: Per-pixel <strong>Intersection-over-union (IoU)</strong><a class="headerlink" href="#衡量指标-evaluation-metric-per-pixel-intersection-over-union-iou" title="Permanent link">¶</a></h3>
-<p><span class="arithmatex">\(IoU=\frac{
-    \text{Ground truth 和 prediction 的交集面积}
-}{
-    \text{Ground truth 和 prediction 的并集面积}
-}\)</span> 
-P19</p>
-<p>mIoU 指的是分出来的不同类别的 mean IoU</p>
-<h2 id="object-detection">Object detection<a class="headerlink" href="#object-detection" title="Permanent link">¶</a></h2>
-<p>Bounding box (bbox)</p>
+<h2 id="关于-ab-语法">关于 +A=B 语法<a class="headerlink" href="#关于-ab-语法" title="Permanent link">¶</a></h2>
+<p>在文档中，有两个地方提到了 +A=B 的语法。第一次是在<a href="https://hydra.cc/docs/tutorials/basic/your_first_app/simple_cli/">这里</a>：</p>
+<blockquote>
+<p>You can add config values via the command line. The <code>+</code> indicates that the field is new.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>python<span class="w"> </span>my_app.py<span class="w"> </span>+db.driver<span class="o">=</span>mysql<span class="w"> </span>+db.user<span class="o">=</span>omry<span class="w"> </span>+db.password<span class="o">=</span>secret
+db:
+<span class="w">  </span>driver:<span class="w"> </span>mysql
+<span class="w">  </span>user:<span class="w"> </span>omry
+<span class="w">  </span>password:<span class="w"> </span>secret
+</code></pre></div>
+<details class="extra">
+<summary>files</summary>
+<div class="highlight"><span class="filename">my_app.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">omegaconf</span> <span class="kn">import</span> <span class="n">DictConfig</span><span class="p">,</span> <span class="n">OmegaConf</span>
+<span class="kn">import</span> <span class="nn">hydra</span>
+
+<span class="nd">@hydra</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">version_base</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_app</span><span class="p">(</span><span class="n">cfg</span><span class="p">:</span> <span class="n">DictConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">OmegaConf</span><span class="o">.</span><span class="n">to_yaml</span><span class="p">(</span><span class="n">cfg</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">my_app</span><span class="p">()</span>
+</code></pre></div>
+</details>
+</blockquote>
+<p>第二次是在<a href="https://hydra.cc/docs/tutorials/basic/your_first_app/config_groups/">这里</a>：</p>
+<blockquote>
+<p>Select an item from a config group with <code>+GROUP=OPTION</code>, e.g:</p>
+<div class="highlight"><pre><span></span><code>$ python my_app.py +db=postgresql
+db:
+  driver: postgresql
+  pass: drowssap
+  timeout: 10
+  user: postgres_user
+</code></pre></div>
+<details class="extra">
+<summary>files</summary>
+<div class="highlight"><span class="filename">Directory layout</span><pre><span></span><code>    ├─ conf
+    │  └─ db
+    │      ├─ mysql.yaml
+    │      └─ postgresql.yaml
+    └── my_app.py
+</code></pre></div>
+<div class="highlight"><span class="filename">db/mysql.yaml</span><pre><span></span><code><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+<span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omry</span>
+<span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">db/postgresql.yaml</span><pre><span></span><code><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql</span>
+<span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres_user</span>
+<span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drowssap</span>
+<span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">my_app.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">omegaconf</span> <span class="kn">import</span> <span class="n">DictConfig</span><span class="p">,</span> <span class="n">OmegaConf</span>
+<span class="kn">import</span> <span class="nn">hydra</span>
+
+<span class="nd">@hydra</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">version_base</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_app</span><span class="p">(</span><span class="n">cfg</span><span class="p">:</span> <span class="n">DictConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">OmegaConf</span><span class="o">.</span><span class="n">to_yaml</span><span class="p">(</span><span class="n">cfg</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">my_app</span><span class="p">()</span>
+</code></pre></div>
+</details>
+</blockquote>
+<p>前者表示增加一个 field，后者表示指定一个 group，其含义是不同的，而看起来是有歧义的。</p>
+<p>根据我的测试，<code>+A=B</code> 具体是哪一种，取决于是否存在名为 A 的 folder。即：</p>
 <ul>
-<li>Class label</li>
-<li>Location (x,y)</li>
-<li>
-<p>Size (w,h)</p>
-</li>
-<li>
-<p>输入：图像</p>
-</li>
-<li>输出：一堆 bounding box</li>
+<li>如果存在名为 A 的 folder，则 <code>+A=B</code> 表示指定 A group 里的 <code>b.yaml</code> 项；</li>
+<li>如果不存在名为 A 的 folder，则 <code>+A=B</code> 表示增加一个 field，其 key 为 A，value 为 B；</li>
 </ul>
-<p>那么如何实现呢？我们先假设一共只有 1 个对象，那么此时和分类任务是非常接近的，只需要再额外求解一个窗口位置即可。</p>
-<p>那么多个窗口呢？</p>
-<p>解决办法还是滑动窗口，只不过不同之前的，我们现在采用的方法基本上也是<strong>基于</strong>滑动窗口展开的。而在这种语境下，这样的一个滑动窗口被称为一个<strong>提议(proposal)</strong>。</p>
-<p>但是显然，使用最朴素的滑动窗口会导致“提议”过多，导致效率太低。所以我们要优化这个过程。</p>
-<p>一般这些优化的方法都是<strong>启发式(heuristics)</strong>的做法，例如 over-segmentation， </p>
-<p>而这类方法就是 R-CNN (region proposal &amp; CNN) P36</p>
-<h3 id="evaluation-metric">Evaluation metric<a class="headerlink" href="#evaluation-metric" title="Permanent link">¶</a></h3>
-<p>对于单个物体，仍然是 IoU</p>
-<p>P39</p>
-<p>为了评价预测结果的正确性，我们需要为它设置一个阈值。</p>
-<p>而对于多个物体，则不那么简单：P42</p>
-<p>（回忆统计学内容）</p>
-<p>positive: 肯定的假设 P</p>
-<p>negative: 否定的假设 N</p>
-<p>true: 假设是成立的 T</p>
-<p>false: 假设是错误的 F</p>
-<p>我们通过下面两个标准来联合判断效果。</p>
-<p>精度 Precision = TP/(TP+FP)：描述给定的 bbox 里有多少是正确的</p>
-<p>召回率 Recall = TP/(TP+FN)：描述所有对象中，被我们识别出来的有多少</p>
-<p>一般来说，这俩东西有一个 trade-off。（概统里应该有类似的内容）</p>
-<p><a href="https://en.wikipedia.org/wiki/Precision_and_recall">https://en.wikipedia.org/wiki/Precision_and_recall</a></p>
-<p>而最终的衡量方法，是 Mean Average Precision (mAP)。</p>
+<hr/>
+<p>更进一步的，只要当前目录存在名为 <code>A</code> 的 folder，那么在<strong>当前</strong> <code>yaml</code> 文件中就无法将 <code>A</code> 作为一个 field 的 key。</p>
+<p>之所以强调<strong>当前</strong>，是因为它可以被父母的 <code>yaml</code> 文件中的，以 <code>A</code> 为 key 的 k-v 对覆盖。</p>
+<p>例如，虽然添加 <code>A=1</code> 替换作为 group 的 <code>A</code> 会报错，但是添加 <code>A.B=1</code> 却可以覆盖 <code>A</code> 下的作为 group 的 <code>B</code>；亦或在最的 <code>config.yaml</code> 里添加这样一段也可以起到同样的效果：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">A</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">B</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</code></pre></div>
+<p>即，对于“无法将 group 覆盖为 field”这件事的保护，只有目录一层内有效。</p>
+<hr/>
+<h2 id="覆盖关系">覆盖关系<a class="headerlink" href="#覆盖关系" title="Permanent link">¶</a></h2>
+<p>首先，除了在上一节提到的关于 field 和 group 的覆盖关系，更重要的是在不同层的 yaml 之间，相同键的值的覆盖关系。</p>
+<p>首先，单看 defaults，官方在文档中有提到规则：</p>
+<blockquote>
+<p>The defaults are ordered:</p>
+<ul>
+<li>If multiple configs define the same value, the last one wins.</li>
+<li>If multiple configs contribute to the same dictionary, the result is the combined dictionary.</li>
+</ul>
+</blockquote>
+<p>此外，如果已经在内层 defaults 设置了键的默认值，就不能在外层为这个键设置默认值，反之亦然。</p>
+<div class="admonition eg">
+<p class="admonition-title">🌰</p>
+<p>例如下面这两个文件中，<code>- group1/group2: option1_1</code> 和 <code>- group2: option1_1</code> 这两行是冲突的，只能选其一的。</p>
+<div class="highlight"><span class="filename">config.yaml</span><pre><span></span><code><span class="nt">defaults</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">option1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group1/group2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">option1_1</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">group1/option1.yaml</span><pre><span></span><code><span class="nt">defaults</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">option1_1</span>
+</code></pre></div>
+</div>
+<p>因此，一般来说尽量避免让配置层数超过两层。</p>
+<hr/>
+<p>而关于 defaults 以外的部分，规则如下：</p>
 <ol>
-<li>Run object detector on all test images</li>
-<li>For each category, compute Average Precision </li>
-<li>(AP) = area under Precision vs Recall Curves</li>
+<li>当最外层的 <code>config.yaml</code> 和在 <code>defaults:</code> 里指定的 <code>yaml</code> 配置文件存在冲突的键时，以 <code>config.yaml</code> 里的为准，（无论是否有 <code>GROUP=OPTION</code> 选项）；</li>
+<li>当键不存在于 <code>defaults:</code> 中，而只在命令行中通过 <code>+GROUP=OPTION</code> 选中时，以 <code>OPTION.yaml</code> 里的为准；</li>
 </ol>
-<p>PPT p52</p>
-<p>先做所有类别的 AP，然后取平均就是 mAP</p>
-<p>mAP@threshold = ...</p>
-<p>COCOmAP = average(mAP@threshold_i), for i \in {0.5, 0.55, 0.6, …, 0.95}</p>
-<hr/>
-<p>Non-Max Suppression</p>
-<p>对于同一个对象，我有可能识别出好几个识别同一个物体的 bbox，所以我可以考虑设计一种算法减少这种识别。</p>
-<p>简单来说，做法就是找 score 最大的，然后看其他 bbox 和这个 bbox 的 IoU，大于一定权重时，认为它们是一致的，就可以把较小的那个删掉了。 </p>
-<hr/>
-<p>Fast R-CNN</p>
-<p>RoI pool （没听懂，整理的时候再仔细学一下）</p>
-<p>Faster R-CNN</p>
-<p>用网络（Region Proposal Network, RPN）生成提议选框，</p>
-<p>锚点 anchor：</p>
-<blockquote>
-<p>在计算机视觉中，锚点是用于目标检测的预定义框或感兴趣区域。锚点能够帮助卷积神经网络识别图像中存在的物体及其位置，从而提高目标检测的准确性。锚点通常由一组预定义的长宽比和尺度定义，这些因素决定了它们的大小和形状。在训练期间，CNN学习预测相对于这些锚点的物体的位置和大小。使用锚点可以检测不同大小和宽高比的物体，并有助于提高目标检测在复杂场景下的准确性。----chatGPT</p>
-</blockquote>
-<p>RPN 的大致思路是，把生成选框问题转化为打分问题，具体来说是给每个像素打在该位置有一个特定 size 的框的可能性的分。</p>
-<p>二阶段对象检测符 two-stage object detector</p>
-<ol>
-<li></li>
-<li></li>
-</ol>
-<hr/>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/"><img alt="" src="img/"/></a> P76
-各种方法的效果排序。</p>
-<hr/>
-<p>一种对 two-stage object detector 的改进是 single-stage object detector，大概就是在做 RPN 的同时去预测这个框标记的是某个类别的概率。</p>
-<p>single-stage 的代表性工作：YOLO</p>
-<p>two-stage v.s. single-stage</p>
-<ul>
-<li>Two-stage is generally more accurate （数据量足够大）</li>
-<li>Single-stage is faster</li>
-</ul>
-<hr/>
-<p>但是我们上面的工作都没考虑尺度变化，Feature pyramid network 在这方面提出了解决方案。</p>
-<hr/>
-<h2 id="instance-segmentation">Instance segmentation<a class="headerlink" href="#instance-segmentation" title="Permanent link">¶</a></h2>
-<p>Faster R-CNN + additional head</p>
-<p>Mask R-CNN</p>
-<p>Deep snake</p>
-<h3 id="panoptic-segmentation">Panoptic segmentation<a class="headerlink" href="#panoptic-segmentation" title="Permanent link">¶</a></h3>
-<hr/>
-<p>Microsoft COCO dataset</p>
-<h2 id="human-pose-estimation">Human pose estimation<a class="headerlink" href="#human-pose-estimation" title="Permanent link">¶</a></h2>
-<p>keypoints</p>
-<p>represent joint location as the heatmap // hourglass networks</p>
-<p>Top-down:
-- Detect humans and detect keypoints in each bbox
-- Example: Mask R-CNN - 最大的问题还是慢</p>
-<p>Bottom-up:
-- Detect keypoints and group keypoints to form humans
-- Example: OpenPose 先找 kpts，再利用 Affinity Fields 把属于一个人的 kpts 合在一起。</p>
-<p>Top-down is generally more accurate
-Bottom-up is faster，而且在遮挡情况下也有它的优势</p>
-<h2 id="optical-flow">Optical flow<a class="headerlink" href="#optical-flow" title="Permanent link">¶</a></h2>
-<p>光流</p>
-<p>video classification</p>
-<p>一个做法是把视频当作一个 3d 图像去做，即 3D CNN。但是数据维度非常大。</p>
-<p>Temporal action localization</p>
-<p>Spatial-temporal detection</p>
-<p>做法也可以当作一个 3D 的 R-CNN 去做。</p>
-<p>Multi-object tracking</p>
-<p>对每一帧做物体检测，然后在每一帧之间做关联匹配。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月4日 17:28:06</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年8月7日 13:02:48</span>
 <br/>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年8月7日 13:02:48</span>
 </small>
 </div>
 <form class="md-feedback" hidden="" name="feedback">
