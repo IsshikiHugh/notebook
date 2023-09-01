@@ -25,7 +25,7 @@
 
 ### 优势与贡献
 - 相比传统的通过优化迭代的生成办法，本方法在推断过程中更加迅速；
-- [ ] **问题**：最优化中的 contact regions 的 chamfer distance 约束是为了什么？ 尽可能增加一团的聚合性？
+- [x] **问题**：最优化中的 contact regions 的 chamfer distance 约束是为了什么？ 尽可能增加一团的聚合性？ 是。
 
 概括贡献：
 
@@ -42,7 +42,7 @@
 	- 人体
 		- 使用 SMPL 来表示人体，计算网格顶点 $V\in\mathrm{R}^{6890\times 3}$；
 		- 使用 H36M 关键点回归矩阵(joint regression matrix) $M \in \mathrm{R}^{14\times 6890}$；
-			- [ ] **问题**：这是什么？
+			- [x] **问题**：这是什么？ 一个 from smpl to h36m 的矩阵。
 		- 计算 3D 关键点 $J\in \mathrm{R}^{14\times 3} = MV$；
 	- 场景
 		- 用一个 bbox 去框选目标人体；
