@@ -248,6 +248,7 @@ nav:
     - pape_read/SAMP/index.md
     - pape_read/EG3D/index.md
     - pape_read/SA-MHR/index.md
+    - pape_read/TRACE/index.md
   - "📦 杂项专题":
     - others/index.md
     - others/reveal-md2Slides/index.md
