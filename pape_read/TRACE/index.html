@@ -6,25 +6,25 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/cour_note/D2QD_Intro2CV/Lec04/" rel="canonical"/>
-<link href="../Lec03/" rel="prev"/>
-<link href="../Lec05/" rel="next"/>
-<link href="../../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
+<link href="https://note.isshikih.top/pape_read/TRACE/" rel="canonical"/>
+<link href="../SA-MHR/" rel="prev"/>
+<link href="../../others/" rel="next"/>
+<link href="../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
-<title>Lecture 4 | Model Fitting and Optimization - Isshiki修's Notebook</title>
-<link href="../../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
-<link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<title>Index - Isshiki修's Notebook</title>
+<link href="../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6 31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0l112.3-112.3zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5 50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0 27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>');}</style>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Share+Tech:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Share Tech";--md-code-font:"JetBrains Mono"}</style>
-<link href="../../../_css/extra.css" rel="stylesheet"/>
-<link href="../../../_css/flink.css" rel="stylesheet"/>
+<link href="../../_css/extra.css" rel="stylesheet"/>
+<link href="../../_css/flink.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-4P08GMSPJM"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-4P08GMSPJM",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-4P08GMSPJM",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
 <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-<link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
@@ -35,13 +35,13 @@
                 body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
                 body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
                 body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-                </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="brown" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#lecture-4--model-fitting-and-optimization">
+<a class="md-skip" href="#_1">
           跳转至
         </a>
 </div>
@@ -49,7 +49,7 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="页眉" class="md-header__inner md-grid">
-<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Isshiki修's Notebook">
+<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Isshiki修's Notebook">
 <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -65,7 +65,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Lecture 4 | Model Fitting and Optimization
+              Index
             
           </span>
 </div>
@@ -121,32 +121,32 @@
 <div class="md-tabs__inner md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../..">
+<a class="md-tabs__link" href="../..">
         💠 封面
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../tech_accu/">
+<a class="md-tabs__link" href="../../tech_accu/">
         📚 技术积累
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../../">
+<a class="md-tabs__link" href="../../cour_note/">
         🗒 课程笔记
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../pape_read/">
+<a class="md-tabs__link md-tabs__link--active" href="../">
         📝 论文阅读
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../others/">
+<a class="md-tabs__link" href="../../others/">
         📦 杂项专题
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../comming/">
+<a class="md-tabs__link" href="../../comming/">
         🚧 施工中...
       </a>
 </li>
@@ -160,7 +160,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Isshiki修's Notebook">
+<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Isshiki修's Notebook">
 <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"></path></svg>
 </a>
     Isshiki修's Notebook
@@ -179,7 +179,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../..">💠 封面</a>
+<a href="../..">💠 封面</a>
 <label for="__nav_1">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -191,7 +191,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../link/">
+<a class="md-nav__link" href="../../link/">
         💬 交流
       </a>
 </li>
@@ -201,7 +201,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/">📚 技术积累</a>
+<a href="../../tech_accu/">📚 技术积累</a>
 <label for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -215,7 +215,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/tool/">常用工具</a>
+<a href="../../tech_accu/tool/">常用工具</a>
 <label for="__nav_2_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -227,14 +227,14 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Shell/">
+<a class="md-nav__link" href="../../tech_accu/tool/Shell/">
         Shell
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_2_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/tool/Git/">Git Something</a>
+<a href="../../tech_accu/tool/Git/">Git Something</a>
 <label for="__nav_2_2_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -246,12 +246,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Git/Workflow/">
+<a class="md-nav__link" href="../../tech_accu/tool/Git/Workflow/">
         Git Workflow
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Git/Commands/">
+<a class="md-nav__link" href="../../tech_accu/tool/Git/Commands/">
         Git Commands
       </a>
 </li>
@@ -339,7 +339,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Colab/">
+<a class="md-nav__link" href="../../tech_accu/tool/Colab/">
         Google Colaboratory
       </a>
 </li>
@@ -361,7 +361,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_3_1" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/language/cpp/">C++</a>
+<a href="../../tech_accu/language/cpp/">C++</a>
 <label for="__nav_2_3_1">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -373,7 +373,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/language/cpp/Part0/">
+<a class="md-nav__link" href="../../tech_accu/language/cpp/Part0/">
         [pre] 前置与杂项
       </a>
 </li>
@@ -386,7 +386,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/standard/BVH_format/">标准 | 格式 | 规范</a>
+<a href="../../tech_accu/standard/BVH_format/">标准 | 格式 | 规范</a>
 <label for="__nav_2_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -413,7 +413,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/ai/">人工智能</a>
+<a href="../../tech_accu/ai/">人工智能</a>
 <label for="__nav_2_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -425,14 +425,14 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/ai/pytorch/">
+<a class="md-nav__link" href="../../tech_accu/ai/pytorch/">
         PyTorch
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_5_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/ai/hydra/">Hydra</a>
+<a href="../../tech_accu/ai/hydra/">Hydra</a>
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_2_5_3_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_2_5_3">
@@ -456,7 +456,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/ai/pytorch_lightning/index.md">
+<a class="md-nav__link" href="../../tech_accu/ai/pytorch_lightning/index.md">
         None
       </a>
 </li>
@@ -469,29 +469,29 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../">🗒 课程笔记</a>
+<a href="../../cour_note/">🗒 课程笔记</a>
 <label for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
           🗒 课程笔记
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1QD_CXiaoCheng/">
+<a class="md-nav__link" href="../../cour_note/D1QD_CXiaoCheng/">
         [大一秋冬] C小程 琐碎知识点整理
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D1CX_ProbabilityAndStatistics/">[大一春夏] 概率论与数理统计</a>
+<a href="../../cour_note/D1CX_ProbabilityAndStatistics/">[大一春夏] 概率论与数理统计</a>
 <label for="__nav_3_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -503,42 +503,42 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap01/">
+<a class="md-nav__link" href="../../cour_note/D1CX_ProbabilityAndStatistics/Chap01/">
         [1.x] 概率论的基本概念
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap02/">
+<a class="md-nav__link" href="../../cour_note/D1CX_ProbabilityAndStatistics/Chap02/">
         [2.x] 随机变量及其概率分布
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap03/">
+<a class="md-nav__link" href="../../cour_note/D1CX_ProbabilityAndStatistics/Chap03/">
         [3.x] 多元随机变量及其分布
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap04/">
+<a class="md-nav__link" href="../../cour_note/D1CX_ProbabilityAndStatistics/Chap04/">
         [4.x] 随机变量的数字特征
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap05/">
+<a class="md-nav__link" href="../../cour_note/D1CX_ProbabilityAndStatistics/Chap05/">
         [5.x] 大数定律及中心极限定理
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap06/">
+<a class="md-nav__link" href="../../cour_note/D1CX_ProbabilityAndStatistics/Chap06/">
         [6.x] 统计量与抽样分布
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap07/">
+<a class="md-nav__link" href="../../cour_note/D1CX_ProbabilityAndStatistics/Chap07/">
         [7.x] 参数估计
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1CX_ProbabilityAndStatistics/Chap08/">
+<a class="md-nav__link" href="../../cour_note/D1CX_ProbabilityAndStatistics/Chap08/">
         [8.x] 假设检验
       </a>
 </li>
@@ -546,19 +546,19 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1SJ_StanfordCS231n/">
+<a class="md-nav__link" href="../../cour_note/D1SJ_StanfordCS231n/">
         [大一暑假] Deep Learning for Computer Vision | CS231N
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1SJ_Intro2CS/">
+<a class="md-nav__link" href="../../cour_note/D1SJ_Intro2CS/">
         [大一暑假] 计算机系统概论 | Introduction to Computing Systems
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_6" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2QD_DigitalDesign/">[大二秋冬] 数字逻辑设计 | Digital Design</a>
+<a href="../../cour_note/D2QD_DigitalDesign/">[大二秋冬] 数字逻辑设计 | Digital Design</a>
 <label for="__nav_3_6">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -570,246 +570,119 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap01/">
+<a class="md-nav__link" href="../../cour_note/D2QD_DigitalDesign/Chap01/">
         Chap 1 Digital Systems and Information
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap02/">
+<a class="md-nav__link" href="../../cour_note/D2QD_DigitalDesign/Chap02/">
         Chap 2 Combinational Logic Circuits
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap03/">
+<a class="md-nav__link" href="../../cour_note/D2QD_DigitalDesign/Chap03/">
         Chap 3 Combinational Logic Design
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap04/">
+<a class="md-nav__link" href="../../cour_note/D2QD_DigitalDesign/Chap04/">
         Chap 4 Sequential Circuits
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap05/">
+<a class="md-nav__link" href="../../cour_note/D2QD_DigitalDesign/Chap05/">
         Chap 5 Digital Hardware Implementation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap06/">
+<a class="md-nav__link" href="../../cour_note/D2QD_DigitalDesign/Chap06/">
         Chap 6 Registers &amp; Register Transfers
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap07/">
+<a class="md-nav__link" href="../../cour_note/D2QD_DigitalDesign/Chap07/">
         Chap 7 Memory Basics
       </a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_7" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_7" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../">[大二秋冬] 计算机视觉导论 | I2CV</a>
+<a href="../../cour_note/D2QD_Intro2CV/">[大二秋冬] 计算机视觉导论 | I2CV</a>
 <label for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_3_7_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_3_7_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
           [大二秋冬] 计算机视觉导论 | I2CV
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec01/">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec01/">
         Lecture 1 | Introduction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec02/">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec02/">
         Lecture 2 | Image Formation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec03/">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec03/">
         Lecture 3 | Image Processing
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          Lecture 4 | Model Fitting and Optimization
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec04/">
         Lecture 4 | Model Fitting and Optimization
       </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#优化">
-    优化
-  </a>
-<nav aria-label="优化" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#模型拟合">
-    模型拟合
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#数值方法">
-    数值方法
-  </a>
-<nav aria-label="数值方法" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#梯度下降">
-    梯度下降
-  </a>
-<nav aria-label="梯度下降" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#确定下降方向">
-    确定下降方向
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#确定下降步长">
-    确定下降步长
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#全局最优和局部最优">
-    全局最优和局部最优
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#鲁棒估计">
-    鲁棒估计
-  </a>
-<nav aria-label="鲁棒估计" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#内点--外点">
-    内点 &amp; 外点
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#不同的损失函数">
-    不同的损失函数
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#随机抽样一致">
-    随机抽样一致
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#病态问题">
-    病态问题
-  </a>
-<nav aria-label="病态问题" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#过拟合和欠拟合">
-    过拟合和欠拟合
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#插值">
-    插值
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#图割--马可夫随机场">
-    图割 &amp; 马可夫随机场
-  </a>
-<nav aria-label="图割 &amp; 马可夫随机场" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#图像标签问题">
-    图像标签问题
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#图割">
-    图割
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#马可夫随机场">
-    马可夫随机场
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../Lec05/">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec05/">
         Lecture 5 | Feature Matching and Motion Estimation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec06/">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec06/">
         Lecture 6 | Image Alignment and Stitching
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec07/">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec07/">
         Lecture 7 | Structure From Motion
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec08/">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec08/">
         Lecture 8 | Depth Estimation &amp; 3D Reconstruction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec09/">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec09/">
         Lecture 9 | Deep Learning
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec10/">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec10/">
         Lecture 10 | Recognition
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec11/">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec11/">
         Lecture 11 | 3D Deep Learning
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec12/">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec12/">
         Lecture 12 | Computational Photography 1
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec13/">
+<a class="md-nav__link" href="../../cour_note/D2QD_Intro2CV/Lec13/">
         Lecture 13 | Computational Photography 2
       </a>
 </li>
@@ -817,14 +690,14 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2HJ_StanfordWriting/">
+<a class="md-nav__link" href="../../cour_note/D2HJ_StanfordWriting/">
         [大二寒假] 科学文章写作 | Writing in the Sciences
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_9" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2CX_ComputerOrganization/">[大二春夏] 计算机组成 | Computer Organization</a>
+<a href="../../cour_note/D2CX_ComputerOrganization/">[大二春夏] 计算机组成 | Computer Organization</a>
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_3_9_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_9">
@@ -838,7 +711,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_10" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2CX_AdvancedDataStructure/">[大二春夏] 高级数据结构 | Advanced Data Structure</a>
+<a href="../../cour_note/D2CX_AdvancedDataStructure/">[大二春夏] 高级数据结构 | Advanced Data Structure</a>
 <label for="__nav_3_10">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -850,82 +723,82 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec01/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec01/">
         Lecture 1 | AVL Trees &amp; Splay Trees
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec02/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec02/">
         Lecture 2 | Red Black Tree &amp; B+ Tree
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec03/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec03/">
         Lecture 3 | Inverted File Index
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec04/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec04/">
         Lecture 4 | Leftist Heap &amp; Skew Heap
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec05/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec05/">
         Lecture 5 | Binomial Queue
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec06/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec06/">
         Lecture 6 | Backtracing
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec07/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec07/">
         Lecture 7 | Divide &amp; Conquer
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec08/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec08/">
         Lecture 8 | Dynamic Programming
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec09/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec09/">
         Lecture 9 | Greedy Algorithms
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec10/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec10/">
         Lecture 10 | NP Completeness
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec11/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec11/">
         Lecture 11 | Approximation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec12/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec12/">
         Lecture 12 | Local Search
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec13/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec13/">
         Lecture 13 | Randomized Algorithms
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec14/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec14/">
         Lecture 14 | Parallel
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec15/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Lec15/">
         Lecture 15 | External Sorting
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Ex01/">
+<a class="md-nav__link" href="../../cour_note/D2CX_AdvancedDataStructure/Ex01/">
         Topic 1 | Amortized Analysis
       </a>
 </li>
@@ -935,54 +808,115 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../pape_read/">📝 论文阅读</a>
+<a href="../">📝 论文阅读</a>
 <label for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
           📝 论文阅读
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/NeRF/">
+<a class="md-nav__link" href="../NeRF/">
         [NeRF] Representing Scenes as Neural Radiance Fields for View Synthesis
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/ACTOR/">
+<a class="md-nav__link" href="../ACTOR/">
         [ACTOR] Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/NSM/">
+<a class="md-nav__link" href="../NSM/">
         [NSM] Neural State Machine for Character-Scene Interactions
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/SAMP/">
+<a class="md-nav__link" href="../SAMP/">
         [SAMP] Stochastic Scene-Aware Motion Prediction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/EG3D/">
+<a class="md-nav__link" href="../EG3D/">
         [EG3D] Efficient Geometry-aware 3D Generative Adversarial Networks
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/SA-MHR/">
+<a class="md-nav__link" href="../SA-MHR/">
         [SA-HMR] Learning Human Mesh Recovery in 3D Scenes
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../../pape_read/TRACE/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Index
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         Index
       </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#任务--挑战">
+    任务 &amp; 挑战
+  </a>
+<nav aria-label="任务 &amp; 挑战" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#背景">
+    背景
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#挑战">
+    挑战
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#任务与成果">
+    任务与成果
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#创新点--贡献">
+    创新点 &amp; 贡献
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#方法">
+    方法
+  </a>
+<nav aria-label="方法" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#数据集">
+    数据集
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#loss">
+    Loss
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -990,7 +924,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../others/">📦 杂项专题</a>
+<a href="../../others/">📦 杂项专题</a>
 <label for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -1002,7 +936,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../others/reveal-md2Slides/">
+<a class="md-nav__link" href="../../others/reveal-md2Slides/">
         使用 reveal-md 来写 Slides
       </a>
 </li>
@@ -1022,7 +956,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../comming/">
+<a class="md-nav__link" href="../../comming/">
         内容正在编辑中……
       </a>
 </li>
@@ -1044,114 +978,48 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#优化">
-    优化
+<a class="md-nav__link" href="#任务--挑战">
+    任务 &amp; 挑战
   </a>
-<nav aria-label="优化" class="md-nav">
+<nav aria-label="任务 &amp; 挑战" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#模型拟合">
-    模型拟合
+<a class="md-nav__link" href="#背景">
+    背景
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#挑战">
+    挑战
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#任务与成果">
+    任务与成果
   </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#数值方法">
-    数值方法
+<a class="md-nav__link" href="#创新点--贡献">
+    创新点 &amp; 贡献
   </a>
-<nav aria-label="数值方法" class="md-nav">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#方法">
+    方法
+  </a>
+<nav aria-label="方法" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#梯度下降">
-    梯度下降
-  </a>
-<nav aria-label="梯度下降" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#确定下降方向">
-    确定下降方向
+<a class="md-nav__link" href="#数据集">
+    数据集
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#确定下降步长">
-    确定下降步长
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#全局最优和局部最优">
-    全局最优和局部最优
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#鲁棒估计">
-    鲁棒估计
-  </a>
-<nav aria-label="鲁棒估计" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#内点--外点">
-    内点 &amp; 外点
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#不同的损失函数">
-    不同的损失函数
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#随机抽样一致">
-    随机抽样一致
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#病态问题">
-    病态问题
-  </a>
-<nav aria-label="病态问题" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#过拟合和欠拟合">
-    过拟合和欠拟合
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#插值">
-    插值
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#图割--马可夫随机场">
-    图割 &amp; 马可夫随机场
-  </a>
-<nav aria-label="图割 &amp; 马可夫随机场" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#图像标签问题">
-    图像标签问题
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#图割">
-    图割
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#马可夫随机场">
-    马可夫随机场
+<a class="md-nav__link" href="#loss">
+    Loss
   </a>
 </li>
 </ul>
@@ -1164,371 +1032,103 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="lecture-4--model-fitting-and-optimization">Lecture 4 | Model Fitting and Optimization<a class="headerlink" href="#lecture-4--model-fitting-and-optimization" title="Permanent link">¶</a></h1>
+<h1 id="_1"><a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4134 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 14 分钟</p>
-</div>
-<h2 id="优化">优化<a class="headerlink" href="#优化" title="Permanent link">¶</a></h2>
-<p>首先我们来定义一个<strong>优化(Optimization)</strong>问题的模型：</p>
-<div class="admonition definition">
-<p class="admonition-title">优化问题的模型</p>
-<p>设<strong>目标函数</strong><span class="arithmatex">\(f_0(\vec x)\)</span> 满足<strong>约束条件</strong>：</p>
-<div class="arithmatex">\[
-\left\{
-\begin{array}{ll}
-    &amp;f_i(\vec x) \leq 0,  &amp;i = 1,...,m &amp; \text{inequality constraint functions} \\
-    &amp;g_i(\vec x) = 0,  &amp;i = 1,...,p &amp; \text{equality constraint functions}&amp;
-\end{array}
-\right.
-\]</div>
-<p>求 <span class="arithmatex">\(\vec x\in \mathrm{R}^n\)</span> ，使 <span class="arithmatex">\(f_0(\vec{x})\)</span> 最小（即最优）。</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1305 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 4 分钟</p>
 </div>
 <blockquote>
-<p>很显然，这和我们高中接触的线性规划很像，实际上线性规划就是其中一种优化问题。</p>
+<p>TRACE = <strong>T</strong>emporal <strong>R</strong>egression of <strong>A</strong>vatars with dynamic <strong>C</strong>ameras in 3D <strong>E</strong>nvironments</p>
 </blockquote>
-<p>而接下来，我们需要尝试将一些复杂问题转化为优化问题，即根据问题，写出目标函数和约束条件，并通过一些方法来得到我们需要的 <span class="arithmatex">\(\vec x\)</span>。</p>
-<div class="admonition eg">
-<p class="admonition-title">🌰 图像去模糊问题</p>
-<p>在这个 🌰 中，我们已知模糊图像 <span class="arithmatex">\(Y\)</span> 和模糊滤波器(卷积核) <span class="arithmatex">\(F\)</span>，需要通过优化的方法来求卷积运算之前的清晰图像 <span class="arithmatex">\(X\)</span>。</p>
-<p>进一步来说，就是找到清晰的图像 <span class="arithmatex">\(X\)</span>，使得它做模糊处理后与已知的模糊图像 <span class="arithmatex">\(Y\)</span> 差别尽可能小，于是问题转化为：</p>
-<ul>
-<li>目标函数为 <span class="arithmatex">\(\min\limits_{X} || Y - F * X ||^2_2\)</span> 的优化问题。</li>
-</ul>
-</div>
-<hr/>
-<h3 id="模型拟合">模型拟合<a class="headerlink" href="#模型拟合" title="Permanent link">¶</a></h3>
-<p>为了研究分析实际问题，我们需要对问题进行一个建模，更具体的来说就是根据实际情况，寻找数据之间的关系，并建立数学模型。</p>
-<p>一个数学<strong>模型(model)</strong>描述问题中输入和输出的关系，例如：线性模型(linear model) <span class="arithmatex">\(b = a^T x\)</span> 就描述了输入(input) <span class="arithmatex">\(a\)</span> 和输出(output) <span class="arithmatex">\(b\)</span> 关于模型参数(model parameter) <span class="arithmatex">\(x\)</span> 的关系。</p>
-<p>而实际的结果很难严格满足数学模型，这是由多方原因导致的，所以我们往往做的是对实际情况进行<strong>模型拟合(model fitting)</strong>。</p>
-<p>更具体的来说，我们可能已经有一个先验的假设，即数据符合哪种模型，接下来根据数据来分析得到合适的 model parameters，而这个步骤也常常被称为 learning。</p>
-<p>一种比较经典的逼近方法（<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95">最小二乘法</a>）是求使<strong><a href="https://zh.wikipedia.org/wiki/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE">均方误差(mean square error)MSE</a></strong>最小的 model parameters：</p>
-<p><span class="arithmatex">\(\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2\)</span></p>
-<p>而如果我们假设数据中的噪声是高斯分布的（实际上大部分噪声在基数足够大的情况下都可以看作为高斯分布的），那么可以与统计学的<strong>极大似然估计(maximum likelihood estimation)MLE</strong>相统一.</p>
-<div class="admonition success">
-<p class="admonition-title">MSE vs. MLE</p>
-<p><a href="https://medium.com/analytics-vidhya/mse-vs-mle-for-linear-regression-f4ce3f6b990e">MSE vs MLE for linear regression</a></p>
-</div>
-<p>具体来说，<span class="arithmatex">\(b_i = a_i^T x + n, \;\; n \sim G(0,\sigma)\)</span>，而对于给定的 <span class="arithmatex">\(x\)</span>，其<strong>似然(likehood)</strong><span class="arithmatex">\(P[(a_i,b_i)|x] = P[b_i-a_i^Tx] \propto \exp \left( - \frac{(b_i-a_i^Tx)^2}{2\sigma^2} \right)\)</span>，表示在 model parameter 为 <span class="arithmatex">\(x\)</span> 的情况下，数据符合 <span class="arithmatex">\((a_i,b_i)\)</span> 的可能性。</p>
-<details class="definition" open="open">
-<summary>Maximum Likelihood Estimation</summary>
-<p><!--Copy from https://github.com/sakuratsuyu/Note/blob/master/docs/Computer_Science_Courses/ICV/4_Model_Fitting_and_Optimization.md?plain=1-->
-If the data points are<strong>independent</strong>,</p>
-<div class="arithmatex">\[
-\begin{align}
-P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\limits_iP[b_i - a_{i^{Tx]}} \\
-&amp; \propto \exp\left(-\frac{\sum_i(b_i - a_i^Tx)^2}{2\sigma^2}\right) = \exp\left(-\frac{||Ax-b||^2_2}{2\sigma^2}\right)
-\end{align}
-\]</div>
-<p>That is, maximize the likelihood to find the best <span class="arithmatex">\(x\)</span>.</p>
-<div class="arithmatex">\[
-\begin{align}
-\hat x &amp;= \mathop{\arg \max\limits_x} P[(a_1, b_1)(a_2, b_2)\dots|x] \\ &amp;= \mathop{\arg \max\limits_x} \exp\left(-\frac{||Ax-b||^2_2}{2\sigma^2}\right) 
-= \mathop{\arg \min\limits_x}||Ax - b||_2^2
-\end{align}
-\]</div>
-</details>
-<div class="admonition tip">
-<p class="admonition-title">MSE = MLE with Gaussian noise assumption</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">需要补数学知识，完善这部分内容</p>
-</div>
-<hr/>
-<h2 id="数值方法">数值方法<a class="headerlink" href="#数值方法" title="Permanent link">¶</a></h2>
-<p>上一小节介绍了如何对实际问题进行数学建模，接下来需要介绍的是如何求解数学模型。</p>
-<p>我们知道，对于一些比较简单的模型，我们可以直接求其<strong>解析解(analytical solution)</strong>，比如使用求导等方法。</p>
-<div class="admonition example">
-<p class="admonition-title">🌰</p>
-<p>以刚才的线性 MSE 为例，<span class="arithmatex">\(\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2\)</span> 等效于求解等式 <span class="arithmatex">\(A^TAx=A^Tb\)</span>。</p>
-</div>
-<p>然而，实际情况是大部分问题过于复杂，我们没法直接求其解析解，所以我们需要采用一些即采用一些<strong>数值方法(numerical methods)</strong>。</p>
-<hr/>
-<h3 id="梯度下降">梯度下降<a class="headerlink" href="#梯度下降" title="Permanent link">¶</a></h3>
-<blockquote>
-<p>由于相关领域的“函数”等基本上都是高维的，所以我们一般使用二维函数图像的方法来形象表示函数，即使用“等高线”的形式来可视化函数。</p>
-</blockquote>
-<p>虽然没法直接求解析解，但是一般函数都具有一些局部性质，例如极值点临域的梯度都指向极值点。模糊地来说，只要我们随着“梯度”去“下降”，就有可能找到极值点，这就是通过<strong>梯度下降(gradient descent)</strong>的方法来解决优化问题。</p>
-<p>简单描述梯度下降的过程：</p>
+<h3 id="任务--挑战">任务 &amp; 挑战<a class="headerlink" href="#任务--挑战" title="Permanent link">¶</a></h3>
+<h4 id="背景">背景<a class="headerlink" href="#背景" title="Permanent link">¶</a></h4>
+<p>虽然目前对于 HPS(Human Pose &amp; Shape) 的估计已经有很多很好的工作，但是都是得到相机座标下的结果，无法很好的得到全局座标系下的结果。尤其是在相机移动的情况下，这个任务尤其困难。而得到恢复出来的 Human 的全局座标具有重大意义。</p>
+<h4 id="挑战">挑战<a class="headerlink" href="#挑战" title="Permanent link">¶</a></h4>
 <ol>
-<li>初始化起点坐标 x；</li>
-<li>直到 x 收敛到我们满意的程度之前：<ol>
-<li>计算下降方向 <em>p</em>；</li>
-<li>决定下降步长 ⍺；</li>
-<li>更新 x = x + ⍺<em>p</em>；</li>
+<li>需要解偶 human 的运动和 camera 的运动，这样才能在全局座标系下恢复 human 的轨迹；<ol>
+<li>一种方法：使用 SfM 恢复出相机关于 rigid scene 的相对运动，但是在特殊环境（画面的大部分都不怎么 rigid，比如大量人流）下非常不可靠；</li>
+<li>另外一种来自 GLAMR 的方法：通过已有的局部姿态来推断全局位置，就类似于看你走了几步然后估计你动了几米；</li>
+<li>TRACE 选择了第二种方法的变种，通过使用<strong>整个画面</strong>来预测移动距离，改善了 GLAMR 原本不怎么好的效果。不仅如此，GLAMR 是多阶段的，鲁棒性不敌 TRACE；</li>
+</ol>
+</li>
+<li>尤其针对于追踪功能，在密集人群场景，存在很严重的遮挡问题；<ol class="task-list">
+<li>最常见的解决办法是使用时序先验假设，如 Kalman filter，但是在复杂场景下也很容易失效；</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：Kalman filter 好像和滤波有关？为什么说是 temporal priors？ 使平滑。</li>
+<li>PHALP 是为数不多的解决这个问题的方法之一，但是它并非 one-stage，而且并不对序列进行全面的推理；</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：需要了解这个吗？ 跳过。</li>
 </ol>
 </li>
 </ol>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/56.png"><img alt="" src="../img/56.png"/></a> </center></p>
-<blockquote>
-<p>Sourece: <a href="https://commons.wikimedia.org/w/index.php?curid=2283984">https://commons.wikimedia.org/w/index.php?curid=2283984</a></p>
-</blockquote>
-<p>其中有三件事需要特殊说明：</p>
+<h4 id="任务与成果">任务与成果<a class="headerlink" href="#任务与成果" title="Permanent link">¶</a></h4>
+<p>本工作实现了动态相机视频（DC-videos）下在（虚拟的）空间中的时序的对于 K 目标的定位检测、姿态估计、追踪和冲突适配，并且能够得到全局的座标。
+- 时序 &amp; 全局座标 &amp; 追踪；</p>
+<p>对 K 个有限目标进行追踪，即使中途短暂的失配，也能在之后被重新识别（一开始决定了哪 K 个就一直是哪 K 个人）。</p>
+<h3 id="创新点--贡献">创新点 &amp; 贡献<a class="headerlink" href="#创新点--贡献" title="Permanent link">¶</a></h3>
 <ul>
-<li>如何确定下降方向 <span class="arithmatex">\(\vec p\)</span></li>
-<li>如何确定下降步长</li>
-<li>全局最优和局部最优</li>
+<li>提供了 5D 的表达方式，抽象来说需要包括：时(1)空(3)座标 + 主体特征(1，抽象一点来看)；</li>
+<li>end2end 并且 one stage 的方法；</li>
+<li>受到 BEV 启发，引入了了一种鸟瞰视角的 2D map 来推理 3D 中的 Human。这个 map 和一个以图片为中心的 map 一起用来推理 Human 的 3D 座标。类似的还有一堆其他的 map；</li>
+<li>一个 memory unit，来做一些 long-term 的事情，比如对遮挡甚至暂时失配的鲁棒的追踪；</li>
+<li>一个主要用全景视频模拟  DC-video 的数据集；</li>
 </ul>
-<h4 id="确定下降方向">确定下降方向<a class="headerlink" href="#确定下降方向" title="Permanent link">¶</a></h4>
-<p>对于我们以前接触过的函数，即形式相对简单的函数，我们当然可以直接求其梯度得到下降方向。然而实际问题中的函数可能非常复杂，或梯度解析式很难得到。这时候我们就只能退而求其次，求其“近似”梯度方向。换句话来说，我们希望能够找到一个和原函数在局部和该函数很像的拟合函数，并且用这个拟合函数的梯度方向来决定梯度下降的方向。</p>
-<p>于是我们想到泰勒展开，它将函数展开为多项式，而多项式的梯度是相对容易得到的。</p>
-<p>其中比较常用的是：</p>
+<h3 id="方法">方法<a class="headerlink" href="#方法" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/Pasted%20image%2020230912203621.png"><img alt="" src="assets/Pasted%20image%2020230912203621.png"/></a></p>
+<p>参考流程图做解释。</p>
 <ul>
-<li>first-order approximation: <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x\)</span></li>
-<li>second-order approximation: <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^T H_F \Delta x\)</span></li>
-</ul>
-<p>其中 <span class="arithmatex">\(J_F\)</span> 是<strong><a href="https://zh.m.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94%E7%9F%A9%E9%98%B5">雅各比矩阵</a></strong>，可以理解为多维向量函数的导数；<span class="arithmatex">\(H_F\)</span> 是<strong><a href="https://zh.m.wikipedia.org/zh-hans/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%99%A3">海森矩阵</a></strong>，可以理解为多位向量函数的二阶导数。</p>
-<p>接下来以 first-order approximation 为例继续分析。</p>
-<p>观察 <span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F \Delta x\)</span>，发现当 <span class="arithmatex">\(J_F\Delta x &lt; 0\)</span> 时， <span class="arithmatex">\(F(x_0 + \Delta x)\)</span> 大概率比 <span class="arithmatex">\(F(x_0)\)</span> 小，即“下降”，所以在 first-order approximation 的情况下，一般选择方向 <span class="arithmatex">\(\vec p = -J_F^T\)</span>，于是位移量 <span class="arithmatex">\(movement = -J_F \cdot J_F^T \cdot step\)</span>。</p>
-<hr/>
-<h4 id="确定下降步长">确定下降步长<a class="headerlink" href="#确定下降步长" title="Permanent link">¶</a></h4>
-<p>即使但从下降速率来考虑，步长太长或太小也都有明显的问题：</p>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/57.png"><img alt="" src="../img/57.png"/></a> </center></p>
-<p>所以步长的选择对下降速率的十分关键。</p>
-<p>为了专注于步长的选择，我们记 <span class="arithmatex">\(\phi(\alpha) = F(x+\alpha h),\;\;\text{where x and h fixed}, x\geq 0\)</span>。现在我们希望找到一个能让 <span class="arithmatex">\(\phi(\alpha)\)</span> 尽可能小于 <span class="arithmatex">\(\phi(0)\)</span> 的 <span class="arithmatex">\(\alpha\)</span>。接下来我们介绍 Backtracking Algorithm：</p>
-<ol>
-<li>初始化 <span class="arithmatex">\(\alpha\)</span> 为一个比较大的值；</li>
-<li>不断减小 <span class="arithmatex">\(\alpha\)</span> 直到 <span class="arithmatex">\(\phi(\alpha) \leq \phi(0) + \gamma\phi'(0)\alpha\)</span>；<ul>
-<li>其中 <span class="arithmatex">\(\gamma\in(0,1)\)</span> 是一个固定的参数；</li>
+<li>输入的 Video 按帧输入，即输入 N 张图片；同时 user 指定需要追踪的人数 K；</li>
+<li>随后，图片序列分别通过 Image backbone 和 Motion backbone 得到单帧的特征 map <span class="arithmatex">\(F_i\)</span> 和光流 map <span class="arithmatex">\(O_i\)</span>；<ul>
+<li>Image backbone(HRNet-32) 线里，利用 <span class="arithmatex">\(F_{i-1}\)</span> 和 <span class="arithmatex">\(F_{i}\)</span>，以及上一个时序特征传播模(temporal feature propagation module, ConvGRU)块得到的 <span class="arithmatex">\(H_{i-1}\)</span>，预测这一帧的时序特征，并得到经过模糊的——包含时序信息的特征 map <span class="arithmatex">\(F_i'\)</span>；<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：这里的 ConvGRU 相关的不是很清楚，比如 <span class="arithmatex">\(H_i\)</span> 是什么？ 暂时跳过。</li>
 </ul>
 </li>
-</ol>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/58.png"><img alt="" src="../img/58.png" width="40%"/></a> </center></p>
-<blockquote>
-<p>换句话说就是，符合预期的最大步长，这个“预期”，就是通过 <span class="arithmatex">\(\gamma\)</span> 体现的。图中红色虚线和黑色细线分别是 <span class="arithmatex">\(\gamma\)</span> 取边界值时的情况，而红色实线则表示我们的预期随 <span class="arithmatex">\(\alpha\)</span> 的变化。</p>
-</blockquote>
-<hr/>
-<p>上面使用 first-order approximation 为例介绍的这套方法就是<strong>最速梯度下降法(steepest descent method)</strong>。</p>
-<div class="admonition section">
-<p class="admonition-title">最速梯度下降法</p>
-<p><span class="arithmatex">\(\vec p = -J_F^T\)</span>；</p>
-<ul>
-<li>优点<ul>
-<li>容易实现；</li>
-<li>在距离目标点较远时表现良好；</li>
+<li>Motion backbone(RAFT) 计算光流；</li>
 </ul>
 </li>
-<li>缺点<ul>
-<li>在目标点附近收敛比较慢；</li>
-<li>浪费了大量算力；</li>
+<li>在完成时序特征提取(temporal feature extraction)以后，是一系列的 head network，它们并不完全平行，部分 branch 和其它 branch 有先后要求，但是既然图都这么画了，这里就当平行的模块来讲；<ul>
+<li>Detection 模块，以时序图像特征 <span class="arithmatex">\(F_i'\)</span> 为输入；<ul>
+<li>相机座标系；</li>
+<li>使用正视和俯视两个方向的 view maps 合成预测（来则 BEV），得到一个 3D 中心 map(3D Center map) <span class="arithmatex">\(M_C^{3D}\in \mathrm{R}^{1\times D\times H\times W}\)</span> 和一个 3D 定位 map(3D Localization map) <span class="arithmatex">\(M_{L}^{3D} \in \mathrm{R}^{1\times D\times H\times W}\)</span>；</li>
+<li>从 <span class="arithmatex">\(M_C^{3D}\)</span> 中得到 K 个对象的 3D 中心 <span class="arithmatex">\(\tilde t_{i}\)</span> 及其置信度 <span class="arithmatex">\(c_i\)</span>，然后从 <span class="arithmatex">\(M_{L}^{3D}\)</span> 中在 <span class="arithmatex">\(\tilde t_{i}\)</span> 处采样从 <span class="arithmatex">\(\tilde t_{i}\)</span> 指向精确位置的偏移向量 <span class="arithmatex">\(\Delta t_i\)</span>，于是得到精确的位置为 <span class="arithmatex">\(t_i = \tilde{t}_i + \Delta t\)</span>；<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：为啥要两步，不能直接得到精确位置吗？ 需要实验证明。</li>
 </ul>
 </li>
 </ul>
-<p>这是因为，最速梯度下降法主要采用的是 first-order approximation，没有体现曲率特征。</p>
-</div>
-<p>因而一种很自然的改进方法就是使用 second-order approximation，即<strong>牛顿法(Newton Method)</strong>。</p>
-<div class="admonition section">
-<p class="admonition-title">牛顿法</p>
-<p><span class="arithmatex">\(F(x_k + \Delta x) \approx F(x_k) + J_F\Delta x + \frac{1}{2}\Delta x^T H_F \Delta x\)</span></p>
-<p>对它求导得到 <span class="arithmatex">\(\frac{\partial F}{\partial \Delta x} = J_F^T+H_F\Delta x = 0\)</span>。</p>
-<p>所以得到方向为 <span class="arithmatex">\(\vec p = \Delta x =  -H_F^{-1}J_F^T\)</span></p>
-<ul>
-<li>优点<ul>
-<li>在目标点附近下降速度相对更快；</li>
-</ul>
 </li>
-<li>缺点<ul>
-<li>Hessian matrix 的计算需要相当算力，甚至有时候无法计算；</li>
+<li>Tracking 模块，以时序图像特征 <span class="arithmatex">\(F_i'\)</span> 和光流 <span class="arithmatex">\(O_i\)</span> 为输入；<ul>
+<li>相机座标系；</li>
+<li>使用 <span class="arithmatex">\(F_i'\)</span> 和 <span class="arithmatex">\(O_i\)</span> 预测 3D 运动偏移 map(3D Motion Offset map) <span class="arithmatex">\(M^{3D}_{M} \in \mathrm{R}^{3\times D\times H\times W}\)</span>，来推理人在 3D 空间中的位置偏移 <span class="arithmatex">\(\Delta m_i\)</span>，这个偏移只是用来做 tracking 的；</li>
+<li>利用 <span class="arithmatex">\(\Delta m_i\)</span>，<span class="arithmatex">\(t_i\)</span> 和 <span class="arithmatex">\(c_i\)</span>，在 Memory unit 的作用下实现追踪；</li>
+<li>Memory unit 的工作流程分三个步骤：<ul>
+<li>初始化；</li>
+<li>匹配；</li>
+<li>更新；</li>
 </ul>
 </li>
 </ul>
-</div>
-<p>由此发现，牛顿法的表现会好很多，如果能够避免计算黑塞矩阵，就可以进一步提高牛顿法的效果，于是就出现了<strong>高斯牛顿法(Gauss-Newton method)</strong>。</p>
-<div class="admonition section">
-<p class="admonition-title">高斯牛顿法</p>
-<blockquote>
-<p>对于解决最小二乘法 <span class="arithmatex">\(\hat x = \mathop{\arg \min\limits_x} ||R(x)||^2_2\)</span> 的问题表现非常好。</p>
-</blockquote>
-<p>对于这类问题，高斯牛顿法使用 <span class="arithmatex">\(J_R^TJ_R\)</span> 来近似代替 <span class="arithmatex">\(H_F\)</span>，得到下降方向为 <span class="arithmatex">\(\vec p = -(J_R^TJ_R)^{-1}J_R^T,\;\;\text{where }J_R\text{ is the Jacobian of }R(x)\)</span>。</p>
-<ul>
-<li>优点<ul>
-<li>不需要计算 Hessian matrix，只需要计算 Jacobian matrix；</li>
+</li>
+<li>Mesh 模块，以时序图像特征 <span class="arithmatex">\(F_i'\)</span> 和光流 <span class="arithmatex">\(O_i\)</span> 为输入；<ul>
+<li>得到 SMPL 结果；</li>
 </ul>
 </li>
-<li>缺点<ul>
-<li>由于 <span class="arithmatex">\(J_R^TJ_R\)</span> 不正定，所以未必可逆，高斯牛顿法成立的前提是其可逆；</li>
-<li>当然，可以使用 Levenberg-Marquardt 算法（LM 算法），即将 <span class="arithmatex">\(J_R^TJ_R\)</span> 修正为 <span class="arithmatex">\(J_R^TJ_R + \lambda I\)</span> 以保证正定；</li>
+<li>World 模块，以时序图像特征 <span class="arithmatex">\(F_i'\)</span> 和光流 <span class="arithmatex">\(O_i\)</span> 为输入；<ul>
+<li>即之前提到的使用 pose 来估计全局的动作；</li>
 </ul>
 </li>
 </ul>
-<details class="summary" open="open">
-<summary>Levenberg-Marquardt</summary>
-<p>Wiki: <a href="https://zh.wikipedia.org/wiki/%E8%8E%B1%E6%96%87%E4%BC%AF%E6%A0%BC-%E9%A9%AC%E5%A4%B8%E7%89%B9%E6%96%B9%E6%B3%95">🔗</a></p>
-<div class="arithmatex">\[
-\Delta x = -(J_R^TJ_R+\lambda I)^{-1}J_R^TR(x_k)
-\]</div>
-<ul>
-<li>The effect of <span class="arithmatex">\(\lambda\)</span>:<ul>
-<li><span class="arithmatex">\(\lambda \to \infty\)</span>: Gradient descent, and stepsize is small;</li>
-<li><span class="arithmatex">\(\lambda \to 0\)</span>: Gauss-Newton step;</li>
-</ul>
-</li>
-<li>How to determine <span class="arithmatex">\(\lambda\)</span>:<ul>
-<li>Update in every iteration;</li>
-<li>When decreases obviously, <span class="arithmatex">\(\lambda\uparrow\)</span>;</li>
-<li>When doesn't decrease obviously, <span class="arithmatex">\(\lambda\downarrow\)</span>;</li>
-</ul>
 </li>
 </ul>
-<p>简单来说，LM 就是综合了最速梯度下降法和牛顿法的优点，在远离目标点的时候使用最速梯度下降法，保证启动速度快；在靠近目标点的时候使用牛顿法，保证收敛速度足够快；并且保证 <span class="arithmatex">\(J_R^TJ_R+\lambda I\)</span> 正定，所以始终能够使牛顿法成立。</p>
-</details>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">带约束的优化问题</p>
-<p>对于<strong>带约束的优化问题(constrained optimization)</strong>，则需要<strong>根据实际问题</strong>求解。</p>
-<ul>
-<li>我们可能可以转化问题，使用更简单的表达式去拟合原来的表达式，来求解；</li>
-<li>其中，（凹）凸函数是一定能找到最优解的，我们称这种问题为凸优化问题(Convex optimization)</li>
-</ul>
-<blockquote>
-<p>推荐同名读物：<a href="https://web.stanford.edu/class/ee364a">https://web.stanford.edu/class/ee364a</a></p>
-</blockquote>
-</div>
-<hr/>
-<h4 id="全局最优和局部最优">全局最优和局部最优<a class="headerlink" href="#全局最优和局部最优" title="Permanent link">¶</a></h4>
-<p>分多个 batch 来处理，大量撒点，然后比较每一个 batch 的结果，最终取最好的一个即可。</p>
-<hr/>
-<h2 id="鲁棒估计">鲁棒估计<a class="headerlink" href="#鲁棒估计" title="Permanent link">¶</a></h2>
-<p><strong><a href="https://en.wikipedia.org/wiki/Robust_statistics">鲁棒估计(robust estimation)</a></strong>是对从各种概率分布（尤其是非正态分布）中提取的数据具有良好性能的统计。</p>
-<p>在拟合模型中，难免出现一些不符合预期的点，而它们会对拟合结果产生或多或小的影响，而如何权衡这些噪声与真正有用的数据点之间的关系，就是鲁棒估计的课题。</p>
-<hr/>
-<h3 id="内点--外点">内点 &amp; 外点<a class="headerlink" href="#内点--外点" title="Permanent link">¶</a></h3>
-<p>首先我们对数据点进行分类：</p>
-<ul>
-<li>内点(inlier)：符合我们预期的模型拟合的点；</li>
-<li>外点(outlier)：完全不符合我们预期模型的点，又叫离群；</li>
-</ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/59.png"><img alt="" src="../img/59.png"/></a></p>
-<div class="admonition error">
-<p class="admonition-title">外点的影响</p>
-<p>由于外点偏离很大，而最小二乘法中存在平方操作，所以最小二乘法拟合受这些外点影响很大：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/60.png"><img alt="" src="../img/60.png"/></a></p>
-</div>
-<hr/>
-<h3 id="不同的损失函数">不同的损失函数<a class="headerlink" href="#不同的损失函数" title="Permanent link">¶</a></h3>
-<p>于是我们考虑，可以更换拟合的损失函数，来减小大偏差点带来的影响，比如使用 L1 loss(即求绝对值)。不过更好的是一种选择叫 huber loss，它在距离远点较远的时候比较接近 L1 loss。</p>
-<details class="note">
-<summary>L1 &amp; L2 &amp; Huber</summary>
-<ul>
-<li>L1 loss 即直接对偏差取绝对值，其公式为 <span class="arithmatex">\(L_1 = |f(x)-Y|\)</span>，其最大的问题就是在拐点处不光滑，即不可导，而且其收敛可能过快；</li>
-<li>L2 loss 即将偏差取平方，即 <span class="arithmatex">\(L_2 = |f(x)-Y|^2\)</span>，L2 loss 在拐点处则是光滑可导的，且收敛相对稳定光滑，但是且在某些时候具有比较好的几何意义，但是对于偏差较大的点更敏感；</li>
-<li>Huber loss 又叫 smooth L1 loss，即使用分段函数，在拐点附近使用 L2 loss，在远端使用 L1 loss；</li>
-</ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/61.png"><img alt="" src="../img/61.png"/></a></p>
-<ul>
-<li>相关文章：<a href="https://zhuanlan.zhihu.com/p/48426076">https://zhuanlan.zhihu.com/p/48426076</a></li>
-</ul>
-</details>
-<hr/>
-<h3 id="随机抽样一致">随机抽样一致<a class="headerlink" href="#随机抽样一致" title="Permanent link">¶</a></h3>
-<p><strong><a href="https://zh.wikipedia.org/wiki/%E9%9A%A8%E6%A9%9F%E6%8A%BD%E6%A8%A3%E4%B8%80%E8%87%B4">随机抽样一致(random sample consensus)RANSAC</a></strong>采用迭代的方式从包含外点的数据中估计数学模型参数，是一个对于存在明显外点的数据非常有效的方法。</p>
-<div class="admonition summary">
-<p class="admonition-title">RANSAC procedure</p>
-<ol>
-<li>首先随机找两个点拟合一条直线，然后检查有多少点符合这条直线，并对其进行 vote；</li>
-<li>重复这个步骤，最后选择票数最高的拟合；</li>
-</ol>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/62.png"><img alt="" src="../img/62.png"/></a></p>
-</div>
-<p>由 outlier 拟合出来的直线一般 votes 比较少，因为 outlier 之间很难一致；但是inlier之间容易一致，因而得分往往更高，于是将它们区分开来。<del>这不就是 Voting Tree (逃</del></p>
-<hr/>
-<h2 id="病态问题">病态问题<a class="headerlink" href="#病态问题" title="Permanent link">¶</a></h2>
-<p>如果一个问题的解不唯一，那么这个问题是一个<strong>病态问题(ill-posed problem)</strong>。特别的，在线性问题中，一个线性方程（组）的解如果不唯一（不满秩），则同样是一个病态问题。</p>
-<p>当然，对于线性方程组，根据线性代数的知识，我们可以增加方程，即增加约束。而这种约束一般来自于对变量的先验约束，比如：</p>
-<div class="admonition note">
-<p class="admonition-title">L2 regularization</p>
-<p><strong>L2 norm</strong>: <span class="arithmatex">\(||x||_2 = \sum_i x_i^2\)</span>;</p>
-<p><strong>L2 regularization</strong>: <span class="arithmatex">\(\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_2 \leq 1\)</span>;</p>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/63.png"><img alt="" src="../img/63.png" width="30%"/></a> </center></p>
-<blockquote>
-<p>通过让选择的解尽可能接近原点，而让我们没有用的解的维度尽可能接近 0，以减小没用的变量的影响，抑制冗余变量。</p>
-</blockquote>
-</div>
-<div class="admonition note">
-<p class="admonition-title">L1 regularization</p>
-<p><strong>L1 norm</strong>: <span class="arithmatex">\(||x||_1=\sum_i|x_i|\)</span>;</p>
-<p><strong>L1 regularization</strong>: <span class="arithmatex">\(\min\limits x ||Ax-b||^2_2\;\;s.t. ||x||_1 \leq 1\)</span></p>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/64.png"><img alt="" src="../img/64.png" width="30%"/></a> </center></p>
-<blockquote>
-<p>L1 可视化中可以发现，坐标轴上比较容易抓住解，此时意味着有些变量(维度)是 0，换句话来说能让解变得“<strong>稀疏(sparse)</strong>”，即在维度上的分布只比较集中于个别项。</p>
-</blockquote>
-</div>
-<p>不过，将他们作为约束条件参与求解，不如直接加进去作为一个项，其效果是等价的：</p>
-<div class="arithmatex">\[
-\begin{matrix}
-    \text{L2 regularization:}               &amp; | &amp; \text{or L1 regularization:}\\
-    \min_{x}||Ax-b||^2_2+\lambda ||x||_2^2  &amp; | &amp; \min_{x}||Ax-b||^2_2+\lambda ||x||_1\\
-    s.t. ||x||_2 \leq 1                     &amp; | &amp; s.t. ||x||_1 \leq 1 \\
-\end{matrix}
-\]</div>
-<hr/>
-<h3 id="过拟合和欠拟合">过拟合和欠拟合<a class="headerlink" href="#过拟合和欠拟合" title="Permanent link">¶</a></h3>
-<p>在这个过程中，也要小心<strong>过拟合(overfitting)</strong>和<strong>欠拟合(underfitting)</strong>，它们的含义非常直白：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/65.png"><img alt="" src="../img/65.png"/></a></p>
-<hr/>
-<h2 id="插值">插值<a class="headerlink" href="#插值" title="Permanent link">¶</a></h2>
-<p><strong>插值(interpolation)</strong>其实已经在 <a href="../Lec03/#放大图片向上采样--插值">lec 3 的笔记</a> 里提到过了。</p>
-<p>这里先略过。</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: 再细说。</li>
-</ul>
-<details class="bug">
-<summary>sketch</summary>
-<p>线性拟合、二次样条插值（每一段都是一个二次函数）、三次样条插值（一阶导二阶导连续，但最终是个病态问题，需要额外再约束起点和终点二阶导为零或者限定给定斜率等，就需要俩额外约束条件）、</p>
-</details>
-<hr/>
-<p>上面是连续优化问题，下面是离散优化问题</p>
-<h2 id="图割--马可夫随机场">图割 &amp; 马可夫随机场<a class="headerlink" href="#图割--马可夫随机场" title="Permanent link">¶</a></h2>
-<h3 id="图像标签问题">图像标签问题<a class="headerlink" href="#图像标签问题" title="Permanent link">¶</a></h3>
-<p><strong>图像标签问题(image labeling problems)</strong>即通过图片信息给每一个像素分配标签，实际上就是一个对图像内容的分类和识别问题。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/66.png"><img alt="" src="../img/66.png"/></a></p>
-<p>其中一个比较强的<strong>先验(prior)</strong>是：相邻且相似的像素应当拥有相同的标签。</p>
-<p>而图割和马可夫随机场可以建模这种先验。</p>
-<hr/>
-<h3 id="图割">图割<a class="headerlink" href="#图割" title="Permanent link">¶</a></h3>
-<p><strong>图割(Graphcut)</strong>的核心思想是，把一张图片的每一个像素看作一个 graph 中的 vertex，并在像素之间建 edge，并将 weight 定义为两像素之间的相似性或关联性(affinity or similarity)。</p>
-<div class="admonition success">
-<p class="admonition-title">measuring affinity</p>
-<p>比如，我们可以这样衡量像素的相似性：</p>
-<ul>
-<li>设 <span class="arithmatex">\(f\)</span> 表示颜色；</li>
-<li>像素差异(dissimilarity)为 <span class="arithmatex">\(s(f_i,f_j)=\sqrt{\sum_k(f_{ik},f_{jk})^2}\)</span>；</li>
-<li>则相似性(affinity)权重为：<span class="arithmatex">\(w(i,j) = A(f_i,f_j) = e^{\frac{-1}{2\sigma^2}s(f_i,f_j)}\)</span>；</li>
-</ul>
-</div>
-<p>再接下来，通过这样的方式将图片建成图后，就可以把问题转化为图割问题，我们将小权的边删去，最终会形成若干连通分量，而这些连通分量那的点则被视为一个“分割”。</p>
-<p>具体来说，图割的代价为断的边权之权重和 <span class="arithmatex">\(cut(V_A,V_B)= \sum_{u\in V_A, v\in V_B} w(u,v)\)</span>，而我们需要找代价尽可能小的，满足我们要求的图割。当然，这个问题也等效于最大流问题；</p>
-<div class="admonition warning">
-<p class="admonition-title">Problem with min-cut</p>
-<blockquote>
-<p>Bias to cut small, isolated segments.</p>
-</blockquote>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/67.png"><img alt="" src="../img/67.png"/></a></p>
-</div>
-<p>由于 min-cut 的这个问题，我们还需要衡量这个子集是否足够稠密，所以我们倾向于使用 normalized-cut。</p>
-<div class="arithmatex">\[
-assoc(V_A,V) = \sum_{u\in V_A, v\in V} w(u,v) \\
-NCut(V_A,V_B) = \frac{cut(V_A,V_B)}{assoc(V_A,V)} + \frac{cut(V_A,V_B)}{assoc(V_B,V)}
-\]</div>
-<ul>
-<li>NP-Complete</li>
-<li>Approximate solution by eigenvalue decomposition</li>
-</ul>
-<hr/>
-<h3 id="马可夫随机场">马可夫随机场<a class="headerlink" href="#马可夫随机场" title="Permanent link">¶</a></h3>
-<p><strong>马可夫随机场(Markov Random Field)MRF</strong>是一种更通用的解决方案，可惜我第一次没听懂，等我听懂了再来补充这里的内容。</p>
-<details class="bug">
-<summary>sketch</summary>
-<p>Markov chains</p>
-</details>
+<h4 id="数据集">数据集<a class="headerlink" href="#数据集" title="Permanent link">¶</a></h4>
+<p>略。</p>
+<h4 id="loss">Loss<a class="headerlink" href="#loss" title="Permanent link">¶</a></h4>
+<p>略。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月4日 17:28:06</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年9月13日 12:42:09</span>
 <br/>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年9月13日 12:42:09</span>
 </small>
 </div>
 <form class="md-feedback" hidden="" name="feedback">
@@ -1617,10 +1217,10 @@ NCut(V_A,V_B) = \frac{cut(V_A,V_B)}{assoc(V_A,V)} + \frac{cut(V_A,V_B)}{assoc(V_
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
-<script src="../../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
-<script src="../../../_js/extra.js"></script>
-<script src="../../../_js/katex.js"></script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
+<script src="../../_js/extra.js"></script>
+<script src="../../_js/katex.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
 <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

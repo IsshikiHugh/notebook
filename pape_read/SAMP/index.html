@@ -913,6 +913,11 @@
         [SA-HMR] Learning Human Mesh Recovery in 3D Scenes
       </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../TRACE/">
+        Index
+      </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -1072,10 +1077,10 @@
 <h3 id="方法">方法<a class="headerlink" href="#方法" title="Permanent link">¶</a></h3>
 <ul>
 <li><code>MotionNet</code>(core)：一个 cVAE，<strong>输入</strong>目标对象和动作，<code>MotionNet</code> 每一帧将<strong>采样</strong>一个潜向量，联合前一帧的动作来控制（即<strong>预测</strong>）下一个动作；<ul>
-<li>包含一个 encoder 和一个 decoder；  <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/20230720095453.png"><img alt="" src="img/20230720095453.png"/></a></li>
+<li>包含一个 encoder 和一个 decoder；  <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/20230720095453.png"><img alt="" src="assets/20230720095453.png"/></a></li>
 <li><span class="arithmatex">\(X_i\)</span> 表示第 <span class="arithmatex">\(i\)</span> 时刻的状态，<span class="arithmatex">\(Z\)</span> 为生成的潜向量，<span class="arithmatex">\(I\)</span> 为交互对象(interaction objects)（以<strong>人物为原点</strong>的体素空间表达）；<ul class="task-list">
 <li>encoder 包含 Interaction Encoder 和 State Encoder，分别将 <span class="arithmatex">\(I\)</span> 和 <span class="arithmatex">\(X\)</span> 编码（使用 3 个 FC）为低维度向量，再拼接起来输入到两个完全相同的 FC 中以预测 <span class="arithmatex">\(\mu\)</span> 和 <span class="arithmatex">\(\sigma\)</span> 即一个潜嵌入空间(latent embedding space)；</li>
-<li>于是我们可以从以上述结果为参数的高斯分布中采样出潜向量 <span class="arithmatex">\(Z\)</span> 作为 decoder 的输入； <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/20230720100605.png"><img alt="" src="img/20230720100605.png"/></a></li>
+<li>于是我们可以从以上述结果为参数的高斯分布中采样出潜向量 <span class="arithmatex">\(Z\)</span> 作为 decoder 的输入； <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/20230720100605.png"><img alt="" src="assets/20230720100605.png"/></a></li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：为什么这里的 <span class="arithmatex">\(j^r_i\)</span> 是 6d 的？（实际上是 9d 旋转矩阵中会变元有 6 个，通过这个 6d 的向量能够还原出这个矩阵，而至于为什么用这个 6d 内容而非角度，可以参考<a href="https://arxiv.org/abs/1812.07035">这篇文章</a>，角度具有突变不连续：<span class="arithmatex">\(2pi = 0\)</span>，所以都不怎么用了）</li>
 <li>decoder 是一个 MoE，有 Prediction Network 和 Gating Network 两个部分，前者负责生成预测结果，后者负责生成各个专家网络的结果合成过程中的权重；</li>
 </ul>
@@ -1089,7 +1094,7 @@
 </li>
 <li><code>GoalNet</code>：用来生成交互点和交互方向(contact points and orientations)，即目标(goals)；<ul>
 <li>该模块让 SAMP 能够适应不同的目标几何体；</li>
-<li>同样包含一个 encoder 和一个 decoder；  <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/20230720101937.png"><img alt="" src="img/20230720101937.png"/></a></li>
+<li>同样包含一个 encoder 和一个 decoder；  <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/20230720101937.png"><img alt="" src="assets/20230720101937.png"/></a></li>
 <li><span class="arithmatex">\(I\)</span> 为交互对象(interaction objects)（以物体<strong>自身为原点</strong>的体素空间表达），<span class="arithmatex">\(\{g^p, g^d\}\)</span> 分别为目标(goal)的位置和方向，<span class="arithmatex">\(Z_{goal}\)</span> 为潜向量；</li>
 <li>使用的 loss 为 <span class="arithmatex">\(||\hat{g}^p - g^p||^2_2 + ||\hat{g}^d - g^d||^2_2 + \beta_2 \mathop{KL}(Q(Z_{goal}|g^p, g^d, I) || p(Z_{goal}))\)</span>；</li>
 </ul>
@@ -1115,11 +1120,11 @@
 <h3 id="训练策略">训练策略<a class="headerlink" href="#训练策略" title="Permanent link">¶</a></h3>
 <p>使用正常的监督训练会导致错误累积(accumulation of error)，因为一次的输出会作为输入进入到下一个网络。所以 SAMP 采用预订采样(scheduled sampling)，它能够稳定生成长时间的动作预估。</p>
 <p>具体来说，上一次的预测结果以 <span class="arithmatex">\(1-P\)</span> 的概率作为下一次预测的输入，其中 <span class="arithmatex">\(P\)</span> 的定义如下：
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/20230720104704.png"><img alt="" src="img/20230720104704.png"/></a></p>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/20230720104704.png"><img alt="" src="assets/20230720104704.png"/></a></p>
 <hr/>
 <h3 id="实验和评估">实验和评估<a class="headerlink" href="#实验和评估" title="Permanent link">¶</a></h3>
 <p>在同初始条件下多次执行同一任务，使用 APD(Average Pairwise Distance) 来衡量其运动幅度：
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/20230720105214.png"><img alt="" src="img/20230720105214.png"/></a></p>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/20230720105214.png"><img alt="" src="assets/20230720105214.png"/></a></p>
 <hr/>
 <h2 id="代码阅读">代码阅读<a class="headerlink" href="#代码阅读" title="Permanent link">¶</a></h2>
 <h3 id="motionnet">MotionNet<a class="headerlink" href="#motionnet" title="Permanent link">¶</a></h3>
@@ -1165,7 +1170,7 @@ p(x) = \frac{1}{\sqrt{2\pi \sigma^2}}   \exp\left[
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年8月3日 14:22:22</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年9月13日 12:42:09</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年5月16日 13:27:54</span>
