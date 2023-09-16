@@ -1,6 +1,15 @@
-# 
+# [TRACE] 5D Temporal Regression of Avatars with Dynamic Cameras in 3D Environments
 
-> TRACE = **T**emporal **R**egression of **A**vatars with dynamic **C**ameras in 3D **E**nvironments
+`3DV` `HMR` `Global-Coordinates` `Track`
+
+!!! info "文章信息"
+    - 文章题目：*TRACE: 5D Temporal Regression of Avatars with Dynamic Cameras in 3D Environments*
+    - 作者：<div class="authors"><span class="descriptor">Authors:</span><a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Sun,+Y">Yu Sun</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Bao,+Q">Qian Bao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+W">Wu Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Mei,+T">Tao Mei</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Black,+M+J">Michael J. Black</a></div>
+    - 项目主页：[🔗](http://www.yusun.work/TRACE/TRACE.html)
+    - 论文：[🔗](https://arxiv.org/abs/2306.02850)
+    - 代码：[🔗](https://github.com/Arthur151/ROMP)
+
+---
 
 ### 任务 & 挑战
 
