@@ -1260,7 +1260,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="chap-6-registers--register-transfers">Chap 6 Registers &amp; Register Transfers<a class="headerlink" href="#chap-6-registers--register-transfers" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6704 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 22 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6700 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 22 分钟</p>
 </div>
 <h2 id="寄存器">寄存器<a class="headerlink" href="#寄存器" title="Permanent link">¶</a></h2>
 <p><strong>寄存器(registers)</strong> 粗略的来说就是一堆触发器以及对应的状态控制电路，用来实现多位数据的存储等操作。</p>
@@ -1464,10 +1464,10 @@ K_1 : R2 \leftarrow R1
 <p class="admonition-title">加减法器</p>
 <p>就像我们之前学过的，用加法器实现加减法器，在 RTL 和模块逻辑电路的维度下，可以这么表示：</p>
 <div class="arithmatex">\[
-\begin{array}{l}
+\begin{aligned}
     &amp;\overline{X}K_1:R_1\leftarrow R_1 + R_2 \\
     &amp;XK_1:R_1\leftarrow R_1 + \overline{R_2} + 1
-\end{array}
+\end{aligned}
 \]</div>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/102.png"><img alt="" src="../img/102.png"/></a></p>
 </div>
@@ -1623,11 +1623,11 @@ K_1 : R2 \leftarrow R1
 </ul>
 <p>总和来说，就是：</p>
 <div class="arithmatex">\[
-\begin{array}{rl}
+\begin{aligned}
       Shift :&amp; Q\leftarrow \mathrm{sl}\; Q \\   
       \overline{Shift}\cdot Load :&amp; Q\leftarrow D \\   
       \overline{Shift}\cdot \overline{Load} :&amp; Q\leftarrow Q
-\end{array}
+\end{aligned}
 \]</div>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/111.png"><img alt="" src="../img/111.png"/></a></p>
 </blockquote>
@@ -1636,12 +1636,12 @@ K_1 : R2 \leftarrow R1
 <p>上面介绍的位移寄存器随着时钟周期的供给，只能不可逆、单向地进行位移，这种位移寄存器称为 <strong>无向位移寄存器(Unidirectional SHR)</strong>；对应的，如果能够支持可控制的左移右移，则被称为 <strong>双向位移寄存器(Bidirectional SHR)</strong>。</p>
 <p>其行为如下：</p>
 <div class="arithmatex">\[
-\begin{array}{rl}
+\begin{aligned}
     \overline{S_0} \cdot \overline{S_1} :&amp; Q \leftarrow Q\\
     S_0 \cdot \overline{S_1} :&amp; Q\leftarrow\mathrm{Sl}\; Q \\
     \overline{S_0} \cdot S_1 :&amp; Q\leftarrow\mathrm{Sr}\; Q \\
     S_0 \cdot S_1:&amp; Q\leftarrow D
-\end{array}
+\end{aligned}
 \]</div>
 <p>其单元实现如下：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/112.png"><img alt="" src="../img/112.png"/></a></p>
@@ -1694,7 +1694,7 @@ K_1 : R2 \leftarrow R1
 <p>当然，既然使用的是自增器，那么实现的自然就是正向计数器。为了实现逆向计数器，我们则需要将自增器换为自减器。做法只不过是将异或门的控制信号取反。</p>
 <p>具体来说，输入函数变为：</p>
 <div class="arithmatex">\[
-\begin{array}{rl}
+\begin{aligned}
     D_{A0} = &amp; Q_0 \oplus EN \\
     D_{A1} = &amp; Q_1 \oplus \left(
         (Q_0 \cdot \overline{S} + \overline{Q_0} \cdot S) \cdot EN
@@ -1705,7 +1705,7 @@ K_1 : R2 \leftarrow R1
     D_{A3} = &amp; Q_3 \oplus \left(
         (Q_0 \cdot Q_1 \cdot Q_2 \cdot \overline{S} + \overline{Q_0} \cdot \overline{Q_1} \cdot \overline{Q_2} \cdot S) \cdot EN
     \right)
-\end{array}
+\end{aligned}
 \]</div>
 <blockquote>
 <p>从这个表达式也可以略微感受到门串行和门并行的区别究竟在哪里，它们使用同一个表达式，只不过用不同的方式来实现多位 <code>AND</code> 运算。</p>
@@ -1769,7 +1769,7 @@ K_1 : R2 \leftarrow R1
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月23日 10:38:40</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年9月20日 11:34:24</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月31日 15:18:46</span>
