@@ -245,10 +245,10 @@ $$
     就像我们之前学过的，用加法器实现加减法器，在 RTL 和模块逻辑电路的维度下，可以这么表示：
 
     $$
-    \begin{array}{l}
+    \begin{aligned}
         &\overline{X}K_1:R_1\leftarrow R_1 + R_2 \\
         &XK_1:R_1\leftarrow R_1 + \overline{R_2} + 1
-    \end{array}
+    \end{aligned}
     $$
 
     ![](img/102.png)
@@ -347,11 +347,11 @@ $$
 > 总和来说，就是：
 >
 > $$
-> \begin{array}{rl}
+> \begin{aligned}
 >       Shift :& Q\leftarrow \mathrm{sl}\; Q \\   
 >       \overline{Shift}\cdot Load :& Q\leftarrow D \\   
 >       \overline{Shift}\cdot \overline{Load} :& Q\leftarrow Q
-> \end{array}
+> \end{aligned}
 > $$
 > 
 > ![](img/111.png)
@@ -365,12 +365,12 @@ $$
 其行为如下：
 
 $$
-\begin{array}{rl}
+\begin{aligned}
     \overline{S_0} \cdot \overline{S_1} :& Q \leftarrow Q\\
     S_0 \cdot \overline{S_1} :& Q\leftarrow\mathrm{Sl}\; Q \\
     \overline{S_0} \cdot S_1 :& Q\leftarrow\mathrm{Sr}\; Q \\
     S_0 \cdot S_1:& Q\leftarrow D
-\end{array}
+\end{aligned}
 $$
 
 其单元实现如下：
@@ -441,7 +441,7 @@ $$
 具体来说，输入函数变为：
 
 $$
-\begin{array}{rl}
+\begin{aligned}
     D_{A0} = & Q_0 \oplus EN \\
     D_{A1} = & Q_1 \oplus \left(
         (Q_0 \cdot \overline{S} + \overline{Q_0} \cdot S) \cdot EN
@@ -452,7 +452,7 @@ $$
     D_{A3} = & Q_3 \oplus \left(
         (Q_0 \cdot Q_1 \cdot Q_2 \cdot \overline{S} + \overline{Q_0} \cdot \overline{Q_1} \cdot \overline{Q_2} \cdot S) \cdot EN
     \right)
-\end{array}
+\end{aligned}
 $$
 
 > 从这个表达式也可以略微感受到门串行和门并行的区别究竟在哪里，它们使用同一个表达式，只不过用不同的方式来实现多位 `AND` 运算。

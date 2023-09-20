@@ -286,12 +286,12 @@ $$
 至此，我们得到了 🌰 所对应的 POM：
 
 $$    
-\begin{array}{l}
+\begin{aligned}
     F(X,Y,Z)
     & = \prod M(0,1,3,6) \\
     & = M_0M_1M_3M_6 \\
     & = (X+Y+Z)(X+Y+\overline{Z})(X+\overline{Y}+\overline{Z})(\overline{X}+\overline{Y}+Z)
-\end{array}
+\end{aligned}
 $$
 
 同样再次归纳，使用通俗的话来说，最大项之积更像是“枚举了所有 `0` 的可能”，只要匹配了这个“积”中的某一项，表达式的值就会变成 `0`；而一个都不匹配的，自然就只能得到 `1`。
@@ -319,13 +319,13 @@ $$
     === "答案"
         答案：
         $$
-        \begin{array}{l}
+        \begin{aligned}
             F(X,Y,Z)
             & = \sum m(0,2,5,7) \\
             & = \overline{X}\,\overline{Y}\,\overline{Z} + \overline{X}Y\overline{Z} + X\overline{Y}Z + XYZ \\
             & = \prod M(1,3,4,6) \\
             & = (X+Y+\overline{Z})(X+\overline{Y}+\overline{Z})(\overline{X}+Y+Z)(\overline{X}+\overline{Y}+Z)
-        \end{array}
+        \end{aligned}
         $$
         $$
         \begin{array}{l}

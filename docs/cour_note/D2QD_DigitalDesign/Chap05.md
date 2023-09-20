@@ -89,10 +89,10 @@ ROM 的基本结构如下：
 而 ROM 的大小如下计算（以上图为例）：
 
 $$
-\begin{array}{rl}
+\begin{aligned}
     ROM\;\;size\;\;&=\;\;address\;\;width\;\;\times\;\;word\;\;width&\\
                    &=\;\;2^2\;\;\times\;\;4\;\;=\;\;16\;\;bit&
-\end{array}
+\end{aligned}
 $$
 
 ???+ example "eg"
