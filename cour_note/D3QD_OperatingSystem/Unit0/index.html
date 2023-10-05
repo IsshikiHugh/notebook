@@ -1105,7 +1105,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="unit-0-总览--overview-未完成">Unit 0: 总览 | Overview [未完成]<a class="headerlink" href="#unit-0-总览--overview-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3047 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 10 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3208 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 11 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导语</p>
@@ -1226,21 +1226,31 @@
 </div>
 <hr/>
 <h3 id="操作系统的任务执行设计">操作系统的任务执行设计<a class="headerlink" href="#操作系统的任务执行设计" title="Permanent link">¶</a></h3>
-<p>前面我们说过，操作系统被用来「自动化“让计算机完成一系列特定任务”」的。一开始这件事比较简单，只需要像队列一样，一个一个的执行就行，但是慢慢的随着计算机应用范围的扩大以及各种需求的出现，这种设计就不太合理了。按照发展阶段演进，我们划分出两个阶段三个设计：<strong>单道批处理(Batch Processing Systems)</strong>、<strong>多道批处理(Multiprogramming Batch Processing Systems)</strong>和<strong>分时系统(Time Sharing Systems)</strong>。其中后两者分别实现了<strong>多道程序设计(Multiprogramming)</strong>和<strong>多任务处理(Multitasking)</strong>。</p>
+<p>前面我们说过，操作系统被用来「自动化“让计算机完成一系列特定任务”」的。一开始这件事比较简单，只需要像队列一样，一个一个的执行就行，但是慢慢的随着计算机应用范围的扩大以及各种需求的出现，这种设计就不太合理了。按照发展阶段演进，我们划分出两个阶段三个设计：<strong>单道批处理(Batch Processing)</strong>、<strong>多道批处理(Multiprogramming)</strong>和<strong>分时系统(Time Sharing Systems)</strong>。</p>
 <div class="admonition section">
 <p class="admonition-title">批处理系统阶段</p>
 <div class="admonition section">
 <p class="admonition-title">单道批处理阶段</p>
-<p>sth.</p>
+<p>TODO:</p>
 </div>
 <div class="admonition section">
 <p class="admonition-title">多道批处理阶段</p>
-<p>sth.</p>
+<p>TODO:</p>
+<p>多道批处理解决了 TODO:</p>
 </div>
+<p>批处理系统最大的问题是 TODO:</p>
 </div>
 <div class="admonition section">
 <p class="admonition-title">分时处理系统阶段</p>
-<p>sth.</p>
+<p><strong>分时系统(Time Sharing Systems)</strong>在课本中也被称为<strong>多任务(Multitasking)</strong>，我个人的理解是前者更侧重实现，后者更侧重效果。</p>
+<p>Multitasking 是 Multiprogramming 的一个<strong>逻辑</strong>扩展，即 Multitasking 也是 Multiprogramming 的一种。</p>
+<p>分时系统通过<strong>频繁</strong>地在多个进程间切换来<strong>近似实现</strong>并行（并不是真正意义上的并行，真正意义上的并行需要通过多核/多处理器实现）。</p>
+<p>感觉比较像<a href="https://www.youtube.com/watch?v=uD29J203FFI">《十万个冷笑话》超人这一集</a>的 4:09 - 4:48。</p>
+<p>分时系统解决的问题是 TODO:</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">相关阅读</p>
+<p>关于这三个技术的说明也可以看看 xyx 是怎么写的：<a href="https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/2_overview/#21-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%98%AF%E5%95%A5">🔗</a></p>
 </div>
 <hr/>
 <h3 id="操作系统的结构设计">操作系统的结构设计<a class="headerlink" href="#操作系统的结构设计" title="Permanent link">¶</a></h3>
@@ -1253,7 +1263,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 23:18:57</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 23:30:34</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>
