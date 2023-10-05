@@ -240,6 +240,14 @@ nav:
       - cour_note/D2CX_AdvancedDataStructure/Lec14.md
       - cour_note/D2CX_AdvancedDataStructure/Lec15.md
       - cour_note/D2CX_AdvancedDataStructure/Ex01.md
+    - "[大三秋冬] 操作系统 | Operating System":
+      - cour_note/D3QD_OperatingSystem/index.md
+      - cour_note/D3QD_OperatingSystem/Unit0.md
+      - cour_note/D3QD_OperatingSystem/Unit1.md
+      - cour_note/D3QD_OperatingSystem/Unit2.md
+      - cour_note/D3QD_OperatingSystem/Unit3.md
+      - cour_note/D3QD_OperatingSystem/Unit4.md
+      - cour_note/D3QD_OperatingSystem/Unit5.md
   - "📝 论文阅读":
     - pape_read/index.md
     - "资源":

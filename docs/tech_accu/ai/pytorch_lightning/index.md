@@ -1,4 +1,4 @@
-# PyTorch Lighting
+# PyTorch Lightning
 
 !!! quote "相关链接"
     - "🔗 官方文档": https://lightning.ai/docs/pytorch/stable/
