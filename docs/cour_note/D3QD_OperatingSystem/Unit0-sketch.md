@@ -164,7 +164,21 @@
     - ![The role of the linker and loader.](img/9.png)
     - DDLs: required @ run-time
 - OS structures
-    - 两个设计流派
+
+    - 两种设计方法
+      - Layered Approach
+          - 低耦合
+          - 从内层向外不断抽象化
+          - 需要设计功底，设计的不好也不灵活
+          - 显然，效率低
+      
+      - Modules（可以来点更多了解）
+          - 高内聚、低耦合
+          - Loadable Kernel Modules MKLs
+          - 动态加载模块（在 boot 的时候或者 run-time 都可以加载，比如插 U 盘的时候载 USB driver）
+          - 易于维护，灵活，高效
+    
+    - 两个设计理念
         - 宏内核(Monolithic Kernel)
             - 一堆功能都在 kernel 里面
             - 优点：高效
@@ -174,21 +188,12 @@
                 - 只提供通讯、内存管理、进程管理等基本功能
             - 优点：灵活，易维护
             - 缺点：效率低
-    - Layered Approach
-        - 低耦合
-        - 从内层向外不断抽象化
-        - 需要设计功底，设计的不好也不灵活
-        - 显然，效率低
-    - Modules（可以来点更多了解）
-        - 高内聚、低耦合
-        - Loadable Kernel Modules MKLs
-        - 动态加载模块（在 boot 的时候或者 run-time 都可以加载，比如插 U 盘的时候载 USB driver）
-        - 易于维护，灵活，高效
-    - Hybrid Systems
-        - 两种结构的结合
-        - 优点：灵活，易维护，高效
-        - 缺点：复杂
-        - 现代 OS 大多采用这种结构
+        - 融合：Hybrid Systems
+            - 两种结构的结合
+            - 优点：灵活，易维护，高效
+            - 缺点：复杂
+            - 现代 OS 大多采用这种结构
+            
 - Boot
     - 第一个引导程序(bootstrap)位于 ROM 中，也就是俗称的 BIOS，它将会引导 OS 的第二个引导程序，也就是 boot loader，它位于磁盘的第一个扇区，也就是 MBR，它会将 OS 的 kernel 加载到内存中，然后将控制权交给 kernel
     - 现在也有使用 UEFI 代替 BIOS 的小，相对来说更加先进
