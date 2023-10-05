@@ -139,19 +139,33 @@
 
 ### 操作系统的任务执行设计
 
-前面我们说过，操作系统被用来「自动化“让计算机完成一系列特定任务”」的。一开始这件事比较简单，只需要像队列一样，一个一个的执行就行，但是慢慢的随着计算机应用范围的扩大以及各种需求的出现，这种设计就不太合理了。按照发展阶段演进，我们划分出两个阶段三个设计：**单道批处理(Batch Processing Systems)**、**多道批处理(Multiprogramming Batch Processing Systems)**和**分时系统(Time Sharing Systems)**。其中后两者分别实现了**多道程序设计(Multiprogramming)**和**多任务处理(Multitasking)**。
+前面我们说过，操作系统被用来「自动化“让计算机完成一系列特定任务”」的。一开始这件事比较简单，只需要像队列一样，一个一个的执行就行，但是慢慢的随着计算机应用范围的扩大以及各种需求的出现，这种设计就不太合理了。按照发展阶段演进，我们划分出两个阶段三个设计：**单道批处理(Batch Processing)**、**多道批处理(Multiprogramming)**和**分时系统(Time Sharing Systems)**。
 
 !!! section "批处理系统阶段"
 
     !!! section "单道批处理阶段"
-        sth.
+        TODO:
 
     !!! section "多道批处理阶段"
-        sth.
+        TODO:
+
+        多道批处理解决了 TODO:
+
+    批处理系统最大的问题是 TODO:
 
 !!! section "分时处理系统阶段"
-    sth.
+    **分时系统(Time Sharing Systems)**在课本中也被称为**多任务(Multitasking)**，我个人的理解是前者更侧重实现，后者更侧重效果。
 
+    Multitasking 是 Multiprogramming 的一个**逻辑**扩展，即 Multitasking 也是 Multiprogramming 的一种。
+    
+    分时系统通过**频繁**地在多个进程间切换来**近似实现**并行（并不是真正意义上的并行，真正意义上的并行需要通过多核/多处理器实现）。
+
+    感觉比较像[《十万个冷笑话》超人这一集](https://www.youtube.com/watch?v=uD29J203FFI)的 4:09 - 4:48。
+
+    分时系统解决的问题是 TODO:
+
+!!! quote "相关阅读"
+    关于这三个技术的说明也可以看看 xyx 是怎么写的：[🔗](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/2_overview/#21-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%98%AF%E5%95%A5)
 
 ---
 
