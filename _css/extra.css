@@ -145,6 +145,11 @@ li {
     --md-shadow-z3: 1px 1px 3px #fff5ee, 2px 2px 9px #cebeb3;
 }
 
+::selection {
+    background:#f1e8db;
+    /* color:blac; */
+}
+
 /* Customized admonitions: https://squidfunk.github.io/mkdocs-material/reference/admonitions/#customization */
 
 /* definition */
