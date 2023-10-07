@@ -24,7 +24,7 @@
     - [咸鱼暄的操作系统笔记](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/1_intro/)
 
 !!! note "list"
-    - [ ] [Unit 0: 总览 | Overview](Unit0.md)
+    - [x] [Unit 0: 总览 | Overview](Unit0.md)
     - [ ] [Unit 1: 进程管理 | Process Management](Unit1.md)
     - [ ] [Unit 2: 进程同步 | Process Synchronization](Unit2.md)
     - [ ] [Unit 3: 内存管理 | Memory Management](Unit3.md)

@@ -1,4 +1,4 @@
-# Unit 0: 总览 | Overview [未完成]
+# Unit 0: 总览 | Overview
 
 !!! info "导语"
     本单元主要有两个任务：
