@@ -9,10 +9,10 @@
     
     $$
     \left\{
-    \begin{array}{ll}
-        &f_i(\vec x) \leq 0,  &i = 1,...,m & \text{inequality constraint functions} \\
-        &g_i(\vec x) = 0,  &i = 1,...,p & \text{equality constraint functions}&
-    \end{array}
+    \begin{aligned}
+        f_i(\vec x) &\leq 0,  &i = 1,...,m & \text{inequality constraint functions} \\
+        g_i(\vec x) &= 0,  &i = 1,...,p & \text{equality constraint functions}&
+    \end{aligned}
     \right.
     $$
 
@@ -55,22 +55,22 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 ???+ definition "Maximum Likelihood Estimation"
     <!--Copy from https://github.com/sakuratsuyu/Note/blob/master/docs/Computer_Science_Courses/ICV/4_Model_Fitting_and_Optimization.md?plain=1-->
-	If the data points are**independent**,
+	If the data points are **independent**,
 	
 	$$
-	\begin{align}
-	P[(a_1, b_1)(a_2, b_2)\dots|x] & = \prod\limits_iP[(a_i, b_i)|x] = \prod\limits_iP[b_i - a_{i^{Tx]}} \\
+	\begin{aligned}
+	P[(a_1, b_1)(a_2, b_2)\dots|x] & = \prod\limits_iP[(a_i, b_i)|x] = \prod\limits_i P[b_i - a_i^T x] \\
 	& \propto \exp\left(-\frac{\sum_i(b_i - a_i^Tx)^2}{2\sigma^2}\right) = \exp\left(-\frac{||Ax-b||^2_2}{2\sigma^2}\right)
-	\end{align}
+	\end{aligned}
 	$$
 	
     That is, maximize the likelihood to find the best $x$.
 
 	$$
-	\begin{align}
+	\begin{aligned}
 	\hat x &= \mathop{\arg \max\limits_x} P[(a_1, b_1)(a_2, b_2)\dots|x] \\ &= \mathop{\arg \max\limits_x} \exp\left(-\frac{||Ax-b||^2_2}{2\sigma^2}\right) 
 	= \mathop{\arg \min\limits_x}||Ax - b||_2^2
-	\end{align}
+	\end{aligned}
 	$$
 
 !!! tip "MSE = MLE with Gaussian noise assumption"
