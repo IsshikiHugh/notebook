@@ -37,7 +37,7 @@
 
     操作系统作为中间层，向上为用户程序分配易用的资源，向下直接操作硬件资源的，在这个过程中，操作系统还需要**公平**、**高效**地解决资源之间的冲突问题等等。
 
-    它就好像药房柜台，各种药品就好像计算机资源，病人提供处方，柜台收到请求（[系统调用](TODO:)）后处理请求，并千辛万苦（具体会遇到什么问题我们会在之后的内容中学到）替你准备好你需要的资源，完成你的请求。
+    它就好像药房柜台，各种药品就好像计算机资源，病人提供处方，柜台收到请求（[系统调用](#系统调用)）后处理请求，并千辛万苦（具体会遇到什么问题我们会在之后的内容中学到）替你准备好你需要的资源，完成你的请求。
 
     具体来说，操作系统管理的**资源**有这些：① CPU，由于 CPU 的一个核(core)在特定时刻只能处理一件事，所以“CPU 能够为我所用”是一个非常重要的资源；② 内存，执行程序离不开内存，用户程序自然也需要占用一定的内存来解决问题；③ I/O 设备，打印机不能同时打印毛概历年卷和转专业申请表；④………粗略的来说，本课程之后的内容基本上都是围绕要如何维护和操作各种资源而展开的。
 
@@ -273,7 +273,7 @@
 
     <center> ![Architecture of a typical microkernel.](img/4.png){ width=50% align=right } </center>
     
-    **微内核(Micro-Kernels)**的设计思路与[宏内核](#mo-kernel)相反，主张将不是必要的东西都从内核里拿出去，放到用户空间，以用户态执行。整体形成一种微内核-服务器的结构，此时内核只提供通讯、内存管理、进程管理等基本功能，也只有这些部分直接运行在[内核态](TODO:)，作为服务器的其它功能部件则通过消息传递机制与内核互动。
+    **微内核(Micro-Kernels)**的设计思路与[宏内核](#mo-kernel)相反，主张将不是必要的东西都从内核里拿出去，放到用户空间，以用户态执行。整体形成一种微内核-服务器的结构，此时内核只提供通讯、内存管理、进程管理等基本功能，也只有这些部分直接运行在[内核态](#特权模式)，作为服务器的其它功能部件则通过消息传递机制与内核互动。
 
     由于内核只提供最基本的功能，所以内核的体积会大大减小，内核的维护和扩展也会变得更加容易，微内核-服务器的结构也使功能扩展更加容易；另外，由于内核只提供最基本的功能，所以内核的效率也会大大提升；不仅如此，由于各个功能之间的耦合降低，且都运行在用户态，功能之间仅使用通信建立链接，即使某个功能部件出现问题，也不会导致整个系统崩溃，相比于[宏内核](#mo-kernel)，系统可靠性大大提升。
 
@@ -307,7 +307,11 @@
     
     中断向量表(Interrupt Vector Table)通过中断号来索引中断处理方法，实现了一种“随机访问”，大大加速了中断处理的速度。
 
-根据中断是否由程序产生，中断可以分为**外中断**（狭义的中断，由硬件产生）和**内中断**（软中断/自陷/异常/...，主要由程序产生）。
+根据中断是否由程序产生，中断可以分为**外中断**（狭义的中断，由硬件产生）和**内中断**（异常...，主要由程序产生）。这里有很多概念：instruction, exception, trap, abort, ...，这部分区分请大家自行寻找资料参考，我在这里放几个参考链接。
+
+??? quote "相关阅读"
+    - [Difference between TRAP and exceptions | StackOverflow](https://stackoverflow.com/questions/56877451/difference-between-trap-and-exceptions)
+    - [Difference between Interrupt and Exception | GeeksForGeeks](https://www.geeksforgeeks.org/difference-between-interrupt-and-exception/)
 
 理想情况下，我们希望中断一旦发生就立刻被解决，但是中断处理也同样需要资源，这意味着中断也有可能产生冲突。于是，我们需要一系列机制来解决这些问题。
 
@@ -346,15 +350,59 @@
 
 而那么在具体实现上，这一步是通过 [trap](#中断) 实现的。
 
-<center> ![Transition from user to kernel mode.](img/5.png){ width=80% } </center>
-> Transition from user to kernel mode.
+<figure markdown>
+<center>![](img/5.png){ width=80% }</center>
+Transition from user to kernel mode.
+</figure>
 
 ### 系统调用
 
+!!! note inline end ""
+    
+    <figure markdown>
+    <center> ![](img/6.png) </center>
+    Examples of W&U system calls.
+    </figure>
 
+**系统调用(System Call)**是系统向用户程序提供服务的一个接口，它们经常以 C/C++ 函数的形式存在，对于某些比较接近底层的任务，也可能是通过汇编编写的。
 
+但说到底，系统调用还是相对底层的设计，通常的开发并不基于如此底层的设计展开。更常见的是利用各种抽象层级更高的 **(Application Programming Interface)API** 进行开发。
 
+API 是一个非常常见的概念，在我看来系统调用本身也是一种 API。API 的核心思想是让调用者只需要知道如何与被调用者交流以实现目的，而不需要关心其具体实现。这同时也暗示着，只要 API 一致，同样的程序在不同的平台上也能直接编译后运行。
 
+显然，API 与编程语言往往是强相关的，特定编程语言在操作系统上运行也是需要一定的“环境”的，也就是我们所说的**运行时环境(run-time environment)RTE**。RTE 通常包括了编译器(compilers)、解释器(interpreters)、库(libraries)和[装载器(loaders)](#链接器和装载器)等，它们共同组成了一个完整的运行时环境。
 
+??? quote "相关阅读"
+
+    - [ABI | Wiki](https://en.wikipedia.org/wiki/Application_binary_interface)
+    - [Difference between API and ABI | StackOverflow](https://stackoverflow.com/questions/3784389/difference-between-api-and-abi)
+
+### 链接器和装载器
+
+!!! note inline end ""
+
+    <figure markdown>
+    <center>![The role of the linker and loader.](img/7.png)</center>
+    The role of the linker and loader.
+    </figure>
+
+说了这么多，那么操作系统到底是如何执行一个程序的呢？以 C 为例，一个写完的代码需要经过编译、链接、装载三个步骤，才能成为一个**在内存中**的，可以被执行的程序。
+
+简单来说，编译器首先将若干 `.c` 源文件编译为若干 `.o` 文件（这里合并了预处理、编译、汇编步骤），这些 `.o` 文件被称为可重定位目标文件(relocatable object file)，其存在形式为机器码；随后链接器将若干 `.o` 文件连带所需要的一些库文件（如 `.a` 文件）链接为一个可执行目标文件(executable object file)。
+
+```bash
+gcc -E main.c -o main.i # pre-process
+gcc -S main.i -o main.s # compile to assembly code
+gcc -c main.s -o main.o # assemble to object file
+gcc main.o -o main      # link
+./main                  # (load and) execute
+```
+
+特别的，链接分为静态链接和动态链接两种。静态链接将库文件的代码直接合并进入最终的可执行文件，而动态链接仅仅将库文件的引用信息写入最终的可执行文件，而在程序运行时再去寻找这些库文件。
+
+<figure markdown>
+<center> ![](img/8.png) </center>
+可以发现，动态链接得到的可执行文件比静态链接得到的可执行文件要小不少。
+</figure>
 
 [^1]: 并发是指两个或多个事件在同一时间间隔内发生，而并行是指两个或多个事件在同一时刻发生。逻辑上，并行是并发的子集。
