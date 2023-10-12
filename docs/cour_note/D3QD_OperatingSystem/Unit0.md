@@ -410,6 +410,10 @@ gcc main.o -o main      # link
 ./main                  # (load and) execute
 ```
 
+??? extra "一些操作"
+    - 使用 `gcc -static ...` 来指定使用静态链接；
+    - 使用 `ldd <file>` 来查看文件链接了哪些库；
+
 <figure markdown>
 <center> ![](img/8.png) </center>
 可以发现，动态链接得到的可执行文件比静态链接得到的可执行文件要小不少。
