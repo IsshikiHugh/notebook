@@ -375,6 +375,18 @@ API 是一个非常常见的概念，在我看来系统调用本身也是一种 
     - [ABI | Wiki](https://en.wikipedia.org/wiki/Application_binary_interface)
     - [Difference between API and ABI | StackOverflow](https://stackoverflow.com/questions/3784389/difference-between-api-and-abi)
 
+
+???+ eg "思考题"
+
+    === "题面"
+
+        辨析**库函数**与**系统调用**？
+
+    === "解析"
+
+        库函数运行在用户空间而系统调用运行在内核空间。大部分库函数可能使用系统调用来实现目的。
+
+
 ### 链接器和装载器
 
 !!! note inline end ""
