@@ -27,12 +27,12 @@
 - **交换律：**$A\cup B=B\cup A\;,\;A\cap B=B\cap A$**；**
 - **结合律：**$A\cup(B\cup C)=(A\cup B)\cup C\;,\;A(BC)=(AB)C$**；**
 - **分配律：**$A(B\cup C)=(AB)\cup(AC)\;,\;(AB)\cup C=(A\cup C)(B\cup C)$**；**
-- **对偶律** / **德摩根定律(De Morgan's law)：**$\overline{\bigcup^n_{j=1}A_j}=\bigcap^n_{j=1}\overline{A_j}\;,\;\overline{\bigcap^n_{j=1}A_j}=\bigcup^n_{j=1}\overline{A_j}$**；**
+- **对偶律** / **德摩根定律(De Morgan's law)：**$\overline{\bigcup\limits^n_{j=1}A_j}=\bigcap\limits^n_{j=1}\overline{A_j}\;,\;\overline{\bigcap\limits^n_{j=1}A_j}=\bigcup\limits^n_{j=1}\overline{A_j}$**；**
 
 串联系统与并联系统：
 
-- 串联系统：$A=\bigcap_{i=1}^nA_i$
-- 并联系统：$A=\bigcup_{i=1}^nA_i$
+- 串联系统：$A=\bigcap\limits_{i=1}^nA_i$
+- 并联系统：$A=\bigcup\limits_{i=1}^nA_i$
 
 ---
 
@@ -44,11 +44,11 @@
 
 1. 非负性$P(A)\geq0$；
 2. 规范性 / 正则性$P(S)=1$；
-3. 可列可加性：对于$S$中不相容的事件$A_i$，有$P(\bigcup^{+\infty}_{j=1}A_j)=\sum_{j=1}^{+\infty}P(A_j)$；
+3. 可列可加性：对于$S$中不相容的事件$A_i$，有$P(\bigcup\limits^{+\infty}_{j=1}A_j)=\sum\limits_{j=1}^{+\infty}P(A_j)$；
 
 由此得到如下几条**概率的性质**：
 
-1. 对于有限个**两两不相容**的事件的和事件，有$P(\bigcup^n_{j=1}A_j)=\sum_{j=1}^nP(A_j)$；
+1. 对于有限个**两两不相容**的事件的和事件，有 $P(\bigcup\limits^n_{j=1}A_j)=\sum\limits_{j=1}^nP(A_j)$；
 2. $P(A)=1-P(\overline A)$；特别的，可以得到$P(\varnothing)=0$；
 3. 当$A\supset B$时，$P(A-B) = P(A)-P(B)$且$P(A)\geq P(B)$；
 4. 概率的**加法公式**：$P(A\cup B)=P(A)+P(B)-P(AB)$；推广即容斥原理；
@@ -63,7 +63,7 @@
 1. $S$中样本点数有限；
 2. $\forall i,j \in\{1,2,...,n\},\;P(e_i) = P(e_j)$，即等可能；
 
-则该试验问题为**等可能概型**（**古典概型**）<br />有如下性质：若总事件个数为$N$，$A$为$n$个基本事件的和事件，则$P(A)=\frac{n}{N}$。
+则该试验问题为**等可能概型**（**古典概型**）<br />有如下性质：若总事件个数为 $N$，$A$ 为 $n$ 个基本事件的和事件，则 $P(A)=\frac{n}{N}$。
 
 ---
 
@@ -76,15 +76,15 @@
 **定义完备事件组**为$S$的一个**划分**$B_1,B_2,...,B_n$，它满足如下性质：
 
 1. $B_iB_j=\varnothing,i,j,...,n,i\not=j$；
-2. $\bigcup^n_{i=1}B_i=S$；
+2. $\bigcup\limits^n_{i=1}B_i=S$；
 
 <br />设$S$为一样本空间，$A$为该试验的事件，$\{B_i\}$为$S$的一个**划分**，则有：
 
-- 若$A_1,...,A_n,...$互不相容，则$P(\cup_{n=1}^{\infty}A_n|B)=\sum_{n=1}^{\infty}P(A_n|B)$；
+- 若$A_1,...,A_n,...$互不相容，则$P(\cup_{n=1}^{\infty}A_n|B)=\sum\limits_{n=1}^{\infty}P(A_n|B)$；
 - **乘法公式**：当$P(A)\not=0\;\,\;P(B)\not=0$时，有$P(AB)=P(A)*P(B|A)=P(B)*P(A|B)$；
-- **全概率公式**：$P(A)=\sum_{j=1}^nP(B_j)P(A|B_j)$；
-- **贝叶斯公式**：$P(B_k|A)=\frac{P(B_kA)}{P(A)}=\frac{P(B_k)P(A|B_k)}{\sum_{j=1}^nP(B_j)P(A|B_j)}$；
-   - 其中，我们称$P(B_j)$这种事先知道的概率为**先验概率**；而$P(B_j|A)$这种，当事件$A$发生后需要修正$B_j$的概率成为**后验概率**。
+- **全概率公式**：$P(A)=\sum\limits_{j=1}^nP(B_j)P(A|B_j)$；
+- **贝叶斯公式**：$P(B_k|A)=\frac{P(B_kA)}{P(A)}=\frac{P(B_k)P(A|B_k)}{\sum\limits_{j=1}^nP(B_j)P(A|B_j)}$；
+   - 其中，我们称$P(B_j)$这种事先知道的概率为**先验概率**；而$P(B_j|A)$这种，当事件$A$发生后需要修正 $B_j$ 的概率成为**后验概率**。
 
 ---
 
