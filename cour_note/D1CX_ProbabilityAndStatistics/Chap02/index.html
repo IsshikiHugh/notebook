@@ -1116,46 +1116,71 @@
 <article class="md-content__inner md-typeset">
 <h1 id="2x-随机变量及其概率分布">[2.x] 随机变量及其概率分布<a class="headerlink" href="#2x-随机变量及其概率分布" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1302 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 4 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1166 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 4 分钟</p>
 </div>
 <p><strong>随机变量</strong>是定义在样本空间<span class="arithmatex">\(S\)</span>上的实值单值函数。<br/>常用大写字母<span class="arithmatex">\(X,Y,Z\)</span>来表示<strong>随机变量</strong>，用小写字母<span class="arithmatex">\(x,y,z\)</span>表示其<strong>取值</strong>。</p>
 <h2 id="离散型随机变量">离散型随机变量<a class="headerlink" href="#离散型随机变量" title="Permanent link">¶</a></h2>
-<p><strong>离散型随机变量(discrete random variable)</strong><br/>如果随机变量取有限个或可列个值，则此随机变量为<strong>离散型随机变量</strong>，而弱其可能取值为<span class="arithmatex">\(\{x_i\}\)</span>，则称<span class="arithmatex">\(P\{X=x_k\}=p_k\;,\;k=1,2,...\)</span>为<span class="arithmatex">\(X\)</span>的<strong>概率分布律(probability mass function)</strong>，也可以用列表的方式表达。<br/>因为样本空间<span class="arithmatex">\(S=\{X=x_1,X=x_2,\,...\,,X=x_n\,...\,\}\)</span>中各样本点两两不相容，所以：<br/><span class="arithmatex">\(1=P(S)=\sum_{i=1}^{+\infty}P(X=x_i)=\sum_{i=1}^{+\infty}{p_i}\)</span></p>
+<p><strong>离散型随机变量(discrete random variable)</strong><br/>如果随机变量取有限个或可列个值，则此随机变量为<strong>离散型随机变量</strong>，而若其可能取值为<span class="arithmatex">\(\{x_i\}\)</span>，则称<span class="arithmatex">\(P\{X=x_k\}=p_k\;,\;k=1,2,...\)</span>为<span class="arithmatex">\(X\)</span>的<strong>概率分布律(probability mass function)</strong>，也可以用列表的方式表达。<br/>因为样本空间<span class="arithmatex">\(S=\{X=x_1,X=x_2,\,...\,,X=x_n\,...\,\}\)</span>中各样本点两两不相容，所以：<br/><span class="arithmatex">\(1=P(S)=\sum\limits_{i=1}^{+\infty}P(X=x_i)=\sum\limits_{i=1}^{+\infty}{p_i}\)</span></p>
 <hr/>
 <h3 id="两点分布">两点分布<a class="headerlink" href="#两点分布" title="Permanent link">¶</a></h3>
-<p>如果随机变量<span class="arithmatex">\(X\)</span>的概率分布律为：
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1648034248819-c4fb9f2d-8b99-4e46-a20b-14a926aae520.png"><img alt="" src="../1648034248819-c4fb9f2d-8b99-4e46-a20b-14a926aae520.png"/></a>
-<span class="arithmatex">\(P\{X=k\}=p^k(1-p)^{1-k}\;,\;\;\;k=0\;or\;1\)</span>
-则称<span class="arithmatex">\(X\)</span>为服从<strong>参数为</strong><span class="arithmatex">\(p\)</span><strong>的</strong><span class="arithmatex">\(0-1\)</span><strong>分布</strong>，也称为<strong>两点分布</strong>，并记为<span class="arithmatex">\(X\sim B(1,p)\)</span>或者<span class="arithmatex">\(X\sim 0-1(p)\)</span>。</p>
-<p><strong>定义伯努利(Bernoulli)试验</strong>为：在<span class="arithmatex">\(n\)</span>次独立重复试验中，每次只有<span class="arithmatex">\(A\)</span>和<span class="arithmatex">\(\overline A\)</span>两种结果，且概率不变，则这一系列试验为伯努利试验。</p>
+<p>如果随机变量<span class="arithmatex">\(X\)</span>的概率分布律为：</p>
+<p>表格居中显示</p>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1648034248819-c4fb9f2d-8b99-4e46-a20b-14a926aae520.png"><img alt="" src="../1648034248819-c4fb9f2d-8b99-4e46-a20b-14a926aae520.png"/></a> </center> </p>
+<div class="arithmatex">\[
+P\{X=k\}=p^k(1-p)^{1-k}\;,\;\;\;k=0\;or\;1
+\]</div>
+<p>则称 <span class="arithmatex">\(X\)</span> 为服从<strong>参数为</strong> <span class="arithmatex">\(p\)</span> <strong>的</strong> <span class="arithmatex">\(0-1\)</span> <strong>分布</strong>，也称为<strong>两点分布</strong>，并记为 <span class="arithmatex">\(X\sim B(1,p)\)</span> 或者 <span class="arithmatex">\(X\sim 0-1(p)\)</span></p>
+<p><strong>定义伯努利(Bernoulli)试验</strong>为：在 <span class="arithmatex">\(n\)</span> 次独立重复试验中，每次只有 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(\overline A\)</span> 两种结果，且概率不变，则这一系列试验为伯努利试验。</p>
 <h3 id="二项分布">二项分布<a class="headerlink" href="#二项分布" title="Permanent link">¶</a></h3>
-<p>若随机变量<span class="arithmatex">\(X\)</span>表示<span class="arithmatex">\(n\)</span><strong>重贝努力实验中事件A发生的次数</strong>，其概率分布律为：<br/><span class="arithmatex">\(P\{X=k\}={\rm C}_n^kp^k(1-p)^{n-k}\;,\;\;k=0,1,2,...,n\)</span>
-则称<span class="arithmatex">\(X\)</span>为服从<strong>参数为</strong><span class="arithmatex">\((n,p)\)</span><strong>的二项分布(binomial distribution)</strong>，并记为<span class="arithmatex">\(X\sim B(n,p)\)</span>。<br/>根据二项式定理，二项分布有如下性质：<br/><span class="arithmatex">\(\sum_{k=0}^n{\rm C}_n^kp^k(1-p)^{n-k}=1\)</span></p>
+<p>若随机变量<span class="arithmatex">\(X\)</span>表示<span class="arithmatex">\(n\)</span><strong>重贝努力实验中事件A发生的次数</strong>，其概率分布律为：</p>
+<div class="arithmatex">\[
+P\{X=k\}={\rm C}_n^kp^k(1-p)^{n-k}\;,\;\;k=0,1,2,...,n
+\]</div>
+<p>则称<span class="arithmatex">\(X\)</span>为服从<strong>参数为</strong><span class="arithmatex">\((n,p)\)</span><strong>的二项分布(binomial distribution)</strong>，并记为<span class="arithmatex">\(X\sim B(n,p)\)</span></p>
+<p>根据二项式定理，二项分布有如下性质：</p>
+<div class="arithmatex">\[
+\sum\limits_{k=0}^n{\rm C}_n^kp^k(1-p)^{n-k}=1
+\]</div>
 <ul>
-<li>如果遇到来自于<strong>两点分布</strong>的总体的，容量为<span class="arithmatex">\(n\)</span>的样本的均值<span class="arithmatex">\(\overline X\)</span>，则有<span class="arithmatex">\(n·\overline X=\sum_{i=1}^n X_i \sim B(n,p)\)</span></li>
+<li>如果遇到来自于<strong>两点分布</strong>的总体的，容量为<span class="arithmatex">\(n\)</span>的样本的均值<span class="arithmatex">\(\overline X\)</span>，则有<span class="arithmatex">\(n·\overline X=\sum\limits_{i=1}^n X_i \sim B(n,p)\)</span></li>
 </ul>
 <h3 id="泊松分布">泊松分布<a class="headerlink" href="#泊松分布" title="Permanent link">¶</a></h3>
-<p>如果随机变量<span class="arithmatex">\(X\)</span>的概率分布律为：<br/><span class="arithmatex">\(P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!}\;,\;\;\;k=0,1,2,...\)</span>
-其中<span class="arithmatex">\(\lambda &gt; 0\)</span>，则称<span class="arithmatex">\(X\)</span>服从<strong>参数为</strong><span class="arithmatex">\(\lambda\)</span><strong>的泊松分布(Poisson distribution)</strong>，记做<span class="arithmatex">\(X \sim P(\lambda)\)</span>。</p>
-<ul>
-<li>当<span class="arithmatex">\(n\)</span>足够大，<span class="arithmatex">\(p\)</span>充分小(一般要求<span class="arithmatex">\(p&lt;0.1\)</span>)，且<span class="arithmatex">\(np\)</span>保持适当大小时，<strong>参数为</strong><span class="arithmatex">\((n,p)\)</span><strong>的二项分布</strong>可以<strong>用泊松分布近似描述</strong>，其中<span class="arithmatex">\(\lambda = np\)</span>，即：</li>
-</ul>
-<p><span class="arithmatex">\({\rm C}_n^kp^k(1-p)^{n-k} \sim \frac{e^{-\lambda}\lambda^k}{k!}\;\;\;\;\;(n\rightarrow\infty,p&lt;\varepsilon,\lambda=np)\)</span></p>
+<p>如果随机变量<span class="arithmatex">\(X\)</span>的概率分布律为：</p>
+<div class="arithmatex">\[
+P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!}\;,\;\;\;k=0,1,2,...
+\]</div>
+<p>其中<span class="arithmatex">\(\lambda &gt; 0\)</span>，则称<span class="arithmatex">\(X\)</span>服从<strong>参数为</strong><span class="arithmatex">\(\lambda\)</span><strong>的泊松分布(Poisson distribution)</strong>，记做<span class="arithmatex">\(X \sim P(\lambda)\)</span></p>
+<p>当<span class="arithmatex">\(n\)</span>足够大，<span class="arithmatex">\(p\)</span>充分小(一般要求<span class="arithmatex">\(p&lt;0.1\)</span>)，且<span class="arithmatex">\(np\)</span>保持适当大小时，<strong>参数为</strong><span class="arithmatex">\((n,p)\)</span><strong>的二项分布</strong>可以<strong>用泊松分布近似描述</strong>，其中<span class="arithmatex">\(\lambda = np\)</span>，即：</p>
+<div class="arithmatex">\[
+{\rm C}_n^kp^k(1-p)^{n-k} \sim \frac{e^{-\lambda}\lambda^k}{k!}\;\;\;\;\;(n\rightarrow\infty,p&lt;\varepsilon,\lambda=np)
+\]</div>
 <h3 id="超几何分布">超几何分布<a class="headerlink" href="#超几何分布" title="Permanent link">¶</a></h3>
-<p>如果随机变量<span class="arithmatex">\(X\)</span>的概率分布律为：<br/><span class="arithmatex">\(P\{X=k\}=\frac{{\rm C}_a^k{\rm C}_b^{n-k}}{{\rm C}_{a+b}^n}\;,\;\;\;k=l_1,l_1+1,...,l_2\)</span>
-则称<span class="arithmatex">\(X\)</span>为服从<strong>超几何分布(hypergeometric distribution)</strong>，并记为<span class="arithmatex">\(X\sim H(n,a,p)\)</span>。</p>
+<p>如果随机变量<span class="arithmatex">\(X\)</span>的概率分布律为：</p>
+<div class="arithmatex">\[
+P\{X=k\}=\frac{{\rm C}_a^k{\rm C}_b^{n-k}}{{\rm C}_{a+b}^n}\;,\;\;\;k=l_1,l_1+1,...,l_2
+\]</div>
+<p>则称<span class="arithmatex">\(X\)</span>为服从<strong>超几何分布(hypergeometric distribution)</strong>，并记为<span class="arithmatex">\(X\sim H(n,a,p)\)</span></p>
 <ul>
 <li>其意义为，如：<span class="arithmatex">\(a\)</span>白球，<span class="arithmatex">\(b\)</span>红球，取<span class="arithmatex">\(n\)</span>次得到<span class="arithmatex">\(X\)</span>个白球</li>
 </ul>
-<p>如果随机变量<span class="arithmatex">\(X\)</span>的概率分布律为：<br/><span class="arithmatex">\(P\{X=k\}=p(1-p)^{k-1}\;,\;\;\;k=1,2,...\)</span>
-则称<span class="arithmatex">\(X\)</span>为服从<strong>参数为</strong><span class="arithmatex">\(p\)</span><strong>的几何分布(geometric distribution)</strong>。</p>
+<hr/>
+<p>如果随机变量<span class="arithmatex">\(X\)</span>的概率分布律为：</p>
+<div class="arithmatex">\[
+P\{X=k\}=p(1-p)^{k-1}\;,\;\;\;k=1,2,...
+\]</div>
+<p>则称<span class="arithmatex">\(X\)</span>为服从<strong>参数为</strong><span class="arithmatex">\(p\)</span><strong>的几何分布(geometric distribution)</strong>。</p>
 <hr/>
 <h2 id="连续型随机变量">连续型随机变量<a class="headerlink" href="#连续型随机变量" title="Permanent link">¶</a></h2>
-<p><strong>定义</strong>：设<span class="arithmatex">\(X\)</span>为随机变量，<span class="arithmatex">\(x\)</span>为任意实数，函数<span class="arithmatex">\(F(x)=P\{X\leq x\}\)</span>为随机变量<span class="arithmatex">\(X\)</span>的<strong>概率分布函数</strong>，简称为<strong>分布函数(distribution function)</strong>。（离散随机变量同样可以有分布函数）<br/>则有以下结论：</p>
-<ul>
-<li><span class="arithmatex">\(P\{x_1&lt;X\leq x_2\}=P\{X\leq x_1\}-P\{X\leq x_1\}=F(x_2)-F(x_1)\)</span>；</li>
-</ul>
-<p>当<span class="arithmatex">\(X\)</span>为<strong>离散型随机变量</strong>时，设<span class="arithmatex">\(X\)</span>的概率分布律为<span class="arithmatex">\(P\{X=x_i\}=p_i\;,\;\;i=1,2,...\)</span>，则<span class="arithmatex">\(X\)</span>的分布函数为：<br/><span class="arithmatex">\(F(x) = P\{X\leq x\}=\sum_{x_i\leq x}P\{X=x_i\}\)</span>；<br/>关于<span class="arithmatex">\(F(x)\)</span>有以下结论：</p>
+<p><strong>定义</strong>：设<span class="arithmatex">\(X\)</span>为随机变量，<span class="arithmatex">\(x\)</span>为任意实数，函数<span class="arithmatex">\(F(x)=P\{X\leq x\}\)</span>为随机变量<span class="arithmatex">\(X\)</span>的<strong>概率分布函数</strong>，简称为<strong>分布函数(distribution function)</strong>。（离散随机变量同样可以有分布函数）</p>
+<p>则有以下结论：</p>
+<div class="arithmatex">\[
+P\{x_1&lt;X\leq x_2\}=P\{X\leq x_2\}-P\{X\leq x_1\}=F(x_2)-F(x_1)
+\]</div>
+<p>当<span class="arithmatex">\(X\)</span>为<strong>离散型随机变量</strong>时，设<span class="arithmatex">\(X\)</span>的概率分布律为<span class="arithmatex">\(P\{X=x_i\}=p_i\;,\;\;i=1,2,...\)</span>，则<span class="arithmatex">\(X\)</span>的分布函数为：</p>
+<div class="arithmatex">\[
+F(x) = P\{X\leq x\}=\sum\limits_{x_i\leq x}P\{X=x_i\}
+\]</div>
+<p>关于<span class="arithmatex">\(F(x)\)</span>有以下结论：</p>
 <ol>
 <li><span class="arithmatex">\(F(x)\)</span>单调不减；</li>
 <li><span class="arithmatex">\(0\leq F(x) \leq 1\)</span>且<span class="arithmatex">\(F(-\infty)=0\)</span>，<span class="arithmatex">\(F(+\infty)=1\)</span>；</li>
@@ -1163,8 +1188,12 @@
 <li><span class="arithmatex">\(P(a&lt;X\leq b)=F(b)-F(a)\)</span>；</li>
 </ol>
 <hr/>
-<p>如果对于随机变量<span class="arithmatex">\(X\)</span>，其<strong>分布函数</strong>为<span class="arithmatex">\(F(x)\)</span>，若存在一个非负的实函数<span class="arithmatex">\(f(x)\)</span>，使对于<strong>任意实数</strong><span class="arithmatex">\(x\)</span>，有：<br/><span class="arithmatex">\(F(x) = \int_{-\infty}^{x}f(t)dt\)</span>
-则称<span class="arithmatex">\(X\)</span>为<strong>连续型随机变量</strong>，并且称<span class="arithmatex">\(f(x)\)</span>为<span class="arithmatex">\(X\)</span>的<strong>概率密度函数(probability density function)</strong>，简称为<strong>密度函数</strong>。<br/>关于<span class="arithmatex">\(f(x)\)</span>有以下结论：</p>
+<p>如果对于随机变量<span class="arithmatex">\(X\)</span>，其<strong>分布函数</strong>为<span class="arithmatex">\(F(x)\)</span>，若存在一个非负的实函数<span class="arithmatex">\(f(x)\)</span>，使对于<strong>任意实数</strong><span class="arithmatex">\(x\)</span>，有：</p>
+<div class="arithmatex">\[
+F(x) = \int_{-\infty}^{x}f(t)dt
+\]</div>
+<p>则称<span class="arithmatex">\(X\)</span>为<strong>连续型随机变量</strong>，并且称<span class="arithmatex">\(f(x)\)</span>为<span class="arithmatex">\(X\)</span>的<strong>概率密度函数(probability density function)</strong>，简称为<strong>密度函数</strong>。</p>
+<p>关于<span class="arithmatex">\(f(x)\)</span>有以下结论：</p>
 <ol>
 <li><span class="arithmatex">\(f(x) \geq 0\)</span>；</li>
 <li><span class="arithmatex">\(\int_{-\infty}^{\infty}f(x)dx=1\)</span>；</li>
@@ -1173,100 +1202,106 @@
 <li><span class="arithmatex">\(P\{X=a\} = 0\)</span>，即连续型随机变量任取一个定值的概率为零，因此连续型随机变量落在开区间与相应闭区间上的概率相等；</li>
 </ol>
 <h3 id="均匀分布">均匀分布<a class="headerlink" href="#均匀分布" title="Permanent link">¶</a></h3>
-<p>设随机变量<span class="arithmatex">\(X\)</span>就有密度函数：<br/>$f(x)=<script type="math/tex; mode=display">\begin{align}
-    \left\{
-    \begin{align}
-    &\frac{1}{b-a},& x\in(a,b),\\
-    &0,&\text{其他},
-    \end{align}</script>
-    \right.</p>
-<div class="highlight"><pre><span></span><code>\end{align}$
-</code></pre></div>
-<p>则称<span class="arithmatex">\(X\)</span>服从区间<span class="arithmatex">\((a,b)\)</span>上的均匀分布，并记为<span class="arithmatex">\(X\sim U(a,b)\)</span>。<br/>而得到对应的分布函数为：<br/>$F(x)=<script type="math/tex; mode=display">\begin{align}
-    \left\{
-    \begin{align}
-    &0,&x<a,\\
-    &\frac{x-a}{b-a},& a\leq x<b,\\
-    &1,&x\geq b,
-    \end{align}</script>
-    \right.</p>
-<div class="highlight"><pre><span></span><code>\end{align}$
-</code></pre></div>
+<p>设随机变量<span class="arithmatex">\(X\)</span>就有密度函数：</p>
+<div class="arithmatex">\[
+f(x)=\begin{cases}
+\frac{1}{b-a}, &amp; x\in(a,b) \\[1ex]
+0, &amp; \text{else}
+\end{cases}
+\]</div>
+<p>则称<span class="arithmatex">\(X\)</span>服从区间<span class="arithmatex">\((a,b)\)</span>上的均匀分布，并记为<span class="arithmatex">\(X\sim U(a,b)\)</span></p>
+<p>而得到对应的分布函数为：</p>
+<div class="arithmatex">\[
+F(x)=\begin{cases}
+0, &amp; x&lt;a \\[1ex]
+\frac{x-a}{b-a}, &amp; a\leq x&lt;b \\[1ex]
+1, &amp; x\geq b
+\end{cases}
+\]</div>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1648038533691-be9d322f-845f-4b2b-86ca-fb410b22dc14.jpeg"><img alt="" src="../1648038533691-be9d322f-845f-4b2b-86ca-fb410b22dc14.jpeg"/></a></p>
 <h3 id="指数分布">指数分布<a class="headerlink" href="#指数分布" title="Permanent link">¶</a></h3>
-<p>若随机变量<span class="arithmatex">\(X\)</span>具有密度函数：<br/>
-$$$
-f(x)=<script type="math/tex; mode=display">\begin{cases}
-\lambda e^{-\lambda x}\;,\; & x>0 , \\
-0，&x\leq0. 
-\end{cases}</script>$ <br/>也有地方写成这样：<br/>（$f(x)=<script type="math/tex; mode=display">\begin{cases}
-\frac{1}{\theta} e^{-\frac{1}{\theta} x}\;,\; & x>0 , \\
-0，&x\leq0. 
-\end{cases}</script>
-$$$
-其中<span class="arithmatex">\(\lambda &gt; 0\)</span>，则称<span class="arithmatex">\(X\)</span>服从<strong>参数为</strong><span class="arithmatex">\(\lambda\)</span><strong>的指数分布(exponential distribution)</strong>，记为<span class="arithmatex">\(X\sim E(\lambda)\)</span>。</p>
-<div class="arithmatex">\[$
+<p>若随机变量<span class="arithmatex">\(X\)</span>具有密度函数：</p>
+<div class="arithmatex">\[
+f(x)=\begin{cases}
+\lambda e^{-\lambda x}, &amp; x&gt;0 \\[1ex]
+0，&amp; x\leq0 
+\end{cases}
+\]</div>
+<p>也有地方写成这样：</p>
+<div class="arithmatex">\[
+f(x)=\begin{cases}
+\frac{1}{\theta} e^{-\frac{1}{\theta} x}, &amp; x&gt;0 \\[1ex]
+0，&amp; x\leq0
+\end{cases}
+\]</div>
+<p>其中<span class="arithmatex">\(\lambda &gt; 0\)</span>，则称<span class="arithmatex">\(X\)</span>服从<strong>参数为</strong><span class="arithmatex">\(\lambda\)</span><strong>的指数分布(exponential distribution)</strong>，记为<span class="arithmatex">\(X\sim E(\lambda)\)</span></p>
+<p>指数分布对应的分布函数为：</p>
+<div class="arithmatex">\[
 F(x)=\int_{-\infty}^{x}f(t)\mathrm{d}t=
 \begin{cases}
-1-e^{-\lambda x}\;,\; &amp; x&gt;0 , \\
-0，&amp;x\leq0. 
+1-e^{-\lambda x}, &amp; x&gt;0 \\[1ex]
+0，&amp; x\leq0
 \end{cases}
-$\]</div>
+\]</div>
 <p>指数分布具有无记忆性，即<span class="arithmatex">\(P(X&gt;s | X&gt;t_0)=P(X&gt;s-t_0)\)</span>。</p>
 <h3 id="正态分布">正态分布<a class="headerlink" href="#正态分布" title="Permanent link">¶</a></h3>
-<p>如果随机变量<span class="arithmatex">\(X\)</span>具有密度函数：<br/>
-$<script type="math/tex; mode=display">
-f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}\;,\;\;|x|<+\infty}
-</script>$</p>
-<p>其中<span class="arithmatex">\(\sigma&gt;0\;,\;|\mu|&lt;+\infty\)</span>，则称<span class="arithmatex">\(X\)</span>服从<strong>参数为</strong><span class="arithmatex">\((\mu,\sigma)\)</span><strong>的正态分布(normal distribution)</strong>，或者称<span class="arithmatex">\(X\)</span>为<strong>正态变量</strong>，记为<span class="arithmatex">\(X\sim N(\mu,\sigma^2)\)</span>。<br/>其对应的分布函数为：<br/></p>
-<div class="arithmatex">\[$
-F(x)=\int_{-\infty}^{x}\frac{1}{\sqrt{2\pi}·\sigma}e^{-\frac{(t-\mu)^2}{2\sigma^2}}dt
-$\]</div>
+<p>如果随机变量<span class="arithmatex">\(X\)</span>具有密度函数：</p>
+<div class="arithmatex">\[
+f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\;, \;\;\; |x|&lt;+\infty
+\]</div>
+<p>其中<span class="arithmatex">\(\sigma&gt;0\;,\;|\mu|&lt;+\infty\)</span>为常数，则称<span class="arithmatex">\(X\)</span>服从<strong>参数为</strong><span class="arithmatex">\((\mu,\sigma)\)</span><strong>的正态分布(normal distribution / Gauss distribution)</strong>，或者称<span class="arithmatex">\(X\)</span>为<strong>正态变量</strong>，记为<span class="arithmatex">\(X\sim N(\mu,\sigma^2)\)</span>。</p>
+<p>其对应的分布函数为：</p>
+<div class="arithmatex">\[
+F(x)=\int_{-\infty}^{x}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(t-\mu)^2}{2\sigma^2}}dt
+\]</div>
 <p>在上面出现的式子中，<span class="arithmatex">\(\mu\)</span>为<strong>位置参数</strong>，决定了分布图像的对称轴位置；<span class="arithmatex">\(\sigma\)</span>为<strong>尺度参数</strong>，决定了形状，<span class="arithmatex">\(\sigma\)</span>越小，图像越集中。</p>
-<ul>
-<li>特别的，当<span class="arithmatex">\(\mu=0\;,\;\sigma=1\)</span>时，如果记这时的正太变量为<span class="arithmatex">\(Z\)</span>，即<span class="arithmatex">\(Z\sim N(0,1)\)</span>则它服从<strong>标准正态分布(standard normal distribution)</strong>。则其<strong>密度函数</strong>为：</li>
-</ul>
-<p><span class="arithmatex">\(\varphi(x)=\frac{1}{\sqrt{2\pi}}e^{\frac{-x^2}{2}}\;,\;\;|x|&lt;+\infty\)</span></p>
-<ul>
-<li>则对应的<strong>分布函数</strong>为：</li>
-</ul>
-<p><span class="arithmatex">\(\Phi(x) = \int_{-\infty}^{x}\frac{1}{\sqrt{2\pi}}e^{-\frac{t^2}{2}}dt\)</span></p>
+<hr/>
+<p>特别的，当<span class="arithmatex">\(\mu=0\;,\;\sigma=1\)</span>时，如果记这时的正太变量为<span class="arithmatex">\(Z\)</span>，即<span class="arithmatex">\(Z\sim N(0,1)\)</span>则它服从<strong>标准正态分布(standard normal distribution)</strong>。则其<strong>密度函数</strong>为：</p>
+<div class="arithmatex">\[
+\varphi(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}\;, \;\;\;|x|&lt;+\infty
+\]</div>
+<p>则对应的<strong>分布函数</strong>为：</p>
+<div class="arithmatex">\[
+\Phi(x) = \int_{-\infty}^{x}\frac{1}{\sqrt{2\pi}}e^{-\frac{t^2}{2}}dt
+\]</div>
 <ul>
 <li>则显然有<span class="arithmatex">\(\Phi(x)+\Phi(-x)=1\)</span></li>
-<li>然而由于其无法计算，所以我们需要查<strong>表</strong>获得具体值。-</li>
-<li>
-<p>标准正态分布表</p>
-<ul>
+<li>然而由于其无法计算，所以我们需要查<strong>表</strong>获得具体值，以下为标准正态分布表：<ul>
 <li><a href="https://www.shuxuele.com/data/standard-normal-distribution-table.html">https://www.shuxuele.com/data/standard-normal-distribution-table.html</a></li>
 <li><a href="https://www.chip1stop.com/sp/knowledge/019_normal-distribution-table_zh">https://www.chip1stop.com/sp/knowledge/019_normal-distribution-table_zh</a></li>
 </ul>
 </li>
-<li>
-<p>而对于不是标准正态分布的正态分布，我们可以通过线性变换（标准化）来转换为正态分布。</p>
-</li>
-<li>有：若<span class="arithmatex">\(X\sim N(\mu,\sigma^2)\)</span>，则<span class="arithmatex">\(P\{a&lt;X&lt;b\}=
-P\{\frac{a-\mu}{\sigma}&lt; \frac{X-\mu}{\sigma} &lt; \frac{b-\mu}{\sigma} \}
-=\Phi(\frac{b-\mu}{\sigma})-\Phi(\frac{a-\mu}{\sigma})\)</span></li>
+</ul>
+<hr/>
+<p>而对于不是标准正态分布的正态分布，我们可以通过线性变换（标准化）来转换为标准正态分布：</p>
+<ul>
+<li>若<span class="arithmatex">\(X\sim N(\mu,\sigma^2)\)</span>，则<span class="arithmatex">\(P\{a&lt;X&lt;b\}=
+P\{\frac{a-\mu}{\sigma}&lt; \frac{X-\mu}{\sigma} &lt; \frac{b-\mu}{\sigma} \}=\Phi(\frac{b-\mu}{\sigma})-\Phi(\frac{a-\mu}{\sigma})\)</span></li>
 <li>特别的：若<span class="arithmatex">\(X\sim N(\mu,\sigma^2)\)</span>，则<span class="arithmatex">\(P\{|X-\mu|&lt;k\sigma\} = \Phi(k)-\Phi(-k)=2\Phi(k)-1\)</span></li>
 <li><span class="arithmatex">\(3\sigma\)</span>法则</li>
 </ul>
 <hr/>
 <h2 id="随机变量函数的分布">随机变量函数的分布<a class="headerlink" href="#随机变量函数的分布" title="Permanent link">¶</a></h2>
-<p><strong>随机变量函数的分布</strong><br/>如果：</p>
+<p>如果：</p>
 <ul>
 <li><span class="arithmatex">\(X\)</span>为连续型随机变量，且其<strong>密度函数</strong>为<span class="arithmatex">\(f_X
 (x)\)</span>；</li>
 <li>随机变量<span class="arithmatex">\(Y=g(X)\)</span>；</li>
 <li>函数<span class="arithmatex">\(y=g(x)\)</span>为一严格单调（增/减）函数，并且可微；</li>
 </ul>
-<p>则记<span class="arithmatex">\(y=g(x)\)</span>的反函数为<span class="arithmatex">\(x=h(y)\)</span>，得到<span class="arithmatex">\(Y\)</span>的密度函数为：<br/><span class="arithmatex">\(f_Y(y)=\begin{cases}
-f_X(h(y))·|h'(y)|,&amp;y\in D,\\
-0,&amp;y\not\in  D.
-\end{cases}\)</span></p>
+<p>则记<span class="arithmatex">\(y=g(x)\)</span>的反函数为<span class="arithmatex">\(x=h(y)\)</span>，得到<span class="arithmatex">\(Y\)</span>的密度函数为：</p>
+<div class="arithmatex">\[
+f_Y(y)=\begin{cases}
+f_X(h(y))·|h'(y)|\;, &amp; y\in D,\\[1ex]
+0, &amp; y\not\in D
+\end{cases}
+\]</div>
 <ul>
 <li>其中<span class="arithmatex">\(D\)</span>为<span class="arithmatex">\(y=g(x)\)</span>的值域。</li>
 </ul>
-<p>有关<strong>正态分布</strong>的重要结论：<br/>若<span class="arithmatex">\(X\sim N(\mu,\sigma^2)\)</span>，则<span class="arithmatex">\(Y=aX+b \sim N(a\mu+b,a^2\sigma^2)\)</span>。</p>
+<hr/>
+<p>有关<strong>正态分布</strong>的重要结论：</p>
+<p>若<span class="arithmatex">\(X\sim N(\mu,\sigma^2)\)</span>，则<span class="arithmatex">\(Y=aX+b \sim N(a\mu+b,a^2\sigma^2)\)</span></p>
 <ul>
 <li><strong>标准化</strong>：特别的，若<span class="arithmatex">\(X\sim N(\mu,\sigma^2)\)</span>，则<span class="arithmatex">\(\frac{X-\mu}{\sigma}\sim N(0,1)\)</span>；</li>
 <li>即正态分布的随机变量线性变换后正态性不变；</li>
@@ -1276,7 +1311,7 @@ f_X(h(y))·|h'(y)|,&amp;y\in D,\\
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 13:05:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月14日 10:46:47</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 13:05:10</span>
