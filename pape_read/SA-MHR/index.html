@@ -1131,7 +1131,7 @@
 </li>
 </ul>
 </li>
-<li>人题根位置和场景接触点的估计：<ul>
+<li>人体根位置和场景接触点的估计：<ul>
 <li>概述<ul>
 <li>首先使用一个稀疏 3D CNN 来估计密度场景的接触点——点云标签任务(point cloud labeling task)和绝对的人体位置——投票向量场修正任务(voting vector field refinement task)，根据得到的结果，以绝对位置为中心表示接触点；<ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>问题</strong>：什么是 voting vector field refinement task？后面有写。</li>
@@ -1171,7 +1171,7 @@
 </li>
 <li>SA-HMR：<ul>
 <li><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/Pasted%20image%2020230802112313.png"><img alt="" src="assets/Pasted%20image%2020230802112313.png"/></a></li>
-<li>受数据集限制，本部分的工作以预训练好的 METRO 为基础SA-HMR 添加一个平行的场景相关网络，使用交叉注意力机制来提高 METRO 的场景感知；</li>
+<li>受数据集限制，本部分的工作以预训练好的 METRO 为基础 SA-HMR 添加一个平行的场景相关网络，使用交叉注意力机制来提高 METRO 的场景感知；</li>
 <li>METRO<ul>
 <li>使用自注意力机制实现单目的人体网格恢复；</li>
 <li>提取全局的 CNN 特征 ➡️ 将特征合并到无姿势的 SMPL 网格顶点上 ➡️ 预测包含形体的姿势；</li>
@@ -1248,7 +1248,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年9月1日 16:35:39</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月15日 17:33:32</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年8月2日 16:12:47</span>
