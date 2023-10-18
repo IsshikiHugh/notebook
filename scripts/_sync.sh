@@ -11,9 +11,9 @@ git add -A
 
 if [ $# -gt 0 ]
 then
-    git commit -m "[+] $@"
+    git commit -m "$@"
 else
-    git commit -m "[Default] Content Synchronization"
+    git commit -m "chore: Content synchronization"
 fi
 
 git push
