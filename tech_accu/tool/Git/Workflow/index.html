@@ -1123,12 +1123,12 @@
 <p>本文内容基于我自己的理解和一些文章，是学习笔记，但同时我也希望它能被作为一个学习参考资料。</p>
 <p>所以如果有错误请及时评论或者联系我，希望能为大家提供一个比较好的学习参考！</p>
 <p>因为我自己的开发经历有限，所以并不能保证自己的理解是合适且正确的，所以希望大家狠狠地 educate 我！</p>
-<p>本条目主要介绍有关 Git Workflow 的 <strong>概念性质</strong> 和 <strong>指导性质</strong> 的一些内容，它们并不具体，但是会指导您的使用。</p>
+<p>本条目主要介绍有关 Git Workflow 的<strong>概念性质</strong>和<strong>指导性质</strong>的一些内容，它们并不具体，但是会指导您的使用。</p>
 <p>由于 mkdocs 并没有标签功能，所以其实还是语雀上的文章更好看，但是我并不打算更新语雀了，故这里只放一个以前的指路链接：<a href="https://www.yuque.com/isshikixiu/codes/mp01wg">🔗</a>。</p>
 <p>Git branch 可视化练习网站：<a href="https://note.isshikih.top/tech_accu/tool/Git/Workflow/">https://note.isshikih.top/tech_accu/tool/Git/Workflow/</a></p>
 </div>
 <h2 id="何为-git-workflow">何为 'Git Workflow'<a class="headerlink" href="#何为-git-workflow" title="Permanent link">¶</a></h2>
-<p>Git Workflow 是一种 <strong>规范</strong> 的 <strong>工作流程</strong>，而并不是一个具体的工具或者技术，当然貌似有一个叫做 <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Gitflow</a> 的工具，但在本文中暂时不介绍。
+<p>Git Workflow 是一种<strong>规范</strong>的<strong>工作流程</strong>，而并不是一个具体的工具或者技术，当然貌似有一个叫做 <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Gitflow</a> 的工具，但在本文中暂时不介绍。
 现在被广泛使用的 Workflow 主要有三种：</p>
 <ul>
 <li>Git Workflow</li>
@@ -1136,14 +1136,14 @@
 <li>Gitlab Workflow</li>
 </ul>
 <p>他们的关系是，依次吸收与改进，各有特点，且与对应的使用平台相适应，下面将分条概述。
-在不同的 Workflow 中，最主要的区别就是不同 <strong>分支</strong> 间的合作形式和组织形式，如果你对 Git 的 <strong>分支</strong> 还不是很熟悉，请先参考 <a href="../Commands/">"Git Commands"</a> 的部分内容，简单了解一下基础指令。</p>
+在不同的 Workflow 中，最主要的区别就是不同<strong>分支</strong>间的合作形式和组织形式，如果你对 Git 的<strong>分支</strong>还不是很熟悉，请先参考 <a href="../Commands/">Git Commands</a> 的部分内容，简单了解一下基础指令。</p>
 <h3 id="git-workflow_1">Git Workflow<a class="headerlink" href="#git-workflow_1" title="Permanent link">¶</a></h3>
 <figure>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="1.png"><img alt="" src="1.png"/></a>
 [Source] <a href="https://gitbook.tw/chapters/gitflow/why-need-git-flow">https://gitbook.tw/chapters/gitflow/why-need-git-flow</a></p>
 </figure>
 <p><strong>Tips: 在阅读接下来的一些说明时，可以联系上方这张图进行理解。</strong></p>
-<p>在 Git Workflow 中，主要有 5 类分支，他们分别是 master hotfix release develop feature，它们有着不同的作用和使用规范。其中masterdevelop是 <strong>长期</strong> 分支，他们会随着项目的维护一直存在，而hotfixreleasefeature这些 <strong>短期</strong> 分支则会在完成对应开发后被合并或者删除。</p>
+<p>在 Git Workflow 中，主要有 5 类分支，他们分别是 master hotfix release develop feature，它们有着不同的作用和使用规范。其中masterdevelop是<strong>长期</strong>分支，他们会随着项目的维护一直存在，而hotfixreleasefeature这些<strong>短期</strong>分支则会在完成对应开发后被合并或者删除。</p>
 <h4 id="master-分支主分支">Master 分支（主分支）<a class="headerlink" href="#master-分支主分支" title="Permanent link">¶</a></h4>
 <p>直接面向使用方的分支，在master中存放的应当是可以使用的稳定版本，因而通常也会在其中添加版本编号。
 我们希望 master 中的代码总是从别的分支中合并过来的，而并不希望任何人直接 commit 到 master 中。</p>
@@ -1160,7 +1160,7 @@
 <p>hotfix和release是类似的，他们一个是基于master对两个长期分支进行维护，一个是基于develop。</p>
 </blockquote>
 <h4 id="feature-分支功能分支">Feature 分支（功能分支）<a class="headerlink" href="#feature-分支功能分支" title="Permanent link">¶</a></h4>
-<p>当我们需要开发新的功能，或者说对于大部分开发工作，在 <strong>合理的模块划分</strong> 后，就需要创建合适的 feature 分支来进行对应的开发工作。因为 feature 往往比较多，所以要求各个feature之间耦合程度不宜过高，以减少冲突，这就需要进行合理的划分。</p>
+<p>当我们需要开发新的功能，或者说对于大部分开发工作，在<strong>合理的模块划分</strong>后，就需要创建合适的 feature 分支来进行对应的开发工作。因为 feature 往往比较多，所以要求各个feature之间耦合程度不宜过高，以减少冲突，这就需要进行合理的划分。</p>
 <h3 id="github-workflow">Github Workflow<a class="headerlink" href="#github-workflow" title="Permanent link">¶</a></h3>
 <ul>
 <li>这里的 Workflow 与 Github Action 中的 Workflow 有区别！</li>
@@ -1176,7 +1176,7 @@
 <li>人工审核代码、沟通交流，以及必要的测试 (discuss and review)；</li>
 <li>合并进 master (merge)</li>
 </ol>
-<p>因而，在这样一个工作流程下，合作者之间的 <strong>交流</strong> 就更加重要了。</p>
+<p>因而，在这样一个工作流程下，合作者之间的<strong>交流</strong>就更加重要了。</p>
 <h3 id="gitlab-workflow">Gitlab Workflow<a class="headerlink" href="#gitlab-workflow" title="Permanent link">¶</a></h3>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 咕咕咕</li>
@@ -1195,7 +1195,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年3月22日 10:00:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月18日 23:49:58</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月2日 17:21:51</span>
