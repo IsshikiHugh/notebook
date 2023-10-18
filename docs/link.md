@@ -8,6 +8,16 @@
     <div class="flink-list">
 
     <div class="flink-list-item">
+        <div class="flink-item-icon">
+            ![](_assets/iro/IroPatch_Green.png)
+        </div>
+        <a href="https://blog.isshikih.top/" title="颉时人影" target="_blank">
+            <div class="flink-item-name">颉时人影</div>
+            <div class="flink-item-desc">这是我的博客！时不时更新一些和技术没关系的文章。</div>
+        </a>
+    </div>
+
+    <div class="flink-list-item">
             <div class="flink-item-icon">
                 ![](./_assets/avatars/xyx.png)
             </div>

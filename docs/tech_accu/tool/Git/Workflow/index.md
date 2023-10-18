@@ -7,7 +7,7 @@
     
     因为我自己的开发经历有限，所以并不能保证自己的理解是合适且正确的，所以希望大家狠狠地 educate 我！
     
-    本条目主要介绍有关 Git Workflow 的 **概念性质** 和 **指导性质** 的一些内容，它们并不具体，但是会指导您的使用。
+    本条目主要介绍有关 Git Workflow 的**概念性质**和**指导性质**的一些内容，它们并不具体，但是会指导您的使用。
 
     由于 mkdocs 并没有标签功能，所以其实还是语雀上的文章更好看，但是我并不打算更新语雀了，故这里只放一个以前的指路链接：[🔗](https://www.yuque.com/isshikixiu/codes/mp01wg)。
 
@@ -15,7 +15,7 @@
 
 ## 何为 'Git Workflow'
 
-Git Workflow 是一种 **规范** 的 **工作流程**，而并不是一个具体的工具或者技术，当然貌似有一个叫做 [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) 的工具，但在本文中暂时不介绍。
+Git Workflow 是一种**规范**的**工作流程**，而并不是一个具体的工具或者技术，当然貌似有一个叫做 [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) 的工具，但在本文中暂时不介绍。
 现在被广泛使用的 Workflow 主要有三种：
 
 - Git Workflow
@@ -23,7 +23,7 @@ Git Workflow 是一种 **规范** 的 **工作流程**，而并不是一个具�
 - Gitlab Workflow
 
 他们的关系是，依次吸收与改进，各有特点，且与对应的使用平台相适应，下面将分条概述。
-在不同的 Workflow 中，最主要的区别就是不同 **分支** 间的合作形式和组织形式，如果你对 Git 的 **分支** 还不是很熟悉，请先参考 ["Git Commands"](../Commands/index.md) 的部分内容，简单了解一下基础指令。
+在不同的 Workflow 中，最主要的区别就是不同**分支**间的合作形式和组织形式，如果你对 Git 的**分支**还不是很熟悉，请先参考 [Git Commands](../Commands/index.md) 的部分内容，简单了解一下基础指令。
 
 ### Git Workflow
 
@@ -34,7 +34,7 @@ Git Workflow 是一种 **规范** 的 **工作流程**，而并不是一个具�
 
 **Tips: 在阅读接下来的一些说明时，可以联系上方这张图进行理解。**
 
-在 Git Workflow 中，主要有 5 类分支，他们分别是 master hotfix release develop feature，它们有着不同的作用和使用规范。其中masterdevelop是 **长期** 分支，他们会随着项目的维护一直存在，而hotfixreleasefeature这些 **短期** 分支则会在完成对应开发后被合并或者删除。
+在 Git Workflow 中，主要有 5 类分支，他们分别是 master hotfix release develop feature，它们有着不同的作用和使用规范。其中masterdevelop是**长期**分支，他们会随着项目的维护一直存在，而hotfixreleasefeature这些**短期**分支则会在完成对应开发后被合并或者删除。
 
 #### Master 分支（主分支）
 
@@ -60,7 +60,7 @@ Git Workflow 是一种 **规范** 的 **工作流程**，而并不是一个具�
 
 #### Feature 分支（功能分支）
 
-当我们需要开发新的功能，或者说对于大部分开发工作，在 **合理的模块划分** 后，就需要创建合适的 feature 分支来进行对应的开发工作。因为 feature 往往比较多，所以要求各个feature之间耦合程度不宜过高，以减少冲突，这就需要进行合理的划分。
+当我们需要开发新的功能，或者说对于大部分开发工作，在**合理的模块划分**后，就需要创建合适的 feature 分支来进行对应的开发工作。因为 feature 往往比较多，所以要求各个feature之间耦合程度不宜过高，以减少冲突，这就需要进行合理的划分。
 
 ### Github Workflow
 
@@ -79,7 +79,7 @@ Github Workflow 对 Git Workflow 进行了简化，在 Github Workflow 下仅仅
 4. 人工审核代码、沟通交流，以及必要的测试 (discuss and review)；
 5. 合并进 master (merge)
 
-因而，在这样一个工作流程下，合作者之间的 **交流** 就更加重要了。
+因而，在这样一个工作流程下，合作者之间的**交流**就更加重要了。
 
 ### Gitlab Workflow
 

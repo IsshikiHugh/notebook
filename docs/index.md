@@ -26,18 +26,12 @@ hide:
     ![](_assets/wechatPayQRCode.png){ width="200px" }
     <figure>
 
-!!! advice "相关链接"
-    <div class="flink-list">
-    <div class="flink-list-item">
-        <div class="flink-item-icon">
-            ![](_assets/iro/IroPatch_Green.png)
-        </div>
-    <a href="https://blog.isshikih.top/" title="颉时人影" target="_blank">
-        <div class="flink-item-name">颉时人影</div>
-        <div class="flink-item-desc">这是我的博客！时不时更新一些和技术没关系的文章。</div>
-    </a>
-    </div>
-    </div>
+!!! advice "推荐阅读"
+    - [📄 使用 reveal-md 来写 Slides](./others/reveal-md2Slides/index.md)
+    - [🗂️ Git Something](./tech_accu/tool/Git/index.md)
+    - [🗂️ 数字逻辑设计 | Digital Design](./cour_note/D2QD_DigitalDesign/index.md)
+    - [🗂️ 高级数据结构 | Advanced Data Structure](./cour_note/D2CX_AdvancedDataStructure/index.md)
+    - [🗂️ 操作系统 | Operating System](./cour_note/D3QD_OperatingSystem/index.md)（更新中）
 
 !!! info "站点统计"
     <center>
