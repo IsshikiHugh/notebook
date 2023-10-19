@@ -911,7 +911,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Unit1/">
-        Unit 1: 进程管理 | Process Management [未完成]
+        Unit 1: 进程管理与同步 | Process Management and Synchronization [未完成]
       </a>
 </li>
 <li class="md-nav__item">
@@ -1026,6 +1026,11 @@
           📦 杂项专题
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../others/tools/">
+        工具收集
+      </a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../../others/reveal-md2Slides/">
         使用 reveal-md 来写 Slides
@@ -1175,7 +1180,7 @@
 <p>本节主要将操作系统当作一个不可拆分的单位，来讨论什么是操作系统。</p>
 </div>
 <h3 id="何为操作系统">何为操作系统<a class="headerlink" href="#何为操作系统" title="Permanent link">¶</a></h3>
-<p>整门课程我们需要解决的第一个问题，显然是什么是<strong>操作系统(Operating System)OS</strong>。接下来我将从两个方面简述何为操作系统。</p>
+<p>整门课程我们需要解决的第一个问题，显然是什么是<strong>操作系统(Operating System, OS)</strong>。接下来我将从两个方面简述何为操作系统。</p>
 <details class="section" open="open">
 <summary>① 从职能上看</summary>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/1.png"><img align="right" alt="Abstract view of the components of a computer system." src="../img/1.png" width="40%"/></a></p>
@@ -1203,7 +1208,7 @@
 <div class="admonition note">
 <p>其次，操作系统需要有较好的易用性，它需要向用户提供简便的服务以请求系统资源，毕竟操作系统的目的之一就是方便用户使用系统资源——这意味着我们的“代理人”得是个好交流的人，而用户程序调用操作系统资源的途径是<a href="#系统调用">系统调用</a>。</p>
 <blockquote>
-<p>宽泛一点来讲，操作系统为我们提供了命令接口和程序接口，有些地方也会提到图形用户接口(Graphical User Interface)GUI，以及命令行接口(Command Line Interface)CLI，但是我个人不是很喜欢这个分类。</p>
+<p>宽泛一点来讲，操作系统为我们提供了命令接口和程序接口，有些地方也会提到图形用户接口(Graphical User Interface, GUI)，以及命令行接口(Command Line Interface, CLI)，但是我个人不是很喜欢这个分类。</p>
 </blockquote>
 </div>
 <div class="admonition note">
@@ -1453,9 +1458,9 @@ Examples of W&amp;U system calls.
 </figure></p>
 </div>
 <p><strong>系统调用(System Call)</strong>是系统向用户程序提供服务的一个接口，它们经常以 C/C++ 函数的形式存在，对于某些比较接近底层的任务，也可能是通过汇编编写的。</p>
-<p>但说到底，系统调用还是相对底层的设计，通常的开发并不基于如此底层的设计展开。更常见的是利用各种抽象层级更高的 <strong>(Application Programming Interface)API</strong> 进行开发。</p>
+<p>但说到底，系统调用还是相对底层的设计，通常的开发并不基于如此底层的设计展开。更常见的是利用各种抽象层级更高的 <strong>Application Programming Interface, API</strong> 进行开发。</p>
 <p>API 是一个非常常见的概念，在我看来系统调用本身也是一种 API。API 的核心思想是让调用者只需要知道如何与被调用者交流以实现目的，而不需要关心其具体实现。这同时也暗示着，只要 API 一致，同样的程序在不同的平台上也能直接编译后运行。</p>
-<p>显然，API 与编程语言往往是强相关的，特定编程语言在操作系统上运行也是需要一定的“环境”的，也就是我们所说的<strong>运行时环境(run-time environment)RTE</strong>。RTE 通常包括了编译器(compilers)、解释器(interpreters)、库(libraries)和<a href="#链接器和装载器">装载器(loaders)</a>等，它们共同组成了一个完整的运行时环境。</p>
+<p>显然，API 与编程语言往往是强相关的，特定编程语言在操作系统上运行也是需要一定的“环境”的，也就是我们所说的<strong>运行时环境(run-time environment, RTE)</strong>。RTE 通常包括了编译器(compilers)、解释器(interpreters)、库(libraries)和<a href="#链接器和装载器">装载器(loaders)</a>等，它们共同组成了一个完整的运行时环境。</p>
 <details class="quote">
 <summary>相关阅读</summary>
 <ul>
@@ -1516,7 +1521,7 @@ gcc<span class="w"> </span>main.o<span class="w"> </span>-o<span class="w"> </sp
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月15日 17:33:32</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月19日 16:09:10</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>

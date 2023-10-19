@@ -939,7 +939,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit1/">
-        Unit 1: 进程管理 | Process Management [未完成]
+        Unit 1: 进程管理与同步 | Process Management and Synchronization [未完成]
       </a>
 </li>
 <li class="md-nav__item">
@@ -1054,6 +1054,11 @@
           📦 杂项专题
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../others/tools/">
+        工具收集
+      </a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../../others/reveal-md2Slides/">
         使用 reveal-md 来写 Slides
@@ -1243,7 +1248,7 @@
 <p>可以粗糙地理解为：“范式”是一个输出为算法的特殊函数，而 <span class="arithmatex">\(\epsilon\)</span> 是“范式”的一个参数，对于特定的 <span class="arithmatex">\(\epsilon\)</span>，“范式”输出一个特定的算法（这些算法有着相同的模式），而这些“范式”输出的算法，都解决同一个问题，并且对于任意固定的 <span class="arithmatex">\(\epsilon\)</span> 其近似比为 <span class="arithmatex">\(1+\epsilon\)</span>。</p>
 <p>而关于 <span class="arithmatex">\(\epsilon &gt; 0\)</span> 这个约束，是因为近似比必定大于 1。</p>
 </blockquote>
-<p>而此时，这一族的算法的复杂度可以表示为 <span class="arithmatex">\(O(f(n, \epsilon))\)</span>，如 <span class="arithmatex">\(O(n^{2/\epsilon}), O((\frac{1}{\epsilon})^2n^3)\)</span>。当 <span class="arithmatex">\(f(n, \epsilon)\)</span> 关于 <span class="arithmatex">\(n\)</span> 是多项式时，我们称其为<strong>多项式时间近似范式(polynomial-time approximation scheme)PTAS</strong>。当 <span class="arithmatex">\(f(n, \epsilon)\)</span> 关于 <span class="arithmatex">\(n\)</span> 和 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 都是多项式时，我们称其为<strong>完全多项式时间近似范式(fully polynomial-time approximation scheme)FPTAS</strong>。</p>
+<p>而此时，这一族的算法的复杂度可以表示为 <span class="arithmatex">\(O(f(n, \epsilon))\)</span>，如 <span class="arithmatex">\(O(n^{2/\epsilon}), O((\frac{1}{\epsilon})^2n^3)\)</span>。当 <span class="arithmatex">\(f(n, \epsilon)\)</span> 关于 <span class="arithmatex">\(n\)</span> 是多项式时，我们称其为<strong>多项式时间近似范式(polynomial-time approximation scheme, PTAS)</strong>。当 <span class="arithmatex">\(f(n, \epsilon)\)</span> 关于 <span class="arithmatex">\(n\)</span> 和 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 都是多项式时，我们称其为<strong>完全多项式时间近似范式(fully polynomial-time approximation scheme, FPTAS)</strong>。</p>
 <p>为什么要区分 PTAS 和 FPTAS 呢？我们观察 <span class="arithmatex">\(\epsilon\)</span> 对算法的影响：随着 <span class="arithmatex">\(\epsilon\)</span> 的减小，近似比逐渐变小，即准确度提高；而 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 变大，而通常来说 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 与算法复杂度都是正相关的，因此会导致算法复杂度升高。如果说这个近似范式是 FPTAS，那么为了提高准确度而缩小 <span class="arithmatex">\(\epsilon\)</span>，导致的复杂度变化是相对可接受的（多项式级的变化，如 <span class="arithmatex">\((\frac{1}{\epsilon})^2n^3\)</span> 关于 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 是多项式级的）；然而如果它不是 FPTAS，那么 <span class="arithmatex">\(\epsilon\)</span> 的缩小可能带来恐怖的复杂度增加（如 <span class="arithmatex">\(n^{2/\epsilon}\)</span> 关于 <span class="arithmatex">\(\epsilon\)</span> 是指数级的）。</p>
 <hr/>
 <div class="admonition note">
@@ -1591,7 +1596,7 @@ r(C) = \max_{s_i\in S} \{ dis(s_i, C) \} \\
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月1日 07:49:19</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月19日 16:09:10</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 13:40:59</span>

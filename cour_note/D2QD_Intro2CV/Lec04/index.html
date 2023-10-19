@@ -948,7 +948,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit1/">
-        Unit 1: 进程管理 | Process Management [未完成]
+        Unit 1: 进程管理与同步 | Process Management and Synchronization [未完成]
       </a>
 </li>
 <li class="md-nav__item">
@@ -1063,6 +1063,11 @@
           📦 杂项专题
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../others/tools/">
+        工具收集
+      </a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../../others/reveal-md2Slides/">
         使用 reveal-md 来写 Slides
@@ -1263,9 +1268,9 @@
 <p>一个数学<strong>模型(model)</strong>描述问题中输入和输出的关系，例如：线性模型(linear model) <span class="arithmatex">\(b = a^T x\)</span> 就描述了输入(input) <span class="arithmatex">\(a\)</span> 和输出(output) <span class="arithmatex">\(b\)</span> 关于模型参数(model parameter) <span class="arithmatex">\(x\)</span> 的关系。</p>
 <p>而实际的结果很难严格满足数学模型，这是由多方原因导致的，所以我们往往做的是对实际情况进行<strong>模型拟合(model fitting)</strong>。</p>
 <p>更具体的来说，我们可能已经有一个先验的假设，即数据符合哪种模型，接下来根据数据来分析得到合适的 model parameters，而这个步骤也常常被称为 learning。</p>
-<p>一种比较经典的逼近方法（<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95">最小二乘法</a>）是求使<strong><a href="https://zh.wikipedia.org/wiki/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE">均方误差(mean square error)MSE</a></strong>最小的 model parameters：</p>
+<p>一种比较经典的逼近方法（<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95">最小二乘法</a>）是求使<strong><a href="https://zh.wikipedia.org/wiki/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE">均方误差(mean square error, MSE)</a></strong>最小的 model parameters：</p>
 <p><span class="arithmatex">\(\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2\)</span></p>
-<p>而如果我们假设数据中的噪声是高斯分布的（实际上大部分噪声在基数足够大的情况下都可以看作为高斯分布的），那么可以与统计学的<strong>极大似然估计(maximum likelihood estimation)MLE</strong>相统一.</p>
+<p>而如果我们假设数据中的噪声是高斯分布的（实际上大部分噪声在基数足够大的情况下都可以看作为高斯分布的），那么可以与统计学的<strong>极大似然估计(maximum likelihood estimation, MLE)</strong>相统一.</p>
 <div class="admonition success">
 <p class="admonition-title">MSE vs. MLE</p>
 <p><a href="https://medium.com/analytics-vidhya/mse-vs-mle-for-linear-regression-f4ce3f6b990e">MSE vs MLE for linear regression</a></p>
@@ -1482,7 +1487,7 @@ P[(a_1, b_1)(a_2, b_2)\dots|x] &amp; = \prod\limits_iP[(a_i, b_i)|x] = \prod\lim
 </details>
 <hr/>
 <h3 id="随机抽样一致">随机抽样一致<a class="headerlink" href="#随机抽样一致" title="Permanent link">¶</a></h3>
-<p><strong><a href="https://zh.wikipedia.org/wiki/%E9%9A%A8%E6%A9%9F%E6%8A%BD%E6%A8%A3%E4%B8%80%E8%87%B4">随机抽样一致(random sample consensus)RANSAC</a></strong>采用迭代的方式从包含外点的数据中估计数学模型参数，是一个对于存在明显外点的数据非常有效的方法。</p>
+<p><strong><a href="https://zh.wikipedia.org/wiki/%E9%9A%A8%E6%A9%9F%E6%8A%BD%E6%A8%A3%E4%B8%80%E8%87%B4">随机抽样一致(random sample consensus, RANSAC)</a></strong>采用迭代的方式从包含外点的数据中估计数学模型参数，是一个对于存在明显外点的数据非常有效的方法。</p>
 <div class="admonition summary">
 <p class="admonition-title">RANSAC procedure</p>
 <ol>
@@ -1577,7 +1582,7 @@ NCut(V_A,V_B) = \frac{cut(V_A,V_B)}{assoc(V_A,V)} + \frac{cut(V_A,V_B)}{assoc(V_
 </ul>
 <hr/>
 <h3 id="马可夫随机场">马可夫随机场<a class="headerlink" href="#马可夫随机场" title="Permanent link">¶</a></h3>
-<p><strong>马可夫随机场(Markov Random Field)MRF</strong>是一种更通用的解决方案，可惜我第一次没听懂，等我听懂了再来补充这里的内容。</p>
+<p><strong>马可夫随机场(Markov Random Field, MRF)</strong>是一种更通用的解决方案，可惜我第一次没听懂，等我听懂了再来补充这里的内容。</p>
 <details class="bug">
 <summary>sketch</summary>
 <p>Markov chains</p>
@@ -1587,7 +1592,7 @@ NCut(V_A,V_B) = \frac{cut(V_A,V_B)}{assoc(V_A,V)} + \frac{cut(V_A,V_B)}{assoc(V_
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月7日 11:16:13</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月19日 16:09:10</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>

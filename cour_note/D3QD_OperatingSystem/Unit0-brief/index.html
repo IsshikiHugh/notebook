@@ -819,7 +819,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Unit1/">
-        Unit 1: 进程管理 | Process Management [未完成]
+        Unit 1: 进程管理与同步 | Process Management and Synchronization [未完成]
       </a>
 </li>
 <li class="md-nav__item">
@@ -934,6 +934,11 @@
           📦 杂项专题
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../others/tools/">
+        工具收集
+      </a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../../others/reveal-md2Slides/">
         使用 reveal-md 来写 Slides
@@ -1320,8 +1325,8 @@ Examples of W&amp;U system calls.
 </figure></p>
 </div>
 <p><strong>系统调用(System Call)</strong>是系统向用户程序提供服务的一个接口，它们经常以 C/C++ 函数的形式存在，对于某些比较接近底层的任务，也可能是通过汇编编写的。</p>
-<p>但说到底，系统调用还是相对底层的设计，通常的开发并不基于如此底层的设计展开。更常见的是利用各种抽象层级更高的 <strong>(Application Programming Interface)API</strong> 进行开发。</p>
-<p>API 由“环境”提供，也就是我们所说的<strong>运行时环境(run-time environment)RTE</strong>。</p>
+<p>但说到底，系统调用还是相对底层的设计，通常的开发并不基于如此底层的设计展开。更常见的是利用各种抽象层级更高的 <strong>Application Programming Interface, API</strong> 进行开发。</p>
+<p>API 由“环境”提供，也就是我们所说的<strong>运行时环境(run-time environment, RTE)</strong>。</p>
 <details class="eg">
 <summary>思考题</summary>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">题面</label><label for="__tabbed_2_2">解析</label></div>
@@ -1367,7 +1372,7 @@ gcc<span class="w"> </span>main.o<span class="w"> </span>-o<span class="w"> </sp
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月15日 17:33:32</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月19日 16:09:10</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月12日 11:05:21</span>

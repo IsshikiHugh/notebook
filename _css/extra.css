@@ -111,7 +111,7 @@ li {
     --md-accent-bg-color--light: hsla(0, 0%, 100%, .7);
     --md-code-fg-color: #66806A;
     --md-code-bg-color: #FFF3E4;
-    --md-code-hl-color: rgba(255, 255, 0, .5);
+    --md-code-hl-color: #d7e1c3;
     --md-code-hl-number-color: #d52a2a;
     --md-code-hl-special-color: #db1457;
     --md-code-hl-function-color: #a846b9;

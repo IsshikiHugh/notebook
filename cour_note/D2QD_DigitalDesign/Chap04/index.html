@@ -950,7 +950,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit1/">
-        Unit 1: 进程管理 | Process Management [未完成]
+        Unit 1: 进程管理与同步 | Process Management and Synchronization [未完成]
       </a>
 </li>
 <li class="md-nav__item">
@@ -1065,6 +1065,11 @@
           📦 杂项专题
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../others/tools/">
+        工具收集
+      </a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../../others/reveal-md2Slides/">
         使用 reveal-md 来写 Slides
@@ -1514,11 +1519,11 @@
 </blockquote>
 <p>状态机模型主要有三要素：<strong>输入条件(Input Conditions)</strong>、<strong>状态转移(Transitions)</strong> 和 <strong>输出行为(Output Actions)</strong>。总体来说，输入条件告诉我们整个状态机要如何变化；状态转移描述了状态机的内部转移行为，即图论上的有向联通关系；输出行为描述动态变化过程中状态机的对外表达。其中，状态转移和输出行为是我们需要关注的状态机的两个维度，输入条件是我们用来做实时判断的外部依据。</p>
 <hr/>
-<p>「输入条件」是由输入变量形成的一个布尔方程，在整个状态机中，输入是变化的“因变量”，换句话来说，无论是状态转移还是输出，都取决于输入条件。而导致特定行为的输入条件则被分类为 <strong>转移条件(Transition Condition)TC</strong> 和 <strong>输出条件(Output Condition)OC</strong>。</p>
+<p>「输入条件」是由输入变量形成的一个布尔方程，在整个状态机中，输入是变化的“因变量”，换句话来说，无论是状态转移还是输出，都取决于输入条件。而导致特定行为的输入条件则被分类为 <strong>转移条件(Transition Condition, TC)</strong> 和 <strong>输出条件(Output Condition, OC)</strong>。</p>
 <hr/>
 <p>「状态转移」在图中表现为有向边，当 TC 成立时，状态转移发生；或者对于无条件转移，只要得到时钟脉冲就会转移到下一个状态。</p>
 <hr/>
-<p>「输出行为」在状态机中有四种触发方法（即四种 OC）：<strong>Moore</strong>、<strong>不依赖转移(Transition-condition Independent)TCI</strong> Mealy、<strong>依赖转移(Transition-condition Dependent)TCD</strong> Mealy 和 <strong>依赖转移和输出条件(Transition and Output-condition Dependent)TOCD</strong> Mealy。根据字面意思来看：</p>
+<p>「输出行为」在状态机中有四种触发方法（即四种 OC）：<strong>Moore</strong>、<strong>不依赖转移(Transition-condition Independent, TCI)</strong> Mealy、<strong>依赖转移(Transition-condition Dependent, TCD)</strong> Mealy 和 <strong>依赖转移和输出条件(Transition and Output-condition Dependent, TOCD)</strong> Mealy。根据字面意思来看：</p>
 <ul>
 <li>Moore 只与状态有关，所以在图中从状态节点引出；</li>
 <li>TCI Mealy 与状态和输出条件有关，所以在图中从状态节点引出写在 OC 后面（<code>OC</code>/<code>TCI OA</code>）；</li>
@@ -1649,7 +1654,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年7月23日 10:38:40</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月19日 16:09:10</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月20日 14:50:19</span>

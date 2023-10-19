@@ -934,7 +934,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit1/">
-        Unit 1: 进程管理 | Process Management [未完成]
+        Unit 1: 进程管理与同步 | Process Management and Synchronization [未完成]
       </a>
 </li>
 <li class="md-nav__item">
@@ -1049,6 +1049,11 @@
           📦 杂项专题
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../others/tools/">
+        工具收集
+      </a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../../others/reveal-md2Slides/">
         使用 reveal-md 来写 Slides
@@ -1473,7 +1478,7 @@ diff = \frac{(W_1(x,y)-\overline{W_1})(W_2(x,y)-\overline{W_2})}{\sigma_{W_1}\si
 </details>
 <hr/>
 <h3 id="多视角">多视角<a class="headerlink" href="#多视角" title="Permanent link">¶</a></h3>
-<p><strong>多视角立体(Multi-view Stereo)MVS</strong>重建，顾名思义就是利用更多的视角来进行重建，相比于前面提到的双目模型，它有更强的约束、能在多个候选中选择最合适的方案，以及能得到更完整的 3D</p>
+<p><strong>多视角立体(Multi-view Stereo, MVS)</strong>重建，顾名思义就是利用更多的视角来进行重建，相比于前面提到的双目模型，它有更强的约束、能在多个候选中选择最合适的方案，以及能得到更完整的 3D</p>
 <p>我们在双目匹配中，首先寻找能够匹配的点对再做接下来的事情，但是在多视角中，找到「匹配的一系列点」是比较困难且耗时的，因为 n 个点有 <span class="arithmatex">\(C_n^2\)</span> 对匹配关系。所以我们要变换思路，我们需要以某一个视角为基础，并枚举这个点的深度，计算重投影误差，找到使重投影误差最优秀的那个深度作为这个点的深度（而不是在每一个对极线上找，可以思考为什么）。</p>
 <div class="admonition question">
 <p class="admonition-title">个人疑问</p>
@@ -1573,7 +1578,7 @@ diff = \frac{(W_1(x,y)-\overline{W_1})(W_2(x,y)-\overline{W_2})}{\sigma_{W_1}\si
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月4日 17:28:06</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月19日 16:09:10</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
