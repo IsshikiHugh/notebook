@@ -43,7 +43,7 @@
     2. 如果二叉树 $T$ 是一个 AVL 树，则其左右孩子树 $T_l$ 和 $T_r$ 也都应该是 AVL 树，且有 $|h(T_l) - h(T_r)| \leq 1$；
 
     !!! definition "Balance Factor"
-        一个节点的**平衡因子(Balance Factor)BF**用来描述一个节点的平衡状态，对于节点 $T_p$，它的左孩子树为 $T_l$，右孩子树为 $T_r$，则：
+        一个节点的**平衡因子(Balance Factor, BF)**用来描述一个节点的平衡状态，对于节点 $T_p$，它的左孩子树为 $T_l$，右孩子树为 $T_r$，则：
 
         $$
         BF(T_p) = h(T_l) - h(T_r)

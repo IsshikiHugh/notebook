@@ -292,7 +292,7 @@ $$
 
     ---
 
-    「输入条件」是由输入变量形成的一个布尔方程，在整个状态机中，输入是变化的“因变量”，换句话来说，无论是状态转移还是输出，都取决于输入条件。而导致特定行为的输入条件则被分类为 **转移条件(Transition Condition)TC** 和 **输出条件(Output Condition)OC**。
+    「输入条件」是由输入变量形成的一个布尔方程，在整个状态机中，输入是变化的“因变量”，换句话来说，无论是状态转移还是输出，都取决于输入条件。而导致特定行为的输入条件则被分类为 **转移条件(Transition Condition, TC)** 和 **输出条件(Output Condition, OC)**。
 
     ---
 
@@ -300,7 +300,7 @@ $$
 
     ---
 
-    「输出行为」在状态机中有四种触发方法（即四种 OC）：**Moore**、**不依赖转移(Transition-condition Independent)TCI** Mealy、**依赖转移(Transition-condition Dependent)TCD** Mealy 和 **依赖转移和输出条件(Transition and Output-condition Dependent)TOCD** Mealy。根据字面意思来看：
+    「输出行为」在状态机中有四种触发方法（即四种 OC）：**Moore**、**不依赖转移(Transition-condition Independent, TCI)** Mealy、**依赖转移(Transition-condition Dependent, TCD)** Mealy 和 **依赖转移和输出条件(Transition and Output-condition Dependent, TOCD)** Mealy。根据字面意思来看：
         
     - Moore 只与状态有关，所以在图中从状态节点引出；
     - TCI Mealy 与状态和输出条件有关，所以在图中从状态节点引出写在 OC 后面（`OC`/`TCI OA`）；

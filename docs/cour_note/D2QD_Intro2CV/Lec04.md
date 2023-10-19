@@ -42,11 +42,11 @@
 
 更具体的来说，我们可能已经有一个先验的假设，即数据符合哪种模型，接下来根据数据来分析得到合适的 model parameters，而这个步骤也常常被称为 learning。
 
-一种比较经典的逼近方法（[最小二乘法](https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95)）是求使**[均方误差(mean square error)MSE](https://zh.wikipedia.org/wiki/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE)**最小的 model parameters：
+一种比较经典的逼近方法（[最小二乘法](https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95)）是求使**[均方误差(mean square error, MSE)](https://zh.wikipedia.org/wiki/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE)**最小的 model parameters：
 
 $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
-而如果我们假设数据中的噪声是高斯分布的（实际上大部分噪声在基数足够大的情况下都可以看作为高斯分布的），那么可以与统计学的**极大似然估计(maximum likelihood estimation)MLE**相统一.
+而如果我们假设数据中的噪声是高斯分布的（实际上大部分噪声在基数足够大的情况下都可以看作为高斯分布的），那么可以与统计学的**极大似然估计(maximum likelihood estimation, MLE)**相统一.
 
 !!! success "MSE vs. MLE"
     [MSE vs MLE for linear regression](https://medium.com/analytics-vidhya/mse-vs-mle-for-linear-regression-f4ce3f6b990e)
@@ -268,7 +268,7 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 ### 随机抽样一致
 
-**[随机抽样一致(random sample consensus)RANSAC](https://zh.wikipedia.org/wiki/%E9%9A%A8%E6%A9%9F%E6%8A%BD%E6%A8%A3%E4%B8%80%E8%87%B4)**采用迭代的方式从包含外点的数据中估计数学模型参数，是一个对于存在明显外点的数据非常有效的方法。
+**[随机抽样一致(random sample consensus, RANSAC)](https://zh.wikipedia.org/wiki/%E9%9A%A8%E6%A9%9F%E6%8A%BD%E6%A8%A3%E4%B8%80%E8%87%B4)**采用迭代的方式从包含外点的数据中估计数学模型参数，是一个对于存在明显外点的数据非常有效的方法。
 
 !!! summary "RANSAC procedure"
 
@@ -389,7 +389,7 @@ $$
 
 ### 马可夫随机场
 
-**马可夫随机场(Markov Random Field)MRF**是一种更通用的解决方案，可惜我第一次没听懂，等我听懂了再来补充这里的内容。
+**马可夫随机场(Markov Random Field, MRF)**是一种更通用的解决方案，可惜我第一次没听懂，等我听懂了再来补充这里的内容。
 
 ??? bug "sketch"
     Markov chains

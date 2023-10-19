@@ -265,6 +265,7 @@ nav:
     - pape_read/TRACE/index.md
   - "📦 杂项专题":
     - others/index.md
+    - others/tools.md
     - others/reveal-md2Slides/index.md
   - "🚧 施工中...":
     - comming.md

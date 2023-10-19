@@ -332,9 +332,9 @@
 
         **系统调用(System Call)**是系统向用户程序提供服务的一个接口，它们经常以 C/C++ 函数的形式存在，对于某些比较接近底层的任务，也可能是通过汇编编写的。
 
-        但说到底，系统调用还是相对底层的设计，通常的开发并不基于如此底层的设计展开。更常见的是利用各种抽象层级更高的 **(Application Programming Interface)API** 进行开发。
+        但说到底，系统调用还是相对底层的设计，通常的开发并不基于如此底层的设计展开。更常见的是利用各种抽象层级更高的 **Application Programming Interface, API** 进行开发。
 
-        API 由“环境”提供，也就是我们所说的**运行时环境(run-time environment)RTE**。
+        API 由“环境”提供，也就是我们所说的**运行时环境(run-time environment, RTE)**。
 
         ??? eg "思考题"
 

@@ -16,8 +16,8 @@
 直接更改电路来修改电路功能被称为硬编程，而可重变成技术让我们能够不更改硬件布线的情况下，实现**逻辑功能的重新编辑**。
 
 !!! example "FPGA"
-    [现场可编程逻辑门阵列(Field Programmable Gate Array)FPGA](https://zh.wikipedia.org/zh-cn/%E7%8E%B0%E5%9C%BA%E5%8F%AF%E7%BC%96%E7%A8%8B%E9%80%BB%E8%BE%91%E9%97%A8%E9%98%B5%E5%88%97)
-    - [查找表(lookup table)LUT](https://zh.m.wikipedia.org/zh-hans/%E6%9F%A5%E6%89%BE%E8%A1%A8)
+    [现场可编程逻辑门阵列(Field Programmable Gate Array, FPGA)](https://zh.wikipedia.org/zh-cn/%E7%8E%B0%E5%9C%BA%E5%8F%AF%E7%BC%96%E7%A8%8B%E9%80%BB%E8%BE%91%E9%97%A8%E9%98%B5%E5%88%97)
+    - [查找表(lookup table, LUT)](https://zh.m.wikipedia.org/zh-hans/%E6%9F%A5%E6%89%BE%E8%A1%A8)
 
 **编程技术(programming technologies)** 在硬件层面有三种实现手段：
 

@@ -6,9 +6,9 @@
 !!! warning "说明"
     本文中提到的所有的「成像平面」指的都是我们的简化几何模型中的虚拟成像平面，并不是物理意义上小孔成像所在的那个成反向倒立像的平面！
 
-**运动推断结构(Structure from Motion)SfM**用于估计二维图像中的三维结构，通过相机运动（平移、旋转）引起的画面变化来计算其反应的 3D 结构。
+**运动推断结构(Structure from Motion, SfM)**用于估计二维图像中的三维结构，通过相机运动（平移、旋转）引起的画面变化来计算其反应的 3D 结构。
 
-> 在机器人领域，一个相关的领域是 [同时定位与地图构建(Simultaneous Localization and Mapping)SLAM](https://zh.wikipedia.org/wiki/%E5%90%8C%E6%97%B6%E5%AE%9A%E4%BD%8D%E4%B8%8E%E5%9C%B0%E5%9B%BE%E6%9E%84%E5%BB%BA)。
+> 在机器人领域，一个相关的领域是 [同时定位与地图构建(Simultaneous Localization and Mapping, SLAM)](https://zh.wikipedia.org/wiki/%E5%90%8C%E6%97%B6%E5%AE%9A%E4%BD%8D%E4%B8%8E%E5%9C%B0%E5%9B%BE%E6%9E%84%E5%BB%BA)。
 
 !!! key-point "三个关键问题"
     1. 如何描述相机的投影行为，也就是**[相机模型](Lec02.md#透视投影)**的相关内容，本小结指透视模型；

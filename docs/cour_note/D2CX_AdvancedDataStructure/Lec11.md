@@ -37,7 +37,7 @@ $$
 >
 > 而关于 $\epsilon > 0$ 这个约束，是因为近似比必定大于 1。
 
-而此时，这一族的算法的复杂度可以表示为 $O(f(n, \epsilon))$，如 $O(n^{2/\epsilon}), O((\frac{1}{\epsilon})^2n^3)$。当 $f(n, \epsilon)$ 关于 $n$ 是多项式时，我们称其为**多项式时间近似范式(polynomial-time approximation scheme)PTAS**。当 $f(n, \epsilon)$ 关于 $n$ 和 $\frac{1}{\epsilon}$ 都是多项式时，我们称其为**完全多项式时间近似范式(fully polynomial-time approximation scheme)FPTAS**。
+而此时，这一族的算法的复杂度可以表示为 $O(f(n, \epsilon))$，如 $O(n^{2/\epsilon}), O((\frac{1}{\epsilon})^2n^3)$。当 $f(n, \epsilon)$ 关于 $n$ 是多项式时，我们称其为**多项式时间近似范式(polynomial-time approximation scheme, PTAS)**。当 $f(n, \epsilon)$ 关于 $n$ 和 $\frac{1}{\epsilon}$ 都是多项式时，我们称其为**完全多项式时间近似范式(fully polynomial-time approximation scheme, FPTAS)**。
 
 为什么要区分 PTAS 和 FPTAS 呢？我们观察 $\epsilon$ 对算法的影响：随着 $\epsilon$ 的减小，近似比逐渐变小，即准确度提高；而 $\frac{1}{\epsilon}$ 变大，而通常来说 $\frac{1}{\epsilon}$ 与算法复杂度都是正相关的，因此会导致算法复杂度升高。如果说这个近似范式是 FPTAS，那么为了提高准确度而缩小 $\epsilon$，导致的复杂度变化是相对可接受的（多项式级的变化，如 $(\frac{1}{\epsilon})^2n^3$ 关于 $\frac{1}{\epsilon}$ 是多项式级的）；然而如果它不是 FPTAS，那么 $\epsilon$ 的缩小可能带来恐怖的复杂度增加（如 $n^{2/\epsilon}$ 关于 $\epsilon$ 是指数级的）。
 
