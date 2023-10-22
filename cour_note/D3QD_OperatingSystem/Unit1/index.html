@@ -1536,9 +1536,9 @@ Diagram of process state.</p>
     axisFormat %S
 
     section processes
-    P2: a, 00, 24
-    P3: b, 24, 27
-    P1: c, 27, 30</code></pre>
+    P2: a, 00, 03
+    P3: b, 03, 06
+    P1: c, 06, 30</code></pre>
 <p>于是平均等待时间为 <span class="arithmatex">\((0 + 3 + 6) / 3 = 3\)</span>。</p>
 <hr/>
 <p>可以发现，使用 SJF 以后对于这种前面放了个大任务的情况平均等待时间大大减少。</p>
@@ -1626,7 +1626,7 @@ Diagram of process state.</p>
 <h4 id="算法--round-robin-rr">算法 | Round-Robin (RR)<a class="headerlink" href="#算法--round-robin-rr" title="Permanent link">¶</a></h4>
 <p>RR 调度就是使用<a href="./Unit0.md/time-sharing">分时技术</a>后的 FCFS 调度，因此它也是<strong>非抢占式</strong>的。每一个进程最多连续执行一个时间片的长度，完成后被插入到 FIFO ready queue 的末尾，并取出 FIFO ready queue 的队首进行执行。</p>
 <p>我们之前提到<a href="./Unit0.md/time-sharing">分时</a>的时候也说过，分时技术通过优化响应时间解决了用户交互问题，RR 调度虽然相比 SJF 有了更长的等待时间，但是有了更短的响应时间，而实际直接影响用户交互问题的应该是响应时间。</p>
-<p>一个需要注意的是，RR 调度有一个“超参数”，即时间片的长度。理论上，时间片约短，响应时间越短；但更短的时间片将带来更频繁的进程切换，从而带来更多的 dispatch latency。[^5]</p>
+<p>一个需要注意的是，RR 调度有一个“超参数”，即时间片的长度。理论上，时间片约短，响应时间越短；但更短的时间片将带来更频繁的进程切换，从而带来更多的 dispatch latency。</p>
 <h4 id="算法--priority-scheduling">算法 | Priority Scheduling<a class="headerlink" href="#算法--priority-scheduling" title="Permanent link">¶</a></h4>
 <p>优先级调度的思路是，每个进程都有一个优先级，当有多个进程处于就绪态时，选择优先级最高的进程先运行。这种算法的优点是，能够保证优先级高的进程优先运行；但是缺点是，如果有一个进程的优先级很高，那么它可能会一直被推迟，从而导致“饥饿”现象。</p>
 <p>你可能发现了，如果把上面这句话的“优先级最高”改成“运行时间最短”/“剩余运行时间最短”，那就和 <a href="#shortest-job-first-sjf--shortest-remaining-time-first-srtf">SJF/SRTF</a> 一模一样了，SJF/SRTF 实际上就是优先级调度的一个特例，因而优先级调度当然是可以实现<strong>抢占式</strong>和<strong>非抢占式</strong>两种的。</p>
@@ -1676,7 +1676,7 @@ Diagram of process state.</p>
 <hr/>
 <ol>
 <li id="fn:1">
-<p><a href="hhttps://stackoverflow.com/a/35799639">Where memory will be allocated to "Uninitialized Static variable" upon initialization?</a> <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+<p><a href="https://stackoverflow.com/a/35799639">Where memory will be allocated to "Uninitialized Static variable" upon initialization?</a> <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
 </li>
 <li id="fn:2">
 <p><a href="https://superuser.com/questions/731223/what-process-is-the-parent-of-the-init-process-in-linux/1331247#1331247">What process is the parent of the init process in Linux?</a> <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
@@ -1694,7 +1694,7 @@ Diagram of process state.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月22日 20:06:42</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月22日 22:40:08</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>
