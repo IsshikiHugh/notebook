@@ -291,9 +291,9 @@ SJF 的思路是，当有多个进程处于就绪态时，选择需要**运行�
             axisFormat %S
 
             section processes
-            P2: a, 00, 24
-            P3: b, 24, 27
-            P1: c, 27, 30
+            P2: a, 00, 03
+            P3: b, 03, 06
+            P1: c, 06, 30
         ```
 
         于是平均等待时间为 $(0 + 3 + 6) / 3 = 3$。
@@ -397,7 +397,7 @@ RR 调度就是使用[分时技术](./Unit0.md/time-sharing)后的 FCFS 调度�
 
 我们之前提到[分时](./Unit0.md/time-sharing)的时候也说过，分时技术通过优化响应时间解决了用户交互问题，RR 调度虽然相比 SJF 有了更长的等待时间，但是有了更短的响应时间，而实际直接影响用户交互问题的应该是响应时间。
 
-一个需要注意的是，RR 调度有一个“超参数”，即时间片的长度。理论上，时间片约短，响应时间越短；但更短的时间片将带来更频繁的进程切换，从而带来更多的 dispatch latency。[^5]
+一个需要注意的是，RR 调度有一个“超参数”，即时间片的长度。理论上，时间片约短，响应时间越短；但更短的时间片将带来更频繁的进程切换，从而带来更多的 dispatch latency。
 
 #### 算法 | Priority Scheduling
 
@@ -459,7 +459,7 @@ RR 调度就是使用[分时技术](./Unit0.md/time-sharing)后的 FCFS 调度�
 
 
 
-[^1]: [Where memory will be allocated to "Uninitialized Static variable" upon initialization?](hhttps://stackoverflow.com/a/35799639)
+[^1]: [Where memory will be allocated to "Uninitialized Static variable" upon initialization?](https://stackoverflow.com/a/35799639)
 [^2]: [What process is the parent of the init process in Linux?](https://superuser.com/questions/731223/what-process-is-the-parent-of-the-init-process-in-linux/1331247#1331247)
 [^3]: [Linux CreateProcess?](https://stackoverflow.com/a/5883503)
 [^4]: [Differences between fork and exec?](https://stackoverflow.com/a/1653415)
