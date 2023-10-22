@@ -1268,6 +1268,7 @@
 </details>
 <h3 id="操作系统的任务执行设计">操作系统的任务执行设计<a class="headerlink" href="#操作系统的任务执行设计" title="Permanent link">¶</a></h3>
 <p>前面我们说过，操作系统被用来<em>「自动化“让计算机完成一系列特定任务”」</em>的。一开始这件事比较简单，只需要像队列一样，一个一个的执行就行，但是慢慢的随着计算机应用范围的扩大以及各种需求的出现，这种设计就不太合理了。按照发展阶段演进，我们划分出两个阶段三个设计：<strong>单道批处理系统(Batch Processing System)</strong>、<strong>多道批处理系统(Multiprogramming Batch Processing System)</strong>和<strong>分时系统(Time Sharing Systems)</strong>。</p>
+<p><a id="batch-processing"></a></p>
 <details class="section" open="open">
 <summary>① 批处理系统阶段</summary>
 <p>最早操作系统执行任务都需要人工手动干预，但是计算机执行任务的速度与人工干预的速度相差太大，换句话来说人工速度严重限制了计算机的工作效率，于是操作系统开始出现，其中一个比较原始的实现就是批处理系统。（但不是最早，之前还有脱机处理之类的东西。）</p>
@@ -1347,6 +1348,7 @@ U = \frac{10+10+5+5+10}{45} = \frac{40}{45} = 88.89\%
 </blockquote>
 <p>对于用户来说，最好能同时实现<strong>体感上的并行</strong>，也就是几件事情至少看起来要像是同时发生的，于是出现了<strong>分时系统(Time Sharing Systems)</strong>。</p>
 </details>
+<p><a id="time-sharing"></a></p>
 <details class="section" open="open">
 <summary>② 分时系统阶段</summary>
 <p><strong>分时系统(Time Sharing Systems)</strong>是<strong>多任务(Multitasking)</strong>的一个具体实现，而 Multitasking 是 Multiprogramming 的一个<strong>逻辑</strong>扩展，即 Multitasking 也是 Multiprogramming 的一种，它符合内存中有多个进程，一段时间内有多个任务一起执行的特点。</p>
@@ -1521,7 +1523,7 @@ gcc<span class="w"> </span>main.o<span class="w"> </span>-o<span class="w"> </sp
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月19日 16:09:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月22日 16:56:59</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>
