@@ -1,14 +1,10 @@
-# Unit 1: 进程管理与同步 | Process Management and Synchronization [未完成]
-
-
+# Unit 1: 进程管理 | Process Management [未完成]
 
 ## 进程
 
-!!! info "小节导读"
-    
-    一段本质上程序是静态的、存储在硬盘上的指令数据，而当它附带运行程序所需要的必要信息进入内存，得到相关资源后，它成为一个动态的、与计算机资源互动的实体，这个实体就是**进程(process)**。
+一段本质上程序是静态的、存储在硬盘上的指令数据，而当它附带运行程序所需要的必要信息进入内存，得到相关资源后，它成为一个动态的、与计算机资源互动的实体，这个实体就是**进程(process)**。
 
-    进程是是操作系统进行资源分配和调度的一个**独立单位**，它以特定形式存在于内存中，具有一定的封闭性，是多道技术的重要基础。
+进程是是操作系统进行资源分配和调度的一个**独立单位**，它以特定形式存在于内存中，具有一定的封闭性，是多道技术的重要基础。
 
 ### 进程的形式
 
@@ -89,10 +85,17 @@
 - `terminated`:
     - 进程因为某些原因终止，结束运行，需要释放资源；
 
+进程在就绪态需要等待 CPU 资源的**派发(dispatch)**，接受调度；在阻塞态需要等待对应的 I/O 完成或事件完成，因而存在一种结构需要去维护这些“相对静止”的进程。通常使用就绪队列(ready queue)和等待队列(wait queue)来实现，其基本结构如下：
+
+![The ready queue and wait queues.](img/17.png)
+
+实际实现中，由于等待的 I/O 或事件不同，可能维护多个等待队列，于是实际过程中的情况可能如下：
+
+![Queueing-diagram representation of process scheduling.](img/15.png)
+
 ## 进程管理
 
 现在我们已经讨论了进程的形式和一个个离散的状态，现在我们来讲讲进程在几个阶段的动态过程。
-
 
 用户进程在操作系统中，总体上来讲遵循一个树状的组织形式，每一个进程都有一个唯一标识符进程号（通常被称为 pid，但在特定语境下可能有不同的含义）。如下图是 Linux 的一个进程树。
 
@@ -158,17 +161,93 @@ int main() {
 
 ### 进程间通信
 
+[ ] TODO: 等学完同步再补
+
+进程间通信(Inter-Process Communication, IPC)
+
+- 信号量(semaphores)
+- 共享内存(shared memory)：
+    - 更快，需要用到 sys call 的地方只有建立共享内存的时候用的到。
+- 消息传递(message passing)：
+    - 在分布式系统中更容易实现，对于少量数据通信很有用（因为不需要处理冲突问题）。
+- 文件 / 管道(pipe)：
+    - 管道本质上也是一种文件，但一个管道只支持单向传输，即只能 A 写 B 读，如果要实现双向需要两个管道。
+
+<figure markdown>
+<center>![Communications models. (a) Shared memory. (b) Message passing.](img/14.png)</center>
+Communications models. (a) Shared memory. (b) Message passing.
+</figure>
+
+
+## 进程调度
+
+多道技术引入后，内存中同时存在多个进程，进程的数量我们称之为多道的度(degree of multiprogramming)。一段时间内若干进程并发执行，因此**调度问题(scheduling)**——CPU 调度器(CPU scheduler)将决定在何时将 CPU 资源分配给哪一个就绪进程，使之进入运行态——这个问题就很重要了。总体来讲，我们需要实现一个高效、公平的的调度，以此保证 CPU 利用率足够高，同时又保证计算机功能正常运作。
+
+<figure markdown>
+<center>![Diagram of process state.](img/12.png)</center>
+Diagram of process state.
+</figure>
+
+### 调度的时机
+
+我们再次审视进程状态的 FSM，发现所有状态都是围绕着 `ready`/`running` 展开的，而 CPU 具体资源分配的过程也正是通过这两个状态的转化体现的。而 <font color=green>❶</font> 当运行态的进程由于某些原因需要主动离开运行态时，或 <font color=blue>❷</font> 当就绪态的某个进程需要立刻得到 CPU 资源时，调度器会进行调度。上面这句话反应在　FSM 上，就是 <font color=green>❶</font> 进程从运行态转化为其它状态，即箭头从 `running` 出发向外；<font color=blue>❷</font> 进程从其它状态转化为就绪态，即箭头从外指向 `ready`，但需要排除从 `running` 指向 `ready` 的箭头，因为这件事没有意义。上面描述的这两种**时机**下产生的调度，就分别定义为**非抢占式调度(non-preemptive scheduling)**和**抢占式调度(preemptive scheduling)**。
+
+<figure markdown>
+<center>![Diagram of process state.](img/20.png)</center>
+Diagram of process state.
+</figure>
+
+两者本质上的区别就是，非抢占式调度是由已经拥有资源的进程主动释放 CPU 资源引起的，而抢占式调度则是不占有资源的进程索取 CPU 资源成功引起的。
+
+### 调度的过程
+
+为了保证多道环境下每一个进程能够随意切换而不影响进程的正常进行，我们需要在切换进程的时候保存“现场”，并在下一次拿出这个进程准备执行之前恢复“现场”。这里提到的“现场”被称为**上下文(context)**，表示一种“语境”；而保护-恢复的过程，称为**上下文切换(context switch)**。
+
+上下文可能包括 ① CPU 寄存器中的值，② [进程状态](#进程的状态)，③ 内存的管理信息等。
+
+<figure markdown>
+<center>![Diagram showing context switch from process to process.](img/16.png)</center>
+Diagram showing context switch from process to process.
+</figure>
+
+### 调度算法
+
 
 
 ## 线程
 
+线程是一种轻量级的进程，它在进程的基础上进行划分，是进程内的一个可调度的执行单元，以减小进程 folk 和切换的开销为目的。
 
+同一进程的若干线程共享代码、数据等“相对静态”的资源，而各自维护寄存器、栈、PC 等“相对动态”的资源；或者说线程只拥有一些运行中必不可省的资源，而所有其它资源都属于进程，线程与进程中的其它线程共享这些资源，以此来减少进程创建过程中复制代码段等资源时带来的不小开销。
 
-## 进程同步与死锁
+![Single-threaded and multithreaded processes.](img/18.png)
 
+线程天生和同一进程内的其它线程共享资源，因此同进程内线程天生就有线程间通信的能力。同时，由于将进程进行了再划分，一方面在硬件支持的情况下能更好地适配并行，另一方面也能（代价更小地）让任务的粒度变小，此时可以将整个进程的阻塞转移到单个线程的阻塞上，进一步减少响应时间。
 
+当然，由于这里存在一个部分整体的关系，即存在一个“将若干鸡蛋放在同一个篮子里”的问题，虽然将若干任务都放到一个进程的多线程可以提高效率，但是一旦“篮子”坏了，那所有“鸡蛋”都无法幸免；其次，虽然天然的共享属性让线程能更方便地进行线程间通信，但也带来了内存保护的问题。
 
+### 多线程模型
 
+按照线程划分的实现位置，多线程模型分为**用户级多线程(user threads)**和**内核级多线程(kernel threads)**。
+
+用户级多线程在用户空间实现多线程，即使用**线程库(thread library)**利用单个进程的资源，在用户空间维护多个线程；而内核级多线程则是由内核支持多线程操作。两者各有优缺点：
+
+- 用户级多线程 > 内核级多线程
+    - 用户级多线程不需要内核支持多线程，不需要进入内核态实现多线程，也不需要占用线程 ID，因此理论上可以比内核级支持更多的线程数；
+    - 由于其划分是针对进程的，而不同进程之间的线程实现没有直接关系，而且由于是在用户空间实现算法，所以能够更容易的对单个进程内的多个线程的调度算法进行自定义；
+- 用户级多线程 < 内核级多线程
+    - 由于对内核来说，用户级多线程仍然是一个普通的进程，所以当用户级的线程出现阻塞时，内核会认为整个进程都被阻塞；内核级线程由于是内核实现，所以单线程的阻塞并不会导致整个进程阻塞；
+    - 在多核的情况下，用户级多线程没法利用多核进行线程并行；显然内核多级线程是做得到这一点的；
+
+需要注意的是，用户级多线程和内核级多线程并不冲突，因而排列组合后得到多线程主要有如下三种模型：
+
+<figure markdown>
+<center>![(a) Many-to-one model. (b) One-to-one model. (c) Many-to-many model.](img/19.png)</center>
+(a) Many-to-one model. (b) One-to-one model. \(c) Many-to-many model.
+</figure>
+
+!!! quote "Linux 线程"
+    - [Linux 线程](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/5_thread/#53-linux-%E7%BA%BF%E7%A8%8B)
 
 
 
