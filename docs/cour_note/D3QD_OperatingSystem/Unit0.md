@@ -133,6 +133,7 @@
 
 前面我们说过，操作系统被用来*「自动化“让计算机完成一系列特定任务”」*的。一开始这件事比较简单，只需要像队列一样，一个一个的执行就行，但是慢慢的随着计算机应用范围的扩大以及各种需求的出现，这种设计就不太合理了。按照发展阶段演进，我们划分出两个阶段三个设计：**单道批处理系统(Batch Processing System)**、**多道批处理系统(Multiprogramming Batch Processing System)**和**分时系统(Time Sharing Systems)**。
 
+<a id="batch-processing"></a>
 ???+ section "① 批处理系统阶段"
     
     最早操作系统执行任务都需要人工手动干预，但是计算机执行任务的速度与人工干预的速度相差太大，换句话来说人工速度严重限制了计算机的工作效率，于是操作系统开始出现，其中一个比较原始的实现就是批处理系统。（但不是最早，之前还有脱机处理之类的东西。）
@@ -228,6 +229,7 @@
 
     对于用户来说，最好能同时实现**体感上的并行**，也就是几件事情至少看起来要像是同时发生的，于是出现了**分时系统(Time Sharing Systems)**。
 
+<a id="time-sharing"></a>
 ???+ section "② 分时系统阶段"
     **分时系统(Time Sharing Systems)**是**多任务(Multitasking)**的一个具体实现，而 Multitasking 是 Multiprogramming 的一个**逻辑**扩展，即 Multitasking 也是 Multiprogramming 的一种，它符合内存中有多个进程，一段时间内有多个任务一起执行的特点。
     
