@@ -189,7 +189,7 @@ Diagram of process state.
 
 ### 调度的时机
 
-我们再次审视进程状态的 FSM，发现所有状态都是围绕着 `ready`/`running` 展开的，而 CPU 具体资源分配的过程也正是通过这两个状态的转化体现的。而 <font color=green>❶</font> 当运行态的进程由于某些原因需要主动离开运行态时，或 <font color=blue>❷</font> 当就绪态的某个进程需要立刻得到 CPU 资源时，scheduler 会进行调度。上面这句话反应在　FSM 上，就是 <font color=green>❶</font> 进程从运行态转化为其它状态，即箭头从 `running` 出发向外；<font color=blue>❷</font> 进程从其它状态转化为就绪态，即箭头从外指向 `ready`，但需要排除从 `running` 指向 `ready` 的箭头，因为这件事没有意义。上面描述的这两种**时机**下产生的调度，就分别定义为**非抢占式调度(non-preemptive scheduling)**和**抢占式调度(preemptive scheduling)**。
+我们再次审视进程状态的 FSM，发现所有状态都是围绕着 `ready`/`running` 展开的，而 CPU 具体资源分配的过程也正是通过这两个状态的转化体现的。而 <font color=green>❶</font> 当运行态的进程由于某些原因需要主动离开运行态时，或 <font color=blue>❷</font> 当就绪态的某个进程需要立刻得到 CPU 资源时，scheduler 会进行调度。上面这句话反应在　FSM 上，就是 <font color=green>❶</font> 进程从运行态转化为其它状态，即箭头从 `running` 出发向外；<font color=blue>❷</font> 进程从其它状态转化为就绪态，即箭头从外指向 `ready`，这里其实还暗含了一个 `ready` 指向 `ready` 的箭头，在例如 priority aging 的情况下，`ready` 中可能突然有一个优先级足够大了就会发生抢占式调度。上面描述的这两种**时机**下产生的调度，就分别定义为**非抢占式调度(non-preemptive scheduling)**和**抢占式调度(preemptive scheduling)**。
 
 <figure markdown>
 <center>![Diagram of process state.](img/20.png)</center>
