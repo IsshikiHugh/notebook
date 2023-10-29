@@ -57,7 +57,7 @@ plugins:
       enable_creation_date: true
       exclude:
         - index.md
-        - comming.md
+        - coming.md
         - link.md
         - tech_accu/index.md
         - cour_note/index.md
@@ -252,6 +252,8 @@ nav:
       - cour_note/D3QD_OperatingSystem/Unit3.md
       - cour_note/D3QD_OperatingSystem/Unit4.md
       - cour_note/D3QD_OperatingSystem/Unit5.md
+    - "[大三秋冬] 计算理论 | Theorem of Computing": 
+      - "🔗 xg 的 toc 笔记": https://note.tonycrane.cc/cs/tcs/toc/
   - "📝 论文阅读":
     - pape_read/index.md
     - "资源":
@@ -267,5 +269,7 @@ nav:
     - others/index.md
     - others/tools.md
     - others/reveal-md2Slides/index.md
+    - "杂文收集":
+      - "🔗 OpenGL 101: Matrices-projection/view/model": https://solarianprogrammer.com/2013/05/22/opengl-101-matrices-projection-view-model/
   - "🚧 施工中...":
-    - comming.md
+    - coming.md
