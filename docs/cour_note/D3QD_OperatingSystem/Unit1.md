@@ -235,6 +235,7 @@ Diagram of process state.
     - 从进程**开始建立**到进程完成的时间，即包括等待进入内存、在各种 queue 中的等待时间、在 CPU 中的运行时间、I/O 时间等，通过观察最大周转时间，能反应调度的效率和“公平性”；
 - 等待时间(waiting time)：
     - 进程在 ready queue 中等待的时间的总和，由于任务所需要的 CPU 时间、I/O 时间不受调度算法影响，所以抛开这些只看在 ready queue 中的等待时间，能反应调度算法的效率；
+    - 容易发现，等待时间 = 周转时间 - 运行时间；
 - 响应时间(response time)：
     - 进程从发出请求到第一次响应的时间，能反应交互式系统中调度算法的“及时性”；
 
@@ -244,11 +245,11 @@ Diagram of process state.
 
 #### 算法 | First-Come, First-Serve (FCFS)
 
-FCFS 是最基本的**非抢占式**调度方法就是按照进程先来后到的顺序进行调度，可以很简单地通过一个 FIFO 的队列实现。
+FCFS 是最基本的**非抢占式**调度方法就是按照进程先来后到的顺序进行调度，可以很简单地通过一个 FIFO 的队列实现。FCFS 最大的优点就是实现简单。
 
 #### 算法 | Shortest-Job-First (SJF) / Shortest-Remaining-Time-First (SRTF)
 
-SJF 的思路是，当有多个进程处于就绪态时，选择需要**运行时间最短**的进程先运行。这种算法的优点是，能够保证平均等待时间最小；但是缺点是，如果有一个进程需要运行时间很长，那么它可能会一直被推迟，从而导致“饥饿”现象，此外，我们并不知道进程运行时间有多久。
+SJF 的思路是，当有多个进程处于就绪态时，选择需要**运行时间最短**的进程先运行。这种算法的优点是，能够保证平均等待时间最小；但是缺点是，如果有一个进程需要运行时间很长，那么它可能会一直被推迟，从而导致“**饥饿**”现象，此外，我们并不知道进程运行时间有多久。
 
 ??? eg "🌰"
 
@@ -401,7 +402,7 @@ RR 调度就是使用[分时技术](./Unit0.md/time-sharing)后的 FCFS 调度�
 
 #### 算法 | Priority Scheduling
 
-优先级调度的思路是，每个进程都有一个优先级，当有多个进程处于就绪态时，选择优先级最高的进程先运行。这种算法的优点是，能够保证优先级高的进程优先运行；但是缺点是，如果有一个进程的优先级很高，那么它可能会一直被推迟，从而导致“饥饿”现象。
+优先级调度的思路是，每个进程都有一个优先级，当有多个进程处于就绪态时，选择优先级最高的进程先运行。这种算法的优点是，能够保证优先级高的进程优先运行；但是缺点是，如果有一个进程的优先级很高，那么它可能会一直被推迟，从而导致“**饥饿**”现象。
 
 你可能发现了，如果把上面这句话的“优先级最高”改成“运行时间最短”/“剩余运行时间最短”，那就和 [SJF/SRTF](#shortest-job-first-sjf--shortest-remaining-time-first-srtf) 一模一样了，SJF/SRTF 实际上就是优先级调度的一个特例，因而优先级调度当然是可以实现**抢占式**和**非抢占式**两种的。
 
@@ -411,15 +412,31 @@ RR 调度就是使用[分时技术](./Unit0.md/time-sharing)后的 FCFS 调度�
 
 既然调度算法多种多样，他们适配不同的需求，那能否只在特定情况下使用特定算法呢？答案是肯定的，我们可以将 ready queue 分成多个队列，每个队列使用不同的调度算法，然后再进行队列间调度，这种方法被称为**多级队列调度(multilevel queue scheduling)**。
 
-关于队列的划分，一般可以按照优先级或按照类型分。例如，按照优先级划分若干队列，这样总是优先在重要队列中进行调度，等重要进程都结束了再执行优先级次要的队列调度；按照类型分，划分前台队列和后台调度队列，由于前台需要更低的响应时间，可以对前台队列使用 RR 调度，而后台队列使用 FCFS 调度。
+!!! eg "🌰"
 
-!!! warning "emphasize"
+    一个操作系统按照优先级先后，可能有这么些队列：
 
-    这里有队列内调度和队列间调度两层，注意概念区分！
+    1. Real-time processes
+    2. System processes
+    3. Interactive processes
+    4. Batch processes
+
+    它们的优先级随着 1 -> 4 递减，而当优先级更高的队列中存在任务时，优先级低的队列便不会参与调度。不仅如此，高优先级的队列中出现新的任务时，也会抢占正在运行的低优先级队列的任务。
+
+!!! eg "🌰"
+
+    又比如，一个操作系统可能分前台(foreground)程序队列和后台(background)程序队列，而我们使用时间片来进行队列间调度，但前台占用 80% 的时间，而后台占用 20% 的时间。
+
+    而在队列内部，我们也可以根据需求使用不同的队列内调度算法。在这个例子中，由于前台程序往往要求更好的响应时间表现，所以我们可以使用 RR 调度；而在后台使用 FCFS 调度。
+
+!!! quote "Windows XP Scheduling"
+    - [windows-xp-scheduling](http://www.faadooengineers.com/online-study/post/cse/operating-system/256/windows-xp-scheduling)
 
 #### 设计 | Multilevel Feedback Queue Scheduling
 
-更进一步，Multilevel Feedback Queue Scheduling 在 Multilevel Queue Scheduling 的基础上，允许进程在队列间转移，以此实现更灵活更科学的调度。当然，相对应的，算法复杂度也会提高不少。
+更进一步，Multilevel Feedback Queue Scheduling 在 Multilevel Queue Scheduling 的基础上，允许进程在队列间转移，以此实现更灵活更科学的调度。例如，一个进程如果使用了过长的 CPU 时间，它可能被移动到优先级更低的队列；相反，如果一个进程等待了太久，它可能被移动到优先级更高的队列。
+
+当然，相对应的，算法复杂度也会提高不少。
 
 ## 线程
 
@@ -450,7 +467,7 @@ RR 调度就是使用[分时技术](./Unit0.md/time-sharing)后的 FCFS 调度�
 
 <figure markdown>
 <center>![(a) Many-to-one model. (b) One-to-one model. (c) Many-to-many model.](img/19.png)</center>
-(a) Many-to-one model. (b) One-to-one model. \(c) Many-to-many model.
+(a) Many-to-many model. (b) One-to-one model. \(c) Many-to-one model.
 </figure>
 
 !!! quote "Linux 线程"
