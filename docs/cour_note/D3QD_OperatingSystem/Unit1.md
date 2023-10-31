@@ -1,4 +1,4 @@
-# Unit 1: 进程管理 | Process Management [未完成]
+# Unit 1: 进程管理 | Process Management
 
 ## 进程
 
@@ -161,11 +161,9 @@ int main() {
 
 ### 进程间通信
 
-[ ] TODO: 等学完同步再补
+如果一个进程受到其它进程的影响，或会影响其它进程，那么我们称之为协作进程(cooperation process)，而进程间通信(Inter-Process Communication, IPC)支持了进程协作，以实现进程间的数据交换。
 
-进程间通信(Inter-Process Communication, IPC)
-
-- 信号量(semaphores)
+- 信号量(semaphores)；
 - 共享内存(shared memory)：
     - 更快，需要用到 sys call 的地方只有建立共享内存的时候用的到。
 - 消息传递(message passing)：
