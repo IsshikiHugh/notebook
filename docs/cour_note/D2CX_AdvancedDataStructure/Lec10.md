@@ -53,7 +53,7 @@
     也就是我们通常意义下所说的，可以在**多项式**时间内**解决**的问题。
 
 !!! definition "NP"
-    NP 即 nondeterministic polynomial time，指的是可以用**[非确定型图灵机🔍](#图灵机)**在**多项式**时间内**解决**的问题。这个说法等价于可以用**[确定型图灵机🔍](#图灵机)**在**多项式**时间内**验证**（判断答案是否正确）。
+    NP 即 nondeterministic polynomial time，指的是可以用**[非确定型图灵机🔍](#图灵机){target="_blank"}**在**多项式**时间内**解决**的问题。这个说法等价于可以用**[确定型图灵机🔍](#图灵机){target="_blank"}**在**多项式**时间内**验证**（判断答案是否正确）。
     
     也就是我们通常意义下所说的，可以在**多项式**时间内**验证**的问题。
 
@@ -61,16 +61,16 @@
     NPC 即 NP complete，NP 完全，是 NP 中最难的**决定性**问题（并不是无限定词的最难的问题！）。而我们称满足如下条件的问题为 NPC 问题：
 
     1. 是一个 NP 问题；
-    2. 所有 NP 问题都可以**[多项式时间归约🔍](#多项式时间归约)**为该问题；
+    2. 所有 NP 问题都可以**[多项式时间归约🔍](#多项式时间归约){target="_blank"}**为该问题；
 
     由 2 可以有结论，所有的 NPC 问题难度相同——一旦有一个 NPC 问题被解决，那么所有 NPC 问题，乃至所有 NP 问题都能被解决。
 
     如果我们试图证明一个问题是 NPC 问题，我们可以通过这种手段：
 
     1. 判定该问题是一个 NP 问题；
-    2. 判定一个已知的 NPC 问题可以**[多项式时间归约🔍](#多项式时间归约)**为该问题，或判定该问题是 NPH（在下面）问题；
+    2. 判定一个已知的 NPC 问题可以**[多项式时间归约🔍](#多项式时间归约){target="_blank"}**为该问题，或判定该问题是 NPH（在下面）问题；
 
-    > 第一个被证明是 NPC 的问题是 **[Circuit-SAT🔍](#circuit-sat)** 问题。
+    > 第一个被证明是 NPC 的问题是 **[Circuit-SAT🔍](#circuit-sat){target="_blank"}** 问题。
 
 !!! extra "P ?= NP & NPC"
     关于 P 和 NP 的关系，我们仍然不知道 P 是否能等于 NP，即我们仍然不知道是否存在多项式算法可以解决一切 NP 问题。
@@ -78,7 +78,7 @@
     而其中的关键就是，如果我们能找到 NPC 问题的多项式解法，那么就可以证明 P = NP。
 
 !!! definition "NPH"
-    NPH 即 NP hard，NP 困难，它不一定需要是 NP 问题。而所有 NP 问题都可以**[多项式时间归约🔍](#多项式时间归约)**为 NPH 问题。
+    NPH 即 NP hard，NP 困难，它不一定需要是 NP 问题。而所有 NP 问题都可以**[多项式时间归约🔍](#多项式时间归约){target="_blank"}**为 NPH 问题。
 
 也就是说 $NPC = NP \cap NPH$。
 
@@ -158,7 +158,7 @@ void foo() {
 
 #### 判定版本的 NPC 证明
 
-现在，假设我们已知 [Hamilton Cycle Problem](#hamilton-cycle-problem) 问题是一个 NPC 问题，尝试通过**[多项式时间归约🔍](#多项式时间归约)**的方式来证明 TSP 也是一个 NPC 问题。
+现在，假设我们已知 [Hamilton Cycle Problem](#hamilton-cycle-problem){target="_blank"} 问题是一个 NPC 问题，尝试通过**[多项式时间归约🔍](#多项式时间归约){target="_blank"}**的方式来证明 TSP 也是一个 NPC 问题。
 
 !!! quote "Recommended Reading"
     https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/hamiltonianCycle_to_TSP.html
@@ -167,12 +167,12 @@ void foo() {
 首先回顾证明 NPC 的步骤：
 
 1. 判定该问题是一个 NP 问题；
-2. 判定一个已知的 NPC 问题可以**[多项式时间归约🔍](#多项式时间归约)**为该问题，或者说判定该问题是 NPH 问题；
+2. 判定一个已知的 NPC 问题可以**[多项式时间归约🔍](#多项式时间归约){target="_blank"}**为该问题，或者说判定该问题是 NPH 问题；
 
 代入到这个问题中，也就是我们需要证明：
 
 1.  TSP 是一个 NP 问题；
-2.  Hamilton Cycle Problem 可以**[多项式时间归约🔍](#多项式时间归约)**为 TSP；
+2.  Hamilton Cycle Problem 可以**[多项式时间归约🔍](#多项式时间归约){target="_blank"}**为 TSP；
 
 !!! proof "TSP is NP"
     证明 TSP 是一个 NP 问题即证明 TSP 的解可以在多项式时间内被验证。而验证一个解是 TSP 问题的解，需要证明下面两个点：
@@ -185,7 +185,7 @@ void foo() {
     于是，我们得到结论：$\text{TSP} \in \text{NP}$。
 
 !!! proof "TSP is NPH"
-    要证明 TSP 是一个 NPH 问题，我们可以通过证明 Hamilton Cycle Problem(HCP) 可以**[多项式时间归约🔍](#多项式时间归约)**为 TSP。
+    要证明 TSP 是一个 NPH 问题，我们可以通过证明 Hamilton Cycle Problem(HCP) 可以**[多项式时间归约🔍](#多项式时间归约){target="_blank"}**为 TSP。
 
     为此，我们需要对比 HCP 和 TSP 的差异。
 

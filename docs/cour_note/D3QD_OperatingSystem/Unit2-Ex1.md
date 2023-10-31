@@ -1,0 +1,114 @@
+# Unit 2 Ex 1: 典型同步问题 | Classic Problems of Synchronization Examples [未完成]
+
+!!! info "给出若干典型同步问题之前，先给出一些背景。"
+
+## 参与数据过时
+
+我们需要意识到，我们无法一步到位地，in-place 地去修改一个内存中的数据，换言之，要想修改 `mem[x]`，我们需要三个步骤：
+
+1. `reg` <- `mem[x]`；
+2. `reg` <- update(`reg`)；
+3. `mem[x]` <- `reg`；
+
+而如果现在不止一个进程在修改 `mem[x]`，例如下面这个例子：
+
+```linenums="1"
+┌──────────────┬──────────────┐
+│ process A    │ process B    │ mem[x] = 1 (initial)
+├──────────────┼──────────────┤
+│ t0 <- mem[x] │ t0 <- mem[x] │ mem[x] = 1
+│ t0 <- t0 + 1 │ t0 <- t0 + 1 │ mem[x] = 1
+│ mem[x] <- t0 │ t0 <- t0 + 1 │ mem[x] = 2, here data in B is out of date
+│              │ mem[x] <- t0 │ mem[x] = 3, previous 2 is overwritten
+└──────────────┴──────────────┘
+```
+
+它们都想要更新 `mem[x]`，又好巧不巧的它们几乎同时发生读取了 `mem[x]`，那么就会出现问题：两个进程同时读取 `mem[x]`，然后各自计算更新后的值，然后各自写回 `mem[x]`，理想情况下，最终的 `mem[x]` 会比原来大 3，但现在的 `mem[x]` 只比原来大 2，其中 process A 对它的修改在第 7 行被覆盖了。
+
+究其根本，由于如今我们处在并发语境下，所以会出现若干用户同时持有一份数据资源的情况（为了发挥并发的优势，我们也应当尽可能的满足这种需求），逻辑上数据修改过程应当是符号的、瞬间的、立即生效的，但实际上我们对数据的操作是数值的、需要一段时间来完成的。在这种（后者）语境下，<u>如果我们无法保证读入数值完成到写入数值完成的过程中，`mem[x]` 保持不变</u>，那么该操作实际上是使用过时数据进行计算。
+
+```linenums="1" hl_lines="6"
+┌──────────────┬──────────────┐
+│ process A    │ process B    │ mem[x] = 1 (initial)
+├──────────────┼──────────────┤
+│ t0 <- mem[x] │ t0 <- mem[x] │ mem[x] = 1
+│ t0 <- t0 + 1 │ t0 <- t0 + 1 │ mem[x] = 1
+│ mem[x] <- t0 │ t0 <- t0 + 1 │ mem[x] = 2, here data in B is out of date
+│              │ mem[x] <- t0 │ mem[x] = 3, previous 2 is overwritten
+└──────────────┴──────────────┘
+```
+
+可以发现，第六行的 `t0` 仍然在用更新之前的 `mem[x]` 做计算，因而可以认为此时 process B 中的 `t0` 参与运算的、暗含的 `mem[x]` 的数据已经**过时**。
+
+于是，我们约定，类似于这种由于同时无法保证读入数值完成到写入数值完成的过程中，真实原始数据保持不变而导致的行为不符合预期的问题为**参与数据过时**问题。
+
+!!! warning "该约定由笔者自己给出，请不要当作某种概念或定义！"
+
+---
+
+!!! info "如下为若干典型同步问题模型。"
+
+## The Bounded-Buffer Problem
+
+### 问题背景
+
+- [🔗 Wiki](https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem)
+
+The Bounded-Buffer Problem 又称 The Producer–Consumer Problem，在该问题中，有两个角色，producer 和 consumer：producer 会产生 item 存放到 buffer 中，而 consumer 可以将数据从 buffer 中取出 item。如果我们用 $n = \# items$ 来描述 buffer 的状态，那么问题将**抽象**为：
+
+```cpp
+void produce() {
+    /* something */
+    ++n;
+    /* something */
+}
+
+void consume() {
+    /* something */
+    --n;
+    /* something */
+}
+```
+
+> 同时，我们需要保证 $0 \leq n \leq n_{max}$，所以我们需要在 $n = 0$ 时，让 consumer 等待 $n > 0$ 再 `consume()`；对应的，在 $n = \leq n_{max}$ 时候，让 producer 等待 $n < n_{max}$ 再 `produce()`。但这并不是我们在本单元提及它的重点，所以我们在这里认为它们在 `/* something */` 中。
+> 
+> 实际的 The Bounded-Buffer Problem 中还有一些其它细节，但是这里我们将整个问题抽象为我们需要的模样，请不要认为上面的代码就是 The Bounded-Buffer Problem 的全部。
+
+### 问题描述
+
+考虑在并行语境下，`produce()` 和 `consume()` 同时发生，由于 `++n` 和 `--n` 这些操作本质上是数值的、需要一段时间来完成的，所以容易发生[参与数据过时](#参与数据过时){target="_blank"}问题。
+
+## The Readers–Writers Problem
+
+### 问题背景 & 问题描述
+
+- [🔗 Wiki](https://en.wikipedia.org/wiki/Readers%E2%80%93writers_problem)
+
+该问题抽象自数据库的使用。用户使用数据库修改数据（`UPDATE`），本质上也是有三个步骤：
+
+1. [READ] 从数据库中检索、读取数据；
+2. 数据经过业务逻辑的处理，得到新值；
+3. [WRITE] 将新值写回数据库；
+
+这个步骤与我们修改 `mem[x]` 的过程高度相似，因此遇到的问题也是类似的。
+
+## The Dining Philosophers Problem
+
+### 问题背景
+
+- [🔗 Wiki](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
+
+在这个问题中，有五个哲学家，ta 们围坐在一张圆桌旁，每个哲学家面前都有一碗米饭，而 ta 们两两之间分别有一根筷子。
+
+<center> ![](img/21.png) </center>
+
+每帧哲学家都能选择执行以下两个行为之一：
+
+1. 思考；
+2. 拿筷子；
+
+哲学家如果想要干饭就必须有两根筷子，ta 同时 拿起 ta 左右侧筷子时，才能干饭。显然，两个哲学家不能同时拿起同一根筷子；干完饭哲学家会放下筷子。~~假设哲学家们都不嫌脏。~~
+
+### 问题描述
+
+考虑这种情况，所有哲学家在第一帧都想要干饭，假设 ta 们都先拿起了 ta 们右手的筷子，此时我们发现，接下来谁都无法拿到第二根筷子，如果 ta 们都不主动放下筷子让别人干饭，那么 ta 们将五五饿死（死锁）。
