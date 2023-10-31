@@ -837,9 +837,26 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Unit 2: 进程同步 | Process Synchronization [未完成]
+          <span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
         Unit 2: 进程同步 | Process Synchronization [未完成]
       </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#何为同步">
+    何为同步
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Unit3/">
@@ -1030,6 +1047,17 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#何为同步">
+    何为同步
+  </a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -1038,14 +1066,24 @@
 <article class="md-content__inner md-typeset">
 <h1 id="unit-2-进程同步--process-synchronization-未完成">Unit 2: 进程同步 | Process Synchronization [未完成]<a class="headerlink" href="#unit-2-进程同步--process-synchronization-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 11 个字 </p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 314 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 1 分钟</p>
 </div>
+<h2 id="何为同步">何为同步<a class="headerlink" href="#何为同步" title="Permanent link">¶</a></h2>
+<p>首先我们简单描述什么是进程同步问题。在支持并发甚至并行的系统中，虽然进程之间相对隔离，一般情况下互不直接干扰，换言之，是异步的；但它们可能会在时间上有交集地操作同一份计算机资源，此时由于<strong>各种原因</strong>，进程之间可能需要按照一定顺序才能正常运行，因此我们需要一些手段让这些本来异步的进程<strong>同步</strong>起来，以实现控制。</p>
+<p>即通过某些手段，让协作进程能够直接或间接了解到其它相关进程的状态。</p>
+<p>接下来，我们按照问题的复杂程度，由浅入深地讨论同步工具和同步问题的解决方法。</p>
+<p>根据上面这个具体的例子，我们发现，如果需要解决这个问题，我们有两种选择：</p>
+<ol>
+<li>进行符号的运算，实现输入的变化能在任意时刻反映在输出上；</li>
+<li>保证读入数值完成到写入数值完成的过程中，<code>mem[x]</code> 保持不变；</li>
+</ol>
+<p>显然，我们应当选择第二种。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 22:19:07</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月31日 21:14:44</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>
