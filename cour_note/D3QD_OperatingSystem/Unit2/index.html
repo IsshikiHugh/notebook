@@ -851,9 +851,38 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#何为同步">
-    何为同步
+<a class="md-nav__link" href="#竞态条件">
+    竞态条件
   </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-critical-section-problem">
+    The Critical-Section Problem
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#for-kernel-code">
+    For Kernel Code
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#petersons-algorithm">
+    Peterson’s Algorithm
+  </a>
+<nav aria-label="Peterson’s Algorithm" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#算法描述">
+    算法描述
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#性质证明">
+    性质证明
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1053,9 +1082,38 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#何为同步">
-    何为同步
+<a class="md-nav__link" href="#竞态条件">
+    竞态条件
   </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-critical-section-problem">
+    The Critical-Section Problem
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#for-kernel-code">
+    For Kernel Code
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#petersons-algorithm">
+    Peterson’s Algorithm
+  </a>
+<nav aria-label="Peterson’s Algorithm" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#算法描述">
+    算法描述
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#性质证明">
+    性质证明
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1066,24 +1124,390 @@
 <article class="md-content__inner md-typeset">
 <h1 id="unit-2-进程同步--process-synchronization-未完成">Unit 2: 进程同步 | Process Synchronization [未完成]<a class="headerlink" href="#unit-2-进程同步--process-synchronization-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 314 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 1 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3674 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 81 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 13 分钟</p>
 </div>
-<h2 id="何为同步">何为同步<a class="headerlink" href="#何为同步" title="Permanent link">¶</a></h2>
-<p>首先我们简单描述什么是进程同步问题。在支持并发甚至并行的系统中，虽然进程之间相对隔离，一般情况下互不直接干扰，换言之，是异步的；但它们可能会在时间上有交集地操作同一份计算机资源，此时由于<strong>各种原因</strong>，进程之间可能需要按照一定顺序才能正常运行，因此我们需要一些手段让这些本来异步的进程<strong>同步</strong>起来，以实现控制。</p>
-<p>即通过某些手段，让协作进程能够直接或间接了解到其它相关进程的状态。</p>
-<p>接下来，我们按照问题的复杂程度，由浅入深地讨论同步工具和同步问题的解决方法。</p>
+<div class="admonition info">
+<p class="admonition-title">引入</p>
+<blockquote>
+<p>首先我们<strong>简单</strong>描述什么是进程同步问题，读者可以抱着对下面这段话的疑问去阅读接下来的内容。</p>
+<p>不必尝试立刻理解这段话，我希望读者能够在看的过程中以下面这段话为主线，猜测接下来将要展开的内容，去发现问题、思考解决办法。</p>
+</blockquote>
+<p>在支持并发甚至并行的系统中，虽然进程之间相对隔离，在一般情况下互不<strong>直接</strong>干扰，自顾自跑——即是异步的；但它们可能会在一段时间里操作同一份计算机资源，此时由于<strong>各种原因</strong>，进程之间的执行需要互相制约，因此进程需要通过<strong>某些手段</strong>，让协作进程能够直接或间接了解到其它相关进程的状态，以实现对当前进程执行的控制，最终在宏观上实现同步控制。</p>
+<p>而上面提到的“<strong>各种原因</strong>”和“<strong>某些手段</strong>”，就是我们稍后将讨论的东西。</p>
+<p>需要注意的是，同步并不是某种中央调控机制，而更像是一种“协议”，当各个进程发现有别的进程与自己产生竞争时，应当有某种手段允许它们达成协商，以决定谁先谁后。</p>
+<p>我们按照问题的复杂程度，由浅入深地讨论这些东西。</p>
+</div>
+<h2 id="竞态条件">竞态条件<a class="headerlink" href="#竞态条件" title="Permanent link">¶</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Links</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Race_condition" target="_blank">Race Condition | Wikipedia</a></li>
+</ul>
+</div>
+<p>我们需要意识到，我们无法一步到位地、in-place 地去修改一个内存中的数据，换言之，要想修改 <code>mem[x]</code>，我们需要三个步骤：</p>
+<ol>
+<li><code>reg</code> &lt;- <code>mem[x]</code>；</li>
+<li><code>reg</code> &lt;- update(<code>reg</code>)；</li>
+<li><code>mem[x]</code> &lt;- <code>reg</code>；</li>
+</ol>
+<p>而如果现在不止一个进程在修改 <code>mem[x]</code>，例如下面这个例子：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>┌──────────────┬──────────────┐
+│ process A    │ process B    │ mem[x] = 1 (initial)
+├──────────────┼──────────────┤
+│ t0 &lt;- mem[x] │ t0 &lt;- mem[x] │ mem[x] = 1
+│ t0 &lt;- t0 + 1 │ t0 &lt;- t0 + 1 │
+│ mem[x] &lt;- t0 │ t0 &lt;- t0 + 1 │ mem[x] = 2, here data in B is out of date
+│              │ mem[x] &lt;- t0 │ mem[x] = 3, previous 2 is overwritten
+└──────────────┴──────────────┘
+</code></pre></div></td></tr></table></div>
+<p>它们都想要更新 <code>mem[x]</code>，又好巧不巧的它们几乎同时发生读取了 <code>mem[x]</code>，那么就会出现问题：两个进程同时读取 <code>mem[x]</code>，然后各自计算更新后的值，然后各自写回 <code>mem[x]</code>，理想情况下，最终的 <code>mem[x]</code> 会比原来大 3，但现在的 <code>mem[x]</code> 只比原来大 2，其中 process A 对它的修改在第 7 行被覆盖了。</p>
+<p>究其根本，由于如今我们处在并发语境下，所以会出现若干用户同时持有一份数据资源的情况（为了发挥并发的优势，我们也应当尽可能的满足这种需求），逻辑上数据修改过程应当是符号的、瞬间的、立即生效的，但实际上我们对数据的操作是数值的、需要一段时间来完成的。在这种（后者）语境下，<u>如果我们无法保证读入数值完成到写入数值完成的过程中，<code>mem[x]</code> 保持不变</u>，那么该操作实际上是使用过时数据进行计算。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>┌──────────────┬──────────────┐
+│ process A    │ process B    │ mem[x] = 1 (initial)
+├──────────────┼──────────────┤
+│ t0 &lt;- mem[x] │ t0 &lt;- mem[x] │ mem[x] = 1
+│ t0 &lt;- t0 + 1 │ t0 &lt;- t0 + 1 │
+<span class="hll">│ mem[x] &lt;- t0 │ t0 &lt;- t0 + 1 │ mem[x] = 2, here data in B is out of date
+</span>│              │ mem[x] &lt;- t0 │ mem[x] = 3, previous 2 is overwritten
+└──────────────┴──────────────┘
+</code></pre></div></td></tr></table></div>
+<p>可以发现，第六行的 <code>t0</code> 仍然在用更新之前的 <code>mem[x]</code> 做计算，因而可以认为此时 process B 中的 <code>t0</code> 参与运算的、暗含的 <code>mem[x]</code> 的数据已经<strong>过时</strong>。</p>
+<div class="admonition definition">
+<p class="admonition-title">race condition</p>
+<p>类似这种的，由两个信号产生竞争，其竞争情况影响最终结果的情况，被称为<strong>竞态条件(race condition)</strong>。在上面这个例子中，谁后执行，最终结果就是谁的输出，而另一个用户的输出则会被覆盖。</p>
+<p>需要注意的是，这里的重点并不是“如何控制竞争结果”，因为无论竞争结果如何（甚至谁赢了结果可能都一样），只要这种“竞争”出现，那么最终结果就有可能不符合预期的。真正的重点应该是如何<strong>避免这种竞争</strong>的出现。</p>
+<p>就比如上面的例子，无论最终 <code>mem[x]</code> 是 3 还是 2 都不对，理想情况下应该是 4——无论是先进行 <code>+1</code> 还是先进行 <code>+2</code>。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>虽然上面的例子中我们模拟的两个程序是按照相同速度，一行一个指令执行的，但是我们在并行语境下对所有进程执行的速度不应当有所假设，即进程 A 不知道进程 B 的速度。</p>
+<p>不仅如此，我们也并不一定要在并行语境下讨论这个问题，在多道语境下这个问题都会出现，例如：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>┌──────────────┐     ┌──────────────┐
+│ process A    │     │ process B    │ mem[x] = 1 (initial)
+├──────────────┤     ├──────────────┤
+│              │     │ t0 &lt;- mem[x] │ mem[x] = 1
+│ t0 &lt;- mem[x] │◄────┤ &lt;ctx switch&gt; │ mem[x] = 1
+│ t0 &lt;- t0 + 1 │     │              │
+│ mem[x] &lt;- t0 │     │              │ mem[x] = 2, here data in B is out of date
+│ &lt;ctx switch&gt; ├────►│ t0 &lt;- t0 + 1 │
+│              │     │ t0 &lt;- t0 + 1 │ 
+│              │     │ mem[x] &lt;- t0 │ mem[x] = 3, previous 2 is overwritten
+└──────────────┘     └──────────────┘
+</code></pre></div></td></tr></table></div>
+<p>问题依旧。</p>
+</div>
 <p>根据上面这个具体的例子，我们发现，如果需要解决这个问题，我们有两种选择：</p>
 <ol>
-<li>进行符号的运算，实现输入的变化能在任意时刻反映在输出上；</li>
-<li>保证读入数值完成到写入数值完成的过程中，<code>mem[x]</code> 保持不变；</li>
+<li>进行符号的运算而非数值的运算，这样输入的变化能在任意时刻反映在输出上，这样时时刻刻都是“最新”，而不会出现“过时”；</li>
+<li>保证读入数值完成到写入数值完成的过程中，<code>mem[x]</code> 保持不变，即两个可能竞争的操作，在时间上不应该有交集；</li>
 </ol>
 <p>显然，我们应当选择第二种。</p>
+<h2 id="the-critical-section-problem">The Critical-Section Problem<a class="headerlink" href="#the-critical-section-problem" title="Permanent link">¶</a></h2>
+<p>为了更好地展开，我们对上面的这种情况进行建模，并给出解决 race condition 问题的方法需要满足的范式：</p>
+<p>我们应当保证在一个进程在修改 <code>mem[x]</code> 的时候，其它进程不应该读取 <code>mem[x]</code>（至少不应以修改 <code>mem[x]</code> 为目的来读取），直到这个进程完成了对 <code>mem[x]</code> 的修改。换句话来说，<code>mem[x]</code> 这个共享资源应当只能被一个用户持有，我们称这种只能被至多一个用户占有的资源为临界资源。而程序中访问临界资源的代码段，我们称之为<strong>临界区段(critical section, CS)<a href="https://en.wikipedia.org/wiki/Critical_section" target="_blank">🔗</a></strong>。</p>
+<p>那么，对于之前提到过的例子，我们拿出来对比模拟的部分就是 critical section。</p>
+<p>而 CS 问题，指的就是<u>如何保证最多只有一个用户在执行临界区段的代码</u><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。</p>
+<hr/>
+<p>围绕临界区段，我们定义能够解决 CS 问题的代码应当能够做如下划分：</p>
+<div class="highlight"><pre><span></span><code>┌─────────────────────┐
+│  Entry Section      │ &lt;-- ask for &amp; wait for permission to enter CS
+├─────────────────────┤
+│  Critical Section   │ &lt;-- codes manipulating critical resources
+├─────────────────────┤
+│  Exit Section       │ &lt;-- release the critical resources
+├─────────────────────┤
+│  Remainder Section  │ &lt;-- other codes
+└─────────────────────┘
+</code></pre></div>
+<p>进程需要在 entry section 判断是否能够进入 critical section，即申请持有临界资源，如果不行则等待；而在进入 critical section 后，进程需要在 exit section 释放临界资源；然后脱离 CS 问题的语境，进入 remainder section 继续执行。</p>
+<div class="admonition tip">
+<p class="admonition-title">Brainstorming</p>
+<p>整个过程有点像<a href="./Unit1.md/#进程调度" target="_bank">调度</a>，等待申请临界资源的过程就好像 ready 态等待调度过程中的 CPU 资源（CPU 也可以认为是一种临界资源，只不过它不是由进程主动处理和申请的）。</p>
+<p>既然如此我们可以迁移“状态”这个概念。我们只关心直接与 CS 问题有关的状态，所以我在这里定义：就绪、临界、无关三个状态。</p>
+<ol>
+<li>就绪态：进程随时准备好进入 critical section，<u><strong>想要</strong>持有临界资源</u>；</li>
+<li>临界态：进程正在执行 critical section，<u><strong>持有</strong>临界资源</u>，或进程执行完 critical section，执行 exit section <u>正在释放<strong>持有</strong>的临界资源中</u>；</li>
+<li>无关态：不处于就绪态也不处于临界态，不想要持有临界资源，或是使用完已经释放；</li>
+</ol>
+<p>根据我们先前给出的，解法<a href="#r4s2csp" target="_blank">需要满足的性质</a>中的 mutual exclusion，不能同时有多个进程处于临界态，但是可以有若干进程处于就绪态，而无关态则表示不会产生竞争，和调度过程十分相似。</p>
+<p>这些定义将会在我们之后的探索中起作用。</p>
+</div>
+<p>同时，我们要求解决方案需要满足如下性质：</p>
+<p><a id="r4s2csp"></a></p>
+<div class="admonition definition">
+<p class="admonition-title">requirements for solution to CS problem</p>
+<ol>
+<li>临界互斥(mutual exclusion)：操作同一临界资源的临界区段应当互相排斥；<ul>
+<li>如果进程 <span class="arithmatex">\(P_i\)</span> 正在执行其 critical section，那么不应当有其他进程处于（操作同一临界资源的）critical section；</li>
+</ul>
+</li>
+<li>选择时间有限(progress)：选择下一个进入 critical section 的操作应当只有处于 entry/critical/exit section 的进程参与，且该选择应当在<strong>有限时间内被执行</strong>；</li>
+<li>等待时间有限(bounded waiting)：进程等待被允许进入 critical section 的时间应当是有限的；</li>
+</ol>
+</div>
+<p>接下来，我们以讨论 CS 问题是如何解决的为主线，探索如何解决 race condition。</p>
+<h2 id="for-kernel-code">For Kernel Code<a class="headerlink" href="#for-kernel-code" title="Permanent link">¶</a></h2>
+<p>由于 kernel code 下的 CS 问题解决较为清晰直接，所以先行介绍。</p>
+<div class="admonition section">
+<p class="admonition-title">For Kernel Code</p>
+<p>在 kernel code 中也普遍存在着 race condition 的问题，例如：</p>
+<p><figure markdown="">
+<center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/22.png"><img alt="Race condition when assigning a pid." src="../img/22.png"/></a> </center>
+Race condition when assigning a pid.
+</figure></p>
+<p>上例中 <span class="arithmatex">\(P_0\)</span> 和 <span class="arithmatex">\(P_1\)</span> 同时访问了 <code>next_available_pid</code> 这个临界资源，产生竞争，导致最后有两个进程使用了同一个 <code>pid</code>。</p>
+<p>欲解决 kernel code 中的 CS 问题，我们可以保证只有一个进程可以运行在 kernel mode，这样就可以保证在 kernel code 中访问临界资源的行为，从而解决 CS 问题。</p>
+<p>对于单处理器来说，我们只需要在 kernel code 中禁止中断，就可以保证只有一个进程可以运行在 kernel mode；而对于多处理器来说，这种方法就不那么合适了——我们需要同时告诉多个处理器中断被禁止，而这个过程中的时延仍然会产生问题；不仅如此，这个方法也会带来额外的开销。在多处理器语境下，我们需要实现<strong>抢占式内核(preemptive kernels)</strong>和<strong>非抢占式内核(non-preemptive kernels)</strong>，关键是后者实现了一段时间内只有一个进程可以运行在 kernel mode<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。</p>
+</div>
+<p>接下来我们探索更为通用的解决方案。</p>
+<div class="admonition info">
+<p class="admonition-title">说明</p>
+<p>为了简化说明代码，我们用全大写来表示一个共享资源，例如 <code>READY</code>，它能够被若干进程访问。实际上这个功能应当由操作系统提供，并不是我们关注的重点。</p>
+</div>
+<h2 id="petersons-algorithm">Peterson’s Algorithm<a class="headerlink" href="#petersons-algorithm" title="Permanent link">¶</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Links</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Peterson%27s_algorithm">Peterson's algorithm | Wikipedia</a></li>
+</ul>
+</div>
+<p>Peterson's algorithm 是对<strong>只有两个进程参与</strong>的同步问题的一个解法，具有一定的局限性，但其设计相对简单，所以先行给出。在本节中，我们假设 <span class="arithmatex">\(P_0\)</span> 和 <span class="arithmatex">\(P_1\)</span> 是参与同步问题讨论的两个进程。</p>
+<blockquote>
+<p>基于 Peterson's algorithm 对多进程情况的扩展被称为 <a href="https://en.wikipedia.org/wiki/Peterson%27s_algorithm#Filter_algorithm:_Peterson's_algorithm_for_more_than_two_processes" target="_blank">filter algorithm</a>，但 filter algorithm 不满足 bounded waiting time 的条件，读者有兴趣可以自行了解。</p>
+</blockquote>
+<h3 id="算法描述">算法描述<a class="headerlink" href="#算法描述" title="Permanent link">¶</a></h3>
+<p>为了保证处于临界态的进程至多只有一个，我们应当在进程处于就绪态时，确认没有其他进程处于临界态后再进入。其中最重要的一件事就是，当我们处在 <span class="arithmatex">\(P_0\)</span> 时，我们如何知道 <span class="arithmatex">\(P_1\)</span> 是否正处于临界态呢？Peterson’s Algorithm 通过如下方式实现了这件事：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// `i` is 0 or 1, indicating current pid, while `j` is another pid.</span>
+<span class="n">process</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">READY</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">                    </span><span class="c1">// ┐</span>
+<span class="w">    </span><span class="n">TURN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w">                           </span><span class="c1">// │</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">READY</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">TURN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">    </span><span class="c1">// ├ entry section</span>
+<span class="w">        </span><span class="c1">// i.e. wait until:             // │</span>
+<span class="w">        </span><span class="c1">//  (1) j exits,                // │</span>
+<span class="w">        </span><span class="c1">//  (2) j is slower, so it      // │</span>
+<span class="w">        </span><span class="c1">//      should run now.         // ┘</span>
+
+<span class="w">    </span><span class="cm">/* operate critical resources */</span><span class="w">    </span><span class="c1">// - critical section</span>
+
+<span class="w">    </span><span class="n">READY</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                   </span><span class="c1">// - exit section</span>
+
+<span class="w">    </span><span class="cm">/* other things */</span><span class="w">                  </span><span class="c1">// - remainder section</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>首先，我们说明 entry section 没有临界资源。<code>READY</code> 是一个共享的数组，每个进程只修改与自己一一对应的 element，所以本质上 <code>READY</code> 不会出现 race condition，因而也不是临界资源。而 <code>TURN</code>，我们这里只对 <code>TURN</code> 进行写的操作，但是 P1 和 P2 谁先跑到这一行会决定 <code>TURN</code> 最后的值，所以实际上这里有 race condition。</p>
+<p>但这就是 Peterson’s Algorithm 巧妙的地方，Peterson's 利用 race condition 这个“后覆盖前”的性质，实现了标记了这两个进程的先来后到的效果。我们都向这个 <code>TURN</code> 写一个互异的值（比如自己的 id，或者对方的 id），等大家都写好后我们看看这个值最终是谁写的，于是就知道谁后到。</p>
+<p>利用这个原理，Peterson's 这里做了一个非常有中国人气质的事情：<span class="arithmatex">\(P_0\)</span> 和 <span class="arithmatex">\(P_1\)</span> 上公交车后同时看上了一个座位，<span class="arithmatex">\(P_0\)</span> 说：“你坐吧。”， <span class="arithmatex">\(P_1\)</span> 自然也要客气一下，说：“还是你坐吧！”。现在两边都客气过了，<span class="arithmatex">\(P_0\)</span> 就可以心安理得地坐下了。对上述过程，我们给出 <span class="arithmatex">\(P_0\)</span> 获得椅子的准确条件有：</p>
+<ol>
+<li><span class="arithmatex">\(P_0\)</span> 想坐下，<span class="arithmatex">\(P_1\)</span> 也想坐下，否则就没有冲突了；</li>
+<li><span class="arithmatex">\(P_0\)</span> 发现 <span class="arithmatex">\(P_1\)</span> 在客气，但 <span class="arithmatex">\(P_0\)</span> <strong>已经</strong>客气过了；</li>
+</ol>
+<p>对应到上面给出的代码里，这个条件可以翻译为：</p>
+<ol>
+<li><code class="highlight"><span class="n">READY</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></code> = <code class="highlight"><span class="n">READY</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></code> = <code class="highlight"><span class="nb">true</span></code>；</li>
+<li><code class="highlight"><span class="n">TURN</span></code> ≠ <code>j</code>，但此前 <span class="arithmatex">\(P_i\)</span> 已经执行过 <code>TURN &lt;- j</code>；</li>
+</ol>
+<div class="admonition advice">
+<p class="admonition-title">请读者仔细思考上面的过程，并适当进行全面的模拟以理解 Peterson's 是如何工作的。</p>
+</div>
+<h3 id="性质证明">性质证明<a class="headerlink" href="#性质证明" title="Permanent link">¶</a></h3>
+<p>现在我们需要证明这个算法满足<a href="#r4s2csp" target="_blank">性质</a>。</p>
+<blockquote>
+<p>我的证明比较详细和啰嗦，但我认为完整地模拟更加有利于直觉理解，如果你想要更简洁的证明，可以参考 <a href="https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/#%E6%80%A7%E8%B4%A8%E8%AF%81%E6%98%8E" target="_blank">xyx 的笔记</a>。</p>
+</blockquote>
+<details class="proof" open="open">
+<summary>mutual exclusion</summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// `i` is 0 or 1, indicating current pid, while `j` is another pid.</span>
+<span class="n">process</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">READY</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">                    </span><span class="c1">// ┐</span>
+<span class="w">    </span><span class="n">TURN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w">                           </span><span class="c1">// │</span>
+<span class="hll"><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">READY</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">TURN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">    </span><span class="c1">// ├ entry section</span>
+</span><span class="w">        </span><span class="c1">// i.e. wait until:             // │</span>
+<span class="w">        </span><span class="c1">//  (1) j exits,                // │</span>
+<span class="w">        </span><span class="c1">//  (2) j is slower, so it      // │</span>
+<span class="w">        </span><span class="c1">//      should run now.         // ┘</span>
+
+<span class="w">    </span><span class="cm">/* operate critical resources */</span><span class="w">    </span><span class="c1">// - critical section</span>
+
+<span class="w">    </span><span class="n">READY</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                   </span><span class="c1">// - exit section</span>
+
+<span class="w">    </span><span class="cm">/* other things */</span><span class="w">                  </span><span class="c1">// - remainder section</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition property">
+<p class="admonition-title">lemma</p>
+<p>如果此时 i 和 j 同处于第 7 行，那么显然：</p>
+<ol>
+<li>两个进程都想要进入 critical section，即 <code>READY[i]</code> 和 <code>READY[j]</code> 都为真；</li>
+<li><code>TURN</code> 的值不再会被更改；</li>
+<li>两个进程都尚未进入 critical section；</li>
+</ol>
+<p>由于 <code>TURN</code> 必定也只能为 i 或 j，所以 i 和 j 必然有且仅有一个进程接下来会 break loop 并进入 critical section，在它结束之前，即在 <code>READY[?]</code> 被改变之前，该条件持续成立。</p>
+<p>因此我们得到一个结论：如果此时 i 和 j 同处于第七行，那么从该时刻开始，到两个进程都离开 critical section 为止，互斥性质都成立。</p>
+</div>
+<p>现在我们考虑 i 已经先行运行到第 7 行，而 j 还没运行到第 7 行：</p>
+<div class="admonition section">
+<p class="admonition-title">Situation 1</p>
+<p>如果 j 还没进入第 5 行，那么 <code>READY[j]</code> 为假，此时没有竞争，i 可以直接进入临界态。并且 j 之后运行到第 7 行时，<code>TURN == &lt;another&gt;</code> 始终成立。所以 j 何时进入 critical section 完全取决于 <code>READY[j]</code>，即 j 何时离开 critical section。</p>
+<p>显然，此时满足互斥性质。</p>
+</div>
+<div class="admonition section">
+<p class="admonition-title">Situation 2</p>
+<p>如果 j 已经运行完第 5 行，还没执行第 6 行，那么对于 i 来说，<code class="highlight"><span class="p">(</span><span class="n">READY</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">TURN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span><span class="p">)</span></code> 为真，此时 i 将等待 j，进入 Situation 3。</p>
+</div>
+<p>也就是说，要么 i 和 j 不竞争，要么两者都运行到第 7 行后才会有进程进入 critical section</p>
+<blockquote>
+<p>这就好像两者在第 6 行比谁先举手，然后等两者都举过手（都跑完第 6 行，到达第 7 行）后，再判断谁进入 critical section，而进入第 7 行以后所有的判断条件都是相对静止的、不会再被修改的，因而避免甚至利用了 race condition 对 selection 的影响，保证了互斥的性质。</p>
+</blockquote>
+</details>
+<details class="proof" open="open">
+<summary>progress</summary>
+<p>这条性质的成立比较符合直觉，唯一需要说明的就是不会出现两个进程同时在 <code>while ()</code> 被阻塞住的情况。但是这点非常显然，<code class="highlight"><span class="n">TURN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">TURN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span></code> 必然是 false，所以两个循环总有一个会被 break。</p>
+</details>
+<details class="proof" open="open">
+<summary>bounded waiting time</summary>
+<p>在 Peterson's 中，等待时间主要指这部分的运行时间，尤其指第七行的 <code>while</code> 循环。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// `i` is 0 or 1, indicating current pid, while `j` is another pid.</span>
+<span class="n">process</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="hll"><span class="w">    </span><span class="n">READY</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">                    </span><span class="c1">// ┐</span>
+</span><span class="hll"><span class="w">    </span><span class="n">TURN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w">                           </span><span class="c1">// │</span>
+</span><span class="hll"><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">READY</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">TURN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">    </span><span class="c1">// ├ entry section</span>
+</span><span class="w">        </span><span class="c1">// i.e. wait until:             // │</span>
+<span class="w">        </span><span class="c1">//  (1) j exits,                // │</span>
+<span class="w">        </span><span class="c1">//  (2) j is slower, so it      // │</span>
+<span class="w">        </span><span class="c1">//      should run now.         // ┘</span>
+
+<span class="w">    </span><span class="cm">/* operate critical resources */</span><span class="w">    </span><span class="c1">// - critical section</span>
+
+<span class="w">    </span><span class="n">READY</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                   </span><span class="c1">// - exit section</span>
+
+<span class="w">    </span><span class="cm">/* other things */</span><span class="w">                  </span><span class="c1">// - remainder section</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>我们可以发现，不断循环的条件是：<code class="highlight"><span class="n">READY</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">TURN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span></code>，如果该循环一开始就不成立，那么显然是符合 bounded waiting time 的，所以我们考虑这个条件最多能持续多久。</p>
+<div class="admonition section">
+<p class="admonition-title">A. <code class="highlight"><span class="n">READY</span><span class="p">[</span><span class="n">j</span><span class="p">]</span></code> 为真</p>
+<p>这需要 process j 已经运行过第 5 行，并且还没运行第 15 行，即 process j 也<strong>想要</strong>进入临界态。</p>
+<p>这一条是在判断是否有冲突存在，如现在只有 process i 想要进入临界态，那无需等待直接进入即可。通过<strong>改变这个条件</strong>而进入临界态有两种可能：</p>
+<ol>
+<li>一开始冲突就不存在；</li>
+<li>process j 刚离开临界态，释放了临界资源；</li>
+</ol>
+</div>
+<div class="admonition section">
+<p class="admonition-title">B. <code class="highlight"><span class="n">TURN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span></code> 为真</p>
+<p>有两种可能：</p>
+<ol>
+<li>process j 还没运行第 6 行；</li>
+<li>process j 在 process i 之前就运行了第 6 行；</li>
+</ol>
+<p>对于第一种情况，由于 A. 成立后才会判断这条，所以 process j 的状态其实是刚运行完第 5 行还没运行完第 6 行，显然这个时间是有界的。</p>
+<p>而对于第二种情况，说明 i 是后来者，j 已经客气过一次了，所以应当让 j 运行，i 等待 j 离开临界态释放资源，此时通过 A.2. 来进入临界态。而 process j 操作临界资源的时间也应当有限的。</p>
+</div>
+<p>综上所述，waiting time 的最大值基本上取自：</p>
+<ol>
+<li>process j 执行第 6 行的时间；</li>
+<li>process j 操作临界资源的时间；</li>
+</ol>
+<p>通过之前的论述我们知道，这两个都是有界的，于是该性质得证。</p>
+</details>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:1">
+<p><a href="https://crystal.uta.edu/~ylei/cse6324/data/critical-section.pdf" target="_blank">The Critical Section Problem</a> <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:2">
+<p>书本中对 preemptive kernels 和 non-preemptive kernels 的定义并不准确，两者最本质的区别是后者实现了 <a href="https://en.wikipedia.org/wiki/Giant_lock" target="_blank">Giant Lock</a>。同时读者可以参考这个链接：<a href="https://unix.stackexchange.com/questions/412806/what-was-the-reason-of-the-non-preemptivity-of-older-linux-kernels" target="_blank">What was the reason of the non-preemptivity of older Linux kernels?</a> <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+</ol>
+</div>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月31日 21:14:44</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月1日 16:44:42</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>
