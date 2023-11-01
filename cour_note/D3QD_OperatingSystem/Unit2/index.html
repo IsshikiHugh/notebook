@@ -866,10 +866,10 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#petersons-algorithm">
-    Peterson’s Algorithm
+<a class="md-nav__link" href="#软件侧方法---petersons-algorithm">
+    软件侧方法 - Peterson’s Algorithm
   </a>
-<nav aria-label="Peterson’s Algorithm" class="md-nav">
+<nav aria-label="软件侧方法 - Peterson’s Algorithm" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#算法描述">
@@ -883,6 +883,21 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#硬件侧方法---memory-barriers">
+    硬件侧方法 - Memory Barriers
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#硬件侧方法---hardware-instructions">
+    硬件侧方法 - Hardware Instructions
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#硬件侧方法---atomic-variables">
+    硬件侧方法 - Atomic Variables
+  </a>
 </li>
 </ul>
 </nav>
@@ -1097,10 +1112,10 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#petersons-algorithm">
-    Peterson’s Algorithm
+<a class="md-nav__link" href="#软件侧方法---petersons-algorithm">
+    软件侧方法 - Peterson’s Algorithm
   </a>
-<nav aria-label="Peterson’s Algorithm" class="md-nav">
+<nav aria-label="软件侧方法 - Peterson’s Algorithm" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#算法描述">
@@ -1115,6 +1130,21 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#硬件侧方法---memory-barriers">
+    硬件侧方法 - Memory Barriers
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#硬件侧方法---hardware-instructions">
+    硬件侧方法 - Hardware Instructions
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#硬件侧方法---atomic-variables">
+    硬件侧方法 - Atomic Variables
+  </a>
+</li>
 </ul>
 </nav>
 </div>
@@ -1124,7 +1154,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="unit-2-进程同步--process-synchronization-未完成">Unit 2: 进程同步 | Process Synchronization [未完成]<a class="headerlink" href="#unit-2-进程同步--process-synchronization-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3674 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 81 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 13 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4452 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 100 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 16 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">引入</p>
@@ -1288,7 +1318,7 @@ Race condition when assigning a pid.
 <p class="admonition-title">说明</p>
 <p>为了简化说明代码，我们用全大写来表示一个共享资源，例如 <code>READY</code>，它能够被若干进程访问。实际上这个功能应当由操作系统提供，并不是我们关注的重点。</p>
 </div>
-<h2 id="petersons-algorithm">Peterson’s Algorithm<a class="headerlink" href="#petersons-algorithm" title="Permanent link">¶</a></h2>
+<h2 id="软件侧方法---petersons-algorithm">软件侧方法 - Peterson’s Algorithm<a class="headerlink" href="#软件侧方法---petersons-algorithm" title="Permanent link">¶</a></h2>
 <div class="admonition quote">
 <p class="admonition-title">Links</p>
 <ul>
@@ -1357,7 +1387,7 @@ Race condition when assigning a pid.
 <blockquote>
 <p>我的证明比较详细和啰嗦，但我认为完整地模拟更加有利于直觉理解，如果你想要更简洁的证明，可以参考 <a href="https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/#%E6%80%A7%E8%B4%A8%E8%AF%81%E6%98%8E" target="_blank">xyx 的笔记</a>。</p>
 </blockquote>
-<details class="proof" open="open">
+<details class="proof">
 <summary>mutual exclusion</summary>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1421,11 +1451,11 @@ Race condition when assigning a pid.
 <p>这就好像两者在第 6 行比谁先举手，然后等两者都举过手（都跑完第 6 行，到达第 7 行）后，再判断谁进入 critical section，而进入第 7 行以后所有的判断条件都是相对静止的、不会再被修改的，因而避免甚至利用了 race condition 对 selection 的影响，保证了互斥的性质。</p>
 </blockquote>
 </details>
-<details class="proof" open="open">
+<details class="proof">
 <summary>progress</summary>
 <p>这条性质的成立比较符合直觉，唯一需要说明的就是不会出现两个进程同时在 <code>while ()</code> 被阻塞住的情况。但是这点非常显然，<code class="highlight"><span class="n">TURN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">TURN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span></code> 必然是 false，所以两个循环总有一个会被 break。</p>
 </details>
-<details class="proof" open="open">
+<details class="proof">
 <summary>bounded waiting time</summary>
 <p>在 Peterson's 中，等待时间主要指这部分的运行时间，尤其指第七行的 <code>while</code> 循环。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1491,6 +1521,71 @@ Race condition when assigning a pid.
 </ol>
 <p>通过之前的论述我们知道，这两个都是有界的，于是该性质得证。</p>
 </details>
+<div class="admonition bug">
+<p class="admonition-title">Oops!</p>
+<p>但是，<strong>Peterson's 实际上无法适用于现代计算机中</strong>。上述做法有一个关键，也是我们在证明过程中一直默认成立的事情：进程总是先执行 <code>READY[i] = true;</code>，然后才会执行 <code>TURN = j;</code>，即先进入就绪态，再申请使用资源，这看起来是个非常合理的条件。但在现代计算机中，编译器可能会通过重排列部分语句来更好地利用 CPU 资源（参考计组的<a href="https://xuan-insr.github.io/computer_organization/4_processor/#422-structure-hazards" target="_blank">各种竞争</a>）。而<strong>对编译器来说</strong>，这两个操作（就绪和请求）并没有操作相同内容，因而交换顺序是不会影响结果的，所以可能被编译器交换。而这就有可能导致出现问题，例如：</p>
+<p><figure markdown="">
+<center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/23.png"><img alt="" src="../img/23.png"/></a> </center>
+The effects of instruction reordering in Peterson’s solution.
+</figure></p>
+<p>在棕色标记时刻，process 1 进行 <code>while</code> 循环判断，发现 <code>READY[0]</code> 为假，但此时 <code>TURN</code> 指向对方，所以按照我们先前的分析，此时 process 1 会认为 process 0 是已经运行完 critical section，已经释放了临界资源，所以进入临界态；然而，在绿色标记时刻，对于 process 0，此时 <code>TURN</code> 指向自己，process 1 还没运行完所以 <code>READY[1]</code> 还是真，根据我们之前的分析，此时 process 0 会认为 process 1 在等待自己，所以也进入了临界态。于是，两个进程同时进入了临界态，违反了 mutual exclusion 的性质。</p>
+</div>
+<p>所以，实际上 Peterson's Algorithm 仍然没有解决问题。</p>
+<h2 id="硬件侧方法---memory-barriers">硬件侧方法 - Memory Barriers<a class="headerlink" href="#硬件侧方法---memory-barriers" title="Permanent link">¶</a></h2>
+<p>该方法实际上是对软件方法的补足。我们先前提到，Peterson's Algorithm 失效的原因是编译器会根据需求重排列一些内存操作，而 memory barriers 保证 barrier 之前的 S/L 指令必须在 barrier 之后的 S/L 指令之前完成，使我们能够主动禁止编译器做这种重排。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// `i` is 0 or 1, indicating current pid, while `j` is another pid.</span>
+<span class="n">process</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">READY</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">                    </span><span class="c1">// ┐</span>
+<span class="hll"><span class="w">    </span><span class="n">memory_barrier</span><span class="p">();</span><span class="w">                   </span><span class="c1">// │</span>
+</span><span class="w">    </span><span class="n">TURN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w">                           </span><span class="c1">// │</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">READY</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">TURN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">    </span><span class="c1">// ├ entry section</span>
+<span class="w">        </span><span class="c1">// i.e. wait until:             // │</span>
+<span class="w">        </span><span class="c1">//  (1) j exits,                // │</span>
+<span class="w">        </span><span class="c1">//  (2) j is slower, so it      // │</span>
+<span class="w">        </span><span class="c1">//      should run now.         // ┘</span>
+
+<span class="w">    </span><span class="cm">/* operate critical resources */</span><span class="w">    </span><span class="c1">// - critical section</span>
+
+<span class="w">    </span><span class="n">READY</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                   </span><span class="c1">// - exit section</span>
+
+<span class="w">    </span><span class="cm">/* other things */</span><span class="w">                  </span><span class="c1">// - remainder section</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<hr/>
+<div class="admonition definition">
+<p class="admonition-title">Memory Model</p>
+<p>不同的计算机架构可能会对用户程序操作内存的保证有所不同，这种保证被称为 memory model。我们可以将它分为两大类：</p>
+<ol>
+<li>强有序(strongly ordered)：进程对内存做的修改立刻对其它处理器可见；</li>
+<li>弱有序(weakly ordered)：进程对内存做的修改不立刻对其它处理器可见；</li>
+</ol>
+<p>我们知道，为了提高内存操作的效率，我们引入了 cache，在多处理器情况下，cache 机制的存在可能导致进程 A 对内存的写无法对进程 B 立刻可见，这就是弱有序的一种体现。</p>
+</div>
+<blockquote>
+<p>这部分我没有完全搞清楚，书本的逻辑非常的诡异：书本认为 memory barrier 是弱有序问题的解决方案，但是我始终没明白它们之间的逻辑在哪里，以及“有序”和“立刻可见”的根本联系在哪里。这里一定是存在不清楚的地方的。但是这部分看起来不是很重要，所以我就先放着不管了。</p>
+</blockquote>
+<h2 id="硬件侧方法---hardware-instructions">硬件侧方法 - Hardware Instructions<a class="headerlink" href="#硬件侧方法---hardware-instructions" title="Permanent link">¶</a></h2>
+<h2 id="硬件侧方法---atomic-variables">硬件侧方法 - Atomic Variables<a class="headerlink" href="#硬件侧方法---atomic-variables" title="Permanent link">¶</a></h2>
 <div class="footnote">
 <hr/>
 <ol>
@@ -1507,7 +1602,7 @@ Race condition when assigning a pid.
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月1日 16:44:42</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月1日 21:05:05</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>
