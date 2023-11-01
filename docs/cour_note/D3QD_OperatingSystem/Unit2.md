@@ -172,7 +172,7 @@
 
     为了简化说明代码，我们用全大写来表示一个共享资源，例如 `READY`，它能够被若干进程访问。实际上这个功能应当由操作系统提供，并不是我们关注的重点。
 
-## Peterson’s Algorithm
+## 软件侧方法 - Peterson’s Algorithm
 
 !!! quote "Links"
 
@@ -229,7 +229,7 @@ process(i) {
 
 > 我的证明比较详细和啰嗦，但我认为完整地模拟更加有利于直觉理解，如果你想要更简洁的证明，可以参考 [xyx 的笔记](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/#%E6%80%A7%E8%B4%A8%E8%AF%81%E6%98%8E){target="_blank"}。
 
-???+ proof "mutual exclusion"
+??? proof "mutual exclusion"
 
     ```cpp linenums="1" hl_lines="7"
     // `i` is 0 or 1, indicating current pid, while `j` is another pid.
@@ -280,11 +280,11 @@ process(i) {
 
     > 这就好像两者在第 6 行比谁先举手，然后等两者都举过手（都跑完第 6 行，到达第 7 行）后，再判断谁进入 critical section，而进入第 7 行以后所有的判断条件都是相对静止的、不会再被修改的，因而避免甚至利用了 race condition 对 selection 的影响，保证了互斥的性质。
 
-???+ proof "progress"
+??? proof "progress"
     
     这条性质的成立比较符合直觉，唯一需要说明的就是不会出现两个进程同时在 `while ()` 被阻塞住的情况。但是这点非常显然，`#!cpp TURN == i && TURN == j` 必然是 false，所以两个循环总有一个会被 break。
 
-???+ proof "bounded waiting time"
+??? proof "bounded waiting time"
 
     在 Peterson's 中，等待时间主要指这部分的运行时间，尤其指第七行的 `while` 循环。
 
@@ -338,11 +338,70 @@ process(i) {
 
     通过之前的论述我们知道，这两个都是有界的，于是该性质得证。
 
+!!! bug "Oops!"
+
+    但是，**Peterson's 实际上无法适用于现代计算机中**。上述做法有一个关键，也是我们在证明过程中一直默认成立的事情：进程总是先执行 `READY[i] = true;`，然后才会执行 `TURN = j;`，即先进入就绪态，再申请使用资源，这看起来是个非常合理的条件。但在现代计算机中，编译器可能会通过重排列部分语句来更好地利用 CPU 资源（参考计组的[各种竞争](https://xuan-insr.github.io/computer_organization/4_processor/#422-structure-hazards){target="_blank"}）。而**对编译器来说**，这两个操作（就绪和请求）并没有操作相同内容，因而交换顺序是不会影响结果的，所以可能被编译器交换。而这就有可能导致出现问题，例如：
+
+    <figure markdown>
+    <center> ![](img/23.png) </center>
+    The effects of instruction reordering in Peterson’s solution.
+    </figure>
+
+    在棕色标记时刻，process 1 进行 `while` 循环判断，发现 `READY[0]` 为假，但此时 `TURN` 指向对方，所以按照我们先前的分析，此时 process 1 会认为 process 0 是已经运行完 critical section，已经释放了临界资源，所以进入临界态；然而，在绿色标记时刻，对于 process 0，此时 `TURN` 指向自己，process 1 还没运行完所以 `READY[1]` 还是真，根据我们之前的分析，此时 process 0 会认为 process 1 在等待自己，所以也进入了临界态。于是，两个进程同时进入了临界态，违反了 mutual exclusion 的性质。
+
+所以，实际上 Peterson's Algorithm 仍然没有解决问题。
+
+## 硬件侧方法 - Memory Barriers
+
+该方法实际上是对软件方法的补足。我们先前提到，Peterson's Algorithm 失效的原因是编译器会根据需求重排列一些内存操作，而 memory barriers 保证 barrier 之前的 S/L 指令必须在 barrier 之后的 S/L 指令之前完成，使我们能够主动禁止编译器做这种重排。
+
+```cpp linenums="1" hl_lines="6"
+// `i` is 0 or 1, indicating current pid, while `j` is another pid.
+process(i) {
+    j = 1 - i;
+
+    READY[i] = true;                    // ┐
+    memory_barrier();                   // │
+    TURN = j;                           // │
+    while (READY[j] && TURN == j) {}    // ├ entry section
+        // i.e. wait until:             // │
+        //  (1) j exits,                // │
+        //  (2) j is slower, so it      // │
+        //      should run now.         // ┘
+
+    /* operate critical resources */    // - critical section
+
+    READY[i] = false;                   // - exit section
+
+    /* other things */                  // - remainder section
+}
+```
+
+---
+
+!!! definition "Memory Model"
+
+    不同的计算机架构可能会对用户程序操作内存的保证有所不同，这种保证被称为 memory model。我们可以将它分为两大类：
+
+    1. 强有序(strongly ordered)：进程对内存做的修改立刻对其它处理器可见；
+    2. 弱有序(weakly ordered)：进程对内存做的修改不立刻对其它处理器可见；
+
+    我们知道，为了提高内存操作的效率，我们引入了 cache，在多处理器情况下，cache 机制的存在可能导致进程 A 对内存的写无法对进程 B 立刻可见，这就是弱有序的一种体现。
+
+> 这部分我没有完全搞清楚，书本的逻辑非常的诡异：书本认为 memory barrier 是弱有序问题的解决方案，但是我始终没明白它们之间的逻辑在哪里，以及“有序”和“立刻可见”的根本联系在哪里。这里一定是存在不清楚的地方的。但是这部分看起来不是很重要，所以我就先放着不管了。
+
+## 硬件侧方法 - Hardware Instructions
 
 
 
 
-    
+
+## 硬件侧方法 - Atomic Variables
+
+
+
+
+
 
 [^1]: [The Critical Section Problem](https://crystal.uta.edu/~ylei/cse6324/data/critical-section.pdf){target="_blank"}
 
