@@ -11,8 +11,7 @@
 
 - 边际分布律（Marginal Mass Function）是联合分布律的行/列求和；
 - $P(X=x_i)=P(X=x_1,\bigcup_{j=1}^{\infty}(Y=y_j))=\sum_{j=1}^{\infty}p_{ij}:=p_{i·}$；
-- $P(
-Y=y_j)=P(\bigcup_{j=1}^{\infty}(X=x_i),Y=y_j)=\sum_{i=1}^{\infty}p_{ij}:=p_{·j}$；
+- $P(Y=y_j)=P(\bigcup_{j=1}^{\infty}(X=x_i),Y=y_j)=\sum_{i=1}^{\infty}p_{ij}:=p_{·j}$；
 
 ### 条件分布律
 
@@ -44,7 +43,7 @@ $F_X(x)=P\{X\leq x\}=P\{X\leq x ,Y<+\infty\}=F(x,+\infty)=\int_{-\infty}^{+\inft
 
 ### 条件分布函数
 
-$F_{Y|X}(y|x)=P\{Y\leq y | X = x\}=\frac{P(Y\leq y,X=x)}{P(X=x)}$ 为 $\{ X=x \}$ 条件下 $Y$ 的**条件分布函数（Conditional Distribution Function）**。
+$F_{Y|X}(y|x)=P\{Y\leq y | X = x\}=\frac{P\{Y\leq y,X=x\}}{P\{X=x\}}$ 为 $\{ X=x \}$ 条件下 $Y$ 的**条件分布函数（Conditional Distribution Function）**。
 
 进一步推广，若 $P(X=x)=0$，但对任意给定的 $\epsilon$，$P(x<X\leq x+\epsilon)>0$，则在 $\{ X=x \}$ 条件下，$Y$ 的条件分布函数为 $F_{Y|X}(y|x)=\lim_{\epsilon \rarr 0^+}P\{Y\leq y|x<X\leq x+\epsilon \}$，仍记为 $P\{Y\leq y | X = x\}$。
 
@@ -71,7 +70,9 @@ $f_X(x)=\int_{-\infty}^{+\infty}f(x,y)dy$ 为边际概率密度函数（Marginal
 
 - 对 $Y$ 来说同理。
 
-#### 均匀分布
+### 二维均匀分布与二维正态分布
+
+**均匀分布**
 
 如果二元随机变量 $(X,Y)$ 在二维有界区间 $D$ 上取值，且具有联合密度函数：
 
@@ -89,7 +90,9 @@ $$
 P\{(X,Y)\in D\}=\frac{\text{Area of }D_1}{\text{Area of }D}\;,\;\;\text{while }D_1\subset D
 $$
 
-#### 正态分布
+---
+
+**正态分布**
 
 如果二元随机变量 $(X,Y)$ 具有联合密度函数：
 
@@ -104,30 +107,19 @@ $$
 
 - 二维正态分布的两个边际分布都是**对应参数的一维正态分布**，与 $\rho$ 无关。
 
-<!-- temp -->
+## 随机变量的独立性
 
----
+如果对于任意的两个实数集合$D_1,D_2$，有$P\{X\in D_1,Y\in D_2\}=P\{X\in D_1\}·P\{Y\in D_2\}$，则称随机变量$X,Y$**相互独立**，即$X,Y$**独立**。<br />即同时有$P\{X\leq x,Y\leq y\}=P\{X\leq x\}·P\{Y\leq y\}$，即$F(x,y)=F_X(x)·F_Y(y)$时，$X,Y$独立。
 
-**随机变量的独立性**<br />如果对于任意的两个实数集合$D_1,D_2$，有$P\{X\in D_1,Y\in D_2\}=P\{X\in D_1\}·P\{Y\in D_2\}$，则称随机变量$X,Y$**相互独立**，即$X,Y$**独立**。<br />即同时有$P\{X\leq x,Y\leq y\}=P\{X\leq x\}·P\{Y\leq y\}$，即$F(x,y)=F_x(x)·F_y(y)$时，$X,Y$独立。
+### 卷积公式
 
+当 $X$ 和 $Y$ 相互独立时，$Z=X+Y$ 的条件下：
 
----
-
-
-**卷积公式**<br />当$X$和$Y$相互独立时，$Z=X+Y$的条件下：
-
-1. $F_Z(z) = \iint \limits_{x+y\leq z}f(x,y)\mathrm{d}x\mathrm{d}y=\int_{-\infty}^{+\infty}[\int_{-\infty}^{z-x}f(x,u-x)\mathrm{d}y]\mathrm{d}x$
-
-$\\
-= \int_{-\infty}^{+\infty}[\int_{-\infty}^{z}f(x,u-x)\mathrm{d}u]\mathrm{d}x=\int_{-\infty}^{z}[\int_{-\infty}^{+\infty}f(x,u-x)\mathrm{d}x]\mathrm{d}u$ <br />$\\=\int_{-\infty}^{z}f_Z(u)\mathrm{d}y$；
+1. $F_Z(z) = \iint \limits_{x+y\leq z}f(x,y)\mathrm{d}x\mathrm{d}y=\int_{-\infty}^{+\infty}[\int_{-\infty}^{z-x}f(x,u-x)\mathrm{d}y]\mathrm{d}x = \int_{-\infty}^{+\infty}[\int_{-\infty}^{z}f(x,u-x)\mathrm{d}u]\mathrm{d}x=\int_{-\infty}^{z}[\int_{-\infty}^{+\infty}f(x,u-x)\mathrm{d}x]\mathrm{d}u =\int_{-\infty}^{z}f_Z(u)\mathrm{d}y$；
 
 2. 其密度函数公式称为**卷积公式**：$f_X*f_Y=\int_{-\infty}^{+\infty}f_X(x)f_Y(z-x)\mathrm{d}x=\int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\mathrm{d}y$；
 
+$M=max(X,Y)\;\;and\;\;N=min(X,Y)$ 的分布：
 
-$M=max(X,Y)\;\;and\;\;N=min(X,Y)$的分布
-
-- $F_{max}(z)=P(M\leq z)=P(X\leq z,Y\leq z)\xlongequal{\text{X,Y独立}}P(X\leq z)P(Y\leq z)=F_X(z)F_Y(z)$；
-- $F_{min}(z)=P(N\leq z)=1-P(N>z)=1-P(X>z,Y>z)$
-
-$\xlongequal{\text{X,Y独立}}1-P(X>z)P(Y>z)=1-(1-F_X(z))(1-F_Y(z))$；
-
+- $F_{max}(z)=P(M\leq z)=P(X\leq z,Y\leq z)\xlongequal{\text{X,Y independent}}P(X\leq z)P(Y\leq z)=F_X(z)F_Y(z)$；
+- $F_{min}(z)=P(N\leq z)=1-P(N>z)=1-P(X>z,Y>z)\xlongequal{\text{X,Y independent}}1-P(X>z)P(Y>z)=1-(1-F_X(z))(1-F_Y(z))$；
