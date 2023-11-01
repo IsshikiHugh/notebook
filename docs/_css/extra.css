@@ -146,7 +146,7 @@ li {
 }
 
 ::selection {
-    background:#f1e8db;
+    background:rgba(209, 195, 177, 0.6);
     /* color:blac; */
 }
 
@@ -160,17 +160,17 @@ li {
 
 .md-typeset .admonition.definition,
 .md-typeset details.definition {
-    border-color: #FD841F;
+    border-color: #d2b300;
 }
 
 .md-typeset .definition>.admonition-title,
 .md-typeset .definition>summary {
-    background-color: #ffeade;
+    background-color: #fbffde;
 }
     
 .md-typeset .definition>.admonition-title::before,
 .md-typeset .definition>summary::before {
-    background-color: #FD841F;
+    background-color: #d2b300;
     -webkit-mask-image: var(--md-admonition-icon--definition);
     mask-image: var(--md-admonition-icon--definition);
 }

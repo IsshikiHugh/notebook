@@ -49,7 +49,11 @@ theme:
 plugins:
   - statistics
   - glightbox
-  - search
+  - search:
+      lang:
+        - zh
+        - en
+      separator: '[\s\-\.]+'
   - git-revision-date-localized:
       type: datetime
       timezone: Asia/Shanghai

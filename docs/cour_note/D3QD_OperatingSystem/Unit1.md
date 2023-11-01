@@ -474,7 +474,7 @@ RR 调度就是使用[分时技术](./Unit0.md/time-sharing)后的 FCFS 调度�
 
 
 
-[^1]: [Where memory will be allocated to "Uninitialized Static variable" upon initialization?](https://stackoverflow.com/a/35799639)
-[^2]: [What process is the parent of the init process in Linux?](https://superuser.com/questions/731223/what-process-is-the-parent-of-the-init-process-in-linux/1331247#1331247)
-[^3]: [Linux CreateProcess?](https://stackoverflow.com/a/5883503)
-[^4]: [Differences between fork and exec?](https://stackoverflow.com/a/1653415)
+[^1]: [Where memory will be allocated to "Uninitialized Static variable" upon initialization?](https://stackoverflow.com/a/35799639){target="_blank"}
+[^2]: [What process is the parent of the init process in Linux?](https://superuser.com/questions/731223/what-process-is-the-parent-of-the-init-process-in-linux/1331247#1331247){target="_blank"}
+[^3]: [Linux CreateProcess?](https://stackoverflow.com/a/5883503){target="_blank"}
+[^4]: [Differences between fork and exec?](https://stackoverflow.com/a/1653415){target="_blank"}

@@ -1,52 +1,4 @@
-# Unit 2 Ex 1: 典型同步问题 | Classic Problems of Synchronization Examples [未完成]
-
-!!! info "给出若干典型同步问题之前，先给出一些背景。"
-
-## 参与数据过时
-
-我们需要意识到，我们无法一步到位地，in-place 地去修改一个内存中的数据，换言之，要想修改 `mem[x]`，我们需要三个步骤：
-
-1. `reg` <- `mem[x]`；
-2. `reg` <- update(`reg`)；
-3. `mem[x]` <- `reg`；
-
-而如果现在不止一个进程在修改 `mem[x]`，例如下面这个例子：
-
-```linenums="1"
-┌──────────────┬──────────────┐
-│ process A    │ process B    │ mem[x] = 1 (initial)
-├──────────────┼──────────────┤
-│ t0 <- mem[x] │ t0 <- mem[x] │ mem[x] = 1
-│ t0 <- t0 + 1 │ t0 <- t0 + 1 │ mem[x] = 1
-│ mem[x] <- t0 │ t0 <- t0 + 1 │ mem[x] = 2, here data in B is out of date
-│              │ mem[x] <- t0 │ mem[x] = 3, previous 2 is overwritten
-└──────────────┴──────────────┘
-```
-
-它们都想要更新 `mem[x]`，又好巧不巧的它们几乎同时发生读取了 `mem[x]`，那么就会出现问题：两个进程同时读取 `mem[x]`，然后各自计算更新后的值，然后各自写回 `mem[x]`，理想情况下，最终的 `mem[x]` 会比原来大 3，但现在的 `mem[x]` 只比原来大 2，其中 process A 对它的修改在第 7 行被覆盖了。
-
-究其根本，由于如今我们处在并发语境下，所以会出现若干用户同时持有一份数据资源的情况（为了发挥并发的优势，我们也应当尽可能的满足这种需求），逻辑上数据修改过程应当是符号的、瞬间的、立即生效的，但实际上我们对数据的操作是数值的、需要一段时间来完成的。在这种（后者）语境下，<u>如果我们无法保证读入数值完成到写入数值完成的过程中，`mem[x]` 保持不变</u>，那么该操作实际上是使用过时数据进行计算。
-
-```linenums="1" hl_lines="6"
-┌──────────────┬──────────────┐
-│ process A    │ process B    │ mem[x] = 1 (initial)
-├──────────────┼──────────────┤
-│ t0 <- mem[x] │ t0 <- mem[x] │ mem[x] = 1
-│ t0 <- t0 + 1 │ t0 <- t0 + 1 │ mem[x] = 1
-│ mem[x] <- t0 │ t0 <- t0 + 1 │ mem[x] = 2, here data in B is out of date
-│              │ mem[x] <- t0 │ mem[x] = 3, previous 2 is overwritten
-└──────────────┴──────────────┘
-```
-
-可以发现，第六行的 `t0` 仍然在用更新之前的 `mem[x]` 做计算，因而可以认为此时 process B 中的 `t0` 参与运算的、暗含的 `mem[x]` 的数据已经**过时**。
-
-于是，我们约定，类似于这种由于同时无法保证读入数值完成到写入数值完成的过程中，真实原始数据保持不变而导致的行为不符合预期的问题为**参与数据过时**问题。
-
-!!! warning "该约定由笔者自己给出，请不要当作某种概念或定义！"
-
----
-
-!!! info "如下为若干典型同步问题模型。"
+# Unit 2 Ex 1: 同步问题例子 | Synchronization Problems Examples [未完成]
 
 ## The Bounded-Buffer Problem
 
@@ -76,7 +28,7 @@ void consume() {
 
 ### 问题描述
 
-考虑在并行语境下，`produce()` 和 `consume()` 同时发生，由于 `++n` 和 `--n` 这些操作本质上是数值的、需要一段时间来完成的，所以容易发生[参与数据过时](#参与数据过时){target="_blank"}问题。
+考虑在并行语境下，`produce()` 和 `consume()` 同时发生，由于 `++n` 和 `--n` 这些操作本质上是数值的、需要一段时间来完成的，所以容易出现 [race condition](./Unit2.md/#race-condition){target="_blank"}问题。
 
 ## The Readers–Writers Problem
 
