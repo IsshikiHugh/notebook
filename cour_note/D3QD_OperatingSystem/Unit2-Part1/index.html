@@ -1488,7 +1488,7 @@ Race condition when assigning a pid.
 </code></pre></div></td></tr></table></div>
 <p>首先，我们说明 entry section 没有临界资源。<code>READY</code> 是一个共享的数组，每个进程只修改与自己一一对应的 element，所以本质上 <code>READY</code> 不会出现 race condition，因而也不是临界资源。而 <code>TURN</code>，我们这里只对 <code>TURN</code> 进行写的操作，但是 P1 和 P2 谁先跑到这一行会决定 <code>TURN</code> 最后的值，所以实际上这里有 race condition。</p>
 <p>但这就是 Peterson’s Algorithm 巧妙的地方，Peterson's 利用 race condition 这个“后覆盖前”的性质，实现了标记了这两个进程的先来后到的效果。我们都向这个 <code>TURN</code> 写一个互异的值（比如自己的 id，或者对方的 id），等大家都写好后我们看看这个值最终是谁写的，于是就知道谁后到。</p>
-<p>利用这个原理，Peterson's 这里做了一个非常有中国人气质的事情：<span class="arithmatex">\(P_0\)</span> 和 <span class="arithmatex">\(P_1\)</span> 上公交车后同时看上了一个座位，<span class="arithmatex">\(P_0\)</span> 说：“你坐吧。”， <span class="arithmatex">\(P_1\)</span> 自然也要客气一下，说：“还是你坐吧！”。现在两边都客气过了，<span class="arithmatex">\(P_0\)</span> 就可以心安理得地坐下了。对上述过程，我们给出 <span class="arithmatex">\(P_0\)</span> 获得椅子的准确条件有：</p>
+<p>利用这个原理，Peterson's 这里做了一个“非常有中国人气质”的事情：<span class="arithmatex">\(P_0\)</span> 和 <span class="arithmatex">\(P_1\)</span> 上公交车后同时看上了一个座位，<span class="arithmatex">\(P_0\)</span> 说：“你坐吧。”， <span class="arithmatex">\(P_1\)</span> 自然也要客气一下，说：“还是你坐吧！”。现在两边都客气过了，<span class="arithmatex">\(P_0\)</span> 就可以心安理得地坐下了。对上述过程，我们给出 <span class="arithmatex">\(P_0\)</span> 获得椅子的准确条件有：</p>
 <ol>
 <li><span class="arithmatex">\(P_0\)</span> 想坐下，<span class="arithmatex">\(P_1\)</span> 也想坐下，否则就没有冲突了；</li>
 <li><span class="arithmatex">\(P_0\)</span> 发现 <span class="arithmatex">\(P_1\)</span> 在客气，但 <span class="arithmatex">\(P_0\)</span> <strong>已经</strong>客气过了；</li>
@@ -2062,7 +2062,7 @@ P2  ─────────────────────────�
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月2日 20:25:11</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月2日 20:29:24</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>
