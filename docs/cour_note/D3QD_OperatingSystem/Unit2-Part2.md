@@ -1,4 +1,4 @@
-# Unit 2 Ex 1: 同步问题例子 | Synchronization Problems Examples [未完成]
+# U1 Part 2: 同步问题例子 | Synchronization Problems Examples [未完成]
 
 ## The Bounded-Buffer Problem
 
@@ -28,7 +28,7 @@ void consume() {
 
 ### 问题描述
 
-考虑在并行语境下，`produce()` 和 `consume()` 同时发生，由于 `++n` 和 `--n` 这些操作本质上是数值的、需要一段时间来完成的，所以容易出现 [race condition](./Unit2.md/#race-condition){target="_blank"}问题。
+考虑在并行语境下，`produce()` 和 `consume()` 同时发生，由于 `++n` 和 `--n` 这些操作本质上是数值的、需要一段时间来完成的，所以容易出现 [race condition](./Unit2-Part1.md/#race-condition){target="_blank"}问题。
 
 ## The Readers–Writers Problem
 

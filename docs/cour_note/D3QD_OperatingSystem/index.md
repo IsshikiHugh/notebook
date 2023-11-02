@@ -26,7 +26,9 @@
 !!! note "list"
     - [x] [Unit 0: 总览 | Overview](Unit0.md)
     - [x] [Unit 1: 进程管理 | Process Management](Unit1.md)
-    - [ ] [Unit 2: 进程同步 | Process Synchronization](Unit2.md)
+    - [ ] [Unit 2: 同步 | Synchronization](Unit2.md)
+        - [x] [Part 1: 同步工具](Unit2-Part1.md)
+        - [ ] [Part 2: 经典同步例子](Unit2-Part2.md)
     - [ ] [Unit 3: 内存管理 | Memory Management](Unit3.md)
     - [ ] [Unit 4: 存储管理 | Storage Management](Unit4.md)
     - [ ] [Unit 5: 文件系统 | File System](Unit5.md)

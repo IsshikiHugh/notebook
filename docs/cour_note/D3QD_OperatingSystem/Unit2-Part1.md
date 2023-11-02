@@ -1,4 +1,4 @@
-# Unit 2: 进程同步 | Process Synchronization [未完成]
+# U1 Part 1: 同步工具 | Synchronization Tools
 
 !!! info "引入"
 
@@ -6,9 +6,9 @@
     >
     > 不必尝试立刻理解这段话，我希望读者能够在看的过程中以下面这段话为主线，猜测接下来将要展开的内容，去发现问题、思考解决办法。
 
-    在支持并发甚至并行的系统中，虽然进程之间相对隔离，在一般情况下互不**直接**干扰，自顾自跑——即是异步的；但它们可能会在一段时间里操作同一份计算机资源，此时由于**各种原因**，进程之间的执行需要互相制约，因此进程需要通过**某些手段**，让协作进程能够直接或间接了解到其它相关进程的状态，以实现对当前进程执行的控制，最终在宏观上实现同步控制。
+    在支持并发甚至并行的系统中，虽然进程之间相对隔离，在一般情况下互不**直接**干扰，自顾自跑——即是异步的；但由于**各些原因**（例如都需要对一共享资源的修改），进程之间的执行需要互相制约，遵循特定的先后顺序，因此进程需要通过**某些手段**，让协作进程能够直接或间接了解到其它相关进程的状态，以实现对当前进程执行的控制，最终在宏观上实现同步控制。
 
-    而上面提到的“**各种原因**”和“**某些手段**”，就是我们稍后将讨论的东西。
+    而上面提到的“**各种原因**”和“**某些手段**”，就是我们稍后将讨论的东西，其中，这里的“**某些手段**”，就是指我们的各种同步工具。
 
     需要注意的是，同步并不是某种中央调控机制，而更像是一种“协议”，当各个进程发现有别的进程与自己产生竞争时，应当有某种手段允许它们达成协商，以决定谁先谁后。
     
@@ -407,7 +407,7 @@ process(i) {
     - [Wikipedia](https://en.wikipedia.org/wiki/Test-and-set){target="_blank"}
 
 ```cpp
-bool test_and_set(bool * target) {
+<atomic> test_and_set(bool * target) {
     bool ret = *target;
     *target = true;
     return ret;
@@ -502,7 +502,7 @@ process(i) {
 `compare_and_swap()` 也被简写为 CAS 指令，它的功能如下：
 
 ```cpp linenums="1"
-int compare_and_swap(int * target, int expected, int new_val) {
+<atomic> compare_and_swap(int * target, int expected, int new_val) {
     int ret = *target;
 
     // *value = (*target == expected) ? new_val : *value;
@@ -532,7 +532,7 @@ CAS 接受三个值：
 **原子变量(atomic variables)**是一种用原子性操作维护的变量。我们所有对原子变量的操作可以通过 CAS 来实现，例如自增操作：
 
 ```cpp
-void increment(atomic_int * v) {
+increment(atomic_int * v) {
     int tmp;
     do {
         tmp = *v;
@@ -580,24 +580,22 @@ process(i) {
 
 ```cpp
 // `available` means whether the lock is free, or whether the related resources is available
-void acquire() {
+acquire() {
     while ( !compare_and_swap(&available, true, false) ) {}
 }
 
-void release() {
+release() {
     available = true;
 }
 ```
 
-你可能注意到了，我们在 [`test_and_set()`](#test_and_set){target="_blank"} 讨论上面那段代码的时候，讨论过它无法满足 bounded waiting time 的问题，那既然如此我们为什么不把 `waiting[]` 也一起封进去呢？这是因为书上直接忽略了这个问题，既然它忽略了，我们就先不管它，但是我希望读者能意识到这个问题是存在的。
-
-??? tip "个人想法"
-
-    **纯粹是一点个人想法！因为我自己的时间也很有限，所以就不花心思去仔细求证这些事情了，如果读者有完整的资料和结论，欢迎告诉我！**
-
-    `waiting[]` 的实现对所谓的 pid 是有一个比较强的假设的，所以具体的使用会与任务关联较大，我感觉是基于这个原因，优雅地引入 `waiting[]` 会比较困难。
+> 你可能注意到了，我们在 [`test_and_set()`](#test_and_set){target="_blank"} 讨论上面那段代码的时候，讨论过它无法满足 bounded waiting time 的问题，那既然如此我们为什么不把 `waiting[]` 也一起封进去呢？
+> 
+> 这是因为书上直接忽略了这个问题，直到在之后讲 [semaphores](#semaphores){target="_blank"} 的时候才想起来，但 semaphores 和 mutex lock 又是两个路子，我也不知道它到底想说明什么问题。但是既然它现在忽略了，我们就先不管它，但是我希望读者能意识到这个问题是存在的。
 
 经过这么长的铺垫，我们现在能够保证的一件事是，我们终于得到了一个软件层面的、能够避免 race condition 的同步工具。那么实现基本需求以后我们就开始考虑能不能优化它。
+
+### 忙等待
 
 如果读者对代码有比较敏感的嗅觉，那可能看这几千个字到现在，你已经为数不清的 `while()` 提心吊胆过十多次了。没错，虽然我们通过逻辑保证这里不会出现死循环，但对于等待中的 process，确实要在数不尽的 `while` loop 中浪费 CPU，我们称这种等待锁释放的行为为**忙等待(busy waiting)**，其中“忙”指的就是在等待过程中仍然占用 CPU 资源。而这种使用忙等待的互斥锁，也被称为**[自旋锁(spinlock)](https://en.wikipedia.org/wiki/Spinlock){target="_blank"}**。
 
@@ -613,20 +611,105 @@ void release() {
 
 既然它们都是在做无意义的等待，那我们为什么不在这个时候把资源让给有需要的人呢？
 
-我们可以通过暂时地切换进程，让这些处于等待的用户暂时休眠，等时机到来再唤醒它们，此时就需要系统调用的介入[^3]。而具体的方法我们在下一节会介绍。
+我们可以通过暂时地切换进程，让这些处于等待的用户暂时休眠，等时机到来再唤醒它们，此时就需要系统调用的介入[^3]。而具体的方法我们在下一节的[避免忙等待](#避免忙等待){target="_blank"}中介绍。
 
 **但是**请注意，我们在这里需要保持客观：spinlock 在特定情况下是有好处的，在等待时间并不长的情况下，相比于拥有锁的用户释放锁，进行调度锁需要的 context switch 的开销可能显得较大，在这种情况下我们还没来得及把资源让给别人锁就好了，那么这种资源转让还不如不转。而事实上，在特定情况下，自旋锁也确实是一些多核系统的首选。
 
 不过在许多语境里 mutex 和 spinlock 是区分开来的两个概念，具体使用哪个则需要适时判断[^4]。
 
+## Semaphores
 
+!!! quote "Links"
 
+    - [Wikipedia](https://en.wikipedia.org/wiki/Semaphore_(programming)){target="_blank"}
 
+Mutex lock 为用户程序提供了类似于“房间申请”的功能，锁竞争就好像大家抢房间的使用权。而**信号量(semaphores)**则是类似于我们之前提到过的 [atomic variables](#atomic-variables){target="_blank"}，通过提供标准化的原子性操作，来维护一些变量，只不过它额外对变量的值有一定的约束。
 
+~~（说实话我感觉这俩东西本质上真没啥区别……）~~
 
+Semaphores 只提供两个标准化的接口：`wait()`（或`P()`） 和 `signal()`（或`V()`），它们的功能如下：
 
+```cpp linenums="1"
+<atomic> wait(reference S) {
+    while (S <= 0) {} // busy wait here
+    S--;
+}
 
+<atomic> signal(reference S) {
+    S++;
+}
+```
 
+显然，这两个操作的实现也应当保证是 atomic 的。
+
+区别于普通的 atomic variables，semaphores 多了在第 2 行的 busy wait，这暗含了一种“有限”的概念，即保证 $0 \leq S$。在实际使用中，semaphores 分为 counting semaphore 和 binary semaphore，前者的功能如上，后者只不过是额外要求 $0 \leq S \leq 1$，修改 loop 的条件即可。
+
+### 使用
+
+例如，我们可以用如下方式，保证 `P0()` 中的 section A 必须在 `P1()` 的 section B 之前完成：
+
+```cpp linenums="1"
+semaphore S = 0;
+
+P0() {
+    /* Section A */
+    signal(S);
+}
+
+P1() {
+    wait(S);
+    /* Section B */
+}
+```
+
+上面的例子非常形象地展示了信号量是如何发挥作用的，当然，上面只展示了类似**进程间通讯**的功能，下面这个形式则更接近我们上文中讨论的情况，即实现了**互斥**：
+
+```cpp linenums="1"
+// `i` is process id and S is the semaphores
+process(i) {
+    signal(S);  // only one process can pass this line at once
+
+    /* critical section */
+
+    wait(S);    // i.e. release the 'lock'
+}
+```
+
+### 避免忙等待
+
+我们在 mutex 中提出[忙等待](#忙等待){target="_blank"}的时候就已经提到过，可以通过「在等待的时候让进程休眠，等时机合适的时候再唤醒」的方式，来减小**较长的**忙等待引起的性能降低。而为了实现这一点，我们需要扩展 semaphores 的内容，引入一个链表来维护等待中的进程。
+
+```cpp linenums="1"
+struct semaphore {
+    value;
+    waiting_list;
+};
+
+<atomic> wait(reference S) {
+    S->value--;
+    if (S->value < 0) {
+        S->waiting_list.push(current process);
+        sleep();
+    }
+}
+
+<atomic> signal(reference S) {
+    S->value++;
+    if (S->value <= 0) {
+        p = S->waiting_list.pop();
+        wakeup(p);
+    }
+}
+```
+
+相比于之前的逻辑，现在的逻辑稍微有点变化，请读者尝试独立分析其中的奥秘。这里是一些提示：
+
+!!! question "思考题"
+
+   1. 现在已经没有 `while` 了，只余下 `if`，现在是如何保证等待中的进程能够被及时唤醒？
+   2. `wait` 原先是先等待再修改，现在是先修改、再等待，这对整体逻辑有何影响？
+   3. `signal` 中的条件语句，为何是 `#!cpp S->value <= 0`？这个条件为 false 时意味着什么？
+       - 考虑在 high contention 的情况下，资源总是一出现就被抢空。
 
 
 
