@@ -125,11 +125,11 @@
 └─────────────────────┘
 ```
 
-进程需要在 entry section 判断是否能够进入 critical section，即申请持有临界资源，如果不行则等待；而在进入 critical section 后，进程需要在 exit section 释放临界资源；然后脱离 CS 问题的语境，进入 remainder section 继续执行。
+进程需要在 entry section 判断是否能够进入 critical section，即索取临界资源，如果不行则等待；而在进入 critical section 后，进程需要在 exit section 释放临界资源；然后脱离 CS 问题的语境，进入 remainder section 继续执行。
 
 !!! tip "Brainstorming"
 
-    整个过程有点像[调度](./Unit1.md/#进程调度){target="_bank"}，等待申请临界资源的过程就好像 ready 态等待调度过程中的 CPU 资源（CPU 也可以认为是一种临界资源，只不过它不是由进程主动处理和申请的）。
+    整个过程有点像[调度](./Unit1.md/#进程调度){target="_bank"}，等待临界资源的过程就好像 ready 态等待调度过程中的 CPU 资源（CPU 也可以认为是一种临界资源，只不过它不是由进程主动处理和索取）。
 
     既然如此我们可以迁移“状态”这个概念。我们只关心直接与 CS 问题有关的状态，所以我在这里定义：就绪、临界、无关三个状态。
 
@@ -153,7 +153,7 @@
 
 接下来，我们以讨论 CS 问题是如何解决的为主线，探索如何解决 race condition。
 
-### For Kernel Code
+## For Kernel Code
 
 由于 kernel code 下的 CS 问题解决较为清晰直接，所以先行介绍。
 
@@ -188,7 +188,7 @@ Peterson's algorithm 是对**只有两个进程参与**的同步问题的一个�
 
 > 基于 Peterson's algorithm 对多进程情况的扩展被称为 [filter algorithm](https://en.wikipedia.org/wiki/Peterson%27s_algorithm#Filter_algorithm:_Peterson's_algorithm_for_more_than_two_processes){target="_blank"}，但 filter algorithm 不满足 bounded waiting time 的条件，读者有兴趣可以自行了解。
 
-#### 算法描述
+### 算法描述
 
 为了保证处于临界态的进程至多只有一个，我们应当在进程处于就绪态时，确认没有其他进程处于临界态后再进入。其中最重要的一件事就是，当我们处在 $P_0$ 时，我们如何知道 $P_1$ 是否正处于临界态呢？Peterson’s Algorithm 通过如下方式实现了这件事：
 
@@ -229,7 +229,7 @@ process(i) {
 
 !!! advice "请读者仔细思考上面的过程，并适当进行全面的模拟以理解 Peterson's 是如何工作的。"
 
-#### 性质证明
+### 性质证明
 
 现在我们需要证明这个算法满足[性质](#r4s2csp){target="_blank"}。
 
@@ -346,7 +346,7 @@ process(i) {
 
 !!! bug "Oops!"
 
-    但是，**Peterson's 实际上无法适用于现代计算机中**。上述做法有一个关键，也是我们在证明过程中一直默认成立的事情：进程总是先执行 `READY[i] = true;`，然后才会执行 `TURN = j;`，即先进入就绪态，再申请使用资源，这看起来是个非常合理的条件。但在现代计算机中，编译器可能会通过重排列部分语句来更好地利用 CPU 资源（参考计组的[各种竞争](https://xuan-insr.github.io/computer_organization/4_processor/#422-structure-hazards){target="_blank"}）。而**对编译器来说**，这两个操作（就绪和请求）并没有操作相同内容，因而交换顺序是不会影响结果的，所以可能被编译器交换。而这就有可能导致出现问题，例如：
+    但是，**Peterson's 实际上无法适用于现代计算机中**。上述做法有一个关键，也是我们在证明过程中一直默认成立的事情：进程总是先执行 `READY[i] = true;`，然后才会执行 `TURN = j;`，即先进入就绪态，再索取临界资源，这看起来是个非常合理的条件。但在现代计算机中，编译器可能会通过重排列部分语句来更好地利用 CPU 资源（参考计组的[各种竞争](https://xuan-insr.github.io/computer_organization/4_processor/#422-structure-hazards){target="_blank"}）。而**对编译器来说**，这两个操作（就绪和请求）并没有操作相同内容，因而交换顺序是不会影响结果的，所以可能被编译器交换。而这就有可能导致出现问题，例如：
 
     <figure markdown>
     <center> ![](img/23.png) </center>
@@ -357,7 +357,7 @@ process(i) {
 
 所以，实际上 Peterson's Algorithm 仍然没有解决问题。
 
-### Memory Barriers
+## Memory Barriers
 
 该方法实际上是对软件方法的补足。我们先前提到，Peterson's Algorithm 失效的原因是编译器会根据需求重排列一些内存操作，而 memory barriers 保证 barrier 之前的 S/L 指令必须在 barrier 之后的 S/L 指令之前完成，使我们能够主动禁止编译器做这种重排。
 
@@ -396,11 +396,11 @@ process(i) {
 
 > 这部分我没有完全搞清楚，书本的逻辑非常的诡异：书本认为 memory barrier 是弱有序问题的解决方案，但是我始终没明白它们之间的逻辑在哪里，以及“有序”和“立刻可见”的根本联系在哪里。这里一定是存在不清楚的地方的。但是这部分看起来不是很重要，所以我就先放着不管了。
 
-### Hardware Instructions
+## Hardware Instructions
 
-硬件可能会提供一些指令支持对数据进行**原子性(atomic)**的操作，我们这里将它们抽象为 `test_and_set()` 和 `compare_and_swap()` 两类来介绍。
+讨论 Peterson's Algorithm 后我们应当意识到，同步问题的出现是 ❶ 硬件操作数据需要时间，与 ❷ 数据具有共享性的不协调，所以本质上是硬件产生的问题。因而，要想更好的解决问题，我们还是应当从硬件出发。我们在这里引入**原子性(atomic)**这个概念，它的基本逻辑是让“需要时间的，对数据的操作”，变成一个“在时间上不可分割、不可被打断的，即原子性的操作”。不同硬件可能提供不同的原子性操作，我们这里将它们抽象为 `test_and_set()` 和 `compare_and_swap()` 两类来介绍。
 
-#### `test_and_set()`
+### `test_and_set()`
 
 !!! quote "Links"
 
@@ -493,7 +493,7 @@ process(i) {
 
 通过使用这种方法，我们保证了等待中的进程最多只需要等待 n-1 个进程运行完 critical section（类似于实现了“FCFS”）。
 
-#### `compare_and_swap()`
+### `compare_and_swap()`
 
 !!! quote "Links"
 
@@ -540,16 +540,84 @@ void increment(atomic_int * v) {
 }
 ```
 
-使用 atomic variables 后实际上就不太符合 CS 问题的模型了，可以发现，这里并不再需要维护类似 `lock` 的东西，而是以 `*target` 是否符合 `expected` 的预设来判断是否有竞争出现，作为一个同步工具，我们可以直接使用这种封装后的原子性操作来解决 race condition，而不需要再区分 entry section 或是 critical section 等。
+使用 atomic variables 后实际上就**不太符合 CS 问题的模型**了，可以发现，这里并不再需要维护类似 `lock` 的东西，而是以 `*target` 是否符合 `expected` 的预设来判断是否有竞争出现，作为一个同步工具，我们可以直接使用这种封装后的原子性操作来解决 race condition，而不需要再区分 entry section 或是 critical section 等。
 
 > 书本上特地提到，在例如 producer&consumer 的模型中，使用 atomic variables 维护 count 并不能解决 race condition，但我认为这种讨论是有失偏颇的，所谓的“原子性”应该包括所有操作临界资源的部分，书中只维护 count 不维护 buffer 的假设我觉得对于 atomic 这个概念来说实在不够公平。所以我在这里就不着重说明这个问题。
 
 ## Mutex Locks
 
+由此我们已经得到了能在硬件层面解决 race condition 问题的根源的工具了，但是为了能让用户程序也能更好的使用，我们需要将它做一次软件层面的封装。于是，我们设计了**互斥锁(mutex locks)**这个东西。
 
+利用互斥锁避免 race condition 的基本思路仍然是基于 CS 问题的建模，但它更具体地认为在 entry section 就该去索取互斥锁，而在 exit section 就应该去释放互斥锁，即：
 
+```
+┌─────────────────────┐
+│  Acquire Lock       │
+├─────────────────────┤
+│  Critical Section   │ <-- codes manipulating critical resources
+├─────────────────────┤
+│  Release Lock       │
+├─────────────────────┤
+│  Remainder Section  │ <-- other codes
+└─────────────────────┘
+```
 
+回顾我们在介绍 [`test_and_set()`](#test_and_set){target="_blank"} 部分给出的这段代码：
 
+```cpp linenums="1" hl_lines="2 6"
+process(i) {
+    while ( test_and_set(&lock) ) {}    // - entry section
+
+    /* operate critical resources */    // - critical section
+
+    lock = false;                       // - exit section
+
+    /* other things */                  // - remainder section
+}
+```
+
+我们只需要将高亮的这两行封装起来，就实现了 acquire lock 和 release lock。
+
+```cpp
+// `available` means whether the lock is free, or whether the related resources is available
+void acquire() {
+    while ( !compare_and_swap(&available, true, false) ) {}
+}
+
+void release() {
+    available = true;
+}
+```
+
+你可能注意到了，我们在 [`test_and_set()`](#test_and_set){target="_blank"} 讨论上面那段代码的时候，讨论过它无法满足 bounded waiting time 的问题，那既然如此我们为什么不把 `waiting[]` 也一起封进去呢？这是因为书上直接忽略了这个问题，既然它忽略了，我们就先不管它，但是我希望读者能意识到这个问题是存在的。
+
+??? tip "个人想法"
+
+    **纯粹是一点个人想法！因为我自己的时间也很有限，所以就不花心思去仔细求证这些事情了，如果读者有完整的资料和结论，欢迎告诉我！**
+
+    `waiting[]` 的实现对所谓的 pid 是有一个比较强的假设的，所以具体的使用会与任务关联较大，我感觉是基于这个原因，优雅地引入 `waiting[]` 会比较困难。
+
+经过这么长的铺垫，我们现在能够保证的一件事是，我们终于得到了一个软件层面的、能够避免 race condition 的同步工具。那么实现基本需求以后我们就开始考虑能不能优化它。
+
+如果读者对代码有比较敏感的嗅觉，那可能看这几千个字到现在，你已经为数不清的 `while()` 提心吊胆过十多次了。没错，虽然我们通过逻辑保证这里不会出现死循环，但对于等待中的 process，确实要在数不尽的 `while` loop 中浪费 CPU，我们称这种等待锁释放的行为为**忙等待(busy waiting)**，其中“忙”指的就是在等待过程中仍然占用 CPU 资源。而这种使用忙等待的互斥锁，也被称为**[自旋锁(spinlock)](https://en.wikipedia.org/wiki/Spinlock){target="_blank"}**。
+
+我们引入两个词来更准确的描述这件事：
+
+!!! definition "Lock Contention"
+
+    如果一个用户试图索取某个锁时，如果这个锁不是 available 的，这就意味着有用户正在使用这个锁，而当前用户需要等待这个锁重新可用，此时我们称这个锁是**被争抢的(contended)**；反之，如果不存在争抢，我们就称之为不被争抢的(uncontended)。
+
+    如果现在有好多用户都在争抢一个锁，我们称之为 high contention；反之如果只有零星几个用户在争抢这个锁，我们称之为 low contention。
+
+    如果延用 spinlock，那么不难得到结论：high contention 会导致严重的性能问题，因为总是会有大量得不到锁的用户处于 busy waiting 中。
+
+既然它们都是在做无意义的等待，那我们为什么不在这个时候把资源让给有需要的人呢？
+
+我们可以通过暂时地切换进程，让这些处于等待的用户暂时休眠，等时机到来再唤醒它们，此时就需要系统调用的介入[^3]。而具体的方法我们在下一节会介绍。
+
+**但是**请注意，我们在这里需要保持客观：spinlock 在特定情况下是有好处的，在等待时间并不长的情况下，相比于拥有锁的用户释放锁，进行调度锁需要的 context switch 的开销可能显得较大，在这种情况下我们还没来得及把资源让给别人锁就好了，那么这种资源转让还不如不转。而事实上，在特定情况下，自旋锁也确实是一些多核系统的首选。
+
+不过在许多语境里 mutex 和 spinlock 是区分开来的两个概念，具体使用哪个则需要适时判断[^4]。
 
 
 
@@ -565,3 +633,7 @@ void increment(atomic_int * v) {
 [^1]: [The Critical Section Problem](https://crystal.uta.edu/~ylei/cse6324/data/critical-section.pdf){target="_blank"}
 
 [^2]: 书本中对 preemptive kernels 和 non-preemptive kernels 的定义并不准确，两者最本质的区别是后者实现了 [Giant Lock](https://en.wikipedia.org/wiki/Giant_lock){target="_blank"}。同时读者可以参考这个链接：[What was the reason of the non-preemptivity of older Linux kernels?](https://unix.stackexchange.com/questions/412806/what-was-the-reason-of-the-non-preemptivity-of-older-linux-kernels){target="_blank"}
+
+[^3]: [Mutex access and system call](https://stackoverflow.com/a/7068027/22331129){target="_blank"}
+
+[^4]: [When should one use a spinlock instead of mutex?](https://stackoverflow.com/a/5870415/22331129){target="_blank"} ⭐️
