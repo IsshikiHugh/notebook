@@ -34,8 +34,8 @@
 ├──────────────┼──────────────┤
 │ t0 <- mem[x] │ t0 <- mem[x] │ mem[x] = 1
 │ t0 <- t0 + 1 │ t0 <- t0 + 1 │
-│ mem[x] <- t0 │ t0 <- t0 + 1 │ mem[x] = 2, here data in B is out of date
-│              │ mem[x] <- t0 │ mem[x] = 3, previous 2 is overwritten
+│ mem[x] <- t0 │ t0 <- t0 + 1 │ mem[x] = 2, B's t0 is out of date
+│              │ mem[x] <- t0 │ mem[x] = 3, 2 is overwritten
 └──────────────┴──────────────┘
 ```
 
@@ -49,8 +49,8 @@
 ├──────────────┼──────────────┤
 │ t0 <- mem[x] │ t0 <- mem[x] │ mem[x] = 1
 │ t0 <- t0 + 1 │ t0 <- t0 + 1 │
-│ mem[x] <- t0 │ t0 <- t0 + 1 │ mem[x] = 2, here data in B is out of date
-│              │ mem[x] <- t0 │ mem[x] = 3, previous 2 is overwritten
+│ mem[x] <- t0 │ t0 <- t0 + 1 │ mem[x] = 2, B's t0 is out of date
+│              │ mem[x] <- t0 │ mem[x] = 3, 2 is overwritten
 └──────────────┴──────────────┘
 ```
 
@@ -77,10 +77,10 @@
     │              │     │ t0 <- mem[x] │ mem[x] = 1
     │ t0 <- mem[x] │◄────┤ <ctx switch> │ mem[x] = 1
     │ t0 <- t0 + 1 │     │              │
-    │ mem[x] <- t0 │     │              │ mem[x] = 2, here data in B is out of date
+    │ mem[x] <- t0 │     │              │ mem[x] = 2, B's t0 is out of date
     │ <ctx switch> ├────►│ t0 <- t0 + 1 │
     │              │     │ t0 <- t0 + 1 │ 
-    │              │     │ mem[x] <- t0 │ mem[x] = 3, previous 2 is overwritten
+    │              │     │ mem[x] <- t0 │ mem[x] = 3, 2 is overwritten
     └──────────────┘     └──────────────┘
     ```
 

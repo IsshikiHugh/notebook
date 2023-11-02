@@ -152,6 +152,11 @@ li {
 
 /* Customized admonitions: https://squidfunk.github.io/mkdocs-material/reference/admonitions/#customization */
 
+
+.md-typeset .admonition, .md-typeset details {
+    font-size: inherit;
+}
+
 /* definition */
 
 :root {
