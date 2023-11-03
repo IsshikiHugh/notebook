@@ -97,8 +97,14 @@ $$
 如果二元随机变量 $(X,Y)$ 具有联合密度函数：
 
 $$
-f(x,y)=\frac{1}{2\pi\sigma_1\sigma_
-2\sqrt{1-\rho^2}}\exp\{\frac{-1}{2(1-\rho^2)}[\frac{(x-\mu)^2}{\sigma_1^2}-2\rho\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\frac{(y-\mu_2)^2}{\sigma_2^2}]\}
+f(x,y)=
+\frac{1}{ 2 \pi \sigma_1 \sigma_2 \sqrt{1-\rho^2} }
+\exp \{
+  \frac{-1}{ 2(1-\rho^2) }
+  [
+    \frac{ (x-\mu)^2 }{ \sigma_1^2 } - 2\rho\frac{ (x-\mu_1)(y-\mu_2) }{ \sigma_1\sigma_2 } + \frac{ (y-\mu_2)^2 }{ \sigma_2^2 }
+  ]
+\}
 $$
 
 且有 $|\mu_1|<+\infty$，$|\mu_2|<+\infty$，$\sigma_1>0$，$\sigma_2>0$，$|\rho|<1$
