@@ -18,7 +18,7 @@
         <a href="https://research.nvidia.com/person/tero-karras" target="_blank">Tero Karras</a> <sup> 2 </sup>, 
         <a href="https://stanford.edu/~gordonwz/" target="_blank">Gordon Wetzstein</a> <sup> 1 </sup>
     - 项目主页：[🔗](https://nvlabs.github.io/eg3d/)
-    - arXiv：[🔗](https://arxiv.org/abs/2112.07945)
+    - arXiv：[🔗](https://arxiv.org/abs/2112.07945) 2112.07945
     - 代码：[🔗](https://github.com/NVlabs/eg3d)
 
 
