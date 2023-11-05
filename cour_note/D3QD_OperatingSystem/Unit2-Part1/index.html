@@ -1729,16 +1729,16 @@ The effects of instruction reordering in Peterson’s solution.
 <span class="normal">7</span>
 <span class="normal">8</span>
 <span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">process</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="hll"><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">    </span><span class="c1">// - entry section</span>
+<span class="hll"><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">LOCK</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">    </span><span class="c1">// - entry section</span>
 </span>
 <span class="w">    </span><span class="cm">/* operate critical resources */</span><span class="w">    </span><span class="c1">// - critical section</span>
 
-<span class="w">    </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                       </span><span class="c1">// - exit section</span>
+<span class="w">    </span><span class="n">LOCK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                       </span><span class="c1">// - exit section</span>
 
 <span class="w">    </span><span class="cm">/* other things */</span><span class="w">                  </span><span class="c1">// - remainder section</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>在第 3 行，循环等待的条件变为 <code class="highlight"><span class="n">test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">)</span></code>，如果 <code>lock</code> 的旧值是 <code class="highlight"><span class="nb">false</span></code>，则可以继续，并且此时 <code>lock</code> 的值被原子性地修改为 <code class="highlight"><span class="nb">true</span></code>；而如果 <code>lock</code> 的旧值是 <code class="highlight"><span class="nb">true</span></code>，那么它经过 <code class="highlight"><span class="n">test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">)</span></code> 后的值仍然是 <code class="highlight"><span class="nb">true</span></code>，且需要等待，直到：将 <code>lock</code> 改成 <code class="highlight"><span class="nb">true</span></code> 的那个进程在 exit section 将 <code>lock</code> 改回 <code class="highlight"><span class="nb">false</span></code>，即释放锁。</p>
+<p>在第 3 行，循环等待的条件变为 <code class="highlight"><span class="n">test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">LOCK</span><span class="p">)</span></code>，如果 <code>LOCK</code> 的旧值是 <code class="highlight"><span class="nb">false</span></code>，则可以继续，并且此时 <code>LOCK</code> 的值被原子性地修改为 <code class="highlight"><span class="nb">true</span></code>；而如果 <code>LOCK</code> 的旧值是 <code class="highlight"><span class="nb">true</span></code>，那么它经过 <code class="highlight"><span class="n">test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">LOCK</span><span class="p">)</span></code> 后的值仍然是 <code class="highlight"><span class="nb">true</span></code>，且需要等待，直到：将 <code>LOCK</code> 改成 <code class="highlight"><span class="nb">true</span></code> 的那个进程在 exit section 将 <code>LOCK</code> 改回 <code class="highlight"><span class="nb">false</span></code>，即释放锁。</p>
 <p>但是请注意，与我们讨论 Peterson's Algorithm 时的语境不同，我们现在不再假设参与竞争的进程只有两个（这是 Peterson's 的局限性之一）。在这个语境下，我们再来考虑它是否满足<a href="#r4s2csp" target="_blank">三条性质</a>。</p>
 <div class="admonition proof">
 <p class="admonition-title">mutual exclusion</p>
@@ -1746,7 +1746,7 @@ The effects of instruction reordering in Peterson’s solution.
 </div>
 <div class="admonition proof">
 <p class="admonition-title">progress</p>
-<p>代码中对 <code>lock</code> 的修改操作是闭合的，即进入 critical section 会导致 <code>lock</code> 变为 <code class="highlight"><span class="nb">false</span></code>，但离开 critical section 必定导致 <code>lock</code> 变为 true。因此，只要没有进程处于 critical section，那么 <code>lock</code> 必定为 <code class="highlight"><span class="nb">false</span></code>，则一定有就绪的进程能够进入 critical section，而运行 critical section 的时间是有限的，因此 <code>lock</code> 又一定会在有限时间内变为 <code class="highlight"><span class="nb">false</span></code>，从而满足 progress。</p>
+<p>代码中对 <code>LOCK</code> 的修改操作是闭合的，即进入 critical section 会导致 <code>LOCK</code> 变为 <code class="highlight"><span class="nb">false</span></code>，但离开 critical section 必定导致 <code>LOCK</code> 变为 true。因此，只要没有进程处于 critical section，那么 <code>LOCK</code> 必定为 <code class="highlight"><span class="nb">false</span></code>，则一定有就绪的进程能够进入 critical section，而运行 critical section 的时间是有限的，因此 <code>LOCK</code> 又一定会在有限时间内变为 <code class="highlight"><span class="nb">false</span></code>，从而满足 progress。</p>
 </div>
 <div class="admonition bug">
 <p class="admonition-title">bounded waiting time</p>
@@ -1785,27 +1785,27 @@ P2  ─────────────────────────�
 <span class="normal">19</span>
 <span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// `i` is process id in [0, n), where `n` is the count of related process. </span>
 <span class="n">process</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">waiting</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">                                  </span><span class="c1">// ┐</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">waiting</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">      </span><span class="c1">// ├ entry sec.</span>
+<span class="w">    </span><span class="n">WAITING</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">                                  </span><span class="c1">// ┐</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">WAITING</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">LOCK</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">      </span><span class="c1">// ├ entry sec.</span>
 <span class="w">                                                        </span><span class="c1">// │</span>
-<span class="w">    </span><span class="n">waiting</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                                 </span><span class="c1">// ┘</span>
+<span class="w">    </span><span class="n">WAITING</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                                 </span><span class="c1">// ┘</span>
 
 <span class="w">    </span><span class="cm">/* operate critical resources */</span><span class="w">                    </span><span class="c1">// - critical sec.</span>
 
 <span class="w">    </span><span class="c1">// i.e. find next waiting process j                 // ┐</span>
 <span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w">                                    </span><span class="c1">// │</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">waiting</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w">                     </span><span class="c1">// ├ exit sec.</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">WAITING</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w">                     </span><span class="c1">// ├ exit sec.</span>
 <span class="w">        </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w">                                </span><span class="c1">// │</span>
 <span class="w">    </span><span class="p">}</span><span class="w">                                                   </span><span class="c1">// │</span>
-<span class="w">    </span><span class="c1">// release j's lock or release whole lock           // │</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w">     </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                       </span><span class="c1">// │</span>
-<span class="w">    </span><span class="k">else</span><span class="w">            </span><span class="n">waiting</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                 </span><span class="c1">// ┘</span>
+<span class="w">    </span><span class="c1">// release j's LOCK or release whole LOCK           // │</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w">     </span><span class="n">LOCK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                       </span><span class="c1">// │</span>
+<span class="w">    </span><span class="k">else</span><span class="w">            </span><span class="n">WAITING</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                 </span><span class="c1">// ┘</span>
 
 <span class="w">    </span><span class="cm">/* other things */</span><span class="w">                                  </span><span class="c1">// - remainder sec.</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>我们引入了一个 <code class="highlight"><span class="n">waiting</span><span class="p">[]</span></code> 数组来辅助 <code>lock</code> 细化锁的粒度，此时 <code>lock</code> 表示的“是否存在竞争”，而 <code class="highlight"><span class="n">waiting</span><span class="p">[]</span></code> 则标识了所有正在等待的进程。区别于之前直接释放整个锁，让剩下的进程去“拼手速”，我们这次由释放锁的进程来选择下一个进入 critical section 的是谁。</p>
-<p>在 11-14 行，通过一个循环找到下一个 <code class="highlight"><span class="n">waiting</span><span class="p">[</span><span class="n">j</span><span class="p">]</span></code> 为 <code class="highlight"><span class="nb">true</span></code> 的 j，❶ 如果找到了这个 j，那么就将 <code>waiting[j]</code> 设为 <code class="highlight"><span class="nb">false</span></code>（19 行），这样 j 马上就会在第 4 行 break，进入 critical section；❷ 而如果找不到这个 j，即找了一圈又找回了 i，那么说明 i 是最后一个了，所以可以直接释放整个锁（17 行）。</p>
+<p>我们引入了一个 <code class="highlight"><span class="n">WAITING</span><span class="p">[]</span></code> 数组来辅助 <code>LOCK</code> 细化锁的粒度，此时 <code>LOCK</code> 表示的“是否存在竞争”，而 <code class="highlight"><span class="n">WAITING</span><span class="p">[]</span></code> 则标识了所有正在等待的进程。区别于之前直接释放整个锁，让剩下的进程去“拼手速”，我们这次由释放锁的进程来选择下一个进入 critical section 的是谁。</p>
+<p>在 11-14 行，通过一个循环找到下一个 <code class="highlight"><span class="n">WAITING</span><span class="p">[</span><span class="n">j</span><span class="p">]</span></code> 为 <code class="highlight"><span class="nb">true</span></code> 的 j，❶ 如果找到了这个 j，那么就将 <code>WAITING[j]</code> 设为 <code class="highlight"><span class="nb">false</span></code>（19 行），这样 j 马上就会在第 4 行 break，进入 critical section；❷ 而如果找不到这个 j，即找了一圈又找回了 i，那么说明 i 是最后一个了，所以可以直接释放整个锁（17 行）。</p>
 <p>通过使用这种方法，我们保证了等待中的进程最多只需要等待 n-1 个进程运行完 critical section（类似于实现了“FCFS”）。</p>
 <h3 id="compare_and_swap"><code>compare_and_swap()</code><a class="headerlink" href="#compare_and_swap" title="Permanent link">¶</a></h3>
 <div class="admonition quote">
@@ -1853,7 +1853,7 @@ P2  ─────────────────────────�
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">tmp</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">compare_and_swap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="n">tmp</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>使用 atomic variables 后实际上就<strong>不太符合 CS 问题的模型</strong>了，可以发现，这里并不再需要维护类似 <code>lock</code> 的东西，而是以 <code>*target</code> 是否符合 <code>expected</code> 的预设来判断是否有竞争出现，作为一个同步工具，我们可以直接使用这种封装后的原子性操作来解决 race condition，而不需要再区分 entry section 或是 critical section 等。</p>
+<p>使用 atomic variables 后实际上就<strong>不太符合 CS 问题的模型</strong>了，可以发现，这里并不再需要维护类似 <code>LOCK</code> 的东西，而是以 <code>*target</code> 是否符合 <code>expected</code> 的预设来判断是否有竞争出现，作为一个同步工具，我们可以直接使用这种封装后的原子性操作来解决 race condition，而不需要再区分 entry section 或是 critical section 等。</p>
 <blockquote>
 <p>书本上特地提到，在例如 producer&amp;consumer 的模型中，使用 atomic variables 维护 count 并不能解决 race condition，但我认为这种讨论是有失偏颇的，所谓的“原子性”应该包括所有操作临界资源的部分，书中只维护 count 不维护 buffer 的假设我觉得对于 atomic 这个概念来说实在不够公平。所以我在这里就不着重说明这个问题。</p>
 </blockquote>
@@ -1880,17 +1880,17 @@ P2  ─────────────────────────�
 <span class="normal">7</span>
 <span class="normal">8</span>
 <span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">process</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="hll"><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">    </span><span class="c1">// - entry section</span>
+<span class="hll"><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">LOCK</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">    </span><span class="c1">// - entry section</span>
 </span>
 <span class="w">    </span><span class="cm">/* operate critical resources */</span><span class="w">    </span><span class="c1">// - critical section</span>
 
-<span class="hll"><span class="w">    </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                       </span><span class="c1">// - exit section</span>
+<span class="hll"><span class="w">    </span><span class="n">LOCK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">                       </span><span class="c1">// - exit section</span>
 </span>
 <span class="w">    </span><span class="cm">/* other things */</span><span class="w">                  </span><span class="c1">// - remainder section</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>我们只需要将高亮的这两行封装起来，就实现了 acquire lock 和 release lock。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// `available` means whether the lock is free, or whether the related resources is available</span>
+<p>我们只需要将高亮的这两行封装起来，就实现了 acquire LOCK 和 release LOCK。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// `available` means whether the `LOCK` is free, or whether the related resources is available</span>
 <span class="n">acquire</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">!</span><span class="n">compare_and_swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">available</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 <span class="p">}</span>
@@ -1900,23 +1900,23 @@ P2  ─────────────────────────�
 <span class="p">}</span>
 </code></pre></div>
 <blockquote>
-<p>你可能注意到了，我们在 <a href="#test_and_set" target="_blank"><code>test_and_set()</code></a> 讨论上面那段代码的时候，讨论过它无法满足 bounded waiting time 的问题，那既然如此我们为什么不把 <code>waiting[]</code> 也一起封进去呢？</p>
+<p>你可能注意到了，我们在 <a href="#test_and_set" target="_blank"><code>test_and_set()</code></a> 讨论上面那段代码的时候，讨论过它无法满足 bounded waiting time 的问题，那既然如此我们为什么不把 <code>WAITING[]</code> 也一起封进去呢？</p>
 <p>这是因为书上直接忽略了这个问题，直到在之后讲 <a href="#semaphores" target="_blank">semaphores</a> 的时候才想起来，但 semaphores 和 mutex lock 又是两个路子，我也不知道它到底想说明什么问题。但是既然它现在忽略了，我们就先不管它，但是我希望读者能意识到这个问题是存在的。</p>
 </blockquote>
 <p>经过这么长的铺垫，我们现在能够保证的一件事是，我们终于得到了一个软件层面的、能够避免 race condition 的同步工具。那么实现基本需求以后我们就开始考虑能不能优化它。</p>
 <h3 id="忙等待">忙等待<a class="headerlink" href="#忙等待" title="Permanent link">¶</a></h3>
-<p>如果读者对代码有比较敏感的嗅觉，那可能看这几千个字到现在，你已经为数不清的 <code>while()</code> 提心吊胆过十多次了。没错，虽然我们通过逻辑保证这里不会出现死循环，但对于等待中的 process，确实要在数不尽的 <code>while</code> loop 中浪费 CPU，我们称这种等待锁释放的行为为<strong>忙等待(busy waiting)</strong>，其中“忙”指的就是在等待过程中仍然占用 CPU 资源。而这种使用忙等待的互斥锁，也被称为<strong><a href="https://en.wikipedia.org/wiki/Spinlock" target="_blank">自旋锁(spinlock)</a></strong>。</p>
+<p>如果读者对代码有比较敏感的嗅觉，那可能看这几千个字到现在，你已经为数不清的 <code>while()</code> 提心吊胆过十多次了。没错，虽然我们通过逻辑保证这里不会出现死循环，但对于等待中的 process，确实要在数不尽的 <code>while</code> loop 中浪费 CPU，我们称这种等待锁释放的行为为<strong>忙等待(busy waiting)</strong>，其中“忙”指的就是在等待过程中仍然占用 CPU 资源。而这种使用忙等待的互斥锁，也被称为<strong><a href="https://en.wikipedia.org/wiki/SpinLOCK" target="_blank">自旋锁(spinLOCK)</a></strong>。</p>
 <p>我们引入两个词来更准确的描述这件事：</p>
 <div class="admonition definition">
 <p class="admonition-title">Lock Contention</p>
 <p>如果一个用户试图索取某个锁时，如果这个锁不是 available 的，这就意味着有用户正在使用这个锁，而当前用户需要等待这个锁重新可用，此时我们称这个锁是<strong>被争抢的(contended)</strong>；反之，如果不存在争抢，我们就称之为不被争抢的(uncontended)。</p>
 <p>如果现在有好多用户都在争抢一个锁，我们称之为 high contention；反之如果只有零星几个用户在争抢这个锁，我们称之为 low contention。</p>
-<p>如果延用 spinlock，那么不难得到结论：high contention 会导致严重的性能问题，因为总是会有大量得不到锁的用户处于 busy waiting 中。</p>
+<p>如果延用 spinLOCK，那么不难得到结论：high contention 会导致严重的性能问题，因为总是会有大量得不到锁的用户处于 busy waiting 中。</p>
 </div>
 <p>既然它们都是在做无意义的等待，那我们为什么不在这个时候把资源让给有需要的人呢？</p>
 <p>我们可以通过暂时地切换进程，让这些处于等待的用户暂时休眠，等时机到来再唤醒它们，此时就需要系统调用的介入<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>。而具体的方法我们在下一节的<a href="#避免忙等待" target="_blank">避免忙等待</a>中介绍。</p>
-<p><strong>但是</strong>请注意，我们在这里需要保持客观：spinlock 在特定情况下是有好处的，在等待时间并不长的情况下，相比于拥有锁的用户释放锁，进行调度锁需要的 context switch 的开销可能显得较大，在这种情况下我们还没来得及把资源让给别人锁就好了，那么这种资源转让还不如不转。而事实上，在特定情况下，自旋锁也确实是一些多核系统的首选。</p>
-<p>不过在许多语境里 mutex 和 spinlock 是区分开来的两个概念，具体使用哪个则需要适时判断<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>。</p>
+<p><strong>但是</strong>请注意，我们在这里需要保持客观：spinLOCK 在特定情况下是有好处的，在等待时间并不长的情况下，相比于拥有锁的用户释放锁，进行调度锁需要的 context switch 的开销可能显得较大，在这种情况下我们还没来得及把资源让给别人锁就好了，那么这种资源转让还不如不转。而事实上，在特定情况下，自旋锁也确实是一些多核系统的首选。</p>
+<p>不过在许多语境里 mutex 和 spinLOCK 是区分开来的两个概念，具体使用哪个则需要适时判断<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>。</p>
 <h2 id="semaphores">Semaphores<a class="headerlink" href="#semaphores" title="Permanent link">¶</a></h2>
 <div class="admonition quote">
 <p class="admonition-title">Links</p>
@@ -1924,7 +1924,7 @@ P2  ─────────────────────────�
 <li><a href="https://en.wikipedia.org/wiki/Semaphore_(programming)" target="_blank">Wikipedia</a></li>
 </ul>
 </div>
-<p>Mutex lock 为用户程序提供了类似于“房间申请”的功能，锁竞争就好像大家抢房间的使用权。而<strong>信号量(semaphores)</strong>则是类似于我们之前提到过的 <a href="#atomic-variables" target="_blank">atomic variables</a>，通过提供标准化的原子性操作，来维护一些变量，只不过它额外对变量的值有一定的约束。</p>
+<p>Mutex LOCK 为用户程序提供了类似于“房间申请”的功能，锁竞争就好像大家抢房间的使用权。而<strong>信号量(semaphores)</strong>则是类似于我们之前提到过的 <a href="#atomic-variables" target="_blank">atomic variables</a>，通过提供标准化的原子性操作，来维护一些变量，只不过它额外对变量的值有一定的约束。</p>
 <p><del>（说实话我感觉这俩东西本质上真没啥区别……）</del></p>
 <p>Semaphores 只提供两个标准化的接口：<code>wait()</code>（或<code>P()</code>） 和 <code>signal()</code>（或<code>V()</code>），它们的功能如下：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1983,7 +1983,7 @@ P2  ─────────────────────────�
 
 <span class="w">    </span><span class="cm">/* critical section */</span>
 
-<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">S</span><span class="p">);</span><span class="w">    </span><span class="c1">// i.e. release the 'lock'</span>
+<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">S</span><span class="p">);</span><span class="w">    </span><span class="c1">// i.e. release the 'LOCK'</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="避免忙等待">避免忙等待<a class="headerlink" href="#避免忙等待" title="Permanent link">¶</a></h3>
@@ -2047,13 +2047,13 @@ P2  ─────────────────────────�
 <p><a href="https://crystal.uta.edu/~ylei/cse6324/data/critical-section.pdf" target="_blank">The Critical Section Problem</a> <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
 </li>
 <li id="fn:2">
-<p>书本中对 preemptive kernels 和 non-preemptive kernels 的定义并不准确，两者最本质的区别是后者实现了 <a href="https://en.wikipedia.org/wiki/Giant_lock" target="_blank">Giant Lock</a>。同时读者可以参考这个链接：<a href="https://unix.stackexchange.com/questions/412806/what-was-the-reason-of-the-non-preemptivity-of-older-linux-kernels" target="_blank">What was the reason of the non-preemptivity of older Linux kernels?</a> <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
+<p>书本中对 preemptive kernels 和 non-preemptive kernels 的定义并不准确，两者最本质的区别是后者实现了 <a href="https://en.wikipedia.org/wiki/Giant_LOCK" target="_blank">Giant Lock</a>。同时读者可以参考这个链接：<a href="https://unix.stackexchange.com/questions/412806/what-was-the-reason-of-the-non-preemptivity-of-older-linux-kernels" target="_blank">What was the reason of the non-preemptivity of older Linux kernels?</a> <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
 </li>
 <li id="fn:3">
 <p><a href="https://stackoverflow.com/a/7068027/22331129" target="_blank">Mutex access and system call</a> <a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">↩</a></p>
 </li>
 <li id="fn:4">
-<p><a href="https://stackoverflow.com/a/5870415/22331129" target="_blank">When should one use a spinlock instead of mutex?</a> ⭐️ <a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">↩</a></p>
+<p><a href="https://stackoverflow.com/a/5870415/22331129" target="_blank">When should one use a spinLOCK instead of mutex?</a> ⭐️ <a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">↩</a></p>
 </li>
 </ol>
 </div>
@@ -2062,7 +2062,7 @@ P2  ─────────────────────────�
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月5日 20:27:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月5日 22:25:23</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>
