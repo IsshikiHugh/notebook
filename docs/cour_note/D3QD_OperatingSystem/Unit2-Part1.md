@@ -1,4 +1,4 @@
-# U1 Part 1: 同步工具 | Synchronization Tools
+# U2 Part 1: 同步工具 | Synchronization Tools
 
 !!! info "引入"
 

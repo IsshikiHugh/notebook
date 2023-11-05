@@ -1,4 +1,4 @@
-# U1 Part 2: 同步问题例子 | Synchronization Problems Examples [未完成]
+# U2 Part 2: 同步问题例子 | Synchronization Problems Examples [未完成]
 
 ## The Bounded-Buffer Problem
 
