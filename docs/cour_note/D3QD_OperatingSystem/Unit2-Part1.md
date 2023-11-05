@@ -420,17 +420,17 @@ process(i) {
 
 ```cpp linenums="1" hl_lines="2"
 process(i) {
-    while ( test_and_set(&lock) ) {}    // - entry section
+    while ( test_and_set(&LOCK) ) {}    // - entry section
 
     /* operate critical resources */    // - critical section
 
-    lock = false;                       // - exit section
+    LOCK = false;                       // - exit section
 
     /* other things */                  // - remainder section
 }
 ```
 
-在第 3 行，循环等待的条件变为 `#!cpp test_and_set(&lock)`，如果 `lock` 的旧值是 `#!cpp false`，则可以继续，并且此时 `lock` 的值被原子性地修改为 `#!cpp true`；而如果 `lock` 的旧值是 `#!cpp true`，那么它经过 `#!cpp test_and_set(&lock)` 后的值仍然是 `#!cpp true`，且需要等待，直到：将 `lock` 改成 `#!cpp true` 的那个进程在 exit section 将 `lock` 改回 `#!cpp false`，即释放锁。
+在第 3 行，循环等待的条件变为 `#!cpp test_and_set(&LOCK)`，如果 `LOCK` 的旧值是 `#!cpp false`，则可以继续，并且此时 `LOCK` 的值被原子性地修改为 `#!cpp true`；而如果 `LOCK` 的旧值是 `#!cpp true`，那么它经过 `#!cpp test_and_set(&LOCK)` 后的值仍然是 `#!cpp true`，且需要等待，直到：将 `LOCK` 改成 `#!cpp true` 的那个进程在 exit section 将 `LOCK` 改回 `#!cpp false`，即释放锁。
 
 但是请注意，与我们讨论 Peterson's Algorithm 时的语境不同，我们现在不再假设参与竞争的进程只有两个（这是 Peterson's 的局限性之一）。在这个语境下，我们再来考虑它是否满足[三条性质](#r4s2csp){target="_blank"}。
 
@@ -440,7 +440,7 @@ process(i) {
 
 !!! proof "progress"
 
-    代码中对 `lock` 的修改操作是闭合的，即进入 critical section 会导致 `lock` 变为 `#!cpp false`，但离开 critical section 必定导致 `lock` 变为 true。因此，只要没有进程处于 critical section，那么 `lock` 必定为 `#!cpp false`，则一定有就绪的进程能够进入 critical section，而运行 critical section 的时间是有限的，因此 `lock` 又一定会在有限时间内变为 `#!cpp false`，从而满足 progress。
+    代码中对 `LOCK` 的修改操作是闭合的，即进入 critical section 会导致 `LOCK` 变为 `#!cpp false`，但离开 critical section 必定导致 `LOCK` 变为 true。因此，只要没有进程处于 critical section，那么 `LOCK` 必定为 `#!cpp false`，则一定有就绪的进程能够进入 critical section，而运行 critical section 的时间是有限的，因此 `LOCK` 又一定会在有限时间内变为 `#!cpp false`，从而满足 progress。
 
 !!! bug "bounded waiting time"
 
@@ -467,29 +467,29 @@ process(i) {
 ```cpp linenums="1"
 // `i` is process id in [0, n), where `n` is the count of related process. 
 process(i) {
-    waiting[i] = true;                                  // ┐
-    while ( waiting[i] && test_and_set(&lock) ) {}      // ├ entry sec.
+    WAITING[i] = true;                                  // ┐
+    while ( WAITING[i] && test_and_set(&LOCK) ) {}      // ├ entry sec.
                                                         // │
-    waiting[i] = false;                                 // ┘
+    WAITING[i] = false;                                 // ┘
 
     /* operate critical resources */                    // - critical sec.
 
     // i.e. find next waiting process j                 // ┐
     j = (i + 1) % n;                                    // │
-    while (i != j && !waiting[j]) {                     // ├ exit sec.
+    while (i != j && !WAITING[j]) {                     // ├ exit sec.
         j = (i + 1) % n;                                // │
     }                                                   // │
-    // release j's lock or release whole lock           // │
-    if (i == j)     lock = false;                       // │
-    else            waiting[j] = false;                 // ┘
+    // release j's LOCK or release whole LOCK           // │
+    if (i == j)     LOCK = false;                       // │
+    else            WAITING[j] = false;                 // ┘
 
     /* other things */                                  // - remainder sec.
 }
 ```
 
-我们引入了一个 `#!cpp waiting[]` 数组来辅助 `lock` 细化锁的粒度，此时 `lock` 表示的“是否存在竞争”，而 `#!cpp waiting[]` 则标识了所有正在等待的进程。区别于之前直接释放整个锁，让剩下的进程去“拼手速”，我们这次由释放锁的进程来选择下一个进入 critical section 的是谁。
+我们引入了一个 `#!cpp WAITING[]` 数组来辅助 `LOCK` 细化锁的粒度，此时 `LOCK` 表示的“是否存在竞争”，而 `#!cpp WAITING[]` 则标识了所有正在等待的进程。区别于之前直接释放整个锁，让剩下的进程去“拼手速”，我们这次由释放锁的进程来选择下一个进入 critical section 的是谁。
 
-在 11-14 行，通过一个循环找到下一个 `#!cpp waiting[j]` 为 `#!cpp true` 的 j，❶ 如果找到了这个 j，那么就将 `#! waiting[j]` 设为 `#!cpp false`（19 行），这样 j 马上就会在第 4 行 break，进入 critical section；❷ 而如果找不到这个 j，即找了一圈又找回了 i，那么说明 i 是最后一个了，所以可以直接释放整个锁（17 行）。
+在 11-14 行，通过一个循环找到下一个 `#!cpp WAITING[j]` 为 `#!cpp true` 的 j，❶ 如果找到了这个 j，那么就将 `#! WAITING[j]` 设为 `#!cpp false`（19 行），这样 j 马上就会在第 4 行 break，进入 critical section；❷ 而如果找不到这个 j，即找了一圈又找回了 i，那么说明 i 是最后一个了，所以可以直接释放整个锁（17 行）。
 
 通过使用这种方法，我们保证了等待中的进程最多只需要等待 n-1 个进程运行完 critical section（类似于实现了“FCFS”）。
 
@@ -540,7 +540,7 @@ increment(atomic_int * v) {
 }
 ```
 
-使用 atomic variables 后实际上就**不太符合 CS 问题的模型**了，可以发现，这里并不再需要维护类似 `lock` 的东西，而是以 `*target` 是否符合 `expected` 的预设来判断是否有竞争出现，作为一个同步工具，我们可以直接使用这种封装后的原子性操作来解决 race condition，而不需要再区分 entry section 或是 critical section 等。
+使用 atomic variables 后实际上就**不太符合 CS 问题的模型**了，可以发现，这里并不再需要维护类似 `LOCK` 的东西，而是以 `*target` 是否符合 `expected` 的预设来判断是否有竞争出现，作为一个同步工具，我们可以直接使用这种封装后的原子性操作来解决 race condition，而不需要再区分 entry section 或是 critical section 等。
 
 > 书本上特地提到，在例如 producer&consumer 的模型中，使用 atomic variables 维护 count 并不能解决 race condition，但我认为这种讨论是有失偏颇的，所谓的“原子性”应该包括所有操作临界资源的部分，书中只维护 count 不维护 buffer 的假设我觉得对于 atomic 这个概念来说实在不够公平。所以我在这里就不着重说明这个问题。
 
@@ -566,20 +566,20 @@ increment(atomic_int * v) {
 
 ```cpp linenums="1" hl_lines="2 6"
 process(i) {
-    while ( test_and_set(&lock) ) {}    // - entry section
+    while ( test_and_set(&LOCK) ) {}    // - entry section
 
     /* operate critical resources */    // - critical section
 
-    lock = false;                       // - exit section
+    LOCK = false;                       // - exit section
 
     /* other things */                  // - remainder section
 }
 ```
 
-我们只需要将高亮的这两行封装起来，就实现了 acquire lock 和 release lock。
+我们只需要将高亮的这两行封装起来，就实现了 acquire LOCK 和 release LOCK。
 
 ```cpp
-// `available` means whether the lock is free, or whether the related resources is available
+// `available` means whether the `LOCK` is free, or whether the related resources is available
 acquire() {
     while ( !compare_and_swap(&available, true, false) ) {}
 }
@@ -589,7 +589,7 @@ release() {
 }
 ```
 
-> 你可能注意到了，我们在 [`test_and_set()`](#test_and_set){target="_blank"} 讨论上面那段代码的时候，讨论过它无法满足 bounded waiting time 的问题，那既然如此我们为什么不把 `waiting[]` 也一起封进去呢？
+> 你可能注意到了，我们在 [`test_and_set()`](#test_and_set){target="_blank"} 讨论上面那段代码的时候，讨论过它无法满足 bounded waiting time 的问题，那既然如此我们为什么不把 `WAITING[]` 也一起封进去呢？
 > 
 > 这是因为书上直接忽略了这个问题，直到在之后讲 [semaphores](#semaphores){target="_blank"} 的时候才想起来，但 semaphores 和 mutex lock 又是两个路子，我也不知道它到底想说明什么问题。但是既然它现在忽略了，我们就先不管它，但是我希望读者能意识到这个问题是存在的。
 
@@ -597,7 +597,7 @@ release() {
 
 ### 忙等待
 
-如果读者对代码有比较敏感的嗅觉，那可能看这几千个字到现在，你已经为数不清的 `while()` 提心吊胆过十多次了。没错，虽然我们通过逻辑保证这里不会出现死循环，但对于等待中的 process，确实要在数不尽的 `while` loop 中浪费 CPU，我们称这种等待锁释放的行为为**忙等待(busy waiting)**，其中“忙”指的就是在等待过程中仍然占用 CPU 资源。而这种使用忙等待的互斥锁，也被称为**[自旋锁(spinlock)](https://en.wikipedia.org/wiki/Spinlock){target="_blank"}**。
+如果读者对代码有比较敏感的嗅觉，那可能看这几千个字到现在，你已经为数不清的 `while()` 提心吊胆过十多次了。没错，虽然我们通过逻辑保证这里不会出现死循环，但对于等待中的 process，确实要在数不尽的 `while` loop 中浪费 CPU，我们称这种等待锁释放的行为为**忙等待(busy waiting)**，其中“忙”指的就是在等待过程中仍然占用 CPU 资源。而这种使用忙等待的互斥锁，也被称为**[自旋锁(spinLOCK)](https://en.wikipedia.org/wiki/SpinLOCK){target="_blank"}**。
 
 我们引入两个词来更准确的描述这件事：
 
@@ -607,15 +607,15 @@ release() {
 
     如果现在有好多用户都在争抢一个锁，我们称之为 high contention；反之如果只有零星几个用户在争抢这个锁，我们称之为 low contention。
 
-    如果延用 spinlock，那么不难得到结论：high contention 会导致严重的性能问题，因为总是会有大量得不到锁的用户处于 busy waiting 中。
+    如果延用 spinLOCK，那么不难得到结论：high contention 会导致严重的性能问题，因为总是会有大量得不到锁的用户处于 busy waiting 中。
 
 既然它们都是在做无意义的等待，那我们为什么不在这个时候把资源让给有需要的人呢？
 
 我们可以通过暂时地切换进程，让这些处于等待的用户暂时休眠，等时机到来再唤醒它们，此时就需要系统调用的介入[^3]。而具体的方法我们在下一节的[避免忙等待](#避免忙等待){target="_blank"}中介绍。
 
-**但是**请注意，我们在这里需要保持客观：spinlock 在特定情况下是有好处的，在等待时间并不长的情况下，相比于拥有锁的用户释放锁，进行调度锁需要的 context switch 的开销可能显得较大，在这种情况下我们还没来得及把资源让给别人锁就好了，那么这种资源转让还不如不转。而事实上，在特定情况下，自旋锁也确实是一些多核系统的首选。
+**但是**请注意，我们在这里需要保持客观：spinLOCK 在特定情况下是有好处的，在等待时间并不长的情况下，相比于拥有锁的用户释放锁，进行调度锁需要的 context switch 的开销可能显得较大，在这种情况下我们还没来得及把资源让给别人锁就好了，那么这种资源转让还不如不转。而事实上，在特定情况下，自旋锁也确实是一些多核系统的首选。
 
-不过在许多语境里 mutex 和 spinlock 是区分开来的两个概念，具体使用哪个则需要适时判断[^4]。
+不过在许多语境里 mutex 和 spinLOCK 是区分开来的两个概念，具体使用哪个则需要适时判断[^4]。
 
 ## Semaphores
 
@@ -623,7 +623,7 @@ release() {
 
     - [Wikipedia](https://en.wikipedia.org/wiki/Semaphore_(programming)){target="_blank"}
 
-Mutex lock 为用户程序提供了类似于“房间申请”的功能，锁竞争就好像大家抢房间的使用权。而**信号量(semaphores)**则是类似于我们之前提到过的 [atomic variables](#atomic-variables){target="_blank"}，通过提供标准化的原子性操作，来维护一些变量，只不过它额外对变量的值有一定的约束。
+Mutex LOCK 为用户程序提供了类似于“房间申请”的功能，锁竞争就好像大家抢房间的使用权。而**信号量(semaphores)**则是类似于我们之前提到过的 [atomic variables](#atomic-variables){target="_blank"}，通过提供标准化的原子性操作，来维护一些变量，只不过它额外对变量的值有一定的约束。
 
 ~~（说实话我感觉这俩东西本质上真没啥区别……）~~
 
@@ -671,7 +671,7 @@ process(i) {
 
     /* critical section */
 
-    wait(S);    // i.e. release the 'lock'
+    wait(S);    // i.e. release the 'LOCK'
 }
 ```
 
@@ -715,8 +715,8 @@ struct semaphore {
 
 [^1]: [The Critical Section Problem](https://crystal.uta.edu/~ylei/cse6324/data/critical-section.pdf){target="_blank"}
 
-[^2]: 书本中对 preemptive kernels 和 non-preemptive kernels 的定义并不准确，两者最本质的区别是后者实现了 [Giant Lock](https://en.wikipedia.org/wiki/Giant_lock){target="_blank"}。同时读者可以参考这个链接：[What was the reason of the non-preemptivity of older Linux kernels?](https://unix.stackexchange.com/questions/412806/what-was-the-reason-of-the-non-preemptivity-of-older-linux-kernels){target="_blank"}
+[^2]: 书本中对 preemptive kernels 和 non-preemptive kernels 的定义并不准确，两者最本质的区别是后者实现了 [Giant Lock](https://en.wikipedia.org/wiki/Giant_LOCK){target="_blank"}。同时读者可以参考这个链接：[What was the reason of the non-preemptivity of older Linux kernels?](https://unix.stackexchange.com/questions/412806/what-was-the-reason-of-the-non-preemptivity-of-older-linux-kernels){target="_blank"}
 
 [^3]: [Mutex access and system call](https://stackoverflow.com/a/7068027/22331129){target="_blank"}
 
-[^4]: [When should one use a spinlock instead of mutex?](https://stackoverflow.com/a/5870415/22331129){target="_blank"} ⭐️
+[^4]: [When should one use a spinLOCK instead of mutex?](https://stackoverflow.com/a/5870415/22331129){target="_blank"} ⭐️
