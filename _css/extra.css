@@ -81,7 +81,6 @@ li {
 .md-typeset .md-button {
     border: .15rem solid;
     border-radius: .0rem;
-    color: var(--md-primary-fg-color);
     cursor: pointer;
     display: inline-block;
     font-weight: 700;

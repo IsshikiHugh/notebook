@@ -1510,7 +1510,7 @@
 <h3 id="状态图">状态图<a class="headerlink" href="#状态图" title="Permanent link">¶</a></h3>
 <p>可以发现，状态表比较清晰的表达了不同的状态和输入得到的结果，但是对于「不同状态之间是如何转换的」这件事的描述并不清晰。而对于「联系」这件事，有向图是一个非常好的形式，所以我们将介绍 <strong>状态图(state diagram)</strong>。</p>
 <p>状态图承载的信息量和状态表是一样的，所以也是需要表达 当前状态(present state)、输入(input)、下一状态(next state)、输出(output) 这四个东西。只不过「下一状态」是通过有向边来表示的。当前状态作为一个 node 的属性；而输入作为 edge 的一个属性；至于输出，根据它是放在 edge 上还是 node 上，分为 <strong>米勒型(Mealy)</strong> 和 <strong>摩尔型(Moore)</strong> 两种。</p>
-<div class="admonition example">
+<div class="admonition eg">
 <p class="admonition-title">Mealy</p>
 <p>例如，这是一个 米勒型 的状态图，以及对应的状态表。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/89.png"><img alt="" src="../img/89.png"/></a></p>
@@ -1521,7 +1521,7 @@
 </blockquote>
 <p>当然，米勒型是有 <strong>缺陷</strong> 的，在时序电路设计之后的步骤中，我们需要根据它来对每一个状态设计输出方程。此时由于两个输出共享同一个目标状态，所以我们需要将两个输出结合到同一个式子中，这将提高设计难度和组合电路成本。</p>
 </div>
-<div class="admonition example">
+<div class="admonition eg">
 <p class="admonition-title">Moore</p>
 <p>而下面是一个 摩尔型 的状态图，以及对应的状态表。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/88.png"><img alt="" src="../img/88.png"/></a></p>
@@ -1662,7 +1662,7 @@
 </tbody>
 </table>
 </details>
-<details class="example" open="open">
+<details class="eg" open="open">
 <summary>State Machine Diagram 🌰</summary>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/91.png"><img alt="" src="../img/91.png"/></a></p>
 <blockquote>
@@ -1725,7 +1725,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月19日 16:09:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月7日 11:54:07</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月20日 14:50:19</span>

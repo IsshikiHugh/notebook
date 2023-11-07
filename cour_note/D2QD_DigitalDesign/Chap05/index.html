@@ -1196,7 +1196,7 @@
 <h2 id="可重编程技术">可重编程技术<a class="headerlink" href="#可重编程技术" title="Permanent link">¶</a></h2>
 <p><strong>可重编程技术(programmable implementation technologies)</strong></p>
 <p>直接更改电路来修改电路功能被称为硬编程，而可重变成技术让我们能够不更改硬件布线的情况下，实现<strong>逻辑功能的重新编辑</strong>。</p>
-<div class="admonition example">
+<div class="admonition eg">
 <p class="admonition-title">FPGA</p>
 <p><a href="https://zh.wikipedia.org/zh-cn/%E7%8E%B0%E5%9C%BA%E5%8F%AF%E7%BC%96%E7%A8%8B%E9%80%BB%E8%BE%91%E9%97%A8%E9%98%B5%E5%88%97">现场可编程逻辑门阵列(Field Programmable Gate Array, FPGA)</a>
 - <a href="https://zh.m.wikipedia.org/zh-hans/%E6%9F%A5%E6%89%BE%E8%A1%A8">查找表(lookup table, LUT)</a></p>
@@ -1242,14 +1242,14 @@
 <p>由于之后出现的电路图会非常庞大，所以需要引入一些逻辑符号。</p>
 </div>
 <h3 id="逻辑符号介绍">逻辑符号介绍<a class="headerlink" href="#逻辑符号介绍" title="Permanent link">¶</a></h3>
-<div class="admonition example">
+<div class="admonition eg">
 <p class="admonition-title">Buffer</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/52.png"><img alt="" src="../img/52.png"/></a></p>
 <blockquote>
 <p>简化表示一个变量的自身和其非；</p>
 </blockquote>
 </div>
-<div class="admonition example">
+<div class="admonition eg">
 <p class="admonition-title">Wire connecting</p>
 <p>在可编程逻辑电路中，线的连接不再只有单纯的连通和不连通的关系：</p>
 <p>对于两条相交导线：</p>
@@ -1279,7 +1279,7 @@
                    &amp;=\;\;2^2\;\;\times\;\;4\;\;=\;\;16\;\;bit&amp;
 \end{aligned}
 \]</div>
-<details class="example" open="open">
+<details class="eg" open="open">
 <summary>eg</summary>
 <p>更清晰的表示其内部逻辑的，可以将 ROM 写成这样：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/58.png"><img alt="" src="../img/58.png"/></a></p>
@@ -1290,7 +1290,7 @@
 <p>可重编程输入组合来得到固定输出。</p>
 <p>其具有一个缺陷是，因为表达函数的方法不是通过 SOM 或者 POM 的形式，所以不一定能够完备表达函数。</p>
 <p>在此基础上的一个改进是，通过将一个既有的 PAL 输出当作输入，输入到另外一个函数中，来弥补项不足的问题。</p>
-<details class="example" open="open">
+<details class="eg" open="open">
 <summary>eg</summary>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/60.png"><img alt="" src="../img/60.png"/></a></p>
 </details>
@@ -1348,7 +1348,7 @@
 <p><code>IOB</code> 用来对外部设备进行连接，用来控制输入和输出。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/67.png"><img alt="" src="../img/67.png"/></a></p>
 <hr/>
-<details class="example">
+<details class="eg">
 <summary>eg for <code>FPGA</code></summary>
 <p>通过 <code>FPGA</code> 实现 <span class="arithmatex">\(f=x_1x_2+\overline{x_2x_3}\)</span>：</p>
 <p>分解问题：<span class="arithmatex">\(f_1 = x_1x_2,\;\;f_2=\overline{x_2x_3},\;\;f=f_1+f_2\)</span>。</p>
@@ -1379,7 +1379,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月19日 16:09:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月7日 11:54:07</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月4日 00:33:01</span>

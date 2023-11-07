@@ -1476,7 +1476,7 @@
 </blockquote>
 <h3 id="对偶法则">对偶法则<a class="headerlink" href="#对偶法则" title="Permanent link">¶</a></h3>
 <p><strong>对偶法则(Duality Rule)</strong>：一个表达式的 <strong>对偶(dual)</strong> 为，将所有的 <strong>与</strong> 和 <strong>或</strong> 对调得到的式子（注意！需要保证参与运算的结构不能变（是“<strong>带括号</strong>”的宏展开），比如 <strong>一般情况下</strong> <span class="arithmatex">\(A\cdot B\)</span> 会被对偶为 <span class="arithmatex">\((A+B)\)</span> 以保证运算顺序）。</p>
-<div class="admonition example">
+<div class="admonition eg">
 <p class="admonition-title">eg</p>
 <ul>
 <li><span class="arithmatex">\(X+XY\)</span> 和 <span class="arithmatex">\(X(X+Y)\)</span> 对偶；</li>
@@ -1491,7 +1491,7 @@
 </ul>
 <h3 id="互补函数">互补函数<a class="headerlink" href="#互补函数" title="Permanent link">¶</a></h3>
 <p>一个 <strong>函数的互补(Complement of a Function)</strong> 指的是，将它的 <strong>对偶函数</strong> 中每一个 <strong>变量</strong> 都取反得到的函数，而该函数正好等于原函数的 <strong>非</strong>。</p>
-<div class="admonition example">
+<div class="admonition eg">
 <p class="admonition-title">eg</p>
 <ul>
 <li>原函数：<span class="arithmatex">\(F=\overline{A}B+C\overline{B}\)</span>；</li>
@@ -1501,7 +1501,7 @@
 </div>
 <h3 id="替代法则">替代法则<a class="headerlink" href="#替代法则" title="Permanent link">¶</a></h3>
 <p><strong>替代法则(Substitution Rules)</strong>: 如果将一个等式中 <strong>所有的</strong> <strong>某个变量</strong> 都替换为同一个表达式，则等式依然成立。</p>
-<div class="admonition example">
+<div class="admonition eg">
 <p class="admonition-title">eg</p>
 <ul>
 <li>原等式：<span class="arithmatex">\(X(Y+Z)=XY+XZ\)</span>；</li>
@@ -2039,7 +2039,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p>尽管我们不停强调 与 和 或 是对称的，但是仍然有很多操作是鉴于我们对 <code>1</code> 的偏爱才会顺手的（你会发现，把乘除换成我们完全不熟悉的符号，你甚至可能无从下手）。</p>
 <p>所以，在卡诺图的问题中，如果要利用卡诺图得到 <span class="arithmatex">\(F\)</span> 优化后的乘积形式，也可以将问题转化为求 <span class="arithmatex">\(\overline{F}\)</span> 优化后的和形式，然后再对其取反过，利用德·摩根定律来得到结果。</p>
 <p>具体来说就是反转 K-map 中所有的 <code>0</code> 和 <code>1</code>，然后着眼于 SOM 进行优化，最后再对结果取反，用德·摩根定律来得到结果。</p>
-<details class="example">
+<details class="eg">
 <summary>eg</summary>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/26.png"><img alt="" src="../img/26.png"/></a></p>
 </details>
@@ -2114,7 +2114,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月19日 16:09:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月7日 11:54:07</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月8日 15:38:17</span>

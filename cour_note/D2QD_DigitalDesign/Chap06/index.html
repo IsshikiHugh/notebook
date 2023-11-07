@@ -1598,7 +1598,7 @@ K_1 : R2 \leftarrow R1
 <blockquote>
 <p>Multiplication and division are not listed in Table 6-3. Multiplication can be represented by the symbol * and division by /. These two operations are not included in the basic set of arithmetic microoperations because they are assumed to be implemented by sequences of basic microoperations. However, multiplication can be considered as a microoperation if implemented by a combinational circuit. In such a case, the result is transferred into a destination register at the clock edge after all signals have propagated through the entire combinational circuit</p>
 </blockquote>
-<div class="admonition example">
+<div class="admonition eg">
 <p class="admonition-title">加减法器</p>
 <p>就像我们之前学过的，用加法器实现加减法器，在 RTL 和模块逻辑电路的维度下，可以这么表示：</p>
 <div class="arithmatex">\[
@@ -1649,7 +1649,7 @@ K_1 : R2 \leftarrow R1
 <blockquote>
 <p>四个触发器首尾相连，最前面<strong>串行输入(Serial Input, SI)</strong>数据，末端得到<strong>串行输出(Serial Output, SO)</strong>，在不同时钟周期的偏差下，连续读入的 n bits 即为不同位数位移的结果。</p>
 </blockquote>
-<div class="admonition example">
+<div class="admonition eg">
 <p class="admonition-title">串行位移操作实现的模拟解释</p>
 <p>假设现在我们有 4 个 <code>FF</code> 首尾相连，现在串行输入 <code>1001</code> 这 4bits 的数据（当然，完全输入需要 4 个时钟周期）。</p>
 <p>假设第 1 个周期结束后，<code>1001</code> 最右侧的 <code>1</code> 被存在了第一个 FF，则：</p>
@@ -1866,7 +1866,7 @@ K_1 : R2 \leftarrow R1
 <p>按理来说这里应该是 <span class="arithmatex">\(Load = Q_0\cdot\overline{Q_1}\cdot\overline{Q_2}\cdot Q_3\)</span>，以对应 <code>9D=1001B</code>，但是由于自增过程中，<code>1001</code> 是第一个满足 <code>1??1</code> 的组合，所以可以直接简化为 <span class="arithmatex">\(Load = Q_0\cdot Q_3\)</span>。</p>
 </blockquote>
 <p>如上是修改上确界的方法，而修改下确界的方法则是修改 <span class="arithmatex">\(D_i\)</span> 序列，例如上图中 <span class="arithmatex">\(D\)</span> 接地，所以下确界是 <code>0000B</code>。</p>
-<div class="admonition example">
+<div class="admonition eg">
 <p class="admonition-title">Mod N 计数器</p>
 <p>实际上，我们可以把 BCD 码循环计数器看作是特殊的 Mod N 计数器，即 N = 10 的 Mod N 计数器。</p>
 <p>或许你会想，实现 Mod N 计数器能不能在满足输出条件后直接使用 <code>Clear</code> 输入。但是请不要忘记了，<code>Clear</code> 也好，<code>Set</code> 也罢，它们都是异步操作。我们没有必要也不应该使用异步操作，所以最好的做法还是使用 <code>Load</code>。</p>
@@ -1907,7 +1907,7 @@ K_1 : R2 \leftarrow R1
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月19日 16:09:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月7日 11:54:07</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月31日 15:18:46</span>
