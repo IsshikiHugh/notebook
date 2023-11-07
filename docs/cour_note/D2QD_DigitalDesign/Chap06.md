@@ -241,7 +241,7 @@ $$
 
 > Multiplication and division are not listed in Table 6-3. Multiplication can be represented by the symbol * and division by /. These two operations are not included in the basic set of arithmetic microoperations because they are assumed to be implemented by sequences of basic microoperations. However, multiplication can be considered as a microoperation if implemented by a combinational circuit. In such a case, the result is transferred into a destination register at the clock edge after all signals have propagated through the entire combinational circuit
 
-!!! example "加减法器"
+!!! eg "加减法器"
     就像我们之前学过的，用加法器实现加减法器，在 RTL 和模块逻辑电路的维度下，可以这么表示：
 
     $$
@@ -304,7 +304,7 @@ $$
 
 > 四个触发器首尾相连，最前面**串行输入(Serial Input, SI)**数据，末端得到**串行输出(Serial Output, SO)**，在不同时钟周期的偏差下，连续读入的 n bits 即为不同位数位移的结果。
 
-!!! example "串行位移操作实现的模拟解释"
+!!! eg "串行位移操作实现的模拟解释"
     假设现在我们有 4 个 `FF` 首尾相连，现在串行输入 `1001` 这 4bits 的数据（当然，完全输入需要 4 个时钟周期）。
 
     假设第 1 个周期结束后，`1001` 最右侧的 `1` 被存在了第一个 FF，则：
@@ -488,7 +488,7 @@ $$
 
 如上是修改上确界的方法，而修改下确界的方法则是修改 $D_i$ 序列，例如上图中 $D$ 接地，所以下确界是 `0000B`。
 
-!!! example "Mod N 计数器"
+!!! eg "Mod N 计数器"
     实际上，我们可以把 BCD 码循环计数器看作是特殊的 Mod N 计数器，即 N = 10 的 Mod N 计数器。
 
     或许你会想，实现 Mod N 计数器能不能在满足输出条件后直接使用 `Clear` 输入。但是请不要忘记了，`Clear` 也好，`Set` 也罢，它们都是异步操作。我们没有必要也不应该使用异步操作，所以最好的做法还是使用 `Load`。

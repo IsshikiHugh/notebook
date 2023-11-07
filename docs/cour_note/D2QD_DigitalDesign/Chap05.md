@@ -15,7 +15,7 @@
 
 直接更改电路来修改电路功能被称为硬编程，而可重变成技术让我们能够不更改硬件布线的情况下，实现**逻辑功能的重新编辑**。
 
-!!! example "FPGA"
+!!! eg "FPGA"
     [现场可编程逻辑门阵列(Field Programmable Gate Array, FPGA)](https://zh.wikipedia.org/zh-cn/%E7%8E%B0%E5%9C%BA%E5%8F%AF%E7%BC%96%E7%A8%8B%E9%80%BB%E8%BE%91%E9%97%A8%E9%98%B5%E5%88%97)
     - [查找表(lookup table, LUT)](https://zh.m.wikipedia.org/zh-hans/%E6%9F%A5%E6%89%BE%E8%A1%A8)
 
@@ -53,11 +53,11 @@
 
 ### 逻辑符号介绍
 
-!!! example "Buffer"
+!!! eg "Buffer"
     ![](img/52.png)
     > 简化表示一个变量的自身和其非；
 
-!!! example "Wire connecting"
+!!! eg "Wire connecting"
     在可编程逻辑电路中，线的连接不再只有单纯的连通和不连通的关系：
 
     对于两条相交导线：
@@ -95,7 +95,7 @@ $$
 \end{aligned}
 $$
 
-???+ example "eg"
+???+ eg "eg"
     更清晰的表示其内部逻辑的，可以将 ROM 写成这样：
 
     ![](img/58.png)
@@ -112,7 +112,7 @@ $$
 
 在此基础上的一个改进是，通过将一个既有的 PAL 输出当作输入，输入到另外一个函数中，来弥补项不足的问题。
 
-???+ example "eg"
+???+ eg "eg"
     ![](img/60.png)
 
 
@@ -199,7 +199,7 @@ CLB 是 `FPGA` 中的基础逻辑单元。
 
 ---
 
-??? example "eg for `FPGA`"
+??? eg "eg for `FPGA`"
     通过 `FPGA` 实现 $f=x_1x_2+\overline{x_2x_3}$：
 
     分解问题：$f_1 = x_1x_2,\;\;f_2=\overline{x_2x_3},\;\;f=f_1+f_2$。

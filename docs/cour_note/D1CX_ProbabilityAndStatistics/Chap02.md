@@ -15,10 +15,22 @@
 
 如果随机变量 $X$ 的概率分布律为：
 
-
-表格居中显示
-
-<center> ![](1648034248819-c4fb9f2d-8b99-4e46-a20b-14a926aae520.png) </center> 
+<center><div class="md-typeset__scrollwrap"><div class="md-typeset__table"><table>
+    <thead>
+        <tr>
+        <th align="center">x</th>
+        <th align="center">0</th>
+        <th align="center">1</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td align="center">P</td>
+        <td align="center">1-p</td>
+        <td align="center">p</td>
+        </tr>
+    </tbody>
+</table></div></div></center>
 
 $$
 P\{X=k\}=p^k(1-p)^{1-k}\;,\;\;\;k=0\;or\;1

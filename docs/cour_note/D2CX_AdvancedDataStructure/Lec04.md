@@ -350,7 +350,7 @@ LeftistHeapNode * del(LeftistHeapNode * cur, ElementType x) {
 
     根据这个特点，我们可以非常简单地理解下面这道题：
 
-    !!! example ""
+    !!! eg ""
         === "题面"
             The result of inserting keys $1$ to $2^k−1$ for any $k>4$ in order into an initially empty skew heap is always a full binary tree. (T/F)
 

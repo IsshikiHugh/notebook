@@ -85,7 +85,8 @@ $\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$
 
 我们知道，对于一些比较简单的模型，我们可以直接求其**解析解(analytical solution)**，比如使用求导等方法。
 
-!!! example "🌰"
+!!! eg "🌰"
+
     以刚才的线性 MSE 为例，$\hat{x} = \mathop{\arg \min\limits_x} \sum\limits_i(b_i - a_i^Tx)^2$ 等效于求解等式 $A^TAx=A^Tb$。
 
 然而，实际情况是大部分问题过于复杂，我们没法直接求其解析解，所以我们需要采用一些即采用一些**数值方法(numerical methods)**。
