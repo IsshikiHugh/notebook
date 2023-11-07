@@ -505,9 +505,9 @@ process(i) {
 <atomic> compare_and_swap(int * target, int expected, int new_val) {
     int ret = *target;
 
-    // *value = (*target == expected) ? new_val : *value;
+    // *target = (*target == expected) ? new_val : *target;
     if (*target == expected) {
-        *value = new_val;
+        *target = new_val;
     }
 
     return ret;
