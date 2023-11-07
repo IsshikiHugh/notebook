@@ -47,6 +47,7 @@ theme:
   custom_dir: overrides
 
 plugins:
+  - minify
   - statistics
   - glightbox
   - search:
@@ -67,7 +68,6 @@ plugins:
         - cour_note/index.md
         - pape_read/index.md
         - others/index.md
-
 markdown_extensions:
   - toc:
       permalink: true # link for each title
@@ -79,6 +79,7 @@ markdown_extensions:
   - footnotes
   - meta
   - md_in_html
+  - mdx_truly_sane_lists
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.betterem:
