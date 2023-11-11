@@ -24,7 +24,8 @@
 - 方法
     - 多视角的一致性：
         - 在每个 diffusion denoising step 都利用 **"triangulate"** 进行一次 $n*2D \rightarrow 1*3D \rightarrow n*2D$ 的过程；
-        - [ ] TODO: 这个 "triangulate" 是什么？
+        - [x] TODO: 这个 "triangulate" 是什么？ 貌似就是最优化重投影。
+    - 实验认为 V = 3 就够了，再多影响也不大；
     - 
 
 

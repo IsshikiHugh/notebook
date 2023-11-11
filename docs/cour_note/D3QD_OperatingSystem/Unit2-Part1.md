@@ -667,11 +667,11 @@ P1() {
 ```cpp linenums="1"
 // `i` is process id and S is the semaphores
 process(i) {
-    signal(S);  // only one process can pass this line at once
+    wait(S);    // i.e. release the 'LOCK'
 
     /* critical section */
 
-    wait(S);    // i.e. release the 'LOCK'
+    signal(S);  // only one process can pass this line at once
 }
 ```
 
