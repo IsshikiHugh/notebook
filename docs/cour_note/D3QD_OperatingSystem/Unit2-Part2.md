@@ -30,7 +30,7 @@ void consume() {
 
 考虑在并行语境下，`produce()` 和 `consume()` 同时发生，由于 `++n` 和 `--n` 这些操作本质上是数值的、需要一段时间来完成的，所以容易出现 [race condition](./Unit2-Part1.md/#race-condition){target="_blank"}问题。
 
-### 解决
+### 解决 - semaphores
 
 我们使用信号量来解决这个问题，需要定义三个信号量：
 
@@ -64,7 +64,7 @@ semaphore full  = 0;
 
 > 显然，reader 和 reader 不会有冲突。
 
-### 解决
+### 解决 - semaphores
 
 有两种种朴素的解决办法：⓵ writer 总是等待 reader，⓶ reader 总是等待 writer。但是这两种解决办法都不是很好，因为 ⓵ 会导致 writer 饥饿，⓶ 会导致 reader 饥饿。
 
@@ -112,10 +112,21 @@ reader() {
 }
 ```
 
+逻辑上，释放 `rw_mutex` 的 reader 不需要是申请 `rw_mutex` 的 reader，这也印证了这个锁维护的是整个 readers 群体的存在与否，而不是“某个 reader”的存在与否。
+
+!!! question "为什么 `read_count` 不使用信号量？"
+    
+    我们观察对 `read_count` 的操作，一共有三类：
+
+    1. `read_count++`；
+    2. `read_count--`；
+    3. `read_count == k`；
+
+    并且 `read_count >= 0` 应当始终成立，所以光看前两类，其实很适合直接作为信号量来维护。但是我们无法对信号量进行比较操作，所以我们是用 `mutex` 维护了 `read_count`，可以发现，所有对 `read_count` 的操作都是在 `mutex` 的保护下进行的。换句话来说，其实 `read_count` 和 `mutex` 一起构成了一个原子变量。
 
 ## The Dining Philosophers Problem
 
-### 问题背景
+### 问题背景 & 问题描述
 
 - [🔗 Wiki](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
 
@@ -130,6 +141,30 @@ reader() {
 
 哲学家如果想要干饭就必须有两根筷子，ta 同时 拿起 ta 左右侧筷子时，才能干饭。显然，两个哲学家不能同时拿起同一根筷子；干完饭哲学家会放下筷子。~~假设哲学家们都不嫌脏。~~
 
-### 问题描述
+### 解决 - semaphores
 
-考虑这种情况，所有哲学家在第一帧都想要干饭，假设 ta 们都先拿起了 ta 们右手的筷子，此时我们发现，接下来谁都无法拿到第二根筷子，如果 ta 们都不主动放下筷子让别人干饭，那么 ta 们将五五饿死（死锁）。
+显然，我们可以用信号量来维护一个筷子是否可用，就可以得到下面（有问题的）解法：
+
+```cpp linenums="1"
+process() {
+    wait(chopstick[i]);
+    wait(chopstick[ (i+1) % 5 ]); // i.e. the next chopstick
+
+    /* eat rice */
+
+    signal(chopstick[i]);
+    signal(chopstick[ (i+1) % 5 ]);
+}
+```
+
+但上述代码存在问题。考虑这种情况：所有哲学家在第一帧都想要干饭，此时它们同时运行完了第 2 行（例如，同时拿起了右手边的筷子），这时我们发现，所有筷子都被占有，没有任何一个人能等到下一个筷子，此时，哲学家们发生了死锁。
+
+对于这个死锁，书中给出了三种解决方案：
+
+1. 允许最多 4 位哲学家同时获取筷子；
+2. 哲学家必须同时获取两个筷子，而不能抓一支等一支；
+    - 为了实现这一点，“抓筷子”这件事应当在一个临界段中完成；
+3. 奇数哲学家先拿左手的筷子，偶数哲学家先拿右手的筷子，这样不会产生循环等待；
+
+### 解决 - monitors
+
