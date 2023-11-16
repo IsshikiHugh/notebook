@@ -163,6 +163,7 @@ nav:
         - tech_accu/tool/Git/Workflow/index.md
         - tech_accu/tool/Git/Commands/index.md
         - "🔗 A Fast Intro to Git Internals": https://sites.google.com/a/chromium.org/dev/developers/fast-intro-to-git-internals
+        - "🔗 .git 目录里到底包含了什么？": https://mp.weixin.qq.com/s/fQFOGAv9cdvdZTpyL_9y8g
       - "MinIO":
         - "🔗 Website": https://www.minio.org.cn/
         - "🔗 Docs": http://docs.minio.org.cn/minio/baremetal/

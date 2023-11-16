@@ -77,6 +77,16 @@
         </a>
     </div>
 
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
+                ![](./_assets/avatars/Zizheng.jpeg)
+            </div>
+        <a href="https://www.zizheng.life/" title="Zizheng's Blog" target="_blank">
+            <div class="flink-item-name">Zizheng's Blog</div>
+            <div class="flink-item-desc"> 佬！ </div>
+        </a>
+    </div>
+
     </div>
 
 ??? tip "🔗 有意思的链接" 
