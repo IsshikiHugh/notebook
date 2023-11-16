@@ -6,12 +6,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/Lec15/" rel="canonical"/>
-<link href="../Lec14/" rel="prev"/>
-<link href="../Ex01/" rel="next"/>
+<link href="https://note.isshikih.top/cour_note/D3QD_OperatingSystem/Unit2-Part3/" rel="canonical"/>
 <link href="../../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
-<title>Lecture 15 | External Sorting - Isshiki修's Notebook</title>
+<title>U2 Part 3: 死锁 | Deadlocks [未完成] - Isshiki修's Notebook</title>
 <link href="../../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6 31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0l112.3-112.3zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5 50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0 27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>');}</style>
@@ -42,7 +40,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#lecture-15--external-sorting">
+<a class="md-skip" href="#u2-part-3-死锁--deadlocks-未完成">
           跳转至
         </a>
 </div>
@@ -66,7 +64,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Lecture 15 | External Sorting
+              U2 Part 3: 死锁 | Deadlocks [未完成]
             
           </span>
 </div>
@@ -132,7 +130,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../../">
+<a class="md-tabs__link" href="../../">
         🗒 课程笔记
       </a>
 </li>
@@ -480,15 +478,15 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../">🗒 课程笔记</a>
 <label for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
           🗒 课程笔记
@@ -719,186 +717,97 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_10" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_10" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../">[大二春夏] 高级数据结构 | Advanced Data Structure</a>
+<a href="../../D2CX_AdvancedDataStructure/">[大二春夏] 高级数据结构 | Advanced Data Structure</a>
 <label for="__nav_3_10">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_3_10_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_3_10_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_10">
 <span class="md-nav__icon md-icon"></span>
           [大二春夏] 高级数据结构 | Advanced Data Structure
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec01/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec01/">
         Lecture 1 | AVL Trees &amp; Splay Trees
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec02/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec02/">
         Lecture 2 | Red Black Tree &amp; B+ Tree
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec03/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec03/">
         Lecture 3 | Inverted File Index
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec04/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec04/">
         Lecture 4 | Leftist Heap &amp; Skew Heap
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec05/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec05/">
         Lecture 5 | Binomial Queue
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec06/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec06/">
         Lecture 6 | Backtracing
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec07/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec07/">
         Lecture 7 | Divide &amp; Conquer
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec08/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec08/">
         Lecture 8 | Dynamic Programming
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec09/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec09/">
         Lecture 9 | Greedy Algorithms
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec10/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec10/">
         Lecture 10 | NP Completeness
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec11/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec11/">
         Lecture 11 | Approximation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec12/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec12/">
         Lecture 12 | Local Search
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec13/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec13/">
         Lecture 13 | Randomized Algorithms
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec14/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec14/">
         Lecture 14 | Parallel
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          Lecture 15 | External Sorting
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec15/">
         Lecture 15 | External Sorting
       </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#概述">
-    概述
-  </a>
-<nav aria-label="概述" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#逻辑维度">
-    逻辑维度
-  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#物理维度">
-    物理维度
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#具体分析">
-    具体分析
-  </a>
-<nav aria-label="具体分析" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#朴素过程分析">
-    朴素过程分析
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#优化空间">
-    优化空间
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#pass-数量分析与优化">
-    pass 数量分析与优化
-  </a>
-<nav aria-label="pass 数量分析与优化" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#替换选择算法">
-    替换选择算法
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#tape-数量分析与优化">
-    tape 数量分析与优化
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#k-路内排序优化">
-    k 路内排序优化
-  </a>
-<nav aria-label="k 路内排序优化" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#霍夫曼树优化">
-    霍夫曼树优化
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#并行优化">
-    并行优化
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../Ex01/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Ex01/">
         Topic 1 | Amortized Analysis
       </a>
 </li>
@@ -908,7 +817,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_11" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D3QD_OperatingSystem/">[大三秋冬] 操作系统 | Operating System</a>
+<a href="../">[大三秋冬] 操作系统 | Operating System</a>
 <label for="__nav_3_11">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -920,12 +829,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit0/">
+<a class="md-nav__link" href="../Unit0/">
         Unit 0: 总览 | Overview
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit1/">
+<a class="md-nav__link" href="../Unit1/">
         Unit 1: 进程管理 | Process Management
       </a>
 </li>
@@ -942,12 +851,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit2-Part1/">
+<a class="md-nav__link" href="../Unit2-Part1/">
         U2 Part 1: 同步工具 | Synchronization Tools
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit2-Part2/">
+<a class="md-nav__link" href="../Unit2-Part2/">
         U2 Part 2: 同步问题例子 | Synchronization Problems Examples
       </a>
 </li>
@@ -955,17 +864,17 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit3/">
+<a class="md-nav__link" href="../Unit3/">
         Unit 3: 内存管理 | Memory Management [未完成]
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit4/">
+<a class="md-nav__link" href="../Unit4/">
         Unit 4: 存储管理 | Storage Management [未完成]
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit5/">
+<a class="md-nav__link" href="../Unit5/">
         Unit 5: 文件系统 | File System [未完成]
       </a>
 </li>
@@ -1148,557 +1057,25 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#概述">
-    概述
-  </a>
-<nav aria-label="概述" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#逻辑维度">
-    逻辑维度
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#物理维度">
-    物理维度
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#具体分析">
-    具体分析
-  </a>
-<nav aria-label="具体分析" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#朴素过程分析">
-    朴素过程分析
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#优化空间">
-    优化空间
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#pass-数量分析与优化">
-    pass 数量分析与优化
-  </a>
-<nav aria-label="pass 数量分析与优化" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#替换选择算法">
-    替换选择算法
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#tape-数量分析与优化">
-    tape 数量分析与优化
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#k-路内排序优化">
-    k 路内排序优化
-  </a>
-<nav aria-label="k 路内排序优化" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#霍夫曼树优化">
-    霍夫曼树优化
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#并行优化">
-    并行优化
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="lecture-15--external-sorting">Lecture 15 | External Sorting<a class="headerlink" href="#lecture-15--external-sorting" title="Permanent link">¶</a></h1>
+<h1 id="u2-part-3-死锁--deadlocks-未完成">U2 Part 3: 死锁 | Deadlocks [未完成]<a class="headerlink" href="#u2-part-3-死锁--deadlocks-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6424 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 21 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 9 个字 </p>
 </div>
-<div class="admonition quote">
-<p class="admonition-title">link</p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/External_sorting">https://en.wikipedia.org/wiki/External_sorting</a></p>
-</div>
-<p>外排序与数据库系统中的相关内容有交叉关系，当需要排序的数据过大，而无法被完全放在内存时，普通的排序算法无法被应用。此时需要使用外排序，简单来说就是在更大的尺度上进行类似归并的操作。</p>
-<p>而正因为此，外部排序的过程与硬件设计有一定关系。</p>
-<details class="section" open="open">
-<summary>与硬件相关的一些说明</summary>
-<p>具体来说，普通的排序算法排序的对象都是放在内存里的一些数据，例如一个 <code>int</code> 数组。然而外部排序排序的对象，或者说要排序的那个“数组”，没法被完整地存在内存里，它们都被存储在硬盘之类的非易失介质中，而从这种介质里读取数据往往具有较大的开销，所以我们总是“一块一块”从里面那数据。</p>
-<blockquote>
-<p>打个比方，你现在需要对一整个图书馆（硬盘）的书做排序，但是你的桌子（内存）上最多放下三十本书，换句话来说，你一次最多处理三十本书。而为了从图书馆中获取需要排的书，你得先找到这些书在哪（seek），然后再把连续的三十本书拿出来（block transfer），放到你的桌子（内存）上再排序，而为了给接下来三十本书腾位置，你还得把排好的三十本书再放回去（即记录下排序结果，同样也是一次 block transfer）。</p>
-</blockquote>
-<p>综上所述，外部排序主要解决的就是，按照怎样的策略来对这些数据进行排序。</p>
-</details>
-<div class="admonition info">
-<p class="admonition-title">导读</p>
-<p>由于 ADS 介绍的外排序和同时期数据库系统这门课介绍的外排序有同有异，所以我打算先在大概讲外排序的核心思路，再展开 ADS 课程中的具体过程。</p>
-</div>
-<hr/>
-<h2 id="概述">概述<a class="headerlink" href="#概述" title="Permanent link">¶</a></h2>
-<p>外排序的基本思路就是将数据分为若干个小块，然后对每个小块进行排序，最后再将这些小块合并起来。而我们常说的归并排序，指的是递归地将两块合成一块，而所谓的 <span class="arithmatex">\(k\)</span> <strong>路（<span class="arithmatex">\(k\)</span>-way）</strong>归并，就是将 <span class="arithmatex">\(k\)</span> 块合成一块。</p>
-<p>那么如何归并呢？我将从两个维度来简单阐述。</p>
-<hr/>
-<h3 id="逻辑维度">逻辑维度<a class="headerlink" href="#逻辑维度" title="Permanent link">¶</a></h3>
-<p>外部排序所使用的归并排序从逻辑上来讲和普通的归并排序一致，总是将 <span class="arithmatex">\(k\)</span> 个有序序列合并为 1 个有序序列。</p>
-<p>而这里的“有序序列”，在外排序中被称为“run”，即每次归并我们另 <span class="arithmatex">\(k\)</span> 个 run 变成一个 run。正着说就是：</p>
-<div class="admonition definition">
-<p class="admonition-title">run</p>
-<p>一个 run 指的是一段过程中的数据，在本文中特指待归并的有序的序列，在 <span class="arithmatex">\(k\)</span>-way merge 中，我们总是将 <span class="arithmatex">\(k\)</span> 个 run 合并为 1 个 run。</p>
-<div class="admonition warning">
-<p class="admonition-title">说明</p>
-<p>这里的 run 的定义是我自己脑补出来的，并不确定是否严格，但是可以保证的是： 一个 run 在参与 merge 之前肯定已经有序了，可以理解为 "have already run"，而为了不搅糊读者的脑子，我这里就以这个定义为准。</p>
-</div>
-</div>
-<p>从执行的顺序来说，<strong>内</strong>排序中的归并排序是一个自上而下不断 <span class="arithmatex">\(\frac{1}{k}\)</span> 地划分，再自下而上不断归并的过程。相反，<strong>外</strong>排序由于其特性限制，其“归并段”并不是自上而下 <span class="arithmatex">\(\frac{1}{k}\)</span> 划分出来的，而是根据硬件处理能力，直接划分好最小的归并段，然后直接自下而上归并。</p>
-<p>而这样一个将 <span class="arithmatex">\(k \cdot c\)</span> 个 run merge 成 <span class="arithmatex">\(c\)</span> 个 run 的过程，我们称之为一个 <code>pass</code>。（在归并树上体现为一层。）</p>
-<hr/>
-<h3 id="物理维度">物理维度<a class="headerlink" href="#物理维度" title="Permanent link">¶</a></h3>
-<blockquote>
-<p>关于物理维度，涉及到一些硬件知识，在 ADS 中为了方便说明会将其简化，有关 block 的概念将被抽象化为“数据单位”。</p>
-</blockquote>
-<p>我们知道，内存的大小是有限的，划分给归并数据的内存也应当是有限的，我们用 <span class="arithmatex">\(M\)</span> 来记它，即内存中一次只能处理 <span class="arithmatex">\(M\)</span> 个单位的数据。</p>
-<blockquote>
-<p>更细节的，我们应当更具物理大小来计算 <span class="arithmatex">\(M\)</span>，例如一条数据的大小是 <span class="arithmatex">\(l \text{Bytes}\)</span>，而内存的大小是 <span class="arithmatex">\(m \text{Bytes}\)</span>，那么一个内存能够容纳的数据数量应当为 <span class="arithmatex">\(\lfloor \frac{m}{l} \rfloor\)</span>。</p>
-</blockquote>
-<p>但是既然要归并，我们就需要将 <span class="arithmatex">\(k\)</span> 路的数据读入到内存中，最理想的情况下我们肯定希望这 <span class="arithmatex">\(k\)</span> 路都能读入到内存中，但是显然这是不切实际的，我们最多公平地读入每一路的前 <span class="arithmatex">\(\lfloor \frac{M}{k} \rfloor\)</span> 个数据——但这已经足够——对于 <span class="arithmatex">\(k\)</span> 个有序序列的合并操作，其合并过程中也恰好只与最靠前的、未排序的一部分数据有关。</p>
-<div class="admonition warning">
-<p class="admonition-title">说明</p>
-<p>之后所提到的，有关于排序数据的“内存”，指的都是划分给算法，用来存放归并数据的内存！</p>
-</div>
-<div class="admonition eg">
-<p class="admonition-title">example</p>
-<p>举例来说，假设现在有两个 run，分别为：</p>
-<ol>
-<li><code>1</code> <code>3</code> <code>5</code> <code>7</code> <code>9</code></li>
-<li><code>0</code> <code>2</code> <code>4</code> <code>6</code> <code>8</code></li>
-</ol>
-<p>但是内存只能放 4 个单位数据，所以对于每个 run 总是只有前 2 个数据是可见的。但是这并不影响我们可以确定这两个 run 合并的结果中，前一部分是 <code>0</code> <code>1</code> <code>2</code>，而至于 <code>2</code> 后面排什么，则要从 <code>run2</code> 中取出之后的数据，再与 <code>run1</code> 余下的 <code>_</code> <code>3</code> 合并。</p>
-<div class="admonition key-point">
-<p class="admonition-title">易错点</p>
-<p>注意，当其中一个段的 buffer 空了以后，我们不能直接把其他段的 buffer 直接排序进去，而必须先填充这个空 buffer 的内容，再继续排序。</p>
-<p>想象这样一个情况，空 buffer 将要载入的下一段数据是 <code>3</code> <code>4</code> <code>5</code>，而另外一个 buffer 剩下的数据是 <code>7</code>，那么显然，<code>3</code> <code>4</code> <code>5</code> 应该先于 <code>7</code> 被排序。</p>
-</div>
-</div>
-<p>而这个过程也正是外排序能够进行的一个重要基础。</p>
-<hr/>
-<p>其中比较特别的步骤就是，最开始的排序，即第一个 pass。先前我们在<a href="#逻辑维度" target="_blank">#逻辑维度</a>里提到了，外排序的第一个 pass 会直接划分好最小的归并段，而这个“最小归并段”的大小就是 <span class="arithmatex">\(M\)</span>。用语言描述，就是最早的 run 的大小就是平均每一路能够在内存中处理的最大数据单位量。</p>
-<p>然而问题出现了，根据我之前给出的定义，run 应当是有序的，但是从原始数据里读出来的“最小归并段”是无序的。但是对于最初的 run，它必然能够整段放到内存里（更进一步的，也只有最初的 run 能够完整地放到内存里），因此直接对其进行内排序即可。</p>
-<div class="admonition advice">
-<p class="admonition-title">逻辑联系</p>
-<ul>
-<li>因为内排序很快，所以要尽可能利用内排序；</li>
-<li>所以一开始就要将能内排序做的事情都用内排序解决；</li>
-<li>所以最初的 run 的大小是 <span class="arithmatex">\(M\)</span>。</li>
-</ul>
-</div>
-<hr/>
-<div class="admonition info">
-<p class="admonition-title">中继</p>
-<p>以上内容是对外排序核心思想的一个简单介绍，接下来我们将以 ADS 所介绍的外排序范式，来介绍一下具体的过程和一些改进。</p>
-</div>
-<hr/>
-<h2 id="具体分析">具体分析<a class="headerlink" href="#具体分析" title="Permanent link">¶</a></h2>
-<p>ADS 中相比上面介绍的部分，又引入了一个叫 tape 的概念，tape 的中文是磁带，而在这个框架中，我更倾向于把它当作一个抽象的概念。</p>
-<p>相对应的，其实际过程与上面描述的方法可能有一些感受上的差别，如果只是了解思想的话上半部分已经足够（当然后面还有一些基于如下模型的优化讨论），但是毕竟还是面向考试，所以还是需要以 ADS 课件的方法再介绍一次。</p>
-<div class="admonition warning">
-<p class="admonition-title">说明</p>
-<p>我之后会以 run 为单位，来描述合并过程。但是实际发生在计算机里的步骤更加复杂：</p>
-<p>需要先将每一条 tape 的一部分数据读入内存的 buffer 中，然后利用这些 buffer 来进行排序；当某个 buffer 空了以后要立刻将对应 tape 的下一部分数据读入，直到没有数据可以填充为止。</p>
-<p>也正是<a href="#物理维度">#物理维度</a>所说的那些。</p>
-</div>
-<hr/>
-<h3 id="朴素过程分析">朴素过程分析<a class="headerlink" href="#朴素过程分析" title="Permanent link">¶</a></h3>
-<p>我们以 2-way merge 为例，结合 ADS 课件中的配图来说明。</p>
-<details class="section" open="open">
-<summary>准备</summary>
-<p><center>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/66.png"><img alt="" src="../img/66.png"/></a>
-</center></p>
-<p>图中 <span class="arithmatex">\(T_1\)</span> 是一条 tape 的编号，我们可以理解为一个序列的物理地址，或更通俗的来说，可以当作一个数组，只不过它的实际数据是在硬盘中。换句话来说，这里的 tape 表示的都是硬盘中的数据。</p>
-<p>这条 tape 中有 13 个元素，我们记其为 <span class="arithmatex">\(N = 13\)</span>。而这条原始的 tape 被划分为了 5 段，每一段都有不超过 3 个元素，此时 <span class="arithmatex">\(M = 3\)</span>。即有 <span class="arithmatex">\(\lceil \frac{N}{M} \rceil = 5\)</span>。</p>
-</details>
-<details class="section" open="open">
-<summary>Pass 1</summary>
-<p>现在我们要开始 merge 了。对于这段数据来说，这是意义重大的“人生第一次”，相比于其他归并都是从 2 个 tape 开始的 pass，这一次显得有些特殊。</p>
-<p>在第一轮中，面对全部都是无序的数据，我们将这 <span class="arithmatex">\(\lceil \frac{N}{M} \rceil = 5\)</span> 个段均分到两条 tape 上（2-way），这里经历两个步骤：</p>
-<ol>
-<li>依次读取 <span class="arithmatex">\(T_1\)</span> 中每一段数据（刚好占满内存），并对它们进行内排序；</li>
-<li>将排序完的段，追加写到 <span class="arithmatex">\(T_2\)</span> 或 <span class="arithmatex">\(T_3\)</span> 中（具体每一个 tape 写几条，会有专门策略做调整，目前先平分着放）；</li>
-</ol>
-<p>于是，<span class="arithmatex">\(T_1\)</span> 中的数据便被转移到了 <span class="arithmatex">\(T_2\)</span> 和 <span class="arithmatex">\(T_3\)</span>。为了重复利用 tape，此时的 <span class="arithmatex">\(T_1\)</span> 被看作可以用的空磁盘了。</p>
-<p><center>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/67.png"><img alt="" src="../img/67.png"/></a>
-</center></p>
-<p>于是，完成了第一个 pass。</p>
-</details>
-<details class="section" open="open">
-<summary>Pass 2</summary>
-<p>之后的 pass 则基本遵循同样的规则，不断取每一路的第一个 run 并 merge，并且将结果写到两个（k 个）闲置的 tape 上（和前面说过的一样，这里暂且将分配策略定为平分到每一个 tape 上）。</p>
-<p>例如，我们要取 <span class="arithmatex">\(T_2\)</span> 和 <span class="arithmatex">\(T_3\)</span> 的第一段，执行归并操作，得到一个新的，有 6 个数据的 run，并写到闲置的 <span class="arithmatex">\(T_1\)</span> 上；接下来取 <span class="arithmatex">\(T_2\)</span> 和 <span class="arithmatex">\(T_3\)</span> 的第二段，归并得到新的 run，此时我们发现，<span class="arithmatex">\(T_1\)</span>、<span class="arithmatex">\(T_2\)</span>、<span class="arithmatex">\(T_3\)</span> 都不是闲置的，所以我们需要一个新的 tape，写到 <span class="arithmatex">\(T_4\)</span> 上。</p>
-<p><center>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/68.png"><img alt="" src="../img/68.png"/></a>
-</center></p>
-<p>于是，完成了第二个 pass。</p>
-</details>
-<details class="section" open="open">
-<summary>Pass 3</summary>
-<p>pass 3 和 pass 2 的过程基本一致。现在的 tape 状态是 <span class="arithmatex">\(\{T_2, T_3\}\)</span> 闲置，我们取 <span class="arithmatex">\(T_1\)</span> 和 <span class="arithmatex">\(T_4\)</span> 的第一段，得到一个新的 run，包含 12 个元素；取 <span class="arithmatex">\(T_1\)</span> 和 <span class="arithmatex">\(T_4\)</span> 的第二段，得到一个新的 run，包含 1 个元素。这两段被分配到两条空闲 tape 上，即 <span class="arithmatex">\(T_2\)</span> 和 <span class="arithmatex">\(T_3\)</span>。</p>
-<p><center>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/69.png"><img alt="" src="../img/69.png"/></a>
-</center></p>
-<p>于是，完成了第三个 pass。</p>
-</details>
-<details class="section" open="open">
-<summary>Pass 4</summary>
-<p>同样，pass 4 和前面两个 pass 的过程也是一致性的，不做过多解释，对于规模更大的数据也是一样，除了第一个 pass 比较特殊，其它 pass 都是一样的。最终得到只剩下一个 tape 中包含唯一的 run 时，排序就结束了。</p>
-<p><center>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/70.png"><img alt="" src="../img/70.png"/></a>
-</center></p>
-<p>至此，排序结束。</p>
-</details>
-<hr/>
-<h3 id="优化空间">优化空间<a class="headerlink" href="#优化空间" title="Permanent link">¶</a></h3>
-<p>可以优化的部分主要有这么几个：</p>
-<ul>
-<li>一个 pass 意味着若干次 seek，所以减少 pass 可以是一个方向；<ul>
-<li><a href="#pass-数量分析与优化" target="_blank">#pass-数量分析与优化</a></li>
-</ul>
-</li>
-<li>merge 的过程中会多次读取 tape 中的数据，而对于计算机来说单次大量读取比多次小量读取更高效，如何优化数据读取也是一个方向；<ul>
-<li><a href="#tape-数量分析与优化" target="_blank">#tape-数量分析与优化</a></li>
-</ul>
-</li>
-<li>如何更高效的在 <span class="arithmatex">\(k\)</span>-way merge 过程中，归并 M 个分别来自 k 个序列的数据，即内排序的策略，也上优化的一个方向；<ul>
-<li><a href="#k-路内排序优化" target="_blank">#k-路内排序优化</a></li>
-</ul>
-</li>
-<li>读入、内排序、输出，这三个事务目前是停机串行的，考虑将其并行化也是一个方向；<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO</li>
-</ul>
-</li>
-</ul>
-<hr/>
-<h3 id="pass-数量分析与优化">pass 数量分析与优化<a class="headerlink" href="#pass-数量分析与优化" title="Permanent link">¶</a></h3>
-<p>例子中一共经过了 4 次 pass。如果我们记 <span class="arithmatex">\(max(\#run)\)</span> 为 <span class="arithmatex">\(\#run\)</span> 最多的 tape 的 <span class="arithmatex">\(\#run\)</span>，则每一次 pass 会令 <span class="arithmatex">\(max(\#run)\)</span> 缩小一半，直到 <span class="arithmatex">\(max(\#run)\)</span> 变为 1，且只有它一条 tape 还有数据，标志着排序结束。</p>
-<p>如果专注于 <span class="arithmatex">\(\#run\)</span> 的变化，那么上面的模拟步骤大致是这么一个过程：</p>
-<div class="admonition section">
-<p class="admonition-title">Pass 1</p>
-<p>原先 <span class="arithmatex">\(T_1\)</span> 上 <span class="arithmatex">\(\#run = 5\)</span>，现将它分配到两条 tape 上，于是有：</p>
-<ul>
-<li><span class="arithmatex">\(T_2\)</span> 上 <span class="arithmatex">\(\#run = 3\)</span>；</li>
-<li><span class="arithmatex">\(T_3\)</span> 上 <span class="arithmatex">\(\#run = 2\)</span>；</li>
-</ul>
-</div>
-<div class="admonition section">
-<p class="admonition-title">Pass 2</p>
-<p>依次取 <span class="arithmatex">\(T_2\)</span> 和 <span class="arithmatex">\(T_3\)</span> 的第一段，归并得到新的 run，均分到另外两条 tape 上（未优化的做法，优化做法参考<a href="#tape-数量分析与优化" target="_blank">#tape-优化</a>），于是有：</p>
-<ul>
-<li><span class="arithmatex">\(T_2\)</span> 上 <span class="arithmatex">\(\#run = 3-1 = 2\)</span>；</li>
-<li><span class="arithmatex">\(T_3\)</span> 上 <span class="arithmatex">\(\#run = 2-1 = 1\)</span>；</li>
-<li><span class="arithmatex">\(T_1\)</span> 上 <span class="arithmatex">\(\#run = 0+1 = 1\)</span>；</li>
-<li><span class="arithmatex">\(T_4\)</span> 上 <span class="arithmatex">\(\#run = 0\)</span>；</li>
-</ul>
-<p>继续取，即：</p>
-<ul>
-<li><span class="arithmatex">\(T_2\)</span> 上 <span class="arithmatex">\(\#run = 2-1 = 1\)</span>；</li>
-<li><span class="arithmatex">\(T_3\)</span> 上 <span class="arithmatex">\(\#run = 1-1 = 0\)</span>；</li>
-<li><span class="arithmatex">\(T_1\)</span> 上 <span class="arithmatex">\(\#run = 1\)</span>；</li>
-<li><span class="arithmatex">\(T_4\)</span> 上 <span class="arithmatex">\(\#run = 0+1 = 1\)</span>；</li>
-</ul>
-<p><span class="arithmatex">\(T_3\)</span> 上已经没有了，但是 <span class="arithmatex">\(T_2\)</span> 还没取完，所以只从 <span class="arithmatex">\(T_2\)</span> 拿：</p>
-<ul>
-<li><span class="arithmatex">\(T_2\)</span> 上 <span class="arithmatex">\(\#run = 1-1 = 0\)</span>；</li>
-<li><span class="arithmatex">\(T_3\)</span> 上 <span class="arithmatex">\(\#run = 0\)</span>；</li>
-<li><span class="arithmatex">\(T_1\)</span> 上 <span class="arithmatex">\(\#run = 1+1 = 2\)</span>；</li>
-<li><span class="arithmatex">\(T_4\)</span> 上 <span class="arithmatex">\(\#run = 1\)</span>；</li>
-</ul>
-</div>
-<p>模拟到从这里其实已经可以看出来了，对于 2-way merge 来说，排除末段情况，从第二个 pass 开始，基本上每次都是从 2 路中各取 1 个 run，并合并为 1 个 run。换句话来说，每一个 pass 会让 <span class="arithmatex">\(total(\#run)\)</span> 缩小为原来的 <span class="arithmatex">\(\frac{1}{2}\)</span>。</p>
-<p>那么，对于 <span class="arithmatex">\(k\)</span>-way merge 来说，就是从第二个 pass 开始，每次从 <span class="arithmatex">\(k\)</span> 路中各取 1 个 run，并合并为 1 个 run，每一个 pass 会让 <span class="arithmatex">\(total(\#run)\)</span> 缩小为原来的 <span class="arithmatex">\(\frac{1}{k}\)</span>。</p>
-<p>因此，我们可以归纳得到如下计算式：</p>
-<div class="arithmatex">\[
-\begin{aligned}
-\#pass &amp;= \underbrace{
-        1
-    }_{\text{pass 1}}
-    + 
-    \underbrace{
-        \lceil \log_{k}{(\#run)}\rceil
-    }_{\text{rest passes}} \\
-    &amp;= \underbrace{
-        1
-    }_{\text{pass 1}}
-    + 
-    \underbrace{
-        \lceil \log_{k}{
-            \lceil \frac{N}{M} \rceil
-        }\rceil
-    }_{\text{rest passes}} 
-\end{aligned}
-\]</div>
-<p>其中，<span class="arithmatex">\(k\)</span> 表示归并路数，<span class="arithmatex">\(N\)</span> 表示数据量，<span class="arithmatex">\(M\)</span> 表示内存一次能处理的数据量。</p>
-<p>那么，减少 pass 的方法也很直观了，只需要增加 <span class="arithmatex">\(k\)</span> 即可，即采取更多路的归并，就能减少 pass。</p>
-<p>然而，其中必然存在一个 trade-off 的关系，虽然 <span class="arithmatex">\(k\)</span> 增加可以减少 <span class="arithmatex">\(\#pass\)</span>，但是在接下来一节中我们会知道，<span class="arithmatex">\(k\)</span> 过大会导致 tape 需求量增加，此外，<span class="arithmatex">\(k\)</span> 的增加也会导致内排序的复杂度增加，也会增加 pass 内的 seek 次数。</p>
-<p>当然，除了暴力的增加 <span class="arithmatex">\(k\)</span> 以外，我们还可以通过使用<strong>替换选择(Replacement Selection)</strong>算法，来生成比 <span class="arithmatex">\(M\)</span> 大的初始 run，以相对减少 pass 数量。</p>
-<h4 id="替换选择算法">替换选择算法<a class="headerlink" href="#替换选择算法" title="Permanent link">¶</a></h4>
-<p><strong>替换选择(Replacement Selection)</strong> 在 hw15 中被布置为编程题，所以其实现过程可以结合那道题目来学习。</p>
-<details class="section">
-<summary>Replacement Selection @ PTA</summary>
-<p>When the input is much too large to fit into memory, we have to do external sorting instead of internal sorting. One of the key steps in external sorting is to generate sets of sorted records (also called runs) with limited internal memory. The simplest method is to read as many records as possible into the memory, and sort them internally, then write the resulting run back to some tape. The size of each run is the same as the capacity of the internal memory.</p>
-<p><strong>Replacement Selection</strong> sorting algorithm was described in 1965 by Donald Knuth. Notice that as soon as the first record is written to an output tape, the memory it used becomes available for another record. Assume that we are sorting in ascending order, if the next record is not smaller than the record we have just output, then it can be included in the run.</p>
-<p>For example, suppose that we have a set of input { 81, 94, 11, 96, 12, 99, 35 }, and our memory can sort 3 records only. By the simplest method we will obtain three runs: { 11, 81, 94 }, { 12, 96, 99 } and { 35 }. According to the replacement selection algorithm, we would read and sort the first 3 records { 81, 94, 11 } and output 11 as the smallest one. Then one space is available so 96 is read in and will join the first run since it is larger than 11. Now we have { 81, 94, 96 }. After 81 is out, 12 comes in but it must belong to the next run since it is smaller than 81. Hence we have { 94, 96, 12 } where 12 will stay since it belongs to the next run. When 94 is out and 99 is in, since 99 is larger than 94, it must belong to the <strong>first run</strong>. Eventually we will obtain two runs: the first one contains { 11, 81, 94, 96, 99 } and the second one contains { 12, 35 }.</p>
-<p>Your job is to implement this replacement selection algorithm.</p>
-</details>
-<p>利用替换选择策略以后，每一次生成的 run 一定不小于 <span class="arithmatex">\(M\)</span>（末端余数除外），于是相对来说 <span class="arithmatex">\(\#pass\)</span> 就会减少。</p>
-<hr/>
-<h3 id="tape-数量分析与优化">tape 数量分析与优化<a class="headerlink" href="#tape-数量分析与优化" title="Permanent link">¶</a></h3>
-<p>如果使用<a href="#朴素过程分析" target="_blank">#朴素过程分析</a>中的方法，那么我们使用 <span class="arithmatex">\(k\)</span>-way merge 至少需要 <span class="arithmatex">\(2k\)</span> 个 tape。</p>
-<p>这其实很好理解，我们每一个 pass 需要 <span class="arithmatex">\(k\)</span> 个 tape 来存放每一路的序列，而其结果要平分放复制到下一个 pass 所需要的 <span class="arithmatex">\(k\)</span> 个 pass 中，所以至少需要 <span class="arithmatex">\(2k\)</span> 个 tape 轮换着来存储数据。</p>
-<p>而这不利于我们通过增加 <span class="arithmatex">\(k\)</span> 来减少 <span class="arithmatex">\(\#pass\)</span>，因此我们考虑某种策略来优化 tape 的使用。</p>
-<p>在<a href="#朴素过程分析" target="_blank">#朴素过程分析</a>中我多次暗示，之后会对「将归并后的 run 平分到各 tape」这件事做优化。</p>
-<p>我们可以考虑，不平均的将归并后的 run 分配到各个 tape 上，即总有一些 tape 比别的 tape 多一些 run。虽然在平分的策略中，也有可能会有多出来的 run，但是只会多一个（也就是将 <span class="arithmatex">\(x \mod k\)</span> 的余数分配到其中几个 tape 上）。此时这些多出来的 run 可能就是单纯的从一个 tape 别复制到另外一个 tape 上，看起来是个非常没必要的操作，为什么不直接留下它，将当前 tape 拿到下一轮用呢？</p>
-<p>但是由于平分策略下，这个情况的出现并不可控，而且总是会引起悬殊的 tape 间的数量差，所以我们考虑能不能主动利用这个性质。</p>
-<p><del>实在想不到怎么过度了，而且急急急，所以直接上结论。</del></p>
-<p>我们按照 Fibonacci 数列的项来分配每个 tape 的 <span class="arithmatex">\(\#run\)</span>，此时每一个 pass 只需要一个有一个空闲的 tape 即可。</p>
-<div class="admonition eg">
-<p class="admonition-title">example</p>
-<div class="arithmatex">\[
-\text{Fibonacci}: {1,1,2,3,5,8,13,21,...}
-\]</div>
-<p>假设我们现在有两个 tape，分别有 23 个 run 和 13 个 run，则：</p>
-<table>
-<thead>
-<tr>
-<th align="center"><span class="arithmatex">\(T_1\)</span></th>
-<th align="center"><span class="arithmatex">\(T_2\)</span></th>
-<th align="center"><span class="arithmatex">\(T_3\)</span></th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">21</td>
-<td align="center">13</td>
-<td align="center">-</td>
-<td align="left">初始情况</td>
-</tr>
-<tr>
-<td align="center">8</td>
-<td align="center">-</td>
-<td align="center">13</td>
-<td align="left"><span class="arithmatex">\(T_1\)</span> 的前 13 个与 <span class="arithmatex">\(T_2\)</span> 归并，结果写入 <span class="arithmatex">\(T_3\)</span></td>
-</tr>
-<tr>
-<td align="center">-</td>
-<td align="center">8</td>
-<td align="center">5</td>
-<td align="left"><span class="arithmatex">\(T_3\)</span> 的前 8 个与 <span class="arithmatex">\(T_1\)</span> 归并，结果写入 <span class="arithmatex">\(T_2\)</span></td>
-</tr>
-<tr>
-<td align="center">5</td>
-<td align="center">3</td>
-<td align="center">-</td>
-<td align="left">略</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">-</td>
-<td align="center">3</td>
-<td align="left">略</td>
-</tr>
-<tr>
-<td align="center">-</td>
-<td align="center">2</td>
-<td align="center">1</td>
-<td align="left">略</td>
-</tr>
-<tr>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">-</td>
-<td align="left">略</td>
-</tr>
-<tr>
-<td align="center">0</td>
-<td align="center">-</td>
-<td align="center">1</td>
-<td align="left">略</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>使用 Fibonacci 我们总可以滚动着将 <span class="arithmatex">\(\#run\)</span> 的规模缩小。</p>
-<details class="extra" open="open">
-<summary>k-way merge with k-order Fibonacci Sequence</summary>
-<p>对于 <span class="arithmatex">\(k\)</span>-way merge，我们只需要构造 k 阶 Fibonacci 数列，然后按照这个数列来分配每个 tape 的 <span class="arithmatex">\(\#run\)</span> 即可。</p>
-<div class="admonition definition">
-<p class="admonition-title">k-order Fibonacci Sequence</p>
-<p>给出 k 阶 Fibonacci 数列（与 PPT 略有不同，主要体现在下标从谁开始，无伤大雅）：</p>
-<div class="arithmatex">\[
-\left\{
-\begin{aligned}
-    F^k_1 &amp;= 1 \\
-    F^k_2 &amp;= 1 \\
-    &amp; \vdots\\
-    F^k_n &amp;= F^k_{n-1} + F^k_{n-2} + \cdots + F^k_{n-k} \quad (n &gt; k)
-\end{aligned}
-\right.
-\]</div>
-</div>
-<p>这个结论看起来很自然，但是实际上是怎么操作的呢？PPT 压根没讲，因此，我在询问 ch 老师以后，写下了这个部分，旨在补充 <span class="arithmatex">\(k\)</span>-way merge 使用 k 阶 Fibonacci 优化的方法。</p>
-<blockquote>
-<p>首先，做一些强调：</p>
-<ol>
-<li>该方法陈述过程中，k 路始终直接合并成一路（千万不要用“iterative”的思路来考虑，就算 iterative，迭代完了也还是 k 路归为 1 路）；</li>
-<li>我们的目的是优化每一个 pass 中每个 tape 的 <span class="arithmatex">\(\#run\)</span> 不一样带来的性能问题（例如尴尬的 <span class="arithmatex">\(n\)</span> 和 <span class="arithmatex">\(n+1\)</span> 归，下一个 pass 就得 <span class="arithmatex">\(1\)</span> 和  <span class="arithmatex">\(n\)</span> 归了）；</li>
-</ol>
-</blockquote>
-<p>对于第 <span class="arithmatex">\(i\)</span> 个 pass，有 <span class="arithmatex">\(k\)</span> 个 tape，我们记每一个 tape 的 <span class="arithmatex">\(\#run\)</span> 为 <span class="arithmatex">\(r_i\)</span>，则有：</p>
-<ul>
-<li><span class="arithmatex">\(\max\{r_i\} = F^k_j\)</span>;</li>
-<li><span class="arithmatex">\(\min\{r_i\} = F^k_{j-1}\)</span>;</li>
-</ul>
-<p>也就是说，每个 pass 最大和最小的 <span class="arithmatex">\(\#run\)</span> 分别有 k 阶 Fibonacci 中相邻的两项。</p>
-<blockquote>
-<p>这里分开用 i 和 j 是想表达这个匹配关系不重要，重要的是最大值最小值由 Fibonacci 相邻项所确定。</p>
-</blockquote>
-<p>那么夹在最大和最小的中间的其他 <span class="arithmatex">\(\#run\)</span> 要如何确定呢？首先我们进行一段推导：</p>
-<p>假设 <span class="arithmatex">\(\{r_i\}\)</span> 经过排序，并且刚好能凑上我们所需要的数量，有：</p>
-<div class="arithmatex">\[
-r_k &gt; r_{k-1} &gt; ... &gt; r_{2} &gt; r_{1}
-\text{where } r_k = F^k_j \text{ and } r_1 = F^k_{j-1}
-\]</div>
-<p>在这一个 pass 中，我们将所有 tape 的前 <span class="arithmatex">\(r1\)</span> 个 run 拿出来 merge，这样，除了 <span class="arithmatex">\(r_1\)</span> 这个 tape，其他 tape 的 <span class="arithmatex">\(\#run\)</span> 都变为 <span class="arithmatex">\(r_i-r_1\)</span>。此时有不等关系：</p>
-<div class="arithmatex">\[
-r_1 &gt; r_k - r_1 &gt; r_{k-1} - r_1 &gt; ... &gt; r_{2} - r_1
-\]</div>
-<p>这里唯一需要说明的就是 <span class="arithmatex">\(r_1 &gt; r_k - r_1\)</span>：</p>
-<details class="proof">
-<summary>proof of the relation</summary>
-<div class="arithmatex">\[
-\begin{aligned}
-    &amp;\begin{aligned}
-        \because r_1 
-        &amp;= F^k_{j-1} \\
-        &amp;= F^k_{j-2} + \cdots + F^k_{j-k} + F^k_{j-k-1}
-    \end{aligned}  &amp; (1)\\
-    &amp;\begin{aligned}
-        \text{and } r_k
-        &amp;= F^k_{j} \\
-        &amp;= F^k_{j-1} + F^k_{j-2} + \cdots + F^k_{j-k}
-    \end{aligned}  &amp; (2)\\
-    &amp;\begin{aligned}
-        \therefore r_k - r_1 
-        &amp;= F^k_{j} - F^k_{j-1} \quad \text{ i.e. } (2) - (1)\\
-        &amp;= F^k_{j-2} + \cdots + F^k_{j-k}
-    \end{aligned}  &amp; (3)\\
-    &amp;\begin{aligned}
-        \therefore r_1 - (r_k - r_1)
-        &amp;= F^k_{j-k-1} &gt; 0 \quad \text{ i.e. } (1) - (3) \\
-    \end{aligned} \\
-    &amp;\begin{aligned}
-    \therefore r_1 &gt; r_k - r_1
-    \end{aligned} \\  
-\end{aligned}
-\]</div>
-</details>
-<p>如果我们将现在这个排序后的数列记为 <span class="arithmatex">\(\{r_i'\}\)</span>，则有：</p>
-<div class="arithmatex">\[
-\left\{
-\begin{aligned}
-    r_1' &amp;= r_2 - r_1 \\
-    r_2' &amp;= r_3 - r_1 \\
-    \vdots \\
-    r_{k-1}' &amp;= r_k - r_1 \\
-    r_k' &amp;= r_1
-\end{aligned}
-\right.
-\]</div>
-<p>此时根据我们关于最大最小值的陈述，又有：</p>
-<div class="arithmatex">\[
-\left\{
-\begin{aligned}
-    r_1' &amp;= F^k_{j-2} \\
-    r_k' &amp;= F^k_{j-1}
-\end{aligned}
-\right.
-\]</div>
-<p>于是可以推得：<span class="arithmatex">\(r_2 = r_1 + F^k_{j-2} = F^k_{j-1} + F^k_{j-2}\)</span>。关于 <span class="arithmatex">\(r_3, r_4\)</span>，也是一样的办法，将 <span class="arithmatex">\(r_2\)</span> 的结论迁移到 <span class="arithmatex">\(r_2'\)</span>，再回过头得到 <span class="arithmatex">\(r_3 = r_1 + r_2'= F^k_{j-1} + F^k_{j-2} + F^k_{j-3}\)</span>，以此类推，可以得到最终结论：</p>
-<div class="arithmatex">\[
-\left\{
-\begin{aligned}
-    r_1 &amp;= F^k_{j-1} \\
-    r_2 &amp;= F^k_{j-1} + F^k_{j-2} \\
-    r_3 &amp;= F^k_{j-1} + F^k_{j-2} + F^k_{j-3} \\
-    \vdots \\
-    r_k &amp;= F^k_{j-1} + F^k_{j-2} + ... + F^k_{j-k} = F^k_{j}
-\end{aligned}
-\right.
-\]</div>
-</details>
-<div class="admonition question">
-<p class="admonition-title">思考题</p>
-<p>可以感受思考一下这个特性（考虑 2-way 即可）与黄金比例的关系！</p>
-<p>hint: 如何理解 <span class="arithmatex">\(\frac{a_n}{a_{n-1}} \approx \frac{a_{n-1}}{a_n - a_{n-1}}\)</span> 与这个性质的关系？</p>
-</div>
-<p>当然，刚好能凑上 Fibonacci 的情况自然是少数，对于无法凑上 Fibonacci 的情况，我们可以将多余的部分均匀的分到较多若干 tape 上，以相对的利用 Fibonacci 数列的性质（联系思考题理解）。</p>
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>或许你已经开始产生疑问了，如果这样来做，前面对 <span class="arithmatex">\(\#pass\)</span> 的分析是不是不成立了呢？</p>
-<p>我想应该确实不再完全一样了，但是并不影响我们之后利用那个结论做定性分析，我们只需要知道，采取 Fibonacci 策略来优化会导致 <span class="arithmatex">\(\#pass\)</span> 增多即可。</p>
-</div>
-<hr/>
-<h3 id="k-路内排序优化">k 路内排序优化<a class="headerlink" href="#k-路内排序优化" title="Permanent link">¶</a></h3>
-<p>随着 <span class="arithmatex">\(k\)</span> 的增加，我们不能再像两路归并那样直接输出较小的那个，而是需要维护数据结构来总是输出 k 个中最小的那个——我们用堆来维护每一个 run 在内存中的数据的队首元素（同时也是最小元素），每当堆顶元素被输出，就需要从对应的 run 中读入下一个元素。</p>
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>需要注意，这里的堆是额外维护的，而每次推入堆中的元素都是从对应的 run 的 buffer 中拿的，而不是每次都从硬盘中拿。</p>
-</div>
-<hr/>
-<h4 id="霍夫曼树优化">霍夫曼树优化<a class="headerlink" href="#霍夫曼树优化" title="Permanent link">¶</a></h4>
-<p>当然，我们也可以不使用直接 <span class="arithmatex">\(k\)</span> 路合并，而是采用两两归并的方法，也就是 wiki 中提到的<a href="https://en.wikipedia.org/wiki/K-way_merge_algorithm#Iterative_2-way_merge">迭代归并</a>（注意，该条目中提到的归并并没有说明是外排序背景，但是可以迁移）。 </p>
-<p>假设我们现在有若干个 run，并且我们将要进行两两归并，那么我们可以根据每一个 run 的大小，根据霍夫曼树的规律来进行归并，即总是选最小的两个进行归并。</p>
-<hr/>
-<h3 id="并行优化">并行优化<a class="headerlink" href="#并行优化" title="Permanent link">¶</a></h3>
-<p>这里并行的目标主要是使算法支持数据的读-用-写的流水线，也就是说我们要想办法让读不阻塞用，用不阻塞写。</p>
-<p>先前我们需要先读入数据，<strong>然后</strong>进行排序，排序<strong>完了</strong>再写入磁盘，腾出内存空间以供下一次读入。那为什么会阻塞呢？因为我们没法读一个正在写的数据块，所以我们只需要在不同的数据块读和写就行了。对于 <span class="arithmatex">\(k\)</span>-way 中的每一路，我们都提供两个 input buffer，一个用于写，一个用于排序。当排序 buffer 空了的时候，就和读满了的 input buffer 交换，无缝衔接继续输出。于此同时，刚刚被交换过去的 buffer 则可用于继续读入。</p>
-<p>因此，如果我们执行 direct <span class="arithmatex">\(k\)</span>-way merge，就需要 <span class="arithmatex">\(2k\)</span> 个 input buffer（这里强调 direct 是因为，如果使用 iterative 的话，input buffer 只需要 4 个）。</p>
-<p>而对于输出，我们只需要 2 个 output buffer 交替使用即可，一个用来接收来自排序算法的输出，一个用来将数据写入磁盘。</p>
-<p>但是，并行优化的缺点就是占据了更多的内存空间——原先 <span class="arithmatex">\(k + 1\)</span> 个 buffer 平分的用于处理数据的内存，现在需要被 <span class="arithmatex">\(2k + 2\)</span> 个 buffer 平分，所以每一个 buffer 的大小会变小。进而导致每一次从 disk 中读取的数据变少，所以要读完数据所需要的读取次数就增加，即 seek 次数增加。</p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月31日 21:14:44</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月16日 11:17:25</span>
 <br/>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年6月21日 13:40:59</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月16日 11:17:25</span>
 </small>
 </div>
 <form class="md-feedback" hidden="" name="feedback">
