@@ -1057,6 +1057,17 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sketch">
+    sketch
+  </a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -1065,14 +1076,184 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u2-part-3-死锁--deadlocks-未完成">U2 Part 3: 死锁 | Deadlocks [未完成]<a class="headerlink" href="#u2-part-3-死锁--deadlocks-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 9 个字 </p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1562 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 5 分钟</p>
 </div>
+<h2 id="sketch">sketch<a class="headerlink" href="#sketch" title="Permanent link">¶</a></h2>
+<p>deadlock: a situation in which every process in a set of processes is waiting for an event that can be caused only by another process in the set</p>
+<p>System Model</p>
+<ul>
+<li>资源被分为很多类，当一个线程希望有某个资源时，这个资源的任意实例都可以；</li>
+<li>互斥锁、信号量这种东西也是一种资源，而且是死锁产生的一个热点；</li>
+<li>线程使用资源可以划分为请求、使用、释放三个步骤；<ul>
+<li>请求和释放可能是通过系统调用实现的，</li>
+</ul>
+</li>
+<li>livelock<ul>
+<li>走廊里两人对走，两个人明明可以通过但是总是互相让到同一个方向，然后就被挡住；</li>
+<li>可以通过 trylock() 来描述；</li>
+</ul>
+</li>
+<li>死锁和活锁的一个相同点是，它们都可能只在固定行为的特定情况下发生；</li>
+</ul>
+<p>死锁的条件，必须都成立才行</p>
+<ol>
+<li><strong>Mutual exclusion</strong>. At least one resource must be held in a nonsharable mode; that is, only one thread at a time can use the resource. If another thread requests that resource, the requesting thread must be delayed until the resource has been released. 互斥</li>
+<li><strong>Hold and wait</strong>. A thread must be holding at least one resource and waiting to acquire additional resources that are currently being held by other threads. 持有并等待</li>
+<li><strong>No preemption</strong>. Resources cannot be preempted; that is, a resource can be released only voluntarily by the thread holding it, after that thread has completed its task. 非抢占</li>
+<li><strong>Circular wait</strong>. A set {T0, T1, ..., Tn} of waiting threads must exist such that T0 is waiting for a resource held by T1, T1 is waiting for a resource held by T2, ..., Tn−1 is waiting for a resource held by Tn, and Tn is waiting for a resource held by T0. 循环等待</li>
+<li>四个并不完全独立，有一些互相的暗示关系。</li>
+</ol>
+<p>system resource-allocation graph</p>
+<ul>
+<li>T-&gt;R, T is waiting for R, request edge</li>
+<li>R-&gt;T, R is assigned to T, assignment edge</li>
+<li>T as circle while R as rectangle</li>
+</ul>
+<figure>
+<div class="highlight"><pre><span></span><code>&lt;center&gt; ![](img/24.png) &lt;/center&gt;
+Resource allocation graph.
+</code></pre></div>
+</figure>
+<ul>
+<li>无环 &lt;==&gt; 无死锁；</li>
+<li>有环时，如果环上每个资源都只有一个实例，那么有死锁，否则只构成必要条件；</li>
+<li>这句话的意思是，就算环上的资源不止一个实例，也有可能死锁；</li>
+</ul>
+<p>处理死锁问题的方法</p>
+<ol>
+<li>忽略死锁问题；（？）</li>
+<li>使用某种协议来预防和避免死锁问题的出现；</li>
+<li>deadlock prevention</li>
+<li>deadlock avoidance</li>
+<li>
+<p>允许系统进入死锁状态，但当检测到死锁时我们需要去恢复它；</p>
+</li>
+<li>
+<p>多数操作系统普遍采取第一种方法，即将问题抛给开发者而非由内核来解决；</p>
+</li>
+<li>而开发者避免死锁的方法多数以第二种为方针；</li>
+<li>还有一部分系统（例如 DB），倾向于使用第三种方法；</li>
+</ol>
+<p>死锁预防 | Deadlock Prevention</p>
+<p>死锁预防指破坏之前提到的四个必要条件，只要保证某个条件始终不成立，就可以避免死锁的发生。</p>
+<ul>
+<li>mutual exclusion<ul>
+<li>这个东西显然没法不成立，很多资源天然互斥</li>
+</ul>
+</li>
+<li>hold and wait<ul>
+<li>一次性拿走所需要的所有资源，就不会有“有一部分等一部分”资源的情况，效率显然很低</li>
+</ul>
+</li>
+<li>no preemption<ul>
+<li>拿不到所有的就需要主动释放正占有的</li>
+<li>任务没完成之前就释放资源可能导致任务失败，总之很难实现而且效率很低</li>
+<li>感觉和上面那个分不清到底破坏了哪个，但是毕竟很难区分</li>
+</ul>
+</li>
+<li>circular wait<ul>
+<li>通过给资源编号，规定线程只能按编号递增的顺序申请资源，就不会出现循环等待的情况</li>
+<li>限制很大（限制了添加新的资源、有些逻辑顺序与要求顺序也可能冲突）</li>
+</ul>
+</li>
+</ul>
+<p>死锁避免 | Deadlock Avoidance</p>
+<blockquote>
+<p>死锁预防是保证死锁在逻辑上不会产生；死锁避免是阻止可能产生死锁的情况。</p>
+</blockquote>
+<ul>
+<li>安全状态<ul>
+<li>充要条件：safe sequence</li>
+<li>需要保证 Ti 所需要的资源可以由余下资源和之前的资源已经持有的资源满足</li>
+<li>按照 safe sequence 的顺序分配资源和执行</li>
+<li>在 safe sequence 下，所有资源都足够使用，没必要“争夺”资源</li>
+</ul>
+</li>
+</ul>
+<figure>
+<div class="highlight"><pre><span></span><code>&lt;center&gt; ![](img/25.png) &lt;/center&gt;
+Safe, unsafe, and deadlocked state spaces.
+</code></pre></div>
+</figure>
+<p>! eg "放一个例子"</p>
+<ul>
+<li>资源分配图算法(了解即可)<ul>
+<li>当所有资源都只有一个的时候可以使用</li>
+<li>引入 claim edge，如果未来 Ti 可能需要申请 Rj，那么有一条 Ti-&gt;Rj 的 claim edge</li>
+<li>如果真的分配了，那么改成 assignment edge</li>
+<li>我们需要保证在 Ti 参与算法之前，所有的 claim edge 都已经在图中出现<ul>
+<li>我们可以约束当且仅当 Ti 的所有相关边都是 claim edge 时，Ti 才能进入图</li>
+</ul>
+</li>
+<li>如果将 request edge 从 Ti-&gt;Rj 变为 assignment edge Rj-&gt;Ti 时，图中出现了环（使用图论环检测算法），那么会让图进入 unsafe 状态；反之是 safe 的。如果 safe，则这个分配是允许的</li>
+</ul>
+</li>
+<li>
+<p>银行家算法</p>
+<ul>
+<li>银行家算法支持每个资源类别不止一个的情况，但是效率不如分配图</li>
+<li>每个进程进入以后都需要先声明自己需要（各类资源）最多多少资源</li>
+<li>每次有用户请求资源的时候系统都会检测，这个请求会不会导致系统进入 unsafe 的状态，如果会就需要等待其他进程释放足够多资源以后再允许</li>
+<li>为了实现这个算法，我们需要维护一些数据结构：<ul>
+<li><code>n</code> = number of threads</li>
+<li><code>m</code> = number of resource types</li>
+<li><code>Available[m]</code> = number of available resources of each type</li>
+<li><code>Max[n][m]</code> = maximum demand of each thread</li>
+<li><code>Allocation[n][m]</code> = number of resources of each type currently allocated to each thread</li>
+<li><code>Need[n][m]</code> = remaining resource need of each thread<ul>
+<li><code>Need[i][j] = Max[i][j] - Allocation[i][j]</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Safety Algorithm 步骤：<ul>
+<li>判断系统是否在 safe 状态</li>
+<li><code>Work[m]</code> &lt;- <code>Available[m]</code>, <code>Finish[n]</code> &lt;- False</li>
+<li>找到一个 <code>i</code> 使得：</li>
+<li><code>Finish[i]</code> == False</li>
+<li><code>Need[i]</code> &lt;= <code>Work</code></li>
+<li>如果没有这个 <code>i</code>，则 goto 4</li>
+<li><code>Work</code> &lt;- <code>Work</code> + <code>Allocation[i]</code>, <code>Finish[i]</code> &lt;- True, goto 2（即表示了进程运行结束后，资源会被释放）</li>
+<li>如果所有进程都满足 <code>Finish[i]</code> == True，则系统处于 safe 状态；否则，系统处于 unsafe 状态</li>
+</ul>
+</li>
+<li>
+<p>Resource Request Algorithm</p>
+<ul>
+<li>判断请求是否能被安全地允许（两个步骤，先判断能不能分配，再看分配之后安不安全）</li>
+<li>用 <code>Request[n][m]</code> 表示进程想要请求的资源的数量</li>
+<li>如果 <code>Request[i]</code> &lt;= <code>Need[i]</code>，goto 2；否则，出错，因为它请求的量超过了它之前说的最大预期</li>
+<li>如果 <code>Request[i]</code> &lt;= <code>Available</code>，goto 3，即资源足够；否则，进程必须等待，因为没有足够的资源</li>
+<li>假设系统分配了资源，即 </li>
+<li><code>Available</code> &lt;- <code>Available</code> - <code>Request[i]</code></li>
+<li><code>Allocation[i]</code> &lt;- <code>Allocation[i]</code> + <code>Request[i]</code></li>
+<li><code>Need[i]</code> &lt;- <code>Need[i]</code> - <code>Request[i]</code></li>
+<li>如果这样之后的状态是 safe 的（上面那个算法），那么就允许这个请求；否则，进程必须等待，因为没有足够的资源</li>
+</ul>
+</li>
+<li>
+<p>有一个关键问题是，为什么这里看似“贪心”的做法是成立的？</p>
+<ul>
+<li>考虑一个进程，释放的资源总是不比索取的资源少，所以贪心的使用不会带来问题。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>缺陷： from Wiki</p>
+<p>Like the other algorithms, the Banker's algorithm has some limitations when implemented. Specifically, it needs to know how much of each resource a process could possibly request. In most systems, this information is unavailable, making it impossible to implement the Banker's algorithm. Also, it is unrealistic to assume that the number of processes is static since in most systems the number of processes varies dynamically. Moreover, the requirement that a process will eventually release all its resources (when the process terminates) is sufficient for the correctness of the algorithm, however it is not sufficient for a practical system. Waiting for hours (or even days) for resources to be released is usually not acceptable.</p>
+</blockquote>
+<p>死锁检测 | Deadlock Detection</p>
+<ul>
+<li>如果系统既没有预防也没有避免死锁，那么可能需要一个死锁检测和恢复机制</li>
+</ul>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月16日 11:17:25</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月21日 09:14:00</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月16日 11:17:25</span>

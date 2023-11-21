@@ -1315,21 +1315,21 @@
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">reader</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">            </span><span class="c1">// ┐</span>
-<span class="hll"><span class="w">    </span><span class="n">read_count</span><span class="o">++</span><span class="p">;</span><span class="w">           </span><span class="c1">// ├ obtain `mutex` to</span>
-</span><span class="hll"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">read_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// │ increase `read_count`</span>
-</span><span class="hll"><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">rw_mutex</span><span class="p">);</span><span class="w">     </span><span class="c1">// │ ┐ </span>
+<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">            </span><span class="c1">//   ┐</span>
+<span class="hll"><span class="w">    </span><span class="n">read_count</span><span class="o">++</span><span class="p">;</span><span class="w">           </span><span class="c1">//   ├ obtain `mutex` to increase</span>
+</span><span class="hll"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">read_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">//   │ `read_count`</span>
+</span><span class="hll"><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">rw_mutex</span><span class="p">);</span><span class="w">     </span><span class="c1">// ┐ │</span>
 </span><span class="hll"><span class="w">    </span><span class="p">}</span><span class="w">                       </span><span class="c1">// │ │</span>
-</span><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">          </span><span class="c1">// ┘ │</span>
-<span class="w">                            </span><span class="c1">//   │</span>
-<span class="hll"><span class="w">    </span><span class="cm">/* critical section */</span><span class="w">  </span><span class="c1">//   ├ readers share `rw_mutex`</span>
-</span><span class="w">                            </span><span class="c1">//   │ to read critical resource</span>
-<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">            </span><span class="c1">// ┐ │</span>
-<span class="hll"><span class="w">    </span><span class="n">read_count</span><span class="o">--</span><span class="p">;</span><span class="w">           </span><span class="c1">// │ │</span>
-</span><span class="hll"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">read_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// │ │</span>
-</span><span class="hll"><span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">rw_mutex</span><span class="p">);</span><span class="w">   </span><span class="c1">// │ ┘</span>
-</span><span class="hll"><span class="w">    </span><span class="p">}</span><span class="w">                       </span><span class="c1">// ├ obtain `mutex` to </span>
-</span><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">          </span><span class="c1">// ┘ decrease `read_count`</span>
+</span><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">          </span><span class="c1">// │ ┘</span>
+<span class="w">                            </span><span class="c1">// ├── readers share `rw_mutex` to</span>
+<span class="hll"><span class="w">    </span><span class="cm">/* critical section */</span><span class="w">  </span><span class="c1">// │   read critical resource</span>
+</span><span class="w">                            </span><span class="c1">// │</span>
+<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">            </span><span class="c1">// │ ┐</span>
+<span class="hll"><span class="w">    </span><span class="n">read_count</span><span class="o">--</span><span class="p">;</span><span class="w">           </span><span class="c1">// │ ├ obtain `mutex` to decrease</span>
+</span><span class="hll"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">read_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// │ │ `read_count`</span>
+</span><span class="hll"><span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">rw_mutex</span><span class="p">);</span><span class="w">   </span><span class="c1">// ┘ │</span>
+</span><span class="hll"><span class="w">    </span><span class="p">}</span><span class="w">                       </span><span class="c1">//   │</span>
+</span><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">          </span><span class="c1">//   ┘</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>逻辑上，释放 <code>rw_mutex</code> 的 reader 不需要是申请 <code>rw_mutex</code> 的 reader，这也印证了这个锁维护的是整个 readers 群体的存在与否，而不是“某个 reader”的存在与否。</p>
@@ -1376,7 +1376,10 @@
 <span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">]);</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>但上述代码存在问题。考虑这种情况：所有哲学家在第一帧都想要干饭，此时它们同时运行完了第 2 行（例如，同时拿起了右手边的筷子），这时我们发现，所有筷子都被占有，没有任何一个人能等到下一个筷子，此时，哲学家们发生了死锁。</p>
+<div class="admonition bug">
+<p class="admonition-title">上述方案存在问题！</p>
+<p>考虑这种情况：所有哲学家在第一帧都想要干饭，此时它们同时运行完了第 2 行（例如，同时拿起了右手边的筷子），这时我们发现，所有筷子都被占有，没有任何一个人能等到下一个筷子，此时，哲学家们发生了死锁。</p>
+</div>
 <p>对于这个死锁，书中给出了三种解决方案：</p>
 <ol>
 <li>允许最多 4 位哲学家同时获取筷子；</li>
@@ -1395,7 +1398,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月16日 11:17:25</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月21日 09:14:00</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月31日 21:14:44</span>
