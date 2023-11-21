@@ -21,7 +21,7 @@
 
     - Operating System Concepts (^10^th edition)
     - 2024 操作系统考研复习指导（王道）
-    - [咸鱼暄的操作系统笔记](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/1_intro/)
+    - [咸鱼暄的操作系统笔记](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/1_intro/){target="_blank"}
 
 !!! note "list"
     - [x] [Unit 0: 总览 | Overview](Unit0.md)
@@ -29,7 +29,7 @@
     - [ ] Unit 2: 同步 | Synchronization
         - [x] [Part 1: 同步工具 | Synchronization Tools](Unit2-Part1.md)
         - [x] [Part 2: 经典同步例子 | Synchronization Problems Examples](Unit2-Part2.md)
-        - [x] [Part 3: 死锁 | Deadlocks](Unit2-Part3.md)
+        - [ ] [Part 3: 死锁 | Deadlocks](Unit2-Part3.md)
     - [ ] [Unit 3: 内存管理 | Memory Management](Unit3.md)
     - [ ] [Unit 4: 存储管理 | Storage Management](Unit4.md)
     - [ ] [Unit 5: 文件系统 | File System](Unit5.md)
