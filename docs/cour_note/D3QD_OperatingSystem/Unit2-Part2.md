@@ -94,21 +94,21 @@ writer() {
 
 ```cpp title="reader's code"  linenums="1" hl_lines="3-6 9 12-15"
 reader() {
-    wait(mutex);            // ┐
-    read_count++;           // ├ obtain `mutex` to
-    if (read_count == 1) {  // │ increase `read_count`
-        wait(rw_mutex);     // │ ┐ 
+    wait(mutex);            //   ┐
+    read_count++;           //   ├ obtain `mutex` to increase
+    if (read_count == 1) {  //   │ `read_count`
+        wait(rw_mutex);     // ┐ │
     }                       // │ │
-    signal(mutex);          // ┘ │
-                            //   │
-    /* critical section */  //   ├ readers share `rw_mutex`
-                            //   │ to read critical resource
-    wait(mutex);            // ┐ │
-    read_count--;           // │ │
-    if (read_count == 0) {  // │ │
-        signal(rw_mutex);   // │ ┘
-    }                       // ├ obtain `mutex` to 
-    signal(mutex);          // ┘ decrease `read_count`
+    signal(mutex);          // │ ┘
+                            // ├── readers share `rw_mutex` to
+    /* critical section */  // │   read critical resource
+                            // │
+    wait(mutex);            // │ ┐
+    read_count--;           // │ ├ obtain `mutex` to decrease
+    if (read_count == 0) {  // │ │ `read_count`
+        signal(rw_mutex);   // ┘ │
+    }                       //   │
+    signal(mutex);          //   ┘
 }
 ```
 
@@ -157,7 +157,9 @@ process() {
 }
 ```
 
-但上述代码存在问题。考虑这种情况：所有哲学家在第一帧都想要干饭，此时它们同时运行完了第 2 行（例如，同时拿起了右手边的筷子），这时我们发现，所有筷子都被占有，没有任何一个人能等到下一个筷子，此时，哲学家们发生了死锁。
+!!! bug "上述方案存在问题！"
+
+    考虑这种情况：所有哲学家在第一帧都想要干饭，此时它们同时运行完了第 2 行（例如，同时拿起了右手边的筷子），这时我们发现，所有筷子都被占有，没有任何一个人能等到下一个筷子，此时，哲学家们发生了死锁。
 
 对于这个死锁，书中给出了三种解决方案：
 
