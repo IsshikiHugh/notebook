@@ -198,17 +198,17 @@
 
 !!! section "algorithm"
 
-   1. 初始化：
-      - `Work[m]` <- `Available[m]`，`Work[m]` 表示当前状态的剩余资源量；
-      - `Finish[n]` <- `false`，表示所有进程/线程都还没运行；
-   2. 找到一个 `i` 使得：
-      - `(Finish[i] == false) && (Need[i] <= Work)`（注意，第二个 term 是 vector 比较，要求每一项都满足），满足该条件表示该进程/线程所需要的资源可以被满足；
-      - 如果没有这个 `i`，则 goto 3.；
-      - 如果有这个 `i`，则更新状态：
-           - `Finish[i]` <- `true`，表示该进程/线程执行完毕；
-           - `Work` <- `Work + Allocation[i]`，表示进程/线程执行完毕后释放资源；
-           - repeat 2.；
-   3. 如果所有进程/线程都满足 `Finish[i]` == `true`，则系统处于安全状态，否则系统处于不安全状态；
+    1. 初始化：
+       - `Work[m]` <- `Available[m]`，`Work[m]` 表示当前状态的剩余资源量；
+       - `Finish[n]` <- `false`，表示所有进程/线程都还没运行；
+    2. 找到一个 `i` 使得：
+       - `(Finish[i] == false) && (Need[i] <= Work)`（注意，第二个 term 是 vector 比较，要求每一项都满足），满足该条件表示该进程/线程所需要的资源可以被满足；
+       - 如果没有这个 `i`，则 goto 3.；
+       - 如果有这个 `i`，则更新状态：
+            - `Finish[i]` <- `true`，表示该进程/线程执行完毕；
+            - `Work` <- `Work + Allocation[i]`，表示进程/线程执行完毕后释放资源；
+            - repeat 2.；
+    3. 如果所有进程/线程都满足 `Finish[i] == true`，则系统处于安全状态，否则系统处于不安全状态；
 
 #### 资源请求算法
 
@@ -231,79 +231,56 @@
         - 如果当前状态是安全的，则请求被接受；
         - 如果当前状态是不安全的，请求不被允许，同时需要将这些矩阵回滚到模拟之前的状态[^3]；
 
+!!! warning "limitations"
+
+    > Like the other algorithms, the Banker's algorithm has some limitations when implemented. 
+    > 
+    > Specifically, it needs to know how much of each resource a process could possibly request. In most systems, this information is unavailable, making it impossible to implement the Banker's algorithm. 
+    > 
+    > Also, it is unrealistic to assume that the number of processes is static since in most systems the number of processes varies dynamically. 
+    > 
+    > Moreover, the requirement that a process will eventually release all its resources (when the process terminates) is sufficient for the correctness of the algorithm, however it is not sufficient for a practical system. Waiting for hours (or even days) for resources to be released is usually not acceptable.
+    > 
+    > From [Banker's algorithm | Wikipedia](https://en.wikipedia.org/wiki/Banker%27s_algorithm){target="_blank"}.
+
 ## 死锁检测
 
-deadlock detection
+**死锁检测(deadlock detection)**和**死锁解除(deadlock recovery)**搭配使用，其核心思路是不对资源请求做过多约束，而是在检测到系统中存在死锁时，去处理死锁。其中的第一步就是检测到死锁。
 
+### 面向单实例资源
 
+**等待图(wait-for graph)**是[资源分配图](#资源分配图){target="_blank"}的化简，该算法只能解决每个资源类别中**只有一个实例**的情况。
+
+在[资源分配图](#资源分配图){target="_blank"}一节中我们知道，对于每个资源类别中只有一个实例的情况，只要有环就会有死锁，而只要能检测这个环，就能检测死锁。而实际的资源分配图中资源和进程/线程的节点从是成对出现在环中，而 wait-for graph 则是抓住主要矛盾，只保留进程/线程的节点（请读者思考为什么可以这样）以减小点的数量，提高效率。
+
+我们将[资源分配图](#资源分配图){target="_blank"}一节中的资源分配图改为等待图，即为：
+
+<figure markdown>
+    <center> ![](img/26.png) </center>
+    Wait-for graph.
+</figure>
+
+通过动态地维护这个 wait-for graph 和定期调用一个环检测算法，来实现死锁检测。
+
+显而易见的，就算抛开它只支持每个资源类别仅能有一个实例的缺点，频繁地维护图和定期调用环检测算法，都会带来较大的开销。所以，该方法其实表现并不理想。
+
+### 面向多实例资源
+
+从单实例向多实例的迁移思路和[死锁避免](#死锁避免){target="_blank"}中使用的迁移思路是类似的，使用安全状态来判断而非找环。因而这个算法的实现和[银行家算法](#银行家算法){target="_blank"}的实现也是类似的（但是有一定区别，参考书本 P339），jjm 表示一般只考银行家算法，所以我在这里也不讲这个算法了。
 
 ## 死锁解除
 
-deadlock recovery
+**死锁解除(deadlock recovery)**虽然是 "recovery"，但是实际上是破坏死锁而并没有恢复到一个死锁不存在的状态，所以翻译为解除。对于已经产生的死锁，至少得死一个，我们需要作出决断。书本中提到了终止和资源抢占两种方法，但我认为本质上是一样的，所以并列地给出：
 
-
-
+1. 都别活，杀死所有死锁中的进程/线程；
+    - 开销很大，因为所有这些工作都相当于白费了，而且并不是随随便便就能杀的；
+2. 一个一个杀，杀到没有死锁；
+    - 以特定顺序杀这些进程，可以优化表现，例如按照优先级从低到高杀； 
+3. 留活命，但是需要回滚部分进程，强行抢占占有的资源；
+    - 很难界定应该回滚到哪里，回滚也难实现，为了回滚也需要存储更多的信息，开销很大；
+    - 又看到抢占这两个字，所以这里也会有饥饿问题，解决方法也和之前一样，通过考虑优先级，并将被抢占（被迫回滚）的次数纳入优先级的考虑范畴。
 
 
 [^1]: [What's the difference between deadlock and livelock?](https://stackoverflow.com/a/6155978/22331129){target="_blank"}
 [^2]: [Deadlock Prevention](https://www.javatpoint.com/os-deadlock-prevention){target="_blank"} 一文中提到了使用**假脱机(spooling)**的方法来解除打印机资源的互斥性。
-[^3]: [Banker's Algorithm in Operating System (OS)](https://www.javatpoint.com/bankers-algorithm-in-operating-system){target="_blank"} 一文中提到了要恢复矩阵状态，书上貌似没写。
-
-## sketch
-
-死锁避免 | Deadlock Avoidance
-
-! eg "放一个例子"
-
-- 银行家算法
-    - Resource Request Algorithm
-        - 判断请求是否能被安全地允许（两个步骤，先判断能不能分配，再看分配之后安不安全）
-        - 用 `Request[n][m]` 表示进程/线程想要请求的资源的数量
-        1. 如果 `Request[i]` <= `Need[i]`，goto 2；否则，出错，因为它请求的量超过了它之前说的最大预期
-        2. 如果 `Request[i]` <= `Available`，goto 3，即资源足够；否则，进程/线程必须等待，因为没有足够的资源
-        3. 假设系统分配了资源，即 
-           - `Available` <- `Available` - `Request[i]`
-           - `Allocation[i]` <- `Allocation[i]` + `Request[i]`
-           - `Need[i]` <- `Need[i]` - `Request[i]`
-
-         - 如果这样之后的状态是安全的，那么就允许这个请求；否则，进程/线程必须等待，因为没有足够的资源；
-         - 如果这样之后的状态是不安全的，请求不被允许，同时需要将这些矩阵回滚到模拟之前的状态；
-
-    - 有一个关键问题是，为什么这里看似“贪心”的做法是成立的？
-        - 考虑一个进程/线程，释放的资源总是不比索取的资源少，所以贪心的使用不会带来问题。
-
-> 缺陷： from Wiki
-> 
-> Like the other algorithms, the Banker's algorithm has some limitations when implemented. Specifically, it needs to know how much of each resource a process could possibly request. In most systems, this information is unavailable, making it impossible to implement the Banker's algorithm. Also, it is unrealistic to assume that the number of processes is static since in most systems the number of processes varies dynamically. Moreover, the requirement that a process will eventually release all its resources (when the process terminates) is sufficient for the correctness of the algorithm, however it is not sufficient for a practical system. Waiting for hours (or even days) for resources to be released is usually not acceptable.
-
-死锁检测 | Deadlock Detection
-
-- 如果系统既没有预防也没有避免死锁，那么可能需要一个死锁检测和恢复机制
-
-- 对于一个资源类型只有一个实例的情况
-    - 使用 wait for graph：折叠资源分配图里适当的边，并删掉资源（只有圆形）
-    - 系统需要维护 wait for graph，并时不时调用算法检测环，如果有环，则说明有死锁
-- 对于一个资源类型可以有多个实例的情况
-    - 类似银行家算法（一般只考银行家算法）
-
-- 算法使用
-    - 检测算法的使用要多频繁？
-    - 出现死锁以后有多少进程/线程要 roll back？
-
-死锁解除 | Deadlock Recovery
-
-- 终止
-    - 不容易，开销都很大
-    - 终止所有死锁进程/线程
-    - 一个一个终止，直到死锁消失
-        - 考虑终止顺序
-- 抢占资源
-    - 抢占资源需要考虑的几个问题：
-        - 选择受害者
-            - 考虑顺序
-        - 回滚
-            - 资源被抢占之前需要让进程/线程回到一个相对安全的状态下。但是由于‘安全’难以界定，所以一般都是直接杀死。如果想要更经济地回滚到比较新的状态，则需要操作系统维护更多资源以支持恢复。
-        - 饥饿避免
-            - 回滚次数纳入优先级的考虑范畴
-
-
+[^3]: [Banker's Algorithm in Operating System (OS)](https://www.javatpoint.com/bankers-algorithm-in-operating-system){target="_blank"} 一文中提到了要恢复矩阵状态，书上貌似没写这个。
