@@ -948,15 +948,24 @@
 <a class="md-nav__link" href="#死锁检测">
     死锁检测
   </a>
+<nav aria-label="死锁检测" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#面向单实例资源">
+    面向单实例资源
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#面向多实例资源">
+    面向多实例资源
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#死锁解除">
     死锁解除
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#sketch">
-    sketch
   </a>
 </li>
 </ul>
@@ -1235,15 +1244,24 @@
 <a class="md-nav__link" href="#死锁检测">
     死锁检测
   </a>
+<nav aria-label="死锁检测" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#面向单实例资源">
+    面向单实例资源
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#面向多实例资源">
+    面向多实例资源
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#死锁解除">
     死锁解除
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#sketch">
-    sketch
   </a>
 </li>
 </ul>
@@ -1255,7 +1273,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u2-part-3-死锁--deadlocks-未完成">U2 Part 3: 死锁 | Deadlocks [未完成]<a class="headerlink" href="#u2-part-3-死锁--deadlocks-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4769 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 16 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 5218 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 17 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">引入</p>
@@ -1468,26 +1486,20 @@
 <p>具体来说，安全算法的步骤如下：</p>
 <div class="admonition section">
 <p class="admonition-title">algorithm</p>
-</div>
 <ol>
-<li>初始化：<ul>
+<li>初始化：</li>
 <li><code>Work[m]</code> &lt;- <code>Available[m]</code>，<code>Work[m]</code> 表示当前状态的剩余资源量；</li>
 <li><code>Finish[n]</code> &lt;- <code>false</code>，表示所有进程/线程都还没运行；</li>
-</ul>
-</li>
-<li>找到一个 <code>i</code> 使得：<ul>
+<li>找到一个 <code>i</code> 使得：</li>
 <li><code>(Finish[i] == false) &amp;&amp; (Need[i] &lt;= Work)</code>（注意，第二个 term 是 vector 比较，要求每一项都满足），满足该条件表示该进程/线程所需要的资源可以被满足；</li>
 <li>如果没有这个 <code>i</code>，则 goto 3.；</li>
-<li>如果有这个 <code>i</code>，则更新状态：<ul>
-<li><code>Finish[i]</code> &lt;- <code>true</code>，表示该进程/线程执行完毕；</li>
-<li><code>Work</code> &lt;- <code>Work + Allocation[i]</code>，表示进程/线程执行完毕后释放资源；</li>
-<li>repeat 2.；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>如果所有进程/线程都满足 <code>Finish[i]</code> == <code>true</code>，则系统处于安全状态，否则系统处于不安全状态；</li>
+<li>如果有这个 <code>i</code>，则更新状态：
+        - <code>Finish[i]</code> &lt;- <code>true</code>，表示该进程/线程执行完毕；
+        - <code>Work</code> &lt;- <code>Work + Allocation[i]</code>，表示进程/线程执行完毕后释放资源；
+        - repeat 2.；</li>
+<li>如果所有进程/线程都满足 <code>Finish[i] == true</code>，则系统处于安全状态，否则系统处于不安全状态；</li>
 </ol>
+</div>
 <h4 id="资源请求算法">资源请求算法<a class="headerlink" href="#资源请求算法" title="Permanent link">¶</a></h4>
 <p>有了<a href="#安全算法" target="_blank">安全算法</a>作为基础，我们就可以在它的基础上，判断某个资源请求是否会导致系统进入不安全状态，进而得到完整的银行家算法了。</p>
 <p><a href="#安全算法" target="_blank">安全算法</a>通过模拟的方式判断一个状态是不是安全状态，而资源请求算法则是负责维护这个“状态”，并根据<a href="#安全算法" target="_blank">安全算法</a>返回的结果来判断某个请求是否应当被接受。</p>
@@ -1511,105 +1523,48 @@
 </li>
 </ol>
 </div>
-<h2 id="死锁检测">死锁检测<a class="headerlink" href="#死锁检测" title="Permanent link">¶</a></h2>
-<p>deadlock detection</p>
-<h2 id="死锁解除">死锁解除<a class="headerlink" href="#死锁解除" title="Permanent link">¶</a></h2>
-<p>deadlock recovery</p>
-<h2 id="sketch">sketch<a class="headerlink" href="#sketch" title="Permanent link">¶</a></h2>
-<p>死锁避免 | Deadlock Avoidance</p>
-<p>! eg "放一个例子"</p>
-<ul>
-<li>
-<p>银行家算法</p>
-<ul>
-<li>
-<p>Resource Request Algorithm</p>
-<ul>
-<li>判断请求是否能被安全地允许（两个步骤，先判断能不能分配，再看分配之后安不安全）</li>
-<li>用 <code>Request[n][m]</code> 表示进程/线程想要请求的资源的数量</li>
-<li>如果 <code>Request[i]</code> &lt;= <code>Need[i]</code>，goto 2；否则，出错，因为它请求的量超过了它之前说的最大预期</li>
-<li>如果 <code>Request[i]</code> &lt;= <code>Available</code>，goto 3，即资源足够；否则，进程/线程必须等待，因为没有足够的资源</li>
-<li>假设系统分配了资源，即 </li>
-<li><code>Available</code> &lt;- <code>Available</code> - <code>Request[i]</code></li>
-<li><code>Allocation[i]</code> &lt;- <code>Allocation[i]</code> + <code>Request[i]</code></li>
-<li>
-<p><code>Need[i]</code> &lt;- <code>Need[i]</code> - <code>Request[i]</code></p>
-</li>
-<li>
-<p>如果这样之后的状态是安全的，那么就允许这个请求；否则，进程/线程必须等待，因为没有足够的资源；</p>
-</li>
-<li>如果这样之后的状态是不安全的，请求不被允许，同时需要将这些矩阵回滚到模拟之前的状态；</li>
-</ul>
-</li>
-<li>
-<p>有一个关键问题是，为什么这里看似“贪心”的做法是成立的？</p>
-<ul>
-<li>考虑一个进程/线程，释放的资源总是不比索取的资源少，所以贪心的使用不会带来问题。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<div class="admonition warning">
+<p class="admonition-title">limitations</p>
 <blockquote>
-<p>缺陷： from Wiki</p>
-<p>Like the other algorithms, the Banker's algorithm has some limitations when implemented. Specifically, it needs to know how much of each resource a process could possibly request. In most systems, this information is unavailable, making it impossible to implement the Banker's algorithm. Also, it is unrealistic to assume that the number of processes is static since in most systems the number of processes varies dynamically. Moreover, the requirement that a process will eventually release all its resources (when the process terminates) is sufficient for the correctness of the algorithm, however it is not sufficient for a practical system. Waiting for hours (or even days) for resources to be released is usually not acceptable.</p>
+<p>Like the other algorithms, the Banker's algorithm has some limitations when implemented. </p>
+<p>Specifically, it needs to know how much of each resource a process could possibly request. In most systems, this information is unavailable, making it impossible to implement the Banker's algorithm. </p>
+<p>Also, it is unrealistic to assume that the number of processes is static since in most systems the number of processes varies dynamically. </p>
+<p>Moreover, the requirement that a process will eventually release all its resources (when the process terminates) is sufficient for the correctness of the algorithm, however it is not sufficient for a practical system. Waiting for hours (or even days) for resources to be released is usually not acceptable.</p>
+<p>From <a href="https://en.wikipedia.org/wiki/Banker%27s_algorithm" target="_blank">Banker's algorithm | Wikipedia</a>.</p>
 </blockquote>
-<p>死锁检测 | Deadlock Detection</p>
-<ul>
-<li>
-<p>如果系统既没有预防也没有避免死锁，那么可能需要一个死锁检测和恢复机制</p>
-</li>
-<li>
-<p>对于一个资源类型只有一个实例的情况</p>
-<ul>
-<li>使用 wait for graph：折叠资源分配图里适当的边，并删掉资源（只有圆形）</li>
-<li>系统需要维护 wait for graph，并时不时调用算法检测环，如果有环，则说明有死锁</li>
+</div>
+<h2 id="死锁检测">死锁检测<a class="headerlink" href="#死锁检测" title="Permanent link">¶</a></h2>
+<p><strong>死锁检测(deadlock detection)</strong>和<strong>死锁解除(deadlock recovery)</strong>搭配使用，其核心思路是不对资源请求做过多约束，而是在检测到系统中存在死锁时，去处理死锁。其中的第一步就是检测到死锁。</p>
+<h3 id="面向单实例资源">面向单实例资源<a class="headerlink" href="#面向单实例资源" title="Permanent link">¶</a></h3>
+<p><strong>等待图(wait-for graph)</strong>是<a href="#资源分配图" target="_blank">资源分配图</a>的化简，该算法只能解决每个资源类别中<strong>只有一个实例</strong>的情况。</p>
+<p>在<a href="#资源分配图" target="_blank">资源分配图</a>一节中我们知道，对于每个资源类别中只有一个实例的情况，只要有环就会有死锁，而只要能检测这个环，就能检测死锁。而实际的资源分配图中资源和进程/线程的节点从是成对出现在环中，而 wait-for graph 则是抓住主要矛盾，只保留进程/线程的节点（请读者思考为什么可以这样）以减小点的数量，提高效率。</p>
+<p>我们将<a href="#资源分配图" target="_blank">资源分配图</a>一节中的资源分配图改为等待图，即为：</p>
+<figure>
+<div class="highlight"><pre><span></span><code>&lt;center&gt; ![](img/26.png) &lt;/center&gt;
+Wait-for graph.
+</code></pre></div>
+</figure>
+<p>通过动态地维护这个 wait-for graph 和定期调用一个环检测算法，来实现死锁检测。</p>
+<p>显而易见的，就算抛开它只支持每个资源类别仅能有一个实例的缺点，频繁地维护图和定期调用环检测算法，都会带来较大的开销。所以，该方法其实表现并不理想。</p>
+<h3 id="面向多实例资源">面向多实例资源<a class="headerlink" href="#面向多实例资源" title="Permanent link">¶</a></h3>
+<p>从单实例向多实例的迁移思路和<a href="#死锁避免" target="_blank">死锁避免</a>中使用的迁移思路是类似的，使用安全状态来判断而非找环。因而这个算法的实现和<a href="#银行家算法" target="_blank">银行家算法</a>的实现也是类似的（但是有一定区别，参考书本 P339），jjm 表示一般只考银行家算法，所以我在这里也不讲这个算法了。</p>
+<h2 id="死锁解除">死锁解除<a class="headerlink" href="#死锁解除" title="Permanent link">¶</a></h2>
+<p><strong>死锁解除(deadlock recovery)</strong>虽然是 "recovery"，但是实际上是破坏死锁而并没有恢复到一个死锁不存在的状态，所以翻译为解除。对于已经产生的死锁，至少得死一个，我们需要作出决断。书本中提到了终止和资源抢占两种方法，但我认为本质上是一样的，所以并列地给出：</p>
+<ol>
+<li>都别活，杀死所有死锁中的进程/线程；<ul>
+<li>开销很大，因为所有这些工作都相当于白费了，而且并不是随随便便就能杀的；</li>
 </ul>
 </li>
-<li>
-<p>对于一个资源类型可以有多个实例的情况</p>
-<ul>
-<li>类似银行家算法（一般只考银行家算法）</li>
+<li>一个一个杀，杀到没有死锁；<ul>
+<li>以特定顺序杀这些进程，可以优化表现，例如按照优先级从低到高杀； </li>
 </ul>
 </li>
-<li>
-<p>算法使用</p>
-<ul>
-<li>检测算法的使用要多频繁？</li>
-<li>出现死锁以后有多少进程/线程要 roll back？</li>
+<li>留活命，但是需要回滚部分进程，强行抢占占有的资源；<ul>
+<li>很难界定应该回滚到哪里，回滚也难实现，为了回滚也需要存储更多的信息，开销很大；</li>
+<li>又看到抢占这两个字，所以这里也会有饥饿问题，解决方法也和之前一样，通过考虑优先级，并将被抢占（被迫回滚）的次数纳入优先级的考虑范畴。</li>
 </ul>
 </li>
-</ul>
-<p>死锁解除 | Deadlock Recovery</p>
-<ul>
-<li>终止<ul>
-<li>不容易，开销都很大</li>
-<li>终止所有死锁进程/线程</li>
-<li>一个一个终止，直到死锁消失<ul>
-<li>考虑终止顺序</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>抢占资源<ul>
-<li>抢占资源需要考虑的几个问题：<ul>
-<li>选择受害者<ul>
-<li>考虑顺序</li>
-</ul>
-</li>
-<li>回滚<ul>
-<li>资源被抢占之前需要让进程/线程回到一个相对安全的状态下。但是由于‘安全’难以界定，所以一般都是直接杀死。如果想要更经济地回滚到比较新的状态，则需要操作系统维护更多资源以支持恢复。</li>
-</ul>
-</li>
-<li>饥饿避免<ul>
-<li>回滚次数纳入优先级的考虑范畴</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+</ol>
 <div class="footnote">
 <hr/>
 <ol>
@@ -1620,7 +1575,7 @@
 <p><a href="https://www.javatpoint.com/os-deadlock-prevention" target="_blank">Deadlock Prevention</a> 一文中提到了使用<strong>假脱机(spooling)</strong>的方法来解除打印机资源的互斥性。 <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
 </li>
 <li id="fn:3">
-<p><a href="https://www.javatpoint.com/bankers-algorithm-in-operating-system" target="_blank">Banker's Algorithm in Operating System (OS)</a> 一文中提到了要恢复矩阵状态，书上貌似没写。 <a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">↩</a></p>
+<p><a href="https://www.javatpoint.com/bankers-algorithm-in-operating-system" target="_blank">Banker's Algorithm in Operating System (OS)</a> 一文中提到了要恢复矩阵状态，书上貌似没写这个。 <a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">↩</a></p>
 </li>
 </ol>
 </div>
@@ -1629,7 +1584,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月21日 19:21:49</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月21日 20:03:17</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月16日 11:17:25</span>
