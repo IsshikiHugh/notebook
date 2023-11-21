@@ -1076,7 +1076,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u2-part-3-死锁--deadlocks-未完成">U2 Part 3: 死锁 | Deadlocks [未完成]<a class="headerlink" href="#u2-part-3-死锁--deadlocks-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1562 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 5 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1865 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 6 分钟</p>
 </div>
 <h2 id="sketch">sketch<a class="headerlink" href="#sketch" title="Permanent link">¶</a></h2>
 <p>deadlock: a situation in which every process in a set of processes is waiting for an event that can be caused only by another process in the set</p>
@@ -1246,14 +1246,66 @@ Safe, unsafe, and deadlocked state spaces.
 </blockquote>
 <p>死锁检测 | Deadlock Detection</p>
 <ul>
-<li>如果系统既没有预防也没有避免死锁，那么可能需要一个死锁检测和恢复机制</li>
+<li>
+<p>如果系统既没有预防也没有避免死锁，那么可能需要一个死锁检测和恢复机制</p>
+</li>
+<li>
+<p>对于一个资源类型只有一个实例的情况</p>
+<ul>
+<li>使用 wait for graph：折叠资源分配图里适当的边，并删掉资源（只有圆形）</li>
+<li>系统需要维护 wait for graph，并时不时调用算法检测环，如果有环，则说明有死锁</li>
+</ul>
+</li>
+<li>
+<p>对于一个资源类型可以有多个实例的情况</p>
+<ul>
+<li>类似银行家算法（一般只考银行家算法）</li>
+</ul>
+</li>
+<li>
+<p>算法使用</p>
+<ul>
+<li>检测算法的使用要多频繁？</li>
+<li>出现死锁以后有多少进程要 roll back？</li>
+</ul>
+</li>
+</ul>
+<p>死锁解除 | Deadlock Recovery</p>
+<ul>
+<li>终止<ul>
+<li>不容易，开销都很大</li>
+<li>终止所有死锁进程</li>
+<li>一个一个终止，直到死锁消失<ul>
+<li>考虑终止顺序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>抢占资源<ul>
+<li>抢占资源需要考虑的几个问题：<ul>
+<li>选择受害者<ul>
+<li>考虑顺序</li>
+</ul>
+</li>
+<li>回滚<ul>
+<li>资源被抢占之前需要让进程回到一个相对安全的状态下。但是由于‘安全’难以界定，所以一般都是直接杀死。如果想要更经济地回滚到比较新的状态，则需要操作系统维护更多资源以支持恢复。</li>
+</ul>
+</li>
+<li>饥饿避免<ul>
+<li>回滚次数纳入优先级的考虑范畴</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月21日 09:14:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月21日 09:36:50</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月16日 11:17:25</span>
