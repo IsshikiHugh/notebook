@@ -159,6 +159,7 @@
 于是，在动态过程中，资源分配图按照如下规则反应分配过程：
 
 1. 进程/线程 $T_i$ 被添加到资源分配图中时候，需要连好**所有**相关的 claim edge；
+    - > 要求最初就知道需要的所有资源，这也构成这类方法的一个局限性；
 2. 进程/线程 $T_i$ 申请资源 $R_j$ 时候，如果这条边变为 assignment edge 不会导致成环，则将 claim edge 转化为一条 request edge $T_i \rightarrow R_j$；
     - > 请注意，这里需要判断的是 assignment edge，而转化的是 request edge；
 3. 进程/线程 $T_i$ 获得资源 $R_j$ 时候，将 request edge 转化为一条 allocation edge $R_j \rightarrow T_i$；
@@ -170,9 +171,65 @@
 
 **前置**：[安全状态与不安全状态](#安全状态与不安全状态){target="_blank"}！
 
+**银行家算法(Banker's algorithm)**弥补了[资源分配图算法](#资源分配图算法){target="_blank"}只适用于每个资源类别中都只有一个实例的情况的缺陷，它支持每个资源类别不止一个的情况，但是效率不如分配图算法。类似于[资源分配图算法](#资源分配图算法){target="_blank"}需要在最开始给出所有 claim edge，银行家算法要求没个进程/线程给出执行过程中所需要的各类资源的最大量，同时维护一些数据以动态地计算安全状态。High level 地来讲，就是需要动态地检测某个资源申请是否会导致系统进入不安全状态，如果会导致系统进入不安全状态，则等待资源足够再分配。
 
+更具体的来说，需要维护这些东西（假设问题中有 n 个进程/线程和 m 种资源）：
 
+!!! section "data structure"
 
+    - `Available[m]`: number of available resources of each type.
+    - `Max[n][m]`: maximum demand of each thread.
+    - `Allocation[n][m]`: number of resources of each type currently allocated to each thread.
+    - `Need[n][m]`: remaining resource need of each thread.
+        - `Need[i][j] = Max[i][j] - Allocation[i][j]` always holds true.
+        - > 所以逻辑上这个式子应当是冗余的，但是取名有利于之后的流程阐述，所以我在这里保留；
+
+银行家算法分为两个部分，分别是**安全算法(safety algorithm)**和**资源请求算法(resource request algorithm)**。前者检测当前状态是否处于不安全状态，后者以前者为基础，判断是否允许当前资源请求发生。
+
+#### 安全算法
+
+安全算法通过寻找是否存在一个安全序列来判断当前状态是否处于安全状态。先前在[安全状态与不安全状态](#安全状态与不安全状态){target="_blank"}一节中我留下过一个问题：「能否贪心地来求算这样一个序列呢」，答案是可以，我们<u>以一种近似贪心地策略去**模拟**安全序列的资源分配过程</u>，就可以判断是否存在安全策略。
+
+> 因为对于所有可以作为安全状态下一项的 $T_{i_k}$，由于执行它们后，等到进程/线程运行结束，余下的资源只会更多不会更少（对比运行前后，会多出来原本分配给这些进程/线程的那些资源），因而只要符合条件，就可以作为下一项，步步可行最终也可行。
+> 
+> **请仔细思考这个过程的合理性，尤其是我为什么在这里提到了“贪心”，我感觉我查到的资料几乎都忽略了这个问题。**
+
+具体来说，安全算法的步骤如下：
+
+!!! section "algorithm"
+
+   1. 初始化：
+      - `Work[m]` <- `Available[m]`，`Work[m]` 表示当前状态的剩余资源量；
+      - `Finish[n]` <- `false`，表示所有进程/线程都还没运行；
+   2. 找到一个 `i` 使得：
+      - `(Finish[i] == false) && (Need[i] <= Work)`（注意，第二个 term 是 vector 比较，要求每一项都满足），满足该条件表示该进程/线程所需要的资源可以被满足；
+      - 如果没有这个 `i`，则 goto 3.；
+      - 如果有这个 `i`，则更新状态：
+           - `Finish[i]` <- `true`，表示该进程/线程执行完毕；
+           - `Work` <- `Work + Allocation[i]`，表示进程/线程执行完毕后释放资源；
+           - repeat 2.；
+   3. 如果所有进程/线程都满足 `Finish[i]` == `true`，则系统处于安全状态，否则系统处于不安全状态；
+
+#### 资源请求算法
+
+有了[安全算法](#安全算法){target="_blank"}作为基础，我们就可以在它的基础上，判断某个资源请求是否会导致系统进入不安全状态，进而得到完整的银行家算法了。
+
+[安全算法](#安全算法){target="_blank"}通过模拟的方式判断一个状态是不是安全状态，而资源请求算法则是负责维护这个“状态”，并根据[安全算法](#安全算法){target="_blank"}返回的结果来判断某个请求是否应当被接受。
+
+具体来说，资源请求算法的步骤如下：
+
+!!! section "algorithm"
+
+    1. 用 `Request[n][m]` 来维护进程/线程想要请求的资源的数量；
+    2. 在每个请求中，如果 `Request[i] <= Need[i]`（注意向量比较），则继续；否则抛出异常，因为此时它请求的量超过了它预期需要的资源的最大量；
+    3. 如果 `Request[i] <= Available`，说明资源足够，继续；否则，进程/线程必须等待足够的资源；
+    4. 假设系统分配了资源，则需要更新模拟状态（此时资源还未实际分配！只是为了从数值上测试是否安全而临时构造的虚拟局面！）：
+        - `Available` <- `Available - Request[i]`，即模拟剩余资源量；
+        - `Allocation[i]` <- `Allocation[i] + Request[i]`，即模拟分配得到的资源；
+        - `Need[i]` <- `Need[i]` - `Request[i]`，即模拟预期需求量；
+    5. 使用[安全算法](#安全算法){target="_blank"}判断：
+        - 如果当前状态是安全的，则请求被接受；
+        - 如果当前状态是不安全的，请求不被允许，同时需要将这些矩阵回滚到模拟之前的状态[^3]；
 
 ## 死锁检测
 
@@ -190,7 +247,7 @@ deadlock recovery
 
 [^1]: [What's the difference between deadlock and livelock?](https://stackoverflow.com/a/6155978/22331129){target="_blank"}
 [^2]: [Deadlock Prevention](https://www.javatpoint.com/os-deadlock-prevention){target="_blank"} 一文中提到了使用**假脱机(spooling)**的方法来解除打印机资源的互斥性。
-
+[^3]: [Banker's Algorithm in Operating System (OS)](https://www.javatpoint.com/bankers-algorithm-in-operating-system){target="_blank"} 一文中提到了要恢复矩阵状态，书上貌似没写。
 
 ## sketch
 
@@ -199,26 +256,6 @@ deadlock recovery
 ! eg "放一个例子"
 
 - 银行家算法
-    - 银行家算法支持每个资源类别不止一个的情况，但是效率不如分配图
-    - 每个进程/线程进入以后都需要先声明自己需要（各类资源）最多多少资源
-    - 每次有用户请求资源的时候系统都会检测，这个请求会不会导致系统进入 unsafe 的状态，如果会就需要等待其他进程/线程释放足够多资源以后再允许
-    - 为了实现这个算法，我们需要维护一些数据结构：
-        - `n` = number of threads
-        - `m` = number of resource types
-        - `Available[m]` = number of available resources of each type
-        - `Max[n][m]` = maximum demand of each thread
-        - `Allocation[n][m]` = number of resources of each type currently allocated to each thread
-        - `Need[n][m]` = remaining resource need of each thread
-            - `Need[i][j] = Max[i][j] - Allocation[i][j]`
-    - Safety Algorithm 步骤：
-        - 判断系统是否在 safe 状态
-        1. `Work[m]` <- `Available[m]`, `Finish[n]` <- False
-        2. 找到一个 `i` 使得：
-           - `Finish[i]` == False
-           - `Need[i]` <= `Work`
-           - 如果没有这个 `i`，则 goto 4
-        3. `Work` <- `Work` + `Allocation[i]`, `Finish[i]` <- True, goto 2（即表示了进程/线程运行结束后，资源会被释放）
-        4. 如果所有进程/线程都满足 `Finish[i]` == True，则系统处于 safe 状态；否则，系统处于 unsafe 状态
     - Resource Request Algorithm
         - 判断请求是否能被安全地允许（两个步骤，先判断能不能分配，再看分配之后安不安全）
         - 用 `Request[n][m]` 表示进程/线程想要请求的资源的数量
@@ -228,7 +265,9 @@ deadlock recovery
            - `Available` <- `Available` - `Request[i]`
            - `Allocation[i]` <- `Allocation[i]` + `Request[i]`
            - `Need[i]` <- `Need[i]` - `Request[i]`
-         - 如果这样之后的状态是 safe 的（上面那个算法），那么就允许这个请求；否则，进程/线程必须等待，因为没有足够的资源
+
+         - 如果这样之后的状态是安全的，那么就允许这个请求；否则，进程/线程必须等待，因为没有足够的资源；
+         - 如果这样之后的状态是不安全的，请求不被允许，同时需要将这些矩阵回滚到模拟之前的状态；
 
     - 有一个关键问题是，为什么这里看似“贪心”的做法是成立的？
         - 考虑一个进程/线程，释放的资源总是不比索取的资源少，所以贪心的使用不会带来问题。
