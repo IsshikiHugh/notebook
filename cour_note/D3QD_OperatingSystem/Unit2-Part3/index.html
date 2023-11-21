@@ -926,6 +926,20 @@
 <a class="md-nav__link" href="#银行家算法">
     银行家算法
   </a>
+<nav aria-label="银行家算法" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#安全算法">
+    安全算法
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#资源请求算法">
+    资源请求算法
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1199,6 +1213,20 @@
 <a class="md-nav__link" href="#银行家算法">
     银行家算法
   </a>
+<nav aria-label="银行家算法" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#安全算法">
+    安全算法
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#资源请求算法">
+    资源请求算法
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1227,7 +1255,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u2-part-3-死锁--deadlocks-未完成">U2 Part 3: 死锁 | Deadlocks [未完成]<a class="headerlink" href="#u2-part-3-死锁--deadlocks-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4299 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 14 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4769 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 16 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">引入</p>
@@ -1389,7 +1417,14 @@
 <p>我们之前已经引入了<a href="#资源分配图" target="_blank">资源分配图</a>这个工具，现在我们要在资源分配图的基础上，引入一条<strong>诉求边(claim edge)</strong>，用虚线表示，它从进程/线程 <span class="arithmatex">\(T_i\)</span> 指向资源 <span class="arithmatex">\(R_j\)</span>，表示进程/线程 <span class="arithmatex">\(T_i\)</span> 会在未来申请资源 <span class="arithmatex">\(R_j\)</span>。</p>
 <p>于是，在动态过程中，资源分配图按照如下规则反应分配过程：</p>
 <ol>
-<li>进程/线程 <span class="arithmatex">\(T_i\)</span> 被添加到资源分配图中时候，需要连好<strong>所有</strong>相关的 claim edge；</li>
+<li>进程/线程 <span class="arithmatex">\(T_i\)</span> 被添加到资源分配图中时候，需要连好<strong>所有</strong>相关的 claim edge；<ul>
+<li>
+<blockquote>
+<p>要求最初就知道需要的所有资源，这也构成这类方法的一个局限性；</p>
+</blockquote>
+</li>
+</ul>
+</li>
 <li>进程/线程 <span class="arithmatex">\(T_i\)</span> 申请资源 <span class="arithmatex">\(R_j\)</span> 时候，如果这条边变为 assignment edge 不会导致成环，则将 claim edge 转化为一条 request edge <span class="arithmatex">\(T_i \rightarrow R_j\)</span>；<ul>
 <li>
 <blockquote>
@@ -1404,6 +1439,78 @@
 <p>我们在上面也说了：「该算法只适用于<strong>每个资源类别中都只有一个实例</strong>的情况」，那么如何解除这个限制呢？该问题我们早在<a href="#资源分配图" target="_blank">资源分配图</a>小节就已经讨论，我们使用<a href="#安全状态与不安全状态" target="_blank">安全状态与不安全状态</a>来描述一个约束较强的、不会产生死锁的状态。</p>
 <h3 id="银行家算法">银行家算法<a class="headerlink" href="#银行家算法" title="Permanent link">¶</a></h3>
 <p><strong>前置</strong>：<a href="#安全状态与不安全状态" target="_blank">安全状态与不安全状态</a>！</p>
+<p><strong>银行家算法(Banker's algorithm)</strong>弥补了<a href="#资源分配图算法" target="_blank">资源分配图算法</a>只适用于每个资源类别中都只有一个实例的情况的缺陷，它支持每个资源类别不止一个的情况，但是效率不如分配图算法。类似于<a href="#资源分配图算法" target="_blank">资源分配图算法</a>需要在最开始给出所有 claim edge，银行家算法要求没个进程/线程给出执行过程中所需要的各类资源的最大量，同时维护一些数据以动态地计算安全状态。High level 地来讲，就是需要动态地检测某个资源申请是否会导致系统进入不安全状态，如果会导致系统进入不安全状态，则等待资源足够再分配。</p>
+<p>更具体的来说，需要维护这些东西（假设问题中有 n 个进程/线程和 m 种资源）：</p>
+<div class="admonition section">
+<p class="admonition-title">data structure</p>
+<ul>
+<li><code>Available[m]</code>: number of available resources of each type.</li>
+<li><code>Max[n][m]</code>: maximum demand of each thread.</li>
+<li><code>Allocation[n][m]</code>: number of resources of each type currently allocated to each thread.</li>
+<li><code>Need[n][m]</code>: remaining resource need of each thread.<ul>
+<li><code>Need[i][j] = Max[i][j] - Allocation[i][j]</code> always holds true.</li>
+<li>
+<blockquote>
+<p>所以逻辑上这个式子应当是冗余的，但是取名有利于之后的流程阐述，所以我在这里保留；</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>银行家算法分为两个部分，分别是<strong>安全算法(safety algorithm)</strong>和<strong>资源请求算法(resource request algorithm)</strong>。前者检测当前状态是否处于不安全状态，后者以前者为基础，判断是否允许当前资源请求发生。</p>
+<h4 id="安全算法">安全算法<a class="headerlink" href="#安全算法" title="Permanent link">¶</a></h4>
+<p>安全算法通过寻找是否存在一个安全序列来判断当前状态是否处于安全状态。先前在<a href="#安全状态与不安全状态" target="_blank">安全状态与不安全状态</a>一节中我留下过一个问题：「能否贪心地来求算这样一个序列呢」，答案是可以，我们<u>以一种近似贪心地策略去<strong>模拟</strong>安全序列的资源分配过程</u>，就可以判断是否存在安全策略。</p>
+<blockquote>
+<p>因为对于所有可以作为安全状态下一项的 <span class="arithmatex">\(T_{i_k}\)</span>，由于执行它们后，等到进程/线程运行结束，余下的资源只会更多不会更少（对比运行前后，会多出来原本分配给这些进程/线程的那些资源），因而只要符合条件，就可以作为下一项，步步可行最终也可行。</p>
+<p><strong>请仔细思考这个过程的合理性，尤其是我为什么在这里提到了“贪心”，我感觉我查到的资料几乎都忽略了这个问题。</strong></p>
+</blockquote>
+<p>具体来说，安全算法的步骤如下：</p>
+<div class="admonition section">
+<p class="admonition-title">algorithm</p>
+</div>
+<ol>
+<li>初始化：<ul>
+<li><code>Work[m]</code> &lt;- <code>Available[m]</code>，<code>Work[m]</code> 表示当前状态的剩余资源量；</li>
+<li><code>Finish[n]</code> &lt;- <code>false</code>，表示所有进程/线程都还没运行；</li>
+</ul>
+</li>
+<li>找到一个 <code>i</code> 使得：<ul>
+<li><code>(Finish[i] == false) &amp;&amp; (Need[i] &lt;= Work)</code>（注意，第二个 term 是 vector 比较，要求每一项都满足），满足该条件表示该进程/线程所需要的资源可以被满足；</li>
+<li>如果没有这个 <code>i</code>，则 goto 3.；</li>
+<li>如果有这个 <code>i</code>，则更新状态：<ul>
+<li><code>Finish[i]</code> &lt;- <code>true</code>，表示该进程/线程执行完毕；</li>
+<li><code>Work</code> &lt;- <code>Work + Allocation[i]</code>，表示进程/线程执行完毕后释放资源；</li>
+<li>repeat 2.；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果所有进程/线程都满足 <code>Finish[i]</code> == <code>true</code>，则系统处于安全状态，否则系统处于不安全状态；</li>
+</ol>
+<h4 id="资源请求算法">资源请求算法<a class="headerlink" href="#资源请求算法" title="Permanent link">¶</a></h4>
+<p>有了<a href="#安全算法" target="_blank">安全算法</a>作为基础，我们就可以在它的基础上，判断某个资源请求是否会导致系统进入不安全状态，进而得到完整的银行家算法了。</p>
+<p><a href="#安全算法" target="_blank">安全算法</a>通过模拟的方式判断一个状态是不是安全状态，而资源请求算法则是负责维护这个“状态”，并根据<a href="#安全算法" target="_blank">安全算法</a>返回的结果来判断某个请求是否应当被接受。</p>
+<p>具体来说，资源请求算法的步骤如下：</p>
+<div class="admonition section">
+<p class="admonition-title">algorithm</p>
+<ol>
+<li>用 <code>Request[n][m]</code> 来维护进程/线程想要请求的资源的数量；</li>
+<li>在每个请求中，如果 <code>Request[i] &lt;= Need[i]</code>（注意向量比较），则继续；否则抛出异常，因为此时它请求的量超过了它预期需要的资源的最大量；</li>
+<li>如果 <code>Request[i] &lt;= Available</code>，说明资源足够，继续；否则，进程/线程必须等待足够的资源；</li>
+<li>假设系统分配了资源，则需要更新模拟状态（此时资源还未实际分配！只是为了从数值上测试是否安全而临时构造的虚拟局面！）：<ul>
+<li><code>Available</code> &lt;- <code>Available - Request[i]</code>，即模拟剩余资源量；</li>
+<li><code>Allocation[i]</code> &lt;- <code>Allocation[i] + Request[i]</code>，即模拟分配得到的资源；</li>
+<li><code>Need[i]</code> &lt;- <code>Need[i]</code> - <code>Request[i]</code>，即模拟预期需求量；</li>
+</ul>
+</li>
+<li>使用<a href="#安全算法" target="_blank">安全算法</a>判断：<ul>
+<li>如果当前状态是安全的，则请求被接受；</li>
+<li>如果当前状态是不安全的，请求不被允许，同时需要将这些矩阵回滚到模拟之前的状态<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>；</li>
+</ul>
+</li>
+</ol>
+</div>
 <h2 id="死锁检测">死锁检测<a class="headerlink" href="#死锁检测" title="Permanent link">¶</a></h2>
 <p>deadlock detection</p>
 <h2 id="死锁解除">死锁解除<a class="headerlink" href="#死锁解除" title="Permanent link">¶</a></h2>
@@ -1415,32 +1522,6 @@
 <li>
 <p>银行家算法</p>
 <ul>
-<li>银行家算法支持每个资源类别不止一个的情况，但是效率不如分配图</li>
-<li>每个进程/线程进入以后都需要先声明自己需要（各类资源）最多多少资源</li>
-<li>每次有用户请求资源的时候系统都会检测，这个请求会不会导致系统进入 unsafe 的状态，如果会就需要等待其他进程/线程释放足够多资源以后再允许</li>
-<li>为了实现这个算法，我们需要维护一些数据结构：<ul>
-<li><code>n</code> = number of threads</li>
-<li><code>m</code> = number of resource types</li>
-<li><code>Available[m]</code> = number of available resources of each type</li>
-<li><code>Max[n][m]</code> = maximum demand of each thread</li>
-<li><code>Allocation[n][m]</code> = number of resources of each type currently allocated to each thread</li>
-<li><code>Need[n][m]</code> = remaining resource need of each thread<ul>
-<li><code>Need[i][j] = Max[i][j] - Allocation[i][j]</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Safety Algorithm 步骤：<ul>
-<li>判断系统是否在 safe 状态</li>
-<li><code>Work[m]</code> &lt;- <code>Available[m]</code>, <code>Finish[n]</code> &lt;- False</li>
-<li>找到一个 <code>i</code> 使得：</li>
-<li><code>Finish[i]</code> == False</li>
-<li><code>Need[i]</code> &lt;= <code>Work</code></li>
-<li>如果没有这个 <code>i</code>，则 goto 4</li>
-<li><code>Work</code> &lt;- <code>Work</code> + <code>Allocation[i]</code>, <code>Finish[i]</code> &lt;- True, goto 2（即表示了进程/线程运行结束后，资源会被释放）</li>
-<li>如果所有进程/线程都满足 <code>Finish[i]</code> == True，则系统处于 safe 状态；否则，系统处于 unsafe 状态</li>
-</ul>
-</li>
 <li>
 <p>Resource Request Algorithm</p>
 <ul>
@@ -1451,8 +1532,13 @@
 <li>假设系统分配了资源，即 </li>
 <li><code>Available</code> &lt;- <code>Available</code> - <code>Request[i]</code></li>
 <li><code>Allocation[i]</code> &lt;- <code>Allocation[i]</code> + <code>Request[i]</code></li>
-<li><code>Need[i]</code> &lt;- <code>Need[i]</code> - <code>Request[i]</code></li>
-<li>如果这样之后的状态是 safe 的（上面那个算法），那么就允许这个请求；否则，进程/线程必须等待，因为没有足够的资源</li>
+<li>
+<p><code>Need[i]</code> &lt;- <code>Need[i]</code> - <code>Request[i]</code></p>
+</li>
+<li>
+<p>如果这样之后的状态是安全的，那么就允许这个请求；否则，进程/线程必须等待，因为没有足够的资源；</p>
+</li>
+<li>如果这样之后的状态是不安全的，请求不被允许，同时需要将这些矩阵回滚到模拟之前的状态；</li>
 </ul>
 </li>
 <li>
@@ -1533,6 +1619,9 @@
 <li id="fn:2">
 <p><a href="https://www.javatpoint.com/os-deadlock-prevention" target="_blank">Deadlock Prevention</a> 一文中提到了使用<strong>假脱机(spooling)</strong>的方法来解除打印机资源的互斥性。 <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
 </li>
+<li id="fn:3">
+<p><a href="https://www.javatpoint.com/bankers-algorithm-in-operating-system" target="_blank">Banker's Algorithm in Operating System (OS)</a> 一文中提到了要恢复矩阵状态，书上貌似没写。 <a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">↩</a></p>
+</li>
 </ol>
 </div>
 <hr/>
@@ -1540,7 +1629,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月21日 16:31:12</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月21日 19:21:49</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月16日 11:17:25</span>
