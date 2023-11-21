@@ -20,7 +20,7 @@
     本课程的笔记主要参考了如下资料：
 
     - Operating System Concepts (^10^th edition)
-    - 2024 操作系统考研复习指导（王道）
+    - 2024 操作系统考研复习指导（王道）（后弃用）
     - [咸鱼暄的操作系统笔记](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/1_intro/){target="_blank"}
 
 !!! note "list"
