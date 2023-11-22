@@ -1,4 +1,4 @@
-# [大二寒假] 科学文章写作 | Writing in the Sciences
+# 🔮 科学文章写作 | Writing in the Sciences
 
 !!! info ""
     - 官方网站：[🔗](https://online.stanford.edu/courses/som-y0010-writing-sciences)

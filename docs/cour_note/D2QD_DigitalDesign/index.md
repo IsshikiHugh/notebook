@@ -1,4 +1,4 @@
-# [大二秋冬] 数字逻辑设计 | Digital Design
+# 🔮 数字逻辑设计 | Digital Design
 
 !!! warning "注意！"
     本站部署在 GitHub pages 上，所以可能会出现卡顿情况，使用代理可以极大优化阅读体验。

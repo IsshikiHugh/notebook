@@ -1,4 +1,4 @@
-# [大一暑假] Deep Learning for Computer Vision | CS231N
+# 🔮 Deep Learning for Computer Vision | CS231N
 
 ???+ summary "课程介绍"
     - 因为我只能找到 17 年的视频，所以是跟着 17 年的版本学。

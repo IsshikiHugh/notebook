@@ -193,7 +193,7 @@ nav:
   - "🗒 课程笔记":
     - cour_note/index.md
     - cour_note/D1QD_CXiaoCheng/index.md
-    - "[大一春夏] 概率论与数理统计":
+    - "🔮 概率论与数理统计":
       - cour_note/D1CX_ProbabilityAndStatistics/index.md
       - cour_note/D1CX_ProbabilityAndStatistics/Chap01.md
       - cour_note/D1CX_ProbabilityAndStatistics/Chap02.md
@@ -205,7 +205,7 @@ nav:
       - cour_note/D1CX_ProbabilityAndStatistics/Chap08.md
     - cour_note/D1SJ_StanfordCS231n/index.md
     - cour_note/D1SJ_Intro2CS/index.md
-    - "[大二秋冬] 数字逻辑设计 | Digital Design": 
+    - "💎 数字逻辑设计 | Digital Design": 
       - cour_note/D2QD_DigitalDesign/index.md
       - cour_note/D2QD_DigitalDesign/Chap01.md
       - cour_note/D2QD_DigitalDesign/Chap02.md
@@ -214,7 +214,7 @@ nav:
       - cour_note/D2QD_DigitalDesign/Chap05.md
       - cour_note/D2QD_DigitalDesign/Chap06.md
       - cour_note/D2QD_DigitalDesign/Chap07.md
-    - "[大二秋冬] 计算机视觉导论 | I2CV":
+    - "💎 计算机视觉导论 | I2CV":
       - cour_note/D2QD_Intro2CV/index.md
       - cour_note/D2QD_Intro2CV/Lec01.md
       - cour_note/D2QD_Intro2CV/Lec02.md
@@ -230,9 +230,9 @@ nav:
       - cour_note/D2QD_Intro2CV/Lec12.md
       - cour_note/D2QD_Intro2CV/Lec13.md
     - cour_note/D2HJ_StanfordWriting/index.md
-    - "[大二春夏] 计算机组成 | Computer Organization":
+    - "🔮 计算机组成 | Computer Organization":
       - cour_note/D2CX_ComputerOrganization/index.md
-    - "[大二春夏] 高级数据结构 | Advanced Data Structure": 
+    - "💎 高级数据结构 | Advanced Data Structure": 
       - cour_note/D2CX_AdvancedDataStructure/index.md
       - cour_note/D2CX_AdvancedDataStructure/Lec01.md
       - cour_note/D2CX_AdvancedDataStructure/Lec02.md
@@ -250,7 +250,7 @@ nav:
       - cour_note/D2CX_AdvancedDataStructure/Lec14.md
       - cour_note/D2CX_AdvancedDataStructure/Lec15.md
       - cour_note/D2CX_AdvancedDataStructure/Ex01.md
-    - "[大三秋冬] 操作系统 | Operating System":
+    - "💎 操作系统 | Operating System":
       - cour_note/D3QD_OperatingSystem/index.md
       - cour_note/D3QD_OperatingSystem/Unit0.md
       - cour_note/D3QD_OperatingSystem/Unit1.md
@@ -263,7 +263,7 @@ nav:
         - cour_note/D3QD_OperatingSystem/Unit3-Part2.md
       - cour_note/D3QD_OperatingSystem/Unit4.md
       - cour_note/D3QD_OperatingSystem/Unit5.md
-    - "[大三秋冬] 计算理论 | Theorem of Computing": 
+    - "🔮 计算理论 | Theorem of Computing": 
       - "🔗 xg 的 toc 笔记": https://note.tonycrane.cc/cs/tcs/toc/
   - "📝 论文阅读":
     - pape_read/index.md

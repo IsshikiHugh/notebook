@@ -1,4 +1,4 @@
-# [大二春夏] 高级数据结构 | Advanced Data Structure
+# 💎 高级数据结构 | Advanced Data Structure
 
 !!! info "课程信息"
     *翻转课堂**

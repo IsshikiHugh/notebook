@@ -1,4 +1,4 @@
-# [大三秋冬] 操作系统 | Operating System
+# 💎 操作系统 | Operating System
 
 !!! info "课程信息"
 	- **智云链接**：[🔗](https://classroom.zju.edu.cn/coursedetail?course_id=54447&tenant_code=112)
