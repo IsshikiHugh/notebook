@@ -1,4 +1,4 @@
-# U2 Part 3: 死锁 | Deadlocks [未完成]
+# U2 Part 3: 死锁 | Deadlocks
 
 !!! info "引入"
 
