@@ -1293,7 +1293,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u2-part-3-死锁--deadlocks">U2 Part 3: 死锁 | Deadlocks<a class="headerlink" href="#u2-part-3-死锁--deadlocks" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 5215 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 17 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 5209 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 17 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">引入</p>
@@ -1329,11 +1329,8 @@
 <p>根据上面的描述，我们可以知道，建模死锁可以从讨论进程/线程与资源的求取关系入手。我们可以用<strong>资源分配图(resource-allocation graph)</strong>来描述这件事。</p>
 <div class="admonition section">
 <p class="admonition-title">静态</p>
-<p>资源分配图是一种有两类节点的有向图，我们用圆节点 <span class="arithmatex">\(T_i\)</span> 表示进程/线程，用方节点 <span class="arithmatex">\(R_j\)</span> 表示资源，方节点中的实心点表示一个资源类别的一个实例。同时，我们称从进程/线程指向<strong>资源类别</strong>的有向边为<strong>请求边(request edge)</strong>，表示进程/线程 <span class="arithmatex">\(T_i\)</span> 正在等待这种资源；称从<strong>资源实例</strong>指向进程/线程的有向边为<strong>分配边(allocation edge)</strong>，表示资源 <span class="arithmatex">\(R_j\)</span> 被分配给进程/线程 <span class="arithmatex">\(T_i\)</span>，即目前进程/线程 <span class="arithmatex">\(T_i\)</span> 持有一个（一条边表示一个）资源 <span class="arithmatex">\(R_j\)</span> 的实例，例如下图：</p>
-<p><figure markdown="">
-<center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/24.png"><img alt="" src="../img/24.png"/></a> </center>
-    Resource allocation graph.
-</figure></p>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/24.png"><img align="right" alt="" src="../img/24.png" width="30%"/></a> </center></p>
+<p>资源分配图是一种有两类节点的有向图，我们用圆节点 <span class="arithmatex">\(T_i\)</span> 表示进程/线程，用方节点 <span class="arithmatex">\(R_j\)</span> 表示资源，方节点中的实心点表示一个资源类别的一个实例。同时，我们称从进程/线程指向<strong>资源类别</strong>的有向边为<strong>请求边(request edge)</strong>，表示进程/线程 <span class="arithmatex">\(T_i\)</span> 正在等待这种资源；称从<strong>资源实例</strong>指向进程/线程的有向边为<strong>分配边(assignment edge)</strong>，表示资源 <span class="arithmatex">\(R_j\)</span> 被分配给进程/线程 <span class="arithmatex">\(T_i\)</span>，即目前进程/线程 <span class="arithmatex">\(T_i\)</span> 持有一个（一条边表示一个）资源 <span class="arithmatex">\(R_j\)</span> 的实例，例如下图：</p>
 <ul>
 <li>当资源分配图中不存在环时，说明不会出现死锁状态；</li>
 <li>当资源分配图中存在环时，系统可能处于死锁状态，也可能不处于死锁状态；<ul>
@@ -1347,8 +1344,8 @@
 <p class="admonition-title">动态</p>
 <ul>
 <li>进程/线程申请某个资源时，在图中添加一条对应的 request edge；</li>
-<li>当资源索取成功时，这条 request edge 被替换为 allocation edge；</li>
-<li>当进程释放这个资源时，则需要将该 allocation edge 消除；</li>
+<li>当资源索取成功时，这条 request edge 被替换为 assignment edge；</li>
+<li>当进程释放这个资源时，则需要将该 assignment edge 消除；</li>
 </ul>
 </div>
 <blockquote>
@@ -1385,7 +1382,7 @@
 <h2 id="死锁的条件">死锁的条件<a class="headerlink" href="#死锁的条件" title="Permanent link">¶</a></h2>
 <p>要想死锁出现，下面四个条件必须<strong>同时满足</strong>：</p>
 <ol>
-<li><strong>互斥(mutual exclusion)</strong>：死锁中至少有一个资源必须是非共享的，即一次只能被一个进程/线程使用；<ul>
+<li><strong>互斥(mutual exclusion)</strong>：死锁中的资源必须是非共享的，即一次只能被一个进程/线程使用；<ul>
 <li>正因为互斥资源无法被同时使用，所以需要资源的进程/线程需要等待持有目标资源的进程/线程释放该资源以后才能使用目标资源；</li>
 </ul>
 </li>
@@ -1471,13 +1468,13 @@
 </li>
 </ul>
 </li>
-<li>进程/线程 <span class="arithmatex">\(T_i\)</span> 获得资源 <span class="arithmatex">\(R_j\)</span> 时候，将 request edge 转化为一条 allocation edge <span class="arithmatex">\(R_j \rightarrow T_i\)</span>；</li>
-<li>进程/线程 <span class="arithmatex">\(T_i\)</span> 释放资源 <span class="arithmatex">\(R_j\)</span> 时候，将 allocation edge 删去；</li>
+<li>进程/线程 <span class="arithmatex">\(T_i\)</span> 获得资源 <span class="arithmatex">\(R_j\)</span> 时候，将 request edge 转化为一条 assignment edge <span class="arithmatex">\(R_j \rightarrow T_i\)</span>；</li>
+<li>进程/线程 <span class="arithmatex">\(T_i\)</span> 释放资源 <span class="arithmatex">\(R_j\)</span> 时候，将 assignment edge 删去；</li>
 </ol>
 <p>我们在上面也说了：「该算法只适用于<strong>每个资源类别中都只有一个实例</strong>的情况」，那么如何解除这个限制呢？该问题我们早在<a href="#资源分配图" target="_blank">资源分配图</a>小节就已经讨论，我们使用<a href="#安全状态与不安全状态" target="_blank">安全状态与不安全状态</a>来描述一个约束较强的、不会产生死锁的状态。</p>
 <h3 id="银行家算法">银行家算法<a class="headerlink" href="#银行家算法" title="Permanent link">¶</a></h3>
 <p><strong>前置</strong>：<a href="#安全状态与不安全状态" target="_blank">安全状态与不安全状态</a>！</p>
-<p><strong>银行家算法(Banker's algorithm)</strong>弥补了<a href="#资源分配图算法" target="_blank">资源分配图算法</a>只适用于每个资源类别中都只有一个实例的情况的缺陷，它支持每个资源类别不止一个的情况，但是效率不如分配图算法。类似于<a href="#资源分配图算法" target="_blank">资源分配图算法</a>需要在最开始给出所有 claim edge，银行家算法要求没个进程/线程给出执行过程中所需要的各类资源的最大量，同时维护一些数据以动态地计算安全状态。High level 地来讲，就是需要动态地检测某个资源申请是否会导致系统进入不安全状态，如果会导致系统进入不安全状态，则等待资源足够再分配。</p>
+<p><strong>银行家算法(Banker's algorithm)</strong>弥补了<a href="#资源分配图算法" target="_blank">资源分配图算法</a>只适用于每个资源类别中都只有一个实例的情况的缺陷，它支持每个资源类别不止一个的情况，但是效率不如分配图算法。类似于<a href="#资源分配图算法" target="_blank">资源分配图算法</a>需要在最开始给出所有 claim edge，银行家算法要求每个进程/线程给出执行过程中所需要的各类资源的最大量，同时维护一些数据以动态地计算安全状态。High level 地来讲，就是需要动态地检测某个资源申请是否会导致系统进入不安全状态，如果会导致系统进入不安全状态，则等待资源足够再分配。</p>
 <p>更具体的来说，需要维护这些东西（假设问题中有 n 个进程/线程和 m 种资源）：</p>
 <div class="admonition section">
 <p class="admonition-title">data structure</p>
@@ -1507,16 +1504,22 @@
 <div class="admonition section">
 <p class="admonition-title">algorithm</p>
 <ol>
-<li>初始化：</li>
+<li>初始化：<ul>
 <li><code>Work[m]</code> &lt;- <code>Available[m]</code>，<code>Work[m]</code> 表示当前状态的剩余资源量；</li>
 <li><code>Finish[n]</code> &lt;- <code>false</code>，表示所有进程/线程都还没运行；</li>
-<li>找到一个 <code>i</code> 使得：</li>
+</ul>
+</li>
+<li>找到一个 <code>i</code> 使得：<ul>
 <li><code>(Finish[i] == false) &amp;&amp; (Need[i] &lt;= Work)</code>（注意，第二个 term 是 vector 比较，要求每一项都满足），满足该条件表示该进程/线程所需要的资源可以被满足；</li>
 <li>如果没有这个 <code>i</code>，则 goto 3.；</li>
-<li>如果有这个 <code>i</code>，则更新状态：
-        - <code>Finish[i]</code> &lt;- <code>true</code>，表示该进程/线程执行完毕；
-        - <code>Work</code> &lt;- <code>Work + Allocation[i]</code>，表示进程/线程执行完毕后释放资源；
-        - repeat 2.；</li>
+<li>如果有这个 <code>i</code>，则更新状态：<ul>
+<li><code>Finish[i]</code> &lt;- <code>true</code>，表示该进程/线程执行完毕；</li>
+<li><code>Work</code> &lt;- <code>Work + Allocation[i]</code>，表示进程/线程执行完毕后释放资源；</li>
+<li>repeat 2.；</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>如果所有进程/线程都满足 <code>Finish[i] == true</code>，则系统处于安全状态，否则系统处于不安全状态；</li>
 </ol>
 </div>
@@ -1544,7 +1547,7 @@
 </ol>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">limitations</p>
+<p class="admonition-title">Limitations</p>
 <blockquote>
 <p>Like the other algorithms, the Banker's algorithm has some limitations when implemented. </p>
 <p>Specifically, it needs to know how much of each resource a process could possibly request. In most systems, this information is unavailable, making it impossible to implement the Banker's algorithm. </p>
@@ -1559,11 +1562,7 @@
 <p><strong>等待图(wait-for graph)</strong>是<a href="#资源分配图" target="_blank">资源分配图</a>的化简，该算法只能解决每个资源类别中<strong>只有一个实例</strong>的情况。</p>
 <p>在<a href="#资源分配图" target="_blank">资源分配图</a>一节中我们知道，对于每个资源类别中只有一个实例的情况，只要有环就会有死锁，而只要能检测这个环，就能检测死锁。而实际的资源分配图中资源和进程/线程的节点从是成对出现在环中，而 wait-for graph 则是抓住主要矛盾，只保留进程/线程的节点（请读者思考为什么可以这样）以减小点的数量，提高效率。</p>
 <p>我们将<a href="#资源分配图" target="_blank">资源分配图</a>一节中的资源分配图改为等待图，即为：</p>
-<figure>
-<div class="highlight"><pre><span></span><code>&lt;center&gt; ![](img/26.png) &lt;/center&gt;
-Wait-for graph.
-</code></pre></div>
-</figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/26.png"><img alt="" src="../img/26.png" width="30%"/></a> </center></p>
 <p>通过动态地维护这个 wait-for graph 和定期调用一个环检测算法，来实现死锁检测。</p>
 <p>显而易见的，就算抛开它只支持每个资源类别仅能有一个实例的缺点，频繁地维护图和定期调用环检测算法，都会带来较大的开销。所以，该方法其实表现并不理想。</p>
 <h3 id="面向多实例资源">面向多实例资源<a class="headerlink" href="#面向多实例资源" title="Permanent link">¶</a></h3>
@@ -1604,7 +1603,7 @@ Wait-for graph.
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月23日 17:15:47</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月16日 11:17:25</span>
