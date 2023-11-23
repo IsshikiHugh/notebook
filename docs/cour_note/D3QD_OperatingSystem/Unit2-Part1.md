@@ -710,7 +710,7 @@ struct semaphore {
     3. `signal` 中的条件语句，为何是 `#!cpp S->value <= 0`？这个条件为 false 时意味着什么？
         - 考虑在 high contention 的情况下，资源总是一出现就被抢空。
 
-
+而实际上，现在我们提到信号量，默认指的就是[避免忙等待](#避免忙等待){target="_blank"}这一节中提到的这种。
 
 [^1]: [The Critical Section Problem](https://crystal.uta.edu/~ylei/cse6324/data/critical-section.pdf){target="_blank"}
 
