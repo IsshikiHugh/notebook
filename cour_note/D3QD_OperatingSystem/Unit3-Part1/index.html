@@ -946,6 +946,25 @@
 <a class="md-nav__link" href="#基本设计_1">
     基本设计
   </a>
+<nav aria-label="基本设计" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#帧--页">
+    帧 &amp; 页
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#分页下虚拟地址的结构">
+    分页下虚拟地址的结构
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#总体梳理">
+    总体梳理
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#硬件支持">
@@ -1248,6 +1267,25 @@
 <a class="md-nav__link" href="#基本设计_1">
     基本设计
   </a>
+<nav aria-label="基本设计" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#帧--页">
+    帧 &amp; 页
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#分页下虚拟地址的结构">
+    分页下虚拟地址的结构
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#总体梳理">
+    总体梳理
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#硬件支持">
@@ -1305,7 +1343,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u3-part-1-主存--main-memory-未完成">U3 Part 1: 主存 | Main Memory [未完成]<a class="headerlink" href="#u3-part-1-主存--main-memory-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3334 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 11 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4463 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 15 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1388,12 +1426,20 @@ Dynamic relocation using a relocation register.</p>
 <h3 id="基本设计_1">基本设计<a class="headerlink" href="#基本设计_1" title="Permanent link">¶</a></h3>
 <p>换句话来说，我们不再严格需要物理内存也是完整的、大块的、完全连续的了。听起来 externel fragmentation 的问题就解决了，好像我们只需要每次从里面慢慢捡垃圾，凑出一整块就行了——嘿！想的有点太美了！虽然逻辑上物理内存不需要连续，但过于稀碎的物理内存会导致内存访问缓慢，捡垃圾凑出来的虚拟内存块也像
 垃圾一样食之无味。</p>
-<p>因此，我们将两者的优点合并，我们将物理内存划分为固定大小的块，称为<strong>帧(frames)</strong>（类似于 fixed partition），每个帧对应虚拟地址中等大的一块<strong>页(pages)</strong>，用这些帧来作为连续的虚拟地址的物理基础，用虚拟的页号来支持连续逻辑内存（马上就会细说），这样保证了在一定限度内页分配的自由度，利用了虚拟地址的灵活性；又保证了内存相对来说还是成块连续的，提供了物理地址连续的高效性。而帧与页的对应关系，确切来说是帧的首地址（由于实际上由于帧的大小是固定的，帧首地址成等差数列，为了减少存储空间，可以直接存顺序序号）与页号的对应关系，是通过<strong>页表(page table)</strong>来实现的。</p>
+<h4 id="帧--页">帧 &amp; 页<a class="headerlink" href="#帧--页" title="Permanent link">¶</a></h4>
+<p>因此，我们将两者的优点合并，我们将物理内存划分为固定大小的块，称为<strong>帧(frames)</strong>（类似于 fixed partition），每个帧对应虚拟地址中等大的一块<strong>页(pages)</strong>，用这些帧来作为连续的虚拟地址的物理基础，用虚拟的页号来支持连续逻辑内存（马上就会细说），这样保证了在一定限度内页分配的自由度，利用了虚拟地址的灵活性；又保证了内存相对来说还是成块连续的，提供了物理地址连续的高效性。而帧与页的对应关系，是通过<strong>页表(page table)</strong>来实现的。</p>
+<p>显然，每个进程各自维护自己的页表更加合理，所以<strong>每一个进程应当都有自己的页表</strong>，即我们称页表是 per-process data structures。</p>
+<div class="admonition tip">
+<p class="admonition-title">头脑风暴</p>
+<p>由于帧和页的大小是固定的，所以虽然理论上我们需要的是每一帧的首地址，但所谓的“首地址”实际上是 <span class="arithmatex">\(m * FrameSize\)</span>，因此，只需要用 <span class="arithmatex">\(m\)</span> 就可以了（就像数组的 random access）。</p>
+<p>现在，请读者思考，当 <span class="arithmatex">\(FrameSize = 2^k\)</span> 时，会有怎样良好的性质？考虑地址的二进制表示！</p>
+</div>
 <figure>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/31.png"><img alt="" src="../img/31.png" width="50%"/></a> </center>
 Paging model of logical and physical memory.<br/>
 以 page table 中的第一项为例：<font color="blue">0</font>:<font color="green">5</font> 表示虚拟地址中的第 <font color="blue">0</font> 页对应物理地址中的第 <font color="green">5</font> 帧。</p>
 </figure>
+<h4 id="分页下虚拟地址的结构">分页下虚拟地址的结构<a class="headerlink" href="#分页下虚拟地址的结构" title="Permanent link">¶</a></h4>
 <p>我们来看虚拟地址是如何在连续性上发挥作用的：一个程序载入内存可能需要多个页，这些页按顺序被分配了<strong>页号(page number)</strong>，实际使用的地址会落在某一页中，就通过 page number 进行索引。而由于一页中包含一大块内存（page size 常常取 4KB），而我们所需要寻的址总是其中的一个 Byte，所以我们需要一个<strong>页内偏移(page offset)</strong>来索引我们所需要的地址在页中的位置，对于 page size 为 4KB 的页，page offset 需要有 <span class="arithmatex">\(\log_2{4096} = 12\)</span> 位。</p>
 <p>因此，实际在 paging 逻辑中，一个虚拟地址的可以被分为两个部分：</p>
 <div class="highlight"><pre><span></span><code>┌───────────────┬──────────────┐
@@ -1414,11 +1460,42 @@ Paging model of logical and physical memory.<br/>
  p: m-n bits     d: n bits
 </code></pre></div>
 <p>而其含义就是下一张页表的 0 号位。而我们知道，相邻页对应的帧不一定是连续的，但这个不连续的性质对逻辑地址是透明的。</p>
+<h4 id="总体梳理">总体梳理<a class="headerlink" href="#总体梳理" title="Permanent link">¶</a></h4>
+<p>稍微对上面的内容做一下总结，我们拥有了<strong>物理的帧</strong>与<strong>逻辑的页</strong>的映射关系，这个映射关系存在<strong>页表</strong>里，实现逻辑上连续、物理上离散的内存<strong>块</strong>索引；而利用 page number + offset 的结构定位了内存块中的具体地址，其中 offset 在帧和页中都表示对于块首地址的偏移，因此可以直接迁移使用。</p>
+<p>因此，从虚拟地址到物理地址的映射，实际上就是在页表中查询虚拟地址中的 page number，将其换为 frame number，再直接拼接 offset 就行了。</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/32.png"><img alt="" src="../img/32.png"/></a> </center></p>
+</figure>
+<blockquote>
+<p>实际上这是个非常自然的过程：整体地看虚拟地址，就是直接在连续的虚拟内存中找到对应的 Byte；整体地看物理地址，同样也是直接在连续的物理内存中找到对应的 Byte。现在通过置换二进制地址字符串的前缀，实现了一个寻址空间的映射。而这个映射中，表示 offset 的后缀不变，正对应着页和帧中偏移寻址规则的统一。</p>
+</blockquote>
 <div class="admonition tip">
 <p class="admonition-title">page size 的选择</p>
 <p>容易理解，page size 较大时，页表项更少，而页更容易被浪费，但对于磁盘来说，单次大量的传输效率更高；page size 较小时，页表项更多，需要更多内存和时间来处理页表，所以具体 page size 的大小要具体问题具体分析、与时俱进。</p>
 </div>
 <h3 id="硬件支持">硬件支持<a class="headerlink" href="#硬件支持" title="Permanent link">¶</a></h3>
+<div class="admonition info">
+<p class="admonition-title">导读</p>
+<p>本节侧重于从硬件实现的角度来看分页技术。</p>
+</div>
+<p>我们前面说过，页表是 per-process data structures，所以页表应当作为一个进程的元信息被维护。显然我们不能直接用大量寄存器来维护页表（理论上很快，但是太贵、设计上也不现实），所以页表实际上应当被放在<u>内存</u>中（进一步的，为了保证效率，我们将页表放在主存中），我们通过用寄存器维护一个指向页表的指针来维护页表，这个特殊的寄存器被称为<strong>页表基址寄存器(page-table base register, PTBR)</strong>，在 <a href="../Unit1/#context-switch" target="_blank">context switch</a> 的过程中，我们也应当对 PTBR 进行交换。</p>
+<div class="admonition question">
+<p class="admonition-title">嘿！可是内存真的好慢！</p>
+<p>不仅如此，由于地址映射的实现逻辑，我们首先需要利用页表查询帧号，利用帧号去得到物理地址，再去内存里做查询，这里有足足两次内存访问操作！</p>
+<p>不仅如此，你可能还需要遍历整个页表来达到你的目的！</p>
+</div>
+<p>为了解决这个问题，我们引用计组里学到的八大思想之 make common case fast！引入一个缓存来加速页表的维护：<strong>页表缓存(translation look-aside buffer, TLB)</strong>，它实际上是 MMU 的一部分<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>，页号和帧号以键值对的形式存储在 TLB 中。除了访问速度快以外，TLB 允许并行地查询所有键值对，这意味着你不再需要一个一个遍历页表中的内容了！从效率上来说，现代的 TLB 已经能够在一个流水线节拍中完成查询操作。</p>
+<p>但是这么厉害的东西肯定还是有局限性的，TLB 一般都比较小，往往只能支持 32 - 1024 个表项。而且，作为一个“缓存”，它有可能产生 miss（即没在 TLB 中找到待查的页号），当 TLB miss 出现的时候，就需要访问放在内存中的页表，并做朴素的查询。同时，按照一定策略（如 LRU、round-robin to random 等<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>）将当前查询的键值对更新到 TLB 中。</p>
+<p>此外，TLB 允许特定的表项被线固(wired down)，被线固的表项不再允许被替换。（<del>这个中文是我自己才华横溢出来的，请不要到处用容易被当没见识。</del>）</p>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>但是需要注意，页表是 per-process data structures，但 TLB 并不是 per-process hardware。</p>
+</div>
+<p>而正是因为这个性质，所以在 context switch 的时候，需要清空 TLB，否则下一个进程就会访问到上一个进程的页表。还有一种设计是，不需要每次都清空 TLB，而是在 TLB 的表项中加入一个<strong>地址空间标识符(address-space identifier, ASIDs)</strong>字段。在查询页号时，也比较 ASID，只有 ASID 一致才算匹配成功。</p>
+<div class="admonition section">
+<p class="admonition-title">定量分析</p>
+<p>hit ratio</p>
+</div>
 <h3 id="共享页">共享页<a class="headerlink" href="#共享页" title="Permanent link">¶</a></h3>
 <h3 id="页保护">页保护<a class="headerlink" href="#页保护" title="Permanent link">¶</a></h3>
 <h2 id="页表设计">页表设计<a class="headerlink" href="#页表设计" title="Permanent link">¶</a></h2>
@@ -1426,12 +1503,23 @@ Paging model of logical and physical memory.<br/>
 <h3 id="哈希页表">哈希页表<a class="headerlink" href="#哈希页表" title="Permanent link">¶</a></h3>
 <h3 id="反转页表">反转页表<a class="headerlink" href="#反转页表" title="Permanent link">¶</a></h3>
 <h2 id="交换技术">交换技术<a class="headerlink" href="#交换技术" title="Permanent link">¶</a></h2>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Translation_lookaside_buffer" target="_blank">Translation lookaside buffer | Wikipedia</a> <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://en.wikipedia.org/wiki/Cache_replacement_policies" target="_blank">Cache replacement policies</a> <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+</ol>
+</div>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月28日 19:54:33</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月28日 21:59:46</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>
