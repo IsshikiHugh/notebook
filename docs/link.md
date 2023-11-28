@@ -79,7 +79,7 @@
 
     <div class="flink-list-item">
             <div class="flink-item-icon">
-                ![](./_assets/avatars/Zizheng.jpeg)
+                ![](./_assets/avatars/zizheng.png)
             </div>
         <a href="https://www.zizheng.life/" title="Zizheng's Blog" target="_blank">
             <div class="flink-item-name">Zizheng's Blog</div>
