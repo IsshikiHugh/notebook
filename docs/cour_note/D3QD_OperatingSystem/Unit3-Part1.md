@@ -120,13 +120,25 @@ Dynamic relocation using a relocation register.
 换句话来说，我们不再严格需要物理内存也是完整的、大块的、完全连续的了。听起来 externel fragmentation 的问题就解决了，好像我们只需要每次从里面慢慢捡垃圾，凑出一整块就行了——嘿！想的有点太美了！虽然逻辑上物理内存不需要连续，但过于稀碎的物理内存会导致内存访问缓慢，捡垃圾凑出来的虚拟内存块也像
 垃圾一样食之无味。
 
-因此，我们将两者的优点合并，我们将物理内存划分为固定大小的块，称为**帧(frames)**（类似于 fixed partition），每个帧对应虚拟地址中等大的一块**页(pages)**，用这些帧来作为连续的虚拟地址的物理基础，用虚拟的页号来支持连续逻辑内存（马上就会细说），这样保证了在一定限度内页分配的自由度，利用了虚拟地址的灵活性；又保证了内存相对来说还是成块连续的，提供了物理地址连续的高效性。而帧与页的对应关系，确切来说是帧的首地址（由于实际上由于帧的大小是固定的，帧首地址成等差数列，为了减少存储空间，可以直接存顺序序号）与页号的对应关系，是通过**页表(page table)**来实现的。
+#### 帧 & 页
+
+因此，我们将两者的优点合并，我们将物理内存划分为固定大小的块，称为**帧(frames)**（类似于 fixed partition），每个帧对应虚拟地址中等大的一块**页(pages)**，用这些帧来作为连续的虚拟地址的物理基础，用虚拟的页号来支持连续逻辑内存（马上就会细说），这样保证了在一定限度内页分配的自由度，利用了虚拟地址的灵活性；又保证了内存相对来说还是成块连续的，提供了物理地址连续的高效性。而帧与页的对应关系，是通过**页表(page table)**来实现的。
+
+显然，每个进程各自维护自己的页表更加合理，所以**每一个进程应当都有自己的页表**，即我们称页表是 per-process data structures。
+
+!!! tip "头脑风暴"
+
+    由于帧和页的大小是固定的，所以虽然理论上我们需要的是每一帧的首地址，但所谓的“首地址”实际上是 $m * FrameSize$，因此，只需要用 $m$ 就可以了（就像数组的 random access）。
+
+    现在，请读者思考，当 $FrameSize = 2^k$ 时，会有怎样良好的性质？考虑地址的二进制表示！
 
 <figure markdown>
 <center> ![](img/31.png){ width=50% } </center>
 Paging model of logical and physical memory.<br/>
 以 page table 中的第一项为例：<font color="blue">0</font>:<font color="green">5</font> 表示虚拟地址中的第 <font color="blue">0</font> 页对应物理地址中的第 <font color="green">5</font> 帧。
 </figure>
+
+#### 分页下虚拟地址的结构
 
 我们来看虚拟地址是如何在连续性上发挥作用的：一个程序载入内存可能需要多个页，这些页按顺序被分配了**页号(page number)**，实际使用的地址会落在某一页中，就通过 page number 进行索引。而由于一页中包含一大块内存（page size 常常取 4KB），而我们所需要寻的址总是其中的一个 Byte，所以我们需要一个**页内偏移(page offset)**来索引我们所需要的地址在页中的位置，对于 page size 为 4KB 的页，page offset 需要有 $\log_2{4096} = 12$ 位。
 
@@ -159,12 +171,52 @@ Paging model of logical and physical memory.<br/>
 
 而其含义就是下一张页表的 0 号位。而我们知道，相邻页对应的帧不一定是连续的，但这个不连续的性质对逻辑地址是透明的。
 
+#### 总体梳理
+
+稍微对上面的内容做一下总结，我们拥有了**物理的帧**与**逻辑的页**的映射关系，这个映射关系存在**页表**里，实现逻辑上连续、物理上离散的内存**块**索引；而利用 page number + offset 的结构定位了内存块中的具体地址，其中 offset 在帧和页中都表示对于块首地址的偏移，因此可以直接迁移使用。
+
+因此，从虚拟地址到物理地址的映射，实际上就是在页表中查询虚拟地址中的 page number，将其换为 frame number，再直接拼接 offset 就行了。
+
+<figure markdown>
+<center> ![](img/32.png) </center>
+</figure>
+
+> 实际上这是个非常自然的过程：整体地看虚拟地址，就是直接在连续的虚拟内存中找到对应的 Byte；整体地看物理地址，同样也是直接在连续的物理内存中找到对应的 Byte。现在通过置换二进制地址字符串的前缀，实现了一个寻址空间的映射。而这个映射中，表示 offset 的后缀不变，正对应着页和帧中偏移寻址规则的统一。
+
 !!! tip "page size 的选择"
 
     容易理解，page size 较大时，页表项更少，而页更容易被浪费，但对于磁盘来说，单次大量的传输效率更高；page size 较小时，页表项更多，需要更多内存和时间来处理页表，所以具体 page size 的大小要具体问题具体分析、与时俱进。
 
-
 ### 硬件支持
+
+!!! info "导读"
+
+    本节侧重于从硬件实现的角度来看分页技术。
+
+我们前面说过，页表是 per-process data structures，所以页表应当作为一个进程的元信息被维护。显然我们不能直接用大量寄存器来维护页表（理论上很快，但是太贵、设计上也不现实），所以页表实际上应当被放在<u>内存</u>中（进一步的，为了保证效率，我们将页表放在主存中），我们通过用寄存器维护一个指向页表的指针来维护页表，这个特殊的寄存器被称为**页表基址寄存器(page-table base register, PTBR)**，在 [context switch](./Unit1.md#context-switch){target="_blank"} 的过程中，我们也应当对 PTBR 进行交换。
+
+!!! question "嘿！可是内存真的好慢！"
+
+    不仅如此，由于地址映射的实现逻辑，我们首先需要利用页表查询帧号，利用帧号去得到物理地址，再去内存里做查询，这里有足足两次内存访问操作！
+
+    不仅如此，你可能还需要遍历整个页表来达到你的目的！
+
+为了解决这个问题，我们引用计组里学到的八大思想之 make common case fast！引入一个缓存来加速页表的维护：**页表缓存(translation look-aside buffer, TLB)**，它实际上是 MMU 的一部分[^1]，页号和帧号以键值对的形式存储在 TLB 中。除了访问速度快以外，TLB 允许并行地查询所有键值对，这意味着你不再需要一个一个遍历页表中的内容了！从效率上来说，现代的 TLB 已经能够在一个流水线节拍中完成查询操作。
+
+但是这么厉害的东西肯定还是有局限性的，TLB 一般都比较小，往往只能支持 32 - 1024 个表项。而且，作为一个“缓存”，它有可能产生 miss（即没在 TLB 中找到待查的页号），当 TLB miss 出现的时候，就需要访问放在内存中的页表，并做朴素的查询。同时，按照一定策略（如 LRU、round-robin to random 等[^2]）将当前查询的键值对更新到 TLB 中。
+
+此外，TLB 允许特定的表项被线固(wired down)，被线固的表项不再允许被替换。（~~这个中文是我自己才华横溢出来的，请不要到处用容易被当没见识。~~）
+
+!!! warning "注意"
+    
+    但是需要注意，页表是 per-process data structures，但 TLB 并不是 per-process hardware。
+
+而正是因为这个性质，所以在 context switch 的时候，需要清空 TLB，否则下一个进程就会访问到上一个进程的页表。还有一种设计是，不需要每次都清空 TLB，而是在 TLB 的表项中加入一个**地址空间标识符(address-space identifier, ASIDs)**字段。在查询页号时，也比较 ASID，只有 ASID 一致才算匹配成功。
+
+!!! section "定量分析"
+
+    hit ratio
+
 
 ### 共享页
 
@@ -179,3 +231,7 @@ Paging model of logical and physical memory.<br/>
 ### 反转页表
 
 ## 交换技术
+
+
+[^1]: [Translation lookaside buffer | Wikipedia](https://en.wikipedia.org/wiki/Translation_lookaside_buffer){target="_blank"}
+[^2]: [Cache replacement policies](https://en.wikipedia.org/wiki/Cache_replacement_policies){target="_blank"}
