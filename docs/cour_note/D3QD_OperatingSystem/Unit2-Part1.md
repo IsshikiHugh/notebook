@@ -392,6 +392,17 @@ process(i) {
 
     我们知道，为了提高内存操作的效率，我们引入了 cache，在多处理器情况下，cache 机制的存在可能导致进程 A 对内存的写无法对进程 B 立刻可见，这就是弱有序的一种体现。
 
+    ???+ extra "补充材料"
+
+        感谢 [ltgg](https://github.com/27rabbitlt){target="_blank"} 提供的参考资料，读者有兴趣可以自行阅读：
+
+        - [This Is Why They Call It a Weakly-Ordered CPU](https://preshing.com/20121019/this-is-why-they-call-it-a-weakly-ordered-cpu/){target="_blank"}
+        - ⭐️ [Weak vs. Strong Memory Models](https://preshing.com/20120930/weak-vs-strong-memory-models/){target="_blank"}
+
+        > 关于强弱的定义，大致的意思是：
+        > 
+        > A strong hardware memory model is one in which every machine instruction comes implicitly with acquire and release semantics. As a result, when one CPU core performs a sequence of writes, every other CPU core sees those values change in the same order that they were written.
+
 > 这部分我没有完全搞清楚，书本的逻辑非常的诡异：书本认为 memory barrier 是弱有序问题的解决方案，但是我始终没明白它们之间的逻辑在哪里，以及“有序”和“立刻可见”的根本联系在哪里。这里一定是存在不清楚的地方的。但是这部分看起来不是很重要，所以我就先放着不管了。
 
 ## Hardware Instructions
