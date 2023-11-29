@@ -25,6 +25,12 @@ h1,
     font-weight: 600;
 }
 
+/* can make content in wider div */
+/* .md-grid {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 95%;
+} */
 
 body,
 input {
