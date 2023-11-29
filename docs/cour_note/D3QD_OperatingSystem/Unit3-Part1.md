@@ -122,7 +122,7 @@ Dynamic relocation using a relocation register.
 
 #### 帧 & 页
 
-因此，我们将两者的优点合并，我们将物理内存划分为固定大小的块，称为**帧(frames)**（类似于 fixed partition），每个帧对应虚拟地址中等大的一块**页(pages)**，用这些帧来作为连续的虚拟地址的物理基础，用虚拟的页号来支持连续逻辑内存（马上就会细说），这样保证了在一定限度内页分配的自由度，利用了虚拟地址的灵活性；又保证了内存相对来说还是成块连续的，提供了物理地址连续的高效性。而帧与页的对应关系，是通过**页表(page table)**来实现的。
+因此，我们将两者的优点合并，我们将物理内存划分为固定大小的块，称为**帧(frames)**（类似于 fixed partition），每个帧对应虚拟地址中等大的一块**页(pages)**，用这些帧来作为连续的虚拟地址的物理基础，用虚拟的页号来支持连续逻辑内存（马上就会细说），这样保证了在一定限度内页分配的自由度，利用了虚拟地址的灵活性；又保证了内存相对来说还是成块连续的，提供了物理地址连续的高效性。而帧与页的对应关系，是通过**页表(page table)**来实现的，在页表中，实际上是一个以页号为索引的帧号数组，按照页号顺序排列，因此，页号就是对应的表项在数列中的位次。
 
 显然，每个进程各自维护自己的页表更加合理，所以**每一个进程应当都有自己的页表**，即我们称页表是 per-process data structures。
 
@@ -177,11 +177,15 @@ Paging model of logical and physical memory.<br/>
 
 因此，从虚拟地址到物理地址的映射，实际上就是在页表中查询虚拟地址中的 page number，将其换为 frame number，再直接拼接 offset 就行了。
 
-<figure markdown>
 <center> ![](img/32.png) </center>
-</figure>
 
 > 实际上这是个非常自然的过程：整体地看虚拟地址，就是直接在连续的虚拟内存中找到对应的 Byte；整体地看物理地址，同样也是直接在连续的物理内存中找到对应的 Byte。现在通过置换二进制地址字符串的前缀，实现了一个寻址空间的映射。而这个映射中，表示 offset 的后缀不变，正对应着页和帧中偏移寻址规则的统一。
+
+!!! warning "Protection"
+
+    请注意，使用过程中有些页可能尚未与实际的帧建立映射关系，换句话来说是不可用的。所以我们需要一个手段来标识表项是否有效，于是在页表中引入 valid bit，用来标识页是否有效。
+
+    <center> ![](img/34.png) </center>
 
 !!! tip "page size 的选择"
 
@@ -196,7 +200,6 @@ Paging model of logical and physical memory.<br/>
 我们前面说过，页表是 per-process data structures，所以页表应当作为一个进程的元信息被维护。显然我们不能直接用大量寄存器来维护页表（理论上很快，但是太贵、设计上也不现实），所以页表实际上应当被放在<u>内存</u>中（进一步的，为了保证效率，我们将页表放在主存中），我们通过用寄存器维护一个指向页表的指针来维护页表，这个特殊的寄存器被称为**页表基址寄存器(page-table base register, PTBR)**，在 [context switch](./Unit1.md#context-switch){target="_blank"} 的过程中，我们也应当对 PTBR 进行交换。
 
 !!! question "嘿！可是内存真的好慢！"
-
     不仅如此，由于地址映射的实现逻辑，我们首先需要利用页表查询帧号，利用帧号去得到物理地址，再去内存里做查询，这里有足足两次内存访问操作！
 
     不仅如此，你可能还需要遍历整个页表来达到你的目的！
@@ -205,7 +208,9 @@ Paging model of logical and physical memory.<br/>
 
 但是这么厉害的东西肯定还是有局限性的，TLB 一般都比较小，往往只能支持 32 - 1024 个表项。而且，作为一个“缓存”，它有可能产生 miss（即没在 TLB 中找到待查的页号），当 TLB miss 出现的时候，就需要访问放在内存中的页表，并做朴素的查询。同时，按照一定策略（如 LRU、round-robin to random 等[^2]）将当前查询的键值对更新到 TLB 中。
 
-此外，TLB 允许特定的表项被线固(wired down)，被线固的表项不再允许被替换。（~~这个中文是我自己才华横溢出来的，请不要到处用容易被当没见识。~~）
+<center> ![](img/33.png){width=80%} </center>
+
+此外，TLB 允许特定的表项被线固(wired down)，<u>被线固的表项不再允许被替换</u>。（~~这个中文是我自己才华横溢出来的，请不要到处用容易被当没见识。~~）
 
 !!! warning "注意"
     
@@ -213,9 +218,24 @@ Paging model of logical and physical memory.<br/>
 
 而正是因为这个性质，所以在 context switch 的时候，需要清空 TLB，否则下一个进程就会访问到上一个进程的页表。还有一种设计是，不需要每次都清空 TLB，而是在 TLB 的表项中加入一个**地址空间标识符(address-space identifier, ASIDs)**字段。在查询页号时，也比较 ASID，只有 ASID 一致才算匹配成功。
 
+<center> ![](img/35.png){width=80%} </center>
+
 !!! section "定量分析"
 
-    hit ratio
+    我们使用**击中比例(hit ratio)**来描述我们在 TLB 中成功找到我们需要的页帧键值对的概率，那么假设访问一次内存需要 $t \text{nanoseconds}$，那么使用该 TLB 的**有效内存访问时间(effective memory-access time)**为：
+
+    $$
+    \begin{aligned}
+        &\text{effective memory-access time} \\
+        &= \underbrace{\text{hit ratio} \times \text{memory-access} }_\text{TLB hit}
+         +  \underbrace{(1 - \text{hit ratio}) \times 2 \times \text{memory-access}}_\text{TLB miss} \\
+        &= p_{\text{hit}} \times t + (1 - p_{\text{hit}}) \times 2t \\
+        &= (2 - p_{\text{hit}})t
+    \end{aligned} 
+    $$
+
+    > 在现代计算机中，TLB 的结构可能会更加复杂（可能有更多层），所以实际的计算可能比上述更加复杂。
+
 
 
 ### 共享页
