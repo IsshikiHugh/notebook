@@ -278,9 +278,9 @@ Paging model of logical and physical memory.<br/>
 
 现在我们要冷静地解决这个问题！现在问题有两个：⓵ 页表实在太大了，⓶ 它不仅大，而且必须是连续的。并且，保证虚拟地址的数量足够也是必要的，因为能够“虚假地扩展内存大小”也是虚拟地址这个设计的一个重要好处。
 
-我们先来解决第二个问题。
+我们先来解决第二个问题，下面给到三个思路：[分层页表](#分层页表){target="_blank"}、[哈希页表](#哈希页表){target="_blank"}和[反转页表](#反转页表){target="_blank"}。
 
-### 分层分页
+### 分层页表
 
 同样，我们首先来思考为什么这里需要的内存是连续的——作为一个一维数字，只有内存连续才能保证 random access。类似的问题我们在探索[连续分配](#连续分配及其问题){target="_blank"}的过程中已经遇到过了：在物理地址空间中寻求连续，一个重要就是因为只有物理地址的设计中，只有保证连续才能保证能 random access 地去访问地址，而现在这个一维数组太大块了，我们希望它碎一点；而我们通过保证分块地连续（帧内物理地址的连续），再保证块索引的连续（虚拟地址空间中页号的连续）的方式解决了这个问题，就好像把一个一维数组变成了一个**指针数组**，或者说逻辑上的二维数组。
 
@@ -301,13 +301,27 @@ Paging model of logical and physical memory.<br/>
 
 !!! extra "Risc-V"
 
-    有兴趣的读者可以参考 xg 的这篇 [RISC-V 页表相关](https://note.tonycrane.cc/cs/pl/riscv/paging/){target="_blank"}笔记，来了解 Risc-V 中的分页设计，写得很清楚。
+    有兴趣的读者可以参考 xg 的这篇“[RISC-V 页表相关](https://note.tonycrane.cc/cs/pl/riscv/paging/){target="_blank"}”笔记，来了解 Risc-V 中的分页设计，写得很清楚，推荐阅读。
 
     同时，实验三指导手册也提供了关于 [Risc-V Sv39](https://zju-sec.github.io/os23fall-stu/lab3/#risc-v-sv39-page-table-entry){target="_blank"} 的一些介绍。
 
 ### 哈希页表
 
+简单回顾一下我们遇到的问题：页表太大，而且必须是连续的。但是实际上我们使用的映射关系，从虚拟地址来看是集中的，从物理地址来看是稀疏的，反正页表中有大量表项是无效的，所以想办法不存这些用不到的表项，也是一种解决思路。
+
+!!! quote "Links"
+
+    - [Hash function | wikipedia](https://en.wikipedia.org/wiki/Hash_function){target="_blank"}
+    - [哈希 | 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/algorithm/ds/summary2/){target="_blank"}
+    - [Hashing | sakuratsuyu's Notes](https://sakuratsuyu.github.io/Note/Computer_Science_Courses/FDS/Hashing/){target="_blank"}
+
+**哈希页表(hashed page table)**维护了一张哈希表，以页号的哈希为索引，维护了一个链表，每一个链表项包含页号、帧号、和链表 next 指针，以此来实现页号到帧号的映射。此时，一方面我们没必要再维护一个大若虚拟地址总数的表，另一方面由于引入链表，大量的指针操作导致对地址连续性的要求降低，也能变相地解决这个问题。
+
+<center> ![](img/37.png){ width=80% } </center>
+
 ### 反转页表
+
+
 
 ## 交换技术
 
