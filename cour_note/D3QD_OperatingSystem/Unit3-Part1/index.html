@@ -986,8 +986,8 @@
 <nav aria-label="页表设计改进" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#分层分页">
-    分层分页
+<a class="md-nav__link" href="#分层页表">
+    分层页表
   </a>
 </li>
 <li class="md-nav__item">
@@ -1302,8 +1302,8 @@
 <nav aria-label="页表设计改进" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#分层分页">
-    分层分页
+<a class="md-nav__link" href="#分层页表">
+    分层页表
   </a>
 </li>
 <li class="md-nav__item">
@@ -1333,7 +1333,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u3-part-1-主存--main-memory-未完成">U3 Part 1: 主存 | Main Memory [未完成]<a class="headerlink" href="#u3-part-1-主存--main-memory-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6269 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 31 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6552 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 33 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1532,8 +1532,8 @@ Paging model of logical and physical memory.<br/>
 <p>我们回顾一下目前的<a href="#帧--页" target="_blank">页表的设计</a>：现在的页表是以页号为索引、帧号为值的一维数组，而由于我们直接将页表存在物理内存中（否则会黄油猫<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>！），所以我们其实需要一块完整的连续物理内存来存储整个页表——每一个虚拟地址我们都得存。</p>
 <p>假设我们的虚拟地址一共 32 位，而 page size 为 4 KB，即 offset 对应虚拟地址 32 位中的后 12 位，那么我们就需要连续的 2<sup>20</sup> 个表项来存储页帧的映射关系。假设一个表项 4 Bytes，那么光一个页表就要占据我们 4 MB 的物理内存——而且是连续的物理内存。这实在是太夸张了！</p>
 <p>现在我们要冷静地解决这个问题！现在问题有两个：⓵ 页表实在太大了，⓶ 它不仅大，而且必须是连续的。并且，保证虚拟地址的数量足够也是必要的，因为能够“虚假地扩展内存大小”也是虚拟地址这个设计的一个重要好处。</p>
-<p>我们先来解决第二个问题。</p>
-<h3 id="分层分页">分层分页<a class="headerlink" href="#分层分页" title="Permanent link">¶</a></h3>
+<p>我们先来解决第二个问题，下面给到三个思路：<a href="#分层页表" target="_blank">分层页表</a>、<a href="#哈希页表" target="_blank">哈希页表</a>和<a href="#反转页表" target="_blank">反转页表</a>。</p>
+<h3 id="分层页表">分层页表<a class="headerlink" href="#分层页表" title="Permanent link">¶</a></h3>
 <p>同样，我们首先来思考为什么这里需要的内存是连续的——作为一个一维数字，只有内存连续才能保证 random access。类似的问题我们在探索<a href="#连续分配及其问题" target="_blank">连续分配</a>的过程中已经遇到过了：在物理地址空间中寻求连续，一个重要就是因为只有物理地址的设计中，只有保证连续才能保证能 random access 地去访问地址，而现在这个一维数组太大块了，我们希望它碎一点；而我们通过保证分块地连续（帧内物理地址的连续），再保证块索引的连续（虚拟地址空间中页号的连续）的方式解决了这个问题，就好像把一个一维数组变成了一个<strong>指针数组</strong>，或者说逻辑上的二维数组。</p>
 <p>现在我们遇到的问题实际上就是这个“指针数组”也太大块了，希望它能碎一点，所以解决方法已经呼之欲出了——将这个指针数组再进行拆分，变成一个维护指针数组指针的数组，或者说逻辑上的三维数组：</p>
 <div class="highlight"><pre><span></span><code> page number     page offset
@@ -1546,10 +1546,21 @@ Paging model of logical and physical memory.<br/>
 <p>显然，有二就可以有三，有三就可以有四，具体使用哪种，应当秉持具体问题具体分析的原则。</p>
 <div class="admonition extra">
 <p class="admonition-title">Risc-V</p>
-<p>有兴趣的读者可以参考 xg 的这篇 <a href="https://note.tonycrane.cc/cs/pl/riscv/paging/" target="_blank">RISC-V 页表相关</a>笔记，来了解 Risc-V 中的分页设计，写得很清楚。</p>
+<p>有兴趣的读者可以参考 xg 的这篇“<a href="https://note.tonycrane.cc/cs/pl/riscv/paging/" target="_blank">RISC-V 页表相关</a>”笔记，来了解 Risc-V 中的分页设计，写得很清楚，推荐阅读。</p>
 <p>同时，实验三指导手册也提供了关于 <a href="https://zju-sec.github.io/os23fall-stu/lab3/#risc-v-sv39-page-table-entry" target="_blank">Risc-V Sv39</a> 的一些介绍。</p>
 </div>
 <h3 id="哈希页表">哈希页表<a class="headerlink" href="#哈希页表" title="Permanent link">¶</a></h3>
+<p>简单回顾一下我们遇到的问题：页表太大，而且必须是连续的。但是实际上我们使用的映射关系，从虚拟地址来看是集中的，从物理地址来看是稀疏的，反正页表中有大量表项是无效的，所以想办法不存这些用不到的表项，也是一种解决思路。</p>
+<div class="admonition quote">
+<p class="admonition-title">Links</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Hash_function" target="_blank">Hash function | wikipedia</a></li>
+<li><a href="https://note.tonycrane.cc/cs/algorithm/ds/summary2/" target="_blank">哈希 | 鹤翔万里的笔记本</a></li>
+<li><a href="https://sakuratsuyu.github.io/Note/Computer_Science_Courses/FDS/Hashing/" target="_blank">Hashing | sakuratsuyu's Notes</a></li>
+</ul>
+</div>
+<p><strong>哈希页表(hashed page table)</strong>维护了一张哈希表，以页号的哈希为索引，维护了一个链表，每一个链表项包含页号、帧号、和链表 next 指针，以此来实现页号到帧号的映射。此时，一方面我们没必要再维护一个大若虚拟地址总数的表，另一方面由于引入链表，大量的指针操作导致对地址连续性的要求降低，也能变相地解决这个问题。</p>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/37.png"><img alt="" src="../img/37.png" width="80%"/></a> </center></p>
 <h3 id="反转页表">反转页表<a class="headerlink" href="#反转页表" title="Permanent link">¶</a></h3>
 <h2 id="交换技术">交换技术<a class="headerlink" href="#交换技术" title="Permanent link">¶</a></h2>
 <div class="footnote">
@@ -1571,7 +1582,7 @@ Paging model of logical and physical memory.<br/>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月29日 14:20:14</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月29日 14:51:18</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>
