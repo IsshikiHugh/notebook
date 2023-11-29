@@ -1333,7 +1333,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u3-part-1-主存--main-memory-未完成">U3 Part 1: 主存 | Main Memory [未完成]<a class="headerlink" href="#u3-part-1-主存--main-memory-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6552 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 33 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6829 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 34 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1550,7 +1550,7 @@ Paging model of logical and physical memory.<br/>
 <p>同时，实验三指导手册也提供了关于 <a href="https://zju-sec.github.io/os23fall-stu/lab3/#risc-v-sv39-page-table-entry" target="_blank">Risc-V Sv39</a> 的一些介绍。</p>
 </div>
 <h3 id="哈希页表">哈希页表<a class="headerlink" href="#哈希页表" title="Permanent link">¶</a></h3>
-<p>简单回顾一下我们遇到的问题：页表太大，而且必须是连续的。但是实际上我们使用的映射关系，从虚拟地址来看是集中的，从物理地址来看是稀疏的，反正页表中有大量表项是无效的，所以想办法不存这些用不到的表项，也是一种解决思路。</p>
+<p>简单回顾一下我们遇到的问题：页表太大，而且必须是连续的。但是实际上我们使用的映射关系，从虚拟地址来看是集中的，从物理地址来看是稀疏的，反正页表中有大量表项是 invalid 的，所以想办法不存这些用不到的表项，也是一种解决思路。</p>
 <div class="admonition quote">
 <p class="admonition-title">Links</p>
 <ul>
@@ -1561,7 +1561,18 @@ Paging model of logical and physical memory.<br/>
 </div>
 <p><strong>哈希页表(hashed page table)</strong>维护了一张哈希表，以页号的哈希为索引，维护了一个链表，每一个链表项包含页号、帧号、和链表 next 指针，以此来实现页号到帧号的映射。此时，一方面我们没必要再维护一个大若虚拟地址总数的表，另一方面由于引入链表，大量的指针操作导致对地址连续性的要求降低，也能变相地解决这个问题。</p>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/37.png"><img alt="" src="../img/37.png" width="80%"/></a> </center></p>
+<div class="admonition section">
+<p class="admonition-title">clustered page tables</p>
+<p>A variation of this scheme that is useful for 64-bit address spaces has been proposed. This variation uses <strong>clustered page tables</strong>, which are similar to hashed page tables except that <strong>each entry in the hash table refers to several pages</strong> (such as 16) rather than a single page. </p>
+<p>Therefore, a single page-table entry can store the mappings for multiple physical-page frames. Clustered page tables are particularly useful for <strong>sparse</strong> address spaces, where memory references are <strong>noncontiguous and scattered</strong> throughout the address space.</p>
+</div>
 <h3 id="反转页表">反转页表<a class="headerlink" href="#反转页表" title="Permanent link">¶</a></h3>
+<p>我们之前的页表通过维护虚拟地址的有序来实现对页号的 random access，但是代价是需要维护大量连续虚拟地址。反转页表(inverted page table)则直接大逆不道地修改了整套思路——以物理地址为索引维护映射关系。</p>
+<p>同时，在这种设计下，整个操作系统只维护一张反转页表。</p>
+<p>但是显然，这样做我们就没法自然地支持<a href="#共享页" target="_blank">共享页</a>了<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>，因为索引应当是 unique 的。不仅如此，由于我们只做虚拟地址 -&gt; 物理地址的查询，所以在这种结构下我们只能遍历整个表来找映射关系。</p>
+<blockquote>
+<p>总而言之，我觉得这个方法很臭。</p>
+</blockquote>
 <h2 id="交换技术">交换技术<a class="headerlink" href="#交换技术" title="Permanent link">¶</a></h2>
 <div class="footnote">
 <hr/>
@@ -1575,6 +1586,9 @@ Paging model of logical and physical memory.<br/>
 <li id="fn:3">
 <p>出自 <a href="https://en.wikipedia.org/wiki/Buttered_cat_paradox" target="_blank">buttered cat paradox</a>，我在这里表示死循环。 <a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">↩</a><a class="footnote-backref" href="#fnref2:3" title="Jump back to footnote 3 in the text">↩</a></p>
 </li>
+<li id="fn:4">
+<p><a href="https://stackoverflow.com/questions/44159535/how-does-an-inverted-page-table-deal-with-multiple-process-accessing-the-same-fr" target="_blank">how does an inverted page table deal with multiple process accessing the same frame | Stack Overflow</a> <a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">↩</a></p>
+</li>
 </ol>
 </div>
 <hr/>
@@ -1582,7 +1596,7 @@ Paging model of logical and physical memory.<br/>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月29日 14:51:18</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月29日 15:13:16</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>
