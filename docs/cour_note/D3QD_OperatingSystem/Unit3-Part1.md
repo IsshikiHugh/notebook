@@ -307,7 +307,7 @@ Paging model of logical and physical memory.<br/>
 
 ### 哈希页表
 
-简单回顾一下我们遇到的问题：页表太大，而且必须是连续的。但是实际上我们使用的映射关系，从虚拟地址来看是集中的，从物理地址来看是稀疏的，反正页表中有大量表项是无效的，所以想办法不存这些用不到的表项，也是一种解决思路。
+简单回顾一下我们遇到的问题：页表太大，而且必须是连续的。但是实际上我们使用的映射关系，从虚拟地址来看是集中的，从物理地址来看是稀疏的，反正页表中有大量表项是 invalid 的，所以想办法不存这些用不到的表项，也是一种解决思路。
 
 !!! quote "Links"
 
@@ -319,13 +319,28 @@ Paging model of logical and physical memory.<br/>
 
 <center> ![](img/37.png){ width=80% } </center>
 
+!!! section "clustered page tables"
+
+    A variation of this scheme that is useful for 64-bit address spaces has been proposed. This variation uses **clustered page tables**, which are similar to hashed page tables except that **each entry in the hash table refers to several pages** (such as 16) rather than a single page. 
+    
+    Therefore, a single page-table entry can store the mappings for multiple physical-page frames. Clustered page tables are particularly useful for **sparse** address spaces, where memory references are **noncontiguous and scattered** throughout the address space.
+
 ### 反转页表
 
+我们之前的页表通过维护虚拟地址的有序来实现对页号的 random access，但是代价是需要维护大量连续虚拟地址。反转页表(inverted page table)则直接大逆不道地修改了整套思路——以物理地址为索引维护映射关系。
 
+同时，在这种设计下，整个操作系统只维护一张反转页表。
+
+但是显然，这样做我们就没法自然地支持[共享页](#共享页){target="_blank"}了[^4]，因为索引应当是 unique 的。不仅如此，由于我们只做虚拟地址 -> 物理地址的查询，所以在这种结构下我们只能遍历整个表来找映射关系。
+
+> 总而言之，我觉得这个方法很臭。
 
 ## 交换技术
+
+
 
 
 [^1]: [Translation lookaside buffer | Wikipedia](https://en.wikipedia.org/wiki/Translation_lookaside_buffer){target="_blank"}
 [^2]: [Cache replacement policies](https://en.wikipedia.org/wiki/Cache_replacement_policies){target="_blank"}
 [^3]: 出自 [buttered cat paradox](https://en.wikipedia.org/wiki/Buttered_cat_paradox){target="_blank"}，我在这里表示死循环。
+[^4]: [how does an inverted page table deal with multiple process accessing the same frame | Stack Overflow](https://stackoverflow.com/questions/44159535/how-does-an-inverted-page-table-deal-with-multiple-process-accessing-the-same-fr){target="_blank"}

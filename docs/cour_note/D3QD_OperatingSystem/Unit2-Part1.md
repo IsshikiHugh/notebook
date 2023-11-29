@@ -725,8 +725,8 @@ struct semaphore {
 
 [^1]: [The Critical Section Problem](https://crystal.uta.edu/~ylei/cse6324/data/critical-section.pdf){target="_blank"}
 
-[^2]: 书本中对 preemptive kernels 和 non-preemptive kernels 的定义并不准确，两者最本质的区别是后者实现了 [Giant Lock](https://en.wikipedia.org/wiki/Giant_LOCK){target="_blank"}。同时读者可以参考这个链接：[What was the reason of the non-preemptivity of older Linux kernels?](https://unix.stackexchange.com/questions/412806/what-was-the-reason-of-the-non-preemptivity-of-older-linux-kernels){target="_blank"}
+[^2]: 书本中对 preemptive kernels 和 non-preemptive kernels 的定义并不准确，两者最本质的区别是后者实现了 [Giant Lock](https://en.wikipedia.org/wiki/Giant_LOCK){target="_blank"}。同时读者可以参考这个链接：[What was the reason of the non-preemptivity of older Linux kernels? | Stack Exchange](https://unix.stackexchange.com/questions/412806/what-was-the-reason-of-the-non-preemptivity-of-older-linux-kernels){target="_blank"}
 
-[^3]: [Mutex access and system call](https://stackoverflow.com/a/7068027/22331129){target="_blank"}
+[^3]: [Mutex access and system call | Stack Overflow](https://stackoverflow.com/a/7068027/22331129){target="_blank"}
 
-[^4]: ⭐️ [When should one use a spinlock instead of mutex?](https://stackoverflow.com/a/5870415/22331129){target="_blank"}
+[^4]: ⭐️ [When should one use a spinlock instead of mutex? | Stack Overflow](https://stackoverflow.com/a/5870415/22331129){target="_blank"}
