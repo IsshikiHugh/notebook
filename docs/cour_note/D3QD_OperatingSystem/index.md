@@ -31,7 +31,7 @@
         - [x] [Part 2: 经典同步例子 | Synchronization Problems Examples](Unit2-Part2.md)
         - [x] [Part 3: 死锁 | Deadlocks](Unit2-Part3.md)
     - [ ] Unit 3: 内存 | Memory
-        - [ ] [Part 1: 主存 | Main Memory](Unit3-Part1.md)
+        - [x] [Part 1: 主存 | Main Memory](Unit3-Part1.md)
         - [ ] [Part 2: 虚拟内存 | Virtual Memory](Unit3-Part2.md)
     - [ ] [Unit 4: 存储 | Storage](Unit4.md)
     - [ ] [Unit 5: 文件系统 | File System](Unit5.md)
