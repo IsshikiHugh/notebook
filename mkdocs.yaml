@@ -48,7 +48,8 @@ theme:
 
 plugins:
   - minify
-  - statistics
+  - statistics:
+      words_per_minute: 200
   - glightbox
   - search:
       lang:
