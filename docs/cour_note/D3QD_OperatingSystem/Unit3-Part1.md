@@ -337,10 +337,26 @@ Paging model of logical and physical memory.<br/>
 
 ## 交换技术
 
+我们知道，只有在内存中的 instructions 才能被 CPU 执行，因而内存大小一定程度上限制了多道程度(degree of multiprogramming)。但是，大部分内容并不需要全程待在内存中，我们可以考虑在不需要的时候将部分内容放在备份存储(backing store)中，而在需要的时候再将它们弄到内存里——这就是**交换(swap)技术**。在应用交换技术后，那些实际放在备份存储里的 instructions，可以“假装也在内存中”，即 high level 的看，我们并不知道它到底是放在内存还是备份存储里，但是保证当 CPU 需要访问这一块内容时，这些内容会被载入内存。通过这种手段，我们可以让进程所使用的内存空间总和看起来大于硬件支持的物理内存空间大小上限。
 
+<figure markdown>
+<center> ![](img/38.png){ width=80% } </center>
+Standard swapping of two processes using a disk as a backing store.
+</figure>
+
+在标准的 swap 操作中，我们以进程为单位进行 swap，这意味着我们要把所有 per-process 的东西都一同 swap，相当于“冻结”整个 process或“解冻”了整个 process，就好像跨内存和后备存储进行 context switch。可想而知，这个开销是巨大的。
+
+如今我们有分页技术，我们完全可以以页为单位进行 swap，只不过我们称这种以页为单位的 swap 叫 page。
+
+<figure markdown>
+<center> ![](img/39.png) </center>
+Swapping with paging.
+</figure>
+
+但是无论如何，硬盘的速度还是不如内存，所以在内存足够的情况下我们一般不使用 swap。
 
 
 [^1]: [Translation lookaside buffer | Wikipedia](https://en.wikipedia.org/wiki/Translation_lookaside_buffer){target="_blank"}
-[^2]: [Cache replacement policies](https://en.wikipedia.org/wiki/Cache_replacement_policies){target="_blank"}
-[^3]: 出自 [buttered cat paradox](https://en.wikipedia.org/wiki/Buttered_cat_paradox){target="_blank"}，我在这里表示死循环。
+[^2]: [Cache replacement policies | Wikipedia](https://en.wikipedia.org/wiki/Cache_replacement_policies){target="_blank"}
+[^3]: 出自 [Buttered cat paradox | Wikipedia](https://en.wikipedia.org/wiki/Buttered_cat_paradox){target="_blank"}，我在这里表示死循环。
 [^4]: [how does an inverted page table deal with multiple process accessing the same frame | Stack Overflow](https://stackoverflow.com/questions/44159535/how-does-an-inverted-page-table-deal-with-multiple-process-accessing-the-same-fr){target="_blank"}
