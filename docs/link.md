@@ -1,10 +1,12 @@
 # 你好！
 
 !!! info "📜 介绍"
+
     你好！我想为这个小网站赋予一些社交价值，想认识更多厉害的人！欢迎大家在这里聊天，或是留下友链交换！
     
 
 !!! summary "🔗 友链"
+
     <div class="flink-list">
 
     <div class="flink-list-item">
@@ -87,9 +89,20 @@
         </a>
     </div>
 
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
+                ![](https://blog.ralvines.top/images/avatar.jpg)
+            </div>
+        <a href="https://blog.ralvines.top/" title="暮瞻 Blog" target="_blank">
+            <div class="flink-item-name">暮瞻 Blog</div>
+            <div class="flink-item-desc"> 以我观物，故物皆着我之色彩。</div>
+        </a>
+    </div>
+
     </div>
 
 ??? tip "🔗 有意思的链接" 
+
     在这里收集一些有意思的链接！
 
     - https://quickref.me/
