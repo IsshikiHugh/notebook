@@ -1351,7 +1351,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u3-part-1-主存--main-memory">U3 Part 1: 主存 | Main Memory<a class="headerlink" href="#u3-part-1-主存--main-memory" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7534 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 38 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7521 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 38 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1381,7 +1381,7 @@ Hardware address protection with base and limit registers. (right)</p>
 </ul>
 <h3 id="动态装载">动态装载<a class="headerlink" href="#动态装载" title="Permanent link">¶</a></h3>
 <p>由于引入了多道技术，操作系统的内存中可能同时存在多个进程。为了更加灵活地使用内存资源，我们引入<strong>动态装载(dynamic loading)</strong>机制。</p>
-<p>动态装载指的是，如果一个例程还没有被调用，那么它会以<strong>可重定位装载格式(relocatable load format)</strong>存储在磁盘上；当它被调用时，就动态地被装载到内存中。即，例程只有在需要的时候才被载入内存。对于大量但不经常需要访问的代码片段（例如错误处理代码），这种方式可以节省大量的内存空间——这种只有偶尔会被访问的代码也不应当长久地占有内存。</p>
+<p>动态装载指的是，如果一个例程还没有被调用，那么它会以<strong>可重定位装载格式(relocatable load format)</strong><sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>存储在磁盘上；当它被调用时，就动态地被装载到内存中。即，例程只有在需要的时候才被载入内存。对于大量但不经常需要访问的代码片段（例如错误处理代码），这种方式可以节省大量的内存空间——这种只有偶尔会被访问的代码也不应当长久地占有内存。</p>
 <blockquote>
 <p>需要注意的是，动态装载并不需要操作系统的支持，而是由开发者来负责实现。</p>
 </blockquote>
@@ -1405,7 +1405,7 @@ Hardware address protection with base and limit registers. (right)</p>
 </ul>
 </details>
 </div>
-<p>通常来说，主存会别划分为用户空间和内核空间两个部分，后者用于运行操作系统软件。主流操作系统倾向于将高地址划为给操作系统，所以我们此处的语境也依照主流设计。</p>
+<p>通常来说，主存会被划分为用户空间和内核空间两个部分，后者用于运行操作系统软件。主流操作系统倾向于将高位地址划为给操作系统，所以我们此处的语境也依照主流设计。</p>
 <p>在连续内存分配(contiguous memory allocation)问题中，我们认为所有进程都被囊括在一段完整的内存中。而在内存分配的动态过程中，整个内存中空闲的部分将有可能被分配给索取内存的进程，而被分配的内存在释放之前都不能被分配给其它进程。在进程执行完毕后，内存会被释放，切我们对于进程何时释放内存不做假设。</p>
 <p>最简单的是一种<strong>可变划分(variable partition)</strong>的设计，即不对内存中的划分方式做约束，只要是空闲且足够大的连续内存区域都可以被分配。但我们可以想象，在内存被动态使用的过程中，原本完整的内存可能变得支离破碎。如果我们记一块连续的空闲内存为一个 hole，则原先可能只有一个 hole，而在长时间的运行后，内存中可能存在大量较小的，难以利用的 holes。这就是<strong>外部碎片(external fragmentation)</strong>，在最坏的情况下，每个非空闲的内存划分之间都可能有一块不大不小的 hole，而这些 hole 单独来看可能无法利用，但其总和可能并不小，这是个非常严重的问题。</p>
 <figure>
@@ -1436,7 +1436,7 @@ Dynamic relocation using a relocation register.</p>
 <details class="success">
 <summary>提示</summary>
 <ol>
-<li>考虑数学上的“函数映射”分为哪几种；</li>
+<li>考虑数学上如何分类“函数映射”；</li>
 <li>考虑如何实现地址连续；</li>
 </ol>
 </details>
@@ -1469,11 +1469,11 @@ Paging model of logical and physical memory.<br/>
 </figure>
 <div class="admonition tip">
 <p class="admonition-title">头脑风暴</p>
-<p>不知道你看了这个寻址模式是否感觉有些奇怪？在继续之前，请尝试发现这个违和的地方在何处。</p>
+<p>不知道你看了这个寻址模式是否感觉有些微妙的点？在继续之前，请尝试发现这个违和的地方在何处。</p>
 <details class="success">
 <summary>黄油猫！</summary>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/36.png"><img alt="" src="../img/36.png" width="60%"/></a> </center></p>
-<p>首先一个结论是，我们显然不能拿着虚拟地址去找页表，因为会陷入：找页表需要访问页表的物理地址、找虚拟地址对应的物理地址需要页表、找页表需要访问页表的物理地址……的黄油猫<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup>中。</p>
+<p>首先一个结论是，我们显然不能拿着虚拟地址去找页表，因为会陷入：『找页表需要访问页表的物理地址、找虚拟地址对应的物理地址需要页表、找页表需要访问页表的物理地址……』的黄油猫<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup>中。</p>
 <p>就 RSICV 来说，你可以在实验三的手册里找到一段描述 <a href="https://zju-sec.github.io/os23fall-stu/lab3/#risc-v-virtual-memory-system-sv39" target="_blank">satp 寄存器</a>的部分。</p>
 <p>我们可以注意到，satp 寄存器的末尾存储的是物理页号，也就是帧号，所以非常显然的，我们需要特别地去存储页表的物理地址信息，并用这个物理地址来访问页表。</p>
 </details>
@@ -1534,10 +1534,9 @@ Paging model of logical and physical memory.<br/>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/33.png"><img alt="" src="../img/33.png" width="80%"/></a> </center></p>
 <p>此外，TLB 允许特定的表项被线固(wired down)，<u>被线固的表项不再允许被替换</u>。（<del>这个中文是我自己才华横溢出来的，请不要到处用容易被当没见识。</del>）</p>
 <div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>但是需要注意，页表是 per-process data structures，但 TLB 并不是 per-process hardware。</p>
+<p class="admonition-title">虽然页表是 per-process data structures，但 TLB 并不是！</p>
 </div>
-<p>而正是因为 per-process 这个性质，所以在 context switch 的时候，需要清空 TLB，即进行 flush 操作，否则下一个进程就会访问到上一个进程的页表。又或者我们不需要每次都清空 TLB，而是在 TLB 的表项中加入一个<strong>地址空间标识符(address-space identifier, ASIDs)</strong>字段；在查询页号时，也比较 ASID，只有 ASID 一致才算匹配成功。</p>
+<p>正因如此，在 context switch 的时候，我们需要清空 TLB，即进行 flush 操作，否则下一个进程就会访问到上一个进程的页表。又或者我们不需要每次都清空 TLB，而是在 TLB 的表项中加入一个<strong>地址空间标识符(address-space identifier, ASIDs)</strong>字段；在查询页号时，也比较 ASID，只有 ASID 一致才算匹配成功。</p>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/35.png"><img alt="" src="../img/35.png" width="80%"/></a> </center></p>
 <div class="admonition section">
 <p class="admonition-title">定量分析</p>
@@ -1556,7 +1555,8 @@ Paging model of logical and physical memory.<br/>
 </blockquote>
 </div>
 <h3 id="共享页">共享页<a class="headerlink" href="#共享页" title="Permanent link">¶</a></h3>
-<p>虚拟地址与物理地址的映射并非需要是单射，换句话来说，多个页可以对应同一个帧，这就是<strong>共享页(shared page)</strong>。共享页可以用来提高代码重用率，例如，多个进程可能会使用同一个库，那么这个库就可以被共享，而不需要每个进程都各自在物理内存中准备一份。<a href="#动态链接和共享库" target="_blank">共享库</a>就通常是使用共享页来实现的。</p>
+<p>虚拟地址与物理地址的映射并非需要是单射，换句话来说，多个页可以对应同一个帧，这就是<strong>共享页(shared page)</strong>。</p>
+<p>共享页可以用来提高代码重用率，例如，多个进程可能会使用同一个库，那么这个库就可以被共享，而不需要每个进程都各自在物理内存中准备一份。<a href="#动态链接和共享库" target="_blank">共享库</a>就通常是使用共享页来实现的。</p>
 <p>再比如，我们在<a href="../Unit1/#进程间通信" target="_blank">进程管理#进程间通信</a>中提到过通过共享内存来实现进程间通信，在某些操作系统中，共享内存就是通过共享页来实现的。</p>
 <h2 id="页表设计改进">页表设计改进<a class="headerlink" href="#页表设计改进" title="Permanent link">¶</a></h2>
 <p>我们回顾一下目前的<a href="#帧--页" target="_blank">页表的设计</a>：现在的页表是以页号为索引、帧号为值的一维数组，而由于我们直接将页表存在物理内存中（否则会黄油猫<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>！），所以我们其实需要一块完整的连续物理内存来存储整个页表——每一个虚拟地址我们都得存。</p>
@@ -1632,6 +1632,9 @@ Swapping with paging.</p>
 <li id="fn:4">
 <p><a href="https://stackoverflow.com/questions/44159535/how-does-an-inverted-page-table-deal-with-multiple-process-accessing-the-same-fr" target="_blank">how does an inverted page table deal with multiple process accessing the same frame | Stack Overflow</a> <a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">↩</a></p>
 </li>
+<li id="fn:5">
+<p><a href="https://stackoverflow.com/questions/24655839/what-is-the-difference-between-executable-and-relocatable-in-elf-format" target="_blank">What is the difference between executable and relocatable in elf format?</a> <a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">↩</a></p>
+</li>
 </ol>
 </div>
 <hr/>
@@ -1639,7 +1642,7 @@ Swapping with paging.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月30日 11:11:52</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月3日 19:02:51</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>
