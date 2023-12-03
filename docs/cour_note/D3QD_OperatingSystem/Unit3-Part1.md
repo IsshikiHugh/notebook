@@ -42,7 +42,7 @@ Hardware address protection with base and limit registers. (right)
 
 由于引入了多道技术，操作系统的内存中可能同时存在多个进程。为了更加灵活地使用内存资源，我们引入**动态装载(dynamic loading)**机制。
 
-动态装载指的是，如果一个例程还没有被调用，那么它会以**可重定位装载格式(relocatable load format)**存储在磁盘上；当它被调用时，就动态地被装载到内存中。即，例程只有在需要的时候才被载入内存。对于大量但不经常需要访问的代码片段（例如错误处理代码），这种方式可以节省大量的内存空间——这种只有偶尔会被访问的代码也不应当长久地占有内存。
+动态装载指的是，如果一个例程还没有被调用，那么它会以**可重定位装载格式(relocatable load format)**[^5]存储在磁盘上；当它被调用时，就动态地被装载到内存中。即，例程只有在需要的时候才被载入内存。对于大量但不经常需要访问的代码片段（例如错误处理代码），这种方式可以节省大量的内存空间——这种只有偶尔会被访问的代码也不应当长久地占有内存。
 
 > 需要注意的是，动态装载并不需要操作系统的支持，而是由开发者来负责实现。
 
@@ -70,7 +70,7 @@ Hardware address protection with base and limit registers. (right)
 
         - 参考阅读：[Why does memory necessarily have to be contiguous? If it weren't, wouldn't this solve the issue of memory fragmentation?](https://stackoverflow.com/questions/73197597/why-does-memory-necessarily-have-to-be-contiguous-if-it-werent-wouldnt-this){target="_blank"}
 
-通常来说，主存会别划分为用户空间和内核空间两个部分，后者用于运行操作系统软件。主流操作系统倾向于将高地址划为给操作系统，所以我们此处的语境也依照主流设计。
+通常来说，主存会被划分为用户空间和内核空间两个部分，后者用于运行操作系统软件。主流操作系统倾向于将高位地址划为给操作系统，所以我们此处的语境也依照主流设计。
 
 在连续内存分配(contiguous memory allocation)问题中，我们认为所有进程都被囊括在一段完整的内存中。而在内存分配的动态过程中，整个内存中空闲的部分将有可能被分配给索取内存的进程，而被分配的内存在释放之前都不能被分配给其它进程。在进程执行完毕后，内存会被释放，切我们对于进程何时释放内存不做假设。
 
@@ -114,7 +114,7 @@ Dynamic relocation using a relocation register.
     
     ??? success "提示"
     
-        1. 考虑数学上的“函数映射”分为哪几种；
+        1. 考虑数学上如何分类“函数映射”；
         2. 考虑如何实现地址连续；
 
 !!! tip "头脑风暴"
@@ -155,13 +155,13 @@ Paging model of logical and physical memory.<br/>
 
 !!! tip "头脑风暴"
 
-    不知道你看了这个寻址模式是否感觉有些奇怪？在继续之前，请尝试发现这个违和的地方在何处。
+    不知道你看了这个寻址模式是否感觉有些微妙的点？在继续之前，请尝试发现这个违和的地方在何处。
 
     ??? success "黄油猫！"
 
         <center> ![](img/36.png){ width=60% } </center>
 
-        首先一个结论是，我们显然不能拿着虚拟地址去找页表，因为会陷入：找页表需要访问页表的物理地址、找虚拟地址对应的物理地址需要页表、找页表需要访问页表的物理地址……的黄油猫[^3]中。
+        首先一个结论是，我们显然不能拿着虚拟地址去找页表，因为会陷入：『找页表需要访问页表的物理地址、找虚拟地址对应的物理地址需要页表、找页表需要访问页表的物理地址……』的黄油猫[^3]中。
 
         就 RSICV 来说，你可以在实验三的手册里找到一段描述 [satp 寄存器](https://zju-sec.github.io/os23fall-stu/lab3/#risc-v-virtual-memory-system-sv39){target="_blank"}的部分。
 
@@ -247,11 +247,9 @@ Paging model of logical and physical memory.<br/>
 
 此外，TLB 允许特定的表项被线固(wired down)，<u>被线固的表项不再允许被替换</u>。（~~这个中文是我自己才华横溢出来的，请不要到处用容易被当没见识。~~）
 
-!!! warning "注意"
+!!! warning "虽然页表是 per-process data structures，但 TLB 并不是！"
     
-    但是需要注意，页表是 per-process data structures，但 TLB 并不是 per-process hardware。
-
-而正是因为 per-process 这个性质，所以在 context switch 的时候，需要清空 TLB，即进行 flush 操作，否则下一个进程就会访问到上一个进程的页表。又或者我们不需要每次都清空 TLB，而是在 TLB 的表项中加入一个**地址空间标识符(address-space identifier, ASIDs)**字段；在查询页号时，也比较 ASID，只有 ASID 一致才算匹配成功。
+正因如此，在 context switch 的时候，我们需要清空 TLB，即进行 flush 操作，否则下一个进程就会访问到上一个进程的页表。又或者我们不需要每次都清空 TLB，而是在 TLB 的表项中加入一个**地址空间标识符(address-space identifier, ASIDs)**字段；在查询页号时，也比较 ASID，只有 ASID 一致才算匹配成功。
 
 <center> ![](img/35.png){ width=80% } </center>
 
@@ -273,7 +271,9 @@ Paging model of logical and physical memory.<br/>
 
 ### 共享页
 
-虚拟地址与物理地址的映射并非需要是单射，换句话来说，多个页可以对应同一个帧，这就是**共享页(shared page)**。共享页可以用来提高代码重用率，例如，多个进程可能会使用同一个库，那么这个库就可以被共享，而不需要每个进程都各自在物理内存中准备一份。[共享库](#动态链接和共享库){target="_blank"}就通常是使用共享页来实现的。
+虚拟地址与物理地址的映射并非需要是单射，换句话来说，多个页可以对应同一个帧，这就是**共享页(shared page)**。
+
+共享页可以用来提高代码重用率，例如，多个进程可能会使用同一个库，那么这个库就可以被共享，而不需要每个进程都各自在物理内存中准备一份。[共享库](#动态链接和共享库){target="_blank"}就通常是使用共享页来实现的。
 
 再比如，我们在[进程管理#进程间通信](./Unit1.md#进程间通信){target="_blank"}中提到过通过共享内存来实现进程间通信，在某些操作系统中，共享内存就是通过共享页来实现的。
 
@@ -369,3 +369,4 @@ Swapping with paging.
 [^2]: [Cache replacement policies | Wikipedia](https://en.wikipedia.org/wiki/Cache_replacement_policies){target="_blank"}
 [^3]: 出自 [Buttered cat paradox | Wikipedia](https://en.wikipedia.org/wiki/Buttered_cat_paradox){target="_blank"}，我在这里表示死循环。
 [^4]: [how does an inverted page table deal with multiple process accessing the same frame | Stack Overflow](https://stackoverflow.com/questions/44159535/how-does-an-inverted-page-table-deal-with-multiple-process-accessing-the-same-fr){target="_blank"}
+[^5]: [What is the difference between executable and relocatable in elf format?](https://stackoverflow.com/questions/24655839/what-is-the-difference-between-executable-and-relocatable-in-elf-format){target="_blank"}
