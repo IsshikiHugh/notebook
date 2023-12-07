@@ -116,8 +116,8 @@
     显而易见的是，增加了处理器的数量能够增加**吞吐量(throughput)**，即单位时间内处理的任务数量，但是这个增加并不是线性的，因为处理器之间的通信也需要时间，而且还会有一些额外的开销。
 
     ??? quote "相关阅读"
-        - [对称多处理 | SMP](https://en.wikipedia.org/wiki/Symmetric_multiprocessing)；
-        - [非一致内存访问 | NUMA](https://en.wikipedia.org/wiki/Non-uniform_memory_access)；
+        - [对称多处理(SMP) | Wikipedia](https://en.wikipedia.org/wiki/Symmetric_multiprocessing)；
+        - [非一致内存访问(NUMA) | Wikipedia](https://en.wikipedia.org/wiki/Non-uniform_memory_access)；
 
         但是 multi-core 的设计在速度和效能上都更胜一筹，因为 on-chip 的通信比 between-chip 的通信更快，而且更省电。
 

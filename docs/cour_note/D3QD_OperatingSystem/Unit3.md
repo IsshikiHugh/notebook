@@ -1,16 +1,20 @@
-# U3 Part 1: 主存 | Main Memory
+# Unit 3: 内存 | Memory [完成一半]
 
 !!! info "导读"
 
-    内存是计算机中最重要的部件之一，在 Von Neumann 架构中，内存是程序和数据的载体，也是 CPU 访问数据的重要途径（CPU 能够直接访问的存储结构一般只有寄存器和内存，以及作为中介的缓存）。
+    内存是计算机中最重要的部件之一，在 Von Neumann 架构中，内存是程序和数据的载体，也是 CPU 访问数据的重要途径（CPU 能够直接访问的存储结构一般只有寄存器和内存，以及作为中介的缓存）。此外，CPU 执行的**指令(instructions)**，只有在物理内存中时才能被执行。
 
     而我们知道，内存 I/O 通常是比较慢的，如果再进一步对内存之外的存储设备做 I/O（内存毕竟也是有限的），则会更慢。因此，就像榨干 CPU 的性能一样，我们也要尽可能地利用好内存。
 
     除了性能，内存还需要实现一些保护措施，防止程序越界访问内存，或者程序之间互相干扰。
 
     同时，由于计算机运行程序是一个动态的过程，而我们使用内存往往需要的是连续的、大块的内存，所以在运行过程中如何保证内存的分布是相对完整的，也是一个重要的问题。
+
+    在引入[帧 & 页](#帧--页){target="_blank"}设计后，我们不再需要以进程为单位去观察内存，而是以页为单位，这意味着粒度更小，我们可以更加灵活地去管理内存。
+
+    在[交换技术](#交换技术){target="_blank"}的支持下，**不是正在被使用的**虚拟内存可以**实际**被映射到物理内存或[后备存储](#交换技术){target="_blank"}中。更具体的来说，我们会将“暂时用不到”的东西暂放在[后备存储](#交换技术){target="_blank"}中，而在需要的时候将它们换到物理内存中。而接下来我们要关注的重要问题就是，这些操作具体如何执行、如何优化。
     
-## 基础设计
+## 内存基础设计
 
 ### 内存保护
 
@@ -121,6 +125,9 @@ Dynamic relocation using a relocation register.
     
     请读者思考，物理地址和虚拟地址的长度需要一样吗？
 
+<a id="virtual-address-space">
+一个进程的**虚拟地址空间(virtual address space)**，指的是在虚拟内存的语境下，进程的内存结构。通常进程在虚拟地址空间中的[大致结构](./Unit1.md#进程的形式){target="_blank"}和地址分布都是相同的，例如可能都是从 0 地址开始放 text 段，栈底一般都在末尾等——这就意味着进程的虚拟地址空间应当是**互不相关**的，由将若干互相隔离的虚拟地址空间映射到各自的物理地址这个任务，则由 [MMU](#MMU){target="_blank"} 完成。（在我们之后介绍了[页表](#页表){target="_blank"}后，这意味着每个进程都应当有自己的页表。）
+
 ## 分页技术
 
 分页技术想要解决的问题是减轻进程“必须要使用连续内存”这一限制。我们在[前面的思考题](#why-continuous){target="_blank"}中已经提到，需要使用连续内存是需要一种逻辑上的连续，因此，在[物理地址和虚拟地址](#物理地址和虚拟地址){target="_blank"}的语境下，我们只需要保证虚拟地址是连续的即可。当然，这并不意味着物理地址的连续就是毫无意义的了，物理地址的连续是实际上提供高效内存访问的基础。
@@ -135,7 +142,7 @@ Dynamic relocation using a relocation register.
 
 因此，我们将两者的优点合并，我们将物理内存划分为固定大小的块，称为**帧(frames)**（类似于 fixed partition），每个帧对应虚拟地址中等大的一块**页(pages)**，用这些帧来作为连续的虚拟地址的物理基础，用虚拟的页号来支持连续虚拟地址（马上就会细说），这样保证了在一定限度内页分配的自由度，利用了虚拟地址的灵活性；又保证了内存相对来说还是成块连续的，提供了物理地址连续的高效性。而帧与页的对应关系，是通过**页表(page table)**来实现的，在页表中，实际上是一个以页号为索引的帧号数组，按照页号顺序排列，因此，页号就是对应的表项在数列中的位次。
 
-显然，每个进程各自维护自己的页表更加合理，所以**每一个进程应当都有自己的页表**，即我们称页表是 per-process data structures。
+回忆[虚拟地址空间](#virtual-address-space){target="_blank"}的相关概念，**每个进程应当都有自己的页表**，即我们称页表是 per-process data structures。
 
 !!! tip "头脑风暴"
 
@@ -145,7 +152,7 @@ Dynamic relocation using a relocation register.
     
     ??? success "提示"
 
-        联系[分页下虚拟地址的结构](#分页下虚拟地址的结构){target="_blank"}，考虑整个地址的二进制表示中表示页号的部分在整个二进制串中的构成！
+        联系[页 & 虚拟地址](#页--虚拟地址){target="_blank"}，考虑整个地址的二进制表示中表示页号的部分在整个二进制串中的构成！
 
 <figure markdown>
 <center> ![](img/31.png){ width=50% } </center>
@@ -167,7 +174,7 @@ Paging model of logical and physical memory.<br/>
 
         我们可以注意到，satp 寄存器的末尾存储的是物理页号，也就是帧号，所以非常显然的，我们需要特别地去存储页表的物理地址信息，并用这个物理地址来访问页表。
 
-#### 分页下虚拟地址的结构
+#### 页 & 虚拟地址
 
 我们来看虚拟地址是如何在连续性上发挥作用的：一个程序载入内存可能需要多个页，这些页按顺序被分配了**页号(page number)**，实际使用的地址会落在某一页中，就通过 page number 进行索引。而由于一页中包含一大块内存（page size 常常取 4KB），而我们所需要寻的址总是其中的一个 Byte，所以我们需要一个**页内偏移(page offset)**来索引我们所需要的地址在页中的位置，对于 page size 为 4KB 的页，page offset 需要有 $\log_2{4096} = 12$ 位。
 
@@ -273,11 +280,11 @@ Paging model of logical and physical memory.<br/>
 
 虚拟地址与物理地址的映射并非需要是单射，换句话来说，多个页可以对应同一个帧，这就是**共享页(shared page)**。
 
-共享页可以用来提高代码重用率，例如，多个进程可能会使用同一个库，那么这个库就可以被共享，而不需要每个进程都各自在物理内存中准备一份。[共享库](#动态链接和共享库){target="_blank"}就通常是使用共享页来实现的。
+共享页可以用来提高代码重用率，例如，多个进程可能会使用同一个库，那么这个库就可以被共享，而不需要每个进程都各自在物理内存中准备一份。[共享库](#动态链接和共享库){target="_blank"}就通常是使用共享页来实现的[^7]^,^[^8]。
 
 再比如，我们在[进程管理#进程间通信](./Unit1.md#进程间通信){target="_blank"}中提到过通过共享内存来实现进程间通信，在某些操作系统中，共享内存就是通过共享页来实现的。
 
-## 页表设计改进
+### 页表设计改进
 
 我们回顾一下目前的[页表的设计](#帧--页){target="_blank"}：现在的页表是以页号为索引、帧号为值的一维数组，而由于我们直接将页表存在物理内存中（否则会黄油猫[^3]！），所以我们其实需要一块完整的连续物理内存来存储整个页表——每一个虚拟地址我们都得存。
 
@@ -287,7 +294,7 @@ Paging model of logical and physical memory.<br/>
 
 我们介绍三个方法来解决上述问题：[分层页表](#分层页表){target="_blank"}、[哈希页表](#哈希页表){target="_blank"}和[反转页表](#反转页表){target="_blank"}。
 
-### 分层页表
+#### 分层页表
 
 同样，我们首先来思考为什么这里需要的内存是连续的——作为一个一维数字，只有内存连续才能保证 random access。类似的问题我们在探索[连续分配](#连续分配及其问题){target="_blank"}的过程中已经遇到过了：在物理地址空间中寻求连续，一个重要就是因为只有物理地址的设计中，只有保证连续才能保证能 random access 地去访问地址，而现在这个一维数组太大块了，我们希望它碎一点；而我们通过保证分块地连续（帧内物理地址的连续），再保证块索引的连续（虚拟地址空间中页号的连续）的方式解决了这个问题，就好像把一个一维数组变成了一个**指针数组**，或者说逻辑上的二维数组。
 
@@ -314,7 +321,7 @@ Paging model of logical and physical memory.<br/>
 
     同时，实验三指导手册也提供了关于 [Risc-V Sv39](https://zju-sec.github.io/os23fall-stu/lab3/#risc-v-sv39-page-table-entry){target="_blank"} 的一些介绍。
 
-### 哈希页表
+#### 哈希页表
 
 简单回顾一下我们遇到的问题：页表太大，而且必须是连续的。但是实际上我们使用的映射关系，从虚拟地址来看是集中的，从物理地址来看是稀疏的，反正页表中有大量表项是 invalid 的，所以想办法不存这些用不到的表项，也是一种解决思路。
 
@@ -334,39 +341,141 @@ Paging model of logical and physical memory.<br/>
     
     Therefore, a single page-table entry can store the mappings for multiple physical-page frames. Clustered page tables are particularly useful for **sparse** address spaces, where memory references are **noncontiguous and scattered** throughout the address space.
 
-### 反转页表
+#### 反式页表
 
-我们之前的页表通过维护虚拟地址的有序来实现对页号的 random access，但是代价是需要维护大量连续虚拟地址。反转页表(inverted page table)则直接大逆不道地修改了整套思路——以物理地址为索引维护映射关系。
+我们之前的页表通过维护虚拟地址的有序来实现对页号的 random access，但是代价是需要维护大量连续虚拟地址。反式页表(inverted page table)则直接大逆不道地修改了整套思路——以物理地址为索引维护映射关系。
 
-同时，在这种设计下，整个操作系统只维护一张反转页表。
+同时，在这种设计下，整个操作系统只维护一张反转页表。由于不需要每个进程都存储一张页表，整体只存储物理地址数量个表项，所以相对来说节省了内存空间。
 
-但是显然，这样做我们就没法自然地支持[共享页](#共享页){target="_blank"}了[^4]，因为索引应当是 unique 的。不仅如此，由于我们只做虚拟地址 -> 物理地址的查询，所以在这种结构下我们只能遍历整个表来找映射关系。
+但是显然，这样做我们就没法自然地支持[共享页](#共享页){target="_blank"}了[^4]，因为索引应当是 unique 的。不仅如此，由于我们只做虚拟地址 -> 物理地址的查询，所以在这种结构下我们只能遍历整个表来找映射关系。诸如此类还有不少限制。
 
 > 总而言之，我觉得这个方法很臭。
 
-## 交换技术
+!!! extra "其它"
 
-我们知道，只有在内存中的 instructions 才能被 CPU 执行，因而内存大小一定程度上限制了多道程度(degree of multiprogramming)。但是，大部分内容并不需要全程待在内存中，我们可以考虑在不需要的时候将部分内容放在备份存储(backing store)中，而在需要的时候再将它们弄到内存里——这就是**交换(swap)技术**。在应用交换技术后，那些实际放在备份存储里的 instructions，可以“假装也在内存中”，即 high level 的看，我们并不知道它到底是放在内存还是备份存储里，但是保证当 CPU 需要访问这一块内容时，这些内容会被载入内存。通过这种手段，我们可以让进程所使用的内存空间总和看起来大于硬件支持的物理内存空间大小上限。
+    可能还会涉及一些段式设计以及相关设计，但是并不主流，但考试可能会考，大家可以选择性去了解一下。
+
+## 虚拟内存管理
+
+我们知道，只有在内存中的指令(instructions)才能被 CPU 执行，因而内存大小一定程度上限制了多道程度(degree of multiprogramming)。但是，大部分内容并不需要全程待在内存中[^6]，即不会频繁地被使用。
+
+### 交换技术
+
+所以，我们可以考虑在不需要的时候将部分内容放在后备存储(backing store)中，而后备存储中用来存储这些内容的空间被称为**交换空间(swap space)**，而在需要的时候再将它们弄到内存里——这就是**交换(swap)技术**。在应用交换技术后，那些实际放在后备存储里的 instructions，可以“假装也在内存中”，即 high level 的看，我们并不知道它到底是放在内存还是后备存储里，但是保证当 CPU 需要访问这一块内容时，这些内容会被载入内存。
+
+> 在这里我们只简单介绍一下交换的思想，而具体的细节与实现，将会在之后连同更明确的定义给出。
 
 <figure markdown>
-<center> ![](img/38.png){ width=80% } </center>
+<center> ![](img/38.png){ width=60% } </center>
 Standard swapping of two processes using a disk as a backing store.
 </figure>
 
 在标准的 swap 操作中，我们以进程为单位进行 swap，这意味着我们要把所有 per-process 的东西都一同 swap，相当于“冻结”整个 process或“解冻”了整个 process，就好像跨内存和后备存储进行 context switch。可想而知，这个开销是巨大的。
 
-如今我们有分页技术，我们完全可以以页为单位进行 swap，只不过我们称这种以页为单位的 swap 叫 page。
+如今我们有分页技术，我们完全可以以页为单位进行 swap，只不过我们称这种以页为单位的**交换(swap)**叫**换页(page)**。
 
 <figure markdown>
-<center> ![](img/39.png) </center>
+<center> ![](img/39.png){ width=60% } </center>
 Swapping with paging.
 </figure>
 
-但是无论如何，硬盘的速度还是不如内存，所以在内存足够的情况下我们一般不使用 swap。
+!!! property "优势"
+
+    利用换页技术和虚拟内存的组合拳，我们可以让进程所使用的内存空间总和看起来大于硬件支持的物理内存空间大小上限，**扩展**抽象的“内存”的容量。
+
+    <figure markdown>
+    <center> ![](img/40.png){ width=80% } </center>
+    Diagram showing virtual memory that is larger than physical memory.
+    </figure>
+
+### 页级内存管理
+
+现在我们来仔细思考如何利用这套组合拳来进行内存管理。
+
+!!! section "**静态**地来看"
+
+    宏观地来看，我们可以抓住主要矛盾，只将每个进程中最迫切需要的那些页留在物理内存中，对进程进行页级的内存管理，于是平均每个进程需要在物理内存中的数据量更小、物理内存中可以存放的“进程”数量更多、多道程度(degree of multiprogramming)得以提高。
+
+!!! section "**动态**地来看"
+
+    对于**页申请**，我们需要考虑如何高效经济地去满足进程创建时对内存的需求。
+
+    对于**页交换**，我们需要考虑它和谁去换。这里有两个问题需要考虑：⓵ 换页的范围和 ⓶ 换页的策略。其中，我们将后者延后至[换页策略](#交换策略){target="_blank"}一节介绍。
+
+    TODO: 补全
+
+
+> 但是无论如何，硬盘的速度还是不如内存，所以在内存足够的情况下我们一般不使用 swap。
+
+### 按需换页系统
+
+**按需换页(demand paging)**^[WIKI](https://en.wikipedia.org/wiki/Demand_paging){target="_blank"}^和[交换技术中的换页](#交换技术){target="_blank"}很类似，指只把**被需要**的页载入内存。
+
+!!! extra "pure demand paging"
+
+    如果激进一点，如果在被需求之前页不会被载入内存，只有在内存被需求后才会被载入内存，我们称之为纯按需换页(pure demand paging)。
+
+    > This scheme is pure demand paging: **never** bring a page into memory until it is required.
+
+可以想象，现在给定任意一个虚拟地址，有三种可能：
+
+1. 该“地址”在物理内存中，页表中**存在**虚拟内存到物理内存的映射关系，是 valid 的；
+2. 该“地址”在后备存储中，页表中**不存在**虚拟内存到物理内存的映射关系，是 invalid 的；
+3. 该“地址”并没有被分配，页表中**不存在**虚拟内存到物理内存的映射关系，是 invalid 的，或权限不符（如试图写入一个只读页）；
+
+与引入交换技术之前的页表设计相比，多出来的就是情况 2.。如果系统访问了一个在页表中是 invalid 的页，就会生成异常，我们称这种情况为**缺页(page fault)**。
+
+区别于之前的页表设计——访问 invalid 的表项是一种预期外行为，现在产生缺页反而**更多**是一种预期内的行为——系统对某个被 page out 了的页产生了“需求”。当然，情况 3. 这种非法操作也会引起异常，所以我们需要在之后的异常处理过程中对此做区分并分别处理。
+
+> 说实话其实我感觉这里的逻辑稍微有点绕，可能是一些历史原因。
+
+操作系统就需要去处理这个异常的大概流程如下：
+
+1. 检查一张 PCB 里的内部表，来区分这个地址到底是情况 2. 还是情况 3.；
+    1. 如果是情况 2.，则继续如下操作以将其 page in；
+    2. 如果是情况 3.，则终止进程；
+2. 从[可用帧列表](#可用帧列表){target="_blank"}里拿出 frame 用来写入；
+3. 开始从后备存储读取内容，并写入 frame；
+4. 完成读写后，更新内部表和页表等元信息；
+5. 重新执行引起 page fault 的 instruction；
+    - 该操作十分关键，类似于死锁里的回滚操作，支持这项操作也具有一定的难度，包括如何确切地恢复回指令执行之前的状态、如何消除执行了一半的指令的效果等；
+
+<figure markdown>
+<center> ![](img/41.png){ width=80% } </center>
+Steps in handling a page fault.
+</figure>
+
+程序执行的局部性保证了 page fault 不会太频繁，导致带来不可接受的额外开销。需要注意，单条指令是有可能带来若干次 page fault 的（例如可能在 instruction fetch 的时候产生、可能在 operand fetch 的时候产生等）。
+
+#### 可用帧列表
+
+在 demand paging 系统里，页是动态地被映射到帧的，所以我们需要维护一个**可用帧列表(free-frame list)**，用来记录当前哪些帧是空闲的。
+
+在系统启动后，我们需要将所有可用的帧都加入到 free-frame list 中；当有用户需要物理内存时候，就从 free-frame list 中取出一项，对其进行擦除，即被需求时清零(zero-fill-on-deman)。
+
+!!! question "考虑为什么要执行 zero-fill-on-deman"
+
+如果读者足够敏锐就会发现，我们只说了怎么取出 free-frame，而没说 free-frame 如何“再生”。这部分内容我们会在[换页策略](#换页策略){target="_blank"}一节中提到。
+
+#### 性能分析
+
+
+
+### 换页策略
+
+
+
+
+
+
+
 
 
 [^1]: [Translation lookaside buffer | Wikipedia](https://en.wikipedia.org/wiki/Translation_lookaside_buffer){target="_blank"}
 [^2]: [Cache replacement policies | Wikipedia](https://en.wikipedia.org/wiki/Cache_replacement_policies){target="_blank"}
 [^3]: 出自 [Buttered cat paradox | Wikipedia](https://en.wikipedia.org/wiki/Buttered_cat_paradox){target="_blank"}，我在这里表示死循环。
 [^4]: [how does an inverted page table deal with multiple process accessing the same frame | Stack Overflow](https://stackoverflow.com/questions/44159535/how-does-an-inverted-page-table-deal-with-multiple-process-accessing-the-same-fr){target="_blank"}
-[^5]: [What is the difference between executable and relocatable in elf format?](https://stackoverflow.com/questions/24655839/what-is-the-difference-between-executable-and-relocatable-in-elf-format){target="_blank"}
+[^5]: [What is the difference between executable and relocatable in elf format? | Stack Overflow](https://stackoverflow.com/questions/24655839/what-is-the-difference-between-executable-and-relocatable-in-elf-format){target="_blank"}
+[^6]: 例如 ⓵ 异常处理程序，异常类型可能很多，对应的处理方案可能也会有很多，但均摊下来每一个异常处理程序的使用频率都不会很高；⓶ 数组列表等相对不那么智能的数据结构在定义声明的时候可能开了一大块内存，基本都是为了 bound 住可能需要的内存量的上界，但是可能实际上经常碰不到上界，例如我申请了一个 1024 长的 int 数组，但是我可能一般只会用到其中的前 128 个元素；⓷ 一些可能单纯不怎么常用的功能，道理和第一点是类似的。
+[^7]: [Shared Memory "Segment" in Operating System | Stack Overflow](https://stackoverflow.com/questions/34545631/shared-memory-segment-in-operating-system){target="_blank"}
+[^8]: [Where is linux shared memory actually located? | Stack Overflow](https://arc.net/l/quote/qjkjycww){target="_blank"}

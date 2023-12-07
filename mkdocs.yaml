@@ -259,9 +259,7 @@ nav:
         - cour_note/D3QD_OperatingSystem/Unit2-Part1.md
         - cour_note/D3QD_OperatingSystem/Unit2-Part2.md
         - cour_note/D3QD_OperatingSystem/Unit2-Part3.md
-      - "Unit 3 内存 | Memory":
-        - cour_note/D3QD_OperatingSystem/Unit3-Part1.md
-        - cour_note/D3QD_OperatingSystem/Unit3-Part2.md
+      - cour_note/D3QD_OperatingSystem/Unit3.md
       - cour_note/D3QD_OperatingSystem/Unit4.md
       - cour_note/D3QD_OperatingSystem/Unit5.md
     - "🔮 计算理论 | Theorem of Computing": 
@@ -284,5 +282,6 @@ nav:
     - "杂文收集":
       - "🔗 OpenGL 101: Matrices-projection/view/model": https://solarianprogrammer.com/2013/05/22/opengl-101-matrices-projection-view-model/
       - "🔗 全面解读 Group Normalization": https://zhuanlan.zhihu.com/p/35005794
+      - "🔗 WebGL 加载 .obj 文件": https://webglfundamentals.org/webgl/lessons/zh_cn/webgl-load-obj.html
   - "🚧 施工中...":
     - coming.md
