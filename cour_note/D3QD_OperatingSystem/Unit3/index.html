@@ -1023,13 +1023,18 @@
 <nav aria-label="按需换页系统" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#可用帧列表">
-    可用帧列表
+<a class="md-nav__link" href="#swap-空间">
+    swap 空间
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#性能分析">
-    性能分析
+<a class="md-nav__link" href="#回顾-copy-on-write">
+    回顾 copy on write
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#可用帧列表">
+    可用帧列表
   </a>
 </li>
 </ul>
@@ -1383,13 +1388,18 @@
 <nav aria-label="按需换页系统" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#可用帧列表">
-    可用帧列表
+<a class="md-nav__link" href="#swap-空间">
+    swap 空间
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#性能分析">
-    性能分析
+<a class="md-nav__link" href="#回顾-copy-on-write">
+    回顾 copy on write
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#可用帧列表">
+    可用帧列表
   </a>
 </li>
 </ul>
@@ -1412,7 +1422,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="unit-3-内存--memory-完成一半">Unit 3: 内存 | Memory [完成一半]<a class="headerlink" href="#unit-3-内存--memory-完成一半" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 9227 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 46 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 9888 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 49 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1676,7 +1686,7 @@ Paging model of logical and physical memory.<br/>
 <h2 id="虚拟内存管理">虚拟内存管理<a class="headerlink" href="#虚拟内存管理" title="Permanent link">¶</a></h2>
 <p>我们知道，只有在内存中的指令(instructions)才能被 CPU 执行，因而内存大小一定程度上限制了多道程度(degree of multiprogramming)。但是，大部分内容并不需要全程待在内存中<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>，即不会频繁地被使用。</p>
 <h3 id="交换技术">交换技术<a class="headerlink" href="#交换技术" title="Permanent link">¶</a></h3>
-<p>所以，我们可以考虑在不需要的时候将部分内容放在后备存储(backing store)中，而后备存储中用来存储这些内容的空间被称为<strong>交换空间(swap space)</strong>，而在需要的时候再将它们弄到内存里——这就是<strong>交换(swap)技术</strong>。在应用交换技术后，那些实际放在后备存储里的 instructions，可以“假装也在内存中”，即 high level 的看，我们并不知道它到底是放在内存还是后备存储里，但是保证当 CPU 需要访问这一块内容时，这些内容会被载入内存。</p>
+<p>所以，我们可以考虑在不需要的时候将部分内容放在后备存储(backing store)中，而在需要的时候再将它们弄到内存里——这就是<strong>交换(swap)技术</strong>。在应用交换技术后，那些实际放在后备存储里的 instructions，可以“假装也在内存中”，即 high level 的看，我们并不知道它到底是放在内存还是后备存储里，但是保证当 CPU 需要访问这一块内容时，这些内容会被载入内存。</p>
 <blockquote>
 <p>在这里我们只简单介绍一下交换的思想，而具体的细节与实现，将会在之后连同更明确的定义给出。</p>
 </blockquote>
@@ -1752,7 +1762,38 @@ Diagram showing virtual memory that is larger than physical memory.
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/41.png"><img alt="" src="../img/41.png" width="80%"/></a> </center>
 Steps in handling a page fault.</p>
 </figure>
+<div class="admonition warning">
+<p class="admonition-title">慢！</p>
+<p>想象一下，每当发生一次 page fault，并且我们假设这些 page faults 都属于情况 2.，那么它可能会经历这些过程：</p>
+<ol>
+<li>产生异常后，进行一次 <strong>context switch</strong> 后进入异常处理程序；<ol>
+<li>处理异常，包括决定异常类型、在内部表里寻找地址对应于后备存储中的何处；</li>
+<li>发起后备存储 -&gt; 内存的 I/O 请求；</li>
+</ol>
+</li>
+<li>（等待过程中 CPU 被调度）；</li>
+<li>I/O 中断产生，此时也会有一个 <strong>context switch</strong>；<ol>
+<li>处理中断，包括决定中断类型、更新页表和其他内部表；</li>
+</ol>
+</li>
+<li>等待 CPU 再次调度到该进程，显然这里也有个 <strong>context switch</strong>；<ol>
+<li>做一些回滚操作，然后重新执行引起 page fault 的指令；</li>
+</ol>
+</li>
+</ol>
+<p>可以发现，处理 page fault 超慢的！因此，我们应当尽可能减少 page fault rate。</p>
+</div>
 <p>程序执行的局部性保证了 page fault 不会太频繁，导致带来不可接受的额外开销。需要注意，单条指令是有可能带来若干次 page fault 的（例如可能在 instruction fetch 的时候产生、可能在 operand fetch 的时候产生等）。</p>
+<h4 id="swap-空间">swap 空间<a class="headerlink" href="#swap-空间" title="Permanent link">¶</a></h4>
+<p>我们说，在进行按需分页的时候可以从后备存储中来获取进程内容。在后备存储中，有一块专门用来做这件事的地方，叫<strong>交换空间(swap space)</strong>，通常和 swap space 进行交换会更快。但是，代码并不是一开始就在交换空间的，我们需要找一个时机把代码放进去以后，才能纵享丝滑。</p>
+<blockquote>
+<p>一种 naive 的做法是，在进程创建的时候就把整个代码镜像放进交换空间，这个做法的缺点就是它的定义，我们会需要在一开始做一个大规模的复制，这个做法有诸多显然的弊端。</p>
+<p>另一种做法是，当一个 page 第一次被使用的时候，它从文件系统中被 page in；而在被 replace 而 page out 的时候，将它写入 swap space。这样，下次需要这个 page 的时候就可以从 swap space 里 page in。</p>
+<p>还有一种策略是，当操作系统需要某个页面时，它会直接从文件系统中将这些页面加载到内存中。这些页面在内存中的副本是不会被修改的，因此当这些内存需要被替换的时候，可以直接被覆盖。（在这种情况下，文件系统本身就像一个后备存储）但是，对于那些不与文件相关联的页面，我们称之为匿名内存(anonymous memory)，例如进程的栈和堆，仍然需要使用交换空间。</p>
+<p><strong>这一部分的内容写的比较简略，对应课本 10.2.3 的后半部分。</strong></p>
+</blockquote>
+<h4 id="回顾-copy-on-write">回顾 copy on write<a class="headerlink" href="#回顾-copy-on-write" title="Permanent link">¶</a></h4>
+<p>我们在<a href="../Unit1/" target="_blank">内存管理</a>一节中提出了 <a href="../Unit1/#copy-on-write" target="_blank">copy on write</a> 技术和 <a href="../Unit1/#vfork" target="_blank">vfork</a> 技术，现在读者可以尝试再回顾一下这两个知识点与本节内容的联系。</p>
 <h4 id="可用帧列表">可用帧列表<a class="headerlink" href="#可用帧列表" title="Permanent link">¶</a></h4>
 <p>在 demand paging 系统里，页是动态地被映射到帧的，所以我们需要维护一个<strong>可用帧列表(free-frame list)</strong>，用来记录当前哪些帧是空闲的。</p>
 <p>在系统启动后，我们需要将所有可用的帧都加入到 free-frame list 中；当有用户需要物理内存时候，就从 free-frame list 中取出一项，对其进行擦除，即被需求时清零(zero-fill-on-deman)。</p>
@@ -1760,7 +1801,6 @@ Steps in handling a page fault.</p>
 <p class="admonition-title">考虑为什么要执行 zero-fill-on-deman</p>
 </div>
 <p>如果读者足够敏锐就会发现，我们只说了怎么取出 free-frame，而没说 free-frame 如何“再生”。这部分内容我们会在<a href="#换页策略" target="_blank">换页策略</a>一节中提到。</p>
-<h4 id="性能分析">性能分析<a class="headerlink" href="#性能分析" title="Permanent link">¶</a></h4>
 <h3 id="换页策略">换页策略<a class="headerlink" href="#换页策略" title="Permanent link">¶</a></h3>
 <div class="footnote">
 <hr/>
@@ -1796,7 +1836,7 @@ Steps in handling a page fault.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月7日 13:00:38</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月7日 17:06:57</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>
