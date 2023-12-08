@@ -125,12 +125,14 @@ Dynamic relocation using a relocation register.
     
     请读者思考，物理地址和虚拟地址的长度需要一样吗？
 
-<a id="virtual-address-space">
+<a id="virtual-address-space"/>
 一个进程的**虚拟地址空间(virtual address space)**，指的是在虚拟内存的语境下，进程的内存结构。通常进程在虚拟地址空间中的[大致结构](./Unit1.md#进程的形式){target="_blank"}和地址分布都是相同的，例如可能都是从 0 地址开始放 text 段，栈底一般都在末尾等——这就意味着进程的虚拟地址空间应当是**互不相关**的，由将若干互相隔离的虚拟地址空间映射到各自的物理地址这个任务，则由 [MMU](#MMU){target="_blank"} 完成。（在我们之后介绍了[页表](#页表){target="_blank"}后，这意味着每个进程都应当有自己的页表。）
 
 ## 分页技术
 
 分页技术想要解决的问题是减轻进程“必须要使用连续内存”这一限制。我们在[前面的思考题](#why-continuous){target="_blank"}中已经提到，需要使用连续内存是需要一种逻辑上的连续，因此，在[物理地址和虚拟地址](#物理地址和虚拟地址){target="_blank"}的语境下，我们只需要保证虚拟地址是连续的即可。当然，这并不意味着物理地址的连续就是毫无意义的了，物理地址的连续是实际上提供高效内存访问的基础。
+
+> 显然这里的“page”是基于 [Definition 2](#page-frame-def-2){target="_blank"}。
 
 ### 基本设计
 
@@ -141,6 +143,42 @@ Dynamic relocation using a relocation register.
 #### 帧 & 页
 
 因此，我们将两者的优点合并，我们将物理内存划分为固定大小的块，称为**帧(frames)**（类似于 fixed partition），每个帧对应虚拟地址中等大的一块**页(pages)**，用这些帧来作为连续的虚拟地址的物理基础，用虚拟的页号来支持连续虚拟地址（马上就会细说），这样保证了在一定限度内页分配的自由度，利用了虚拟地址的灵活性；又保证了内存相对来说还是成块连续的，提供了物理地址连续的高效性。而帧与页的对应关系，是通过**页表(page table)**来实现的，在页表中，实际上是一个以页号为索引的帧号数组，按照页号顺序排列，因此，页号就是对应的表项在数列中的位次。
+
+???+ key-point "pages v.s. frames"
+
+    !!! warning "下面的内容是在扣定义扣字眼，如果读者认为这毫无意义，可以直接跳过，但我个人认为这些事是构成流畅逻辑的一个基础。"
+
+    虽然我们已经给出了明确的 page 和 frame 的定义，但现实很混乱，我主要查找到关于 page 和 frame 有连套不同的定义。
+
+    <a id="page-frame-def-1"/>
+    ???+ definition "Definition 1"
+
+        参考这个[链接](https://cs.stackexchange.com/a/85626){target="_blank"}，这种流派的定义就是上面提到过的这种：
+
+        1. page 表示**虚拟内存中**的完整一块；
+        2. frame 表示**物理内存中**的完整一块；
+
+        > 这里我们抓住主要矛盾，不准确描述是怎样“完整一块”，主要区别在于加粗部分。
+
+    <a id="page-frame-def-2"/>
+    ???+ definition "Definition 2"
+
+        参考这个[链接](https://cs.stackexchange.com/a/11670){target="_blank"}，这种流派的定义不同，在这套定义里，**准确的 page** 和 frame 不是对等的概念，而是说：
+
+        1. 作为缩写的 page 指代 virtual page，即虚拟内存中的一块；
+        2. 作为缩写的 frame 全称是 page frame，也被定义为 physical page；
+
+        !!! warning "为了避免歧义，本 block 中，我们只使用 page，virtual page，physical page 这三个术语！"
+        
+        在这个定义里，page 表示的实际上是抽象的数据块（注意，不是虚拟的），换句话来说：
+        
+        1. page 的本质是“数据信息”；
+        2. physical page 是 page 在物理内存上的实际存储形式；
+        3. virtual page 是 page 的在虚拟内存上的逻辑映象，也 physical page 的一个 view；
+
+        可以发现，虽然用词改变，但是“physical page”和“virtual page”的关系和之前是一样的，只是“page”这个词的含义不一样了。
+
+        所以最违和的就是，作为缩写的 page 和准确的 page 的含义是不一致的，甚至区别巨大。所以我不喜欢这个定义。但是没办法，paging 技术的命名反而就是基于这套定义的，这里大概存在一个非常恶心的历史遗留问题在，请读者留个心眼，在之后的内容中仔细辨别。
 
 回忆[虚拟地址空间](#virtual-address-space){target="_blank"}的相关概念，**每个进程应当都有自己的页表**，即我们称页表是 per-process data structures。
 
@@ -292,74 +330,75 @@ Paging model of logical and physical memory.<br/>
 
 现在我们要冷静地解决这个问题！现在问题有两个：⓵ 页表实在太大了，⓶ 它不仅大，而且必须是连续的。其中第二点是最关键的，在本节之后的内容中，我将称之为“连续内存约束问题”（非正式表述）。
 
-我们介绍三个方法来解决上述问题：[分层页表](#分层页表){target="_blank"}、[哈希页表](#哈希页表){target="_blank"}和[反转页表](#反转页表){target="_blank"}。
+我们介绍三个方法来解决上述问题：[分层页表](#hierarchical-paging){target="_blank"}、[哈希页表](#hashed-pgtb){target="_blank"}和[反转页表](#inverted-pgtb){target="_blank"}。
 
-#### 分层页表
+<a id="hierarchical-paging"/>
+???+ section "分层页表"
 
-同样，我们首先来思考为什么这里需要的内存是连续的——作为一个一维数字，只有内存连续才能保证 random access。类似的问题我们在探索[连续分配](#连续分配及其问题){target="_blank"}的过程中已经遇到过了：在物理地址空间中寻求连续，一个重要就是因为只有物理地址的设计中，只有保证连续才能保证能 random access 地去访问地址，而现在这个一维数组太大块了，我们希望它碎一点；而我们通过保证分块地连续（帧内物理地址的连续），再保证块索引的连续（虚拟地址空间中页号的连续）的方式解决了这个问题，就好像把一个一维数组变成了一个**指针数组**，或者说逻辑上的二维数组。
+    同样，我们首先来思考为什么这里需要的内存是连续的——作为一个一维数字，只有内存连续才能保证 random access。类似的问题我们在探索[连续分配](#连续分配及其问题){target="_blank"}的过程中已经遇到过了：在物理地址空间中寻求连续，一个重要就是因为只有物理地址的设计中，只有保证连续才能保证能 random access 地去访问地址，而现在这个一维数组太大块了，我们希望它碎一点；而我们通过保证分块地连续（帧内物理地址的连续），再保证块索引的连续（虚拟地址空间中页号的连续）的方式解决了这个问题，就好像把一个一维数组变成了一个**指针数组**，或者说逻辑上的二维数组。
 
-现在我们遇到的问题实际上就是这个“指针数组”也太大块了，希望它能碎一点，所以解决方法已经呼之欲出了——将这个指针数组再进行拆分，变成一个维护指针数组指针的数组，或者说逻辑上的三维数组：
+    现在我们遇到的问题实际上就是这个“指针数组”也太大块了，希望它能碎一点，所以解决方法已经呼之欲出了——将这个指针数组再进行拆分，变成一个维护指针数组指针的数组，或者说逻辑上的三维数组：
 
-```
- page number     page offset
-┌───────┬───────┬──────────────┐
-│ p1    │ p2    │ d            │
-└───────┴───────┴──────────────┘
-```
+    ```
+    page number     page offset
+    ┌───────┬───────┬──────────────┐
+    │ p1    │ p2    │ d            │
+    └───────┴───────┴──────────────┘
+    ```
 
-类似的，我们可以将它看作在原先维护 p2 -> d 的 inner 页表外，再维护一个 p1 -> inner 的 outer 页表。通过这种方式，我们减少了单个页表所需要包含的表项数（原先一个页表需要有 2^p^ 个表项，现在只需要有 2^p1^ 或 2 ^p2^ 个即可）；除此之外，虽然看起来表总量增加了（现在一共需要 2^p1+p2^ + 2^p1^ 个表，原来只需要 2^p1+p2^ 个表），但是 ⓵ 一方面这个增加是可以忽略的相对小量，⓶ 另外一方面，实际上我们并不总是需要创建所有的表——假设某个 inner 表里的虚拟内地址我们都用不到，那么我们就不需要创建这个 inner 表，只需要在 outer 表中标记这个 inner 表是 invalid 就可以了。
+    类似的，我们可以将它看作在原先维护 p2 -> d 的 inner 页表外，再维护一个 p1 -> inner 的 outer 页表。通过这种方式，我们减少了单个页表所需要包含的表项数（原先一个页表需要有 2^p^ 个表项，现在只需要有 2^p1^ 或 2 ^p2^ 个即可）；除此之外，虽然看起来表总量增加了（现在一共需要 2^p1+p2^ + 2^p1^ 个表，原来只需要 2^p1+p2^ 个表），但是 ⓵ 一方面这个增加是可以忽略的相对小量，⓶ 另外一方面，实际上我们并不总是需要创建所有的表——假设某个 inner 表里的虚拟内地址我们都用不到，那么我们就不需要创建这个 inner 表，只需要在 outer 表中标记这个 inner 表是 invalid 就可以了。
 
-通过这种设计，我们成功地节省了维护页表所需要的内存空间，同时减小了连续内存对页表维护的约束。
+    通过这种设计，我们成功地节省了维护页表所需要的内存空间，同时减小了连续内存对页表维护的约束。
 
-如上这种设计，就是**分层分页(hierarchical paging)**，而上面这个就是二级页表(two-level page table)设计。
+    如上这种设计，就是**分层分页(hierarchical paging)**，而上面这个就是二级页表(two-level page table)设计。
 
-显然，有二就可以有三，有三就可以有四，具体使用哪种，应当秉持具体问题具体分析的原则。
+    显然，有二就可以有三，有三就可以有四，具体使用哪种，应当秉持具体问题具体分析的原则。
 
-!!! extra "Risc-V"
+    !!! extra "Risc-V"
 
-    有兴趣的读者可以参考 xg 的这篇“[RISC-V 页表相关](https://note.tonycrane.cc/cs/pl/riscv/paging/){target="_blank"}”笔记，来了解 Risc-V 中的分页设计，写得很清楚，推荐阅读。
+        有兴趣的读者可以参考 xg 的这篇“[RISC-V 页表相关](https://note.tonycrane.cc/cs/pl/riscv/paging/){target="_blank"}”笔记，来了解 Risc-V 中的分页设计，写得很清楚，推荐阅读。
 
-    同时，实验三指导手册也提供了关于 [Risc-V Sv39](https://zju-sec.github.io/os23fall-stu/lab3/#risc-v-sv39-page-table-entry){target="_blank"} 的一些介绍。
+        同时，实验三指导手册也提供了关于 [Risc-V Sv39](https://zju-sec.github.io/os23fall-stu/lab3/#risc-v-sv39-page-table-entry){target="_blank"} 的一些介绍。
 
-#### 哈希页表
+<a id="hashed-pgtb"/>
+???+ section "哈希页表"
 
-简单回顾一下我们遇到的问题：页表太大，而且必须是连续的。但是实际上我们使用的映射关系，从虚拟地址来看是集中的，从物理地址来看是稀疏的，反正页表中有大量表项是 invalid 的，所以想办法不存这些用不到的表项，也是一种解决思路。
+    简单回顾一下我们遇到的问题：页表太大，而且必须是连续的。但是实际上我们使用的映射关系，从虚拟地址来看是集中的，从物理地址来看是稀疏的，反正页表中有大量表项是 invalid 的，所以想办法不存这些用不到的表项，也是一种解决思路。
 
-!!! quote "Links"
+    ???+ quote "Links"
 
-    - [Hash function | wikipedia](https://en.wikipedia.org/wiki/Hash_function){target="_blank"}
-    - [哈希 | 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/algorithm/ds/summary2/){target="_blank"}
-    - [Hashing | sakuratsuyu's Notes](https://sakuratsuyu.github.io/Note/Computer_Science_Courses/FDS/Hashing/){target="_blank"}
+        - [Hash function | wikipedia](https://en.wikipedia.org/wiki/Hash_function){target="_blank"}
+        - [哈希 | 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/algorithm/ds/summary2/){target="_blank"}
+        - [Hashing | sakuratsuyu's Notes](https://sakuratsuyu.github.io/Note/Computer_Science_Courses/FDS/Hashing/){target="_blank"}
 
-**哈希页表(hashed page table)**维护了一张哈希表，以页号的哈希为索引，维护了一个链表，每一个链表项包含页号、帧号、和链表 next 指针，以此来实现页号到帧号的映射。此时，一方面我们没必要再维护一个大若虚拟地址总数的表，另一方面由于引入链表，大量的指针操作导致对地址连续性的要求降低，也能变相地减轻连续内存约束。
+    **哈希页表(hashed page table)**维护了一张哈希表，以页号的哈希为索引，维护了一个链表，每一个链表项包含页号、帧号、和链表 next 指针，以此来实现页号到帧号的映射。此时，一方面我们没必要再维护一个大若虚拟地址总数的表，另一方面由于引入链表，大量的指针操作导致对地址连续性的要求降低，也能变相地减轻连续内存约束。
 
-<center> ![](img/37.png){ width=80% } </center>
+    <center> ![](img/37.png){ width=80% } </center>
 
-!!! section "clustered page tables"
+    ???+ section "clustered page tables"
 
-    A variation of this scheme that is useful for 64-bit address spaces has been proposed. This variation uses **clustered page tables**, which are similar to hashed page tables except that **each entry in the hash table refers to several pages** (such as 16) rather than a single page. 
-    
-    Therefore, a single page-table entry can store the mappings for multiple physical-page frames. Clustered page tables are particularly useful for **sparse** address spaces, where memory references are **noncontiguous and scattered** throughout the address space.
+        A variation of this scheme that is useful for 64-bit address spaces has been proposed. This variation uses **clustered page tables**, which are similar to hashed page tables except that **each entry in the hash table refers to several pages** (such as 16) rather than a single page. 
+        
+        Therefore, a single page-table entry can store the mappings for multiple physical-page frames. Clustered page tables are particularly useful for **sparse** address spaces, where memory references are **noncontiguous and scattered** throughout the address space.
 
-#### 反式页表
+<a id="inverted-pgtb"/>
+???+ section "反式页表"
 
-我们之前的页表通过维护虚拟地址的有序来实现对页号的 random access，但是代价是需要维护大量连续虚拟地址。反式页表(inverted page table)则直接大逆不道地修改了整套思路——以物理地址为索引维护映射关系。
+    我们之前的页表通过维护虚拟地址的有序来实现对页号的 random access，但是代价是需要维护大量连续虚拟地址。反式页表(inverted page table)则直接大逆不道地修改了整套思路——以物理地址为索引维护映射关系。
 
-同时，在这种设计下，整个操作系统只维护一张反转页表。由于不需要每个进程都存储一张页表，整体只存储物理地址数量个表项，所以相对来说节省了内存空间。
+    同时，在这种设计下，整个操作系统只维护一张反转页表。由于不需要每个进程都存储一张页表，整体只存储物理地址数量个表项，所以相对来说节省了内存空间。
 
-但是显然，这样做我们就没法自然地支持[共享页](#共享页){target="_blank"}了[^4]，因为索引应当是 unique 的。不仅如此，由于我们只做虚拟地址 -> 物理地址的查询，所以在这种结构下我们只能遍历整个表来找映射关系。诸如此类还有不少限制。
+    但是显然，这样做我们就没法自然地支持[共享页](#共享页){target="_blank"}了[^4]，因为索引应当是 unique 的。不仅如此，由于我们只做虚拟地址 -> 物理地址的查询，所以在这种结构下我们只能遍历整个表来找映射关系。诸如此类还有不少限制。
 
-> 总而言之，我觉得这个方法很臭。
+    > 总而言之，我觉得这个方法很臭。
 
-!!! extra "其它"
+    !!! extra "其它"
 
-    可能还会涉及一些段式设计以及相关设计，但是并不主流，但考试可能会考，大家可以选择性去了解一下。
+        可能还会涉及一些段式设计以及相关设计，但是并不主流，但考试可能会考，大家可以选择性去了解一下。
 
-## 虚拟内存管理
+## 交换技术
 
 我们知道，只有在内存中的指令(instructions)才能被 CPU 执行，因而内存大小一定程度上限制了多道程度(degree of multiprogramming)。但是，大部分内容并不需要全程待在内存中[^6]，即不会频繁地被使用。
-
-### 交换技术
 
 所以，我们可以考虑在不需要的时候将部分内容放在后备存储(backing store)中，而在需要的时候再将它们弄到内存里——这就是**交换(swap)技术**。在应用交换技术后，那些实际放在后备存储里的 instructions，可以“假装也在内存中”，即 high level 的看，我们并不知道它到底是放在内存还是后备存储里，但是保证当 CPU 需要访问这一块内容时，这些内容会被载入内存。
 
@@ -372,7 +411,9 @@ Standard swapping of two processes using a disk as a backing store.
 
 在标准的 swap 操作中，我们以进程为单位进行 swap，这意味着我们要把所有 per-process 的东西都一同 swap，相当于“冻结”整个 process或“解冻”了整个 process，就好像跨内存和后备存储进行 context switch。可想而知，这个开销是巨大的。
 
-如今我们有分页技术，我们完全可以以页为单位进行 swap，只不过我们称这种以页为单位的**交换(swap)**叫**换页(page)**。
+如今我们有分页技术，我们完全可以以页/帧为单位进行 swap，只不过我们称这种以页/帧为单位的**交换(swap)**叫**换页(page)**。
+
+> 显然这里的“page”是基于 [Definition 2](#page-frame-def-2){target="_blank"}。
 
 <figure markdown>
 <center> ![](img/39.png){ width=60% } </center>
@@ -381,35 +422,34 @@ Swapping with paging.
 
 !!! property "优势"
 
-    利用换页技术和虚拟内存的组合拳，我们可以让进程所使用的内存空间总和看起来大于硬件支持的物理内存空间大小上限，**扩展**抽象的“内存”的容量。
+    利用页置换技术和虚拟内存的组合拳，我们可以让进程所使用的内存空间总和看起来大于硬件支持的物理内存空间大小上限，**扩展**抽象的“内存”的容量。
 
     <figure markdown>
     <center> ![](img/40.png){ width=80% } </center>
     Diagram showing virtual memory that is larger than physical memory.
     </figure>
 
-### 页级内存管理
+宏观地来看，我们可以抓住主要矛盾，只将每个进程中最迫切需要的那些页留在物理内存中，对进程进行页级的内存管理，于是平均每个进程需要在物理内存中的数据量更小、物理内存中可以存放的“进程”数量更多、多道程度(degree of multiprogramming)得以提高。
 
-现在我们来仔细思考如何利用这套组合拳来进行内存管理。
+### swap 空间
 
-!!! section "**静态**地来看"
+进行 swap 需要从后备存储中来获取进程内容。在后备存储中，有一块专门用来做这件事的地方，叫**交换空间(swap space)**，通常和 swap space 进行交换会更快。但是，代码并不是一开始就在交换空间的，我们需要找一个时机把代码放进去以后，才能纵享丝滑。
 
-    宏观地来看，我们可以抓住主要矛盾，只将每个进程中最迫切需要的那些页留在物理内存中，对进程进行页级的内存管理，于是平均每个进程需要在物理内存中的数据量更小、物理内存中可以存放的“进程”数量更多、多道程度(degree of multiprogramming)得以提高。
-
-!!! section "**动态**地来看"
-
-    对于**页申请**，我们需要考虑如何高效经济地去满足进程创建时对内存的需求。
-
-    对于**页交换**，我们需要考虑它和谁去换。这里有两个问题需要考虑：⓵ 换页的范围和 ⓶ 换页的策略。其中，我们将后者延后至[换页策略](#交换策略){target="_blank"}一节介绍。
-
-    TODO: 补全
-
+> 一种 naive 的做法是，在进程创建的时候就把整个代码镜像放进交换空间，这个做法的缺点就是它的定义，我们会需要在一开始做一个大规模的复制，这个做法有诸多显然的弊端。
+>
+> 另一种做法是，当一个 page 第一次被使用的时候，它从文件系统中被 page in；而在被 replace 而 page out 的时候，将它写入 swap space。这样，下次需要这个 page 的时候就可以从 swap space 里 page in。
+>
+> 还有一种策略是，当操作系统需要某个页面时，它会直接从文件系统中将这些页面加载到内存中。这些页面在内存中的副本是不会被修改的，因此当这些内存需要被替换的时候，可以直接被覆盖。（在这种情况下，文件系统本身就像一个后备存储）但是，对于那些不与文件相关联的页面，我们称之为匿名内存(anonymous memory)，例如进程的栈和堆，仍然需要使用交换空间。
+>
+> **这一部分的内容写的比较简略，对应课本 10.2.3 的后半部分。**
 
 > 但是无论如何，硬盘的速度还是不如内存，所以在内存足够的情况下我们一般不使用 swap。
 
-### 按需换页系统
+接下来，我们引入一套更完善的虚拟内存管理系统：demand paging。
 
-**按需换页(demand paging)**^[WIKI](https://en.wikipedia.org/wiki/Demand_paging){target="_blank"}^和[交换技术中的换页](#交换技术){target="_blank"}很类似，指只把**被需要**的页载入内存。
+## 按需换页系统
+
+**按需换页(demand paging)**^[Wiki](https://en.wikipedia.org/wiki/Demand_paging){target="_blank"}^和[交换技术中的页置换](#交换技术){target="_blank"}很类似，指只把**被需要**的页载入内存，是一种内存管理系统。
 
 !!! extra "pure demand paging"
 
@@ -425,20 +465,35 @@ Swapping with paging.
 
 与引入交换技术之前的页表设计相比，多出来的就是情况 2.。如果系统访问了一个在页表中是 invalid 的页，就会生成异常，我们称这种情况为**缺页(page fault)**。
 
+??? extra "major & minor page fault"
+
+    实际上，情况 2. 还可以细分为两种，一种是**major/hard page fault**，一种是**minor/soft page fault**。
+
+    Major page fault 指的是缺了的页不在内存中的情况；而 minor page fault 指的是缺了的页在内存中存在，只不过没在当前页表中建立映射。
+
+    这里稍微细说一下 minor page fault，出现 minor page fault 有两种可能：
+
+    1. 进程可能需要引用一个共享库的 page，而这个共享库的 page 已经在内存中，我们只需要更新一下页表把它链上去就行了；
+    2. 进程可能需要引用一个之前被释放了的 page，而那个被释放的 page 还没有被 flush 或分配给别的进程，此时我们可以直接使用这个 page（~~捡垃圾！五秒原则？~~）；
+
 区别于之前的页表设计——访问 invalid 的表项是一种预期外行为，现在产生缺页反而**更多**是一种预期内的行为——系统对某个被 page out 了的页产生了“需求”。当然，情况 3. 这种非法操作也会引起异常，所以我们需要在之后的异常处理过程中对此做区分并分别处理。
 
 > 说实话其实我感觉这里的逻辑稍微有点绕，可能是一些历史原因。
 
 操作系统就需要去处理这个异常的大概流程如下：
 
-1. 检查一张 PCB 里的内部表，来区分这个地址到底是情况 2. 还是情况 3.；
-    1. 如果是情况 2.，则继续如下操作以将其 page in；
-    2. 如果是情况 3.，则终止进程；
-2. 从[可用帧列表](#可用帧列表){target="_blank"}里拿出 frame 用来写入；
-3. 开始从后备存储读取内容，并写入 frame；
-4. 完成读写后，更新内部表和页表等元信息；
-5. 重新执行引起 page fault 的 instruction；
-    - 该操作十分关键，类似于死锁里的回滚操作，支持这项操作也具有一定的难度，包括如何确切地恢复回指令执行之前的状态、如何消除执行了一半的指令的效果等；
+<a id="page-fault-handling"/>
+!!! section "page fault 处理流程"
+
+    1. 检查一张 PCB 里的内部表，来区分这个地址到底是情况 2. 还是情况 3.；
+        1. 如果是情况 2.，则继续如下操作以将其 page in；
+        2. 如果是情况 3.，则终止进程；
+    2. 从[可用帧列表](#可用帧列表){target="_blank"}里拿出 frame 用来写入；
+        1. 如果可用帧列表为空，则进行[页置换](#置换策略){target="_blank"}；
+    3. 开始从后备存储读取内容，并写入 frame；
+    4. 完成读写后，更新内部表和页表等元信息；
+    5. 重新执行引起 page fault 的 instruction；
+        1. 该操作十分关键，类似于死锁里的回滚操作，支持这项操作也具有一定的难度，包括如何确切地恢复回指令执行之前的状态、如何消除执行了一半的指令的效果等；
 
 <figure markdown>
 <center> ![](img/41.png){ width=80% } </center>
@@ -454,48 +509,151 @@ Steps in handling a page fault.
         2. 发起后备存储 -> 内存的 I/O 请求；
     - （等待过程中 CPU 被调度）；
     1. I/O 中断产生，此时也会有一个 **context switch**；
-        1. 处理中断，包括决定中断类型、更新页表和其他内部表；
+        - 处理中断，包括决定中断类型、更新页表和其他内部表；
     2. 等待 CPU 再次调度到该进程，显然这里也有个 **context switch**；
-        1. 做一些回滚操作，然后重新执行引起 page fault 的指令；
+        - 做一些回滚操作，然后重新执行引起 page fault 的指令；
 
     可以发现，处理 page fault 超慢的！因此，我们应当尽可能减少 page fault rate。
 
 程序执行的局部性保证了 page fault 不会太频繁，导致带来不可接受的额外开销。需要注意，单条指令是有可能带来若干次 page fault 的（例如可能在 instruction fetch 的时候产生、可能在 operand fetch 的时候产生等）。
 
-#### swap 空间
-
-我们说，在进行按需分页的时候可以从后备存储中来获取进程内容。在后备存储中，有一块专门用来做这件事的地方，叫**交换空间(swap space)**，通常和 swap space 进行交换会更快。但是，代码并不是一开始就在交换空间的，我们需要找一个时机把代码放进去以后，才能纵享丝滑。
-
-> 一种 naive 的做法是，在进程创建的时候就把整个代码镜像放进交换空间，这个做法的缺点就是它的定义，我们会需要在一开始做一个大规模的复制，这个做法有诸多显然的弊端。
->
-> 另一种做法是，当一个 page 第一次被使用的时候，它从文件系统中被 page in；而在被 replace 而 page out 的时候，将它写入 swap space。这样，下次需要这个 page 的时候就可以从 swap space 里 page in。
->
-> 还有一种策略是，当操作系统需要某个页面时，它会直接从文件系统中将这些页面加载到内存中。这些页面在内存中的副本是不会被修改的，因此当这些内存需要被替换的时候，可以直接被覆盖。（在这种情况下，文件系统本身就像一个后备存储）但是，对于那些不与文件相关联的页面，我们称之为匿名内存(anonymous memory)，例如进程的栈和堆，仍然需要使用交换空间。
->
-> **这一部分的内容写的比较简略，对应课本 10.2.3 的后半部分。**
-
-#### 回顾 copy on write
+### 回顾 copy on write
 
 我们在[内存管理](./Unit1.md){target="_blank"}一节中提出了 [copy on write](./Unit1.md#copy-on-write){target="_blank"} 技术和 [vfork](./Unit1.md#vfork){target="_blank"} 技术，现在读者可以尝试再回顾一下这两个知识点与本节内容的联系。
 
-#### 可用帧列表
+### 可用帧列表
 
 在 demand paging 系统里，页是动态地被映射到帧的，所以我们需要维护一个**可用帧列表(free-frame list)**，用来记录当前哪些帧是空闲的。
+
+<figure markdown>
+<center> ![](img/42.svg) </center>
+Example of free-frame list.
+</figure>
 
 在系统启动后，我们需要将所有可用的帧都加入到 free-frame list 中；当有用户需要物理内存时候，就从 free-frame list 中取出一项，对其进行擦除，即被需求时清零(zero-fill-on-deman)。
 
 !!! question "考虑为什么要执行 zero-fill-on-deman"
 
-如果读者足够敏锐就会发现，我们只说了怎么取出 free-frame，而没说 free-frame 如何“再生”。这部分内容我们会在[换页策略](#换页策略){target="_blank"}一节中提到。
+如果读者足够敏锐就会发现，我们只说了怎么取出 free-frame，而没说 free-frame 如何“再生”。
 
-### 换页策略
+当我们发现 free-frame list 为空，即没有空闲的 frame 时，我们考虑将一些先前已经被分配的 frame 给 page out 走，拿来给当前这个页用。而具体如何选择换走哪个 frame，我们会在[置换策略](#置换策略){target="_blank"}一节中介绍。
+
+<a id="free-frame-buffer-pool"/>
+!!! section "free-frame buffer pool"
+
+    虽然我们还没介绍[置换策略](#置换策略){target="_blank"}，但是想象一下，如果等到没有 free-frame 的时候再去做置换，那么进程就需要**等待置换完成**以后再分配。
+    
+    我们可以考虑在这里引入一个抽象的 buffer，我们可以保证 free-frame list 始终有一定数量的空闲帧，例如 3 个。这样当进程来索取 free-frame 的时候，free-frame list 大概率总是能够直接给出一个 free-frame 的，而给出 free-frame 后，如果发现 free-frame list 中的剩余帧数小于 3，那么就可以独立地开始进行置换，而不必阻塞进程。
+
+    ---
+
+    又或者，我们不使用一个确切的界，而是通过一种动态调节，维护一个上界和下界：当 free-frame 数小于下界时，一类叫**收割者(reapers)**的内核例程就开始使用 [replacement algorithm](#置换策略){target="_blank"} 来 reclaim 已经被分配的 frame，直到 free-frame 的数量触碰到上界。
+
+    <figure markdown>
+    <center> ![](img/43.png){ width=60% } </center>
+    Reclaiming pages.
+    </figure>
+
+    ---
+
+    进一步的，万一此时出现了一些特殊情况，导致实际的 free-frame 数非常少，达到了一个非常低的界，此时就出现了 **OOM(out-of-memory)**。此时，一个叫做 OOM killer 的例程就会杀死一个进程，以腾出内存空间。
+    
+    在 Linux 中，每个进程会有一个 OOM score，OOM score 越高约容易被 OOM killer 盯上，而 OOM score 与进程使用的内存的百分比正相关，所以大概的感觉就是谁内存用的最多就杀谁。[^9]如果读者对 Linux 的 OOM 机制有兴趣，可以看看角注 9。
+
+!!! info "导读"
+
+    > 准确来说接下来[分配策略](#分配策略){target="_blank"}和[置换策略](#置换策略){target="_blank"}都应当是 demand paging 的子条目，但是四级标题实在太小了，所以我设为了三级标题。
+
+    我们已经阐述了一个正在运行中的 [demand paging](#按需换页系统概述){target="_blank"} 系统是如何运作的，现在需要补足一些细节。
+
+    1. [分配策略](#分配策略){target="_blank"}：初始化时，如何分配进程所需要的 frame？
+    2. [置换策略](#置换策略){target="_blank"}：当 free-frame 不足时，如何进行 replacement？
+
+### 分配策略
+
+在 pure demand paging 里，每个进程通过 page fault 不断“蚕食” free-frame，但如果我们不适用 pure 的 demand paging，那么就需要决定一开始分配多少 frames 给一个 process。
+
+首先，对于单个进程的分配，存在一个较严格的上下界：
+
+!!! section "lower bound & upper bound"
+
+    1. 分配给一个 process 的 frames 数量不能大于 free-frame 总量；
+        - 即 the maximum number of frames per process is defined by the amount of available physical memory；
+    2. 分配给一个 process 的 frames 数量不能小于 process「执行每一条指令所需要涉及的 frames」的最大值；
+        - 这句话有点绕，稍微解释一下：
+            - 一些指令可能会需要引用其它 frame（例如的 load，move，以及会产生 indirect references 的指令等），而且 instruction fetch 以外的额外 memory reference 可能不止一个；
+            - 我们应当保证涉及的若干 page 都能被存在内存中；
+            - 因此，从某种角度来说：the minimum number of frames per process is defined by architecture；
+
+**分配算法(frame-allocation algorithm)**按照分配的帧的大小来分，主要有这么两种：
+
+???+ section "equal allocation"
+
+    顾名思义，每一个进程被分配的 frame 总量都相同，假设共 $n$ 个 process，$m$ 块可用 frame，那么每个进程被分配的 $\left\lceil\frac{m}{n}\right\rceil$。
+
+???+ section "proportional allocation"
+
+    比例指按进程的大小来分配，假设共 $n$ 个 process，$m$ 块可用 frame，其中每个 process 的大小为 $s_i$，那么每个进程被分配的 frame 大小为 $a_i = \left\lceil \frac{s_i}{\sum_{j}^n s_j} \times m\right\rceil$。
+
+???+ section "proportional allocation with priority"
+
+    注意到， 目前提到的两种做法都和进程的优先级无关，但从需求上来讲，我们可能倾向于让高优先级的进程被分配更多的 frame 以降低 page fault rate 来增加它们的效率。
+    
+    所以，我们可以在 proportional allocation 的基础上，在计算 $a_i$ 时综合考虑 priority。
+
+我们发现，上面关于内存分配大小的式子中，有一项 $n$ 表示 #process，区别于其它相对静态的参数，这个参数是会在调度过程中动态变化的，所以实际上分配给每个进程的 frame 数量也是会动态变化的。
+
+在多核设计下，有一种设计叫做 NUMA^[Wiki](https://en.wikipedia.org/wiki/Non-uniform_memory_access){target="_blank"}^，我们在 Overview 其实也提到过。在这种设计里，由于硬件设计问题，不同的 CPU 都有自己“更快”访问的内存。读者可以通过上面的 Wiki 链接做详细了解。
+
+### 置换策略
+
+当 free-frame list 为空，但用户仍然需要 frame 来进行 page in 时，就需要进行**页置换(page replacement)**，将并没有正在被使用的页腾出来给需要 page in 的内容用，而这个“被要求腾出地方”的页，我们称之为**牺牲帧(victim frame)**。
+
+> 显然这里的“page”是基于 [Definition 2](#page-frame-def-2){target="_blank"}。
+
+我们细化 [page fault 处理流程](#page-fault-handling){target="_blank"}的 2.a. 项，大概是如下的步骤：
+
+!!! section "page replacement"
+
+    1. 利用**置换算法(replacement algorithm)**决定哪个 frame 是 victim frame；
+    2. 如果有必要（dirty），victim frame -> 后备存储；
+    3. 更新相关元信息；
+    4. 返回这个 victim frame 作为 free-frame；
+
+如果这个 victim frame 在被 page in 以后没有被修改过，那么我们可以直接将它覆盖，不需要写回后备存储，能节省一次内存操作；反之，如果这个 victim frame 被修改过，那么我们需要将它写**回**后备存储，类似于将修改给“commit”了。而为了实现这个优化，我们用一个**修改位(dirty bit 或 modified bit)**来记录页是否被修改过，当 frame 刚被载入内存时，dirty bit 应当为 0；而一旦帧内有任何写入操作发生，dirty bit 就会被置 1。
+
+现在我们来讨论具体的**置换算法(replacement algorithm)**。
+
+!!! section "optimal"
 
 
 
+!!! section "FIFO"
 
 
 
+!!! section "LRU"
 
+
+
+!!! section "LFU"
+
+!!! question "能否置换其它进程的帧？"
+    
+    在[分配](#分配策略){target="_blank"}的时候，我们为进程分配了一些帧以用于必要的运算活动。但我们知道，置换操作会动态地更新 frame 的使用情况。不知道你是否疑惑过：置换的时候，我们能否置换其它进程的 frame？以及我们要如何实现和维护这些策略呢？
+
+    实际上，replacement 分为 local 和 global 两种：
+
+    1. 使用 local replacement 时，replacement 只发生在属于当前进程的帧中，因而也就不会影响其它进程的内存使用情况；
+    2. 而对应的，global replacement 的 scope 是所有帧，甚至可能一部分原来属于操作系统的帧，因而它能实现一些类似“抢占”的效果；
+        - [Free-frame buffer pool](#free-frame-buffer-pool){target="_blank"} 就是一种天然的 global replacement 的实现方式；
+    3. 如果我们稍微做一些设计，比如**只**允许高优先级的进程能够置换低优先级的 frame，则高优先级的进程使用的 frame 可能越来越多，进而不断优化高优先级进程的效率；
+
+    当然，我们需要维护每个进程所拥有的 frame 数量被 minimum frame number 给 bound 限住。
+
+    对比 local replacement 和 global replacement，主要就是一个封闭性和灵活性的 trade-off，很直观：global replacement 分配更灵活，内存的利用率更高，但对于 frame 被“抢”的进程来说，整体运行的效率就不稳定了；反观 local replacement，虽然由于能够利用的内存有限，可能出现别的进程省了不少但是自己很吃紧的情况，出现内存利用率较低的情况，但整体来说较为稳定。
+
+    > 上面是书上的意思，但我认为这个评价还是不公平的，因为所谓的、属于进程的 frames 的数量是会变的，在新的进程被 allocation 后，进程总数会增加，而这个新进程只能从别的地方刮一些内存来用，所以就算用的是 local replacement，也说不上稳定。
 
 
 [^1]: [Translation lookaside buffer | Wikipedia](https://en.wikipedia.org/wiki/Translation_lookaside_buffer){target="_blank"}
@@ -506,3 +664,4 @@ Steps in handling a page fault.
 [^6]: 例如 ⓵ 异常处理程序，异常类型可能很多，对应的处理方案可能也会有很多，但均摊下来每一个异常处理程序的使用频率都不会很高；⓶ 数组列表等相对不那么智能的数据结构在定义声明的时候可能开了一大块内存，基本都是为了 bound 住可能需要的内存量的上界，但是可能实际上经常碰不到上界，例如我申请了一个 1024 长的 int 数组，但是我可能一般只会用到其中的前 128 个元素；⓷ 一些可能单纯不怎么常用的功能，道理和第一点是类似的。
 [^7]: [Shared Memory "Segment" in Operating System | Stack Overflow](https://stackoverflow.com/questions/34545631/shared-memory-segment-in-operating-system){target="_blank"}
 [^8]: [Where is linux shared memory actually located? | Stack Overflow](https://arc.net/l/quote/qjkjycww){target="_blank"}
+[^9]: [Linux OOM (Out-of-memory) Killer | Medium](https://medium.com/@adilrk/linux-oom-out-of-memory-killer-74fbae6dc1b0#9707){target="_blank"}
