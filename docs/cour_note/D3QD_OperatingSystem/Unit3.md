@@ -132,7 +132,7 @@ Dynamic relocation using a relocation register.
 
 分页技术想要解决的问题是减轻进程“必须要使用连续内存”这一限制。我们在[前面的思考题](#why-continuous){target="_blank"}中已经提到，需要使用连续内存是需要一种逻辑上的连续，因此，在[物理地址和虚拟地址](#物理地址和虚拟地址){target="_blank"}的语境下，我们只需要保证虚拟地址是连续的即可。当然，这并不意味着物理地址的连续就是毫无意义的了，物理地址的连续是实际上提供高效内存访问的基础。
 
-> 显然这里的“page”是基于 [Definition 2](#page-frame-def-2){target="_blank"}。
+> 显然这里的 “page” 是基于 [Definition 2](#page-frame-def-2){target="_blank"}。
 
 ### 基本设计
 
@@ -176,7 +176,7 @@ Dynamic relocation using a relocation register.
         2. physical page 是 page 在物理内存上的实际存储形式；
         3. virtual page 是 page 的在虚拟内存上的逻辑映象，也 physical page 的一个 view；
 
-        可以发现，虽然用词改变，但是“physical page”和“virtual page”的关系和之前是一样的，只是“page”这个词的含义不一样了。
+        可以发现，虽然用词改变，但是 “physical page” 和 “virtual page” 的关系和之前是一样的，只是 “page” 这个词的含义不一样了。
 
         所以最违和的就是，作为缩写的 page 和准确的 page 的含义是不一致的，甚至区别巨大。所以我不喜欢这个定义。但是没办法，paging 技术的命名反而就是基于这套定义的，这里大概存在一个非常恶心的历史遗留问题在，请读者留个心眼，在之后的内容中仔细辨别。
 
@@ -356,7 +356,7 @@ Paging model of logical and physical memory.<br/>
 
     !!! extra "Risc-V"
 
-        有兴趣的读者可以参考 xg 的这篇“[RISC-V 页表相关](https://note.tonycrane.cc/cs/pl/riscv/paging/){target="_blank"}”笔记，来了解 Risc-V 中的分页设计，写得很清楚，推荐阅读。
+        有兴趣的读者可以参考 xg 的这篇[《RISC-V 页表相关》](https://note.tonycrane.cc/cs/pl/riscv/paging/){target="_blank"}笔记，来了解 Risc-V 中的分页设计，写得很清楚，推荐阅读。
 
         同时，实验三指导手册也提供了关于 [Risc-V Sv39](https://zju-sec.github.io/os23fall-stu/lab3/#risc-v-sv39-page-table-entry){target="_blank"} 的一些介绍。
 
@@ -409,11 +409,11 @@ Paging model of logical and physical memory.<br/>
 Standard swapping of two processes using a disk as a backing store.
 </figure>
 
-在标准的 swap 操作中，我们以进程为单位进行 swap，这意味着我们要把所有 per-process 的东西都一同 swap，相当于“冻结”整个 process或“解冻”了整个 process，就好像跨内存和后备存储进行 context switch。可想而知，这个开销是巨大的。
+在标准的 swap 操作中，我们以进程为单位进行 swap，这意味着我们要把所有 per-process 的东西都一同 swap，相当于“冻结”整个 process 或“解冻”了整个 process，就好像跨内存和后备存储进行 context switch。可想而知，这个开销是巨大的。
 
 如今我们有分页技术，我们完全可以以页/帧为单位进行 swap，只不过我们称这种以页/帧为单位的**交换(swap)**叫**换页(page)**。
 
-> 显然这里的“page”是基于 [Definition 2](#page-frame-def-2){target="_blank"}。
+> 显然这里的 “page” 是基于 [Definition 2](#page-frame-def-2){target="_blank"}。
 
 <figure markdown>
 <center> ![](img/39.png){ width=60% } </center>
@@ -609,7 +609,7 @@ Example of free-frame list.
 
 当 free-frame list 为空，但用户仍然需要 frame 来进行 page in 时，就需要进行**页置换(page replacement)**，将并没有正在被使用的页腾出来给需要 page in 的内容用，而这个“被要求腾出地方”的页，我们称之为**牺牲帧(victim frame)**。
 
-> 显然这里的“page”是基于 [Definition 2](#page-frame-def-2){target="_blank"}。
+> 显然这里的 “page” 是基于 [Definition 2](#page-frame-def-2){target="_blank"}。
 
 我们细化 [page fault 处理流程](#page-fault-handling){target="_blank"}的 2.a. 项，大概是如下的步骤：
 
@@ -620,32 +620,179 @@ Example of free-frame list.
     3. 更新相关元信息；
     4. 返回这个 victim frame 作为 free-frame；
 
-如果这个 victim frame 在被 page in 以后没有被修改过，那么我们可以直接将它覆盖，不需要写回后备存储，能节省一次内存操作；反之，如果这个 victim frame 被修改过，那么我们需要将它写**回**后备存储，类似于将修改给“commit”了。而为了实现这个优化，我们用一个**修改位(dirty bit 或 modified bit)**来记录页是否被修改过，当 frame 刚被载入内存时，dirty bit 应当为 0；而一旦帧内有任何写入操作发生，dirty bit 就会被置 1。
+如果这个 victim frame 在被 page in 以后没有被修改过，那么我们可以直接将它覆盖，不需要写回后备存储，能节省一次内存操作；反之，如果这个 victim frame 被修改过，那么我们需要将它写**回**后备存储，类似于将修改给 “commit” 了。而为了实现这个优化，我们用一个**修改位(dirty bit 或 modified bit)**来记录页是否被修改过，当 frame 刚被载入内存时，dirty bit 应当为 0；而一旦帧内有任何写入操作发生，dirty bit 就会被置 1。
 
 现在我们来讨论具体的**置换算法(replacement algorithm)**。
 
-!!! section "optimal"
+#### OPT
+
+理论上最优，即 ⓵ 能带来最低的 page fault rate，⓶ 绝对不会遭受 [Belady's anomaly](#Belady-s-anomaly){target="_blank"} 的做法是：<u>在**未来**最久的时间内不会被访问到的页作为 victim frame</u>。这句话说起来有点绕，用英文描述是：Replace the page that **will** not be used for the longest period of time.
+
+换句话来说就是选之后再也不会被用到的或（如果没有前者）下一次用到的时间最晚的页作为 victim frame。
+
+可以发现，我们实际上很难来预测一个 frame 下一次被使用是什么时候，所以该方法只是一个理论上的最优建模，我们在后面应当考虑去逼近这个建模。
+
+???+ tip "头脑风暴"
+
+    这段内容有没有让你想起我们已经学过的某个东西？
+
+    ??? success "提示"
+
+        [Shortest-Job-First Scheduling](./Unit1.md#SJF){target="_blank"}!
+
+        实际上，下面介绍 FIFO 你也应当会想起 [FCFS](./Unit1.md#FCFS){target="_blank"} 调度算法。
+
+#### FIFO
+
+先入先出(first-in, first-out, FIFO)策略，即<u>选择正在使用中的、最早进入内存的 frame 作为 victim frame</u>。我们可以通过在内存中完整地维护一个 FIFO 队列来实现这个策略。
+
+FIFO 策略的优点就是简单，方便实现；缺点是并不够好——早被载入的 page 也可能会被频繁的使用。换句话来说，这个方法用被载入的早晚来建模 page 的使用频率，但是这个建模相比 [optimal](#OPT){target="_blank"} 的建模并不足够接近。
+
+???+ tip "头脑风暴"
+
+    请读者试着思考一下，假设现在最早被载入的 page 正在使用过程中，这时候出现了一个 page fault，会发生什么？会导致出现错误吗？
+
+    ??? success "提示"
+            
+        会影响效率，但是不会出错哦！
+
+<a id="Belady-s-anomaly">
+??? extra "Belady's anomaly"
+    
+    > 这一段内容没啥用，只是一个有趣的现象。
+        
+    有一种情况叫做 Belady's anomaly，在 FIFO 策略下（其它 replacement algorithm 可能也会发生），随着 frame 数量的增加，page fault rate **可能**会增加。
+
+    例如如下 page 访问序列：
+
+    $$
+    1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5
+    $$
+
+    在 3 个 frame 的情况下，page fault rate 为 $\frac{9}{12} = 75.0%$；而在 4 个 frame 的情况下，page fault rate 为$\frac{10}{12} = 83.3%$。
+
+#### LRU
+
+我们的目标是为了逼近难以实现的 [optimal](#OPT){target="_blank"}，而 [optimal](#OPT){target="_blank"} 之所以难以实现，是因为我们很难“预知未来”，我们能利用的只有已经经历过的事情。
+
+Least recently used(LRU) 算法的思路是，基于「很久没被用过的 page 可能在短期不太会被再次使用，刚刚用过的 page 可能在短期被频繁地用」的假设，用“最久没用过”来建模「未来最久时间内不会被访问」，即<u>选择最久没被访问过的 frame 作为 victim</u>。
+
+LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](#LRU-Approximation){target="_blank"}），因为是被认为比较好的 replacement algorithm。
+
+---
+
+现在我们来考虑如何实现 LRU，或者说，如何来维护一个 frame 有多久没被访问过。
+
+!!! section "stack algorithms"
+
+    1. 计数器：使用一个计数器来标记一个帧有多久没被使用过；
+        1. 当一个 frame 被使用的时候将计数器归零；
+        2. 需要考虑每个 frame 的计数器都需要被定期更新；
+        3. 需要考虑计数器可能溢出；
+        4. 在找 least recently used frame 的时候需要去搜索 counter 最大的 frame（你也可以考虑用一个数据结构去维护它，但是会增加设计复杂度）；
+    2. 链表序列：使用一个双向链表来维护一个有序序列，frame 在序列中的位置暗示了它们最近被使用的时间；
+        - > 貌似主流都用“栈”来建模，但我觉得这不是栈，况且说是栈，其实现还是用双向链表；
+        1. 每当一个 frame 被使用的时候：
+            1. 如果它在链表中，就将它移动到链表头部；
+            2. 如果它不在链表中，就将它加入到链表头部；
+        2. 这种设计下每次的 “least used frame” 总是位于序列末尾，因此不需要做额外的搜索；
+
+    上面两种做法都被称为**栈算法(Stack Algorithms)**。
+
+    > 虽然我坚持认为这里和栈没关系。
+
+    !!! warning "缺陷"
+
+        虽然 LRU 对于拟合 [optimal](#OPT){target="_blank"} 是比较好的，但是它也有一些缺陷：
+         
+        1. 对于计数器做法，维护每个 frame 的 clock 想想就很慢，除非有特定的硬件来优化这个操作（例如不需要由操作系统来操心 clock 的维护）；
+        2. 对于两者，由于每次内存被访问的时候都需要进行维护，如果通过 interrupt 来调用 stack algorithms，那么开销将会巨大；
+
+ 此外，LRU 算法不会出现 [Belady's anomaly](#Belady-s-anomaly){target="_blank"}。
+
+ ---
+
+<a id="LRU-Approximation"/>
+
+由于我们在 Stack Algorithm 里提到的诸多弊端，我们考虑**近似**地，实现 LRU 算法——实际上是近似实现 Stack Algorithm。
+
+多数操作系统会提供一个叫 reference bit 的功能。所有 frame 都有一个与之关联的 reference bit，在初始化的时候都会被置 0；而每当 frame 被使用时，reference bit 就会被置 1。于是，我们可以通过观察 reference bit 来观察某些 frame 是否被使用过。
+
+开始之前，我们分析 LRU 的限制，主要体现在两个方面：⓵ 需要全部历史信息，维护成本较大（需要设计数据结构来存储）；⓶ 数据维护过于频繁，每次使用 frame 都需要用一段不小的开销去更新状态。
+
+对应的解决方案是：⓵ 我们完全可以只关注一个邻域里的历史信息，⓶ 我们可以降低更新 frame 信息的频率。（虽然对于后者，实际上如果对应于 reference bit 的更新，其实并没有降低频率。）
+
+???+ section "Additional-Reference-Bits Algorithm"
+
+    只有 reference bit 的话没法反应出 frame 使用的“远近”，也就是使用的顺序。
+
+    既然缺的是顺序，我们就考虑建模 frame 的使用远近。其中最首要的一个任务就是获取历史信息，所以我们需要用一些 bits 来存储每个 frame 的历史使用信息；然后定期（利用时钟中断）地去检查、存储当前时间当前 frame 的 reference bit，相当于检测上一个采样间隔中该帧有没有被用过。
+
+    具体来说，我们可以给每个 frame 一个 $k$ bits 的 bits vector $h = (h_{k-1}h_{k-2} \dots h_{1}h_{0})_2, \quad h_i \in \{0, 1\}$ 用来存储历史的 reference bits；然后每过 $\delta t$ ms，就产生一次时钟中断，检查 frame $f_i$ 的 reference bit $r_{t}$（为了简洁我们省略这个 $i$），此时我们更新 $h' = (r_{i,t}h_{k-1}h_{k-2} \dots h_{2}h_{1})_2$，即将 $h$ 右移一位，在高位补 $r_{i,t}$。
+
+    实际上 $h$ 是一个类似队列的存在，而每次检查会把 reference bit 给 push 进这个队列里。因此，$h$ 换一个写法就是：$h' = (\underbrace{r_{t}r_{t-1}r_{t-2}r_{t-3} \dots }_{k\text{ bits}})_2$，也就是最近的 $k$ 次检测的历史记录。
+
+    而之所以从高位开始，是因为在数值大小体系中，高位代表着高权重，正好对应 reference 出现的越近，frame 越新。所以，我们可以直接找这个 bits vector 中最小的那个 frame 作为 victim frame。
+
+???+ section "Second-Chance Algorithm"
+
+    Second-Chance Algorithm 只利用 reference bit 来进行置换，类似 [FIFO](#FIFO){target="_blank"} 的改进版，在 FIFO 的基础上，我们引入了 reference bit，并且定期擦除 reference bit。
+
+    我们**循环地**遍历 frames，并逐一检测 reference bit：
+
+    1. 如果 reference bit 为 0，说明采样间隔中这个 frame 没被用过，那么这个 frame 就是我们要找的 victim frame；
+    2. 如果 reference bit 为 1，说明采样间隔中这个 frame 被用过，于是给这个 frame 一次“豁免”的机会，将它的 reference bit 设置为 0，并继续寻找下一个 frame；
+
+    !!! tip "头脑风暴"
+
+        在 2. 中为什么要将它置 0？这个置 0 的含义和在时钟中断采样的时候的置 0 一样吗？
+
+        ??? success "提示"
+
+            这就是 Second-Chance Algorithm 中的 “second” 的来源。将它置 0 后下一循环再碰到它的时候，就不会再被“豁免”了。
+
+    显而易见的，在某些情况下，该算法可能会退化为 FIFO，甚至更差，找到 victim page 之前，该算法最多可能会遍历两遍 frames。而该算法也可以看作 Additional-Reference-Bits Algorithm 的简化版，如果说 Additional-Reference-Bits Algorithm 是通过比较若干轮采样的历史采样记录来对 frames 做排序，以决定哪一个是 “LRU”；那么 Second-Chance Algorithm 就是在一个采样周期里，将 frames 做二值分类，在“远近”这件事的建模上，更加激进和粗粒度。
+
+???+ section "Enhanced Second-Chance Algorithm"
+
+    > 书中有一句话令人费解，我发现已经有人在 StackOverflow 上问了这个问题，可以参考一下这个[问题](https://stackoverflow.com/questions/58496569/how-does-the-enhanced-second-chance-algorithm-has-a-preference-to-the-changes-th){target="_blank"}。
+
+    既然 Second-Chance Algorithm 的建模有点太激进和粗粒度，那我们考虑把粒度再弄细一点。
+
+    之前我们都只看 reference bit，现在我们把 dirty bit 也纳入考虑。考虑二元组 $(reference, dirty)$，两个 bit 有四种组合：
+
+    1. $(0, 0)$：没被用过，也没被修改过；
+    2. $(0, 1)$：没被用过，但被修改过；
+    3. $(1, 0)$：被用过，但没被修改过；
+    4. $(1, 1)$：被用过，也被修改过；
+
+    由于被修改过的 frame 在被置换的时候需要执行写回，所以我们希望尽量晚一点使用这类 frame。在这种分类下，前两种合并，后两种合并，就是先前的 Second-Chance Algorithm 了。
+
+    在 Enhanced Second-Chance Algorithm 中，我们找到第一个 1. 情况的 frame 作为 victim；如果没有，就去找第一个 2. 情况的 frame 作为 victim……以此类推。[^10]
+
+    因此，Enhanced Second-Chance Algorithm 可能最多会遍历 4 次 frames。在已经介绍的三个算法里，它是唯一一个考虑了 dirty bit 的。
+
+    > ~~总感觉 LRU 已经被改的面目全非了x~~
+
+#### 基于计数的置换
+
+我们考虑用 counter 来记录正在使用的 frame 中每个 frame 被使用的次数，用 counter 的值来建模“使用频率”。按照后续操作不同分为这两种：
+
+- Least frequently used(LRF) 选择 counter 最小的 frame 作为 victim frame；
+- Most frequently used(MRF) 选择 counter 最大的 frame 作为 victim frame；
+    - 这个做法基于「counter 小的 frame 可能才刚刚被 load 进来」这个假设；
+
+显而易见的，这两个设计对 [optimal](#OPT){target="_blank"} 的拟合都不是很好，开销也都很大。
 
 
-
-!!! section "FIFO"
-
-
-
-!!! section "LRU"
-
-
-
-!!! section "LFU"
-
-!!! question "能否置换其它进程的帧？"
+!!! question "能否置换其它 process 的帧？"
     
     在[分配](#分配策略){target="_blank"}的时候，我们为进程分配了一些帧以用于必要的运算活动。但我们知道，置换操作会动态地更新 frame 的使用情况。不知道你是否疑惑过：置换的时候，我们能否置换其它进程的 frame？以及我们要如何实现和维护这些策略呢？
 
     实际上，replacement 分为 local 和 global 两种：
 
-    1. 使用 local replacement 时，replacement 只发生在属于当前进程的帧中，因而也就不会影响其它进程的内存使用情况；
-    2. 而对应的，global replacement 的 scope 是所有帧，甚至可能一部分原来属于操作系统的帧，因而它能实现一些类似“抢占”的效果；
+    1. 使用 local replacement 时，<u>replacement 只发生在属于当前进程的帧中</u>，因而也就不会影响其它进程的内存使用情况；
+    2. 而对应的，<u>global replacement 的 scope 是所有帧</u>，甚至可能一部分原来属于操作系统的帧，因而它能实现一些类似“抢占”的效果；
         - [Free-frame buffer pool](#free-frame-buffer-pool){target="_blank"} 就是一种天然的 global replacement 的实现方式；
     3. 如果我们稍微做一些设计，比如**只**允许高优先级的进程能够置换低优先级的 frame，则高优先级的进程使用的 frame 可能越来越多，进而不断优化高优先级进程的效率；
 
@@ -655,6 +802,11 @@ Example of free-frame list.
 
     > 上面是书上的意思，但我认为这个评价还是不公平的，因为所谓的、属于进程的 frames 的数量是会变的，在新的进程被 allocation 后，进程总数会增加，而这个新进程只能从别的地方刮一些内存来用，所以就算用的是 local replacement，也说不上稳定。
 
+### Trashing
+
+### Memory Compression
+
+### Allocating Kernel Memory
 
 [^1]: [Translation lookaside buffer | Wikipedia](https://en.wikipedia.org/wiki/Translation_lookaside_buffer){target="_blank"}
 [^2]: [Cache replacement policies | Wikipedia](https://en.wikipedia.org/wiki/Cache_replacement_policies){target="_blank"}
@@ -665,3 +817,4 @@ Example of free-frame list.
 [^7]: [Shared Memory "Segment" in Operating System | Stack Overflow](https://stackoverflow.com/questions/34545631/shared-memory-segment-in-operating-system){target="_blank"}
 [^8]: [Where is linux shared memory actually located? | Stack Overflow](https://arc.net/l/quote/qjkjycww){target="_blank"}
 [^9]: [Linux OOM (Out-of-memory) Killer | Medium](https://medium.com/@adilrk/linux-oom-out-of-memory-killer-74fbae6dc1b0#9707){target="_blank"}
+[^10]: [Enhanced Second-Chance Algorithm](http://www.faadooengineers.com/online-study/post/ece/operating-systems/1165/enhanced-second-chance-algorithm){target="_blank"}

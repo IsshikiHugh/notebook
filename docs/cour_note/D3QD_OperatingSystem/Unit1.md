@@ -274,9 +274,13 @@ Diagram of process state.
 
 接下来我们开始介绍各种调度算法，需要注意的是，如下调度算法中存在一些理想化的建模（例如假设我们知道进程需要使用多久 CPU），而我们重点需要掌握它的思路，做到能画甘特图、能算时间。此外，这里我们以“多道”为语境，即如果不是特别说明，不考虑分时技术。
 
+<a id="FCFS"/>
+
 #### 算法 | First-Come, First-Serve (FCFS)
 
 FCFS 是最基本的**非抢占式**调度方法就是按照进程先来后到的顺序进行调度，可以很简单地通过一个 FIFO 的队列实现。FCFS 最大的优点就是实现简单。
+
+<a id="SJF"/>
 
 #### 算法 | Shortest-Job-First (SJF) / Shortest-Remaining-Time-First (SRTF)
 
