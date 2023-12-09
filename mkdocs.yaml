@@ -259,7 +259,9 @@ nav:
         - cour_note/D3QD_OperatingSystem/Unit2-Part1.md
         - cour_note/D3QD_OperatingSystem/Unit2-Part2.md
         - cour_note/D3QD_OperatingSystem/Unit2-Part3.md
-      - cour_note/D3QD_OperatingSystem/Unit3.md
+      - "Unit 3 内存 | Memory":
+        - cour_note/D3QD_OperatingSystem/Unit3-Part1.md
+        - cour_note/D3QD_OperatingSystem/Unit3-Part2.md
       - cour_note/D3QD_OperatingSystem/Unit4.md
       - cour_note/D3QD_OperatingSystem/Unit5.md
     - "🔮 计算理论 | Theorem of Computing": 
