@@ -998,10 +998,30 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_11_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_11_5" id="__nav_3_11_5_label" tabindex="0">
+          Unit 3 内存 | Memory
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_11_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_11_5">
+<span class="md-nav__icon md-icon"></span>
+          Unit 3 内存 | Memory
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Unit3/">
-        Unit 3: 内存 | Memory [完成一半]
+<a class="md-nav__link" href="../Unit3-Part1/">
+        U3 Part 1: 内存设计 | Memory Design
       </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Unit3-Part2/">
+        U3 Part 2: 内存管理 | Memory Management
+      </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Unit4/">
@@ -1335,7 +1355,7 @@
 <p>前面我们提到，进程动态地存在于内存中，因此除了命令以外，还包括其运行时的动态信息。抽象来说，主要包含这三个维度：① 用来跑的代码；② 跑的过程中，不断会被更新的数据；③ 用来维护、控制进程的控制信息。</p>
 <p>进程在内存中存在需要一块<strong>虚拟的</strong>地址空间以存储上述这些内容。其包含两个部分，即虚拟地址空间中的<strong>用户部分</strong>和虚拟地址空间的<strong>内核部分</strong>。</p>
 <blockquote>
-<p><a href="../Unit3/#virtual-address-space" target="_blank">虚拟地址空间</a>将会在后面的章节中详细讲解，读者可以考虑访问链接简单瞥一眼留个印象。</p>
+<p><a href="../Unit3-Part1/#virtual-address-space" target="_blank">虚拟地址空间</a>将会在后面的章节中详细讲解，读者可以考虑访问链接简单瞥一眼留个印象。</p>
 </blockquote>
 <p>下图是进程在虚拟地址空间中用户部分的组成：</p>
 <div class="admonition section">
@@ -1506,7 +1526,7 @@
 <p class="admonition-title">copy on write</p>
 <p>可以发现，fork 的复制操作可能会带来较大的开销。所以有一种技术称为 copy on write，也就是只有当需要发生内容修改的时候，才真正去复制父进程的内容，也就是一种“lazy copy”。</p>
 <blockquote>
-<p>本块内容于<a href="../Unit3/#回顾-copy-on-write" target="_blank">虚拟内存</a>相关的内容有关，如果读者想不明白具体实现，可以先了解功能，在之后学习相关内容后我会再次提醒读者回顾该部分内容。</p>
+<p>本块内容于<a href="../Unit3-Part2/#回顾-copy-on-write" target="_blank">虚拟内存</a>相关的内容有关，如果读者想不明白具体实现，可以先了解功能，在之后学习相关内容后我会再次提醒读者回顾该部分内容。</p>
 </blockquote>
 </div>
 <p><a id="vfork"></a></p>
@@ -1527,7 +1547,7 @@
 </details>
 </div>
 <blockquote>
-<p>本块内容于<a href="../Unit3/#回顾-copy-on-write" target="_blank">虚拟内存</a>相关的内容有关，如果读者想不明白具体实现，可以先了解功能，在之后学习相关内容后我会再次提醒读者回顾该部分内容。</p>
+<p>本块内容于<a href="../Unit3-Part2/#回顾-copy-on-write" target="_blank">虚拟内存</a>相关的内容有关，如果读者想不明白具体实现，可以先了解功能，在之后学习相关内容后我会再次提醒读者回顾该部分内容。</p>
 </blockquote>
 </div>
 <h3 id="进程的终止">进程的终止<a class="headerlink" href="#进程的终止" title="Permanent link">¶</a></h3>
@@ -1623,8 +1643,10 @@ Diagram of process state.</p>
 <p>上面五个前两个越大越好，后三个越小越好。</p>
 </blockquote>
 <p>接下来我们开始介绍各种调度算法，需要注意的是，如下调度算法中存在一些理想化的建模（例如假设我们知道进程需要使用多久 CPU），而我们重点需要掌握它的思路，做到能画甘特图、能算时间。此外，这里我们以“多道”为语境，即如果不是特别说明，不考虑分时技术。</p>
+<p><a id="FCFS"></a></p>
 <h4 id="算法--first-come-first-serve-fcfs">算法 | First-Come, First-Serve (FCFS)<a class="headerlink" href="#算法--first-come-first-serve-fcfs" title="Permanent link">¶</a></h4>
 <p>FCFS 是最基本的<strong>非抢占式</strong>调度方法就是按照进程先来后到的顺序进行调度，可以很简单地通过一个 FIFO 的队列实现。FCFS 最大的优点就是实现简单。</p>
+<p><a id="SJF"></a></p>
 <h4 id="算法--shortest-job-first-sjf--shortest-remaining-time-first-srtf">算法 | Shortest-Job-First (SJF) / Shortest-Remaining-Time-First (SRTF)<a class="headerlink" href="#算法--shortest-job-first-sjf--shortest-remaining-time-first-srtf" title="Permanent link">¶</a></h4>
 <p>SJF 的思路是，当有多个进程处于就绪态时，选择需要<strong>运行时间最短</strong>的进程先运行。这种算法的优点是，能够保证平均等待时间最小；但是缺点是，如果有一个进程需要运行时间很长，那么它可能会一直被推迟，从而导致“<strong>饥饿</strong>”现象，此外，我们并不知道进程运行时间有多久。</p>
 <details class="eg">
@@ -1836,7 +1858,7 @@ Diagram of process state.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月7日 17:06:57</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月9日 12:04:22</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>

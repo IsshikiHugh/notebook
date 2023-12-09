@@ -6,12 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/cour_note/D3QD_OperatingSystem/Unit3/" rel="canonical"/>
+<link href="https://note.isshikih.top/cour_note/D3QD_OperatingSystem/Unit3-Part1/" rel="canonical"/>
 <link href="../Unit2-Part3/" rel="prev"/>
-<link href="../Unit4/" rel="next"/>
+<link href="../Unit3-Part2/" rel="next"/>
 <link href="../../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
-<title>Unit 3: 内存 | Memory [完成一半] - Isshiki修's Notebook</title>
+<title>U3 Part 1: 内存设计 | Memory Design - Isshiki修's Notebook</title>
 <link href="../../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6 31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0l112.3-112.3zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5 50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0 27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>');}</style>
@@ -42,7 +42,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#unit-3-内存--memory-完成一半">
+<a class="md-skip" href="#u3-part-1-内存设计--memory-design">
           跳转至
         </a>
 </div>
@@ -66,7 +66,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Unit 3: 内存 | Memory [完成一半]
+              U3 Part 1: 内存设计 | Memory Design
             
           </span>
 </div>
@@ -870,14 +870,26 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_11_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_11_5" id="__nav_3_11_5_label" tabindex="0">
+          Unit 3 内存 | Memory
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_3_11_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_11_5">
+<span class="md-nav__icon md-icon"></span>
+          Unit 3 内存 | Memory
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
-          Unit 3: 内存 | Memory [完成一半]
+          U3 Part 1: 内存设计 | Memory Design
           <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
-        Unit 3: 内存 | Memory [完成一半]
+        U3 Part 1: 内存设计 | Memory Design
       </a>
 <nav aria-label="目录" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
@@ -995,34 +1007,13 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#按需换页系统">
-    按需换页系统
-  </a>
-<nav aria-label="按需换页系统" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#回顾-copy-on-write">
-    回顾 copy on write
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#可用帧列表">
-    可用帧列表
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#分配策略">
-    分配策略
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#置换策略">
-    置换策略
-  </a>
-</li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Unit3-Part2/">
+        U3 Part 2: 内存管理 | Memory Management
+      </a>
 </li>
 </ul>
 </nav>
@@ -1336,35 +1327,6 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#按需换页系统">
-    按需换页系统
-  </a>
-<nav aria-label="按需换页系统" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#回顾-copy-on-write">
-    回顾 copy on write
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#可用帧列表">
-    可用帧列表
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#分配策略">
-    分配策略
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#置换策略">
-    置换策略
-  </a>
-</li>
-</ul>
-</nav>
-</li>
 </ul>
 </nav>
 </div>
@@ -1372,9 +1334,9 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="unit-3-内存--memory-完成一半">Unit 3: 内存 | Memory [完成一半]<a class="headerlink" href="#unit-3-内存--memory-完成一半" title="Permanent link">¶</a></h1>
+<h1 id="u3-part-1-内存设计--memory-design">U3 Part 1: 内存设计 | Memory Design<a class="headerlink" href="#u3-part-1-内存设计--memory-design" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 12620 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 63 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 9158 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 46 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1383,7 +1345,7 @@
 <p>除了性能，内存还需要实现一些保护措施，防止程序越界访问内存，或者程序之间互相干扰。</p>
 <p>同时，由于计算机运行程序是一个动态的过程，而我们使用内存往往需要的是连续的、大块的内存，所以在运行过程中如何保证内存的分布是相对完整的，也是一个重要的问题。</p>
 <p>在引入<a href="#帧--页" target="_blank">帧 &amp; 页</a>设计后，我们不再需要以进程为单位去观察内存，而是以页为单位，这意味着粒度更小，我们可以更加灵活地去管理内存。</p>
-<p>在<a href="#交换技术" target="_blank">交换技术</a>的支持下，<strong>不是正在被使用的</strong>虚拟内存可以<strong>实际</strong>被映射到物理内存或<a href="#交换技术" target="_blank">后备存储</a>中。更具体的来说，我们会将“暂时用不到”的东西暂放在<a href="#交换技术" target="_blank">后备存储</a>中，而在需要的时候将它们换到物理内存中。而接下来我们要关注的重要问题就是，这些操作具体如何执行、如何优化。</p>
+<p>在<a href="#交换技术" target="_blank">交换技术</a>的支持下，<strong>不是正在被使用的</strong>虚拟内存可以<strong>实际</strong>被映射到物理内存或<a href="#交换技术" target="_blank">后备存储</a>中。更具体的来说，我们会将“暂时用不到”的东西暂放在<a href="#交换技术" target="_blank">后备存储</a>中，而在需要的时候将它们换到物理内存中。而在<a href="../Unit3-Part2/" target="_blank">下一节</a>，我们要关注的重要问题就是，这些操作具体如何执行、如何优化，也就是介绍 demand paging 系统。</p>
 </div>
 <h2 id="内存基础设计">内存基础设计<a class="headerlink" href="#内存基础设计" title="Permanent link">¶</a></h2>
 <h3 id="内存保护">内存保护<a class="headerlink" href="#内存保护" title="Permanent link">¶</a></h3>
@@ -1475,7 +1437,7 @@ Dynamic relocation using a relocation register.</p>
 <h2 id="分页技术">分页技术<a class="headerlink" href="#分页技术" title="Permanent link">¶</a></h2>
 <p>分页技术想要解决的问题是减轻进程“必须要使用连续内存”这一限制。我们在<a href="#why-continuous" target="_blank">前面的思考题</a>中已经提到，需要使用连续内存是需要一种逻辑上的连续，因此，在<a href="#物理地址和虚拟地址" target="_blank">物理地址和虚拟地址</a>的语境下，我们只需要保证虚拟地址是连续的即可。当然，这并不意味着物理地址的连续就是毫无意义的了，物理地址的连续是实际上提供高效内存访问的基础。</p>
 <blockquote>
-<p>显然这里的“page”是基于 <a href="#page-frame-def-2" target="_blank">Definition 2</a>。</p>
+<p>显然这里的 “page” 是基于 <a href="#page-frame-def-2" target="_blank">Definition 2</a>。</p>
 </blockquote>
 <h3 id="基本设计">基本设计<a class="headerlink" href="#基本设计" title="Permanent link">¶</a></h3>
 <p>换句话来说，我们不再严格需要物理地址也是完整的、大块的、完全连续的了。听起来 external fragmentation 的问题已经解决了，貌似我们只需要每次从里面慢慢捡垃圾，凑出一整块就行了……</p>
@@ -1517,7 +1479,7 @@ Dynamic relocation using a relocation register.</p>
 <li>physical page 是 page 在物理内存上的实际存储形式；</li>
 <li>virtual page 是 page 的在虚拟内存上的逻辑映象，也 physical page 的一个 view；</li>
 </ol>
-<p>可以发现，虽然用词改变，但是“physical page”和“virtual page”的关系和之前是一样的，只是“page”这个词的含义不一样了。</p>
+<p>可以发现，虽然用词改变，但是 “physical page” 和 “virtual page” 的关系和之前是一样的，只是 “page” 这个词的含义不一样了。</p>
 <p>所以最违和的就是，作为缩写的 page 和准确的 page 的含义是不一致的，甚至区别巨大。所以我不喜欢这个定义。但是没办法，paging 技术的命名反而就是基于这套定义的，这里大概存在一个非常恶心的历史遗留问题在，请读者留个心眼，在之后的内容中仔细辨别。</p>
 </details>
 </details>
@@ -1648,7 +1610,7 @@ Paging model of logical and physical memory.<br/>
 <p>显然，有二就可以有三，有三就可以有四，具体使用哪种，应当秉持具体问题具体分析的原则。</p>
 <div class="admonition extra">
 <p class="admonition-title">Risc-V</p>
-<p>有兴趣的读者可以参考 xg 的这篇“<a href="https://note.tonycrane.cc/cs/pl/riscv/paging/" target="_blank">RISC-V 页表相关</a>”笔记，来了解 Risc-V 中的分页设计，写得很清楚，推荐阅读。</p>
+<p>有兴趣的读者可以参考 xg 的这篇<a href="https://note.tonycrane.cc/cs/pl/riscv/paging/" target="_blank">《RISC-V 页表相关》</a>笔记，来了解 Risc-V 中的分页设计，写得很清楚，推荐阅读。</p>
 <p>同时，实验三指导手册也提供了关于 <a href="https://zju-sec.github.io/os23fall-stu/lab3/#risc-v-sv39-page-table-entry" target="_blank">Risc-V Sv39</a> 的一些介绍。</p>
 </div>
 </details>
@@ -1696,10 +1658,10 @@ Paging model of logical and physical memory.<br/>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/38.png"><img alt="" src="../img/38.png" width="60%"/></a> </center>
 Standard swapping of two processes using a disk as a backing store.</p>
 </figure>
-<p>在标准的 swap 操作中，我们以进程为单位进行 swap，这意味着我们要把所有 per-process 的东西都一同 swap，相当于“冻结”整个 process或“解冻”了整个 process，就好像跨内存和后备存储进行 context switch。可想而知，这个开销是巨大的。</p>
+<p>在标准的 swap 操作中，我们以进程为单位进行 swap，这意味着我们要把所有 per-process 的东西都一同 swap，相当于“冻结”整个 process 或“解冻”了整个 process，就好像跨内存和后备存储进行 context switch。可想而知，这个开销是巨大的。</p>
 <p>如今我们有分页技术，我们完全可以以页/帧为单位进行 swap，只不过我们称这种以页/帧为单位的<strong>交换(swap)</strong>叫<strong>换页(page)</strong>。</p>
 <blockquote>
-<p>显然这里的“page”是基于 <a href="#page-frame-def-2" target="_blank">Definition 2</a>。</p>
+<p>显然这里的 “page” 是基于 <a href="#page-frame-def-2" target="_blank">Definition 2</a>。</p>
 </blockquote>
 <figure>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/39.png"><img alt="" src="../img/39.png" width="60%"/></a> </center>
@@ -1723,209 +1685,7 @@ Diagram showing virtual memory that is larger than physical memory.
 <p><strong>这一部分的内容写的比较简略，对应课本 10.2.3 的后半部分。</strong></p>
 <p>但是无论如何，硬盘的速度还是不如内存，所以在内存足够的情况下我们一般不使用 swap。</p>
 </blockquote>
-<p>接下来，我们引入一套更完善的虚拟内存管理系统：demand paging。</p>
-<h2 id="按需换页系统">按需换页系统<a class="headerlink" href="#按需换页系统" title="Permanent link">¶</a></h2>
-<p><strong>按需换页(demand paging)</strong><sup><a href="https://en.wikipedia.org/wiki/Demand_paging" target="_blank">Wiki</a></sup>和<a href="#交换技术" target="_blank">交换技术中的页置换</a>很类似，指只把<strong>被需要</strong>的页载入内存，是一种内存管理系统。</p>
-<div class="admonition extra">
-<p class="admonition-title">pure demand paging</p>
-<p>如果激进一点，如果在被需求之前页不会被载入内存，只有在内存被需求后才会被载入内存，我们称之为纯按需换页(pure demand paging)。</p>
-<blockquote>
-<p>This scheme is pure demand paging: <strong>never</strong> bring a page into memory until it is required.</p>
-</blockquote>
-</div>
-<p>可以想象，现在给定任意一个虚拟地址，有三种可能：</p>
-<ol>
-<li>该“地址”在物理内存中，页表中<strong>存在</strong>虚拟内存到物理内存的映射关系，是 valid 的；</li>
-<li>该“地址”在后备存储中，页表中<strong>不存在</strong>虚拟内存到物理内存的映射关系，是 invalid 的；</li>
-<li>该“地址”并没有被分配，页表中<strong>不存在</strong>虚拟内存到物理内存的映射关系，是 invalid 的，或权限不符（如试图写入一个只读页）；</li>
-</ol>
-<p>与引入交换技术之前的页表设计相比，多出来的就是情况 2.。如果系统访问了一个在页表中是 invalid 的页，就会生成异常，我们称这种情况为<strong>缺页(page fault)</strong>。</p>
-<details class="extra">
-<summary>major &amp; minor page fault</summary>
-<p>实际上，情况 2. 还可以细分为两种，一种是<strong>major/hard page fault</strong>，一种是<strong>minor/soft page fault</strong>。</p>
-<p>Major page fault 指的是缺了的页不在内存中的情况；而 minor page fault 指的是缺了的页在内存中存在，只不过没在当前页表中建立映射。</p>
-<p>这里稍微细说一下 minor page fault，出现 minor page fault 有两种可能：</p>
-<ol>
-<li>进程可能需要引用一个共享库的 page，而这个共享库的 page 已经在内存中，我们只需要更新一下页表把它链上去就行了；</li>
-<li>进程可能需要引用一个之前被释放了的 page，而那个被释放的 page 还没有被 flush 或分配给别的进程，此时我们可以直接使用这个 page（<del>捡垃圾！五秒原则？</del>）；</li>
-</ol>
-</details>
-<p>区别于之前的页表设计——访问 invalid 的表项是一种预期外行为，现在产生缺页反而<strong>更多</strong>是一种预期内的行为——系统对某个被 page out 了的页产生了“需求”。当然，情况 3. 这种非法操作也会引起异常，所以我们需要在之后的异常处理过程中对此做区分并分别处理。</p>
-<blockquote>
-<p>说实话其实我感觉这里的逻辑稍微有点绕，可能是一些历史原因。</p>
-</blockquote>
-<p>操作系统就需要去处理这个异常的大概流程如下：</p>
-<p><a id="page-fault-handling"></a></p>
-<div class="admonition section">
-<p class="admonition-title">page fault 处理流程</p>
-<ol>
-<li>检查一张 PCB 里的内部表，来区分这个地址到底是情况 2. 还是情况 3.；<ol>
-<li>如果是情况 2.，则继续如下操作以将其 page in；</li>
-<li>如果是情况 3.，则终止进程；</li>
-</ol>
-</li>
-<li>从<a href="#可用帧列表" target="_blank">可用帧列表</a>里拿出 frame 用来写入；<ol>
-<li>如果可用帧列表为空，则进行<a href="#置换策略" target="_blank">页置换</a>；</li>
-</ol>
-</li>
-<li>开始从后备存储读取内容，并写入 frame；</li>
-<li>完成读写后，更新内部表和页表等元信息；</li>
-<li>重新执行引起 page fault 的 instruction；<ol>
-<li>该操作十分关键，类似于死锁里的回滚操作，支持这项操作也具有一定的难度，包括如何确切地恢复回指令执行之前的状态、如何消除执行了一半的指令的效果等；</li>
-</ol>
-</li>
-</ol>
-</div>
-<figure>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/41.png"><img alt="" src="../img/41.png" width="80%"/></a> </center>
-Steps in handling a page fault.</p>
-</figure>
-<div class="admonition warning">
-<p class="admonition-title">慢！</p>
-<p>想象一下，每当发生一次 page fault，并且我们假设这些 page faults 都属于情况 2.，那么它可能会经历这些过程：</p>
-<ol>
-<li>产生异常后，进行一次 <strong>context switch</strong> 后进入异常处理程序；<ol>
-<li>处理异常，包括决定异常类型、在内部表里寻找地址对应于后备存储中的何处；</li>
-<li>发起后备存储 -&gt; 内存的 I/O 请求；</li>
-</ol>
-</li>
-<li>（等待过程中 CPU 被调度）；</li>
-<li>I/O 中断产生，此时也会有一个 <strong>context switch</strong>；<ul>
-<li>处理中断，包括决定中断类型、更新页表和其他内部表；</li>
-</ul>
-</li>
-<li>等待 CPU 再次调度到该进程，显然这里也有个 <strong>context switch</strong>；<ul>
-<li>做一些回滚操作，然后重新执行引起 page fault 的指令；</li>
-</ul>
-</li>
-</ol>
-<p>可以发现，处理 page fault 超慢的！因此，我们应当尽可能减少 page fault rate。</p>
-</div>
-<p>程序执行的局部性保证了 page fault 不会太频繁，导致带来不可接受的额外开销。需要注意，单条指令是有可能带来若干次 page fault 的（例如可能在 instruction fetch 的时候产生、可能在 operand fetch 的时候产生等）。</p>
-<h3 id="回顾-copy-on-write">回顾 copy on write<a class="headerlink" href="#回顾-copy-on-write" title="Permanent link">¶</a></h3>
-<p>我们在<a href="../Unit1/" target="_blank">内存管理</a>一节中提出了 <a href="../Unit1/#copy-on-write" target="_blank">copy on write</a> 技术和 <a href="../Unit1/#vfork" target="_blank">vfork</a> 技术，现在读者可以尝试再回顾一下这两个知识点与本节内容的联系。</p>
-<h3 id="可用帧列表">可用帧列表<a class="headerlink" href="#可用帧列表" title="Permanent link">¶</a></h3>
-<p>在 demand paging 系统里，页是动态地被映射到帧的，所以我们需要维护一个<strong>可用帧列表(free-frame list)</strong>，用来记录当前哪些帧是空闲的。</p>
-<figure>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/42.svg"><img alt="" src="../img/42.svg"/></a> </center>
-Example of free-frame list.</p>
-</figure>
-<p>在系统启动后，我们需要将所有可用的帧都加入到 free-frame list 中；当有用户需要物理内存时候，就从 free-frame list 中取出一项，对其进行擦除，即被需求时清零(zero-fill-on-deman)。</p>
-<div class="admonition question">
-<p class="admonition-title">考虑为什么要执行 zero-fill-on-deman</p>
-</div>
-<p>如果读者足够敏锐就会发现，我们只说了怎么取出 free-frame，而没说 free-frame 如何“再生”。</p>
-<p>当我们发现 free-frame list 为空，即没有空闲的 frame 时，我们考虑将一些先前已经被分配的 frame 给 page out 走，拿来给当前这个页用。而具体如何选择换走哪个 frame，我们会在<a href="#置换策略" target="_blank">置换策略</a>一节中介绍。</p>
-<p><a id="free-frame-buffer-pool"></a></p>
-<div class="admonition section">
-<p class="admonition-title">free-frame buffer pool</p>
-<p>虽然我们还没介绍<a href="#置换策略" target="_blank">置换策略</a>，但是想象一下，如果等到没有 free-frame 的时候再去做置换，那么进程就需要<strong>等待置换完成</strong>以后再分配。</p>
-<p>我们可以考虑在这里引入一个抽象的 buffer，我们可以保证 free-frame list 始终有一定数量的空闲帧，例如 3 个。这样当进程来索取 free-frame 的时候，free-frame list 大概率总是能够直接给出一个 free-frame 的，而给出 free-frame 后，如果发现 free-frame list 中的剩余帧数小于 3，那么就可以独立地开始进行置换，而不必阻塞进程。</p>
-<hr/>
-<p>又或者，我们不使用一个确切的界，而是通过一种动态调节，维护一个上界和下界：当 free-frame 数小于下界时，一类叫<strong>收割者(reapers)</strong>的内核例程就开始使用 <a href="#置换策略" target="_blank">replacement algorithm</a> 来 reclaim 已经被分配的 frame，直到 free-frame 的数量触碰到上界。</p>
-<p><figure markdown="">
-<center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/43.png"><img alt="" src="../img/43.png" width="60%"/></a> </center>
-Reclaiming pages.
-</figure></p>
-<hr/>
-<p>进一步的，万一此时出现了一些特殊情况，导致实际的 free-frame 数非常少，达到了一个非常低的界，此时就出现了 <strong>OOM(out-of-memory)</strong>。此时，一个叫做 OOM killer 的例程就会杀死一个进程，以腾出内存空间。</p>
-<p>在 Linux 中，每个进程会有一个 OOM score，OOM score 越高约容易被 OOM killer 盯上，而 OOM score 与进程使用的内存的百分比正相关，所以大概的感觉就是谁内存用的最多就杀谁。<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>如果读者对 Linux 的 OOM 机制有兴趣，可以看看角注 9。</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">导读</p>
-<blockquote>
-<p>准确来说接下来<a href="#分配策略" target="_blank">分配策略</a>和<a href="#置换策略" target="_blank">置换策略</a>都应当是 demand paging 的子条目，但是四级标题实在太小了，所以我设为了三级标题。</p>
-</blockquote>
-<p>我们已经阐述了一个正在运行中的 <a href="#按需换页系统概述" target="_blank">demand paging</a> 系统是如何运作的，现在需要补足一些细节。</p>
-<ol>
-<li><a href="#分配策略" target="_blank">分配策略</a>：初始化时，如何分配进程所需要的 frame？</li>
-<li><a href="#置换策略" target="_blank">置换策略</a>：当 free-frame 不足时，如何进行 replacement？</li>
-</ol>
-</div>
-<h3 id="分配策略">分配策略<a class="headerlink" href="#分配策略" title="Permanent link">¶</a></h3>
-<p>在 pure demand paging 里，每个进程通过 page fault 不断“蚕食” free-frame，但如果我们不适用 pure 的 demand paging，那么就需要决定一开始分配多少 frames 给一个 process。</p>
-<p>首先，对于单个进程的分配，存在一个较严格的上下界：</p>
-<div class="admonition section">
-<p class="admonition-title">lower bound &amp; upper bound</p>
-<ol>
-<li>分配给一个 process 的 frames 数量不能大于 free-frame 总量；<ul>
-<li>即 the maximum number of frames per process is defined by the amount of available physical memory；</li>
-</ul>
-</li>
-<li>分配给一个 process 的 frames 数量不能小于 process「执行每一条指令所需要涉及的 frames」的最大值；<ul>
-<li>这句话有点绕，稍微解释一下：<ul>
-<li>一些指令可能会需要引用其它 frame（例如的 load，move，以及会产生 indirect references 的指令等），而且 instruction fetch 以外的额外 memory reference 可能不止一个；</li>
-<li>我们应当保证涉及的若干 page 都能被存在内存中；</li>
-<li>因此，从某种角度来说：the minimum number of frames per process is defined by architecture；</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</div>
-<p><strong>分配算法(frame-allocation algorithm)</strong>按照分配的帧的大小来分，主要有这么两种：</p>
-<details class="section" open="open">
-<summary>equal allocation</summary>
-<p>顾名思义，每一个进程被分配的 frame 总量都相同，假设共 <span class="arithmatex">\(n\)</span> 个 process，<span class="arithmatex">\(m\)</span> 块可用 frame，那么每个进程被分配的 <span class="arithmatex">\(\left\lceil\frac{m}{n}\right\rceil\)</span>。</p>
-</details>
-<details class="section" open="open">
-<summary>proportional allocation</summary>
-<p>比例指按进程的大小来分配，假设共 <span class="arithmatex">\(n\)</span> 个 process，<span class="arithmatex">\(m\)</span> 块可用 frame，其中每个 process 的大小为 <span class="arithmatex">\(s_i\)</span>，那么每个进程被分配的 frame 大小为 <span class="arithmatex">\(a_i = \left\lceil \frac{s_i}{\sum_{j}^n s_j} \times m\right\rceil\)</span>。</p>
-</details>
-<details class="section" open="open">
-<summary>proportional allocation with priority</summary>
-<p>注意到， 目前提到的两种做法都和进程的优先级无关，但从需求上来讲，我们可能倾向于让高优先级的进程被分配更多的 frame 以降低 page fault rate 来增加它们的效率。</p>
-<p>所以，我们可以在 proportional allocation 的基础上，在计算 <span class="arithmatex">\(a_i\)</span> 时综合考虑 priority。</p>
-</details>
-<p>我们发现，上面关于内存分配大小的式子中，有一项 <span class="arithmatex">\(n\)</span> 表示 #process，区别于其它相对静态的参数，这个参数是会在调度过程中动态变化的，所以实际上分配给每个进程的 frame 数量也是会动态变化的。</p>
-<p>在多核设计下，有一种设计叫做 NUMA<sup><a href="https://en.wikipedia.org/wiki/Non-uniform_memory_access" target="_blank">Wiki</a></sup>，我们在 Overview 其实也提到过。在这种设计里，由于硬件设计问题，不同的 CPU 都有自己“更快”访问的内存。读者可以通过上面的 Wiki 链接做详细了解。</p>
-<h3 id="置换策略">置换策略<a class="headerlink" href="#置换策略" title="Permanent link">¶</a></h3>
-<p>当 free-frame list 为空，但用户仍然需要 frame 来进行 page in 时，就需要进行<strong>页置换(page replacement)</strong>，将并没有正在被使用的页腾出来给需要 page in 的内容用，而这个“被要求腾出地方”的页，我们称之为<strong>牺牲帧(victim frame)</strong>。</p>
-<blockquote>
-<p>显然这里的“page”是基于 <a href="#page-frame-def-2" target="_blank">Definition 2</a>。</p>
-</blockquote>
-<p>我们细化 <a href="#page-fault-handling" target="_blank">page fault 处理流程</a>的 2.a. 项，大概是如下的步骤：</p>
-<div class="admonition section">
-<p class="admonition-title">page replacement</p>
-<ol>
-<li>利用<strong>置换算法(replacement algorithm)</strong>决定哪个 frame 是 victim frame；</li>
-<li>如果有必要（dirty），victim frame -&gt; 后备存储；</li>
-<li>更新相关元信息；</li>
-<li>返回这个 victim frame 作为 free-frame；</li>
-</ol>
-</div>
-<p>如果这个 victim frame 在被 page in 以后没有被修改过，那么我们可以直接将它覆盖，不需要写回后备存储，能节省一次内存操作；反之，如果这个 victim frame 被修改过，那么我们需要将它写<strong>回</strong>后备存储，类似于将修改给“commit”了。而为了实现这个优化，我们用一个<strong>修改位(dirty bit 或 modified bit)</strong>来记录页是否被修改过，当 frame 刚被载入内存时，dirty bit 应当为 0；而一旦帧内有任何写入操作发生，dirty bit 就会被置 1。</p>
-<p>现在我们来讨论具体的<strong>置换算法(replacement algorithm)</strong>。</p>
-<div class="admonition section">
-<p class="admonition-title">optimal</p>
-</div>
-<div class="admonition section">
-<p class="admonition-title">FIFO</p>
-</div>
-<div class="admonition section">
-<p class="admonition-title">LRU</p>
-</div>
-<div class="admonition section">
-<p class="admonition-title">LFU</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">能否置换其它进程的帧？</p>
-<p>在<a href="#分配策略" target="_blank">分配</a>的时候，我们为进程分配了一些帧以用于必要的运算活动。但我们知道，置换操作会动态地更新 frame 的使用情况。不知道你是否疑惑过：置换的时候，我们能否置换其它进程的 frame？以及我们要如何实现和维护这些策略呢？</p>
-<p>实际上，replacement 分为 local 和 global 两种：</p>
-<ol>
-<li>使用 local replacement 时，replacement 只发生在属于当前进程的帧中，因而也就不会影响其它进程的内存使用情况；</li>
-<li>而对应的，global replacement 的 scope 是所有帧，甚至可能一部分原来属于操作系统的帧，因而它能实现一些类似“抢占”的效果；<ul>
-<li><a href="#free-frame-buffer-pool" target="_blank">Free-frame buffer pool</a> 就是一种天然的 global replacement 的实现方式；</li>
-</ul>
-</li>
-<li>如果我们稍微做一些设计，比如<strong>只</strong>允许高优先级的进程能够置换低优先级的 frame，则高优先级的进程使用的 frame 可能越来越多，进而不断优化高优先级进程的效率；</li>
-</ol>
-<p>当然，我们需要维护每个进程所拥有的 frame 数量被 minimum frame number 给 bound 限住。</p>
-<p>对比 local replacement 和 global replacement，主要就是一个封闭性和灵活性的 trade-off，很直观：global replacement 分配更灵活，内存的利用率更高，但对于 frame 被“抢”的进程来说，整体运行的效率就不稳定了；反观 local replacement，虽然由于能够利用的内存有限，可能出现别的进程省了不少但是自己很吃紧的情况，出现内存利用率较低的情况，但整体来说较为稳定。</p>
-<blockquote>
-<p>上面是书上的意思，但我认为这个评价还是不公平的，因为所谓的、属于进程的 frames 的数量是会变的，在新的进程被 allocation 后，进程总数会增加，而这个新进程只能从别的地方刮一些内存来用，所以就算用的是 local replacement，也说不上稳定。</p>
-</blockquote>
-</div>
+<p>在下一节，我们引入一套更完善的虚拟内存管理系统：<a href="../Unit3-Part2/" target="_blank">demand paging</a>。</p>
 <div class="footnote">
 <hr/>
 <ol>
@@ -1945,16 +1705,13 @@ Reclaiming pages.
 <p><a href="https://stackoverflow.com/questions/24655839/what-is-the-difference-between-executable-and-relocatable-in-elf-format" target="_blank">What is the difference between executable and relocatable in elf format? | Stack Overflow</a> <a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">↩</a></p>
 </li>
 <li id="fn:6">
-<p>例如 ⓵ 异常处理程序，异常类型可能很多，对应的处理方案可能也会有很多，但均摊下来每一个异常处理程序的使用频率都不会很高；⓶ 数组列表等相对不那么智能的数据结构在定义声明的时候可能开了一大块内存，基本都是为了 bound 住可能需要的内存量的上界，但是可能实际上经常碰不到上界，例如我申请了一个 1024 长的 int 数组，但是我可能一般只会用到其中的前 128 个元素；⓷ 一些可能单纯不怎么常用的功能，道理和第一点是类似的。 <a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">↩</a></p>
+<p>例如 ⓵ 异常处理程序，异常类型可能很多，对应的处理方案可能也会有很多，但均摊下来每一个异常处理程序的使用频率都不会很高；⓶ 数组列表等相对不那么智能的数据结构在定义声明的时候可能开了一大块内存，基本都是为了 bound 住可能需要的内存量的上界，但是可能实际上经常碰不到上界，例如我申请了一个 1024 长的 <code>int</code> 数组，但是我可能一般只会用到其中的前 128 个元素；⓷ 一些可能单纯不怎么常用的功能，道理和第一点是类似的。 <a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">↩</a></p>
 </li>
 <li id="fn:7">
 <p><a href="https://stackoverflow.com/questions/34545631/shared-memory-segment-in-operating-system" target="_blank">Shared Memory "Segment" in Operating System | Stack Overflow</a> <a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">↩</a></p>
 </li>
 <li id="fn:8">
 <p><a href="https://arc.net/l/quote/qjkjycww" target="_blank">Where is linux shared memory actually located? | Stack Overflow</a> <a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">↩</a></p>
-</li>
-<li id="fn:9">
-<p><a href="https://medium.com/@adilrk/linux-oom-out-of-memory-killer-74fbae6dc1b0#9707" target="_blank">Linux OOM (Out-of-memory) Killer | Medium</a> <a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">↩</a></p>
 </li>
 </ol>
 </div>
@@ -1963,7 +1720,7 @@ Reclaiming pages.
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月8日 16:37:40</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月9日 12:04:22</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>

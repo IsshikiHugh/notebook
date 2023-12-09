@@ -6,12 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/cour_note/D2QD_Intro2CV/Lec11/" rel="canonical"/>
-<link href="../Lec10/" rel="prev"/>
-<link href="../Lec12/" rel="next"/>
+<link href="https://note.isshikih.top/cour_note/D3QD_OperatingSystem/Unit3-Part2/" rel="canonical"/>
+<link href="../Unit3-Part1/" rel="prev"/>
+<link href="../Unit4/" rel="next"/>
 <link href="../../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
-<title>Lecture 11 | 3D Deep Learning - Isshiki修's Notebook</title>
+<title>U3 Part 2: 内存管理 | Memory Management - Isshiki修's Notebook</title>
 <link href="../../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6 31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0l112.3-112.3zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5 50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0 27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>');}</style>
@@ -42,7 +42,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#lecture-11--3d-deep-learning">
+<a class="md-skip" href="#u3-part-2-内存管理--memory-management">
           跳转至
         </a>
 </div>
@@ -66,7 +66,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Lecture 11 | 3D Deep Learning
+              U3 Part 2: 内存管理 | Memory Management
             
           </span>
 </div>
@@ -618,125 +618,82 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_7" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_7" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../">💎 计算机视觉导论 | I2CV</a>
+<a href="../../D2QD_Intro2CV/">💎 计算机视觉导论 | I2CV</a>
 <label for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_3_7_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_3_7_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
           💎 计算机视觉导论 | I2CV
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec01/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec01/">
         Lecture 1 | Introduction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec02/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec02/">
         Lecture 2 | Image Formation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec03/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec03/">
         Lecture 3 | Image Processing
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec04/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec04/">
         Lecture 4 | Model Fitting and Optimization
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec05/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec05/">
         Lecture 5 | Feature Matching and Motion Estimation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec06/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec06/">
         Lecture 6 | Image Alignment and Stitching
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec07/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec07/">
         Lecture 7 | Structure From Motion
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec08/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec08/">
         Lecture 8 | Depth Estimation &amp; 3D Reconstruction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec09/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec09/">
         Lecture 9 | Deep Learning
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec10/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec10/">
         Lecture 10 | Recognition
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          Lecture 11 | 3D Deep Learning
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec11/">
         Lecture 11 | 3D Deep Learning
       </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#feature-matching">
-    Feature matching
-  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#object-pose-estimation">
-    Object Pose Estimation
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#human-pose-estimation">
-    Human Pose Estimation
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#depth-estimation">
-    Depth Estimation
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#single-image-to-3d">
-    Single Image to 3D
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#deep-learning-for-3d-understanding">
-    Deep learning for 3D understanding
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../Lec12/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec12/">
         Lecture 12 | Computational Photography 1
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec13/">
+<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec13/">
         Lecture 13 | Computational Photography 2
       </a>
 </li>
@@ -859,27 +816,27 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3_11" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_11" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D3QD_OperatingSystem/">💎 操作系统 | Operating System</a>
+<a href="../">💎 操作系统 | Operating System</a>
 <label for="__nav_3_11">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_3_11_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_3_11_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_11">
 <span class="md-nav__icon md-icon"></span>
           💎 操作系统 | Operating System
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit0/">
+<a class="md-nav__link" href="../Unit0/">
         Unit 0: 总览 | Overview
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit1/">
+<a class="md-nav__link" href="../Unit1/">
         Unit 1: 进程管理 | Process Management
       </a>
 </li>
@@ -896,55 +853,151 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit2-Part1/">
+<a class="md-nav__link" href="../Unit2-Part1/">
         U2 Part 1: 同步工具 | Synchronization Tools
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit2-Part2/">
+<a class="md-nav__link" href="../Unit2-Part2/">
         U2 Part 2: 同步问题例子 | Synchronization Problems Examples
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit2-Part3/">
+<a class="md-nav__link" href="../Unit2-Part3/">
         U2 Part 3: 死锁 | Deadlocks
       </a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3_11_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_11_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_3_11_5" id="__nav_3_11_5_label" tabindex="0">
           Unit 3 内存 | Memory
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_3_11_5_label" class="md-nav" data-md-level="3">
+<nav aria-expanded="true" aria-labelledby="__nav_3_11_5_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_3_11_5">
 <span class="md-nav__icon md-icon"></span>
           Unit 3 内存 | Memory
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit3-Part1/">
+<a class="md-nav__link" href="../Unit3-Part1/">
         U3 Part 1: 内存设计 | Memory Design
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit3-Part2/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          U3 Part 2: 内存管理 | Memory Management
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         U3 Part 2: 内存管理 | Memory Management
       </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#按需换页系统概述">
+    按需换页系统概述
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#回顾-copy-on-write">
+    回顾 copy on write
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#可用帧列表">
+    可用帧列表
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#分配策略">
+    分配策略
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#置换策略">
+    置换策略
+  </a>
+<nav aria-label="置换策略" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#opt">
+    OPT
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fifo">
+    FIFO
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lru">
+    LRU
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#基于计数的置换">
+    基于计数的置换
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#替换范围">
+    替换范围
+  </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit4/">
+<a class="md-nav__link" href="#抖动">
+    抖动
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#内存压缩">
+    内存压缩
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#内核内存">
+    内核内存
+  </a>
+<nav aria-label="内核内存" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#buddy-系统">
+    Buddy 系统
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#slab-分配">
+    Slab 分配
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Unit4/">
         Unit 4: 存储管理 | Storage Management [未完成]
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit5/">
+<a class="md-nav__link" href="../Unit5/">
         Unit 5: 文件系统 | File System [未完成]
       </a>
 </li>
@@ -1138,34 +1191,87 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#feature-matching">
-    Feature matching
+<a class="md-nav__link" href="#按需换页系统概述">
+    按需换页系统概述
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#object-pose-estimation">
-    Object Pose Estimation
+<a class="md-nav__link" href="#回顾-copy-on-write">
+    回顾 copy on write
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#human-pose-estimation">
-    Human Pose Estimation
+<a class="md-nav__link" href="#可用帧列表">
+    可用帧列表
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#depth-estimation">
-    Depth Estimation
+<a class="md-nav__link" href="#分配策略">
+    分配策略
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#single-image-to-3d">
-    Single Image to 3D
+<a class="md-nav__link" href="#置换策略">
+    置换策略
+  </a>
+<nav aria-label="置换策略" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#opt">
+    OPT
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#deep-learning-for-3d-understanding">
-    Deep learning for 3D understanding
+<a class="md-nav__link" href="#fifo">
+    FIFO
   </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lru">
+    LRU
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#基于计数的置换">
+    基于计数的置换
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#替换范围">
+    替换范围
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#抖动">
+    抖动
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#内存压缩">
+    内存压缩
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#内核内存">
+    内核内存
+  </a>
+<nav aria-label="内核内存" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#buddy-系统">
+    Buddy 系统
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#slab-分配">
+    Slab 分配
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1174,69 +1280,456 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="lecture-11--3d-deep-learning">Lecture 11 | 3D Deep Learning<a class="headerlink" href="#lecture-11--3d-deep-learning" title="Permanent link">¶</a></h1>
+<h1 id="u3-part-2-内存管理--memory-management">U3 Part 2: 内存管理 | Memory Management<a class="headerlink" href="#u3-part-2-内存管理--memory-management" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 385 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 2 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7616 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 21 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 38 分钟</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>本文尚未完全整理好！</p>
+<div class="admonition info">
+<p class="admonition-title">导读</p>
+<p><a href="../Unit3-Part1/" target="_blank">上一节</a>我们介绍了内存的一些基本设计，并在最后提出了 swap，这一节我们将利用 swap 的思想，提出一套更完善的内存管理系统：demand paging。</p>
 </div>
-<p>Deep Learning for 3D reconstruction</p>
-<h2 id="feature-matching">Feature matching<a class="headerlink" href="#feature-matching" title="Permanent link">¶</a></h2>
-<p>recap: <a href="../Lec07/">SfM</a> // Colmap</p>
-<p>use deep learning to improve feature matching</p>
-<p>传统方法的缺点就是因为这些方法都是 handcrafted 的。所以我们希望能够用 deep learning 来增强效果。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="img/_slides 对比图"><img alt="" src="img/_slides 对比图"/></a></p>
-<p>example: SuperPoint、SuperGlue</p>
-<ul>
-<li>CNN-base descriptor 好有意思！</li>
-</ul>
-<p>描述值：</p>
+<h2 id="按需换页系统概述">按需换页系统概述<a class="headerlink" href="#按需换页系统概述" title="Permanent link">¶</a></h2>
+<p><strong>按需换页(demand paging)</strong><sup><a href="https://en.wikipedia.org/wiki/Demand_paging" target="_blank">Wiki</a></sup>和<a href="../Unit3-Part1/#交换技术" target="_blank">交换技术中的页置换</a>很类似，指只把<strong>被需要</strong>的页载入内存，是一种内存管理系统。</p>
+<div class="admonition section">
+<p class="admonition-title">pure demand paging</p>
+<p>如果激进一点，如果在被需求之前页不会被载入内存，只有在内存被需求后才会被载入内存，我们称之为纯按需换页(pure demand paging)。</p>
+<blockquote>
+<p>This scheme is pure demand paging: <strong>never</strong> bring a page into memory until it is required.</p>
+</blockquote>
+</div>
+<p><a id="pre-paging"></a></p>
+<div class="admonition section">
+<p class="admonition-title">pre-paging</p>
+<p>Pure demand paging 的缺点就是在程序开始的时候会产生大量的 page fault。为了解决这个办法，我们可以在一开始将需要的页一起存入内存。这种做法叫做预换页(pre-paging)。</p>
+<p>晚些我们介绍的 <a href="#working-set" target="_blank">working set</a> 的设计思路可以用于处理 pre-paging。</p>
+</div>
+<p>可以想象，现在给定任意一个虚拟地址，有三种可能：</p>
 <ol>
-<li>contrastive loss</li>
-<li>triplet loss</li>
+<li>该“地址”在物理内存中，页表中<strong>存在</strong>虚拟内存到物理内存的映射关系，是 valid 的；</li>
+<li>该“地址”在后备存储中，页表中<strong>不存在</strong>虚拟内存到物理内存的映射关系，是 invalid 的；</li>
+<li>该“地址”并没有被分配，页表中<strong>不存在</strong>虚拟内存到物理内存的映射关系，是 invalid 的，或权限不符（如试图写入一个只读页）；</li>
 </ol>
-<p>实际上本质类似，效果相近</p>
+<p>与引入交换技术之前的页表设计相比，多出来的就是情况 2.。如果系统访问了一个在页表中是 invalid 的页，就会生成异常，我们称这种情况为<strong>缺页(page fault)</strong>。</p>
+<details class="extra">
+<summary>major &amp; minor page fault</summary>
+<p>实际上，情况 2. 还可以细分为两种，一种是<strong>major/hard page fault</strong>，一种是<strong>minor/soft page fault</strong>。</p>
+<p>Major page fault 指的是缺了的页不在内存中的情况；而 minor page fault 指的是缺了的页在内存中存在，只不过没在当前页表中建立映射。</p>
+<p>这里稍微细说一下 minor page fault，出现 minor page fault 有两种可能：</p>
+<ol>
+<li>进程可能需要引用一个共享库的 page，而这个共享库的 page 已经在内存中，我们只需要更新一下页表把它链上去就行了；</li>
+<li>进程可能需要引用一个之前被释放了的 page，而那个被释放的 page 还没有被 flush 或分配给别的进程，此时我们可以直接使用这个 page（<del>捡垃圾！五秒原则？</del>）；</li>
+</ol>
+</details>
+<p>区别于之前的页表设计——访问 invalid 的表项是一种预期外行为，现在产生缺页反而<strong>更多</strong>是一种预期内的行为——系统对某个被 page out 了的页产生了“需求”。当然，情况 3. 这种非法操作也会引起异常，所以我们需要在之后的异常处理过程中对此做区分并分别处理。</p>
+<blockquote>
+<p>说实话其实我感觉这里的逻辑稍微有点绕，可能是一些历史原因。</p>
+</blockquote>
+<p>操作系统就需要去处理这个异常的大概流程如下：</p>
+<p><a id="page-fault-handling"></a></p>
+<div class="admonition section">
+<p class="admonition-title">page fault 处理流程</p>
+<ol>
+<li>检查一张 PCB 里的内部表，来区分这个地址到底是情况 2. 还是情况 3.；<ol>
+<li>如果是情况 2.，则继续如下操作以将其 page in；</li>
+<li>如果是情况 3.，则终止进程；</li>
+</ol>
+</li>
+<li>从<a href="#可用帧列表" target="_blank">可用帧列表</a>里拿出 frame 用来写入；<ol>
+<li>如果可用帧列表为空，则进行<a href="#置换策略" target="_blank">页置换</a>；</li>
+</ol>
+</li>
+<li>开始从后备存储读取内容，并写入 frame；</li>
+<li>完成读写后，更新内部表和页表等元信息；</li>
+<li>重新执行引起 page fault 的 instruction；<ol>
+<li>该操作十分关键，类似于死锁里的回滚操作，支持这项操作也具有一定的难度，包括如何确切地恢复回指令执行之前的状态、如何消除执行了一半的指令的效果等；</li>
+</ol>
+</li>
+</ol>
+</div>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/41.png"><img alt="" src="../img/41.png" width="80%"/></a> </center>
+Steps in handling a page fault.</p>
+</figure>
+<div class="admonition warning">
+<p class="admonition-title">慢！</p>
+<p>想象一下，每当发生一次 page fault，并且我们假设这些 page faults 都属于情况 2.，那么它可能会经历这些过程：</p>
+<ol>
+<li>产生异常后，进行一次 <strong>context switch</strong> 后进入异常处理程序；<ol>
+<li>处理异常，包括决定异常类型、在内部表里寻找地址对应于后备存储中的何处；</li>
+<li>发起后备存储 -&gt; 内存的 I/O 请求；</li>
+</ol>
+</li>
+<li>（等待过程中 CPU 被调度）；</li>
+<li>I/O 中断产生，此时也会有一个 <strong>context switch</strong>；<ul>
+<li>处理中断，包括决定中断类型、更新页表和其他内部表；</li>
+</ul>
+</li>
+<li>等待 CPU 再次调度到该进程，显然这里也有个 <strong>context switch</strong>；<ul>
+<li>做一些回滚操作，然后重新执行引起 page fault 的指令；</li>
+</ul>
+</li>
+</ol>
+<p>可以发现，处理 page fault 超慢的！因此，我们应当尽可能减少 page fault rate。</p>
+</div>
+<details class="tip" open="open">
+<summary>思考题</summary>
+<p>下面两段程序展示的代码段的执行效率是否有区别？如果与区别的话，哪个更快？为什么？</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PAGE_SIZE</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* ... */</span>
+<span class="hll"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="w">            </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="cm">/* ... */</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* ... */</span>
+<span class="hll"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="w">            </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="cm">/* ... */</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<details class="success">
+<summary>提示</summary>
+<p>考虑 <code>a[i][j]</code> 的元素在内存上的分布，考虑 page fault 的次数：<code>foo()</code> 会产生 <span class="arithmatex">\(N\)</span> 次 page fault，而 <code>bar()</code> 会产生 <span class="arithmatex">\(N^2\)</span> 次 page fault。</p>
+</details>
+</details>
+<p>程序执行的局部性保证了 page fault 不会太频繁，导致带来不可接受的额外开销。需要注意，单条指令是有可能带来若干次 page fault 的（例如可能在 instruction fetch 的时候产生、可能在 operand fetch 的时候产生等）。</p>
+<h2 id="回顾-copy-on-write">回顾 copy on write<a class="headerlink" href="#回顾-copy-on-write" title="Permanent link">¶</a></h2>
+<p>我们在<a href="../Unit1/" target="_blank">内存管理</a>一节中提出了 <a href="../Unit1/#copy-on-write" target="_blank">copy on write</a> 技术和 <a href="../Unit1/#vfork" target="_blank">vfork</a> 技术，现在读者可以尝试再回顾一下这两个知识点与本节内容的联系。</p>
+<h2 id="可用帧列表">可用帧列表<a class="headerlink" href="#可用帧列表" title="Permanent link">¶</a></h2>
+<p>在 demand paging 系统里，页是动态地被映射到帧的，所以我们需要维护一个<strong>可用帧列表(free-frame list)</strong>，用来记录当前哪些帧是空闲的。</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/42.svg"><img alt="" src="../img/42.svg"/></a> </center>
+Example of free-frame list.</p>
+</figure>
+<p>在系统启动后，我们需要将所有可用的帧都加入到 free-frame list 中；当有用户需要物理内存时候，就从 free-frame list 中取出一项，对其进行擦除，即被需求时清零(zero-fill-on-deman)。</p>
+<div class="admonition question">
+<p class="admonition-title">考虑为什么要执行 zero-fill-on-deman</p>
+</div>
+<p>如果读者足够敏锐就会发现，我们只说了怎么取出 free-frame，而没说 free-frame 如何“再生”。</p>
+<p>当我们发现 free-frame list 为空，即没有空闲的 frame 时，我们考虑将一些先前已经被分配的 frame 给 page out 走，拿来给当前这个页用。而具体如何选择换走哪个 frame，我们会在<a href="#置换策略" target="_blank">置换策略</a>一节中介绍。</p>
+<p><a id="free-frame-buffer-pool"></a></p>
+<div class="admonition section">
+<p class="admonition-title">free-frame buffer pool</p>
+<p>虽然我们还没介绍<a href="#置换策略" target="_blank">置换策略</a>，但是想象一下，如果等到没有 free-frame 的时候再去做置换，那么进程就需要<strong>等待置换完成</strong>以后再分配。</p>
+<p>我们可以考虑在这里引入一个抽象的 buffer，我们可以保证 free-frame list 始终有一定数量的空闲帧，例如 3 个。这样当进程来索取 free-frame 的时候，free-frame list 大概率总是能够直接给出一个 free-frame 的，而给出 free-frame 后，如果发现 free-frame list 中的剩余帧数小于 3，那么就可以独立地开始进行置换，而不必阻塞进程。</p>
 <hr/>
-<p>主流用 MVS 来生成训练数据</p>
-<h2 id="object-pose-estimation">Object Pose Estimation<a class="headerlink" href="#object-pose-estimation" title="Permanent link">¶</a></h2>
-<p>本质上是在讨论物体在重建空间中的坐标系和相机空间中的坐标系的变换关系。</p>
-<p><a href="../Lec07/#多点透视成像问题">PnP</a></p>
-<p>可是难就难在，如何寻找 3D-2D 的关系呢？</p>
-<p>一个 idea 是，首先得到一个较好的重建，然后基于这个重建模型，我们就可以从别的思路来看这件事。</p>
-<p>pose refinement methods</p>
-<h2 id="human-pose-estimation">Human Pose Estimation<a class="headerlink" href="#human-pose-estimation" title="Permanent link">¶</a></h2>
-<p>(Markerless) MoCap</p>
-<p>Monocular 3D Human Pose Estimation (eg. Vnet)</p>
-<h2 id="depth-estimation">Depth Estimation<a class="headerlink" href="#depth-estimation" title="Permanent link">¶</a></h2>
-<p>MVSNet</p>
-<p><a href="../Lec08/">MVS</a></p>
-<p>离散表示、隐式表示（用一个网络来表示一个函数 Implicit Neural Representations，代表：NeRF）</p>
-<p>Replacing density field in NeRF by SDF: NeuS</p>
-<h2 id="single-image-to-3d">Single Image to 3D<a class="headerlink" href="#single-image-to-3d" title="Permanent link">¶</a></h2>
-<h2 id="deep-learning-for-3d-understanding">Deep learning for 3D understanding<a class="headerlink" href="#deep-learning-for-3d-understanding" title="Permanent link">¶</a></h2>
-<p>计算开销很大</p>
-<p>近几年提出的解决方案：Sparse ConvNets</p>
-<p>Octree 八叉树，空间划分</p>
-<p>稀疏卷积，只有有值的地方进行卷积</p>
-<p>由于卷积等操作是建立在网格上的，而点云并不定义在网格上，所以对点云进行卷积则需要一些其他方法。</p>
-<p>一个相关工作是 PointNet，专门用在对点云上。还有 PointNet++</p>
-<p>3D Semantic Segmentation</p>
-<p>3D Object Detection</p>
-<p>3D Instance Segmentation</p>
-<p>PointRCNN</p>
-<p>Frustum PointNets</p>
-<p>数据集：ShapeNet, PartNet,SceneNet , ScanNet</p>
+<p>又或者，我们不使用一个确切的界，而是通过一种负反馈控制，维护一个上界和下界：当 free-frame 数小于下界时，一类叫<strong>收割者(reapers)</strong>的内核例程就开始使用 <a href="#置换策略" target="_blank">replacement algorithm</a> 来 reclaim 已经被分配的 frame，直到 free-frame 的数量触碰到上界。</p>
+<p><figure markdown="">
+<center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/43.png"><img alt="" src="../img/43.png" width="60%"/></a> </center>
+Reclaiming pages.
+</figure></p>
+<hr/>
+<p>进一步的，万一此时出现了一些特殊情况，导致实际的 free-frame 数非常少，达到了一个非常低的界，此时就出现了 <strong>OOM(out-of-memory)</strong>。此时，一个叫做 OOM killer 的例程就会杀死一个进程，以腾出内存空间。</p>
+<p>在 Linux 中，每个进程会有一个 OOM score，OOM score 越高约容易被 OOM killer 盯上，而 OOM score 与进程使用的内存的百分比正相关，所以大概的感觉就是谁内存用的最多就杀谁。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>如果读者对 Linux 的 OOM 机制有兴趣，可以看看角注 1。</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">导读</p>
+<blockquote>
+<p>准确来说接下来<a href="#分配策略" target="_blank">分配策略</a>和<a href="#置换策略" target="_blank">置换策略</a>都应当是 demand paging 的子条目，但是四级标题实在太小了，所以我设为了三级标题。</p>
+</blockquote>
+<p>我们已经阐述了一个正在运行中的 <a href="#按需换页系统概述" target="_blank">demand paging</a> 系统是如何运作的，现在需要补足一些细节。</p>
+<ol>
+<li><a href="#分配策略" target="_blank">分配策略</a>：初始化时，如何分配进程所需要的 frame？</li>
+<li><a href="#置换策略" target="_blank">置换策略</a>：当 free-frame 不足时，如何进行 replacement？</li>
+</ol>
+</div>
+<h2 id="分配策略">分配策略<a class="headerlink" href="#分配策略" title="Permanent link">¶</a></h2>
+<p>在 pure demand paging 里，每个进程通过 page fault 不断“蚕食” free-frame，但如果我们不适用 pure 的 demand paging，那么就需要决定一开始分配多少 frames 给一个 process。</p>
+<p>首先，对于单个进程的分配，存在一个较严格的上下界：</p>
+<div class="admonition section">
+<p class="admonition-title">lower bound &amp; upper bound</p>
+<ol>
+<li>分配给一个 process 的 frames 数量不能大于 free-frame 总量；<ul>
+<li>即 the maximum number of frames per process is defined by the amount of available physical memory；</li>
+</ul>
+</li>
+<li>分配给一个 process 的 frames 数量不能小于 process「执行每一条指令所需要涉及的 frames」的最大值；<ul>
+<li>这句话有点绕，稍微解释一下：<ul>
+<li>一些指令可能会需要引用其它 frame（例如的 load，move，以及会产生 indirect references 的指令等），而且 instruction fetch 以外的额外 memory reference 可能不止一个；</li>
+<li>我们应当保证涉及的若干 page 都能被存在内存中；</li>
+<li>因此，从某种角度来说：the minimum number of frames per process is defined by architecture；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<p><strong>分配算法(frame-allocation algorithm)</strong>按照分配的帧的大小来分，主要有这么两种：</p>
+<details class="section" open="open">
+<summary>equal allocation</summary>
+<p>顾名思义，每一个进程被分配的 frame 总量都相同，假设共 <span class="arithmatex">\(n\)</span> 个 process，<span class="arithmatex">\(m\)</span> 块可用 frame，那么每个进程被分配的 <span class="arithmatex">\(\left\lceil\frac{m}{n}\right\rceil\)</span>。</p>
+</details>
+<details class="section" open="open">
+<summary>proportional allocation</summary>
+<p>比例指按进程的大小来分配，假设共 <span class="arithmatex">\(n\)</span> 个 process，<span class="arithmatex">\(m\)</span> 块可用 frame，其中每个 process 的大小为 <span class="arithmatex">\(s_i\)</span>，那么每个进程被分配的 frame 大小为 <span class="arithmatex">\(a_i = \left\lceil \frac{s_i}{\sum_{j}^n s_j} \times m\right\rceil\)</span>。</p>
+</details>
+<details class="section" open="open">
+<summary>proportional allocation with priority</summary>
+<p>注意到， 目前提到的两种做法都和进程的优先级无关，但从需求上来讲，我们可能倾向于让高优先级的进程被分配更多的 frame 以降低 page fault rate 来增加它们的效率。</p>
+<p>所以，我们可以在 proportional allocation 的基础上，在计算 <span class="arithmatex">\(a_i\)</span> 时综合考虑 priority。</p>
+</details>
+<p>我们发现，上面关于内存分配大小的式子中，有一项 <span class="arithmatex">\(n\)</span> 表示 #process，区别于其它相对静态的参数，这个参数是会在调度过程中动态变化的，所以实际上分配给每个进程的 frame 数量也是会动态变化的。</p>
+<p>在多核设计下，有一种设计叫做 NUMA<sup><a href="https://en.wikipedia.org/wiki/Non-uniform_memory_access" target="_blank">Wiki</a></sup>，我们在 Overview 其实也提到过。在这种设计里，由于硬件设计问题，不同的 CPU 都有自己“更快”访问的内存。读者可以通过上面的 Wiki 链接做详细了解。</p>
+<h2 id="置换策略">置换策略<a class="headerlink" href="#置换策略" title="Permanent link">¶</a></h2>
+<p>当 free-frame list 为空，但用户仍然需要 frame 来进行 page in 时，就需要进行<strong>页置换(page replacement)</strong>，将并没有正在被使用的页腾出来给需要 page in 的内容用，而这个“被要求腾出地方”的页，我们称之为<strong>牺牲帧(victim frame)</strong>。</p>
+<blockquote>
+<p>显然这里的 “page” 是基于 <a href="../Unit3-Part1/#page-frame-def-2" target="_blank">Definition 2</a>。</p>
+</blockquote>
+<p>我们细化 <a href="../Unit3-Part1/#page-fault-handling" target="_blank">page fault 处理流程</a>的 2.a. 项，大概是如下的步骤：</p>
+<div class="admonition section">
+<p class="admonition-title">page replacement</p>
+<ol>
+<li>利用<strong>置换算法(replacement algorithm)</strong>决定哪个 frame 是 victim frame；</li>
+<li>如果有必要（dirty），victim frame -&gt; 后备存储；</li>
+<li>更新相关元信息；</li>
+<li>返回这个 victim frame 作为 free-frame；</li>
+</ol>
+</div>
+<p>如果这个 victim frame 在被 page in 以后没有被修改过，那么我们可以直接将它覆盖，不需要写回后备存储，能节省一次内存操作；反之，如果这个 victim frame 被修改过，那么我们需要将它写<strong>回</strong>后备存储，类似于将修改给 “commit” 了。而为了实现这个优化，我们用一个<strong>修改位(dirty bit 或 modified bit)</strong>来记录页是否被修改过，当 frame 刚被载入内存时，dirty bit 应当为 0；而一旦帧内有任何写入操作发生，dirty bit 就会被置 1。</p>
+<p>现在我们来讨论具体的<strong>置换算法(replacement algorithm)</strong>。</p>
+<h3 id="opt">OPT<a class="headerlink" href="#opt" title="Permanent link">¶</a></h3>
+<p>理论上最优，即 ⓵ 能带来最低的 page fault rate，⓶ 绝对不会遭受 <a href="#Belady-s-anomaly" target="_blank">Belady's anomaly</a> 的做法是：<u>在<strong>未来</strong>最久的时间内不会被访问到的页作为 victim frame</u>。这句话说起来有点绕，用英文描述是：Replace the page that <strong>will</strong> not be used for the longest period of time.</p>
+<p>换句话来说就是选之后再也不会被用到的或（如果没有前者）下一次用到的时间最晚的页作为 victim frame。</p>
+<p>可以发现，我们实际上很难来预测一个 frame 下一次被使用是什么时候，所以该方法只是一个理论上的最优建模，我们在后面应当考虑去逼近这个建模。</p>
+<details class="tip" open="open">
+<summary>头脑风暴</summary>
+<p>这段内容有没有让你想起我们已经学过的某个东西？</p>
+<details class="success">
+<summary>提示</summary>
+<p><a href="../Unit1/#SJF" target="_blank">Shortest-Job-First Scheduling</a>!</p>
+<p>实际上，下面介绍 FIFO 你也应当会想起 <a href="../Unit1/#FCFS" target="_blank">FCFS</a> 调度算法。</p>
+</details>
+</details>
+<h3 id="fifo">FIFO<a class="headerlink" href="#fifo" title="Permanent link">¶</a></h3>
+<p>先入先出(first-in, first-out, FIFO)策略，即<u>选择正在使用中的、最早进入内存的 frame 作为 victim frame</u>。我们可以通过在内存中完整地维护一个 FIFO 队列来实现这个策略。</p>
+<p>FIFO 策略的优点就是简单，方便实现；缺点是并不够好——早被载入的 page 也可能会被频繁的使用。换句话来说，这个方法用被载入的早晚来建模 page 的使用频率，但是这个建模相比 <a href="#OPT" target="_blank">optimal</a> 的建模并不足够接近。</p>
+<details class="tip" open="open">
+<summary>头脑风暴</summary>
+<p>请读者试着思考一下，假设现在最早被载入的 page 正在使用过程中，这时候出现了一个 page fault，会发生什么？会导致出现错误吗？</p>
+<details class="success">
+<summary>提示</summary>
+<p>会影响效率，但是不会出错哦！</p>
+</details>
+</details>
+<p><a id="Belady-s-anomaly"></a></p>
+<details class="extra">
+<summary>Belady's anomaly</summary>
+<blockquote>
+<p>这一段内容没啥用，只是一个有趣的现象。</p>
+</blockquote>
+<p>有一种情况叫做 Belady's anomaly，在 FIFO 策略下（其它 replacement algorithm 可能也会发生），随着 frame 数量的增加，page fault rate <strong>可能</strong>会增加。</p>
+<p>例如如下 page 访问序列：</p>
+<div class="arithmatex">\[
+1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5
+\]</div>
+<p>在 3 个 frame 的情况下，page fault rate 为 <span class="arithmatex">\(\frac{9}{12} = 75.0%\)</span>；而在 4 个 frame 的情况下，page fault rate 为<span class="arithmatex">\(\frac{10}{12} = 83.3%\)</span>。</p>
+</details>
+<h3 id="lru">LRU<a class="headerlink" href="#lru" title="Permanent link">¶</a></h3>
+<p>我们的目标是为了逼近难以实现的 <a href="#OPT" target="_blank">optimal</a>，而 <a href="#OPT" target="_blank">optimal</a> 之所以难以实现，是因为我们很难“预知未来”，我们能利用的只有已经经历过的事情。</p>
+<p>Least recently used(LRU) 算法的思路是，基于「很久没被用过的 page 可能在短期不太会被再次使用，刚刚用过的 page 可能在短期被频繁地用」的假设，用“最久没用过”来建模「未来最久时间内不会被访问」，即<u>选择最久没被访问过的 frame 作为 victim</u>。</p>
+<p>LRU 是比较常用的 replacement algorithm（实际上是 <a href="#LRU-Approximation" target="_blank">LRU-Approximation</a>），因为是被认为比较好的 replacement algorithm。</p>
+<hr/>
+<p>现在我们来考虑如何实现 LRU，或者说，如何来维护一个 frame 有多久没被访问过。</p>
+<div class="admonition section">
+<p class="admonition-title">stack algorithms</p>
+<ol>
+<li>计数器：使用一个计数器来标记一个帧有多久没被使用过；<ol>
+<li>当一个 frame 被使用的时候将计数器归零；</li>
+<li>需要考虑每个 frame 的计数器都需要被定期更新；</li>
+<li>需要考虑计数器可能溢出；</li>
+<li>在找 least recently used frame 的时候需要去搜索 counter 最大的 frame（你也可以考虑用一个数据结构去维护它，但是会增加设计复杂度）；</li>
+</ol>
+</li>
+<li>链表序列：使用一个双向链表来维护一个有序序列，frame 在序列中的位置暗示了它们最近被使用的时间；<ul>
+<li>
+<blockquote>
+<p>貌似主流都用“栈”来建模，但我觉得这不是栈，况且说是栈，其实现还是用双向链表；</p>
+</blockquote>
+</li>
+<li>每当一个 frame 被使用的时候：<ol>
+<li>如果它在链表中，就将它移动到链表头部；</li>
+<li>如果它不在链表中，就将它加入到链表头部；</li>
+</ol>
+</li>
+<li>这种设计下每次的 “least used frame” 总是位于序列末尾，因此不需要做额外的搜索；</li>
+</ul>
+</li>
+</ol>
+<p>上面两种做法都被称为<strong>栈算法(Stack Algorithms)</strong>。</p>
+<blockquote>
+<p>虽然我坚持认为这里和栈没关系。</p>
+</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">缺陷</p>
+<p>虽然 LRU 对于拟合 <a href="#OPT" target="_blank">optimal</a> 是比较好的，但是它也有一些缺陷：</p>
+<ol>
+<li>对于计数器做法，维护每个 frame 的 clock 想想就很慢，除非有特定的硬件来优化这个操作（例如不需要由操作系统来操心 clock 的维护）；</li>
+<li>对于两者，由于每次内存被访问的时候都需要进行维护，如果通过 interrupt 来调用 stack algorithms，那么开销将会巨大；</li>
+</ol>
+</div>
+</div>
+<p>此外，LRU 算法不会出现 <a href="#Belady-s-anomaly" target="_blank">Belady's anomaly</a>。</p>
+<hr/>
+<p><a id="LRU-Approximation"></a></p>
+<p>由于我们在 Stack Algorithm 里提到的诸多弊端，我们考虑<strong>近似</strong>地，实现 LRU 算法——实际上是近似实现 Stack Algorithm。</p>
+<p>多数操作系统会提供一个叫 reference bit 的功能。所有 frame 都有一个与之关联的 reference bit，在初始化的时候都会被置 0；而每当 frame 被使用时，reference bit 就会被置 1。于是，我们可以通过观察 reference bit 来观察某些 frame 是否被使用过。</p>
+<p>开始之前，我们分析 LRU 的限制，主要体现在两个方面：⓵ 需要全部历史信息，维护成本较大（需要设计数据结构来存储）；⓶ 数据维护过于频繁，每次使用 frame 都需要用一段不小的开销去更新状态。</p>
+<p>对应的解决方案是：⓵ 我们完全可以只关注一个邻域里的历史信息，⓶ 我们可以降低更新 frame 信息的频率。（虽然对于后者，实际上如果对应于 reference bit 的更新，其实并没有降低频率。）</p>
+<details class="section" open="open">
+<summary>Additional-Reference-Bits Algorithm</summary>
+<p>只有 reference bit 的话没法反应出 frame 使用的“远近”，也就是使用的顺序。</p>
+<p>既然缺的是顺序，我们就考虑建模 frame 的使用远近。其中最首要的一个任务就是获取历史信息，所以我们需要用一些 bits 来存储每个 frame 的历史使用信息；然后定期（利用时钟中断）地去检查、存储当前时间当前 frame 的 reference bit，相当于检测上一个采样间隔中该帧有没有被用过。</p>
+<p>具体来说，我们可以给每个 frame 一个 <span class="arithmatex">\(k\)</span> bits 的 bits vector <span class="arithmatex">\(h = (h_{k-1}h_{k-2} \dots h_{1}h_{0})_2, \quad h_i \in \{0, 1\}\)</span> 用来存储历史的 reference bits；然后每过 <span class="arithmatex">\(\delta t\)</span> ms，就产生一次时钟中断，检查 frame <span class="arithmatex">\(f_i\)</span> 的 reference bit <span class="arithmatex">\(r_{t}\)</span>（为了简洁我们省略这个 <span class="arithmatex">\(i\)</span>），此时我们更新 <span class="arithmatex">\(h' = (r_{i,t}h_{k-1}h_{k-2} \dots h_{2}h_{1})_2\)</span>，即将 <span class="arithmatex">\(h\)</span> 右移一位，在高位补 <span class="arithmatex">\(r_{i,t}\)</span>。</p>
+<p>实际上 <span class="arithmatex">\(h\)</span> 是一个类似队列的存在，而每次检查会把 reference bit 给 push 进这个队列里。因此，<span class="arithmatex">\(h\)</span> 换一个写法就是：<span class="arithmatex">\(h' = (\underbrace{r_{t}r_{t-1}r_{t-2}r_{t-3} \dots }_{k\text{ bits}})_2\)</span>，也就是最近的 <span class="arithmatex">\(k\)</span> 次检测的历史记录。</p>
+<p>而之所以从高位开始，是因为在数值大小体系中，高位代表着高权重，正好对应 reference 出现的越近，frame 越新。所以，我们可以直接找这个 bits vector 中最小的那个 frame 作为 victim frame。</p>
+</details>
+<details class="section" open="open">
+<summary>Second-Chance Algorithm</summary>
+<p>Second-Chance Algorithm 只利用 reference bit 来进行置换，类似 <a href="#FIFO" target="_blank">FIFO</a> 的改进版，在 FIFO 的基础上，我们引入了 reference bit，并且定期擦除 reference bit。</p>
+<p>我们<strong>循环地</strong>遍历 frames，并逐一检测 reference bit：</p>
+<ol>
+<li>如果 reference bit 为 0，说明采样间隔中这个 frame 没被用过，那么这个 frame 就是我们要找的 victim frame；</li>
+<li>如果 reference bit 为 1，说明采样间隔中这个 frame 被用过，于是给这个 frame 一次“豁免”的机会，将它的 reference bit 设置为 0，并继续寻找下一个 frame；</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">头脑风暴</p>
+<p>在 2. 中为什么要将它置 0？这个置 0 的含义和在时钟中断采样的时候的置 0 一样吗？</p>
+<details class="success">
+<summary>提示</summary>
+<p>这就是 Second-Chance Algorithm 中的 “second” 的来源。将它置 0 后下一循环再碰到它的时候，就不会再被“豁免”了。</p>
+</details>
+</div>
+<p>显而易见的，在某些情况下，该算法可能会退化为 FIFO，甚至更差，找到 victim page 之前，该算法最多可能会遍历两遍 frames。而该算法也可以看作 Additional-Reference-Bits Algorithm 的简化版，如果说 Additional-Reference-Bits Algorithm 是通过比较若干轮采样的历史采样记录来对 frames 做排序，以决定哪一个是 “LRU”；那么 Second-Chance Algorithm 就是在一个采样周期里，将 frames 做二值分类，在“远近”这件事的建模上，更加激进和粗粒度。</p>
+</details>
+<details class="section" open="open">
+<summary>Enhanced Second-Chance Algorithm</summary>
+<blockquote>
+<p>书中有一句话令人费解，我发现已经有人在 StackOverflow 上问了这个问题，可以参考一下这个<a href="https://stackoverflow.com/questions/58496569/how-does-the-enhanced-second-chance-algorithm-has-a-preference-to-the-changes-th" target="_blank">问题</a>。</p>
+</blockquote>
+<p>既然 Second-Chance Algorithm 的建模有点太激进和粗粒度，那我们考虑把粒度再弄细一点。</p>
+<p>之前我们都只看 reference bit，现在我们把 dirty bit 也纳入考虑。考虑二元组 <span class="arithmatex">\((reference, dirty)\)</span>，两个 bit 有四种组合：</p>
+<ol>
+<li><span class="arithmatex">\((0, 0)\)</span>：没被用过，也没被修改过；</li>
+<li><span class="arithmatex">\((0, 1)\)</span>：没被用过，但被修改过；</li>
+<li><span class="arithmatex">\((1, 0)\)</span>：被用过，但没被修改过；</li>
+<li><span class="arithmatex">\((1, 1)\)</span>：被用过，也被修改过；</li>
+</ol>
+<p>由于被修改过的 frame 在被置换的时候需要执行写回，所以我们希望尽量晚一点使用这类 frame。在这种分类下，前两种合并，后两种合并，就是先前的 Second-Chance Algorithm 了。</p>
+<p>在 Enhanced Second-Chance Algorithm 中，我们找到第一个 1. 情况的 frame 作为 victim；如果没有，就去找第一个 2. 情况的 frame 作为 victim……以此类推。<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<p>因此，Enhanced Second-Chance Algorithm 可能最多会遍历 4 次 frames。在已经介绍的三个算法里，它是唯一一个考虑了 dirty bit 的。</p>
+<blockquote>
+<p><del>总感觉 LRU 已经被改的面目全非了x</del></p>
+</blockquote>
+</details>
+<h3 id="基于计数的置换">基于计数的置换<a class="headerlink" href="#基于计数的置换" title="Permanent link">¶</a></h3>
+<p>我们考虑用 counter 来记录正在使用的 frame 中每个 frame 被使用的次数，用 counter 的值来建模“使用频率”。按照后续操作不同分为这两种：</p>
+<ul>
+<li>Least frequently used(LRF) 选择 counter 最小的 frame 作为 victim frame；</li>
+<li>Most frequently used(MRF) 选择 counter 最大的 frame 作为 victim frame；<ul>
+<li>这个做法基于「counter 小的 frame 可能才刚刚被 load 进来」这个假设；</li>
+</ul>
+</li>
+</ul>
+<p>显而易见的，这两个设计对 <a href="#OPT" target="_blank">optimal</a> 的拟合都不是很好，开销也都很大。</p>
+<h3 id="替换范围">替换范围<a class="headerlink" href="#替换范围" title="Permanent link">¶</a></h3>
+<p>在<a href="#分配策略" target="_blank">分配</a>的时候，我们为进程分配了一些帧以用于必要的运算活动。但我们知道，置换操作会动态地更新 frame 的使用情况。不知道你是否疑惑过：置换的时候，我们能否置换其它进程的 frame？以及我们要如何实现和维护这些策略呢？</p>
+<p>实际上，replacement 分为 local 和 global 两种：</p>
+<ol>
+<li>使用 local replacement 时，<u>replacement 只发生在属于当前进程的帧中</u>，因而也就不会影响其它进程的内存使用情况；</li>
+<li>而对应的，<u>global replacement 的 scope 是所有帧</u>，甚至可能一部分原来属于操作系统的帧，因而它能实现一些类似“抢占”的效果；<ul>
+<li><a href="#free-frame-buffer-pool" target="_blank">Free-frame buffer pool</a> 就是一种天然的 global replacement 的实现方式；</li>
+</ul>
+</li>
+<li>如果我们稍微做一些设计，比如<u><strong>只</strong>允许高优先级的进程能够置换低优先级的 frame，即 priority replacement</u>，则高优先级的进程使用的 frame 可能越来越多，进而不断优化高优先级进程的效率；</li>
+</ol>
+<p>当然，我们需要维护每个进程所拥有的 frame 数量被 minimum frame number 给 bound 限住。</p>
+<p>对比 local replacement 和 global replacement，主要就是一个封闭性和灵活性的 trade-off，很直观：global replacement 分配更灵活，内存的利用率更高，但对于 frame 被“抢”的进程来说，整体运行的效率就不稳定了；反观 local replacement，虽然由于能够利用的内存有限，可能出现别的进程省了不少但是自己很吃紧的情况，出现内存利用率较低的情况，但整体来说较为稳定，进程之间相对来说不会<strong>互相干扰</strong>。</p>
+<blockquote>
+<p>上面是书上的意思，但我认为这个评价还是不公平的，因为所谓的、属于进程的 frames 的数量是会变的，在新的进程被 allocation 后，进程总数会增加，而这个新进程只能从别的地方刮一些内存来用，所以就算用的是 local replacement，也说不上特别稳定。</p>
+</blockquote>
+<h2 id="抖动">抖动<a class="headerlink" href="#抖动" title="Permanent link">¶</a></h2>
+<p>倘若系统的多道程度过高，那么可能分配给每一个 process 的 frames 数量就会比较少，process 所使用的 frames 中被频繁使用的 page 占比更大。这时候可能就会产生较为<strong>频繁的 paging 活动</strong>——几乎所有 frames 都正在被使用，相当于每次置换都会导致一个新的 page fault——进而导致 CPU 的利用率下降，这种现象被称为<strong>抖动(thrashing)</strong>。</p>
+<p>例如，process A 可能抢走了 process B 的正要被使用的 frame，于是导致 process B 之后会产生一次 page fault；而在处理这个 page fault 的时候，可能又把 process C 的正要使用的 frame 给抢走了……</p>
+<div class="admonition bug">
+<p class="admonition-title">early paging systems</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/44.png"><img align="right" alt="" src="../img/44.png" width="50%"/></a></p>
+<p>早期的设计中，操作系统会监控 CPU 利用率，如果发现 CPU 利用率不够高，就会认为 CPU 太闲了，于是尝试增加 degree of multiprogramming。</p>
+<p>但如果 CPU 利用率下降是由 thrashing 引起的，那 degree of multiprogramming 的增加反而会加剧 thrashing，进而导致 CPU 利用率下降，形成恶性循环。</p>
+<p>在遇到 thrashing 问题的时候，理论上我们应当降低 degree of multiprogramming 才对。</p>
+</div>
+<p>可以想象到，这里出现了一种类似于互相抢 frame 的情况。我们可以通过让一方“让步”来解决，例如使用 priority replacement algorithm 来解决。</p>
+<p><a id="working-set"></a>
+还有一种基于局部性假设的做法，叫 working set model。它的大致思路是将「每一个进程在一个 <span class="arithmatex">\(\Delta\)</span> 时间窗口内用到过的 frame」建模为一个进程的 working set <span class="arithmatex">\(WS_i\)</span>，如果 <span class="arithmatex">\(\sum_i |WS_i| &gt; m\)</span>，即所有进程的 working set 的大小之和大于可用 frame 的数量，那么就可能会出现 thrashing。此时操作系统可能就会选择挂起某个 process，以降低 degree of multiprogramming。这个做法的一个问题和 LRU 是类似的，要去维护 <span class="arithmatex">\(WS_i\)</span> 是比较吃力的，而解决办法也是类似的，我们可以近似地去维护 <span class="arithmatex">\(WS_i\)</span>。详细内容不再展开，读者可以参考 <a href="https://en.wikipedia.org/wiki/Working_set" target="_blank">Wiki</a> 做更多了解。此外，working set 的思路可以用于实现 <a href="#pre-paging" target="_blank">pre-paging</a>。</p>
+<p>或者也能利用缺页频率(Page-Fault Frequency, PFF)来做动态调节，由于 PFF 与进程可用的 frames 数量大致成负相关，我们可以设定上下界并进行负反馈控制：process 的 PFF 过高时增加它可用的 frames 数量，当 process 的 PFF 较低时可以减少它可用的 frames 数量。</p>
+<p>不过，对于该问题，先行的最佳解决方案其实是增加物理内存，从硬件上解决问题。</p>
+<h2 id="内存压缩">内存压缩<a class="headerlink" href="#内存压缩" title="Permanent link">¶</a></h2>
+<p>内存压缩(memory compression)的思路区别于 swap，把 frame 换到 backing store 里，而且尝试去 merge 一些 frame，即利用内部碎片。</p>
+<h2 id="内核内存">内核内存<a class="headerlink" href="#内核内存" title="Permanent link">¶</a></h2>
+<p>我们之前讨论的内存管理机制，尤其是内存的分配和置换机制，都是针对 user process 的。而内核的运行同样需要 memory，但它不能使用和 user process 相同的内存设计。由于 kernel 程序是一直运行的，所以我们必须更保守地使用内存，诸内部碎片的问题应当尽可能避免，事实上，许多操作系统都对 kernel 使用 paging 设计。再加上由于 kernel 需要和一些硬件做交互，而许多硬件设备都只直接与物理内存做交互，所以我们还需要对 kernel 内存在物理内存上的连续性有一定保证。</p>
+<h3 id="buddy-系统">Buddy 系统<a class="headerlink" href="#buddy-系统" title="Permanent link">¶</a></h3>
+<p>Buddy system<sup><a href="https://en.wikipedia.org/wiki/Buddy_system" target="_blank">Wiki</a></sup> 可以用来分配物理连续的内存，它由 power-of-2 allocator 实现。</p>
+<p>当 kernel 需要 <span class="arithmatex">\(n\)</span> KB 的内存时候，Buddy system 会分配一块 <span class="arithmatex">\(2^k\)</span> KB 的空间，其中 <span class="arithmatex">\(k = \lceil \log_2{n} \rceil\)</span>。</p>
+<blockquote>
+<p>显而易见的，这样还是容易出现内部碎片，Buddy system 无法解决这种内部碎片，但是稍候接受的 <a href="#slab-分配" target="_blank">Slab allocation</a> 可以。</p>
+</blockquote>
+<p>具体来说，Buddy system 通过不断二分的方式来寻找一块合适的内存，如下图：</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/45.png"><img alt="" src="../img/45.png" width="60%"/></a> </center>
+例如 kernel 申请一块 21KB 的内存，那么 <span class="arithmatex">\(C_L\)</span> 就是我们最终分配的内存。</p>
+</figure>
+<p>Buddy system 还有一个特点是，它通过 coalesce 相邻的空闲块来形成更大的内存块，例如上图可以按照分裂的方式合并回 256 KB 的大内存块（<del>合并大内存</del>）。</p>
+<h3 id="slab-分配">Slab 分配<a class="headerlink" href="#slab-分配" title="Permanent link">¶</a></h3>
+<p>Slab 分配的大概思路是预先了解到 kernel 内的常见数据结构（被称为各种 object）的大小，并预先准备好对应粒度的小内存块，注册到每类 object 的 cache 里。当一个 object 需要使用内存时，就查询对应的 cache 里是否有空闲的内存块，如果有就分配给它，如果没有就向 Buddy system 申请。</p>
+<p>相当于预先把内存分成了苹果小盒、冰箱大箱、超大车库，然后根据要放的东西的大小选择合适的空间来放。</p>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:1">
+<p><a href="https://medium.com/@adilrk/linux-oom-out-of-memory-killer-74fbae6dc1b0#9707" target="_blank">Linux OOM (Out-of-memory) Killer | Medium</a> <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:2">
+<p><a href="http://www.faadooengineers.com/online-study/post/ece/operating-systems/1165/enhanced-second-chance-algorithm" target="_blank">Enhanced Second-Chance Algorithm</a> <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+</ol>
+</div>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年4月4日 17:28:06</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月9日 12:04:22</span>
 <br/>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年11月14日 12:18:00</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>
 </small>
 </div>
 <form class="md-feedback" hidden="" name="feedback">
