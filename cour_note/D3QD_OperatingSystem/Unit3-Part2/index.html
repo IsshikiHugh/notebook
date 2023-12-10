@@ -1289,7 +1289,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u3-part-2-内存管理--memory-management">U3 Part 2: 内存管理 | Memory Management<a class="headerlink" href="#u3-part-2-内存管理--memory-management" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7616 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 21 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 38 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7620 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 21 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 38 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1341,22 +1341,22 @@
 <li>如果是情况 3.，则终止进程；</li>
 </ol>
 </li>
-<li>从<a href="#可用帧列表" target="_blank">可用帧列表</a>里拿出 frame 用来写入；<ol>
+<li>从<a href="#可用帧列表" target="_blank">可用帧列表</a>里拿出 frame 用来写入；<ul>
 <li>如果可用帧列表为空，则进行<a href="#置换策略" target="_blank">页置换</a>；</li>
-</ol>
+</ul>
 </li>
 <li>开始从后备存储读取内容，并写入 frame；</li>
 <li>完成读写后，更新内部表和页表等元信息；</li>
-<li>重新执行引起 page fault 的 instruction；<ol>
+<li>重新执行引起 page fault 的 instruction；<ul>
 <li>该操作十分关键，类似于死锁里的回滚操作，支持这项操作也具有一定的难度，包括如何确切地恢复回指令执行之前的状态、如何消除执行了一半的指令的效果等；</li>
-</ol>
+</ul>
 </li>
 </ol>
+<p><figure markdown="">
+<center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/41.png"><img alt="" src="../img/41.png" width="80%"/></a> </center>
+Steps in handling a page fault.
+</figure></p>
 </div>
-<figure>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/41.png"><img alt="" src="../img/41.png" width="80%"/></a> </center>
-Steps in handling a page fault.</p>
-</figure>
 <div class="admonition warning">
 <p class="admonition-title">慢！</p>
 <p>想象一下，每当发生一次 page fault，并且我们假设这些 page faults 都属于情况 2.，那么它可能会经历这些过程：</p>
@@ -1428,7 +1428,7 @@ Steps in handling a page fault.</p>
 <p>考虑 <code>a[i][j]</code> 的元素在内存上的分布，考虑 page fault 的次数：<code>foo()</code> 会产生 <span class="arithmatex">\(N\)</span> 次 page fault，而 <code>bar()</code> 会产生 <span class="arithmatex">\(N^2\)</span> 次 page fault。</p>
 </details>
 </details>
-<p>程序执行的局部性保证了 page fault 不会太频繁，导致带来不可接受的额外开销。需要注意，单条指令是有可能带来若干次 page fault 的（例如可能在 instruction fetch 的时候产生、可能在 operand fetch 的时候产生等）。</p>
+<p>程序执行的局部性假设下，应当不会因为 page fault 太频繁导致带来不可接受的额外开销。需要注意，单条指令是有可能带来若干次 page fault 的（例如可能在 instruction fetch 的时候产生、可能在 operand fetch 的时候产生等）。</p>
 <h2 id="回顾-copy-on-write">回顾 copy on write<a class="headerlink" href="#回顾-copy-on-write" title="Permanent link">¶</a></h2>
 <p>我们在<a href="../Unit1/" target="_blank">内存管理</a>一节中提出了 <a href="../Unit1/#copy-on-write" target="_blank">copy on write</a> 技术和 <a href="../Unit1/#vfork" target="_blank">vfork</a> 技术，现在读者可以尝试再回顾一下这两个知识点与本节内容的联系。</p>
 <h2 id="可用帧列表">可用帧列表<a class="headerlink" href="#可用帧列表" title="Permanent link">¶</a></h2>
@@ -1733,7 +1733,7 @@ Reclaiming pages.
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月10日 20:23:20</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月10日 20:31:38</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>
