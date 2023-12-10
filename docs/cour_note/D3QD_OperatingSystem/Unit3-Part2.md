@@ -53,16 +53,16 @@
         1. 如果是情况 2.，则继续如下操作以将其 page in；
         2. 如果是情况 3.，则终止进程；
     2. 从[可用帧列表](#可用帧列表){target="_blank"}里拿出 frame 用来写入；
-        1. 如果可用帧列表为空，则进行[页置换](#置换策略){target="_blank"}；
+        - 如果可用帧列表为空，则进行[页置换](#置换策略){target="_blank"}；
     3. 开始从后备存储读取内容，并写入 frame；
     4. 完成读写后，更新内部表和页表等元信息；
     5. 重新执行引起 page fault 的 instruction；
-        1. 该操作十分关键，类似于死锁里的回滚操作，支持这项操作也具有一定的难度，包括如何确切地恢复回指令执行之前的状态、如何消除执行了一半的指令的效果等；
+        - 该操作十分关键，类似于死锁里的回滚操作，支持这项操作也具有一定的难度，包括如何确切地恢复回指令执行之前的状态、如何消除执行了一半的指令的效果等；
 
-<figure markdown>
-<center> ![](img/41.png){ width=80% } </center>
-Steps in handling a page fault.
-</figure>
+    <figure markdown>
+    <center> ![](img/41.png){ width=80% } </center>
+    Steps in handling a page fault.
+    </figure>
 
 !!! warning "慢！"
 
@@ -111,7 +111,7 @@ Steps in handling a page fault.
 
         考虑 `a[i][j]` 的元素在内存上的分布，考虑 page fault 的次数：`foo()` 会产生 $N$ 次 page fault，而 `bar()` 会产生 $N^2$ 次 page fault。
 
-程序执行的局部性保证了 page fault 不会太频繁，导致带来不可接受的额外开销。需要注意，单条指令是有可能带来若干次 page fault 的（例如可能在 instruction fetch 的时候产生、可能在 operand fetch 的时候产生等）。
+程序执行的局部性假设下，应当不会因为 page fault 太频繁导致带来不可接受的额外开销。需要注意，单条指令是有可能带来若干次 page fault 的（例如可能在 instruction fetch 的时候产生、可能在 operand fetch 的时候产生等）。
 
 ## 回顾 copy on write
 
