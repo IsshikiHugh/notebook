@@ -176,10 +176,12 @@ nav:
         - "🔗 makefile 介绍": https://seisman.github.io/how-to-write-makefile/introduction.html#
       - tech_accu/tool/Colab/index.md
     - "编程语言":
+      - tech_accu/tool/index.md
       - C++:
         - tech_accu/language/cpp/index.md
         - tech_accu/language/cpp/Part0.md
     - "标准 | 格式 | 规范":
+      - tech_accu/tool/index.md
       - tech_accu/standard/BVH_format/index.md
       - "👉 OAuth": https://www.yuque.com/isshikixiu/codes/gd5vxi
       - "🔗 MIME": https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
