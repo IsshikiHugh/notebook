@@ -31,7 +31,7 @@
 
 ??? extra "major & minor page fault"
 
-    实际上，情况 2. 还可以细分为两种，一种是**major/hard page fault**，一种是**minor/soft page fault**。
+    实际上，情况 2. 还可以细分为两种，一种是 **major/hard page fault**，一种是 **minor/soft page fault**。
 
     Major page fault 指的是缺了的页不在内存中的情况；而 minor page fault 指的是缺了的页在内存中存在，只不过没在当前页表中建立映射。
 
