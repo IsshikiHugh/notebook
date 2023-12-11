@@ -955,11 +955,6 @@
     基于计数的置换
   </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#替换范围">
-    替换范围
-  </a>
-</li>
 </ul>
 </nav>
 </li>
@@ -1243,11 +1238,6 @@
     基于计数的置换
   </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#替换范围">
-    替换范围
-  </a>
-</li>
 </ul>
 </nav>
 </li>
@@ -1289,7 +1279,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u3-part-2-内存管理--memory-management">U3 Part 2: 内存管理 | Memory Management<a class="headerlink" href="#u3-part-2-内存管理--memory-management" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7624 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 21 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 38 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7779 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 21 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 39 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1426,11 +1416,14 @@ Steps in handling a page fault.
 <details class="success">
 <summary>提示</summary>
 <p>考虑 <code>a[i][j]</code> 的元素在内存上的分布，考虑 page fault 的次数：<code>foo()</code> 会产生 <span class="arithmatex">\(N\)</span> 次 page fault，而 <code>bar()</code> 会产生 <span class="arithmatex">\(N^2\)</span> 次 page fault。</p>
+<blockquote>
+<p>做到类似的题的时候要注意 PAGE_SIZE 的大小，以及使用的 <a href="#置换策略" target="_blank">replacement algorithm</a>。</p>
+</blockquote>
 </details>
 </details>
 <p>程序执行的局部性假设下，应当不会因为 page fault 太频繁导致带来不可接受的额外开销。需要注意，单条指令是有可能带来若干次 page fault 的（例如可能在 instruction fetch 的时候产生、可能在 operand fetch 的时候产生等）。</p>
 <h2 id="回顾-copy-on-write">回顾 copy on write<a class="headerlink" href="#回顾-copy-on-write" title="Permanent link">¶</a></h2>
-<p>我们在<a href="../Unit1/" target="_blank">内存管理</a>一节中提出了 <a href="../Unit1/#copy-on-write" target="_blank">copy on write</a> 技术和 <a href="../Unit1/#vfork" target="_blank">vfork</a> 技术，现在读者可以尝试再回顾一下这两个知识点与本节内容的联系。</p>
+<p>我们在<a href="../Unit1/" target="_blank">进程管理</a>一节中提出了 <a href="../Unit1/#copy-on-write" target="_blank">copy on write</a> 技术和 <a href="../Unit1/#vfork" target="_blank">vfork</a> 技术，现在读者可以尝试再回顾一下这两个知识点与本节内容的联系。</p>
 <h2 id="可用帧列表">可用帧列表<a class="headerlink" href="#可用帧列表" title="Permanent link">¶</a></h2>
 <p>在 demand paging 系统里，页是动态地被映射到帧的，所以我们需要维护一个<strong>可用帧列表(free-frame list)</strong>，用来记录当前哪些帧是空闲的。</p>
 <figure>
@@ -1439,7 +1432,7 @@ Example of free-frame list.</p>
 </figure>
 <p>在系统启动后，我们需要将所有可用的帧都加入到 free-frame list 中；当有用户需要物理内存时候，就从 free-frame list 中取出一项，对其进行擦除，即被需求时清零(zero-fill-on-deman)。</p>
 <div class="admonition question">
-<p class="admonition-title">考虑为什么要执行 zero-fill-on-deman</p>
+<p class="admonition-title">考虑为什么要执行 zero-fill-on-deman！</p>
 </div>
 <p>如果读者足够敏锐就会发现，我们只说了怎么取出 free-frame，而没说 free-frame 如何“再生”。</p>
 <p>当我们发现 free-frame list 为空，即没有空闲的 frame 时，我们考虑将一些先前已经被分配的 frame 给 page out 走，拿来给当前这个页用。而具体如何选择换走哪个 frame，我们会在<a href="#置换策略" target="_blank">置换策略</a>一节中介绍。</p>
@@ -1522,7 +1515,7 @@ Reclaiming pages.
 </ol>
 </div>
 <p>如果这个 victim frame 在被 page in 以后没有被修改过，那么我们可以直接将它覆盖，不需要写回后备存储，能节省一次内存操作；反之，如果这个 victim frame 被修改过，那么我们需要将它写<strong>回</strong>后备存储，类似于将修改给 “commit” 了。而为了实现这个优化，我们用一个<strong>修改位(dirty bit 或 modified bit)</strong>来记录页是否被修改过，当 frame 刚被载入内存时，dirty bit 应当为 0；而一旦帧内有任何写入操作发生，dirty bit 就会被置 1。</p>
-<p>现在我们来讨论具体的<strong>置换算法(replacement algorithm)</strong><sup><a href="https://en.wikipedia.org/wiki/Page_replacement_algorithm" target="_blank">Wiki</a></sup>。</p>
+<p>现在我们来讨论具体的<strong>置换算法(replacement algorithm)</strong>。</p>
 <h3 id="opt">OPT<a class="headerlink" href="#opt" title="Permanent link">¶</a></h3>
 <p>理论上最优，即 ⓵ 能带来最低的 page fault rate，⓶ 绝对不会遭受 <a href="#Belady-s-anomaly" target="_blank">Belady's anomaly</a> 的做法是：<u>在<strong>未来</strong>最久的时间内不会被访问到的页作为 victim frame</u>。这句话说起来有点绕，用英文描述是：Replace the page that <strong>will</strong> not be used for the longest period of time.</p>
 <p>换句话来说就是选之后再也不会被用到的或（如果没有前者）下一次用到的时间最晚的页作为 victim frame。</p>
@@ -1667,7 +1660,12 @@ Reclaiming pages.
 </li>
 </ul>
 <p>显而易见的，这两个设计对 <a href="#OPT" target="_blank">optimal</a> 的拟合都不是很好，开销也都很大。</p>
-<h3 id="替换范围">替换范围<a class="headerlink" href="#替换范围" title="Permanent link">¶</a></h3>
+<div class="admonition extra">
+<p class="admonition-title">附加阅读</p>
+<p>建议去浏览一下 <a href="https://en.wikipedia.org/wiki/Page_replacement_algorithm" target="_blank">Wiki</a> 的对应条目，了解一下常见的 replacement algorithm 有哪些。上述分类和脉络和 Wiki 有一些不同，实在是没时间考究这么多粘稠的脉络了（我甚至还没搞清楚 NRU 和 Enhanced Second Chance 到底是不是同一个东西，反正就算不一样大概思路也差不多），所以请读者自行了解更多内容。这些算法内容都不算很多，了解一下更好。</p>
+</div>
+<div class="admonition section">
+<p class="admonition-title">置换范围</p>
 <p>在<a href="#分配策略" target="_blank">分配</a>的时候，我们为进程分配了一些帧以用于必要的运算活动。但我们知道，置换操作会动态地更新 frame 的使用情况。不知道你是否疑惑过：置换的时候，我们能否置换其它进程的 frame？以及我们要如何实现和维护这些策略呢？</p>
 <p>实际上，replacement 分为 local 和 global 两种：</p>
 <ol>
@@ -1683,6 +1681,7 @@ Reclaiming pages.
 <blockquote>
 <p>上面是书上的意思，但我认为这个评价还是不公平的，因为所谓的、属于进程的 frames 的数量是会变的，在新的进程被 allocation 后，进程总数会增加，而这个新进程只能从别的地方刮一些内存来用，所以就算用的是 local replacement，也说不上特别稳定。</p>
 </blockquote>
+</div>
 <h2 id="抖动">抖动<a class="headerlink" href="#抖动" title="Permanent link">¶</a></h2>
 <p>倘若系统的多道程度过高，那么可能分配给每一个 process 的 frames 数量就会比较少，process 所使用的 frames 中被频繁使用的 page 占比更大。这时候可能就会产生较为<strong>频繁的 paging 活动</strong>——几乎所有 frames 都正在被使用，相当于每次置换都会导致一个新的 page fault——进而导致 CPU 的利用率下降，这种现象被称为<strong>抖动(thrashing)</strong>。</p>
 <p>例如，process A 可能抢走了 process B 的正要被使用的 frame，于是导致 process B 之后会产生一次 page fault；而在处理这个 page fault 的时候，可能又把 process C 的正要使用的 frame 给抢走了……</p>
@@ -1733,7 +1732,7 @@ Reclaiming pages.
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月11日 20:42:12</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月11日 21:14:02</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>

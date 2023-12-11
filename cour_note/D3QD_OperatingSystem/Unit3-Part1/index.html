@@ -916,8 +916,8 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#内存绑定">
-    内存绑定
+<a class="md-nav__link" href="#地址绑定">
+    地址绑定
   </a>
 </li>
 <li class="md-nav__item">
@@ -1236,8 +1236,8 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#内存绑定">
-    内存绑定
+<a class="md-nav__link" href="#地址绑定">
+    地址绑定
   </a>
 </li>
 <li class="md-nav__item">
@@ -1343,7 +1343,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u3-part-1-内存设计--memory-design">U3 Part 1: 内存设计 | Memory Design<a class="headerlink" href="#u3-part-1-内存设计--memory-design" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 9158 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 46 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 9173 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 46 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1364,14 +1364,14 @@ A base and a limit register define a logical address space. (left)<br/>
 Hardware address protection with base and limit registers. (right)</p>
 </figure>
 <p>两个特殊的寄存器只能由内核通过特定的特权指令来修改。而内存的保护，通过<strong><a href="#MMU" target="_blank">内存管理单元(memory management unit, MMU)</a></strong>来实现，MMU 会在每次访问内存时，检查访问的地址是否在 base 和 limit 寄存器所定义的范围内，如果不在，则会产生一个异常，中断程序的执行。</p>
-<h3 id="内存绑定">内存绑定<a class="headerlink" href="#内存绑定" title="Permanent link">¶</a></h3>
+<h3 id="地址绑定">地址绑定<a class="headerlink" href="#地址绑定" title="Permanent link">¶</a></h3>
 <p>我们在<a href="../Unit0/#链接器和装载器" target="_blank">总览#链接器和装载器</a>中提到过，静态的代码程序成为动态的进程，可能会需要图中这么几步。</p>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/28.png"><img align="right" alt="" src="../img/28.png" width="40%"/></a> </center></p>
 <p>具体来说有三个阶段：编译时间(compile time)，装载时间(load time)和执行时间(execution time)。而内存也分三种：符号地址(symbolic addresses)，可重定位地址(relocatable addresses)（类似于一种相对量）和绝对地址(absolute addresses)。</p>
 <ul>
 <li>通常来说，在 compile time，compiler 会将代码中的 symbol 转为 relocatable addresses；而如果在 compile time 就知道了进程最终会被安置在何处，那么在 compile time 就将 symbol 转为 absolute addresses 也是可能的，只不过如果此时起始地址发生改变，就需要重新编译。</li>
 <li>而一般在 load time，relocatable addresses 会转为 absolute addresses，当进程起始地址发生改变时，我们只需要重新装载即可。</li>
-<li>如果进程在 execution time 时，允许被移动，那么可能从 relocatable addresses 转为 absolute addresses 这一步就需要延迟到 execution time 来执行。</li>
+<li>如果进程在 execution time 时，允许被移动，那么可能从 relocatable addresses 转为 absolute addresses 这一步就需要延迟到 execution time 来执行。<strong>绝大多数操作系统都使用这种方案。</strong></li>
 </ul>
 <h3 id="动态装载">动态装载<a class="headerlink" href="#动态装载" title="Permanent link">¶</a></h3>
 <p>由于引入了多道技术，操作系统的内存中可能同时存在多个进程。为了更加灵活地使用内存资源，我们引入<strong>动态装载(dynamic loading)</strong>机制。</p>
@@ -1727,7 +1727,7 @@ Diagram showing virtual memory that is larger than physical memory.
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月9日 12:04:22</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月11日 21:14:02</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>
