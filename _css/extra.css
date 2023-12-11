@@ -25,7 +25,7 @@ h1,
     font-weight: 600;
 }
 
-article a[href^="http"]::after,
+/* article a[href^="http"]::after,
 article a[href^="https://"]::after {
     content: "";
     width: 11px;
@@ -38,7 +38,7 @@ article a[href^="https://"]::after {
     background-repeat: no-repeat;
     background-size: contain;
     display: inline-block;
-}
+} */
 
 /* can make content in wider div */
 /* .md-grid {

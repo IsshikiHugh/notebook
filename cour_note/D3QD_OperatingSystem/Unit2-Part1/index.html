@@ -1423,7 +1423,7 @@
 <p>显然，我们应当选择第二种。</p>
 <h2 id="the-critical-section-problem">The Critical-Section Problem<a class="headerlink" href="#the-critical-section-problem" title="Permanent link">¶</a></h2>
 <p>为了更好地展开，我们对上面的这种情况进行建模，并给出解决 race condition 问题的方法需要满足的范式：</p>
-<p>我们应当保证在一个进程在修改 <code>mem[x]</code> 的时候，其它进程不应该读取 <code>mem[x]</code>（至少不应以修改 <code>mem[x]</code> 为目的来读取），直到这个进程完成对 <code>mem[x]</code> 的修改。换句话来说，<code>mem[x]</code> 这个共享资源应当只能被一个用户持有，我们称这种只能被至多一个用户占有的资源为临界资源。而程序中访问临界资源的代码段，我们称之为<strong>临界区段(critical section, CS)<sup><a href="https://en.wikipedia.org/wiki/Critical_section" target="_blank">WIKI</a></sup></strong>。</p>
+<p>我们应当保证在一个进程在修改 <code>mem[x]</code> 的时候，其它进程不应该读取 <code>mem[x]</code>（至少不应以修改 <code>mem[x]</code> 为目的来读取），直到这个进程完成对 <code>mem[x]</code> 的修改。换句话来说，<code>mem[x]</code> 这个共享资源应当只能被一个用户持有，我们称这种只能被至多一个用户占有的资源为临界资源。而程序中访问临界资源的代码段，我们称之为<strong>临界区段(critical section, CS)<sup><a href="https://en.wikipedia.org/wiki/Critical_section" target="_blank">Wiki</a></sup></strong>。</p>
 <p>那么，对于之前提到过的例子，我们拿出来对比模拟的部分就是 critical section。</p>
 <p>而 CS 问题，指的就是<u>如何保证最多只有一个用户在执行临界区段的代码</u><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。</p>
 <hr/>
@@ -2123,7 +2123,7 @@ P2  ─────────────────────────�
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月7日 17:06:57</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月11日 21:34:06</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>
