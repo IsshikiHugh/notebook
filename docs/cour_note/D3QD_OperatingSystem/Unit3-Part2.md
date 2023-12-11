@@ -218,7 +218,7 @@ Example of free-frame list.
 
 如果这个 victim frame 在被 page in 以后没有被修改过，那么我们可以直接将它覆盖，不需要写回后备存储，能节省一次内存操作；反之，如果这个 victim frame 被修改过，那么我们需要将它写**回**后备存储，类似于将修改给 “commit” 了。而为了实现这个优化，我们用一个**修改位(dirty bit 或 modified bit)**来记录页是否被修改过，当 frame 刚被载入内存时，dirty bit 应当为 0；而一旦帧内有任何写入操作发生，dirty bit 就会被置 1。
 
-现在我们来讨论具体的**置换算法(replacement algorithm)**。
+现在我们来讨论具体的**置换算法(replacement algorithm)**^[Wiki](https://en.wikipedia.org/wiki/Page_replacement_algorithm){target="_blank"}^。
 
 ### OPT
 
@@ -349,7 +349,7 @@ LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](
 
     显而易见的，在某些情况下，该算法可能会退化为 FIFO，甚至更差，找到 victim page 之前，该算法最多可能会遍历两遍 frames。而该算法也可以看作 Additional-Reference-Bits Algorithm 的简化版，如果说 Additional-Reference-Bits Algorithm 是通过比较若干轮采样的历史采样记录来对 frames 做排序，以决定哪一个是 “LRU”；那么 Second-Chance Algorithm 就是在一个采样周期里，将 frames 做二值分类，在“远近”这件事的建模上，更加激进和粗粒度。
 
-???+ section "Enhanced Second-Chance Algorithm"
+???+ section "Enhanced Second-Chance Algorithm / NRU"
 
     > 书中有一句话令人费解，我发现已经有人在 StackOverflow 上问了这个问题，可以参考一下这个[问题](https://stackoverflow.com/questions/58496569/how-does-the-enhanced-second-chance-algorithm-has-a-preference-to-the-changes-th){target="_blank"}。
 
@@ -374,8 +374,8 @@ LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](
 
 我们考虑用 counter 来记录正在使用的 frame 中每个 frame 被使用的次数，用 counter 的值来建模“使用频率”。按照后续操作不同分为这两种：
 
-- Least frequently used(LRF) 选择 counter 最小的 frame 作为 victim frame；
-- Most frequently used(MRF) 选择 counter 最大的 frame 作为 victim frame；
+- Least frequently used(LFU) 选择 counter 最小的 frame 作为 victim frame；
+- Most frequently used(MFU) 选择 counter 最大的 frame 作为 victim frame；
     - 这个做法基于「counter 小的 frame 可能才刚刚被 load 进来」这个假设；
 
 显而易见的，这两个设计对 [optimal](#OPT){target="_blank"} 的拟合都不是很好，开销也都很大。
