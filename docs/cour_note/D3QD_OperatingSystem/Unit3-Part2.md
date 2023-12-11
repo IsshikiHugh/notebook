@@ -111,11 +111,13 @@
 
         考虑 `a[i][j]` 的元素在内存上的分布，考虑 page fault 的次数：`foo()` 会产生 $N$ 次 page fault，而 `bar()` 会产生 $N^2$ 次 page fault。
 
+        > 做到类似的题的时候要注意 PAGE_SIZE 的大小，以及使用的 [replacement algorithm](#置换策略){target="_blank"}。
+
 程序执行的局部性假设下，应当不会因为 page fault 太频繁导致带来不可接受的额外开销。需要注意，单条指令是有可能带来若干次 page fault 的（例如可能在 instruction fetch 的时候产生、可能在 operand fetch 的时候产生等）。
 
 ## 回顾 copy on write
 
-我们在[内存管理](./Unit1.md){target="_blank"}一节中提出了 [copy on write](./Unit1.md#copy-on-write){target="_blank"} 技术和 [vfork](./Unit1.md#vfork){target="_blank"} 技术，现在读者可以尝试再回顾一下这两个知识点与本节内容的联系。
+我们在[进程管理](./Unit1.md){target="_blank"}一节中提出了 [copy on write](./Unit1.md#copy-on-write){target="_blank"} 技术和 [vfork](./Unit1.md#vfork){target="_blank"} 技术，现在读者可以尝试再回顾一下这两个知识点与本节内容的联系。
 
 ## 可用帧列表
 
@@ -128,7 +130,7 @@ Example of free-frame list.
 
 在系统启动后，我们需要将所有可用的帧都加入到 free-frame list 中；当有用户需要物理内存时候，就从 free-frame list 中取出一项，对其进行擦除，即被需求时清零(zero-fill-on-deman)。
 
-!!! question "考虑为什么要执行 zero-fill-on-deman"
+!!! question "考虑为什么要执行 zero-fill-on-deman！"
 
 如果读者足够敏锐就会发现，我们只说了怎么取出 free-frame，而没说 free-frame 如何“再生”。
 
@@ -218,7 +220,7 @@ Example of free-frame list.
 
 如果这个 victim frame 在被 page in 以后没有被修改过，那么我们可以直接将它覆盖，不需要写回后备存储，能节省一次内存操作；反之，如果这个 victim frame 被修改过，那么我们需要将它写**回**后备存储，类似于将修改给 “commit” 了。而为了实现这个优化，我们用一个**修改位(dirty bit 或 modified bit)**来记录页是否被修改过，当 frame 刚被载入内存时，dirty bit 应当为 0；而一旦帧内有任何写入操作发生，dirty bit 就会被置 1。
 
-现在我们来讨论具体的**置换算法(replacement algorithm)**^[Wiki](https://en.wikipedia.org/wiki/Page_replacement_algorithm){target="_blank"}^。
+现在我们来讨论具体的**置换算法(replacement algorithm)**。
 
 ### OPT
 
@@ -381,22 +383,26 @@ LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](
 显而易见的，这两个设计对 [optimal](#OPT){target="_blank"} 的拟合都不是很好，开销也都很大。
 
 
-### 替换范围
+!!! extra "附加阅读"
 
-在[分配](#分配策略){target="_blank"}的时候，我们为进程分配了一些帧以用于必要的运算活动。但我们知道，置换操作会动态地更新 frame 的使用情况。不知道你是否疑惑过：置换的时候，我们能否置换其它进程的 frame？以及我们要如何实现和维护这些策略呢？
+    建议去浏览一下 [Wiki](https://en.wikipedia.org/wiki/Page_replacement_algorithm){target="_blank"} 的对应条目，了解一下常见的 replacement algorithm 有哪些。上述分类和脉络和 Wiki 有一些不同，实在是没时间考究这么多粘稠的脉络了（我甚至还没搞清楚 NRU 和 Enhanced Second Chance 到底是不是同一个东西，反正就算不一样大概思路也差不多），所以请读者自行了解更多内容。这些算法内容都不算很多，了解一下更好。
 
-实际上，replacement 分为 local 和 global 两种：
+!!! section "置换范围"
 
-1. 使用 local replacement 时，<u>replacement 只发生在属于当前进程的帧中</u>，因而也就不会影响其它进程的内存使用情况；
-2. 而对应的，<u>global replacement 的 scope 是所有帧</u>，甚至可能一部分原来属于操作系统的帧，因而它能实现一些类似“抢占”的效果；
-    - [Free-frame buffer pool](#free-frame-buffer-pool){target="_blank"} 就是一种天然的 global replacement 的实现方式；
-3. 如果我们稍微做一些设计，比如<u>**只**允许高优先级的进程能够置换低优先级的 frame，即 priority replacement</u>，则高优先级的进程使用的 frame 可能越来越多，进而不断优化高优先级进程的效率；
+    在[分配](#分配策略){target="_blank"}的时候，我们为进程分配了一些帧以用于必要的运算活动。但我们知道，置换操作会动态地更新 frame 的使用情况。不知道你是否疑惑过：置换的时候，我们能否置换其它进程的 frame？以及我们要如何实现和维护这些策略呢？
 
-当然，我们需要维护每个进程所拥有的 frame 数量被 minimum frame number 给 bound 限住。
+    实际上，replacement 分为 local 和 global 两种：
 
-对比 local replacement 和 global replacement，主要就是一个封闭性和灵活性的 trade-off，很直观：global replacement 分配更灵活，内存的利用率更高，但对于 frame 被“抢”的进程来说，整体运行的效率就不稳定了；反观 local replacement，虽然由于能够利用的内存有限，可能出现别的进程省了不少但是自己很吃紧的情况，出现内存利用率较低的情况，但整体来说较为稳定，进程之间相对来说不会**互相干扰**。
+    1. 使用 local replacement 时，<u>replacement 只发生在属于当前进程的帧中</u>，因而也就不会影响其它进程的内存使用情况；
+    2. 而对应的，<u>global replacement 的 scope 是所有帧</u>，甚至可能一部分原来属于操作系统的帧，因而它能实现一些类似“抢占”的效果；
+        - [Free-frame buffer pool](#free-frame-buffer-pool){target="_blank"} 就是一种天然的 global replacement 的实现方式；
+    3. 如果我们稍微做一些设计，比如<u>**只**允许高优先级的进程能够置换低优先级的 frame，即 priority replacement</u>，则高优先级的进程使用的 frame 可能越来越多，进而不断优化高优先级进程的效率；
 
-> 上面是书上的意思，但我认为这个评价还是不公平的，因为所谓的、属于进程的 frames 的数量是会变的，在新的进程被 allocation 后，进程总数会增加，而这个新进程只能从别的地方刮一些内存来用，所以就算用的是 local replacement，也说不上特别稳定。
+    当然，我们需要维护每个进程所拥有的 frame 数量被 minimum frame number 给 bound 限住。
+
+    对比 local replacement 和 global replacement，主要就是一个封闭性和灵活性的 trade-off，很直观：global replacement 分配更灵活，内存的利用率更高，但对于 frame 被“抢”的进程来说，整体运行的效率就不稳定了；反观 local replacement，虽然由于能够利用的内存有限，可能出现别的进程省了不少但是自己很吃紧的情况，出现内存利用率较低的情况，但整体来说较为稳定，进程之间相对来说不会**互相干扰**。
+
+    > 上面是书上的意思，但我认为这个评价还是不公平的，因为所谓的、属于进程的 frames 的数量是会变的，在新的进程被 allocation 后，进程总数会增加，而这个新进程只能从别的地方刮一些内存来用，所以就算用的是 local replacement，也说不上特别稳定。
 
 ## 抖动
 

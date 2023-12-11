@@ -30,7 +30,7 @@ Hardware address protection with base and limit registers. (right)
 
 两个特殊的寄存器只能由内核通过特定的特权指令来修改。而内存的保护，通过**[内存管理单元(memory management unit, MMU)](#MMU){target="_blank"}**来实现，MMU 会在每次访问内存时，检查访问的地址是否在 base 和 limit 寄存器所定义的范围内，如果不在，则会产生一个异常，中断程序的执行。
 
-### 内存绑定
+### 地址绑定
 
 我们在[总览#链接器和装载器](./Unit0.md#链接器和装载器){target="_blank"}中提到过，静态的代码程序成为动态的进程，可能会需要图中这么几步。
 
@@ -40,7 +40,7 @@ Hardware address protection with base and limit registers. (right)
 
 - 通常来说，在 compile time，compiler 会将代码中的 symbol 转为 relocatable addresses；而如果在 compile time 就知道了进程最终会被安置在何处，那么在 compile time 就将 symbol 转为 absolute addresses 也是可能的，只不过如果此时起始地址发生改变，就需要重新编译。
 - 而一般在 load time，relocatable addresses 会转为 absolute addresses，当进程起始地址发生改变时，我们只需要重新装载即可。
-- 如果进程在 execution time 时，允许被移动，那么可能从 relocatable addresses 转为 absolute addresses 这一步就需要延迟到 execution time 来执行。
+- 如果进程在 execution time 时，允许被移动，那么可能从 relocatable addresses 转为 absolute addresses 这一步就需要延迟到 execution time 来执行。**绝大多数操作系统都使用这种方案。**
 
 ### 动态装载
 
