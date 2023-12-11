@@ -101,7 +101,7 @@
 
 为了更好地展开，我们对上面的这种情况进行建模，并给出解决 race condition 问题的方法需要满足的范式：
 
-我们应当保证在一个进程在修改 `mem[x]` 的时候，其它进程不应该读取 `mem[x]`（至少不应以修改 `mem[x]` 为目的来读取），直到这个进程完成对 `mem[x]` 的修改。换句话来说，`mem[x]` 这个共享资源应当只能被一个用户持有，我们称这种只能被至多一个用户占有的资源为临界资源。而程序中访问临界资源的代码段，我们称之为**临界区段(critical section, CS)^[WIKI](https://en.wikipedia.org/wiki/Critical_section){target="_blank"}^**。
+我们应当保证在一个进程在修改 `mem[x]` 的时候，其它进程不应该读取 `mem[x]`（至少不应以修改 `mem[x]` 为目的来读取），直到这个进程完成对 `mem[x]` 的修改。换句话来说，`mem[x]` 这个共享资源应当只能被一个用户持有，我们称这种只能被至多一个用户占有的资源为临界资源。而程序中访问临界资源的代码段，我们称之为**临界区段(critical section, CS)^[Wiki](https://en.wikipedia.org/wiki/Critical_section){target="_blank"}^**。
 
 那么，对于之前提到过的例子，我们拿出来对比模拟的部分就是 critical section。
 

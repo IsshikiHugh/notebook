@@ -186,7 +186,7 @@ int main() {
 
 ??? extra "daemon"
 
-    守护进程^[WIKI](https://en.wikipedia.org/wiki/Daemon_(computing)){target="_blank"}^是一种特殊的进程，它们在“后台”长期运行，例如某些数据库服务、反代理服务等，而非像普通的用户程序一样依赖于用户交互。
+    守护进程^[Wiki](https://en.wikipedia.org/wiki/Daemon_(computing)){target="_blank"}^是一种特殊的进程，它们在“后台”长期运行，例如某些数据库服务、反代理服务等，而非像普通的用户程序一样依赖于用户交互。
 
     为了实现“长期运行”，我们需要让它以 `init`/`systemd` 为 parent，因为任何其它进程都有可能在操作系统运行的时候终止。
 
