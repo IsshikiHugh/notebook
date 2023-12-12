@@ -183,7 +183,7 @@ Example of free-frame list.
             - 我们应当保证涉及的若干 page 都能被存在内存中；
             - 因此，从某种角度来说：the minimum number of frames per process is defined by architecture；
 
-**分配算法(frame-allocation algorithm)**按照分配的帧的大小来分，主要有这么两种：
+早期**分配算法(frame-allocation algorithm)**按照分配的帧的大小来分，主要有这么两种：
 
 ???+ section "equal allocation"
 
@@ -277,8 +277,6 @@ Least recently used(LRU) 算法的思路是，基于「很久没被用过的 pag
 
 LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](#LRU-Approximation){target="_blank"}），因为是被认为比较好的 replacement algorithm。
 
----
-
 现在我们来考虑如何实现 LRU，或者说，如何来维护一个 frame 有多久没被访问过。
 
 !!! section "stack algorithms"
@@ -310,7 +308,7 @@ LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](
 
  ---
 
-<a id="LRU-Approximation"/>
+### LRU Approx.
 
 由于我们在 Stack Algorithm 里提到的诸多弊端，我们考虑**近似**地，实现 LRU 算法——实际上是近似实现 Stack Algorithm。
 
@@ -326,7 +324,7 @@ LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](
 
     既然缺的是顺序，我们就考虑建模 frame 的使用远近。其中最首要的一个任务就是获取历史信息，所以我们需要用一些 bits 来存储每个 frame 的历史使用信息；然后定期（利用时钟中断）地去检查、存储当前时间当前 frame 的 reference bit，相当于检测上一个采样间隔中该帧有没有被用过。
 
-    具体来说，我们可以给每个 frame 一个 $k$ bits 的 bits vector $h = (h_{k-1}h_{k-2} \dots h_{1}h_{0})_2, \quad h_i \in \{0, 1\}$ 用来存储历史的 reference bits；然后每过 $\delta t$ ms，就产生一次时钟中断，检查 frame $f_i$ 的 reference bit $r_{t}$（为了简洁我们省略这个 $i$），此时我们更新 $h' = (r_{i,t}h_{k-1}h_{k-2} \dots h_{2}h_{1})_2$，即将 $h$ 右移一位，在高位补 $r_{i,t}$。
+    具体来说，我们可以给每个 frame 一个 $k$ bits 的 bits vector $h = (h_{k-1}h_{k-2} \dots h_{1}h_{0})_2, \quad h_i \in \{0, 1\}$ 用来存储历史的 reference bits；然后每过 $\Delta t$ ms，就产生一次时钟中断，检查 frame $f_i$ 的 reference bit $r_{t}$（为了简洁我们省略这个 $i$），此时我们更新 $h' = (r_{i,t}h_{k-1}h_{k-2} \dots h_{2}h_{1})_2$，即将 $h$ 右移一位，在高位补 $r_{i,t}$。
 
     实际上 $h$ 是一个类似队列的存在，而每次检查会把 reference bit 给 push 进这个队列里。因此，$h$ 换一个写法就是：$h' = (\underbrace{r_{t}r_{t-1}r_{t-2}r_{t-3} \dots }_{k\text{ bits}})_2$，也就是最近的 $k$ 次检测的历史记录。
 
@@ -368,9 +366,7 @@ LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](
 
     在 Enhanced Second-Chance Algorithm 中，我们找到第一个 1. 情况的 frame 作为 victim；如果没有，就去找第一个 2. 情况的 frame 作为 victim……以此类推。[^2]
 
-    因此，Enhanced Second-Chance Algorithm 可能最多会遍历 4 次 frames。在已经介绍的三个算法里，它是唯一一个考虑了 dirty bit 的。
-
-    > ~~总感觉 LRU 已经被改的面目全非了x~~
+    因此，Enhanced Second-Chance Algorithm 可能最多会遍历 4 次 frames。在已经介绍的三个算法里，它是唯一一个考虑了 dirty bit 的。事实上，由于 dirty bit 也一定程度上反映了页“被使用”的程度，虽然找的不是最久没被用过的 frame，但能够尽可能地排除近期使用过的 frame，因此，概算法又叫做 **NRU(Not Recently Used)**。
 
 ### 基于计数的置换
 
@@ -381,7 +377,6 @@ LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](
     - 这个做法基于「counter 小的 frame 可能才刚刚被 load 进来」这个假设；
 
 显而易见的，这两个设计对 [optimal](#OPT){target="_blank"} 的拟合都不是很好，开销也都很大。
-
 
 !!! extra "附加阅读"
 
@@ -404,6 +399,8 @@ LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](
 
     > 上面是书上的意思，但我认为这个评价还是不公平的，因为所谓的、属于进程的 frames 的数量是会变的，在新的进程被 allocation 后，进程总数会增加，而这个新进程只能从别的地方刮一些内存来用，所以就算用的是 local replacement，也说不上特别稳定。
 
+    而如今的操作系统使用的主要都是 global replacement。
+
 ## 抖动
 
 倘若系统的多道程度过高，那么可能分配给每一个 process 的 frames 数量就会比较少，process 所使用的 frames 中被频繁使用的 page 占比更大。这时候可能就会产生较为**频繁的 paging 活动**——几乎所有 frames 都正在被使用，相当于每次置换都会导致一个新的 page fault——进而导致 CPU 的利用率下降，这种现象被称为**抖动(thrashing)**。
@@ -416,18 +413,25 @@ LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](
 
     早期的设计中，操作系统会监控 CPU 利用率，如果发现 CPU 利用率不够高，就会认为 CPU 太闲了，于是尝试增加 degree of multiprogramming。
 
-    但如果 CPU 利用率下降是由 thrashing 引起的，那 degree of multiprogramming 的增加反而会加剧 thrashing，进而导致 CPU 利用率下降，形成恶性循环。
+    但如果 CPU 利用率下降是由于发生 thrashing，产生大量 I/O 导致的，那 degree of multiprogramming 的增加反而会加剧 thrashing，进而导致 CPU 利用率下降，形成恶性循环。
 
     在遇到 thrashing 问题的时候，理论上我们应当降低 degree of multiprogramming 才对。
 
+### 使用 Priority
+
 可以想象到，这里出现了一种类似于互相抢 frame 的情况。我们可以通过让一方“让步”来解决，例如使用 priority replacement algorithm 来解决。
 
-<a id="working-set"/>
-还有一种基于局部性假设的做法，叫 working set model。它的大致思路是将「每一个进程在一个 $\Delta$ 时间窗口内用到过的 frame」建模为一个进程的 working set $WS_i$，如果 $\sum_i |WS_i| > m$，即所有进程的 working set 的大小之和大于可用 frame 的数量，那么就可能会出现 thrashing。此时操作系统可能就会选择挂起某个 process，以降低 degree of multiprogramming。这个做法的一个问题和 LRU 是类似的，要去维护 $WS_i$ 是比较吃力的，而解决办法也是类似的，我们可以近似地去维护 $WS_i$。详细内容不再展开，读者可以参考 [Wiki](https://en.wikipedia.org/wiki/Working_set){target="_blank"} 做更多了解。此外，working set 的思路可以用于实现 [pre-paging](#pre-paging){target="_blank"}。
+### Working Set
+
+还有一种基于局部性假设的做法，叫 working set model。它的大致思路是将「每一个进程在一个 $\Delta$ 时间窗口内用到过的 frame」建模为一个进程的 working set $WS_i$，如果 $\sum_i |WS_i| > m$，即所有进程的 working set 的大小之和大于可用 frame 的数量，那么就可能会出现 thrashing。此时操作系统可能就会选择挂起某个 process，以降低 degree of multiprogramming。这个做法的一个问题和 LRU 是类似的，要去维护 $WS_i$ 是比较吃力的，而解决办法也是类似的，我们可以近似地去维护 $WS_i$。
+
+详细内容不再展开，读者可以参考 [Wiki](https://en.wikipedia.org/wiki/Working_set){target="_blank"} 做更多了解。此外，working set 的思路可以用于实现 [pre-paging](#pre-paging){target="_blank"}。
+
+### PFF
 
 或者也能利用缺页频率(Page-Fault Frequency, PFF)来做动态调节，由于 PFF 与进程可用的 frames 数量大致成负相关，我们可以设定上下界并进行负反馈控制：process 的 PFF 过高时增加它可用的 frames 数量，当 process 的 PFF 较低时可以减少它可用的 frames 数量。
 
-不过，对于该问题，先行的最佳解决方案其实是增加物理内存，从硬件上解决问题。
+> 不过，对于该问题，先行的最佳解决方案其实是增加物理内存，从硬件上解决问题。
 
 ## 内存压缩
 
