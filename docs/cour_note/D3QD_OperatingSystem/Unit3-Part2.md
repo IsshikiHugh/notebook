@@ -64,7 +64,7 @@
     Steps in handling a page fault.
     </figure>
 
-!!! warning "慢！"
+!!! not-advice "慢！"
 
     想象一下，每当发生一次 page fault，并且我们假设这些 page faults 都属于情况 2.，那么它可能会经历这些过程：
 
@@ -157,6 +157,8 @@ Example of free-frame list.
     进一步的，万一此时出现了一些特殊情况，导致实际的 free-frame 数非常少，达到了一个非常低的界，此时就出现了 **OOM(out-of-memory)**。此时，一个叫做 OOM killer 的例程就会杀死一个进程，以腾出内存空间。
     
     在 Linux 中，每个进程会有一个 OOM score，OOM score 越高约容易被 OOM killer 盯上，而 OOM score 与进程使用的内存的百分比正相关，所以大概的感觉就是谁内存用的最多就杀谁。[^1]如果读者对 Linux 的 OOM 机制有兴趣，可以看看角注 1。
+
+<br/>
 
 !!! info "导读"
 
@@ -297,16 +299,15 @@ LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](
 
     > 虽然我坚持认为这里和栈没关系。
 
-    !!! warning "缺陷"
+    !!! advice "优势"
 
-        虽然 LRU 对于拟合 [optimal](#OPT){target="_blank"} 是比较好的，但是它也有一些缺陷：
-         
+        1. LRU 对于 [optimal](#OPT){target="_blank"} 的拟合是比较好的；
+        2. LRU 算法不会出现 [Belady's anomaly](#Belady-s-anomaly){target="_blank"}；
+
+    !!! not-advice "缺陷"
+
         1. 对于计数器做法，维护每个 frame 的 clock 想想就很慢，除非有特定的硬件来优化这个操作（例如不需要由操作系统来操心 clock 的维护）；
         2. 对于两者，由于每次内存被访问的时候都需要进行维护，如果通过 interrupt 来调用 stack algorithms，那么开销将会巨大；
-
- 此外，LRU 算法不会出现 [Belady's anomaly](#Belady-s-anomaly){target="_blank"}。
-
- ---
 
 ### LRU Approx.
 
@@ -366,7 +367,7 @@ LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](
 
     在 Enhanced Second-Chance Algorithm 中，我们找到第一个 1. 情况的 frame 作为 victim；如果没有，就去找第一个 2. 情况的 frame 作为 victim……以此类推。[^2]
 
-    因此，Enhanced Second-Chance Algorithm 可能最多会遍历 4 次 frames。在已经介绍的三个算法里，它是唯一一个考虑了 dirty bit 的。事实上，由于 dirty bit 也一定程度上反映了页“被使用”的程度，虽然找的不是最久没被用过的 frame，但能够尽可能地排除近期使用过的 frame，因此，概算法又叫做 **NRU(Not Recently Used)**。
+    因此，Enhanced Second-Chance Algorithm 可能最多会遍历 4 次 frames。在已经介绍的三个算法里，它是唯一一个考虑了 dirty bit 的。事实上，由于 dirty bit 也一定程度上反映了页“被使用”的程度，虽然找的不是最久没被用过的 frame，但能够尽可能地排除近期使用过的 frame，因此，该算法也叫做 **NRU(Not Recently Used)**，是实践中比较常见的一种对 LRU 的近似。
 
 ### 基于计数的置换
 
@@ -376,7 +377,11 @@ LRU 是比较常用的 replacement algorithm（实际上是 [LRU-Approximation](
 - Most frequently used(MFU) 选择 counter 最大的 frame 作为 victim frame；
     - 这个做法基于「counter 小的 frame 可能才刚刚被 load 进来」这个假设；
 
-显而易见的，这两个设计对 [optimal](#OPT){target="_blank"} 的拟合都不是很好，开销也都很大。
+!!! not-advice "缺陷"
+
+    显而易见的，这两个设计对 [optimal](#OPT){target="_blank"} 的拟合都不是很好，开销也都很大。
+
+<br/>
 
 !!! extra "附加阅读"
 
