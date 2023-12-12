@@ -951,6 +951,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#lru-approx">
+    LRU Approx.
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#基于计数的置换">
     基于计数的置换
   </a>
@@ -962,6 +967,25 @@
 <a class="md-nav__link" href="#抖动">
     抖动
   </a>
+<nav aria-label="抖动" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#使用-priority">
+    使用 Priority
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#working-set">
+    Working Set
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pff">
+    PFF
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#内存压缩">
@@ -1234,6 +1258,11 @@
   </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#lru-approx">
+    LRU Approx.
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#基于计数的置换">
     基于计数的置换
   </a>
@@ -1245,6 +1274,25 @@
 <a class="md-nav__link" href="#抖动">
     抖动
   </a>
+<nav aria-label="抖动" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#使用-priority">
+    使用 Priority
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#working-set">
+    Working Set
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pff">
+    PFF
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#内存压缩">
@@ -1279,7 +1327,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u3-part-2-内存管理--memory-management">U3 Part 2: 内存管理 | Memory Management<a class="headerlink" href="#u3-part-2-内存管理--memory-management" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7779 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 21 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 39 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7864 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 21 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 40 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1483,7 +1531,7 @@ Reclaiming pages.
 </li>
 </ol>
 </div>
-<p><strong>分配算法(frame-allocation algorithm)</strong>按照分配的帧的大小来分，主要有这么两种：</p>
+<p>早期<strong>分配算法(frame-allocation algorithm)</strong>按照分配的帧的大小来分，主要有这么两种：</p>
 <details class="section" open="open">
 <summary>equal allocation</summary>
 <p>顾名思义，每一个进程被分配的 frame 总量都相同，假设共 <span class="arithmatex">\(n\)</span> 个 process，<span class="arithmatex">\(m\)</span> 块可用 frame，那么每个进程被分配的 <span class="arithmatex">\(\left\lceil\frac{m}{n}\right\rceil\)</span>。</p>
@@ -1557,7 +1605,6 @@ Reclaiming pages.
 <p>我们的目标是为了逼近难以实现的 <a href="#OPT" target="_blank">optimal</a>，而 <a href="#OPT" target="_blank">optimal</a> 之所以难以实现，是因为我们很难“预知未来”，我们能利用的只有已经经历过的事情。</p>
 <p>Least recently used(LRU) 算法的思路是，基于「很久没被用过的 page 可能在短期不太会被再次使用，刚刚用过的 page 可能在短期被频繁地用」的假设，用“最久没用过”来建模「未来最久时间内不会被访问」，即<u>选择最久没被访问过的 frame 作为 victim</u>。</p>
 <p>LRU 是比较常用的 replacement algorithm（实际上是 <a href="#LRU-Approximation" target="_blank">LRU-Approximation</a>），因为是被认为比较好的 replacement algorithm。</p>
-<hr/>
 <p>现在我们来考虑如何实现 LRU，或者说，如何来维护一个 frame 有多久没被访问过。</p>
 <div class="admonition section">
 <p class="admonition-title">stack algorithms</p>
@@ -1599,7 +1646,7 @@ Reclaiming pages.
 </div>
 <p>此外，LRU 算法不会出现 <a href="#Belady-s-anomaly" target="_blank">Belady's anomaly</a>。</p>
 <hr/>
-<p><a id="LRU-Approximation"></a></p>
+<h3 id="lru-approx">LRU Approx.<a class="headerlink" href="#lru-approx" title="Permanent link">¶</a></h3>
 <p>由于我们在 Stack Algorithm 里提到的诸多弊端，我们考虑<strong>近似</strong>地，实现 LRU 算法——实际上是近似实现 Stack Algorithm。</p>
 <p>多数操作系统会提供一个叫 reference bit 的功能。所有 frame 都有一个与之关联的 reference bit，在初始化的时候都会被置 0；而每当 frame 被使用时，reference bit 就会被置 1。于是，我们可以通过观察 reference bit 来观察某些 frame 是否被使用过。</p>
 <p>开始之前，我们分析 LRU 的限制，主要体现在两个方面：⓵ 需要全部历史信息，维护成本较大（需要设计数据结构来存储）；⓶ 数据维护过于频繁，每次使用 frame 都需要用一段不小的开销去更新状态。</p>
@@ -1608,7 +1655,7 @@ Reclaiming pages.
 <summary>Additional-Reference-Bits Algorithm</summary>
 <p>只有 reference bit 的话没法反应出 frame 使用的“远近”，也就是使用的顺序。</p>
 <p>既然缺的是顺序，我们就考虑建模 frame 的使用远近。其中最首要的一个任务就是获取历史信息，所以我们需要用一些 bits 来存储每个 frame 的历史使用信息；然后定期（利用时钟中断）地去检查、存储当前时间当前 frame 的 reference bit，相当于检测上一个采样间隔中该帧有没有被用过。</p>
-<p>具体来说，我们可以给每个 frame 一个 <span class="arithmatex">\(k\)</span> bits 的 bits vector <span class="arithmatex">\(h = (h_{k-1}h_{k-2} \dots h_{1}h_{0})_2, \quad h_i \in \{0, 1\}\)</span> 用来存储历史的 reference bits；然后每过 <span class="arithmatex">\(\delta t\)</span> ms，就产生一次时钟中断，检查 frame <span class="arithmatex">\(f_i\)</span> 的 reference bit <span class="arithmatex">\(r_{t}\)</span>（为了简洁我们省略这个 <span class="arithmatex">\(i\)</span>），此时我们更新 <span class="arithmatex">\(h' = (r_{i,t}h_{k-1}h_{k-2} \dots h_{2}h_{1})_2\)</span>，即将 <span class="arithmatex">\(h\)</span> 右移一位，在高位补 <span class="arithmatex">\(r_{i,t}\)</span>。</p>
+<p>具体来说，我们可以给每个 frame 一个 <span class="arithmatex">\(k\)</span> bits 的 bits vector <span class="arithmatex">\(h = (h_{k-1}h_{k-2} \dots h_{1}h_{0})_2, \quad h_i \in \{0, 1\}\)</span> 用来存储历史的 reference bits；然后每过 <span class="arithmatex">\(\Delta t\)</span> ms，就产生一次时钟中断，检查 frame <span class="arithmatex">\(f_i\)</span> 的 reference bit <span class="arithmatex">\(r_{t}\)</span>（为了简洁我们省略这个 <span class="arithmatex">\(i\)</span>），此时我们更新 <span class="arithmatex">\(h' = (r_{i,t}h_{k-1}h_{k-2} \dots h_{2}h_{1})_2\)</span>，即将 <span class="arithmatex">\(h\)</span> 右移一位，在高位补 <span class="arithmatex">\(r_{i,t}\)</span>。</p>
 <p>实际上 <span class="arithmatex">\(h\)</span> 是一个类似队列的存在，而每次检查会把 reference bit 给 push 进这个队列里。因此，<span class="arithmatex">\(h\)</span> 换一个写法就是：<span class="arithmatex">\(h' = (\underbrace{r_{t}r_{t-1}r_{t-2}r_{t-3} \dots }_{k\text{ bits}})_2\)</span>，也就是最近的 <span class="arithmatex">\(k\)</span> 次检测的历史记录。</p>
 <p>而之所以从高位开始，是因为在数值大小体系中，高位代表着高权重，正好对应 reference 出现的越近，frame 越新。所以，我们可以直接找这个 bits vector 中最小的那个 frame 作为 victim frame。</p>
 </details>
@@ -1645,10 +1692,7 @@ Reclaiming pages.
 </ol>
 <p>由于被修改过的 frame 在被置换的时候需要执行写回，所以我们希望尽量晚一点使用这类 frame。在这种分类下，前两种合并，后两种合并，就是先前的 Second-Chance Algorithm 了。</p>
 <p>在 Enhanced Second-Chance Algorithm 中，我们找到第一个 1. 情况的 frame 作为 victim；如果没有，就去找第一个 2. 情况的 frame 作为 victim……以此类推。<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
-<p>因此，Enhanced Second-Chance Algorithm 可能最多会遍历 4 次 frames。在已经介绍的三个算法里，它是唯一一个考虑了 dirty bit 的。</p>
-<blockquote>
-<p><del>总感觉 LRU 已经被改的面目全非了x</del></p>
-</blockquote>
+<p>因此，Enhanced Second-Chance Algorithm 可能最多会遍历 4 次 frames。在已经介绍的三个算法里，它是唯一一个考虑了 dirty bit 的。事实上，由于 dirty bit 也一定程度上反映了页“被使用”的程度，虽然找的不是最久没被用过的 frame，但能够尽可能地排除近期使用过的 frame，因此，概算法又叫做 <strong>NRU(Not Recently Used)</strong>。</p>
 </details>
 <h3 id="基于计数的置换">基于计数的置换<a class="headerlink" href="#基于计数的置换" title="Permanent link">¶</a></h3>
 <p>我们考虑用 counter 来记录正在使用的 frame 中每个 frame 被使用的次数，用 counter 的值来建模“使用频率”。按照后续操作不同分为这两种：</p>
@@ -1681,6 +1725,7 @@ Reclaiming pages.
 <blockquote>
 <p>上面是书上的意思，但我认为这个评价还是不公平的，因为所谓的、属于进程的 frames 的数量是会变的，在新的进程被 allocation 后，进程总数会增加，而这个新进程只能从别的地方刮一些内存来用，所以就算用的是 local replacement，也说不上特别稳定。</p>
 </blockquote>
+<p>而如今的操作系统使用的主要都是 global replacement。</p>
 </div>
 <h2 id="抖动">抖动<a class="headerlink" href="#抖动" title="Permanent link">¶</a></h2>
 <p>倘若系统的多道程度过高，那么可能分配给每一个 process 的 frames 数量就会比较少，process 所使用的 frames 中被频繁使用的 page 占比更大。这时候可能就会产生较为<strong>频繁的 paging 活动</strong>——几乎所有 frames 都正在被使用，相当于每次置换都会导致一个新的 page fault——进而导致 CPU 的利用率下降，这种现象被称为<strong>抖动(thrashing)</strong>。</p>
@@ -1689,14 +1734,19 @@ Reclaiming pages.
 <p class="admonition-title">early paging systems</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/44.png"><img align="right" alt="" src="../img/44.png" width="50%"/></a></p>
 <p>早期的设计中，操作系统会监控 CPU 利用率，如果发现 CPU 利用率不够高，就会认为 CPU 太闲了，于是尝试增加 degree of multiprogramming。</p>
-<p>但如果 CPU 利用率下降是由 thrashing 引起的，那 degree of multiprogramming 的增加反而会加剧 thrashing，进而导致 CPU 利用率下降，形成恶性循环。</p>
+<p>但如果 CPU 利用率下降是由于发生 thrashing，产生大量 I/O 导致的，那 degree of multiprogramming 的增加反而会加剧 thrashing，进而导致 CPU 利用率下降，形成恶性循环。</p>
 <p>在遇到 thrashing 问题的时候，理论上我们应当降低 degree of multiprogramming 才对。</p>
 </div>
+<h3 id="使用-priority">使用 Priority<a class="headerlink" href="#使用-priority" title="Permanent link">¶</a></h3>
 <p>可以想象到，这里出现了一种类似于互相抢 frame 的情况。我们可以通过让一方“让步”来解决，例如使用 priority replacement algorithm 来解决。</p>
-<p><a id="working-set"></a>
-还有一种基于局部性假设的做法，叫 working set model。它的大致思路是将「每一个进程在一个 <span class="arithmatex">\(\Delta\)</span> 时间窗口内用到过的 frame」建模为一个进程的 working set <span class="arithmatex">\(WS_i\)</span>，如果 <span class="arithmatex">\(\sum_i |WS_i| &gt; m\)</span>，即所有进程的 working set 的大小之和大于可用 frame 的数量，那么就可能会出现 thrashing。此时操作系统可能就会选择挂起某个 process，以降低 degree of multiprogramming。这个做法的一个问题和 LRU 是类似的，要去维护 <span class="arithmatex">\(WS_i\)</span> 是比较吃力的，而解决办法也是类似的，我们可以近似地去维护 <span class="arithmatex">\(WS_i\)</span>。详细内容不再展开，读者可以参考 <a href="https://en.wikipedia.org/wiki/Working_set" target="_blank">Wiki</a> 做更多了解。此外，working set 的思路可以用于实现 <a href="#pre-paging" target="_blank">pre-paging</a>。</p>
+<h3 id="working-set">Working Set<a class="headerlink" href="#working-set" title="Permanent link">¶</a></h3>
+<p>还有一种基于局部性假设的做法，叫 working set model。它的大致思路是将「每一个进程在一个 <span class="arithmatex">\(\Delta\)</span> 时间窗口内用到过的 frame」建模为一个进程的 working set <span class="arithmatex">\(WS_i\)</span>，如果 <span class="arithmatex">\(\sum_i |WS_i| &gt; m\)</span>，即所有进程的 working set 的大小之和大于可用 frame 的数量，那么就可能会出现 thrashing。此时操作系统可能就会选择挂起某个 process，以降低 degree of multiprogramming。这个做法的一个问题和 LRU 是类似的，要去维护 <span class="arithmatex">\(WS_i\)</span> 是比较吃力的，而解决办法也是类似的，我们可以近似地去维护 <span class="arithmatex">\(WS_i\)</span>。</p>
+<p>详细内容不再展开，读者可以参考 <a href="https://en.wikipedia.org/wiki/Working_set" target="_blank">Wiki</a> 做更多了解。此外，working set 的思路可以用于实现 <a href="#pre-paging" target="_blank">pre-paging</a>。</p>
+<h3 id="pff">PFF<a class="headerlink" href="#pff" title="Permanent link">¶</a></h3>
 <p>或者也能利用缺页频率(Page-Fault Frequency, PFF)来做动态调节，由于 PFF 与进程可用的 frames 数量大致成负相关，我们可以设定上下界并进行负反馈控制：process 的 PFF 过高时增加它可用的 frames 数量，当 process 的 PFF 较低时可以减少它可用的 frames 数量。</p>
+<blockquote>
 <p>不过，对于该问题，先行的最佳解决方案其实是增加物理内存，从硬件上解决问题。</p>
+</blockquote>
 <h2 id="内存压缩">内存压缩<a class="headerlink" href="#内存压缩" title="Permanent link">¶</a></h2>
 <p>内存压缩(memory compression)的思路区别于 swap，把 frame 换到 backing store 里，而且尝试去 merge 一些 frame，即利用内部碎片。</p>
 <h2 id="内核内存">内核内存<a class="headerlink" href="#内核内存" title="Permanent link">¶</a></h2>
@@ -1732,7 +1782,7 @@ Reclaiming pages.
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月11日 21:14:02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月12日 08:11:12</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>
