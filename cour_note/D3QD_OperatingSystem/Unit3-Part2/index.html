@@ -1327,7 +1327,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="u3-part-2-内存管理--memory-management">U3 Part 2: 内存管理 | Memory Management<a class="headerlink" href="#u3-part-2-内存管理--memory-management" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7864 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 21 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 40 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7874 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 21 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 40 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1395,7 +1395,7 @@
 Steps in handling a page fault.
 </figure></p>
 </div>
-<div class="admonition warning">
+<div class="admonition not-advice">
 <p class="admonition-title">慢！</p>
 <p>想象一下，每当发生一次 page fault，并且我们假设这些 page faults 都属于情况 2.，那么它可能会经历这些过程：</p>
 <ol>
@@ -1499,6 +1499,7 @@ Reclaiming pages.
 <p>进一步的，万一此时出现了一些特殊情况，导致实际的 free-frame 数非常少，达到了一个非常低的界，此时就出现了 <strong>OOM(out-of-memory)</strong>。此时，一个叫做 OOM killer 的例程就会杀死一个进程，以腾出内存空间。</p>
 <p>在 Linux 中，每个进程会有一个 OOM score，OOM score 越高约容易被 OOM killer 盯上，而 OOM score 与进程使用的内存的百分比正相关，所以大概的感觉就是谁内存用的最多就杀谁。<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>如果读者对 Linux 的 OOM 机制有兴趣，可以看看角注 1。</p>
 </div>
+<p><br/></p>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
 <blockquote>
@@ -1635,17 +1636,21 @@ Reclaiming pages.
 <blockquote>
 <p>虽然我坚持认为这里和栈没关系。</p>
 </blockquote>
-<div class="admonition warning">
+<div class="admonition advice">
+<p class="admonition-title">优势</p>
+<ol>
+<li>LRU 对于 <a href="#OPT" target="_blank">optimal</a> 的拟合是比较好的；</li>
+<li>LRU 算法不会出现 <a href="#Belady-s-anomaly" target="_blank">Belady's anomaly</a>；</li>
+</ol>
+</div>
+<div class="admonition not-advice">
 <p class="admonition-title">缺陷</p>
-<p>虽然 LRU 对于拟合 <a href="#OPT" target="_blank">optimal</a> 是比较好的，但是它也有一些缺陷：</p>
 <ol>
 <li>对于计数器做法，维护每个 frame 的 clock 想想就很慢，除非有特定的硬件来优化这个操作（例如不需要由操作系统来操心 clock 的维护）；</li>
 <li>对于两者，由于每次内存被访问的时候都需要进行维护，如果通过 interrupt 来调用 stack algorithms，那么开销将会巨大；</li>
 </ol>
 </div>
 </div>
-<p>此外，LRU 算法不会出现 <a href="#Belady-s-anomaly" target="_blank">Belady's anomaly</a>。</p>
-<hr/>
 <h3 id="lru-approx">LRU Approx.<a class="headerlink" href="#lru-approx" title="Permanent link">¶</a></h3>
 <p>由于我们在 Stack Algorithm 里提到的诸多弊端，我们考虑<strong>近似</strong>地，实现 LRU 算法——实际上是近似实现 Stack Algorithm。</p>
 <p>多数操作系统会提供一个叫 reference bit 的功能。所有 frame 都有一个与之关联的 reference bit，在初始化的时候都会被置 0；而每当 frame 被使用时，reference bit 就会被置 1。于是，我们可以通过观察 reference bit 来观察某些 frame 是否被使用过。</p>
@@ -1692,7 +1697,7 @@ Reclaiming pages.
 </ol>
 <p>由于被修改过的 frame 在被置换的时候需要执行写回，所以我们希望尽量晚一点使用这类 frame。在这种分类下，前两种合并，后两种合并，就是先前的 Second-Chance Algorithm 了。</p>
 <p>在 Enhanced Second-Chance Algorithm 中，我们找到第一个 1. 情况的 frame 作为 victim；如果没有，就去找第一个 2. 情况的 frame 作为 victim……以此类推。<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
-<p>因此，Enhanced Second-Chance Algorithm 可能最多会遍历 4 次 frames。在已经介绍的三个算法里，它是唯一一个考虑了 dirty bit 的。事实上，由于 dirty bit 也一定程度上反映了页“被使用”的程度，虽然找的不是最久没被用过的 frame，但能够尽可能地排除近期使用过的 frame，因此，概算法又叫做 <strong>NRU(Not Recently Used)</strong>。</p>
+<p>因此，Enhanced Second-Chance Algorithm 可能最多会遍历 4 次 frames。在已经介绍的三个算法里，它是唯一一个考虑了 dirty bit 的。事实上，由于 dirty bit 也一定程度上反映了页“被使用”的程度，虽然找的不是最久没被用过的 frame，但能够尽可能地排除近期使用过的 frame，因此，该算法也叫做 <strong>NRU(Not Recently Used)</strong>，是实践中比较常见的一种对 LRU 的近似。</p>
 </details>
 <h3 id="基于计数的置换">基于计数的置换<a class="headerlink" href="#基于计数的置换" title="Permanent link">¶</a></h3>
 <p>我们考虑用 counter 来记录正在使用的 frame 中每个 frame 被使用的次数，用 counter 的值来建模“使用频率”。按照后续操作不同分为这两种：</p>
@@ -1703,7 +1708,11 @@ Reclaiming pages.
 </ul>
 </li>
 </ul>
+<div class="admonition not-advice">
+<p class="admonition-title">缺陷</p>
 <p>显而易见的，这两个设计对 <a href="#OPT" target="_blank">optimal</a> 的拟合都不是很好，开销也都很大。</p>
+</div>
+<p><br/></p>
 <div class="admonition extra">
 <p class="admonition-title">附加阅读</p>
 <p>建议去浏览一下 <a href="https://en.wikipedia.org/wiki/Page_replacement_algorithm" target="_blank">Wiki</a> 的对应条目，了解一下常见的 replacement algorithm 有哪些。上述分类和脉络和 Wiki 有一些不同，实在是没时间考究这么多粘稠的脉络了（我甚至还没搞清楚 NRU 和 Enhanced Second Chance 到底是不是同一个东西，反正就算不一样大概思路也差不多），所以请读者自行了解更多内容。这些算法内容都不算很多，了解一下更好。</p>
@@ -1782,7 +1791,7 @@ Reclaiming pages.
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月12日 08:11:12</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月12日 08:21:09</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>
