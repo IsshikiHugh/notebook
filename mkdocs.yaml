@@ -28,7 +28,7 @@ theme:
       example: fontawesome/solid/flask
       quote: fontawesome/solid/link
   font:
-    text: LXGW WenKai GB Screen # Share Tech
+    text: LXGW WenKai Screen GB Screen # Share Tech
     code: JetBrains Mono
   palette:
     scheme: default
@@ -140,8 +140,9 @@ extra_css:
   # - https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css
   # - https://cdn.jsdelivr.net/npm/cn-fontsource-lxgw-wen-kai-gb-screen@1.0.6/font.min.css
   - https://jsd.cdn.zzko.cn/npm/katex@0.16.4/dist/katex.min.css
-  - https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css
-
+  - https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css
+  - https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
+  # - https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css
 extra_javascript: 
   - _js/extra.js
   # - _js/mathjax.js
