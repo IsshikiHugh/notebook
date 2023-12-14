@@ -663,6 +663,11 @@
     直接输入
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#触发器的基本描述方法">
+    触发器的基本描述方法
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -1276,6 +1281,11 @@
     直接输入
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#触发器的基本描述方法">
+    触发器的基本描述方法
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -1356,7 +1366,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="chap-4-sequential-circuits">Chap 4 Sequential Circuits<a class="headerlink" href="#chap-4-sequential-circuits" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 5781 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 29 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6319 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 32 分钟</p>
 </div>
 <p>上一章讲的是组合电路，虽然组合电路能够实现诸多功能，但是它依然存在一些的问题：</p>
 <ol>
@@ -1417,13 +1427,13 @@
 <hr/>
 <h3 id="d-锁存器">D 锁存器<a class="headerlink" href="#d-锁存器" title="Permanent link">¶</a></h3>
 <p>D 锁存器实际上是带控制输入的 SR 锁存器的改进。其中我们关注到，虽然 S 和 R 起作用的有三种状态</p>
-<p>我们关注到，即使是带控制输入的 SR 锁存器，也存在一个「undefined」状态，而这是我们不希望出现的，于是我们想，能不能避免这种情况的发生。这时候我们观察到，由于可以通过 C 来控制是否保持，所以可以直接强制要求 <span class="arithmatex">\(S = \overline R\)</span>，于是就避免了 undefined 情况的出现，这就是 D 锁存器。</p>
+<p>我们关注到，即使是带控制输入的 SR 锁存器，也存在一个「undefined」状态，而这是我们不希望出现的，于是我们想，能不能避免这种情况的发生。这时候我们观察到，由于可以通过 C 来控制是否保持，所以可以直接强制要求 <span class="arithmatex">\(S = \overline R\)</span>，于是就避免了 undefined 情况的出现，这就是 D 锁存器(D Latch)。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/83.png"><img alt="" src="../img/83.png"/></a></p>
 <p>只有当 C 为 <code>1</code> 时，D 锁存器才能写入数据；而当 C 为 <code>0</code> 时，D 锁存器的数据就不会变化。</p>
 <hr/>
 <div class="admonition warning">
 <p class="admonition-title">透明的危害：空翻</p>
-<p>当然，D 锁存器也存在问题。如果我门将 <span class="arithmatex">\(\overline Q\)</span> 接到 <span class="arithmatex">\(D\)</span> 上，就会发现 D 锁存器将不停的变化其中的数据，出现 <strong>空翻</strong>，导致我们无法确定 C 置 <code>0</code> 时 Q 的输出究竟是什么，而这是非常危险的。</p>
+<p>当然，D 锁存器也存在问题。如果我门将 <span class="arithmatex">\(\overline Q\)</span> 接到 <span class="arithmatex">\(D\)</span> 上，就会发现 C 置 <code>1</code> 时 D 锁存器将不停的变化其中的数据，出现 <strong>空翻</strong>，导致我们无法确定 C 置 <code>0</code> 时 Q 的输出究竟是什么，而这是非常危险的。</p>
 <p>这主要是因为 D 锁存器的输入和输出都是直接暴露出来、同时允许变化的（不是同时变化，是指在 Input 可以变的时候 Output 也能变），即 <strong>透明(transparent)</strong> 的。这就导致了在一个时钟周期里，同时存在 <strong>可以互相影响</strong> 的两个东西。这也是触发器所解决的问题。</p>
 </div>
 <hr/>
@@ -1442,19 +1452,19 @@
 <blockquote>
 <p>虽然它叫 FF，但它并不符合 FF 的特征，然而分类上又属于 pulse-triggered FF。</p>
 </blockquote>
-<p>SR 触发器知所以是所谓的 pulse-triggered 的，是因为在 S 和 R 输入都为 <code>0</code> 时，如果出现噪音，就会导致 Slave 写入异常数据。</p>
+<p>SR 触发器之所以是所谓的 pulse-triggered 的，是因为在 C 置 <code>1</code>，S 和 R 置 <code>0</code> 时，如果出现噪音（S 或 R 输入短暂地跳变到 <code>1</code>），就会导致 Slave 写入异常数据（这个行为被称为 1s-catching）。</p>
 <blockquote>
-<p>但是我个人认为这是 SR 自身有两个保持态导致的弊端，而在实际使用过程中我们就不应该有输入为 S 和 R 都为 <code>0</code> 的情况。</p>
+<p>但是我个人认为这是 SR 自身有两个保持态（C 置 <code>0</code> 保持；C 置 <code>1</code>，S 和 R 置 <code>0</code>）导致的弊端，而在实际使用过程中我们就不应该使用后者作为保持态。</p>
 </blockquote>
 <hr/>
 <h3 id="边沿触发式触发器">边沿触发式触发器<a class="headerlink" href="#边沿触发式触发器" title="Permanent link">¶</a></h3>
 <p>上面已经说过了，边沿触发式触发器主要对脉冲的 上升沿 或 下降沿 敏感。</p>
-<p>下图为正边沿触发 D 触发器的大致原理图。</p>
+<p>下图为上升沿触发(positive-edge-triggered)的 D 触发器的大致原理图（将 C 前的非门去掉则可得到下降沿触发(negative-edge-triggered)的 D 触发器）。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/85.png"><img alt="" src="../img/85.png"/></a></p>
 <blockquote>
 <p>关注上升沿前后，上升沿前一刻，主锁存器可写，从锁存器只读；上升沿后一刻，主锁存器只读，从锁存器只写，且写入的是主锁存器存储的值——换句话来说，存的是上升沿前一刻写入主锁存器的内容。</p>
 </blockquote>
-<p>需要注意的一点是，D 触发器没有「保持」态。如果要使 D 触发器保持，可以使时钟脉冲失效或通过 <code>MUX</code> 将输出接到输入实现。其中前者不太常用，因为受门控的时钟脉冲进入触发器时有延迟，即 <strong>时钟偏移(clock skew)</strong></p>
+<p>需要注意的一点是，D 触发器没有「保持」态。如果要使 D 触发器保持，可以使时钟脉冲失效或通过 <code>MUX</code> 将输出接到输入实现。其中前者不太常用，因为受门控的时钟脉冲进入触发器时有延迟，即 <strong>时钟偏移(clock skew)</strong>。</p>
 <hr/>
 <h3 id="标准图形符号">标准图形符号<a class="headerlink" href="#标准图形符号" title="Permanent link">¶</a></h3>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/86.png"><img alt="" src="../img/86.png"/></a></p>
@@ -1465,6 +1475,18 @@
 <h3 id="直接输入">直接输入<a class="headerlink" href="#直接输入" title="Permanent link">¶</a></h3>
 <p>这些直接输入往往是异步的，一般用来异步置位（直接置位或预置）或异步复位（直接复位或清零）。</p>
 <p>对于时序电路来说，「复位」或「置位」这种输入常常作为初始化，即确定各个触发器的「初始状态」。</p>
+<hr/>
+<h3 id="触发器的基本描述方法">触发器的基本描述方法<a class="headerlink" href="#触发器的基本描述方法" title="Permanent link">¶</a></h3>
+<ul>
+<li>理论分析中：<ul>
+<li>状态表(Characteristic Table, or State Table)用输入和当前状态来描述下一状态；</li>
+</ul>
+</li>
+<li>工程设计中：<ul>
+<li>激励表(Excitation Table)用当前状态和下一状态来描述输入（展示从当前状态转移到下一状态所需要的输入）；</li>
+</ul>
+</li>
+</ul>
 <hr/>
 <h2 id="时序电路分析">时序电路分析<a class="headerlink" href="#时序电路分析" title="Permanent link">¶</a></h2>
 <p>为了分析时序电路，我们需要一些工具来表示时序电路的一些特征与逻辑。观察时序电路和组合电路的区别，发现最核心的就是逻辑运算过程中出现了「状态」参与运算。因此，我们需要在各个组合电路分析中采用的表示方法中，添加表示「状态」的信息。</p>
@@ -1581,10 +1603,27 @@
 <p>摩尔型也存在 <strong>缺陷</strong> 的，非常显然，相比于米勒型，摩尔型需要更多的状态。</p>
 </div>
 <p>换句话来说，米勒型倾向于表达「在特定状态下，特定输入将导致某种结果，以及状态转移」；而摩尔型倾向于表达「特定输入将导致某个状态向另外一个状态转移，而输出更像是一种状态的结果」。</p>
+<p>现实的工程设计中，有时会结合使用米勒型和摩尔型，即在同一状态图中可能混用两种类型。</p>
 <p>状态图还有进阶形态，之后会提及，就是 <strong><a href="#状态机">状态机</a></strong>。</p>
 <hr/>
 <h3 id="等价状态">等价状态<a class="headerlink" href="#等价状态" title="Permanent link">¶</a></h3>
-<p>暂略</p>
+<p>对于两个状态，如果它们对于同一输入序列的响应是完全相同的（包括相同的输出和相同的状态转移），那么这两个状态是等价的。</p>
+<div class="admonition eg">
+<p class="admonition-title">Equivalent State</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">未简化的状态图</label><label for="__tabbed_2_2">简化等价状态后的状态图</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/120.png"><img alt="" src="../img/120.png" width="50%"/></a></p>
+<p>我们首先注意到，状态 S2 和 S3 对于输入 <code>0</code>，相应的输出都是 <code>1</code>，下一状态都是 S0；对于输入 <code>1</code>，相应的输出都是 <code>0</code>，下一状态都是 S2。所以 S2 和 S3 是等价状态。我们可以把这两个等价状态简化成同一个状态，记为 S2。</p>
+<p>更进一步地，我们注意到 S1 和新的 S2 也是等价状态，我们继续化简它们。</p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/121.png"><img alt="" src="../img/121.png" width="50%"/></a></p>
+<p>寻找等价状态并合并它们，不断重复这个过程就可以实现状态图的简化。</p>
+</div>
+</div>
+</input></input></div>
+</div>
 <hr/>
 <div class="admonition info">
 <p class="admonition-title">延时分析</p>
@@ -1647,11 +1686,13 @@
 <li>Moore 只与状态有关，所以在图中从状态节点引出；</li>
 <li>TCI Mealy 与状态和输出条件有关，所以在图中从状态节点引出写在 OC 后面（<code>OC</code>/<code>TCI OA</code>）；</li>
 <li>TCD Mealy 与转移条件有关，当转移成立的时候发生 Output Action，所以直接写在 TC 后面（<code>TC</code>/<code>TCD OA</code>）；</li>
-<li>TOCD Mealy 在转移发生时候才可能条件成立，即当 TC 和 OC 都成立时才发生 Output Action，所以需要从 TC 引出 OC，并跟在 OC 后面（<code>TC</code>——<code>OC</code>/<code>TOCD OA</code>）；
-        - 如果出现复数的 TOCD OA，则使用 <code>,</code> 分隔；</li>
+<li>TOCD Mealy 在转移发生时候才可能条件成立，即当 TC 和 OC 都成立时才发生 Output Action，所以需要从 TC 引出 OC，并跟在 OC 后面（<code>TC</code>——<code>OC</code>/<code>TOCD OA</code>）；<ul>
+<li>如果出现复数的 TOCD OA，则使用 <code>,</code> 分隔；</li>
+</ul>
+</li>
 </ul>
 <blockquote>
-<p>In a given state, an output action occurs if: (a) it is unconditional (Moore), (b)  TCI and its output condition OC = 1, (c) TCD and its transition condition TD = 1, and (d) TOCD and its transition condition TC and output condition OC are both equal to 1, i.e, TC·OC = 1. Note that Moore and TCI output actions attached to a state, apply to all transitions from the state as well.</p>
+<p>In a given state, an output action occurs if: (a) it is unconditional (Moore), (b)  TCI and its output condition OC = 1, (c) TCD and its transition condition TC = 1, and (d) TOCD and its transition condition TC and output condition OC are both equal to 1, i.e, TC·OC = 1. Note that Moore and TCI output actions attached to a state, apply to all transitions from the state as well.</p>
 </blockquote>
 <p>回到输出行为本身，当 OC 成立时输出行为发生，一般会将输出变量标出，如果写的是 NOT X，表示 OC 成立时 X 应为 <code>0</code>；如果写的是 X，则表示 OC 成立时 X 为 <code>1</code>。</p>
 <div class="admonition warning">
@@ -1668,7 +1709,17 @@
 <div class="arithmatex">\[
 \sum_{j}T_{ij} = 1
 \]</div>
-<p>Tips: 上面是对 Transition Condition 的约束，<strong>将 TC 换成 OC 也需要成立</strong>。</p>
+<hr/>
+<p>上述是对于 TC 的约束，而对于 OC，也存在相应的非交和充分的约束，但是有一些细节不同值得引起注意：</p>
+<ul>
+<li>TC 的非交和充分是以某个状态为对象的，而 OC 的非交和充分则是以某个输出变量为对象的；</li>
+<li>不同于 TC 的显式，OC 的写法在很多时候是隐式的：<ul>
+<li>对于 TCD 和 TCOD，分析某个输出变量的时候，应该把相应的 TC 也纳入 OC 的分析中；</li>
+<li>对于 Moore，OC 相当于 <code>1</code>；</li>
+<li>对于 TCI，需要注意把 default 的输出情况也纳入分析中（事实上 default 的存在使得，只要图中显式的 OC 非交，那么一定可以保证所有 OC 是非交且充分的）；</li>
+</ul>
+</li>
+</ul>
 </div>
 <hr/>
 <details class="summary" open="open">
@@ -1713,11 +1764,11 @@
 <details class="eg" open="open">
 <summary>State Machine Diagram 🌰</summary>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/91.png"><img alt="" src="../img/91.png"/></a></p>
-<blockquote>
-<p>注意，图中有一个错误（大概），右侧 <span class="arithmatex">\(S_1\)</span> 的 OC 应为 <span class="arithmatex">\((\overline{A}\cdot\overline{B})\)</span>。</p>
-</blockquote>
 </details>
 </div>
+<!-- 这个图应该是没错的，注意分析 OC 时补上 default 情况。# MinJoker
+        > 注意，图中有一个错误（大概），右侧 $S_1$ 的 OC 应为 $(\overline{A}\cdot\overline{B})$。
+-->
 <hr/>
 <h2 id="延时分析">延时分析<a class="headerlink" href="#延时分析" title="Permanent link">¶</a></h2>
 <p>首先，自上而下的给出观念，时序电路的延时分析有两个主要部分和一个次要部分：</p>
@@ -1726,7 +1777,7 @@
 <li>触发器导致的延时；</li>
 <li>电路的松弛时间；</li>
 </ol>
-<p>并且往往是根据触发器的类型，计算一个时钟周期的时间。最核心的问题就是计算电路能够正常工作的最短时钟周期。接下来，自下而上的进行细节补充。</p>
+<p>并且往往是根据触发器的类型，计算一个时钟周期的时间。最核心的问题就是计算电路能够正常工作的最短时钟周期。接下来，自上而下地进行细节补充。</p>
 <hr/>
 <h3 id="组合电路延时">组合电路延时<a class="headerlink" href="#组合电路延时" title="Permanent link">¶</a></h3>
 <p>这一部分的详细内容已经在 <strong><a href="../Chap03/#传播延迟">上一章</a></strong> 介绍过了，在这里，为了简化计算过程，我们全部采用 <span class="arithmatex">\(t_{pd}\)</span>。</p>
@@ -1765,15 +1816,26 @@
 <p class="admonition-title">（假）经验之谈</p>
 <p>一般从一个 FF 的输出出发到 FF 的输入结束。</p>
 </div>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 我觉得这里应该是需要有例题的，但是我现在还没做题，所以做了再写。</li>
-</ul>
+<hr/>
+<p>接下来放几道例题。</p>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">题面</label><label for="__tabbed_3_2">答案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/122.png"><img alt="" src="../img/122.png" width="80%"/></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/123.png"><img alt="" src="../img/123.png"/></a></p>
+</div>
+</div>
+</input></input></div>
+</div>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月7日 11:54:07</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月14日 23:13:06</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月20日 14:50:19</span>
