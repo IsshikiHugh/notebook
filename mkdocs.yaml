@@ -28,7 +28,7 @@ theme:
       example: fontawesome/solid/flask
       quote: fontawesome/solid/link
   font:
-    text: LXGW WenKai GB Screen # Share Tech
+    text: LXGW WenKai Screen GB Screen # Share Tech
     code: JetBrains Mono
   palette:
     scheme: default
@@ -140,8 +140,9 @@ extra_css:
   # - https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css
   # - https://cdn.jsdelivr.net/npm/cn-fontsource-lxgw-wen-kai-gb-screen@1.0.6/font.min.css
   - https://jsd.cdn.zzko.cn/npm/katex@0.16.4/dist/katex.min.css
-  - https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css
-
+  - https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css
+  - https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
+  # - https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css
 extra_javascript: 
   - _js/extra.js
   # - _js/mathjax.js
@@ -176,10 +177,12 @@ nav:
         - "🔗 makefile 介绍": https://seisman.github.io/how-to-write-makefile/introduction.html#
       - tech_accu/tool/Colab/index.md
     - "编程语言":
+      - tech_accu/tool/index.md
       - C++:
         - tech_accu/language/cpp/index.md
         - tech_accu/language/cpp/Part0.md
     - "标准 | 格式 | 规范":
+      - tech_accu/tool/index.md
       - tech_accu/standard/BVH_format/index.md
       - "👉 OAuth": https://www.yuque.com/isshikixiu/codes/gd5vxi
       - "🔗 MIME": https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
@@ -284,5 +287,6 @@ nav:
     - "杂文收集":
       - "🔗 OpenGL 101: Matrices-projection/view/model": https://solarianprogrammer.com/2013/05/22/opengl-101-matrices-projection-view-model/
       - "🔗 全面解读 Group Normalization": https://zhuanlan.zhihu.com/p/35005794
+      - "🔗 WebGL 加载 .obj 文件": https://webglfundamentals.org/webgl/lessons/zh_cn/webgl-load-obj.html
   - "🚧 施工中...":
     - coming.md

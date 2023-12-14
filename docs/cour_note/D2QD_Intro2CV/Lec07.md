@@ -664,7 +664,7 @@ $$
 
 让我们考虑双目三维重建中的情形——两个相机下不同景象之间显然是存在一定的几何关系的，而**对极几何(Epipolar Geometry)**着眼于下面这三个目标之间的几何关系：两个相机中心 $O_L$ 和 $O_R$，以及景物中的某个空间点 $X$（或者 $P$）。
 
-!!! quote "WIKI page"
+!!! quote "Wiki page"
     https://en.wikipedia.org/wiki/Epipolar_geometry
 
     ![](img/89.png){ align=right }
@@ -695,7 +695,7 @@ $$
 
     此外，对极线有一个性质：对极线必定经过对极点，而经过对极点的任意一条直线（当然得在成像平面上）都可以是对极线。
     
-    👉 [WIKI](https://en.wikipedia.org/wiki/Epipolar_geometry#Epipolar_line)。
+    👉 [Wiki](https://en.wikipedia.org/wiki/Epipolar_geometry#Epipolar_line)。
 
 !!! summary "其他说明"
     图中还需要额外解释的就是 $X_L$ 和 $X_R$，它们分别是景物中的某个空间点 $X$ 在两个成像平面上的像。
