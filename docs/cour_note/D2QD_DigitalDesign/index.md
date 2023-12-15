@@ -22,7 +22,7 @@
     - [x] [Chap 2 Combinational Logic Circuits](Chap02.md)
     - [x] [Chap 3 Combinational Logic Design](Chap03.md)
     - [x] [Chap 4 Sequential Circuits](Chap04.md)
-    - [x] [Chap 5 Digital Hardware Implementation](Chap05.md) （略简略）
+    - [x] [Chap 5 Digital Hardware Implementation](Chap05.md)
     - [x] [Chap 6 Registers & Register Transfers](Chap06.md)
     - [ ] [Chap 7 Memory Basics](Chap07.md) （没写）
     - [x] [Glossary](glossary.md)
