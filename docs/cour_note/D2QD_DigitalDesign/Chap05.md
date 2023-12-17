@@ -14,7 +14,7 @@
 
 ### 集成电路
 
-集成电路(IC)这部分内容在 [第三章](https://note.isshikih.top/cour_note/D2QD_DigitalDesign/Chap03/#%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF) 中已经介绍过了，此处不再赘述。
+集成电路(IC)这部分内容在 **[第三章#集成电路](Chap03.md#集成电路)** 中已经介绍过了，此处不再赘述。
 
 ---
 
@@ -50,7 +50,7 @@
 
 首先让我们来看图(a)，这是 CMOS 的通用结构（可以被称作 static CMOS）。其可以分为上下两部分，上半部分接电源(VCC)，由 PMOS 设计出 $F$ 的逻辑；下半部分接地(GND)，由 NMOS 设计出 $\overline{F}$ 的逻辑。也就是说 CMOS 同时需要实现 $F$ 和 $\overline{F}$，这就是其名称 complementary 的由来。
 
-CMOS 在结构上的最大特征就是，其 PMOS 的电路和 NMOS 的电路是对偶的，这使得我们只需要设计出两者中的一个，就可以利用对偶直接得到另一个。如果觉得不够显然，请复习一下第二章的 [对偶法则](https://note.isshikih.top/cour_note/D2QD_DigitalDesign/Chap02/#%E5%AF%B9%E5%81%B6%E6%B3%95%E5%88%99) 和 [互补函数](https://note.isshikih.top/cour_note/D2QD_DigitalDesign/Chap02/#%E4%BA%92%E8%A1%A5%E5%87%BD%E6%95%B0) 有关内容。
+CMOS 在结构上的最大特征就是，其 PMOS 的电路和 NMOS 的电路是对偶的，这使得我们只需要设计出两者中的一个，就可以利用对偶直接得到另一个。如果觉得不够显然，请复习一下第二章的 **[#对偶法则](Chap02.md#对偶法则)** 和 **[#互补函数](Chap02.md#互补函数)** 有关内容。
 
 !!! summary "经验之谈"
 
