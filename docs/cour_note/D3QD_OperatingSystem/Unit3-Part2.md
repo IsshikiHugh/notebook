@@ -64,6 +64,8 @@
     Steps in handling a page fault.
     </figure>
 
+    > 我们可以在 [Lab5](https://zju-sec.github.io/os23fall-stu/lab5/){target="_blank"} 里对这一系列步骤有跟深刻的影响，Lab5 中的 vma 大概就是这里的“内部表”。
+
 !!! not-advice "慢！"
 
     想象一下，每当发生一次 page fault，并且我们假设这些 page faults 都属于情况 2.，那么它可能会经历这些过程：
