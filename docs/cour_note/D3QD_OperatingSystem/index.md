@@ -17,11 +17,12 @@
         - [50%] 期末成绩（允许携带 3 张 A4，允许打印）
 
 !!! quote "笔记参考"
-    本课程的笔记主要参考了如下资料：
+    本课程的笔记主要参考过如下资料：
 
     - Operating System Concepts (^10^th edition)
-    - 2024 操作系统考研复习指导（王道）（后弃用）
+    - 2024 操作系统考研复习指导（王道）
     - [咸鱼暄的操作系统笔记](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/1_intro/){target="_blank"}
+    - [小角龙的操作系统笔记](https://zhang-each.github.io/My-CS-Notebook/OS/){target="_blank"}
 
 !!! note "list"
     - [x] [Unit 0: 总览 | Overview](Unit0.md)
@@ -31,7 +32,9 @@
         - [x] [Part 2: 经典同步例子 | Synchronization Problems Examples](Unit2-Part2.md)
         - [x] [Part 3: 死锁 | Deadlocks](Unit2-Part3.md)
     - [x] Unit 3: 内存 | Memory
-        - [x] [Unit 3: 内存设计 | Memory Design](Unit3-Part1.md)
-        - [x] [Unit 3: 内存管理 | Memory Management](Unit3-Part2.md)
-    - [ ] [Unit 4: 存储 | Storage](Unit4.md)
+        - [x] [Part 1: 内存设计 | Memory Design](Unit3-Part1.md)
+        - [x] [Part 2: 内存管理 | Memory Management](Unit3-Part2.md)
+    - [x] Unit 4: 存储 | Storage
+        - [x] [Part 1: 大容量存储管理 | Mass-Storage Management](Unit4-Part1.md)
+        - [x] [Part 2: I/O 系统 | I/O Systems](Unit4-Part2.md)
     - [ ] [Unit 5: 文件系统 | File System](Unit5.md)

@@ -19,9 +19,7 @@ hide:
     <br><br>
 
 !!! note inline end ""
-    <center>
-        **🥺 如果非要支持一下的话……这个二维码也不是不可以扫！**
-    </center>
+    **🥺 如果非要支持一下的话……这个二维码也不是不可以扫！**
     <figure markdown align="center">
     ![](_assets/wechatPayQRCode.png){ width="200px" }
     <figure>

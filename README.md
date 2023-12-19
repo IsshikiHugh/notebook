@@ -24,3 +24,7 @@
 4. **重要**：关于超链接的使用，请尽量使用 `[...](...){target="_blank"}`，这样默认点击超链接会打开新的标签页，而不是覆盖当前页面；
 
 欢迎贡献！
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=IsshikiHugh/notebook&type=Date)](https://star-history.com/#IsshikiHugh/notebook&Date)
