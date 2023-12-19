@@ -46,9 +46,44 @@ I/O 是计算机系统中的重要组成部分，它是计算机系统与外部�
 
     当操作完成后，DMA controller 会向 CPU 发送中断信号，表示任务完成。
 
+<figure markdown>
+<center> ![](img/50.png){ width=80% } </center>
+The life cycle of an I/O request.
+</figure>
+
 ## 应用程序 I/O 接口
 
+随着技术发展，操作系统对标准化、通用化的 I/O 方式的需求与市场多元化、差异化的 I/O 设备之间的矛盾日益突出。因此，一套通用的、标准化的 I/O 接口是十分必要的。于是，操作系统能够使用系统调用封装 I/O 操作，将不同操作的差异性透明化，在 Unix 中，这个系统调用是 `ioctl`^[Wiki](https://en.wikipedia.org/wiki/Ioctl){target="_blank"}^。
 
+<figure markdown>
+<center> ![](img/50.png){ width=80% } </center>
+A kernel I/O structure.
+</figure>
 
+具体来说，不同设备可能在这些方面有区别：
+
+!!! section "dimensions"
+
+    - 数据传输模式(data transfer mode)：
+        - 逐个字节传输，如 terminal；
+        - 以块为单位传输，如 disk；
+    - 访问方法(access method)：
+        - 需要顺序访问，如 modem^[Wiki](https://en.wikipedia.org/wiki/Modem){target="_blank"}^；
+        - 可以随机访问，如 CD-ROM；
+    - 传输方法(transfer method)：
+        - 同步的，需要按预计的响应时间进行传输并和系统的其他方面相协调，如 keyboard；
+            - 阻塞式：一直等待直到 I/O 完成；
+            - 非阻塞式：返回尽可能多的数据，不管是否完成；
+        - 异步的，响应时间不需要规则或者可预测，不需要与其他计算机事件协调，如网络 I/O；
+    - 共享(sharing)：
+        - 可共享：可以被多个进程或线程并发使用，如 keyboard；
+        - 独占的：不能被共享，如 tape；
+    - 设备速度(device speed)
+    - I/O 方向(I/O direction)：
+        - `R-`，如 CD-ROM；
+        - `-W`，如 graphics controller^[Wiki](https://en.wikipedia.org/wiki/Professional_Graphics_Controller){target="_blank"}^；
+        - `RW` 如 disk；
+    
+    > 修改自 [xyx 的操作系统笔记](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/12_io_systems/){target="_blank"}。
 
 [^1]: [Bus (computing) | Wikipedia](https://en.wikipedia.org/wiki/Bus_(computing)){target="_blank"}
