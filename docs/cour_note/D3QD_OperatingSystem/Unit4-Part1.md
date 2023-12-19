@@ -1,8 +1,8 @@
 # U4 Part 1: 大容量存储管理 | Mass-Storage Management
 
-!!! info "导读"
+!!! warning "说明"
 
-    现代计算机的二级存储主要由硬盘驱动(hard disk devices, HDDs)和非易失性内存(nonvolatile memory, NVM)提供。
+    这部分内容（其实也包括之后的内容）写的比较简略，因为说是不太难，主要是期末了我也没心思写太细了，如果有好人可以帮我完善一下。
 
 ## 硬盘
 
@@ -132,7 +132,7 @@ C-SCAN disk scheduling.
 
 类似的，如果我们不走到底，在处理完最靠近边界的请求后就直接返回；对应的，在返程的时候不是返回到最低 LBA，而是从最靠近边界的请求开始，那么就是 C-LOCK 算法。同样，C-LOCK 可以减少一些不必要的 C-SCAN。
 
-#### 调度算法的选择
+### 调度算法的选择
 
 Disk scheduling 应当被设计为一个可替换的模块，这样我们可以根据不同的应用场景选择不同的算法。通常，[SSTF](#sstf){target="_blank"} 是比较常见的默认选择；而当 I/O 较为频繁的时候，一般使用 [LOCK](#scan--lock){target="_blank"} 或者 [C-LOCK](#c-scan--c-lock){target="_blank"}。
 
