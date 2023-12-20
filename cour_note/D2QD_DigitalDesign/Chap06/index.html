@@ -654,8 +654,8 @@
 <nav aria-label="寄存器传输" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#寄存器传输操作--寄存器传输语言">
-    寄存器传输操作 &amp; 寄存器传输语言
+<a class="md-nav__link" href="#寄存器传输语言">
+    寄存器传输语言
   </a>
 </li>
 </ul>
@@ -716,10 +716,10 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#位移">
-    位移
+<a class="md-nav__link" href="#移位">
+    移位
   </a>
-<nav aria-label="位移" class="md-nav">
+<nav aria-label="移位" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#串行实现">
@@ -732,8 +732,8 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#双向位移寄存器">
-    双向位移寄存器
+<a class="md-nav__link" href="#双向移位寄存器">
+    双向移位寄存器
   </a>
 </li>
 </ul>
@@ -788,6 +788,15 @@
 <a class="md-nav__link" href="#寄存器传输的控制">
     寄存器传输的控制
   </a>
+<nav aria-label="寄存器传输的控制" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#微程序控制">
+    微程序控制
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1077,30 +1086,10 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3_11_6" type="checkbox"/>
-<label class="md-nav__link" for="__nav_3_11_6" id="__nav_3_11_6_label" tabindex="0">
-          Unit 4: 存储 | Storage
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_3_11_6_label" class="md-nav" data-md-level="3">
-<label class="md-nav__title" for="__nav_3_11_6">
-<span class="md-nav__icon md-icon"></span>
-          Unit 4: 存储 | Storage
-        </label>
-<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit4-Part1/">
-        U4 Part 1: 大容量存储管理 | Mass-Storage Management
+<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit4/">
+        Unit 4: 存储与 I/O | Storage &amp; I/O
       </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit4-Part2/">
-        U4 Part 2: I/O 系统 | I/O Systems [未完成]
-      </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit5/">
@@ -1322,8 +1311,8 @@
 <nav aria-label="寄存器传输" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#寄存器传输操作--寄存器传输语言">
-    寄存器传输操作 &amp; 寄存器传输语言
+<a class="md-nav__link" href="#寄存器传输语言">
+    寄存器传输语言
   </a>
 </li>
 </ul>
@@ -1384,10 +1373,10 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#位移">
-    位移
+<a class="md-nav__link" href="#移位">
+    移位
   </a>
-<nav aria-label="位移" class="md-nav">
+<nav aria-label="移位" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#串行实现">
@@ -1400,8 +1389,8 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#双向位移寄存器">
-    双向位移寄存器
+<a class="md-nav__link" href="#双向移位寄存器">
+    双向移位寄存器
   </a>
 </li>
 </ul>
@@ -1456,6 +1445,15 @@
 <a class="md-nav__link" href="#寄存器传输的控制">
     寄存器传输的控制
   </a>
+<nav aria-label="寄存器传输的控制" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#微程序控制">
+    微程序控制
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1466,7 +1464,11 @@
 <article class="md-content__inner md-typeset">
 <h1 id="chap-6-registers--register-transfers">Chap 6 Registers &amp; Register Transfers<a class="headerlink" href="#chap-6-registers--register-transfers" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 6700 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 34 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7005 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 35 分钟</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">引入</p>
+<p>这一章可以视为是第四章的一个延续，主要介绍（基于寄存器的同步）时序逻辑设计(Sequential Logic Design)。</p>
 </div>
 <h2 id="寄存器">寄存器<a class="headerlink" href="#寄存器" title="Permanent link">¶</a></h2>
 <p><strong>寄存器(registers)</strong>粗略的来说就是一堆触发器以及对应的状态控制电路，用来实现多位数据的存储等操作。</p>
@@ -1479,10 +1481,10 @@
 <p>我们称新数据被写入寄存器的操作为<strong>载入(load)</strong>，而如果载入操作在同一个时钟脉冲中完成，我们称之是<strong>并行(parallel)</strong>的。</p>
 <hr/>
 <h3 id="保持">保持<a class="headerlink" href="#保持" title="Permanent link">¶</a></h3>
-<p>但是我们发现，如图的寄存器在每个时钟都允许载入，换句话来说每个时钟周期都会改变为输入。但是我们希望即使我们不管它它也能保持之前的值，主要有两个方案。</p>
+<p>我们发现，如图的寄存器在每个时钟周期都允许载入。但是我们希望寄存器的载入能够被人为控制，也就是说当我们不希望载入数据的时候，寄存器能处于「保持」状态。主要有以下两种方案：</p>
 <div class="admonition tip">
 <p class="admonition-title">方案 A</p>
-<p>其中一个做法是需要选择性的让它跟随时钟脉冲切换状态。做法就是将 Control 信号修改为 <span class="arithmatex">\(C = \overline{Load} + Clock\)</span>，如此而来，当 <span class="arithmatex">\(Load = 0\)</span> 时，始终有 <span class="arithmatex">\(C = 0\)</span>，脉冲消失，寄存器无法被载入。如下图，这种技术叫<strong>门控时钟(clock gating)</strong>。</p>
+<p>其中一个做法是需要选择性的让它跟随时钟脉冲切换状态。做法就是将 Control 信号修改为 <span class="arithmatex">\(C = \overline{Load} + Clock\)</span>，如此而来，当 <span class="arithmatex">\(Load = 0\)</span> 时，始终有 <span class="arithmatex">\(C = 1\)</span>，脉冲消失，寄存器无法被载入。如下图，这种技术叫<strong>门控时钟(clock gating)</strong>。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/96.png"><img alt="" src="../img/96.png"/></a></p>
 <div class="admonition warning">
 <p class="admonition-title">clock skew</p>
@@ -1504,7 +1506,15 @@
 <blockquote>
 <p>A single-bit cell of an iterative combinational circuit, connected to a flip-flop that provides the output, forms a two-state sequential circuit called a register cell</p>
 </blockquote>
-<p>对于 n bits 的寄存器单元，我们可以通过实现其 1 bit 的寄存器单元，并复制 n 份实现。</p>
+<div class="admonition summary">
+<p class="admonition-title">Register Cell Design</p>
+<p>设计寄存器（尤其是大规模的寄存器）的重要手段之一，就是<strong>寄存器单元设计(Register Cell Design)</strong>。通常遵循以下步骤：</p>
+<ol>
+<li>设计具有代表性的寄存器单元；</li>
+<li>复制并连接若干个这样的寄存器单元；</li>
+<li>修改某几个寄存器单元（通常可能是一串寄存器的首尾两个单元）以解决一些特殊情况或边界问题；</li>
+</ol>
+</div>
 <p>设计寄存器单元时，我们需要对寄存器单元进行定义。而指定(Specify)一个寄存器单元的功能的主要有这些方面：</p>
 <ul>
 <li>寄存器的功能函数；<ul>
@@ -1520,28 +1530,29 @@
 </ul>
 </li>
 </ul>
-<p>在实际实现时，分为 <code>MUX</code> 实现和时序逻辑实现两种方法。</p>
-<p>前者就是<strong><a href="#基于-mux-实现传输">#基于 Mux 实现传输</a></strong>中将要提到的那样，关于上面哪些内容在该小节中的体现如下图；</p>
+<p>在实际实现时，分为 <code>MUX</code> 实现 和 时序逻辑实现 两种方法。</p>
+<p>前者就是 <strong><a href="#基于-mux-实现传输">#基于 Mux 实现传输</a></strong> 中将要提到的那样，关于上面那些内容在该小节中的体现如下图；</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/118.png"><img alt="" src="../img/118.png"/></a></p>
-<p>也就是通过分别实现逻辑，然后通过控制信号选择数据输入来实现。</p>
-<p>而后者按照时序电路的设计方法，确定状态图后根据状态变化设计时序电路，设计优化决定状态转移方程实现，具体可以参考<strong><a href="../Chap04/#时序电路的设计">第四章#时序电路设计</a></strong>。</p>
+<p>也就是通过先分别实现逻辑，然后经由 <code>MUX</code> 选择相应的数据输入来实现。</p>
+<p>而后者按照时序电路的设计方法，确定状态图后根据状态变化设计时序电路，设计优化决定状态转移方程实现，具体可以参考 <strong><a href="../Chap04/#时序电路的设计">第四章#时序电路设计</a></strong>。</p>
 <hr/>
 <h2 id="寄存器传输">寄存器传输<a class="headerlink" href="#寄存器传输" title="Permanent link">¶</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">说明</p>
 <p>把 transfer 翻译为“传输”是我脑瓜一拍的行为，我并不知道翻译成什么比较合适，如果读者有更好的翻译，请告诉我！</p>
 </div>
-<p>一个复杂系统除了信息的存储还需要信息的传输和处理，换句话来说，为了实现灵活、复杂的计算，我们需要信息之间能够广泛地交互。大部分电子系统设计中，都会有一个<strong>控制单元(Control Unit)</strong>来负责指挥（决定指令的序列）<strong>数据通路(Datapath)</strong>进行数据处理。</p>
+<p>一个复杂系统除了信息的存储还需要信息的传输和处理，换句话来说，为了实现灵活、复杂的计算，我们需要信息之间能够广泛地交互。大部分电子系统设计中，都会有一个<strong>控制单元(Control Unit)</strong>来负责指挥<strong>数据通路(Datapath)</strong>进行数据处理。</p>
 <blockquote>
+<p>Datapath performs data-processing operations, and control unit determines the sequence of those operations.</p>
 <p>Datapaths are defined by their registers and the operations performed on binary data stored in the registers.</p>
 </blockquote>
-<p>对于寄存器自身而言，它可能实现 载入(load)、清空(clear)、位移(shift)（关于这里的shift的含义我存疑） 和 计数(count) 等。此外，对于那些寄存器中的数据进行移动了的加工，被称为<strong>寄存器传输操作(Register Transfer Operations)</strong>，它们主要包含这三个部分：</p>
+<p>对于寄存器自身而言，它可能实现 载入(load)、清空(clear)、移位(shift) 和 计数(count) 等。此外，对于那些寄存器中的数据进行移动了的加工，被称为<strong>寄存器传输操作(Register Transfer Operations)</strong>，它们主要包含这三个部分：</p>
 <ol>
 <li>系统中的寄存器集合；</li>
 <li>对于数据的操作；</li>
 <li>监督操作序列的控制；</li>
 </ol>
-<p>其中，最基础的那部分操作被称为<strong>微操作(microoperation)</strong>，它们是实现复杂操作的基础，例如将 R1 的数据载入 R2，将 R1 和 R2 相加，或是自增 R1 等。它们通常以比特向量为载体并行实现的。</p>
+<p>其中，最基础的那部分操作被称为<strong>微操作(microoperation)</strong>，它们是实现复杂操作的基础，例如将 R1 的数据载入 R2，将 R1 和 R2 相加，或是自增 R1 等。它们通常是以比特向量为载体并行实现的。</p>
 <div class="admonition warning">
 <p class="admonition-title">Note that:</p>
 <blockquote>
@@ -1549,7 +1560,7 @@
 </blockquote>
 </div>
 <hr/>
-<h3 id="寄存器传输操作--寄存器传输语言">寄存器传输操作 &amp; 寄存器传输语言<a class="headerlink" href="#寄存器传输操作--寄存器传输语言" title="Permanent link">¶</a></h3>
+<h3 id="寄存器传输语言">寄存器传输语言<a class="headerlink" href="#寄存器传输语言" title="Permanent link">¶</a></h3>
 <p>对于简单的时序逻辑系统，我们可以使用状态机等方式来描述它们的行为，但是对与规模更大的系统来说，这是一件很痛苦的事情。所以我们引入了一种专注于行为逻辑的语言来描述寄存器传输中的逻辑行为：<strong>寄存器传输语言(Register Transfer Language, RTL)</strong>。</p>
 <p>通常具有特殊功能的寄存器都会用其名称缩写大写表示，例如 AR(Address Register)，PC(Program Counter)，IR(Instruction Register) 或者更普通的 R2(Register 2)。</p>
 <blockquote>
@@ -1572,27 +1583,27 @@ K_1 : R2 \leftarrow R1
 <h2 id="寄存器传输的实现">寄存器传输的实现<a class="headerlink" href="#寄存器传输的实现" title="Permanent link">¶</a></h2>
 <div class="admonition info">
 <p class="admonition-title">引入</p>
-<p>如何实现寄存器所存储的数据之间的处理与交互是本章节的核心命题。如果说<strong><a href="#微操作及其实现">微操作</a></strong>处理的是数据之间的处理，那<strong><a href="#寄存器传输">寄存器传输</a></strong>则着眼于数据之间的交互。</p>
+<p>如何实现寄存器所存储的数据之间的处理与交互是本章节的核心命题。如果说 <strong><a href="#微操作及其实现">微操作</a></strong> 关注的是数据的处理，那 <strong><a href="#寄存器传输">寄存器传输</a></strong> 则着眼于数据之间的交互。</p>
 <p>换句话来说，如何把数据给到别的寄存器、如何获取别的寄存器给到的数据、如何传输和选择这些数据，就是本小节要解决的问题。</p>
-<p>特别的，寄存器传输的实现可以直接实现<strong><a href="#转移">转移</a></strong>操作。</p>
+<p>特别的，寄存器传输的实现可以直接实现 <strong><a href="#转移">转移</a></strong> 操作。</p>
 </div>
 <h3 id="基于-mux-实现传输">基于 MUX 实现传输<a class="headerlink" href="#基于-mux-实现传输" title="Permanent link">¶</a></h3>
 <p>对于一个单一寄存器，它的<strong>输入</strong>可能有多种来源，例如其它寄存器，又或者是其他操作的结果。总而言之，它的输入很可能是不唯一的，而同一时刻我们只能接受一个来源的输入。因此，我们需要使用 <code>MUX</code> 来对输入进行选择。</p>
 <p>一个简单 🌰 如下：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/106.png"><img alt="" src="../img/106.png"/></a></p>
-<p>用语言来描述这个总体架构就是，我们通过一系列 one-hot 编码（不确定，也许可能都为零？我感觉取决于<strong><a href="#保持">保持</a></strong>的实现。）来表示选择哪个输入源（下图中 <span class="arithmatex">\(K_0\sim K_{n-1}\)</span>），再通过 <code>Encoder</code> 将它们编码作为 <code>MUX</code> 的输入选择信号（下图中 <span class="arithmatex">\(S_m \sim S_0\)</span>），从多个输入源（下图中 0 \sim k \sim (n-1)$）中选择对应的源，并输出，给到 R0；此外，将选择信号都或起来，作为 R0 的 Load 信号输入。</p>
+<p>用语言来描述这个总体架构就是，我们通过一系列 one-hot 编码（或者是 one-cold）来表示选择哪个输入源（下图中 <span class="arithmatex">\(K_0\sim K_{n-1}\)</span>），再通过 <code>Encoder</code> 将它们编码作为 <code>MUX</code> 的输入选择信号（下图中 <span class="arithmatex">\(S_m \sim S_0\)</span>），从多个输入源（下图中 <span class="arithmatex">\(0 \sim k \sim (n-1)\)</span>）中选择对应的源，并输出，给到 R0；此外，将选择信号都或起来，作为 R0 的 Load 信号输入。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/105.png"><img alt="" src="../img/105.png"/></a></p>
 <blockquote>
-<p>其中 <code>MUX</code> 的 <span class="arithmatex">\(k \sim (n-1)\)</span> 实现了<strong><a href="#转移">转移</a></strong>操作。</p>
+<p>其中 <code>MUX</code> 的 <span class="arithmatex">\(k \sim (n-1)\)</span> 实现了 <strong><a href="#转移">转移</a></strong> 操作。</p>
 </blockquote>
 <div class="admonition summary">
 <p class="admonition-title">小结</p>
-<p>换句话来说，<code>MUX</code> 实现主要的实现了<strong>多对一</strong>的数据传输问题。如果我们单单使用 <code>MUX</code> 来完成寄存器之间的数据交互（假设所有寄存器都能相互传输数据），那将这个模型（图例在<a href="#基于总线实现传输">下一小节</a>）抽象后，我们得到的将是一张“<strong><a href="https://zh.wikipedia.org/zh-cn/%E5%AE%8C%E5%85%A8%E5%9C%96">完全图</a></strong>”，然而它肉眼可见的开销大。</p>
+<p>换句话来说，<code>MUX</code> 实现主要的实现了<strong>多对一</strong>的数据传输问题。如果我们单单使用 <code>MUX</code> 来完成寄存器之间的数据交互（假设所有寄存器都能相互传输数据），那将这个模型（图例在下一小节）抽象后，我们得到的将是一张“<strong><a href="https://zh.wikipedia.org/zh-cn/%E5%AE%8C%E5%85%A8%E5%9C%96">完全图</a></strong>”，然而它肉眼可见的开销大。</p>
 <p>而总线则非常巧妙地优化了这个问题（并不是上位替代关系）。</p>
 </div>
 <hr/>
 <h3 id="基于总线实现传输">基于总线实现传输<a class="headerlink" href="#基于总线实现传输" title="Permanent link">¶</a></h3>
-<p>在<a href="#基于-mux-实现传输">上一小节</a>的小结中我们已经提到了 <code>MUX</code> 实现的优劣，也提到了<strong>总线(bus)</strong>传输的优势，那么它具体来说其实现方法有两种——通过共有 <code>MUX</code> 实现，或通过三态门实现。</p>
+<p>在上一小节的小结中我们已经提到了 <code>MUX</code> 实现的优劣，也提到了<strong>总线(bus)</strong>传输的优势，那么它具体来说其实现方法有两种——通过共有 <code>MUX</code> 实现，或通过三态门实现。</p>
 <hr/>
 <h4 id="共有-mux-实现">共有 MUX 实现<a class="headerlink" href="#共有-mux-实现" title="Permanent link">¶</a></h4>
 <p>让我们以三个寄存器的模型为例，对比通过专有 <code>MUX</code> 实现和通过<strong>单一总线(single bus)</strong>实现的区别：</p>
@@ -1606,7 +1617,7 @@ K_1 : R2 \leftarrow R1
 </li>
 <li>劣势：<ul>
 <li>同一时刻内总线只能传输一个数据，即只有一个数据源(source)；<ul>
-<li>同一时钟周期内只有一个数据能传输到别的地方，例如交换操作就需要至少两个 bus 才能实现；</li>
+<li>同一时钟周期内只有一个数据能传输到别的地方，例如交换操作就需要至少两个时钟才能实现；</li>
 </ul>
 </li>
 </ul>
@@ -1615,8 +1626,8 @@ K_1 : R2 \leftarrow R1
 <p>而因为这些特点，我们需要评估我们的需求，选择合适的结构来实现。</p>
 <hr/>
 <h4 id="三态门实现">三态门实现<a class="headerlink" href="#三态门实现" title="Permanent link">¶</a></h4>
-<p>三态门的相关内容已经在前面介绍，传输门在<strong><a href="../Chap02/#三态门">这里</a></strong>，关于本小节的知识，可以重点关注<strong><a href="../Chap02/#三态门">#三态门/碎碎念</a></strong>。</p>
-<p>而关于总线的实现，引用一句我在<strong><a href="../Chap02/#三态门">#三态门/碎碎念</a></strong>里写的话：</p>
+<p>三态门的相关内容已经在前面介绍，可以重点关注其中的<strong>碎碎念</strong>部分。</p>
+<p>而关于总线的实现，引用一句我在 <strong><a href="../Chap02/#三态门">#三态门/碎碎念</a></strong> 里写的话：</p>
 <blockquote>
 <p>只要我们让导线的若干输入中只有一个三态门不在「高阻态」，就能够优雅地实现多路输出互联。</p>
 </blockquote>
@@ -1638,7 +1649,7 @@ K_1 : R2 \leftarrow R1
 <p>对比来看，三态门的实现大大降低了总线的实现成本，精简了电路的实现，所以通常来说更常用。</p>
 <details class="note">
 <summary>个人想法</summary>
-<p>虽然书中说三态门的接线比 <code>MUX</code> 的少了一半，但我觉的三态门只是把线分岔的地方移动到了寄存器附近，换句话来说不如说是节省了导线的长度。但是随着输入的增加，<code>MUX</code> 的结构会越来越复杂且需要重新设计，但三态门只需要量的增加就行了，所以确实是更加吸引人。（当然，虽然书中没说，但是我觉得 Enable 必须 at most one-hot，而这部分的逻辑对于两个实现方法来说是一样的）</p>
+<p>虽然书中说三态门的接线比 <code>MUX</code> 的少了一半，但我觉得三态门只是把线分岔的地方移动到了寄存器附近，换句话来说不如说是节省了导线的长度。但是随着输入的增加，<code>MUX</code> 的结构会越来越复杂且需要重新设计，但三态门只需要量的增加就行了，所以确实是更加吸引人。（当然，虽然书中没说，但是我觉得 Enable 必须 at most one-hot，而这部分的逻辑对于两个实现方法来说是一样的）</p>
 </details>
 <hr/>
 <h2 id="微操作及其实现">微操作及其实现<a class="headerlink" href="#微操作及其实现" title="Permanent link">¶</a></h2>
@@ -1650,7 +1661,7 @@ K_1 : R2 \leftarrow R1
 <li>转移，transfer microoperations，将数据从一个寄存器转移到另外一个寄存器；</li>
 <li>算术，arithmetic microoperations，对数据的算术运算操作；</li>
 <li>逻辑，logic microoperations，对数据的逻辑运算操作；</li>
-<li>位移，shift microoperations，对数据的位移操作；</li>
+<li>移位，shift microoperations，对数据的移位操作；</li>
 </ol>
 <blockquote>
 <p>A given microoperation may be of more than one type. For example, a 1s complement operation is both an arithmetic microoperation and a logic microoperation.</p>
@@ -1659,12 +1670,12 @@ K_1 : R2 \leftarrow R1
 <h3 id="转移">转移<a class="headerlink" href="#转移" title="Permanent link">¶</a></h3>
 <p>不改变数据本身，只是从一个寄存器中把数据移动到另外一个寄存器。</p>
 <p>将 R0 中的数据转移到 R1 中，用 RTL 表示就是 <span class="arithmatex">\(R0 \leftarrow R1\)</span>。</p>
-<p>这一部分的实现途径在<strong><a href="#寄存器传输的实现">寄存器传输的实现</a></strong>已经阐述。</p>
+<p>这一部分的实现途径在 <strong><a href="#寄存器传输的实现">寄存器传输的实现</a></strong> 已经阐述。</p>
 <hr/>
 <h3 id="算术">算术<a class="headerlink" href="#算术" title="Permanent link">¶</a></h3>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/101.png"><img alt="" src="../img/101.png"/></a></p>
 <blockquote>
-<p>Multiplication and division are not listed in Table 6-3. Multiplication can be represented by the symbol * and division by /. These two operations are not included in the basic set of arithmetic microoperations because they are assumed to be implemented by sequences of basic microoperations. However, multiplication can be considered as a microoperation if implemented by a combinational circuit. In such a case, the result is transferred into a destination register at the clock edge after all signals have propagated through the entire combinational circuit</p>
+<p>Multiplication and division are not listed in Table 6-3. Multiplication can be represented by the symbol * and division by /. These two operations are not included in the basic set of arithmetic microoperations because they are assumed to be implemented by sequences of basic microoperations. However, multiplication can be considered as a microoperation if implemented by a combinational circuit. In such a case, the result is transferred into a destination register at the clock edge after all signals have propagated through the entire combinational circuit.</p>
 </blockquote>
 <div class="admonition eg">
 <p class="admonition-title">加减法器</p>
@@ -1681,7 +1692,7 @@ K_1 : R2 \leftarrow R1
 <p class="admonition-title">注意</p>
 <p>对于如上出现的形式如：<span class="arithmatex">\(condition: reg \leftarrow options one regs\)</span> 的表达式，<code>:</code> 左侧出现的 <code>+</code> 表示或，右侧的则表示加（“乘”也是这样）！</p>
 </div>
-<p>相对应的，加减法的实现可以通过加减法器实现，乘法可以用<strong><a href="#位移">位移</a></strong>操作实现，而除法相对复杂。</p>
+<p>相对应的，加减法的实现可以通过加减法器实现，乘法可以用 <strong><a href="#移位">移位</a></strong> 操作实现，而除法相对复杂。</p>
 <div class="admonition note">
 <p class="admonition-title">乘法实现的<u>大致</u>思路</p>
 <p>假设我们需要计算 <span class="arithmatex">\(a \cdot b\)</span>，且 <span class="arithmatex">\(a\)</span>，<span class="arithmatex">\(b\)</span> 都是整数，则可以将 <span class="arithmatex">\(b\)</span> 写成二进制形式 <span class="arithmatex">\((b_{n-1}b_{n-2}...b_1b_0)_2\)</span>，于是：</p>
@@ -1693,7 +1704,7 @@ K_1 : R2 \leftarrow R1
               &amp;= \left(a \cdot \sum_{i = 0} ^{n-1} b_i\right) \;\mathrm{&lt;&lt;}\; i \;\;\; \text{where "&lt;&lt;" means "Shift Left"}
 \end{aligned}
 \]</div>
-<p>于是就可以通过<strong><a href="#位移">位移</a></strong>的相关知识来实现。</p>
+<p>于是就可以通过 <strong><a href="#移位">移位</a></strong> 的相关知识来实现。</p>
 </div>
 <hr/>
 <h3 id="逻辑">逻辑<a class="headerlink" href="#逻辑" title="Permanent link">¶</a></h3>
@@ -1704,21 +1715,21 @@ K_1 : R2 \leftarrow R1
 <p>而承担逻辑和算术运算的硬件模块，一般被称为<strong>ALU</strong>。</p>
 </div>
 <hr/>
-<h3 id="位移">位移<a class="headerlink" href="#位移" title="Permanent link">¶</a></h3>
+<h3 id="移位">移位<a class="headerlink" href="#移位" title="Permanent link">¶</a></h3>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/104.png"><img alt="" src="../img/104.png"/></a></p>
-<p>位移的实现通过<strong>位移寄存器(Shift Register, SHR)</strong>实现。</p>
+<p>移位的实现通过<strong>移位寄存器(Shift Register, SHR)</strong>实现。</p>
 <div class="admonition info">
 <p class="admonition-title">引入</p>
-<p>位移操作从本质上来讲，是通过<strong>触发器随着时钟脉冲，将串行数据一位一位地移动</strong>实现的。但是如果读者尚未理解其实现原理，阅读以下内容刚开始可能会觉得有些莫名其妙，但是请先阅读<strong><a href="#串行实现">串行实现</a></strong>和<strong><a href="#并行化">并行化</a></strong>的内容，知道它们的行为后，可以先暂时跳过<strong><a href="#双向位移寄存器">双向位移寄存器</a></strong>，再来看本节末尾的总结，也许能够让您明白它究竟是怎么实现的。</p>
+<p>移位操作从本质上来讲，是通过<strong>触发器随着时钟脉冲，将串行数据一位一位地移动</strong>实现的。但是如果读者尚未理解其实现原理，阅读以下内容刚开始可能会觉得有些莫名其妙，但是请先阅读 <strong><a href="#串行实现">串行实现</a></strong> 和 <strong><a href="#并行化">并行化</a></strong> 的内容，知道它们的行为后，可以先暂时跳过 <strong><a href="#双向移位寄存器">双向移位寄存器</a></strong>，再来看本节末尾的总结，也许能够让您明白它究竟是怎么实现的。</p>
 </div>
 <h4 id="串行实现">串行实现<a class="headerlink" href="#串行实现" title="Permanent link">¶</a></h4>
-<p>位移操作最简单的实现只需要与输入数相同位数的触发器实现。它的基本结构如下：</p>
+<p>移位操作最简单的实现只需要与输入数相同位数的触发器实现。它的基本结构如下：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/109.png"><img alt="" src="../img/109.png"/></a></p>
 <blockquote>
-<p>四个触发器首尾相连，最前面<strong>串行输入(Serial Input, SI)</strong>数据，末端得到<strong>串行输出(Serial Output, SO)</strong>，在不同时钟周期的偏差下，连续读入的 n bits 即为不同位数位移的结果。</p>
+<p>四个触发器首尾相连，最前面<strong>串行输入(Serial Input, SI)</strong>数据，末端得到<strong>串行输出(Serial Output, SO)</strong>，在不同时钟周期的偏差下，连续读入的 n bits 即为不同位数移位的结果。</p>
 </blockquote>
 <div class="admonition eg">
-<p class="admonition-title">串行位移操作实现的模拟解释</p>
+<p class="admonition-title">串行移位操作实现的模拟解释</p>
 <p>假设现在我们有 4 个 <code>FF</code> 首尾相连，现在串行输入 <code>1001</code> 这 4bits 的数据（当然，完全输入需要 4 个时钟周期）。</p>
 <p>假设第 1 个周期结束后，<code>1001</code> 最右侧的 <code>1</code> 被存在了第一个 FF，则：</p>
 <table>
@@ -1800,20 +1811,20 @@ K_1 : R2 \leftarrow R1
 </tbody>
 </table>
 <p>这里的 SO 指的是从当前轮次开始，读入 4bits 数据得到的串行输出结果，这里的 4bits 当然是对应输入的 4bits。</p>
-<p>可以发现，在第四轮前后的结果分别是左移和右移的结果，当然，如果是要考虑具有实际计算价值的位移，我们当然需要填充 <code>?</code> 的值，不过这都是小事情。</p>
+<p>可以发现，在第四轮前后的结果分别是左移和右移的结果，当然，如果是要考虑具有实际计算价值的移位，我们当然需要填充 <code>?</code> 的值，不过这都是小事情。</p>
 </div>
 <hr/>
 <h4 id="并行化">并行化<a class="headerlink" href="#并行化" title="Permanent link">¶</a></h4>
-<p>并行化主要有两个方面，即<strong>并行输出(parallel output)</strong>和<strong>并行载入(parallel load)</strong>，分别对应着 在同一个时间周期内<strong>得到每一个 <code>FF</code> 的结果</strong>和<strong>对每一个 <code>FF</code> 载入数据</strong>。</p>
+<p>并行化主要有两个方面，即<strong>并行输出(parallel output)</strong>和<strong>并行载入(parallel load)</strong>，分别对应着在同一个时间周期内<strong>得到每一个 <code>FF</code> 的结果</strong>和<strong>对每一个 <code>FF</code> 载入数据</strong>。</p>
 <p>并行输出的实现非常简单，只需要给每一个 <code>FF</code> 的输出引出一条线就行了，它与串行输出可以直接同时存在；而并行输入则与串行输入冲突，一次只能实现其中一个，所以需要一些控制电路：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/110.png"><img alt="" src="../img/110.png"/></a></p>
 <blockquote>
 <p>看起来有点复杂，但是实际上逻辑还是很清晰的。</p>
 <ul>
-<li>纵向观察右侧的四个 <code>FF</code>，可以发现基本上就是串行位移实现，只不过其输入不再是直接从上一个 <code>FF</code> 那边拿来的；</li>
+<li>纵向观察右侧的四个 <code>FF</code>，可以发现基本上就是串行移位实现，只不过其输入不再是直接从上一个 <code>FF</code> 那边拿来的；</li>
 <li>四个 <code>FF</code> 的输入是类似的，所以我们仅关注最上面的那三个与门和一个或门，表示数据输入有三个可能的来源；<ol>
-<li>第一个与门，<span class="arithmatex">\(F_i=Shift \cdot SI\)</span>（对于后面几个 <code>FF</code>，则是 <span class="arithmatex">\(F_i=Shift \cdot FF_{i-1}\)</span>），可以发现，此时电路的行为与<strong>串行位移实现</strong>一致；<ul>
-<li>即 <span class="arithmatex">\(Shift\)</span> 为 <code>1</code> 时，<code>SHR</code> 表现为「<strong>每个周期执行一次位移</strong>」；</li>
+<li>第一个与门，<span class="arithmatex">\(F_i=Shift \cdot SI\)</span>（对于后面几个 <code>FF</code>，则是 <span class="arithmatex">\(F_i=Shift \cdot FF_{i-1}\)</span>），可以发现，此时电路的行为与<strong>串行移位实现</strong>一致；<ul>
+<li>即 <span class="arithmatex">\(Shift\)</span> 为 <code>1</code> 时，<code>SHR</code> 表现为「<strong>每个周期执行一次移位</strong>」；</li>
 </ul>
 </li>
 <li>第二个与门，<span class="arithmatex">\(F_i=\overline{Shift} \cdot Load \cdot D_i\)</span>，此时电路的行为是使用比特向量对每一个 <code>FF</code> 赋值，即<strong>并行载入</strong>；<ul>
@@ -1838,8 +1849,8 @@ K_1 : R2 \leftarrow R1
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/111.png"><img alt="" src="../img/111.png"/></a></p>
 </blockquote>
 <hr/>
-<h4 id="双向位移寄存器">双向位移寄存器<a class="headerlink" href="#双向位移寄存器" title="Permanent link">¶</a></h4>
-<p>上面介绍的位移寄存器随着时钟周期的供给，只能不可逆、单向地进行位移，这种位移寄存器称为<strong>无向位移寄存器(Unidirectional SHR)</strong>；对应的，如果能够支持可控制的左移右移，则被称为<strong>双向位移寄存器(Bidirectional SHR)</strong>。</p>
+<h4 id="双向移位寄存器">双向移位寄存器<a class="headerlink" href="#双向移位寄存器" title="Permanent link">¶</a></h4>
+<p>上面介绍的移位寄存器随着时钟周期的供给，只能不可逆、单向地进行移位，这种移位寄存器称为<strong>无向移位寄存器(Unidirectional SHR)</strong>；对应的，如果能够支持可控制的左移右移，则被称为<strong>双向移位寄存器(Bidirectional SHR)</strong>。</p>
 <p>其行为如下：</p>
 <div class="arithmatex">\[
 \begin{aligned}
@@ -1857,8 +1868,8 @@ K_1 : R2 \leftarrow R1
 <hr/>
 <div class="admonition note">
 <p class="admonition-title">综合阐述</p>
-<p>代码意义上的位移一般指的是一个双目操作，即可以指定位移多少位，这个参数被称为<strong>位移量(Shift Amount)</strong>。</p>
-<p>但在硬件层面的实现上，这个多少“位”只能通过循环和已经实现的、<strong>有限种</strong>确定位移量的位移实现，在我们提到的实现中，指的就是我们硬件只实现「一位位移」，并通过循环实现「任意位位移」，而这个“循环”，就是在时钟周期下，<code>FF</code> 不断继承上一个 <code>FF</code> 的值来实现的。</p>
+<p>代码意义上的移位一般指的是一个双目操作，即可以指定移位多少位，这个参数被称为<strong>移位量(Shift Amount)</strong>。</p>
+<p>但在硬件层面的实现上，这个多少“位”只能通过循环和已经实现的、<strong>有限种</strong>确定移位量的移位实现。在我们提到的实现中，指的就是我们硬件只实现「一位移位」，并通过循环实现「任意位移位」，而这个“循环”，就是在时钟周期下，<code>FF</code> 不断继承上一个 <code>FF</code> 的值来实现的。</p>
 <p>而并行与串行实现无非是体现这个特征的两种实现方法而已。</p>
 <details class="- tip">
 <summary>关于并行和串行</summary>
@@ -1868,10 +1879,10 @@ K_1 : R2 \leftarrow R1
 </div>
 <hr/>
 <h2 id="计数器">计数器<a class="headerlink" href="#计数器" title="Permanent link">¶</a></h2>
-<p>计数器(counter) 是什么，已经在<strong><a href="#寄存器">#寄存器</a></strong>中解释了，根据实现原理，主要分为<strong>行波计数器(Ripple Counter)</strong>和<strong>同步计数器(Synchronous Counter)</strong>两种。</p>
+<p>计数器(counter) 是什么，已经在 <strong><a href="#寄存器">#寄存器</a></strong> 中解释了，根据实现原理，主要分为 <strong>行波计数器(Ripple Counter)</strong> 和 <strong>同步计数器(Synchronous Counter)</strong> 两种。</p>
 <hr/>
 <h3 id="行波计数器">行波计数器<a class="headerlink" href="#行波计数器" title="Permanent link">¶</a></h3>
-<p>行波计数器的主要思想就是将一个不断自反的 <code>FF</code> 的输出直接或间接作为下一个 <code>FF</code> 的时钟脉冲。由于形成一次脉冲需要一对 <code>0</code>&amp;<code>1</code>，所以前一个 <code>FF</code> 取反两次才能引起下一个 <code>FF</code> 取反一次，如果下一个 <code>FF</code> 是在上一个 <code>FF</code> 的输出从 <code>1</code> 变 <code>0</code> 时触发，那两个 <code>FF</code> 的变化刚好对应于二进制自增的进位规律：<code>(0,0)</code>，<code>(0,1)</code>，<code>(1,0)</code>，<code>(1,1)</code>，<code>0,0</code>，...</p>
+<p>行波计数器的主要思想就是将一个不断自反的 <code>FF</code> 的输出直接或间接作为下一个 <code>FF</code> 的时钟脉冲。由于形成一次脉冲需要一对 <code>0</code>&amp;<code>1</code>，所以前一个 <code>FF</code> 取反两次才能引起下一个 <code>FF</code> 取反一次，如果下一个 <code>FF</code> 是在上一个 <code>FF</code> 的输出从 <code>1</code> 变 <code>0</code> 时触发，那两个 <code>FF</code> 的变化刚好对应于二进制自增的进位规律：<code>(0,0)</code>，<code>(0,1)</code>，<code>(1,0)</code>，<code>(1,1)</code>，<code>(0,0)</code>，...</p>
 <p>于是，一个 4-Bit 行波计数器的逻辑图就如下：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/113.png"><img alt="" src="../img/113.png" width="200px"/></a></p>
 <blockquote>
@@ -1895,10 +1906,10 @@ K_1 : R2 \leftarrow R1
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/115.png"><img alt="" src="../img/115.png"/></a></p>
 <blockquote>
 <p>(b) 的蓝色部分替换 (a) 的蓝框部分为第二种。两种分别为 门串行实现 和 门并行实现。</p>
-<p>两种实现其实原理都是一样的，只不过门串行牺牲某些情况下的运行效率，节约了门成本；而门并行提高x了门成本，减少了某些情况下的门延迟。</p>
+<p>两种实现其实原理都是一样的，只不过门串行牺牲某些情况下的运行效率，节约了门成本；而门并行提高了门成本，减少了某些情况下的门延迟。</p>
 </blockquote>
 <p>当然，既然使用的是自增器，那么实现的自然就是正向计数器。为了实现逆向计数器，我们则需要将自增器换为自减器。做法只不过是将异或门的控制信号取反。</p>
-<p>具体来说，输入函数变为：</p>
+<p>具体来说，兼具自增自减功能的输入函数如下：</p>
 <div class="arithmatex">\[
 \begin{aligned}
     D_{A0} = &amp; Q_0 \oplus EN \\
@@ -1918,7 +1929,7 @@ K_1 : R2 \leftarrow R1
 </blockquote>
 <hr/>
 <h4 id="同步载入">同步载入<a class="headerlink" href="#同步载入" title="Permanent link">¶</a></h4>
-<p>这里同步载入的含义可以同<strong><a href="#并行化">位移寄存器的并行载入</a></strong>类比，其主要目的是将计数器的当前值设为一个我们需要的数字。</p>
+<p>这里同步载入的含义可以同 <strong><a href="#并行化">移位寄存器的并行载入</a></strong> 类比，其主要目的是将计数器的当前值设为一个我们需要的数字。</p>
 <p>以门串行实现为例，添加功能控制逻辑后的设计如下：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/116.png"><img alt="" src="../img/116.png"/></a></p>
 <hr/>
@@ -1941,41 +1952,33 @@ K_1 : R2 \leftarrow R1
 </div>
 <hr/>
 <h2 id="寄存器传输的控制">寄存器传输的控制<a class="headerlink" href="#寄存器传输的控制" title="Permanent link">¶</a></h2>
-<div class="admonition error">
-<p class="admonition-title">未完成</p>
-</div>
-<p>Control Unit</p>
-<ul>
-<li>Programmable sys<ul>
-<li>instructions (usually stored in memory RAM/ROM)</li>
-<li>program counter</li>
+<p>寄存器传输系统(Register Transfer System)设计流程：</p>
+<ol>
+<li>确定系统的行为(specification)；</li>
+<li>定义外部的输入、输出，以及控制单元(control unit)和数据通路(datapath)需要的寄存器；</li>
+<li>设计状态机；</li>
+<li>定义内部的控制信号、状态信号；<ul>
+<li>用这些信号来分配输出条件(output condition)、输出行为(output actions)等，包括寄存器传输(register transfer)（个人理解是设计内部信号来进一步设计状态机，包括设计 TC、OC、OA 等）；</li>
 </ul>
 </li>
-<li>
-<p>Nonprogrammable sys</p>
-<ul>
-<li>focus on this</li>
-<li>State machine diagrams for Control Unit design.</li>
-</ul>
-</li>
-<li>
-<p>Write a detailed system specification.</p>
-</li>
-<li>Define all external data and control input signals, all external data, control, and status output signals, and the registers of the datapath and control unit.</li>
-<li>Find a state machine diagram for the system including the register transfers in the datapath and in the control unit.</li>
-<li>Define internal control and status signals. Use these signals to separate output conditions and actions, including register transfers, from the state diagram flow and represent them in tabular form.</li>
-<li>Draw a block diagram of the datapath including all control and status inputs and outputs. Draw a block diagram of the control unit if it includes register transfer hardware.</li>
-<li>Design any specialized register transfer logic in both the control and datapath.</li>
-<li>Design the control unit logic.</li>
-<li>Verify the correct operation of the combined datapath and control logic. If verification fails, debug the system and reverify it.</li>
-</ul>
-<p>重点看书上的例子。</p>
+<li>绘制框图(block diagram)；</li>
+<li>设计控制单元和数据通路的寄存器传输逻辑(register transfer logic)；</li>
+<li>设计控制单元逻辑(control unit logic)；</li>
+<li>验证正确性；</li>
+</ol>
+<p>我们在 <strong><a href="../Chap03/#组合电路设计">第三章</a></strong> 介绍了组合逻辑设计的基本流程，而这里的寄存器传输系统，实际上是（基于寄存器的同步）时序逻辑设计的基本流程。这个流程看起来比较抽象，但总体思路和组合逻辑设计其实是一致的。重要的是结合具体例子去实践这个设计流程，建议阅读教材中相应位置的 <strong>DashWatch</strong> 和 <strong>Handheld Game: PIG</strong> 这两个例子。</p>
+<hr/>
+<h3 id="微程序控制">微程序控制<a class="headerlink" href="#微程序控制" title="Permanent link">¶</a></h3>
+<p>微程序控制(Microprogrammed Control)是一种控制手段，其主要思路是把指令存储起来，并在需要调用指令时从相应地址读取。现代计算机中的 CPU 通常采用的就是微程序控制。</p>
+<blockquote>
+<p>A control unit with its binary control values stored as a group of bits, which are referred as words, in memory is called a microprogrammed control.</p>
+</blockquote>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月7日 11:54:07</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月19日 23:26:14</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2022年12月31日 15:18:46</span>
