@@ -265,9 +265,7 @@ nav:
       - "Unit 3 内存 | Memory":
         - cour_note/D3QD_OperatingSystem/Unit3-Part1.md
         - cour_note/D3QD_OperatingSystem/Unit3-Part2.md
-      - "Unit 4: 存储 | Storage":
-        - cour_note/D3QD_OperatingSystem/Unit4-Part1.md
-        - cour_note/D3QD_OperatingSystem/Unit4-Part2.md
+      - cour_note/D3QD_OperatingSystem/Unit4.md
       - cour_note/D3QD_OperatingSystem/Unit5.md
     - "🔮 计算理论 | Theorem of Computing": 
       - "🔗 xg 的 toc 笔记": https://note.tonycrane.cc/cs/tcs/toc/
