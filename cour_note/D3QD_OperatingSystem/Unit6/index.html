@@ -6,12 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/Lec10/" rel="canonical"/>
-<link href="../Lec09/" rel="prev"/>
-<link href="../Lec11/" rel="next"/>
+<link href="https://note.isshikih.top/cour_note/D3QD_OperatingSystem/Unit6/" rel="canonical"/>
+<link href="../Unit5/" rel="prev"/>
+<link href="../../../pape_read/" rel="next"/>
 <link href="../../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
-<title>Lecture 10 | NP Completeness - Isshiki修's Notebook</title>
+<title>Unit 6: 文件系统 | File System [未完成] - Isshiki修's Notebook</title>
 <link href="../../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6 31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0l112.3-112.3zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5 50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0 27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>');}</style>
@@ -43,7 +43,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#lecture-10--np-completeness">
+<a class="md-skip" href="#unit-6-文件系统--file-system-未完成">
           跳转至
         </a>
 </div>
@@ -67,7 +67,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Lecture 10 | NP Completeness
+              Unit 6: 文件系统 | File System [未完成]
             
           </span>
 </div>
@@ -720,213 +720,124 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_10" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_10" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../">💎 高级数据结构 | Advanced Data Structure</a>
+<a href="../../D2CX_AdvancedDataStructure/">💎 高级数据结构 | Advanced Data Structure</a>
 <label for="__nav_3_10">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_3_10_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_3_10_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_10">
 <span class="md-nav__icon md-icon"></span>
           💎 高级数据结构 | Advanced Data Structure
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec01/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec01/">
         Lecture 1 | AVL Trees &amp; Splay Trees
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec02/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec02/">
         Lecture 2 | Red Black Tree &amp; B+ Tree
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec03/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec03/">
         Lecture 3 | Inverted File Index
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec04/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec04/">
         Lecture 4 | Leftist Heap &amp; Skew Heap
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec05/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec05/">
         Lecture 5 | Binomial Queue
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec06/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec06/">
         Lecture 6 | Backtracing
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec07/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec07/">
         Lecture 7 | Divide &amp; Conquer
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec08/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec08/">
         Lecture 8 | Dynamic Programming
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec09/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec09/">
         Lecture 9 | Greedy Algorithms
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          Lecture 10 | NP Completeness
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec10/">
         Lecture 10 | NP Completeness
       </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#概述">
-    概述
-  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#课内案例">
-    课内案例
-  </a>
-<nav aria-label="课内案例" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#halting-problem">
-    Halting Problem
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#hamilton-cycle-problem">
-    Hamilton Cycle Problem
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#traveling-salesman-problem">
-    Traveling Salesman Problem
-  </a>
-<nav aria-label="Traveling Salesman Problem" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#判定版本的-npc-证明">
-    判定版本的 NPC 证明
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#circuit-sat">
-    Circuit-SAT
-  </a>
-<nav aria-label="Circuit-SAT" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#3-sat">
-    3-SAT
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#a-formal-language-framework">
-    A formal-language Framework
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#相关概念">
-    相关概念
-  </a>
-<nav aria-label="相关概念" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#图灵机">
-    图灵机
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#多项式时间归约">
-    多项式时间归约
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../Lec11/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec11/">
         Lecture 11 | Approximation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec12/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec12/">
         Lecture 12 | Local Search
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec13/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec13/">
         Lecture 13 | Randomized Algorithms
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec14/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec14/">
         Lecture 14 | Parallel
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Lec15/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec15/">
         Lecture 15 | External Sorting
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Ex01/">
+<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Ex01/">
         Topic 1 | Amortized Analysis
       </a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3_11" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_11" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D3QD_OperatingSystem/">💎 操作系统 | Operating System</a>
+<a href="../">💎 操作系统 | Operating System</a>
 <label for="__nav_3_11">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_3_11_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_3_11_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_11">
 <span class="md-nav__icon md-icon"></span>
           💎 操作系统 | Operating System
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit0/">
+<a class="md-nav__link" href="../Unit0/">
         Unit 0: 总览 | Overview
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit1/">
+<a class="md-nav__link" href="../Unit1/">
         Unit 1: 进程管理 | Process Management
       </a>
 </li>
@@ -943,17 +854,17 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit2-Part1/">
+<a class="md-nav__link" href="../Unit2-Part1/">
         U2 Part 1: 同步工具 | Synchronization Tools
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit2-Part2/">
+<a class="md-nav__link" href="../Unit2-Part2/">
         U2 Part 2: 同步问题例子 | Synchronization Problems Examples
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit2-Part3/">
+<a class="md-nav__link" href="../Unit2-Part3/">
         U2 Part 3: 死锁 | Deadlocks
       </a>
 </li>
@@ -973,12 +884,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit3-Part1/">
+<a class="md-nav__link" href="../Unit3-Part1/">
         U3 Part 1: 内存设计 | Memory Design
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit3-Part2/">
+<a class="md-nav__link" href="../Unit3-Part2/">
         U3 Part 2: 内存管理 | Memory Management
       </a>
 </li>
@@ -986,19 +897,110 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit4/">
+<a class="md-nav__link" href="../Unit4/">
         Unit 5: 输入/输出 | I/O
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit5/">
+<a class="md-nav__link" href="../Unit5/">
         Unit 4: 存储 | Storage
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit6/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Unit 6: 文件系统 | File System [未完成]
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         Unit 6: 文件系统 | File System [未完成]
       </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件">
+    文件
+  </a>
+<nav aria-label="文件" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件属性">
+    文件属性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件操作">
+    文件操作
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#权限保护">
+    权限保护
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件类型">
+    文件类型
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件结构">
+    文件结构
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#访问方式">
+    访问方式
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#目录结构">
+    目录结构
+  </a>
+<nav aria-label="目录结构" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#单级目录">
+    单级目录
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#二级目录">
+    二级目录
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#树形目录">
+    树形目录
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#无环图目录">
+    无环图目录
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#通用图目录">
+    通用图目录
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件系统挂载">
+    文件系统挂载
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1190,80 +1192,82 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#概述">
-    概述
+<a class="md-nav__link" href="#文件">
+    文件
   </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#课内案例">
-    课内案例
-  </a>
-<nav aria-label="课内案例" class="md-nav">
+<nav aria-label="文件" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#halting-problem">
-    Halting Problem
+<a class="md-nav__link" href="#文件属性">
+    文件属性
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#hamilton-cycle-problem">
-    Hamilton Cycle Problem
+<a class="md-nav__link" href="#文件操作">
+    文件操作
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#traveling-salesman-problem">
-    Traveling Salesman Problem
+<a class="md-nav__link" href="#权限保护">
+    权限保护
   </a>
-<nav aria-label="Traveling Salesman Problem" class="md-nav">
-<ul class="md-nav__list">
+</li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#判定版本的-npc-证明">
-    判定版本的 NPC 证明
+<a class="md-nav__link" href="#文件类型">
+    文件类型
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件结构">
+    文件结构
   </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#circuit-sat">
-    Circuit-SAT
+<a class="md-nav__link" href="#访问方式">
+    访问方式
   </a>
-<nav aria-label="Circuit-SAT" class="md-nav">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#目录结构">
+    目录结构
+  </a>
+<nav aria-label="目录结构" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3-sat">
-    3-SAT
+<a class="md-nav__link" href="#单级目录">
+    单级目录
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#二级目录">
+    二级目录
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#树形目录">
+    树形目录
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#无环图目录">
+    无环图目录
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#通用图目录">
+    通用图目录
   </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#a-formal-language-framework">
-    A formal-language Framework
+<a class="md-nav__link" href="#文件系统挂载">
+    文件系统挂载
   </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#相关概念">
-    相关概念
-  </a>
-<nav aria-label="相关概念" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#图灵机">
-    图灵机
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#多项式时间归约">
-    多项式时间归约
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -1272,302 +1276,196 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="lecture-10--np-completeness">Lecture 10 | NP Completeness<a class="headerlink" href="#lecture-10--np-completeness" title="Permanent link">¶</a></h1>
+<h1 id="unit-6-文件系统--file-system-未完成">Unit 6: 文件系统 | File System [未完成]<a class="headerlink" href="#unit-6-文件系统--file-system-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3027 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 10 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 15 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 2908 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 12 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 15 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
-<p>由于本节涉及较多概念，并且知识树长的很蓬松，所以我决定尝试非线性组织内容，因此本文的阅读顺序可能也并不会是线性的。</p>
-<p>所有提到的、并且本文会介绍的相关内容，都会以<strong><a href="#lecture-10--np-completeness">链接和放大镜🔍</a></strong>的形式出现。推荐使用鼠标中键等方式打开新标签页查看，方便回溯。</p>
-<blockquote>
-<p>推荐的阅读顺序是，顺着读下去，每次出现 🔍 都进行深度优先搜索式的学习，直至看完全文。</p>
-<p>其中，在 <strong><a href="#相关概念">相关概念</a></strong> 之后的部分，我会保证在前面都有提及，而其之前的内容，推荐都在顺序阅读中涉及。</p>
-</blockquote>
+<p>在<a href="../Unit5/" target="_blank">存储</a>一章，我们提到过，卷(volume)做初始化时，需要建立一个文件系统。文件系统提供了数据存储形式的逻辑视图，将数据以<strong>文件(file)</strong>的形式从硬件存储中抽象出来，并使用<strong>目录(directory)</strong>对文件进行进行结构化的组织和管理。</p>
 </div>
-<hr/>
-<h2 id="概述">概述<a class="headerlink" href="#概述" title="Permanent link">¶</a></h2>
-<div class="admonition quote">
-<p class="admonition-title">Links</p>
-<p>OI Wiki: <a href="https://oi-wiki.org/misc/cc-basic/">https://oi-wiki.org/misc/cc-basic/</a></p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">https://en.wikipedia.org/wiki/P_versus_NP_problem</a></p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/NP-completeness">https://en.wikipedia.org/wiki/NP-completeness</a></p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/NP-hardness">https://en.wikipedia.org/wiki/NP-hardness</a></p>
-</div>
-<p>根据问题的难度，由不同的定义划分，问题可以分为：</p>
-<p><strong>P</strong> 问题(polynomial time)、<strong>NP</strong> 问题(nondeterministic polynomial time)、<strong>NPC</strong> 问题(NP complete)、<strong>NPH</strong> 问题(NP hard)。除此之外 ，我们还需要额外了解不可计算问题(undecidable)。</p>
-<p>由于不可计算问题比较特殊，所以我先放在前面介绍。</p>
-<details class="definition">
-<summary>Undecidable Problem</summary>
-<div class="admonition quote">
-<p class="admonition-title">Links</p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Undecidable_problem">https://en.wikipedia.org/wiki/Undecidable_problem</a></p>
-</div>
-<p><strong>不可判定问题(undecidable problem)</strong>是一类特殊的<a href="https://en.wikipedia.org/wiki/Decision_problem">决定性问题</a>，它的特点是我们无法设计一个算法来求解它的结果。</p>
-<p>其中一个比较典型的例子就是<strong><a href="#halting-problem">停机问题🔍</a></strong>。</p>
-</details>
-<p>我们可以用这样一张图来表示其他几个概念的关系：</p>
-<p><center>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/63.png"><img alt="" src="../img/63.png" width="60%"/></a>
-</center></p>
-<blockquote>
-<p>Source: <a href="https://en.wikipedia.org/wiki/NP-hardness">https://en.wikipedia.org/wiki/NP-hardness</a></p>
-</blockquote>
-<p>可以粗浅的按照图中的“Complexity”轴来理解其中的转化关系，接下来给出它们的详细定义：</p>
-<div class="admonition definition">
-<p class="admonition-title">P</p>
-<p>P 取自 polynomial time，指的是可以用<strong><a href="#图灵机">确定型图灵机🔍</a></strong>在<strong>多项式</strong>时间内<strong>解决</strong>的问题。</p>
-<p>也就是我们通常意义下所说的，可以在<strong>多项式</strong>时间内<strong>解决</strong>的问题。</p>
-</div>
-<div class="admonition definition">
-<p class="admonition-title">NP</p>
-<p>NP 即 nondeterministic polynomial time，指的是可以用<strong><a href="#图灵机" target="_blank">非确定型图灵机🔍</a></strong>在<strong>多项式</strong>时间内<strong>解决</strong>的问题。这个说法等价于可以用<strong><a href="#图灵机" target="_blank">确定型图灵机🔍</a></strong>在<strong>多项式</strong>时间内<strong>验证</strong>（判断答案是否正确）。</p>
-<p>也就是我们通常意义下所说的，可以在<strong>多项式</strong>时间内<strong>验证</strong>的问题。</p>
-</div>
-<div class="admonition definition">
-<p class="admonition-title">NPC</p>
-<p>NPC 即 NP complete，NP 完全，是 NP 中最难的<strong>决定性</strong>问题（并不是无限定词的最难的问题！）。而我们称满足如下条件的问题为 NPC 问题：</p>
-<ol>
-<li>是一个 NP 问题；</li>
-<li>所有 NP 问题都可以<strong><a href="#多项式时间归约" target="_blank">多项式时间归约🔍</a></strong>为该问题；</li>
-</ol>
-<p>由 2 可以有结论，所有的 NPC 问题难度相同——一旦有一个 NPC 问题被解决，那么所有 NPC 问题，乃至所有 NP 问题都能被解决。</p>
-<p>如果我们试图证明一个问题是 NPC 问题，我们可以通过这种手段：</p>
-<ol>
-<li>判定该问题是一个 NP 问题；</li>
-<li>判定一个已知的 NPC 问题可以<strong><a href="#多项式时间归约" target="_blank">多项式时间归约🔍</a></strong>为该问题，或判定该问题是 NPH（在下面）问题；</li>
-</ol>
-<blockquote>
-<p>第一个被证明是 NPC 的问题是 <strong><a href="#circuit-sat" target="_blank">Circuit-SAT🔍</a></strong> 问题。</p>
-</blockquote>
-</div>
-<div class="admonition extra">
-<p class="admonition-title">P ?= NP &amp; NPC</p>
-<p>关于 P 和 NP 的关系，我们仍然不知道 P 是否能等于 NP，即我们仍然不知道是否存在多项式算法可以解决一切 NP 问题。</p>
-<p>而其中的关键就是，如果我们能找到 NPC 问题的多项式解法，那么就可以证明 P = NP。</p>
-</div>
-<div class="admonition definition">
-<p class="admonition-title">NPH</p>
-<p>NPH 即 NP hard，NP 困难，它不一定需要是 NP 问题。而所有 NP 问题都可以<strong><a href="#多项式时间归约" target="_blank">多项式时间归约🔍</a></strong>为 NPH 问题。</p>
-</div>
-<p>也就是说 <span class="arithmatex">\(NPC = NP \cap NPH\)</span>。</p>
-<hr/>
-<h2 id="课内案例">课内案例<a class="headerlink" href="#课内案例" title="Permanent link">¶</a></h2>
-<p>接下来的内容都是课件中提到的一些具体问题和案例。</p>
-<hr/>
-<h3 id="halting-problem">Halting Problem<a class="headerlink" href="#halting-problem" title="Permanent link">¶</a></h3>
-<div class="admonition quote">
-<p class="admonition-title">Links</p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Halting_problem">https://en.wikipedia.org/wiki/Halting_problem</a></p>
-</div>
-<p>停机问题是一个典型的不可计算问题，它指的是，对于任意一个程序，我们无法设计一个算法来判断它是否会在有限时间内停机（即判断程序是否会死循环）。</p>
-<p>我们通过反证法可以证明：</p>
-<p>假设存在函数 <code>willHalt(func F)</code> 可以判断函数 F 是否会停机，如果会，则返回 <code>true</code>，否则返回 <code>false</code>。那么我们可以构造一个这样的函数 <code>foo()</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">willHalt</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// Endless loop.</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>接下来，如果我们想知道 <code>foo()</code> 是否会停机，就会执行 <code>willHalt(foo)</code>。然而在 <code>foo()</code> 内部也有一个 <code>willHalt(foo)</code>，如果它认为 <code>foo()</code> 会停机，则构造一个死循环；而如果它认为 <code>foo()</code> 不会停机，则选择让它立刻停机，于是这里就产生了矛盾。</p>
-<p>理解上面这段内容的关键就是，这里虽然不存在事实意义上的“死循环”，但可以理解为这里存在一个逻辑上的递归，而这种“逻辑上的递归”，正是导致停机问题成为一个不可计算问题的原因。</p>
-<hr/>
-<h3 id="hamilton-cycle-problem">Hamilton Cycle Problem<a class="headerlink" href="#hamilton-cycle-problem" title="Permanent link">¶</a></h3>
-<div class="admonition quote">
-<p class="admonition-title">links</p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Hamiltonian_path_problem">https://en.wikipedia.org/wiki/Hamiltonian_path_problem</a></p>
-<p>OI Wiki: <a href="https://oi-wiki.org/graph/hamilton">https://oi-wiki.org/graph/hamilton</a></p>
-</div>
-<div class="admonition definition">
-<p class="admonition-title">哈密顿回路问题</p>
-<p>给定一个图，判断是否存在一条路径，使得它经过图中的每个点恰好一次，且最后回到起点。</p>
-</div>
-<p>哈密顿回路问题是一个 NPC 问题。</p>
-<hr/>
-<h3 id="traveling-salesman-problem">Traveling Salesman Problem<a class="headerlink" href="#traveling-salesman-problem" title="Permanent link">¶</a></h3>
-<div class="admonition quote">
-<p class="admonition-title">Links</p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">https://en.wikipedia.org/wiki/Travelling_salesman_problem</a></p>
-</div>
-<div class="admonition definition">
-<p class="admonition-title">旅行商问题</p>
-<p>旅行商问题有<strong>两种</strong>定义，其中前者是 NPH，而被称为“判定版本”的后者是 NPC。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input id="__tabbed_1_1" name="__tabbed_1" type="radio"><input checked="checked" id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">原始定义</label><label for="__tabbed_1_2">判定版本</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>给定一个<strong>完全</strong>图，判断是否存在一条路径，使得它经过图中的每个点恰好一次，且最后回到起点，且路径<strong>长度最短</strong>。</p>
-<blockquote>
-<p>"Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?"</p>
-<p>From Wikipedia</p>
-</blockquote>
-<p>该版本的 TSP 问题是一个 NPH 问题，常常出现在组合优化的语境中。</p>
-</div>
-<div class="tabbed-block">
-<p>给定一个<strong>完全</strong>图，判断是否存在一条路径，使得它经过图中的每个点恰好一次，且最后回到起点，且路径<strong>长度不超过</strong> <span class="arithmatex">\(k\)</span>。</p>
-<p>该版本的 TSP 问题是一个 NPC 问题，常常出现在复杂度理论的语境中。</p>
-</div>
-</div>
-</input></input></div>
-<div class="admonition warning">
-<p class="admonition-title">需要注意，接下来我们谈论的都是判定版本的 TSP！</p>
-</div>
-</div>
-<hr/>
-<h4 id="判定版本的-npc-证明">判定版本的 NPC 证明<a class="headerlink" href="#判定版本的-npc-证明" title="Permanent link">¶</a></h4>
-<p>现在，假设我们已知 <a href="#hamilton-cycle-problem" target="_blank">Hamilton Cycle Problem</a> 问题是一个 NPC 问题，尝试通过<strong><a href="#多项式时间归约" target="_blank">多项式时间归约🔍</a></strong>的方式来证明 TSP 也是一个 NPC 问题。</p>
-<div class="admonition quote">
-<p class="admonition-title">Recommended Reading</p>
-<p><a href="https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/hamiltonianCycle_to_TSP.html">https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/hamiltonianCycle_to_TSP.html</a></p>
-</div>
-<p>首先回顾证明 NPC 的步骤：</p>
-<ol>
-<li>判定该问题是一个 NP 问题；</li>
-<li>判定一个已知的 NPC 问题可以<strong><a href="#多项式时间归约" target="_blank">多项式时间归约🔍</a></strong>为该问题，或者说判定该问题是 NPH 问题；</li>
-</ol>
-<p>代入到这个问题中，也就是我们需要证明：</p>
-<ol>
-<li>TSP 是一个 NP 问题；</li>
-<li>Hamilton Cycle Problem 可以<strong><a href="#多项式时间归约" target="_blank">多项式时间归约🔍</a></strong>为 TSP；</li>
-</ol>
-<div class="admonition proof">
-<p class="admonition-title">TSP is NP</p>
-<p>证明 TSP 是一个 NP 问题即证明 TSP 的解可以在多项式时间内被验证。而验证一个解是 TSP 问题的解，需要证明下面两个点：</p>
-<ol>
-<li>这条路径经过了所有节点恰好一次；</li>
-<li>这条路径长度不超过<span class="arithmatex">\(k\)</span>；</li>
-</ol>
-<p>显然，这两条都只需要 <span class="arithmatex">\(O(N)\)</span> 的开销就能验证。</p>
-<p>于是，我们得到结论：<span class="arithmatex">\(\text{TSP} \in \text{NP}\)</span>。</p>
-</div>
-<div class="admonition proof">
-<p class="admonition-title">TSP is NPH</p>
-<p>要证明 TSP 是一个 NPH 问题，我们可以通过证明 Hamilton Cycle Problem(HCP) 可以<strong><a href="#多项式时间归约" target="_blank">多项式时间归约🔍</a></strong>为 TSP。</p>
-<p>为此，我们需要对比 HCP 和 TSP 的差异。</p>
-<p>以 HCP 为基础描述 TSP，实际上就是在一张<strong>完全图</strong>上寻找<strong>总长不超过</strong> <span class="arithmatex">\(k\)</span> 的哈密顿环路，具体来说：</p>
-<table>
-<thead>
-<tr>
-<th align="center">HCP</th>
-<th align="center">TSP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">图 <span class="arithmatex">\(G(V,E)\)</span></td>
-<td align="center">完全图 <span class="arithmatex">\(G'(V',E')\)</span></td>
-</tr>
-<tr>
-<td align="center">无边权</td>
-<td align="center">有边权</td>
-</tr>
-<tr>
-<td align="center">-</td>
-<td align="center"><span class="arithmatex">\(\sum v_i \leq k\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>而为了证明 <span class="arithmatex">\(\text{HCP} \leq_p \text{TCP}\)</span>，我们设计一个<strong>多项式时间</strong>的方法 <code>f()</code> 实现 <span class="arithmatex">\(G(V,E) \to G'(V',E')\)</span>，具体来说，它做这些事：</p>
-<ol>
-<li>连接 <span class="arithmatex">\(G\)</span> 中所有没连上的边，使 <span class="arithmatex">\(G\)</span> 成为一张无权完全图；</li>
-<li>对于无权完全图中的每一条边 <span class="arithmatex">\(v^c_i\)</span>，如果在 <span class="arithmatex">\(G\)</span> 中也有这条边，那么令它边权为 0，否则令它边权为 1，于是得到有权完全图 <span class="arithmatex">\(G'(V',E')\)</span>；</li>
-</ol>
-<p><center>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/64.svg"><img alt="" src="../img/64.svg"/></a>
-</center></p>
-<blockquote>
-<p>右图中所有的蓝边边权都为 0，绿边边权都为 1。</p>
-</blockquote>
-<p>由于完全图的边数为 <span class="arithmatex">\(\frac{n(n-1)}{2}\)</span>，所以这个步骤显然是多项式时间的。</p>
-<p>接下来，我们发现，原问题为在 <span class="arithmatex">\(G\)</span> 上寻找哈密顿环，等价于在 <span class="arithmatex">\(G' = f(G)\)</span> 上做 <span class="arithmatex">\(k = 0\)</span> 的 TSP。由此证明 <span class="arithmatex">\(\text{HCP} \leq_{p} \text{TSP}\)</span>，即 <span class="arithmatex">\(\text{TSP} \in \text{NPH}\)</span>。</p>
-</div>
-<p>综上所述，由于 <span class="arithmatex">\(\text{TSP} \in \text{NP}\)</span> 且 <span class="arithmatex">\(\text{TSP} \in \text{NPH}\)</span>，所以 <span class="arithmatex">\(\text{TSP} \in \text{NPC}\)</span>。</p>
-<hr/>
-<h3 id="circuit-sat">Circuit-SAT<a class="headerlink" href="#circuit-sat" title="Permanent link">¶</a></h3>
-<div class="admonition quote">
-<p class="admonition-title">Links</p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Circuit_satisfiability_problem">https://en.wikipedia.org/wiki/Circuit_satisfiability_problem</a></p>
-</div>
-<p>Circuit-SAT 又叫 circuit satisfiability problem，它是最早被证明是 NPC 的问题，即通过 NPC 问题的定义证明。</p>
-<p>其具体描述如下：</p>
-<div class="admonition definition">
-<p class="admonition-title">Circuit-SAT</p>
-<p>Circuit-SAT 即为确定给定布尔电路是否具有使输出为真的输入分配的决策的问题。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/65.png"><img alt="" src="../img/65.png"/></a></p>
-<blockquote>
-<p>Source: <a href="https://en.wikipedia.org/wiki/Circuit_satisfiability_problem">https://en.wikipedia.org/wiki/Circuit_satisfiability_problem</a></p>
-</blockquote>
-<p>上图中，左侧电路满足条件，右侧电路不满足条件。</p>
-<hr/>
-<p>或者，更抽象的来说，是判断一个具有 <span class="arithmatex">\(n\)</span> 个布尔变量的布尔表达式是否具有结果为 True 的解。</p>
-</div>
-<hr/>
-<h4 id="3-sat">3-SAT<a class="headerlink" href="#3-sat" title="Permanent link">¶</a></h4>
-<div class="admonition quote">
-<p class="admonition-title">Links</p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem#3-satisfiability">https://en.wikipedia.org/wiki/Boolean_satisfiability_problem#3-satisfiability</a></p>
-</div>
-<p>3-SAT 指的是 Circuit-SAT 问题的一个特例，它对布尔电路，或者说布尔表达式的形式有特殊要求，具体来说，它要求布尔表达式形如：</p>
-<div class="arithmatex">\[
-(x_1 \vee x_2 \vee x_3) \wedge (x_4 \vee x_5 \vee x_6) \wedge \cdots \wedge (x_{n-2} \vee x_{n-1} \vee x_n)
-\]</div>
+<h2 id="文件">文件<a class="headerlink" href="#文件" title="Permanent link">¶</a></h2>
+<p>一个文件是<strong>存储在二级介质上</strong>的，<strong>具名</strong>的一系列相关<strong>信息集合</strong>，无论是用户还是程序，都需要通过文件来与二级介质进行信息交换。</p>
+<h3 id="文件属性">文件属性<a class="headerlink" href="#文件属性" title="Permanent link">¶</a></h3>
+<p>不同的文件系统下，文件可能有不同的属性，但通常有以下几个（当然还有其它的）：</p>
 <ul>
-<li>变量是否重复、是否取非不是重点，<span class="arithmatex">\(x_1\)</span> 可以和 <span class="arithmatex">\(x_6\)</span> 是同一个变量，也可以是某个变量的非，重点是这里的三个一组的形式。</li>
+<li><code>name</code>：这是唯一的以 human-readable 形式保存的信息，即文件名；</li>
+<li><code>identifier</code>：在文件系统中用于唯一标识一个文件；</li>
+<li><code>type</code>：一些文件系统需要支持不同的文件类型，此时这些信息用于标识类型；</li>
+<li><code>location</code>：标识文件在哪个设备的哪个位置；</li>
+<li><code>size</code>：当前文件大小，也可能包含文件被允许的最大大小；</li>
+<li><code>protection</code>：访问控制信息，决定哪些用户具有对应的读/写/执行权限等；</li>
+<li><code>timestamp</code>：保存创建时间、上次修改时间、上次使用时间等，这些信息可用来做一些安全保护和使用监控；</li>
+<li><code>user indentification</code>：创建者、上次修改者、上次访问者等，这些信息可用来做一些安全保护和使用监控；</li>
 </ul>
-<hr/>
-<h3 id="a-formal-language-framework">A formal-language Framework<a class="headerlink" href="#a-formal-language-framework" title="Permanent link">¶</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> TODO: Finish this part.</li>
+<p>这些信息也被称为文件的元数据(meta data)。</p>
+<h3 id="文件操作">文件操作<a class="headerlink" href="#文件操作" title="Permanent link">¶</a></h3>
+<p>操作系统可以提供相关的系统调用来完成一些基本的文件操作，例如：</p>
+<ul>
+<li><code>create</code>：分为两步，⓵ 在文件系统中为文件<a href="#分配" target="_blank">分配</a>一块空间，⓶ 在<a href="#目录结构" target="_blank">目录</a>中创建对应的条目；</li>
+<li><code>open</code> / <code>close</code>：打开文件后会得到文件的句柄(handle)，其它对特定文件的操作一般都需要通过这个句柄来完成，类似于“与文件建立一个会话”，关闭文件就是“结束这个会话”；<ul>
+<li>通常来说，文件被打开后需要由用户来负责关闭；</li>
+<li>打开后的文件会被加入到一个打开文件表(open-file table)中，这个表中保存了所有打开的文件的信息，包括文件的<strong>句柄</strong>、文件的<strong>位置</strong>、文件的<strong>访问权限</strong>等；</li>
+<li>文件可能被多方用户（进/线程）打开，而只有所有用户都关闭文件后才应当释放文件在打开文件表中的条目，所以维护一个 open-file count 用于记录当前文件被打开的次数，有点类似智能指针；</li>
 </ul>
-<hr/>
-<h2 id="相关概念">相关概念<a class="headerlink" href="#相关概念" title="Permanent link">¶</a></h2>
-<div class="admonition info">
-<p class="admonition-title">说明</p>
-<p>以下部分的内容是为了进一步说明上文中部分内容而介绍的概念，并不具有组织结构。</p>
-</div>
-<hr/>
-<h3 id="图灵机">图灵机<a class="headerlink" href="#图灵机" title="Permanent link">¶</a></h3>
-<div class="admonition quote">
-<p class="admonition-title">Links</p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Turing_machine">https://en.wikipedia.org/wiki/Turing_machine</a></p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Nondeterministic_Turing_machine">https://en.wikipedia.org/wiki/Nondeterministic_Turing_machine</a></p>
-</div>
-<p>图灵机有一些变体，而我们在这里引入图灵机是为了介绍 P/NP，只介绍<strong>确定型图灵机</strong>和<strong>非确定型图灵机</strong>。</p>
+</li>
+<li><code>read</code> / <code>write</code>：维护一个 current-file-position pointer 表示当前操作的位置，在对应位置上做读写操作，有一点像<a href="https://note.tonycrane.cc/cs/tcs/toc/topic3/" target="_blank">图灵机</a>；</li>
+<li><code>repositioning within a file</code>：将 current-file-position pointer 的位置重新定位到给定值（如文件开头或结尾），也被叫做 <code>seek</code>；</li>
+<li><code>delete</code>：在 directory 中找到对应条目并删除该条目，如果此时对应的文件没有其它<a href="#hard-link" target="_blank">硬链接</a>，则需要释放其空间，类似于智能指针；</li>
+<li><code>truncate</code>：清空文件内容，但保留文件属性；</li>
+<li><a href="https://en.wikipedia.org/wiki/File_locking" target="_blank"><code>locking</code></a>；</li>
+</ul>
 <blockquote>
-<p>图灵机由一个<strong>无限长的纸带</strong>和一个<strong>读写头</strong>组成。纸带被划分为一个个<strong>格子</strong>，每个格子上有一个<strong>符号</strong>，读写头可以在纸带上移动，读写头可以读取当前格子上的符号，也可以改变当前格子上的符号。图灵机的<strong>状态</strong>是一个有限集合，每个状态都有一个<strong>转移函数</strong>，转移函数的输入是当前状态和当前格子上的符号，输出是下一个状态、下一个格子上的符号和读写头的移动方向。</p>
+<p>在 C 的文件操作函数中，你都能看到类似的操作。</p>
 </blockquote>
-<p>更本质的来说，图灵机是一种<strong>计算模型</strong>，我们可以用它来表示任何有限逻辑数学过程。确定型图灵机与我们常规理解的计算机逻辑类似，即下一步要做什么可以根据当前状态确定。而非确定型图灵机则类似于能够进行无限并行，并且最终总是选择通向正确答案的方向的那条路（有点类似于它能开平行宇宙，并且总是让你观测到正确的那一个平行宇宙）。</p>
-<hr/>
-<h3 id="多项式时间归约">多项式时间归约<a class="headerlink" href="#多项式时间归约" title="Permanent link">¶</a></h3>
-<div class="admonition quote">
-<p class="admonition-title">Links</p>
-<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Polynomial-time_reduction">https://en.wikipedia.org/wiki/Polynomial-time_reduction</a></p>
+<h3 id="权限保护">权限保护<a class="headerlink" href="#权限保护" title="Permanent link">¶</a></h3>
+<p>不同的文件操作对应着不同的权限。</p>
+<p>理论上，文件的所属者应当能够决定能对文件做什么操作，以及谁具有这些权限，这个权限通过<strong>访问控制列表(access control list, ACL)</strong>来维护用户们对文件所具有的权限。但是这么做的坏处是，构建 ACL 性价比低，而且原先固定长的表项可能不定长了。</p>
+<p>因此，可以精简化这个列表。例如，Unix 和 Linux 系统采用了<strong>访问权限位(access permission bits)</strong>的方式来实现权限控制：</p>
+<details class="eg" open="open">
+<summary>🌰</summary>
+<p>在 Linux 中，我们使用 ls -l 就可以看到当前目录下文件的权限。</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-l
+total<span class="w"> </span><span class="m">72</span>
+-rw-r--r--<span class="w">   </span><span class="m">1</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">  </span><span class="m">18658</span><span class="w"> </span>Oct<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">23</span>:51<span class="w"> </span>LICENSE
+-rw-r--r--<span class="w">   </span><span class="m">1</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">   </span><span class="m">1778</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">10</span>:27<span class="w"> </span>README.md
+lrwxr-xr-x<span class="w">   </span><span class="m">1</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">     </span><span class="m">18</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">21</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>_deploy.sh@<span class="w"> </span>-&gt;<span class="w"> </span>scripts/_deploy.sh
+lrwxr-xr-x<span class="w">   </span><span class="m">1</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">     </span><span class="m">16</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">21</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>_sync.sh@<span class="w"> </span>-&gt;<span class="w"> </span>scripts/_sync.sh
+drwxr-xr-x<span class="w">  </span><span class="m">14</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">    </span><span class="m">448</span><span class="w"> </span>Oct<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">22</span>:53<span class="w"> </span>docs/
+drwxr-xr-x<span class="w">  </span><span class="m">33</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">   </span><span class="m">1056</span><span class="w"> </span>Nov<span class="w">  </span><span class="m">3</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>mkdocs-material/
+-rw-r--r--@<span class="w">  </span><span class="m">1</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">  </span><span class="m">10937</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">21</span><span class="w"> </span><span class="m">10</span>:01<span class="w"> </span>mkdocs.yaml
+drwxr-xr-x<span class="w">   </span><span class="m">3</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">     </span><span class="m">96</span><span class="w"> </span>Nov<span class="w">  </span><span class="m">2</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>overrides/
+drwxr-xr-x<span class="w">   </span><span class="m">5</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">    </span><span class="m">160</span><span class="w"> </span>Oct<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">15</span>:39<span class="w"> </span>scripts/
+drwxr-xr-x<span class="w">  </span><span class="m">19</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">    </span><span class="m">608</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">21</span>:39<span class="w"> </span>site/
+</code></pre></div>
+<p>第一列中有 10 个字符，其含义如下：</p>
+<blockquote>
+<p>A "d" indicates a directory. The second set of three characters represent the read, write, and execution rights of the file's owner. The next three represent the rights of the file's group, and the final three represent the rights granted to everybody else. We'll discuss this in more detail in a later lesson.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
+</blockquote>
+<p>后 9 个字符将权限被分为三组，分别代表文件所有者(owner)、文件所属组(group)、其他人(other)的<strong>读®</strong>、<strong>写(w)</strong>、<strong>执行(x)</strong>权限。</p>
+</details>
+<h3 id="文件类型">文件类型<a class="headerlink" href="#文件类型" title="Permanent link">¶</a></h3>
+<p>对操作系统来所，文件主要分为<strong>数据(data)</strong>和<strong>程序(program)</strong>两大类。而对用户来说，我们通常会认为后缀扩展(extension)标识了一个文件的类型。例如我们会认为 <code>sketch.psd</code> 是 Photoshop 的工程文件，<code>img.png</code> 是一个图片文件，<code>main.exe</code> 是一个可执行文件。但实际上，这些后缀扩展更多的只是一种“提示”，只是用来帮助系统选择合适的方式来打开文件，而不是决定文件的类型，是否要参考后缀名，应当由开发者来决定。</p>
+<p>UNIX 系统会在文件开头，使用一串 magic number 来标识文件的类型，例如图片文件的开头通常是 <code>0xFFD8</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>，脚本文本文件开头会以类似 <code>#!bash</code> 的形式来指定由谁来执行（例如这个是用 <code>bash</code> 执行）。但是需要注意，并非所有文件都支持 magic number，所以并不能仅仅用 magic number 来实现文件类型的判断。</p>
+<h3 id="文件结构">文件结构<a class="headerlink" href="#文件结构" title="Permanent link">¶</a></h3>
+<p>文件结构指的是文件数据存储的形式，由操作系统或用户程序决定。常见的文件结构有：</p>
+<ul>
+<li>无结构：流式的存储所有的 words/bytes，UNIX 就定位仪所有文件就是普通的一串字节；</li>
+<li>简单记录结构(simple record structure)：将文件以 record 为单位存储，record 的长度可以是 fixed 也可以是 variable 的，例如数据库文件；</li>
+<li>复杂结构(complex structures)；</li>
+</ul>
+<h2 id="访问方式">访问方式<a class="headerlink" href="#访问方式" title="Permanent link">¶</a></h2>
+<p>访问方式即数据的存取方式，最简单也最常见的访问方式是<strong>顺序访问(sequential access)</strong>，即像磁带那样，逐 byte 或者逐 record 地访问。</p>
+<p>另一种方法是<strong>直接访问(direct access)</strong>或<strong>相对访问(relative access)</strong>/<strong>随机访问(random access)</strong>，即支持以几乎相同的时间访问任意位置。</p>
+<p>在直接访问的方法之上，还有可能提供索引，即先通过索引表得知所需访问的内容在哪里，然后去访问。在此之上还有一种<strong>索引顺序访问(indexed sequential-access)</strong>。</p>
+<h2 id="目录结构">目录结构<a class="headerlink" href="#目录结构" title="Permanent link">¶</a></h2>
+<p>目录本质上是一个特殊的文件，而实际上，目录下文件的元信息是被存储在目录中的。目录的结构表示的是目录下文件的组织方式，接下来我们介绍若干目录结构的设计。</p>
+<h3 id="单级目录">单级目录<a class="headerlink" href="#单级目录" title="Permanent link">¶</a></h3>
+<p>最原始的实现方式，不存在分组策略，所有的文件都被铺在根目录下。</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/52.png"><img alt="" src="../img/52.png" width="80%"/></a> </center>
+Single-level directory.</p>
+</figure>
+<div class="admonition not-advice">
+<p class="admonition-title">disadvantages</p>
+<ul>
+<li>为了实现索引，文件的名字必须是唯一的；</li>
+<li>随着文件数量的增大，这个设计愈发不合理；</li>
+</ul>
 </div>
-<p>我们引入 P/NP 等这些概念，是为了衡量问题的复杂程度，而如何在具体的“问题”间传递、比较这种“复杂程度”，就是<strong>多项式时间归约(polynomial reduce)</strong>的目的。</p>
-<pre class="mermaid"><code>graph LR;
-A["问题 A"]
-B["问题 B"]
-A ===&gt;|"多项式时间转化"| B</code></pre>
-<p>如果我们能在多项式时间的复杂度内，将问题 A 转化为问题 B，则称问题 A 可以<strong>多项式时间归约(polynomial reduce)</strong>为 B，记为 <span class="arithmatex">\(A \leq_{p} B\)</span>，表示 A 不会比 B 难。</p>
-<p>而采取数学语言来描述，则是：</p>
-<div class="arithmatex">\[
-\begin{aligned}
-A \leq_{p} B 
-\;\;\Leftrightarrow\;\;
-&amp; \exist f() \text{ which runs in polynomial time}, \\
-&amp; s.t.    \;\; \forall x \in A,\; f(x) \in B \\
-&amp; \text{and}\; \forall f(x) \in B,\; y \in A
-\end{aligned}
-\]</div>
+<h3 id="二级目录">二级目录<a class="headerlink" href="#二级目录" title="Permanent link">¶</a></h3>
+<p>特指以用户为依据，将文件分组。即<strong>主文件目录(master file directory, MFD)</strong>下为每个用户分配一个<strong>用户文件目录(user file directory, UFD)</strong>，每个用户的目录下再存放该用户的文件。</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/53.png"><img alt="" src="../img/53.png" width="80%"/></a> </center>
+Two-level directory structure.</p>
+</figure>
+<p>由于出现了分层结构，所以对文件的索引从依赖文件名转为依赖文件路径(path)。</p>
+<div class="admonition advice">
+<p class="admonition-title">advantages</p>
+<ul>
+<li>相比于<a href="#单级目录" target="_blank">单级目录</a>，不同用户目录下的文件名可以相同了；</li>
+</ul>
+</div>
+<div class="admonition not-advice">
+<p class="admonition-title">disadvantages</p>
+<ul>
+<li>并没有从根源上解决无法分组的问题；</li>
+</ul>
+</div>
+<h3 id="树形目录">树形目录<a class="headerlink" href="#树形目录" title="Permanent link">¶</a></h3>
+<p>树形目录(tree-structured directories)将目录视为一种特殊文件，即将“目录”的概念通用化，于是允许用户在目录下自由地创建目录进行分组，于是总体文件结构成为一种树形结构。</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/54.png"><img alt="" src="../img/54.png" width="80%"/></a> </center>
+Tree-structured directory structure.</p>
+</figure>
+<p>文件都相当于树上的一个节点，非目录节点都是叶子节点，目录节点都是非叶子节点（不考虑空目录）。为了在这种结构下找到唯一确定的那个文件，我们需要提供文件的<strong>路径(path)</strong>，分为<strong>绝对路径(absolute path)</strong>和<strong>相对路径(relative path)</strong>两种。</p>
+<blockquote>
+<p>这东西太简单了，只要有 Linux 实践经历就肯定搞得明白，所以我就不展开了。没有 Linux 实践经历建议先有 Linux 实践经历。</p>
+</blockquote>
+<div class="admonition advice">
+<p class="admonition-title">advantages</p>
+<ul>
+<li>解决了自由分组的问题，使文件系统的结构化管理能力大大增强；</li>
+</ul>
+</div>
+<h3 id="无环图目录">无环图目录<a class="headerlink" href="#无环图目录" title="Permanent link">¶</a></h3>
+<p>无环图目录(acyclic-graph directories)是在树形目录的基础上，允许目录之间存在链接关系，链接分为软链接(soft link)和硬链接(hard link)两种。</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/55.png"><img alt="" src="../img/55.png" width="80%"/></a> </center>
+Acyclic-graph directory structure.</p>
+</figure>
+<div class="admonition section">
+<p class="admonition-title">soft link</p>
+<p>软链接又称符号链接(symbolic link)，是一个指向文件的指针，类似于 Windows 下的快捷方式。</p>
+<p>删除被软链接指向的那个文件并不会连带地处理软链接，但是原先的这个软链接已经失效了。</p>
+<p>从本质上来看，软链接是特殊的文件。</p>
+</div>
+<p><a id="hard-link"></a></p>
+<div class="admonition section">
+<p class="admonition-title">hard link</p>
+<p>硬链接是复制链接文件目录项的所有元信息，存到目标目录中，此时文件平等地属于两个目录。</p>
+<p>由于此时文件等价地属于复数个目录，所以在文件元信息被更新时，需要保证在若干目录下该文件的信息是一致的。</p>
+<p>删除被硬链接的文件并不会直接导致文件被删除，只有当用来记录「被硬链接数量」的 reference counter 被减至 0，即不再有其他硬链接指向该文件时，文件才会被删除；其他情况下都只需要在当前目录中删除该表项，并将 reference counter 减 1，更新相关元信息即可。</p>
+<p>从本质上来看，硬链接是目录表项。</p>
+</div>
+<p>在无环图目录(acyclic-graph directories)中，为了保证无环，我们只允许创建关于文件这种叶子节点的硬链接<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。不过这个说法存在一个例外，我们都知道通常在任意路径都会有 <code>.</code> 和 <code>..</code> 这两个特殊目录，它们通过硬链接分别指向当前目录和父目录（根目录的父目录也是根目录）。</p>
+<p>此外，由于硬链接本质上是表项，而表项与文件系统相关，所以硬链接只能在同一个文件系统下创建，无法跨越 file-system boundary。</p>
+<h3 id="通用图目录">通用图目录<a class="headerlink" href="#通用图目录" title="Permanent link">¶</a></h3>
+<p><a href="#无环图目录" target="_blank">无环图目录</a>通过保证不存在环来保证文件系统的简介性，避免遍历目录时候出现死循环或者删除文件时出现的循环依赖等问题。</p>
+<p>而通用图目录(general-graph directories)则允许目录之间存在环，但是在各种操作时，通过算法来避免出现问题，例如部分能处理环的图遍历算法、垃圾回收机制等。</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/56.png"><img alt="" src="../img/56.png" width="80%"/></a> </center>
+General graph directory.</p>
+</figure>
+<h2 id="文件系统挂载">文件系统挂载<a class="headerlink" href="#文件系统挂载" title="Permanent link">¶</a></h2>
+<p>文件系统<strong>挂载(mount)</strong>是指将一个文件系统的根目录挂载到另一个文件系统的某个目录（被称为 mount point），使得这个目录下的文件可以访问到被挂载的文件系统中的文件。只有被挂载了，一个文件系统才能被访问。</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/57.png"><img alt="" src="../img/57.png" width="80%"/></a> </center>
+Volume mounted at /users.</p>
+</figure>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:1">
+<p><a href="https://www.digicamsoft.com/itu/itu-t81-36.html" target="_blank">ISO/IEC 10918-1: 1993(E) p.36</a>，其中 SOI (Start Of Image) 的值为 <code>0xFFD8</code>。 <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://askubuntu.com/questions/210741/why-are-hard-links-not-allowed-for-directories/525129#525129" target="_blank">Why are hard links not allowed for directories?</a> <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://linuxcommand.org/lc3_lts0030.php" target="_blank">File Permissions</a> <a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">↩</a></p>
+</li>
+</ol>
+</div>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月31日 21:14:44</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月21日 13:11:17</span>
 <br/>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年5月16日 13:27:54</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月21日 13:11:17</span>
 </small>
 </div>
 <form class="md-feedback" hidden="" name="feedback">
