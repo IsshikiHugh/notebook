@@ -71,7 +71,7 @@
 
     > A "d" indicates a directory. The second set of three characters represent the read, write, and execution rights of the file's owner. The next three represent the rights of the file's group, and the final three represent the rights granted to everybody else. We'll discuss this in more detail in a later lesson.[^3]
 
-    后 9 个字符将权限被分为三组，分别代表文件所有者(owner)、文件所属组(group)、其他人(other)的**读(r)**、**写(w)**、**执行(x)**权限。
+    后 9 个字符将权限被分为三组，分别代表文件所有者(owner)、文件所属组(group)、其他人(other)的**读\(r)**、**写(w)**、**执行(x)**权限。
 
 
 ### 文件类型
