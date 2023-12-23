@@ -203,6 +203,14 @@ General graph directory.
 Volume mounted at /users.
 </figure>
 
+## 文件系统结构
+
+
+
+
+
+
+
 [^1]: [ISO/IEC 10918-1: 1993(E) p.36](https://www.digicamsoft.com/itu/itu-t81-36.html){target="_blank"}，其中 SOI (Start Of Image) 的值为 `0xFFD8`。
 [^2]: [Why are hard links not allowed for directories?](https://askubuntu.com/questions/210741/why-are-hard-links-not-allowed-for-directories/525129#525129){target="_blank"}
 [^3]: [File Permissions](https://linuxcommand.org/lc3_lts0030.php){target="_blank"}
