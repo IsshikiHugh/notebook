@@ -555,14 +555,33 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#概念">
-    概念
+<a class="md-nav__link" href="#基本概念">
+    基本概念
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#统计量及其分布">
-    统计量及其分布
+<a class="md-nav__link" href="#统计量">
+    统计量
   </a>
+<nav aria-label="统计量" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#样本均值">
+    样本均值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#样本方差">
+    样本方差
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#样本-k-阶矩">
+    样本 k 阶矩
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#三大抽样分布">
@@ -571,8 +590,8 @@
 <nav aria-label="三大抽样分布" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#χ²分布--卡方分布">
-    χ²分布 / 卡方分布
+<a class="md-nav__link" href="#²-分布--卡方分布">
+    χ² 分布 / 卡方分布
   </a>
 </li>
 <li class="md-nav__item">
@@ -587,6 +606,11 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#正态总体下的抽样分布">
+    正态总体下的抽样分布
+  </a>
 </li>
 </ul>
 </nav>
@@ -1148,14 +1172,33 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#概念">
-    概念
+<a class="md-nav__link" href="#基本概念">
+    基本概念
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#统计量及其分布">
-    统计量及其分布
+<a class="md-nav__link" href="#统计量">
+    统计量
   </a>
+<nav aria-label="统计量" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#样本均值">
+    样本均值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#样本方差">
+    样本方差
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#样本-k-阶矩">
+    样本 k 阶矩
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#三大抽样分布">
@@ -1164,8 +1207,8 @@
 <nav aria-label="三大抽样分布" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#χ²分布--卡方分布">
-    χ²分布 / 卡方分布
+<a class="md-nav__link" href="#²-分布--卡方分布">
+    χ² 分布 / 卡方分布
   </a>
 </li>
 <li class="md-nav__item">
@@ -1181,6 +1224,11 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#正态总体下的抽样分布">
+    正态总体下的抽样分布
+  </a>
+</li>
 </ul>
 </nav>
 </div>
@@ -1190,162 +1238,161 @@
 <article class="md-content__inner md-typeset">
 <h1 id="6x-统计量与抽样分布">[6.x] 统计量与抽样分布<a class="headerlink" href="#6x-统计量与抽样分布" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1586 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 8 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1730 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 9 分钟</p>
 </div>
-<h2 id="概念">概念<a class="headerlink" href="#概念" title="Permanent link">¶</a></h2>
-<p><strong>总体(Population)</strong><br/><strong>个体(Individual)</strong><br/><strong>总体容量</strong><br/><strong>有限总体(Finite Population)</strong><br/><strong>无限总体(Infinite Population)</strong><br/><strong>样本(Sample)</strong></p>
+<h2 id="基本概念">基本概念<a class="headerlink" href="#基本概念" title="Permanent link">¶</a></h2>
 <ul>
-<li>有代表性</li>
-<li>有独立性</li>
+<li>总体与个体：一个统计问题总有它明确的研究对象，研究对象的全体称为<strong>总体（母体）</strong>，总体中的每个成员称为<strong>个体</strong>；</li>
+<li>总体容量：总体中包含的个体数；<ul>
+<li>有限总体是容量有限的总体；</li>
+<li>无限总体是容量无限的总体，通常将容量非常大的总体也按无限总体处理；</li>
 </ul>
-<p><strong>样本容量</strong><br/><strong>随机样本(Random Sample)</strong><br/><strong>简单随机样本(Simple Random Sample)</strong><br/><strong>样本值 / 观察值</strong><br/><strong>样本的联合分布函数</strong>：<span class="arithmatex">\(F(x_1,x_2,...,x_n)=\prod_{i=1}^{n} F(x_i).\)</span></p>
-<p><strong>定义</strong><br/>设总体<span class="arithmatex">\(X\)</span>是具有分布函数<span class="arithmatex">\(F(·)\)</span>的随机变量，<span class="arithmatex">\(X_1,X_2,...,X_n\)</span>是来自总体<span class="arithmatex">\(X\)</span>的随机样本，若满足：</p>
-<ol>
-<li><span class="arithmatex">\(X_1,X_2,...,X_n\)</span>是是相互独立的随机变量；</li>
-<li>每一个<span class="arithmatex">\(X_i\)</span>与<span class="arithmatex">\(X\)</span>有相同的分布函数；</li>
-</ol>
-<p>则称<span class="arithmatex">\(X_1,X_2,...,X_n\)</span>为取自总体<span class="arithmatex">\(X\)</span>的<strong>简单随机样本</strong>。</p>
-<hr/>
-<h2 id="统计量及其分布">统计量及其分布<a class="headerlink" href="#统计量及其分布" title="Permanent link">¶</a></h2>
-<p><strong>统计量(Statistic)</strong><br/>设<span class="arithmatex">\(X_1,X_2,...,X_n\)</span>是来自总体<span class="arithmatex">\(X\)</span>的一个样本，<span class="arithmatex">\(g(X_1,X_2,...,X_n)\)</span>是样本<span class="arithmatex">\(X_1,X_2,...,X_n\)</span>的函数，若<span class="arithmatex">\(g\)</span>中<strong>不含未知参数</strong>，则称<span class="arithmatex">\(g(X_1,X_2,...,X_n)\)</span>是一<strong>统计量</strong>。</p>
-<ul>
-<li>尽管统计量不依赖于未知参数，但是他们的<strong>分布依赖于未知参数</strong>。</li>
-</ul>
-<p>如下为几种常见的重要统计量：</p>
-<ol>
-<li><strong>样本均值（常作为总体值</strong><span class="arithmatex">\(\mu\)</span><strong>的估计）</strong></li>
-</ol>
-<p><span class="arithmatex">\(\overline{X}=\frac{1}{n}\sum_{i=1}^{n}X_i\)</span>
-<span class="arithmatex">\(E(\overline x)=\mu\;\;,\;\;Var(\overline x)=\sigma^2/n\)</span></p>
-<ul>
-<li><strong>性质</strong>：<ol>
-<li><span class="arithmatex">\(\sum_{i=1}^{n}(x_i-\overline{x})=0\)</span>；</li>
-<li>数据观测值与样本均值的偏差平方和最小，即在形如<span class="arithmatex">\(\sum(x_i-c)^2\)</span>的函数中，<span class="arithmatex">\(\sum(x_i-\overline x)^2\)</span>最小；</li>
-<li>若总体服从<span class="arithmatex">\(N(\mu,\sigma^2)\)</span>，则<span class="arithmatex">\(\overline x\)</span>的<strong>精确分布</strong>为<span class="arithmatex">\(N(\mu,\sigma^2/n)\)</span>； </li>
-<li>若总体分布未知或不是正态分布，则当<span class="arithmatex">\(n\)</span>较大时，<span class="arithmatex">\(\overline x\)</span><strong>近似服从</strong><span class="arithmatex">\(N(\mu,\sigma^2/n)\)</span>；</li>
-</ol>
 </li>
-<li><strong>样本方差（常作为总体方差</strong><span class="arithmatex">\(\sigma^2\)</span><strong>的无偏估计）</strong></li>
+<li>随机样本：为推测总体的分布及其各种特征，按一定规则从总体中抽取若干个体进行观察试验，以获得关于总体的信息，这一过程称为抽样，所抽取的部分个体称为<strong>样本</strong>，通常记为 <span class="arithmatex">\(X=(X_1,X_2,...,X_n)\)</span>；</li>
+<li>样本容量：样本中所包含的个体数目 <span class="arithmatex">\(n\)</span>；<ul>
+<li>注意，每一个样本 <span class="arithmatex">\(X_i\)</span> 都是随机变量，维数与总体一致；</li>
 </ul>
-<div class="arithmatex">\[
-S^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2=\frac{1}{n-1}(\sum_{i=1}^{n}X_i^2-n\overline{X}^2)
-\]</div>
-<div class="arithmatex">\[
-E(S^2)=\sigma^2
-\]</div>
+</li>
+<li>简单随机样本：满足<strong>代表性</strong>和<strong>独立性</strong>的样本称为<strong>简单随机样本(Simple Random Sample)</strong>，获得简单随机样本的抽样方法称为简单随机抽样；<ul>
+<li>代表性：<span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 中的每一个与所考察的总体 <span class="arithmatex">\(X\)</span> 都有相同的分布；</li>
+<li>独立性：<span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 是相互独立的随机变量；</li>
+</ul>
+</li>
+</ul>
+<p>后面提到的所有样本，指的都是简单随机样本。</p>
 <ul>
-<li>对于样本偏差平方和有三个常用的表达式：</li>
+<li>若总体有分布函数 <span class="arithmatex">\(F(x)\)</span>，则样本具有联合分布函数 <span class="arithmatex">\(F_n(x_1,x_2,...,x_n)=\prod_{i=1}^{n}F(x_i)\)</span>；</li>
+<li>若总体为连续型（或离散型）随机变量，其概率密度函数（或分布律）为 <span class="arithmatex">\(f(x)\)</span>，则样本具有联合密度函数（或联合分布律） <span class="arithmatex">\(f_n(x_1,x_2,...,x_n)=\prod_{i=1}^{n}f(x_i)\)</span></li>
 </ul>
-<p><span class="arithmatex">\(\sum(x_i-\overline x)^2=\sum x_i^2-\frac{(\sum x_i)^2}{n}=\sum x_i^2-n\overline x^2\)</span></p>
-<ol>
-<li>样本标准差</li>
-</ol>
-<p><span class="arithmatex">\(S=\sqrt{S^2}=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2}\)</span></p>
-<ol>
-<li>样本<span class="arithmatex">\(k\)</span>阶（原点）矩<strong>（常作为总体原点矩</strong><span class="arithmatex">\(\mu_k\)</span><strong>的估计）</strong></li>
-</ol>
-<p><span class="arithmatex">\(A_k=\frac{1}{n}\sum_{i=1}^{n}X_i^k,\;\;k=1,2,...\)</span></p>
-<ol>
-<li>样本<span class="arithmatex">\(k\)</span>阶中心距<strong>（常作为总体中心矩</strong><span class="arithmatex">\(\nu_k\)</span><strong>的估计）（</strong><span class="arithmatex">\(B_2\)</span><strong>可作为总体方差</strong><span class="arithmatex">\(\sigma^2\)</span><strong>的有偏估计）</strong></li>
-</ol>
-<p><span class="arithmatex">\(B_k=\frac{1}{n}\sum_{i=1}^{n}(X_i-\overline{X})^k,\;\;k=2,3,...\)</span></p>
+<h2 id="统计量">统计量<a class="headerlink" href="#统计量" title="Permanent link">¶</a></h2>
+<p>设 <span class="arithmatex">\((X_1,X_2,...,X_n)\)</span> 是来自总体 <span class="arithmatex">\(X\)</span> 的一个样本，<span class="arithmatex">\(g(X_1,X_2,...,X_n)\)</span> 是 <span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 的函数，若 <span class="arithmatex">\(g\)</span> 中<strong>不含任何未知参数</strong>，则称 <span class="arithmatex">\(g(X_1,X_2,...,X_n)\)</span> 为一<strong>统计量</strong>。换言之，统计量是样本的不含任何未知参数的函数。</p>
 <ul>
-<li>总体的任意一个未知参数可以有多个不同的估计，因此参数估计不唯一；</li>
-<li>假设<span class="arithmatex">\(X_1,X_2,...,X_n\)</span>是<span class="arithmatex">\(X\)</span>中抽取的简单随机样本，<span class="arithmatex">\(\mu_k=E(X^k)\)</span>存在，由辛钦大数定律可知：</li>
+<li>统计量仍然为随机变量；</li>
+<li>统计量的分布（称为抽样分布）一般与总体分布有关，<strong>可以依赖未知参数</strong>；</li>
+<li>当样本的观察值确定时，统计量的值也就随之确定了；</li>
 </ul>
-<p><span class="arithmatex">\(A_k=\frac{1}{n}\sum_{i=1}^{n}X_i^k\xrightarrow{P}\mu_k,\;\;k=1,2,...\)</span></p>
+<h3 id="样本均值">样本均值<a class="headerlink" href="#样本均值" title="Permanent link">¶</a></h3>
+<div class="arithmatex">\[
+\overline{X}=\frac{1}{n}\sum_{i=1}^{n}X_i
+\]</div>
+<p>样本均值反映了总体的期望（均值）。</p>
+<p>样本均值的性质：</p>
+<ul>
+<li><span class="arithmatex">\(E(\overline{X})=\mu\)</span>，<span class="arithmatex">\(Var(\overline{X})=\sigma^2/n\)</span></li>
+<li><span class="arithmatex">\(\sum_{i=1}^{n}(X_i-\overline{X})=0\)</span>；</li>
+<li>数据观测值与样本均值的偏差平方和最小，即在形如 <span class="arithmatex">\(\sum(X_i-c)^2\)</span> 的函数中，<span class="arithmatex">\(\sum(X_i-\overline{X})^2\)</span>最小；</li>
+<li>若总体服从 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span>，则 <span class="arithmatex">\(\overline{X}\)</span> 的<strong>精确分布</strong>为 <span class="arithmatex">\(N(\mu,\sigma^2/n)\)</span>； </li>
+<li>若总体分布未知或不是正态分布，则当 <span class="arithmatex">\(n\)</span> 较大时，<span class="arithmatex">\(\overline{X}\)</span> <strong>近似服从</strong> <span class="arithmatex">\(N(\mu,\sigma^2/n)\)</span>；</li>
+</ul>
+<h3 id="样本方差">样本方差<a class="headerlink" href="#样本方差" title="Permanent link">¶</a></h3>
+<div class="arithmatex">\[
+S^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2
+\]</div>
+<p>样本方差反映了总体的方差，常作为总体方差 <span class="arithmatex">\(\sigma^2\)</span> 的无偏估计。</p>
+<p>样本方差的性质：</p>
+<ul>
+<li><span class="arithmatex">\(E(S^2)=\sigma^2\)</span>；</li>
+<li><span class="arithmatex">\(\sum(X_i-\overline{X})^2=\sum X_i^2-\frac{1}{n}(\sum X_i)^2=\sum X_i^2-n\overline{X}^2\)</span>；</li>
+</ul>
+<p>此外，<span class="arithmatex">\(S=\sqrt{S^2}=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2}\)</span> 称为样本标准差。</p>
+<h3 id="样本-k-阶矩">样本 k 阶矩<a class="headerlink" href="#样本-k-阶矩" title="Permanent link">¶</a></h3>
+<p>样本 <span class="arithmatex">\(k\)</span> 阶（原点）矩，常作为总体 <span class="arithmatex">\(j=k\)</span> 阶原点矩 <span class="arithmatex">\(\mu_k\)</span> 的估计：</p>
+<div class="arithmatex">\[
+A_k=\frac{1}{n}\sum_{i=1}^{n}X_i^k,\;\;k=1,2,...
+\]</div>
+<p>样本 <span class="arithmatex">\(k\)</span> 阶中心距，常作为总体 <span class="arithmatex">\(j=k\)</span> 阶中心矩 <span class="arithmatex">\(\nu_k\)</span> 的估计，<span class="arithmatex">\(B_2\)</span> 可作为总体方差 <span class="arithmatex">\(\sigma^2\)</span> 的有偏估计：</p>
+<div class="arithmatex">\[
+B_k=\frac{1}{n}\sum_{i=1}^{n}(X_i-\overline{X})^k,\;\;k=2,3,...
+\]</div>
+<p>样本 <span class="arithmatex">\(k\)</span> 阶矩的性质：</p>
+<ul>
+<li>假设 <span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 是 <span class="arithmatex">\(X\)</span> 中抽取的样本，<span class="arithmatex">\(\mu_k=E(X^k)\)</span> 存在，由辛钦大数定律可知：<br/>
+<span class="arithmatex">\(A_k=\frac{1}{n}\sum_{i=1}^{n}X_i^k\xrightarrow{P}\mu_k,\;\;k=1,2,...\)</span></li>
+</ul>
 <hr/>
+<p>样本与总体的各阶矩对比表：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../17ECC8AFE0D7A858F4A941313C8D6F1B.png"><img alt="" src="../17ECC8AFE0D7A858F4A941313C8D6F1B.png"/></a></p>
 <h2 id="三大抽样分布">三大抽样分布<a class="headerlink" href="#三大抽样分布" title="Permanent link">¶</a></h2>
-<p>统计量的分布成为<strong>抽样分布(Sampling Distribution)</strong>，在使用统计量进行推断时需要知道抽样分布。<br/><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1653818509039-f03e1455-9fbb-47d9-8d8b-c971d4c81190.jpeg"><img alt="" src="../1653818509039-f03e1455-9fbb-47d9-8d8b-c971d4c81190.jpeg"/></a></p>
-<h3 id="χ²分布--卡方分布">χ²分布 / 卡方分布<a class="headerlink" href="#χ²分布--卡方分布" title="Permanent link">¶</a></h3>
-<p><span class="arithmatex">\(\chi^2\)</span><strong>分布 / 卡方分布</strong><br/>设<span class="arithmatex">\(X_1,X_2,...,X_n\)</span>为独立同分布服从<span class="arithmatex">\(N(0,1)\)</span>。记<span class="arithmatex">\(Y=X_1^2+X_2^2+...+X_n^2\)</span>，则称<span class="arithmatex">\(Y\)</span>服从自由度为<span class="arithmatex">\(n\)</span>的<span class="arithmatex">\(\chi^2\)</span>分布，记<span class="arithmatex">\(Y\sim \chi^2(n)\)</span>。<br/><span class="arithmatex">\(\chi^2\)</span>分布的密度函数为：<br/></p>
+<p>统计量的分布称为<strong>抽样分布(Sampling Distribution)</strong>。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1653818509039-f03e1455-9fbb-47d9-8d8b-c971d4c81190.jpeg"><img alt="" src="../1653818509039-f03e1455-9fbb-47d9-8d8b-c971d4c81190.jpeg"/></a></p>
+<h3 id="²-分布--卡方分布">χ² 分布 / 卡方分布<a class="headerlink" href="#²-分布--卡方分布" title="Permanent link">¶</a></h3>
+<p>设 <span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 为独立同分布，服从 <span class="arithmatex">\(N(0,1)\)</span>。则称 <span class="arithmatex">\(\chi_{n}^{2}=\sum_{i=1}^{n}X_i^2\)</span> 服从自由度为 <span class="arithmatex">\(n\)</span> 的 <span class="arithmatex">\(\chi^2\)</span> 分布，记 <span class="arithmatex">\(\chi_{n}^{2}\sim \chi^2(n)\)</span>。</p>
+<p><span class="arithmatex">\(\chi^2\)</span> 分布的密度函数（不要求）：</p>
 <div class="arithmatex">\[
 f_{\chi^2}(x)=
 \left\{
 \begin{aligned}
 &amp;\frac{1}{2^\frac{n}{2}\Gamma(\frac{n}{2})}x^{\frac{n}{2}-1}e^{-\frac{x}{2}},&amp;x&gt;0,
 \\
-&amp;0,&amp;other,
+&amp;0,&amp;\text{else},
 \end{aligned}
 \right.
 \]</div>
-<p><span class="arithmatex">\(\chi^2\)</span>分布有如下性质：</p>
-<ol>
-<li><span class="arithmatex">\(\chi^2\)</span>分布可加：设<span class="arithmatex">\(Y_1 \sim \chi^2(m),\;Y_2\sim\chi^2(n)\)</span>，且两者互相独立，则<span class="arithmatex">\(Y_1+Y_2\sim \chi^2(m+n)\)</span>；</li>
-<li><span class="arithmatex">\(\chi^2\)</span><strong>分布的数学期望与方差：</strong><span class="arithmatex">\(E(\chi^2(n))=n,\;Var(\chi^2(n))=2n\)</span><strong>；</strong></li>
-<li><span class="arithmatex">\(\chi^2\)</span>分布分位数：对于给定的正数<span class="arithmatex">\(\alpha,\;0&lt;\alpha&lt;1\)</span>，称满足条件<span class="arithmatex">\(P\{\chi^2&gt;\chi^2_\alpha(n)\}=\int^{+\infty}_{\chi^2_\alpha(n)}f_{\chi^2}(x)\mathrm{d}x=\alpha\)</span>的点<span class="arithmatex">\(\chi^2_{\alpha}(n)\)</span>为<span class="arithmatex">\(\chi^2(n)\)</span><em>*</em><em>侧）</em><em><span class="arithmatex">\(\alpha\)</span></em><em>分位数</em>*。</li>
-</ol>
+<p><span class="arithmatex">\(\chi^2\)</span> 分布有如下性质：</p>
+<ul>
+<li>设 <span class="arithmatex">\(X \sim \chi^2(n)\)</span>，则有 <span class="arithmatex">\(E(X)=n\)</span>，<span class="arithmatex">\(Var(X)=2n\)</span>；</li>
+<li>设 <span class="arithmatex">\(Y_1 \sim \chi^2(m)\)</span>，<span class="arithmatex">\(Y_2\sim\chi^2(n)\)</span>，且两者互相独立，则 <span class="arithmatex">\(Y_1+Y_2\sim \chi^2(m+n)\)</span>；<ul>
+<li>这一性质被称为 <span class="arithmatex">\(\chi^2\)</span> 分布的可加性，可以推广到有限个相加的情形；</li>
+</ul>
+</li>
+<li><span class="arithmatex">\(\chi^2\)</span> 分布的上 <span class="arithmatex">\(\alpha\)</span> 分位数：<br/>
+  对于给定的正数 <span class="arithmatex">\(\alpha,\;0&lt;\alpha&lt;1\)</span>，称满足条件 <span class="arithmatex">\(P\{\chi^2&gt;\chi^2_\alpha(n)\}=\int^{+\infty}_{\chi^2_\alpha(n)}f_{\chi^2}(x)\mathrm{d}x=\alpha\)</span> 的点 <span class="arithmatex">\(\chi^2_{\alpha}(n)\)</span> 为 <span class="arithmatex">\(\chi^2(n)\)</span> 分布的上 <span class="arithmatex">\(\alpha\)</span> 分位数；</li>
+</ul>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1652275822271-2e025963-3925-482c-88dd-befa5ff324bf.jpeg"><img alt="" src="../1652275822271-2e025963-3925-482c-88dd-befa5ff324bf.jpeg"/></a></p>
-<ol>
-<li>设<span class="arithmatex">\(X_1,X_2,...,X_n\)</span>为来自正态总体<span class="arithmatex">\(N(\mu,\sigma^2)\)</span>的简单随机样本，<span class="arithmatex">\(\overline{X}\)</span>是样本均值，<span class="arithmatex">\(S^2\)</span>是样本方差，则有：</li>
-<li><span class="arithmatex">\(\overline X\)</span>与<span class="arithmatex">\(S^2\)</span>相互独立；</li>
-<li><span class="arithmatex">\(\overline X\sim  N(\mu,\sigma^2/n)\)</span>；</li>
-<li><span class="arithmatex">\(\frac{\sum_{i=1}^n(X_i-\overline X)^2}{\sigma^2}=\frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1)\)</span>；</li>
-</ol>
 <h3 id="t-分布--学生氏分布">t 分布 / 学生氏分布<a class="headerlink" href="#t-分布--学生氏分布" title="Permanent link">¶</a></h3>
-<p><span class="arithmatex">\(t\)</span><strong>分布 / 学生氏(Student)分布</strong><br/>设<span class="arithmatex">\(X\sim N(0,1),Y\sim\chi^2(n)\)</span>，且<span class="arithmatex">\(X,Y\)</span>相互独立，则称随机变量<span class="arithmatex">\(t=\frac{X}{\sqrt{Y/n}}\)</span>服从自由度为<span class="arithmatex">\(n\)</span>的<span class="arithmatex">\(t\)</span>分布，记做<span class="arithmatex">\(t\sim t(n)\)</span>，其密度函数为：<br/></p>
+<p>设 <span class="arithmatex">\(X\sim N(0,1)\)</span>，<span class="arithmatex">\(Y\sim \chi^2(n)\)</span>，且 <span class="arithmatex">\(X,Y\)</span> 相互独立，则称随机变量 <span class="arithmatex">\(T=\frac{X}{\sqrt{Y/n}}\)</span> 服从自由度为 <span class="arithmatex">\(n\)</span> 的 <span class="arithmatex">\(t\)</span> 分布，记做 <span class="arithmatex">\(T\sim t(n)\)</span>。</p>
+<p><span class="arithmatex">\(t\)</span> 分布的密度函数（不要求）：</p>
 <div class="arithmatex">\[
 f_t(x)=\frac{\Gamma[(n+1)/2]}{\sqrt{\pi n}\Gamma(\frac{n}{2})}(1+\frac{x^2}{n})^{-\frac{n+1}{2}},\;\;-\infty&lt;x&lt;+\infty
 \]</div>
-<p>其中<span class="arithmatex">\(\Gamma(\alpha)=\int_0^{+\infty}t^{\alpha-1}e^{-t}\mathrm{d}t\)</span>，<span class="arithmatex">\(\Gamma(\alpha+1)=\alpha\Gamma(\alpha)=\alpha!(if\;\alpha\in\Z)\)</span>，<span class="arithmatex">\(\Gamma(0.5)=\sqrt{\pi}\)</span>
-<span class="arithmatex">\(t\)</span>分布有如下性质：</p>
-<ol>
-<li><span class="arithmatex">\(t\)</span>分布的密度函数<span class="arithmatex">\(f_t(x)\)</span>是偶函数，关于<span class="arithmatex">\(y\)</span>轴对称；</li>
-<li>由<span class="arithmatex">\(t\)</span>分布的密度函数可以得到：<span class="arithmatex">\(\lim_{n\to+\infty}f_t(x)=\frac{1}{\sqrt{2\pi}}e^{-{x^2}/{2}}\)</span>；</li>
-<li>当<span class="arithmatex">\(n\)</span>足够大时，<span class="arithmatex">\(t\)</span>分布近似于标准正态分布<span class="arithmatex">\(N(0,1)\)</span>；</li>
-<li><span class="arithmatex">\(t\)</span>分布分位数，对于给定的正数<span class="arithmatex">\(\alpha,\;\;0&lt;\alpha&lt;1\)</span>，称满足条件<span class="arithmatex">\(P\{t&gt;t_\alpha(n)\}=\int_{t_\alpha(n)}^{+\infty}f_t(x)\mathrm{d}x=\alpha\)</span>的点<span class="arithmatex">\(t_\alpha(n)\)</span>为<span class="arithmatex">\(t(n)\)</span><strong>分布的上（侧）</strong><span class="arithmatex">\(\alpha\)</span><strong>分位数</strong>；</li>
-</ol>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1652276533342-568d2ad0-c850-4520-b3b0-16b416ac3fec.jpeg"><img alt="" src="../1652276533342-568d2ad0-c850-4520-b3b0-16b416ac3fec.jpeg"/></a></p>
-<ol>
-<li><span class="arithmatex">\(t^2\sim F(1,n)\)</span>；</li>
-<li>自由度为<span class="arithmatex">\(1\)</span>的<span class="arithmatex">\(t\)</span>分布就是标准柯西分布，其均值不存在；</li>
-<li><span class="arithmatex">\(n&gt;1\)</span>时<span class="arithmatex">\(t\)</span>分布的数学期望存在且为<span class="arithmatex">\(0\)</span>；</li>
-<li><span class="arithmatex">\(n&gt;2\)</span>时<span class="arithmatex">\(t\)</span>分布的方差存在且为<span class="arithmatex">\(\frac{n}{n-2}\)</span>；</li>
-<li>当自由度比较大时，<span class="arithmatex">\(t\)</span>分布可以用<span class="arithmatex">\(N(0,1)\)</span>分布近似；</li>
-</ol>
-<p>推论：</p>
+<p>其中 <span class="arithmatex">\(\Gamma(\alpha)=\int_0^{+\infty}t^{\alpha-1}e^{-t}\mathrm{d}t\)</span>，<span class="arithmatex">\(\Gamma(\alpha+1)=\alpha\Gamma(\alpha)=\alpha!(if\;\alpha\in\Z)\)</span>，<span class="arithmatex">\(\Gamma(0.5)=\sqrt{\pi}\)</span>。</p>
+<p><span class="arithmatex">\(t\)</span> 分布有如下性质：</p>
 <ul>
-<li>设<span class="arithmatex">\(x_1,x_2,x_3,..,x_n\)</span>是来自正态分布<span class="arithmatex">\(N(\mu,\sigma^2)\)</span>的一个样本，<span class="arithmatex">\(\overline x\)</span>和<span class="arithmatex">\(S^2\)</span>分别是该样本的样本均值与样本方差，则有<span class="arithmatex">\(t=\frac{\overline x-\mu}{S/\sqrt n}\sim t(n-1)\)</span>；</li>
+<li>设 <span class="arithmatex">\(T\sim t(n)\)</span>，则当 <span class="arithmatex">\(n\geq 2\)</span> 时，有 <span class="arithmatex">\(E(T)=0\)</span>；当 <span class="arithmatex">\(n\geq 3\)</span> 时，有 <span class="arithmatex">\(Var(T)=\frac{n}{n-2}\)</span>；</li>
+<li>当 <span class="arithmatex">\(n\)</span> 足够大时，<span class="arithmatex">\(t\)</span> 分布近似于标准正态分布 <span class="arithmatex">\(N(0,1)\)</span>；</li>
+<li>设 <span class="arithmatex">\(T\sim t(n)\)</span>，<span class="arithmatex">\(N\sim N(0,1)\)</span>，则对任意的 <span class="arithmatex">\(n\geq 1\)</span>，都存在 <span class="arithmatex">\(a_0&gt;0\)</span>，使得 <span class="arithmatex">\(P(|T|\geq a_0)\geq P(|N|\geq a_0)\)</span>；</li>
+<li><span class="arithmatex">\(t_{1-\alpha}(n)=-t_{\alpha}(n)\)</span>；</li>
 </ul>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1652276533342-568d2ad0-c850-4520-b3b0-16b416ac3fec.jpeg"><img alt="" src="../1652276533342-568d2ad0-c850-4520-b3b0-16b416ac3fec.jpeg"/></a></p>
 <h3 id="f-分布">F 分布<a class="headerlink" href="#f-分布" title="Permanent link">¶</a></h3>
-<p><span class="arithmatex">\(F\)</span><strong>分布</strong><br/>设<span class="arithmatex">\(U\sim\chi^2(n_1)\)</span>，<span class="arithmatex">\(V\sim \chi^2(n_2)\)</span>，且<span class="arithmatex">\(U\)</span>和<span class="arithmatex">\(V\)</span>相互独立，则称随机变量<span class="arithmatex">\(F=\frac{U/n_1}{V/n_2}\)</span>服从<strong>自由度为</strong><span class="arithmatex">\((n_1,n_2)\)</span><strong>的</strong><span class="arithmatex">\(F\)</span><strong>分布</strong>，记<span class="arithmatex">\(F\sim F(n_1,n_2)\)</span>。<br/>其密度函数为
-<script type="math/tex; mode=display">
+<p>设 <span class="arithmatex">\(U\sim\chi^2(n_1)\)</span>，<span class="arithmatex">\(V\sim \chi^2(n_2)\)</span>，且 <span class="arithmatex">\(U,V\)</span> 相互独立，则称随机变量 <span class="arithmatex">\(F=\frac{U/n_1}{V/n_2}\)</span> 服从自由度为 <span class="arithmatex">\((n_1,n_2)\)</span> 的 <span class="arithmatex">\(F\)</span> 分布，记 <span class="arithmatex">\(F\sim F(n_1,n_2)\)</span>。</p>
+<p><span class="arithmatex">\(F\)</span> 分布的密度函数（不要求）：</p>
+<div class="arithmatex">\[
 f_F(x)=\frac{
 \Gamma(\frac{n_1+n_2}{2})(\frac{n_1}{n_2})^{n_1/2}x^{(n_1/2)-1}
 }{
 \Gamma(\frac{n_1}{2})\Gamma(\frac{n_2}{2})[1+(n_1x/2)]^{(n_1+n_2)/2}
-},\;\;x>0
-</script>
-<span class="arithmatex">\(F\)</span>分布有如下性质：</p>
-<ol>
-<li>如果<span class="arithmatex">\(F\sim F(n_1,n_2)\)</span>，则<span class="arithmatex">\(\frac{1}{F}\sim F(n_2,n_1)\)</span>；</li>
-<li>如果<span class="arithmatex">\(X\sim t(n)\)</span>，则<span class="arithmatex">\(X^2\sim F(1,n)\)</span>；</li>
-</ol>
+},\;\;x&gt;0
+\]</div>
+<p><span class="arithmatex">\(F\)</span> 分布有如下性质：</p>
+<ul>
+<li>设 <span class="arithmatex">\(F\sim F(n_1,n_2)\)</span>，则 <span class="arithmatex">\(F^{-1}\sim F(n_2,n_1)\)</span>；</li>
+<li>设 <span class="arithmatex">\(X\sim t(n)\)</span>，则 <span class="arithmatex">\(X^2\sim F(1,n)\)</span>；</li>
+<li><span class="arithmatex">\(F_{1-\alpha}(n_1,n_2)=\frac{1}{F_{\alpha}(n_2,n_1)}\)</span>；</li>
+</ul>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1652343949815-c148c41c-c622-4cd2-8097-f0f877d25c84.png"><img alt="" src="../1652343949815-c148c41c-c622-4cd2-8097-f0f877d25c84.png"/></a></p>
-<hr/>
-<p>设<span class="arithmatex">\(X_1,X_2,...,X_n\)</span>为来自正态总体<span class="arithmatex">\(N(\mu,\sigma^2)\)</span>的简单随机样本，<span class="arithmatex">\(\overline{X}\)</span>是样本均值，<span class="arithmatex">\(S^2\)</span>是样本方差，则有：</p>
+<h2 id="正态总体下的抽样分布">正态总体下的抽样分布<a class="headerlink" href="#正态总体下的抽样分布" title="Permanent link">¶</a></h2>
+<p>设 <span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span> 的样本，<span class="arithmatex">\(\overline{X}\)</span> 是样本均值，<span class="arithmatex">\(S^2\)</span> 是样本方差，则有：</p>
 <ol>
+<li><span class="arithmatex">\(\overline{X}\sim N(\mu,\frac{\sigma^2}{n})\)</span>；</li>
 <li><span class="arithmatex">\(\frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1)\)</span>；</li>
-<li><span class="arithmatex">\(\overline{X}\)</span>与<span class="arithmatex">\(S^2\)</span>相互独立；</li>
-<li><span class="arithmatex">\(\frac{\overline X - \mu}{S/\sqrt n}\sim t(n-1)\)</span>；</li>
+<li><span class="arithmatex">\(\overline{X}\)</span> 与 <span class="arithmatex">\(S^2\)</span> 相互独立；</li>
+<li><span class="arithmatex">\(\frac{\overline{X} - \mu}{S/\sqrt{n}}\sim t(n-1)\)</span>；</li>
+<li>这里注意区别一下：<span class="arithmatex">\(\frac{\overline{X} - \mu}{\sigma/\sqrt{n}}\sim N(0,1)\)</span>；</li>
 </ol>
-<p>设<span class="arithmatex">\(X_1,X_2,...,X_n\)</span>和<span class="arithmatex">\(Y_1,Y_2,...,Y_n\)</span>为来自正态总体<span class="arithmatex">\(N(\mu_1,\sigma_1^2)\)</span>和<span class="arithmatex">\(N(\mu_2,\sigma_2^2)\)</span>的两个相互独立的简单随机样本，<span class="arithmatex">\(\overline{X},\overline Y\)</span>是样本均值，<span class="arithmatex">\(S_1^2,S_2^2\)</span>是样本方差，则有：</p>
+<p>设 <span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 和 <span class="arithmatex">\(Y_1,Y_2,...,Y_n\)</span> 是分别来自正态总体 <span class="arithmatex">\(N(\mu_1,\sigma_1^2)\)</span> 和 <span class="arithmatex">\(N(\mu_2,\sigma_2^2)\)</span>，并且它们相互独立，<span class="arithmatex">\(\overline{X},\overline{Y}\)</span> 是样本均值，<span class="arithmatex">\(S_1^2,S_2^2\)</span> 是样本方差，则有：</p>
 <ol>
-<li><span class="arithmatex">\(\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma^2_2}\sim F(n_1-1,n_2-2)\)</span>；</li>
-<li>当<span class="arithmatex">\(\sigma_1^2=\sigma_2^2=\sigma^2\)</span>时：</li>
+<li><span class="arithmatex">\(\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma^2_2}\sim F(n_1-1,n_2-1)\)</span>；</li>
+<li><span class="arithmatex">\(\frac{(\overline{X}-\overline{Y})-(\mu_{1}-\mu_{2})}{\sqrt{\frac{\sigma_{1}^{2}}{n_1}+\frac{\sigma_{2}^{2}}{n_2}}} \sim N(0,1)\)</span>；</li>
+<li>当 <span class="arithmatex">\(\sigma_1^2=\sigma_2^2=\sigma^2\)</span> 时：<br/>
+<span class="arithmatex">\(\frac{(\overline X - \overline Y) - (\mu_1-\mu_2)}{S_\omega\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\sim t(n_1+n_2-2)\)</span>，其中 <span class="arithmatex">\(S^2_\omega=\frac{(n_1-1)S_1^2+(n_2-1)S^2_2}{n_1+n_2-2}\)</span>；</li>
 </ol>
-<p><span class="arithmatex">\(\frac{
-(\overline X - \overline Y) - (\mu_1-\mu_2)
-}{
-S_\omega\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}
-}\sim t(n_1+n_2-2)\)</span>
-其中<span class="arithmatex">\(S^2_\omega=\frac{(n_1-1)S_1^2+(n_2-n_1)S^2_2}{n_1+n_2-2}\)</span></p>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 13:05:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月23日 21:37:17</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 13:05:10</span>

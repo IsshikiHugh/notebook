@@ -550,14 +550,28 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#大数定律">
+    大数定律
+  </a>
+<nav aria-label="大数定律" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
 <a class="md-nav__link" href="#依概率收敛">
     依概率收敛
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#大数定理">
-    大数定理
+<a class="md-nav__link" href="#两个重要不等式">
+    两个重要不等式
   </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#常见的几种大数定律">
+    常见的几种大数定律
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#中心极限定理">
@@ -1148,14 +1162,28 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#大数定律">
+    大数定律
+  </a>
+<nav aria-label="大数定律" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
 <a class="md-nav__link" href="#依概率收敛">
     依概率收敛
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#大数定理">
-    大数定理
+<a class="md-nav__link" href="#两个重要不等式">
+    两个重要不等式
   </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#常见的几种大数定律">
+    常见的几种大数定律
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#中心极限定理">
@@ -1190,61 +1218,97 @@
 <article class="md-content__inner md-typeset">
 <h1 id="5x-大数定律及中心极限定理">[5.x] 大数定律及中心极限定理<a class="headerlink" href="#5x-大数定律及中心极限定理" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1172 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 6 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1182 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 6 分钟</p>
 </div>
-<h2 id="依概率收敛">依概率收敛<a class="headerlink" href="#依概率收敛" title="Permanent link">¶</a></h2>
-<p><strong>依概率收敛</strong><br/>设<span class="arithmatex">\(\{Y_n,n\geq1\}\)</span>为一<strong>随机变量序列</strong>，<span class="arithmatex">\(c\)</span>为一常数。若<span class="arithmatex">\(\forall\varepsilon&gt;0\;\;\;s.t. \;\;\lim_{n\to+\infty}P\{|Y_n-c|\geq\varepsilon\}=0\)</span>，则称<span class="arithmatex">\(\{Y_n,n\geq1\}\)</span><strong>依概率收敛(Convergence in Probability)</strong>于<span class="arithmatex">\(c\)</span>，记做<span class="arithmatex">\(Y_n\xrightarrow{P} c\;,\;\;n\to+\infty\)</span>。<br/>等价的，也可以将条件写成<span class="arithmatex">\(\forall\varepsilon&gt;0\;\;\;s.t. \;\;\lim_{n\to+\infty}P\{|Y_n-c|&lt;\varepsilon\}=1\)</span>。</p>
+<h2 id="大数定律">大数定律<a class="headerlink" href="#大数定律" title="Permanent link">¶</a></h2>
+<h3 id="依概率收敛">依概率收敛<a class="headerlink" href="#依概率收敛" title="Permanent link">¶</a></h3>
+<p>设 <span class="arithmatex">\(\{Y_n,n\geq1\}\)</span> 为一<strong>随机变量序列</strong>，若对于 <span class="arithmatex">\(\forall\varepsilon&gt;0\)</span>，均有 <span class="arithmatex">\(\lim_{n\to+\infty}P\{|Y_n-Y|\geq\varepsilon\}=0\)</span>（或者 <span class="arithmatex">\(\lim_{n\to+\infty}P\{|Y_n-c|&lt;\varepsilon\}=1\)</span>），则称 <span class="arithmatex">\(\{Y_n,n\geq1\}\)</span> <strong>依概率收敛(Convergence in Probability)</strong>于 <span class="arithmatex">\(Y\)</span>，记做 <span class="arithmatex">\(Y_n\xrightarrow{P} Y\;,\;\;n\to+\infty\)</span>。</p>
+<p>特别地，当 <span class="arithmatex">\(Y=c\)</span> 为一常数时，称 <span class="arithmatex">\(\{Y_n,n\geq1\}\)</span> 依概率收敛于常数 <span class="arithmatex">\(c\)</span>。</p>
 <ul>
-<li>这种收敛不是数学意义上的一般收敛，而是概率意义下的一种收敛</li>
-<li>其含义是：<span class="arithmatex">\(Y_n\)</span>对<span class="arithmatex">\(c\)</span>的绝对偏差不小于任何一个给定量的可能性随<span class="arithmatex">\(n\)</span>的增大而越来越小；或者绝对偏差<span class="arithmatex">\(|Y_n-c|\)</span>小于任何一个给定量的可能性随<span class="arithmatex">\(n\)</span>的增大时而越来越接近于<span class="arithmatex">\(1\)</span></li>
+<li>这种收敛不是数学意义上的一般收敛，而是概率意义下的一种收敛；</li>
+<li>其含义是：<span class="arithmatex">\(Y_n\)</span> 对 <span class="arithmatex">\(Y\)</span> 的绝对偏差不小于任何一个给定量的可能性随 <span class="arithmatex">\(n\)</span> 的增大而越来越小；或者绝对偏差 <span class="arithmatex">\(|Y_n-Y|\)</span> 小于任何一个给定量的可能性随 <span class="arithmatex">\(n\)</span> 的增大时而越来越接近于 <span class="arithmatex">\(1\)</span>；</li>
 </ul>
-<p>依概率收敛有如下重要<strong>性质</strong>：<br/>若：</p>
-<ol>
-<li><span class="arithmatex">\(\left\{
-\begin{aligned}
-X_n\xrightarrow{P} a\\
-Y_n\xrightarrow{P} b
-\end{aligned}
-\right.
-\;\;,\;\;n\to+\infty\;\;,\;\;a,b\in\mathbf{R}\)</span>；</li>
-<li>二元函数<span class="arithmatex">\(g(x,y)\)</span>在点<span class="arithmatex">\((a,b)\)</span>连续（例如<strong>四则运算</strong>）；</li>
-</ol>
-<p>则有：</p>
-<ul>
-<li><span class="arithmatex">\(g(X_n,Y_n)\xrightarrow{P}g(a,b)\)</span>。</li>
-</ul>
-<p>该性质即依概率收敛可以在双目运算符中进行下放。</p>
-<p><strong>马尔可夫(Markov)不等式</strong><br/>若随机变量<span class="arithmatex">\(Y\)</span>的<span class="arithmatex">\(k\)</span>阶（原点）矩存在（<span class="arithmatex">\(k\geq1\)</span>），则<span class="arithmatex">\(\forall \varepsilon &gt; 0\)</span>，有：<br/><span class="arithmatex">\(P \{ |Y| \geq \varepsilon \}\leq \frac{E(|Y|^k)}{\varepsilon^k}\;\; or \;\; P\{|Y| &lt; \varepsilon \} \geq 1 - \frac{E(|Y|^k)}{\varepsilon^k}\)</span>
-特别地，当<span class="arithmatex">\(Y\)</span>取非负值的随机变量且它的<span class="arithmatex">\(k\)</span>阶矩存在时，有：<span class="arithmatex">\(P\{Y\geq \varepsilon\} \leq \frac{E(Y^k)}{\varepsilon^k}\)</span></p>
-<p><strong>切比雪夫(Chebyshev)不等式</strong>是马尔可夫不等式的推论<br/>若随机变量<span class="arithmatex">\(X\)</span>的数学期望和方差存在，分别记<span class="arithmatex">\(E(X)=\mu\;,\; Var(X) = \sigma^2\)</span>，则<span class="arithmatex">\(\forall \varepsilon &gt; 0\)</span>，有：<br/><span class="arithmatex">\(P\{ |X-\mu|\geq \varepsilon \} \leq \frac{\sigma^2}{\varepsilon^2}\;\;or\;\;P\{ |X-\mu|&lt; \varepsilon \} \geq1- \frac{\sigma^2}{\varepsilon^2}\)</span>
-可以记忆为<span class="arithmatex">\(P\{ \sigma^2\geq \varepsilon^2 \} \leq \frac{\sigma^2}{\varepsilon^2}\;\;or\;\;P\{ \sigma^2&lt; \varepsilon^2 \} \geq1- \frac{\sigma^2}{\varepsilon^2}\)</span> </p>
-<h2 id="大数定理">大数定理<a class="headerlink" href="#大数定理" title="Permanent link">¶</a></h2>
-<ul>
-<li>主要讨论什么条件下，随机变量序列的算术平均依概率收敛到其均值的算术平均。</li>
-</ul>
-<p><strong>大数定理</strong>（一般形式）<br/>设<span class="arithmatex">\(\{Y_i,i\geq1\}\)</span>为一随机变量<strong>序列</strong>，若存在<strong>常数</strong>序列<span class="arithmatex">\({c_n,n\geq 1}\)</span>，使<span class="arithmatex">\(\forall \varepsilon &gt; 0\)</span>，有;<br/><span class="arithmatex">\(\lim_{n\to+\infty}P\{|\frac{1}{n}\sum_{i=1}^{n}Y_i-c_n|\geq \varepsilon\}=0 \;\; or \;\; \lim_{n\to+\infty}P\{|\frac{1}{n}\sum_{i=1}^{n}Y_i-c_n|&lt; \varepsilon\}=1\)</span>
-即：<span class="arithmatex">\((\frac{1}{n}\sum_{i=1}^{n}Y_i-c_n)\xrightarrow{P}0\;\;,\;\;n\to+\infty\)</span>，则称随机变量序列<span class="arithmatex">\(\{Y_i,i\geq1\}\)</span>服从<strong>弱大数定理(Weak Law of Large Numbers)</strong>，简称服从<strong>大数定律</strong>。<br/>观察到如果令<span class="arithmatex">\(Z_n=\frac{1}{n}\sum_{i=1}^{n}Y_i\)</span>，则表达式的含义为<span class="arithmatex">\(Z_n\xrightarrow{P}c\;\;,\;\;n\to+\infty\)</span>，即大数定律也可以表述为：</p>
-<ul>
-<li>随机变量序列前<span class="arithmatex">\(n\)</span>个变量的<strong>算术平均</strong>依概率收敛于<span class="arithmatex">\(c\)</span>， 则这个随机变量序列服从大数定律。</li>
-</ul>
-<p><strong>橙书</strong>给出的定义式是：<br/><span class="arithmatex">\(\lim_{n\to \infty}P\big(\big|  
-\frac{1}{n}\sum_{i=1}^{n}X_i-\frac{1}{n}\sum_{i=1}^{n}E(X_i)
- \big|&lt;\varepsilon\big)=1\)</span></p>
-<ul>
-<li>接下来给出的大数定律的区别体现在<strong>条件</strong>上：有些是相互独立的随机变量，有些是相依的随机变量，有些是同分布的随机变量，有些是不同分布的随机变量。</li>
-</ul>
-<p><strong>伯努利(Bernoulli)大数定律</strong><br/>设<span class="arithmatex">\(n_A\)</span>表示<span class="arithmatex">\(n\)</span>重贝努力实验中事件<span class="arithmatex">\(A\)</span>发生的次数，并记<span class="arithmatex">\(P(A)=p\)</span>，则<span class="arithmatex">\(\forall \varepsilon &gt; 0\)</span>，有：<br/><span class="arithmatex">\(\lim_{n\to+\infty}P\{|\frac{n_A}{n}-p|\geq \varepsilon\}=0\)</span></p>
-<p><strong>辛钦(Khinchin)大数定律</strong><br/><em>*即使随机变量的方差不存在，期望存在即可</em><br/>设<span class="arithmatex">\(\{X_i,i\geq 1\}\)</span>为独立同分布的随机变量序列，且数学期望为<span class="arithmatex">\(\mu\)</span>，则<span class="arithmatex">\(\forall\varepsilon&gt;0\)</span>，有：<br/><span class="arithmatex">\(\lim_{n\to+\infty}P\{|\frac{1}{n}\sum_{i=1}^{n}X_i-\mu|\geq \varepsilon\}=0\;\;\;or\;\;\;\frac{1}{n}\sum_{i=1}^{n}X_i\xrightarrow{P}\mu\;\;,\;\;n\to+\infty\)</span></p>
-<p>辛钦大数定律有如下<strong>推论</strong>：<br/>设<span class="arithmatex">\(\{X_i,i\geq 1\}\)</span>为独立同分布的随机变量序列，若<span class="arithmatex">\(h(x)\)</span>为连续函数，且<span class="arithmatex">\(E(|h(X_1)|)&lt;+\infty\)</span>，则<span class="arithmatex">\(\forall\varepsilon&gt;0\)</span>，有：<br/><span class="arithmatex">\(\lim_{n\to+\infty}P\{|\frac{1}{n}\sum^{n}_{i=1}h(X_i)-a|\geq\varepsilon\}=0\;\;\;or\;\;\;\frac{1}{n}\sum_{i=1}^{n}h(X_i)\xrightarrow{P}a\;\;,\;\;n\to+\infty
-\\
-where\;\;\;a=E(|h(X_1)|)\)</span></p>
 <hr/>
+<p>依概率收敛有如下重要<strong>性质</strong>：</p>
+<p>若 <span class="arithmatex">\(X_n \xrightarrow{P} a\)</span>，<span class="arithmatex">\(Y_n \xrightarrow{P} b\)</span>，当 <span class="arithmatex">\(n\to+\infty\)</span> 时，函数 <span class="arithmatex">\(g(x,y)\)</span> 在点 <span class="arithmatex">\((a,b)\)</span> 连续，则：</p>
+<div class="arithmatex">\[
+g(X_n,Y_n) \xrightarrow{P} g(a,b) \;,\;\; n\to+\infty
+\]</div>
+<p>特别地，若 <span class="arithmatex">\(X_n \xrightarrow{P} a\)</span>，<span class="arithmatex">\(f(x)\)</span> 在点 <span class="arithmatex">\(a\)</span> 连续，则：</p>
+<div class="arithmatex">\[
+f(X_n) \xrightarrow{P} f(a) \;,\;\; n\to+\infty
+\]</div>
+<h3 id="两个重要不等式">两个重要不等式<a class="headerlink" href="#两个重要不等式" title="Permanent link">¶</a></h3>
+<p><strong>马尔可夫(Markov)不等式</strong></p>
+<p>若随机变量 <span class="arithmatex">\(Y\)</span> 的 <span class="arithmatex">\(k\)</span> 阶（原点）矩存在（<span class="arithmatex">\(k\geq1\)</span>），即 <span class="arithmatex">\(E(Y^k)\)</span> 存在，则对于 <span class="arithmatex">\(\forall \varepsilon &gt; 0\)</span>，均有：</p>
+<div class="arithmatex">\[
+P \{ |Y| \geq \varepsilon \}\leq \frac{E(|Y|^k)}{\varepsilon^k} \;\; \text{or} \;\; P\{Y\geq \varepsilon\} \leq \frac{E(Y^k)}{\varepsilon^k}
+\]</div>
+<p>特别地，当 <span class="arithmatex">\(Y\)</span> 取非负值的随机变量且它的 <span class="arithmatex">\(k\)</span> 阶矩存在时，有：</p>
+<div class="arithmatex">\[
+P\{Y\geq \varepsilon\} \leq \frac{E(Y^k)}{\varepsilon^k}
+\]</div>
+<hr/>
+<p><strong>切比雪夫(Chebyshev)不等式</strong></p>
+<p>若随机变量 <span class="arithmatex">\(X\)</span> 具有数学期望 <span class="arithmatex">\(E(X)=\mu\)</span>，方差 <span class="arithmatex">\(Var(X) = \sigma^2\)</span>，则对于 <span class="arithmatex">\(\forall \varepsilon &gt; 0\)</span>，均有：</p>
+<div class="arithmatex">\[
+P\{ |X-\mu|\geq \varepsilon \} \leq \frac{\sigma^2}{\varepsilon^2} \;\; \text{or} \;\; P\{ |X-\mu|&lt; \varepsilon \} \geq1- \frac{\sigma^2}{\varepsilon^2}
+\]</div>
+<ul>
+<li>切比雪夫不等式是马尔可夫不等式的推论；</li>
+<li>切比雪夫不等式应用范围更广，但是计算结果更粗糙；</li>
+</ul>
+<h3 id="常见的几种大数定律">常见的几种大数定律<a class="headerlink" href="#常见的几种大数定律" title="Permanent link">¶</a></h3>
+<ul>
+<li>大数定律主要讨论什么条件下，随机变量序列的算术平均依概率收敛到一个稳定值（伯努利大数定律中的概率，辛钦大数定律中的均值）。</li>
+</ul>
+<hr/>
+<p><strong>大数定律</strong>（一般形式）</p>
+<p>设 <span class="arithmatex">\(\{Y_i,i\geq1\}\)</span> 为一随机变量<strong>序列</strong>，若存在<strong>常数</strong>序列 <span class="arithmatex">\(\{c_n,n\geq 1\}\)</span>，使得 <span class="arithmatex">\(\forall \varepsilon &gt; 0\)</span>，均有：</p>
+<div class="arithmatex">\[
+\lim_{n\to+\infty}P\{|\frac{1}{n}\sum_{i=1}^{n}Y_i-c_n|\geq \varepsilon\}=0 \;\; \text{or} \;\; \lim_{n\to+\infty}P\{|\frac{1}{n}\sum_{i=1}^{n}Y_i-c_n|&lt; \varepsilon\}=1
+\]</div>
+<p>成立，即有 <span class="arithmatex">\((\frac{1}{n}\sum_{i=1}^{n}Y_i-c_n)\xrightarrow{P}0\;\;,\;\;n\to+\infty\)</span>，则称随机变量序列 <span class="arithmatex">\(\{Y_i,i\geq1\}\)</span> 服从<strong>弱大数定理(Weak Law of Large Numbers)</strong>，简称服从<strong>大数定律</strong>。</p>
+<p>特别地，若 <span class="arithmatex">\(c_n\)</span> 与 <span class="arithmatex">\(n\)</span> 无关，则可以写为：</p>
+<div class="arithmatex">\[
+\frac{1}{n}\sum_{i=1}^{n}Y_i \xrightarrow{P} c \;\;,\;\; n\to+\infty
+\]</div>
+<hr/>
+<p>关于服从大数定律，<strong>橙书</strong>给出的定义式是：</p>
+<div class="arithmatex">\[
+\lim_{n\to \infty}P\big(\big|\frac{1}{n}\sum_{i=1}^{n}X_i-\frac{1}{n}\sum_{i=1}^{n}E(X_i) \big|&lt;\varepsilon\big)=1
+\]</div>
+<hr/>
+<p>接下来给出几种常见的大数定律，它们的区别体现在<strong>条件</strong>上：有些是相互独立的随机变量，有些是相依的随机变量；有些是同分布的随机变量，有些是不同分布的随机变量。</p>
+<p><strong>伯努利(Bernoulli)大数定律</strong></p>
+<p>设 <span class="arithmatex">\(n_A\)</span> 表示 <span class="arithmatex">\(n\)</span> 重伯努利试验中事件 <span class="arithmatex">\(A\)</span> 发生的次数，并记事件 <span class="arithmatex">\(A\)</span> 在每次试验中发生的概率为 <span class="arithmatex">\(p\)</span>，则对于 <span class="arithmatex">\(\forall \varepsilon &gt; 0\)</span>，有：</p>
+<div class="arithmatex">\[
+\lim_{n\to+\infty}P\{|\frac{n_A}{n}-p|\geq \varepsilon\}=0 \;\; \text{or} \;\; \frac{n_A}{n} \xrightarrow{P} p \;\;,\;\; n\to+\infty
+\]</div>
+<ul>
+<li>伯努利大数定律建立了在大量重复试验中事件出现频率的稳定性，正因为这种稳定性，<strong>概率</strong>的概念才有客观意义；</li>
+<li>伯努利大数定律还提供了通过试验来确定事件概率的方法：既然频率 <span class="arithmatex">\(\frac{n_A}{n}\)</span> 与概率 <span class="arithmatex">\(p\)</span> 有较大偏差的可能性很小，因此可以通过做试验来确定某事件发生的<strong>频率</strong>，并把它作为相应的<strong>概率</strong>估计。这是一种参数估计法，该方法的重要理论基础之一就是大数定律。</li>
+</ul>
+<hr/>
+<p><strong>辛钦(Khinchin)大数定律</strong></p>
+<p>设 <span class="arithmatex">\(\{X_i,i\geq 1\}\)</span> 为独立同分布的随机变量序列，且数学期望为 <span class="arithmatex">\(\mu\)</span>，则对于 <span class="arithmatex">\(\forall\varepsilon&gt;0\)</span>，有：</p>
+<div class="arithmatex">\[
+\lim_{n\to+\infty}P\{|\frac{1}{n}\sum_{i=1}^{n}X_i-\mu|\geq \varepsilon\}=0 \;\; \text{or} \;\; \frac{1}{n}\sum_{i=1}^{n}X_i\xrightarrow{P}\mu\;\;,\;\;n\to+\infty
+\]</div>
+<p>注意，辛钦大数定律的条件中，只要求期望存在，不要求方差存在。<br/>
+此外，辛钦大数定律有如下<strong>推论</strong>：</p>
+<p>设 <span class="arithmatex">\(\{X_i,i\geq 1\}\)</span> 为独立同分布的随机变量序列，若 <span class="arithmatex">\(h(x)\)</span> 为连续函数，且 <span class="arithmatex">\(E(|h(X_1)|)&lt;+\infty\)</span>，则对于 <span class="arithmatex">\(\forall\varepsilon&gt;0\)</span>，有：</p>
+<div class="arithmatex">\[
+\lim_{n\to+\infty}P\{|\frac{1}{n}\sum^{n}_{i=1}h(X_i)-a|\geq\varepsilon\}=0 \;\; \text{or} \;\; \frac{1}{n}\sum_{i=1}^{n}h(X_i)\xrightarrow{P}a\;\;,\;\;n\to+\infty
+\]</div>
+<p>其中 <span class="arithmatex">\(a=E(|h(X_1)|)\)</span>，即随机变量 <span class="arithmatex">\(\{ h(X_i) , i \geq 1 \}\)</span> 也服从大数定律。</p>
 <h2 id="中心极限定理">中心极限定理<a class="headerlink" href="#中心极限定理" title="Permanent link">¶</a></h2>
 <ul>
-<li>讨论什么条件下，独立随机变量和的分布函数<span class="arithmatex">\(Y=\sum X_i\)</span>的分布函数会收敛于正态分布。</li>
+<li>中心极限定理讨论什么条件下，独立随机变量的和的分布函数 <span class="arithmatex">\(Y=\sum X_i\)</span> 会收敛于正态分布。</li>
 </ul>
 <h3 id="独立同分布时">独立同分布时<a class="headerlink" href="#独立同分布时" title="Permanent link">¶</a></h3>
-<p><strong>林德伯格-莱维中心极限定理</strong><br/>设<span class="arithmatex">\(\{X_i,i\geq 1\}\)</span>为独立同分布的随机变量序列，且<span class="arithmatex">\(E(X_i)=\mu\;\;,\;\;Var(X_i)=\sigma^2\;\;(\sigma&gt;0)\)</span>，则<span class="arithmatex">\(\forall x\in \mathbf{R}\)</span>，有：<br/></p>
+<p><strong>林德伯格-莱维中心极限定理</strong></p>
+<p>设 <span class="arithmatex">\(\{X_i,i\geq 1\}\)</span> 为独立同分布的随机变量序列，且 <span class="arithmatex">\(E(X_i)=\mu\;\;,\;\;Var(X_i)=\sigma^2\;\;(\sigma&gt;0)\)</span>，则 <span class="arithmatex">\(\forall x\in \mathbf{R}\)</span>，有：</p>
 <div class="arithmatex">\[
 \begin{aligned}
 \lim_{n\to+\infty}P\left\{
@@ -1269,7 +1333,7 @@ where\;\;\;a=E(|h(X_1)|)\)</span></p>
 &amp;=\Phi(x)
 \end{aligned}
 \]</div>
-<p>换句话来说，<span class="arithmatex">\(E(X_i)=\mu\;\;,\;\;Var(X_i)=\sigma^2\;\;(\sigma&gt;0)\)</span>的独立同分布的随机变量序列的部分和<span class="arithmatex">\(\sum_{i=1}^{n}X_i\)</span>的标准化量</p>
+<p>换句话来说，<span class="arithmatex">\(E(X_i)=\mu\;\;,\;\;Var(X_i)=\sigma^2\;\;(\sigma&gt;0)\)</span> 的独立同分布的随机变量序列的部分和 <span class="arithmatex">\(\sum_{i=1}^{n}X_i\)</span> 的标准化量近似于一个正态变量：</p>
 <div class="arithmatex">\[
 \frac{
 \begin{aligned}
@@ -1280,7 +1344,7 @@ where\;\;\;a=E(|h(X_1)|)\)</span></p>
 \end{aligned}}
 \overset{\text{approximately}}{\sim} N(0,1)\;\;,\;\;\text{where }n\text{ is big enough}
 \]</div>
-<p>，当然也可以写成：</p>
+<p>等价地，也可以写成如下形式：</p>
 <div class="arithmatex">\[
 \frac{
 \begin{aligned}
@@ -1292,27 +1356,35 @@ where\;\;\;a=E(|h(X_1)|)\)</span></p>
 \overset{\text{approximately}}{\sim} N(0,1)\;\;,\;\;\text{where }n\text{ is big enough}
 \]</div>
 <h3 id="二项分布的正态近似">二项分布的正态近似<a class="headerlink" href="#二项分布的正态近似" title="Permanent link">¶</a></h3>
-<p>林德伯格-莱维中心极限定理有如下<strong>推论</strong>：<br/><strong>棣莫弗-拉普拉斯中心极限定理</strong><br/>设<span class="arithmatex">\(n_A\)</span>表示<span class="arithmatex">\(n\)</span>重贝努力实验中事件<span class="arithmatex">\(A\)</span>发生的次数，并记<span class="arithmatex">\(P(A)=p\)</span>，则</p>
+<p><strong>棣莫弗-拉普拉斯中心极限定理</strong>是林德伯格-莱维中心极限定理的<strong>推论</strong>：</p>
+<p>设 <span class="arithmatex">\(n_A\)</span> 表示 <span class="arithmatex">\(n\)</span> 重伯努利试验中事件 <span class="arithmatex">\(A\)</span> 发生的次数，并记 <span class="arithmatex">\(P(A)=p\)</span>，则对于 <span class="arithmatex">\(\forall x\in\mathbf{R}\)</span>，均有：</p>
 <div class="arithmatex">\[
-\forall x\in\mathbf{R}$，有：&lt;br /&gt;$\lim_{n\to+\infty}P\{\frac{n_A-np}{\sqrt{np(1-p)}}\leq x\}=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x}e^{-\frac{t^2}{2}}\mathrm{d}t=\Phi(x)
+\lim_{n\to+\infty}P\{\frac{n_A-np}{\sqrt{np(1-p)}}\leq x\}=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x}e^{-\frac{t^2}{2}}\mathrm{d}t=\Phi(x)
 \]</div>
+<p>也就是说，当 <span class="arithmatex">\(n\)</span> 很大时，二项分布可以用正态分布去近似（期望与方差不变）：</p>
+<div class="arithmatex">\[
+n_A \overset{\text{approximately}}{\sim} N(np,np(1-p)) \;\;,\;\;\text{where }n\text{ is big enough}
+\]</div>
+<p>其中 <span class="arithmatex">\(n_A = \sum_{i=1}^{n} X_i\)</span>。</p>
 <h3 id="独立不同分布时不要求">独立不同分布时(不要求)<a class="headerlink" href="#独立不同分布时不要求" title="Permanent link">¶</a></h3>
-<p><strong>李雅普诺夫中心极限定理</strong><br/>设<span class="arithmatex">\(\{X_i,i\geq 1\}\)</span>为相互独立的随机变量序列，且<span class="arithmatex">\(E(X_i)=\mu_i\;\;,\;\;Var(X_i)=\sigma_i^2\;\;(\sigma&gt;0)\)</span>，若<span class="arithmatex">\(\exists\varepsilon&gt;0\)</span>使得：<br/><span class="arithmatex">\(\lim_{+\infty}\frac{1}{B_n^{2+\varepsilon}}\sum_{i=1}^{n}E|X_i-\mu_i|^{2+\varepsilon}=0\;\;\;where\;\;\;B_n^{2}=\sum_{i=1}^{n}\sigma_i^2\)</span>
-则：<br/>
-<script type="math/tex; mode=display">
+<p><strong>李雅普诺夫中心极限定理</strong></p>
+<p>设 <span class="arithmatex">\(\{X_i,i\geq 1\}\)</span> 为相互独立的随机变量序列，且 <span class="arithmatex">\(E(X_i)=\mu_i\;\;,\;\;Var(X_i)=\sigma_i^2\;\;(\sigma&gt;0)\)</span>，若 <span class="arithmatex">\(\exists\varepsilon&gt;0\)</span> 使得：</p>
+<div class="arithmatex">\[
+\lim_{n\to+\infty}\frac{1}{B_n^{2+\varepsilon}}\sum_{i=1}^{n}E|X_i-\mu_i|^{2+\varepsilon}=0\;\;\;\text{where}\;\;\;B_n^{2}=\sum_{i=1}^{n}\sigma_i^2
+\]</div>
+<p>则有：</p>
+<div class="arithmatex">\[
 \lim_{n\to+\infty}P\{
 \frac{1}{B_n}   \sum_{i=1}^n(X_i-\mu_i)\leq x
 \}
-=
-\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x}e^{-\frac{t^2}{2}}\mathrm{d}t=\Phi(x)
-</script>
-</p>
+= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x}e^{-\frac{t^2}{2}}\mathrm{d}t=\Phi(x)
+\]</div>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 13:05:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月21日 23:08:06</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年2月28日 13:05:10</span>
