@@ -1029,8 +1029,47 @@
     内存数据结构
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件操作_1">
+    文件操作
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#目录的实现">
+    目录的实现
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#块分配">
+    块分配
+  </a>
+<nav aria-label="块分配" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#连续">
+    连续
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#链接">
+    链接
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#索引">
+    索引
+  </a>
+</li>
 </ul>
 </nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#虚拟文件系统">
+    虚拟文件系统
+  </a>
 </li>
 </ul>
 </nav>
@@ -1332,8 +1371,47 @@
     内存数据结构
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件操作_1">
+    文件操作
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#目录的实现">
+    目录的实现
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#块分配">
+    块分配
+  </a>
+<nav aria-label="块分配" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#连续">
+    连续
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#链接">
+    链接
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#索引">
+    索引
+  </a>
+</li>
 </ul>
 </nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#虚拟文件系统">
+    虚拟文件系统
+  </a>
 </li>
 </ul>
 </nav>
@@ -1344,7 +1422,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="unit-6-文件系统--file-system-未完成">Unit 6: 文件系统 | File System [未完成]<a class="headerlink" href="#unit-6-文件系统--file-system-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4045 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 18 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 20 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 5024 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 18 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 25 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1425,7 +1503,8 @@ drwxr-xr-x<span class="w">  </span><span class="m">19</span><span class="w"> </s
 <p>另一种方法是<strong>直接访问(direct access)</strong>或<strong>相对访问(relative access)</strong>/<strong>随机访问(random access)</strong>，即支持以几乎相同的时间访问任意位置。</p>
 <p>在直接访问的方法之上，还有可能提供索引，即先通过索引表得知所需访问的内容在哪里，然后去访问。在此之上还有一种<strong>索引顺序访问(indexed sequential-access)</strong>。</p>
 <h2 id="目录结构">目录结构<a class="headerlink" href="#目录结构" title="Permanent link">¶</a></h2>
-<p>目录本质上是一个特殊的文件，而实际上，目录下文件的元信息是被存储在目录中的。目录的结构表示的是目录下文件的组织方式，接下来我们介绍若干目录结构的设计。</p>
+<p>目录本质上是一个特殊的文件（Linux 中），而实际上，目录下文件的元信息是被存储在目录中的。目录的结构表示的是目录下文件的组织方式，接下来我们介绍若干目录结构的设计。</p>
+<p>而在 Windows 中，目录和文件有不同的系统调用来控制。</p>
 <h3 id="单级目录">单级目录<a class="headerlink" href="#单级目录" title="Permanent link">¶</a></h3>
 <p>最原始的实现方式，不存在分组策略，所有的文件都被铺在根目录下。</p>
 <figure>
@@ -1639,6 +1718,83 @@ Volume mounted at /users.</p>
 </ul>
 </li>
 </ul>
+<h3 id="文件操作_1">文件操作<a class="headerlink" href="#文件操作_1" title="Permanent link">¶</a></h3>
+<p>接下来，我们举例说明具体的操作是如何在这些设计下运作的。</p>
+<div class="admonition section">
+<p class="admonition-title">file creation</p>
+<p>Application program 需要创建文件时，调用 logical file system，并给出需要创建的文件名。它了解 directory 的组织形式，会做相应处理。</p>
+<p>创建文件时，一个对应的 <a href="#FCB" target="_blank">FCB</a> 会被创建；与此同时，对应的 parent directory 也会被载入内存，并被更新。</p>
+</div>
+<div class="admonition section">
+<p class="admonition-title">file open &amp; close</p>
+<p>Application program 需要先打开文件才能对文件进行进一步的 I/O 操作，这一步通过系统调用 <code>open()</code> 来实现。</p>
+<p>打开文件时，<code>open()</code> 会将文件名传输给 logical file system。同时，<code>open()</code> 会在 system-wide open-file table 里查找这个文件，如果找到了，说明这个文件正在被其它进程使用，就可以剩下一些额外的开销直接进行下一步；反之，如果没有找到，就需要在 directory structure 中查找这个文件，当这个文件被找到后，其 FCB 会被复制进 system-wide open-file table 表示该文件被打开。</p>
+<p>随后，在 per-process open-file table 中创建一个 entry，指向 system-wide open-file table 中的 entry，表示当前进程打开了一个文件。同时，这个指向的 entry 的 reference counter 会被加 1。</p>
+<p>我们之后对文件的操作都依赖这个指向 system-wide open-file table 中 entry 的指针，它在 UNIX 中被称为 file descriptor，在 Windows 中被称为 file handle。</p>
+<hr/>
+<p>对应的，在文件 close 的过程中，会先删除 per-process open-file table 中的 entry，然后将 system-wide open-file table 中的 entry 的 reference counter 减 1，如果此时 reference counter 为 0，说明没有其它进程打开这个文件了，那么这个 entry 会被删除，此时需要更新 directory structure 中的信息。</p>
+</div>
+<h3 id="目录的实现">目录的实现<a class="headerlink" href="#目录的实现" title="Permanent link">¶</a></h3>
+<p>本节介绍两种目录的实现方法。</p>
+<details class="section" open="open">
+<summary>linear list based</summary>
+<p>线性检索法通过线性表（数组/链表等）来存储目录信息，每个目录项包含 file name 和指向 FCB/Inode 的指针，查找时需要遍历查找。</p>
+<div class="admonition advice">
+<p class="admonition-title">advantages</p>
+<ul>
+<li>实现简单；</li>
+</ul>
+</div>
+<div class="admonition not-advice">
+<p class="admonition-title">disadvantages</p>
+<ul>
+<li>随着文件数量的增加，检索效率会降低；</li>
+</ul>
+</div>
+<div class="admonition extra">
+<p class="admonition-title">improvement</p>
+<ul>
+<li>使用有序数据结构（平衡树、B+ 树等）可以改善缺点；</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">inode</p>
+<p><a href="https://stackoverflow.com/questions/56707783/inode-structure-record-rec-len" target="_blank">Ext2 FS 中 Inode structure 关于 record rec_len 的相关问题 | StackOverflow</a></p>
+</div>
+</details>
+<details class="section" open="open">
+<summary>hash table based</summary>
+<p>哈希表法通过哈希表来存储目录信息，每个目录项包含 file name 和指向 FCB/Inode 的指针，可以直接通过 hash function 进行 random access。</p>
+<div class="admonition advice">
+<p class="admonition-title">advantages</p>
+<ul>
+<li>检索效率更高；</li>
+</ul>
+</div>
+<div class="admonition not-advice">
+<p class="admonition-title">disadvantages</p>
+<ul>
+<li>可能出现冲突问题，但可以通过算法解决；</li>
+<li>哈希表对容纳内容的大小有假设；</li>
+</ul>
+</div>
+</details>
+<h3 id="块分配">块分配<a class="headerlink" href="#块分配" title="Permanent link">¶</a></h3>
+<p>我们在讲内存的时候，讨论过<a href="../Unit3-Part1/#连续分配及其问题" target="_blank">进程的内存分配策略</a>。这里讨论的内容是类似的，我们考虑文件内存要如何被分配。通常来说主要有三种：连续(contiguous)、链接(linked)和索引(indexed)，它们之间各有优劣。</p>
+<h4 id="连续">连续<a class="headerlink" href="#连续" title="Permanent link">¶</a></h4>
+<h4 id="链接">链接<a class="headerlink" href="#链接" title="Permanent link">¶</a></h4>
+<h4 id="索引">索引<a class="headerlink" href="#索引" title="Permanent link">¶</a></h4>
+<h2 id="虚拟文件系统">虚拟文件系统<a class="headerlink" href="#虚拟文件系统" title="Permanent link">¶</a></h2>
+<p>我们在前面给出了大量不同的文件系统，但是操作系统应当能广泛支持各种文件系统（不同的 disk 使用的 FS 可能不同）。为了实现这一点，我们在文件系统上再做一次抽象，即<strong>虚拟文件系统(virtual FS, VFS)</strong>。</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/59.png"><img alt="" src="../img/59.png" width="80%"/></a> </center>
+Schematic view of a virtual file system.</p>
+</figure>
+<p>VFS 有两个主要功能：</p>
+<ol>
+<li>封装并透明化具体文件操作，同一接口可能有不同的具体实现（类似于“多态”），通过这种方式来支持不同的文件系统；</li>
+<li>反过来为文件系统提供一个唯一标识文件的方式，VFS 基于一个名为 vnode 的 file-representation structure 的东西来表示文件，其中包含了在整个文件网络中标识文件的数字指示符；</li>
+</ol>
 <div class="footnote">
 <hr/>
 <ol>
@@ -1661,7 +1817,7 @@ Volume mounted at /users.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月26日 11:52:35</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月26日 14:00:39</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月21日 13:11:17</span>
