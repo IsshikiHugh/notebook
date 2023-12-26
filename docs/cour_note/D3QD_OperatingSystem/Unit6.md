@@ -259,12 +259,66 @@ graph LR;
     - 同时，file-organization module 也囊括了 free-space manager；
         - Free-space manager 维护那些没有被分配的 blocks，并在 file-organization module 请求的时候提供这些 blocks； 
 4. Logical file system
-    - 以[文件控制块](#fcb){target="_blank"}的形式存储文件系统的元数据，即一些结构信息，不包括实际的文件内容信息；
+    - 以[文件控制块](#FCB){target="_blank"}的形式存储文件系统的元数据，即一些结构信息，不包括实际的文件内容信息；
     - 具体来说，logical file system 会维护 directory 的信息，为之后的 file-organization module 提供一些信息，例如符号文件名；
 
-### FCB
+## 文件系统的实现
 
-**文件控制块(file control block, FCB)**
+为了实现文件系统，我们需要在硬盘和内存中维护一些数据结构，下面分别介绍 [on-disk structures](#硬盘数据结构){target="_blank"} 和 [in-memory structures](#内存数据结构){target="_blank"}。
+
+### 硬盘数据结构
+
+On-Disk 的数据结构维护 ⓵ 如何启动硬盘中的 OS，⓶ 硬盘中包括的 block 总数，⓷ 空闲 block 的数量和位置，⓸ 目录结构以及文件个体等，下面介绍几个主要的数据结构。
+
+- Boot control block
+    - 操作系统被保存在引导控制块(boot control block)中，一般 boot control block 是操作系统所在的 volume 的第一个 block。
+    - 在 UFS 中，boot control block 也被称为 boot block；在 NTFS 中，也被称为 partition boot sector。
+    - 该数据结构是 per volume 的。
+- Volume control block
+    - 卷控制块(volume control block)维护了 volume 的具体信息，例如 volume 的 blocks 数量、空闲 block 的数量与指针、空闲 PCB 的数量与指针等。
+    - 在 UFS volume control block 也被称为 superblock；在 NTFS 中，也被称为 master file table。
+    - 该数据结构是 per volume 的。
+- Directory structure
+    - [目录结构(directory structure)](#目录结构){target="_blank"}已经在前面提到过，它用来组织 files，同时也维护了 files 的元信息。
+    - 在 UFS 中，它维护了文件以及对应的 inode numbers；在 NTFS 中，它在 master file table 中被维护。
+    - 该数据结构是 per FS 的。
+- <a id="FCB" /> File control block 
+    - 文件控制块(file control block, FCB)存储了大量文件的具体信息。PCB 一般有一个唯一的标识符与目录项关联。
+    - 例如，它可能被包含如下信息：
+        - 文件权限；
+        - 文件操作日期；
+        - ACL；
+        - 文件大小；
+        - 文件数据所在的 block 或这个 block 的指针；
+        - ...
+    - 在 UFS 中，PCB 指的就是一个 inode；在 NTFS 中，PCB 通常在 master file table 中被维护，其维护形式类似于关系形数据库。
+
+### 内存数据结构
+
+In-Memory 的数据结构在 main memory 中维护，用于帮助文件系统管理和一些缓存操作。
+
+- Mount table
+    - 已被挂载的 volume 会被记录在 mount table 中。
+- Directory cache
+    - 为了提高文件系统的性能，一些最近被访问的目录信息会被缓存到内存中，这些缓存的目录信息被称为 directory cache。
+- System-wide open-file table
+    - 记录这个系统中所有进程打开的文件。
+- Per-process open-file table
+    - 记录每个进程打开的文件，其 entry 指向 system-wide open-file table 中的 entry。
+- Buffers
+    - 在内存中，用于缓冲 disk block 的内容。
+    - 当一个 disk block 被读时，它的内容会被放到 buffer 里，方便下次使用时快速读取。
+    - 如果这些内容被修改，只需要修改 buffer 中的信息，而这些修改内容会在合适的时候被写回 disk block。
+
+
+
+
+
+
+
+
+
+
 
 
 [^1]: [ISO/IEC 10918-1: 1993(E) p.36](https://www.digicamsoft.com/itu/itu-t81-36.html){target="_blank"}，其中 SOI (Start Of Image) 的值为 `0xFFD8`。
