@@ -98,7 +98,9 @@ UNIX 系统会在文件开头，使用一串 magic number 来标识文件的类�
 
 ## 目录结构
 
-目录本质上是一个特殊的文件，而实际上，目录下文件的元信息是被存储在目录中的。目录的结构表示的是目录下文件的组织方式，接下来我们介绍若干目录结构的设计。
+目录本质上是一个特殊的文件（Linux 中），而实际上，目录下文件的元信息是被存储在目录中的。目录的结构表示的是目录下文件的组织方式，接下来我们介绍若干目录结构的设计。
+
+而在 Windows 中，目录和文件有不同的系统调用来控制。
 
 ### 单级目录
 
@@ -310,14 +312,97 @@ In-Memory 的数据结构在 main memory 中维护，用于帮助文件系统管
     - 当一个 disk block 被读时，它的内容会被放到 buffer 里，方便下次使用时快速读取。
     - 如果这些内容被修改，只需要修改 buffer 中的信息，而这些修改内容会在合适的时候被写回 disk block。
 
+### 文件操作
+
+接下来，我们举例说明具体的操作是如何在这些设计下运作的。
+
+!!! section "file creation"
+
+    Application program 需要创建文件时，调用 logical file system，并给出需要创建的文件名。它了解 directory 的组织形式，会做相应处理。
+
+    创建文件时，一个对应的 [FCB](#FCB){target="_blank"} 会被创建；与此同时，对应的 parent directory 也会被载入内存，并被更新。
+
+!!! section "file open & close"
+
+    Application program 需要先打开文件才能对文件进行进一步的 I/O 操作，这一步通过系统调用 `open()` 来实现。
+
+    打开文件时，`open()` 会将文件名传输给 logical file system。同时，`open()` 会在 system-wide open-file table 里查找这个文件，如果找到了，说明这个文件正在被其它进程使用，就可以剩下一些额外的开销直接进行下一步；反之，如果没有找到，就需要在 directory structure 中查找这个文件，当这个文件被找到后，其 FCB 会被复制进 system-wide open-file table 表示该文件被打开。
+
+    随后，在 per-process open-file table 中创建一个 entry，指向 system-wide open-file table 中的 entry，表示当前进程打开了一个文件。同时，这个指向的 entry 的 reference counter 会被加 1。
+
+    我们之后对文件的操作都依赖这个指向 system-wide open-file table 中 entry 的指针，它在 UNIX 中被称为 file descriptor，在 Windows 中被称为 file handle。
+
+    ---
+
+    对应的，在文件 close 的过程中，会先删除 per-process open-file table 中的 entry，然后将 system-wide open-file table 中的 entry 的 reference counter 减 1，如果此时 reference counter 为 0，说明没有其它进程打开这个文件了，那么这个 entry 会被删除，此时需要更新 directory structure 中的信息。
+
+### 目录的实现
+
+本节介绍两种目录的实现方法。
+
+???+ section "linear list based"
+
+    线性检索法通过线性表（数组/链表等）来存储目录信息，每个目录项包含 file name 和指向 FCB/Inode 的指针，查找时需要遍历查找。
+
+    !!! advice "advantages"
+
+        - 实现简单；
+    
+    !!! not-advice "disadvantages"
+
+        - 随着文件数量的增加，检索效率会降低；
+
+    !!! extra "improvement"
+
+        - 使用有序数据结构（平衡树、B+ 树等）可以改善缺点；
+  
+    !!! quote "inode"
+
+        [Ext2 FS 中 Inode structure 关于 record rec_len 的相关问题 | StackOverflow](https://stackoverflow.com/questions/56707783/inode-structure-record-rec-len){target="_blank"}
+
+???+ section "hash table based"
+
+    哈希表法通过哈希表来存储目录信息，每个目录项包含 file name 和指向 FCB/Inode 的指针，可以直接通过 hash function 进行 random access。
+
+    !!! advice "advantages"
+
+        - 检索效率更高；
+
+    !!! not-advice "disadvantages"
+
+        - 可能出现冲突问题，但可以通过算法解决；
+        - 哈希表对容纳内容的大小有假设；
+
+### 块分配
+
+我们在讲内存的时候，讨论过[进程的内存分配策略](./Unit3-Part1.md#连续分配及其问题){target="_blank"}。这里讨论的内容是类似的，我们考虑文件内存要如何被分配。通常来说主要有三种：连续(contiguous)、链接(linked)和索引(indexed)，它们之间各有优劣。
+
+#### 连续
+
+
+
+#### 链接
 
 
 
 
+#### 索引
 
 
 
+## 虚拟文件系统
 
+我们在前面给出了大量不同的文件系统，但是操作系统应当能广泛支持各种文件系统（不同的 disk 使用的 FS 可能不同）。为了实现这一点，我们在文件系统上再做一次抽象，即**虚拟文件系统(virtual FS, VFS)**。
+
+<figure markdown>
+<center> ![](img/59.png){ width=80% } </center>
+Schematic view of a virtual file system.
+</figure>
+
+VFS 有两个主要功能：
+
+1. 封装并透明化具体文件操作，同一接口可能有不同的具体实现（类似于“多态”），通过这种方式来支持不同的文件系统；
+2. 反过来为文件系统提供一个唯一标识文件的方式，VFS 基于一个名为 vnode 的 file-representation structure 的东西来表示文件，其中包含了在整个文件网络中标识文件的数字指示符；
 
 
 
