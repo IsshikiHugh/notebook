@@ -1031,7 +1031,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Unit6/">
-        Unit 6: 文件系统 | File System [未完成]
+        Unit 6: 文件系统 | File System
       </a>
 </li>
 </ul>
@@ -1439,7 +1439,7 @@ Dynamic relocation using a relocation register.</p>
 <p>请读者思考，物理地址和虚拟地址的长度需要一样吗？</p>
 </div>
 <p><a id="virtual-address-space"></a>
-一个进程的<strong>虚拟地址空间(virtual address space)</strong>，指的是在虚拟内存的语境下，进程的内存结构。通常进程在虚拟地址空间中的<a href="../Unit1/#进程的形式" target="_blank">大致结构</a>和地址分布都是相同的，例如可能都是从 0 地址开始放 text 段，栈底一般都在末尾等——这就意味着进程的虚拟地址空间应当是<strong>互不相关</strong>的，由将若干互相隔离的虚拟地址空间映射到各自的物理地址这个任务，则由 <a href="#MMU" target="_blank">MMU</a> 完成。（在我们之后介绍了<a href="#页表" target="_blank">页表</a>后，这意味着每个进程都应当有自己的页表。）</p>
+一个进程的<strong>虚拟地址空间(virtual address space)</strong>，指的是在虚拟内存的语境下，进程的内存结构。通常进程在虚拟地址空间中的<a href="../Unit1/#进程的形式" target="_blank">大致结构</a>和地址分布都是相同的，例如可能都是从 0 地址开始放 text 段，栈底一般都在末尾等——这就意味着进程的虚拟地址空间应当是<strong>互不相关</strong>的，由将若干互相隔离的虚拟地址空间映射到各自的物理地址这个任务，则由 <a href="#MMU" target="_blank">MMU</a> 完成。（在我们之后介绍了<a href="#帧--页" target="_blank">页表</a>后，这意味着每个进程都应当有自己的页表。）</p>
 <h2 id="分页技术">分页技术<a class="headerlink" href="#分页技术" title="Permanent link">¶</a></h2>
 <p>分页技术想要解决的问题是减轻进程“必须要使用连续内存”这一限制。我们在<a href="#why-continuous" target="_blank">前面的思考题</a>中已经提到，需要使用连续内存是需要一种逻辑上的连续，因此，在<a href="#物理地址和虚拟地址" target="_blank">物理地址和虚拟地址</a>的语境下，我们只需要保证虚拟地址是连续的即可。当然，这并不意味着物理地址的连续就是毫无意义的了，物理地址的连续是实际上提供高效内存访问的基础。</p>
 <blockquote>
@@ -1726,7 +1726,7 @@ Diagram showing virtual memory that is larger than physical memory.
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月11日 21:14:02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月26日 16:04:34</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月22日 11:09:32</span>

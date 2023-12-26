@@ -940,7 +940,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Unit6/">
-        Unit 6: 文件系统 | File System [未完成]
+        Unit 6: 文件系统 | File System
       </a>
 </li>
 </ul>
@@ -1160,7 +1160,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="unit-4-输入输出--io">Unit 4: 输入/输出 | I/O<a class="headerlink" href="#unit-4-输入输出--io" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1284 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 6 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1276 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 6 分钟</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">说明</p>
@@ -1207,10 +1207,6 @@ Interrupt-driven I/O cycle.
 <p>容易想象，DMA 有一定限制，通常 DMA 只负责做大量的、以 blocks 为单位的数据传输，而不是单个字节的传输。CPU 需要向 DMA controller 发出对应的命令，之后的事情就交给 DMA 来完成。命令通常包括操作类型、起始地址、数据长度等，传输方式一般是把要执行的指令的地址存到 DMA controller 的寄存器中，以这种方式委托 DMA controller 进行作业，有点像回调函数。</p>
 <p>当操作完成后，DMA controller 会向 CPU 发送中断信号，表示任务完成。</p>
 </div>
-<figure>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/50.png"><img alt="" src="../img/50.png" width="80%"/></a> </center>
-The life cycle of an I/O request.</p>
-</figure>
 <h2 id="应用程序-io-接口">应用程序 I/O 接口<a class="headerlink" href="#应用程序-io-接口" title="Permanent link">¶</a></h2>
 <p>随着技术发展，操作系统对标准化、通用化的 I/O 方式的需求与市场多元化、差异化的 I/O 设备之间的矛盾日益突出。因此，一套通用的、标准化的 I/O 接口是十分必要的。于是，操作系统能够使用系统调用封装 I/O 操作，将不同操作的差异性透明化，在 UNIX 中，这个系统调用是 <code>ioctl</code><sup><a href="https://en.wikipedia.org/wiki/Ioctl" target="_blank">Wiki</a></sup>。</p>
 <figure>
@@ -1270,7 +1266,7 @@ A kernel I/O structure.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月21日 13:32:31</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月26日 16:04:34</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月18日 17:27:18</span>

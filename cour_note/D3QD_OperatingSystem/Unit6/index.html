@@ -11,7 +11,7 @@
 <link href="../../../pape_read/" rel="next"/>
 <link href="../../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
-<title>Unit 6: 文件系统 | File System [未完成] - Isshiki修's Notebook</title>
+<title>Unit 6: 文件系统 | File System - Isshiki修's Notebook</title>
 <link href="../../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6 31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0l112.3-112.3zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5 50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0 27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>');}</style>
@@ -43,7 +43,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#unit-6-文件系统--file-system-未完成">
+<a class="md-skip" href="#unit-6-文件系统--file-system">
           跳转至
         </a>
 </div>
@@ -67,7 +67,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Unit 6: 文件系统 | File System [未完成]
+              Unit 6: 文件系统 | File System
             
           </span>
 </div>
@@ -909,11 +909,11 @@
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
-          Unit 6: 文件系统 | File System [未完成]
+          Unit 6: 文件系统 | File System
           <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
-        Unit 6: 文件系统 | File System [未完成]
+        Unit 6: 文件系统 | File System
       </a>
 <nav aria-label="目录" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
@@ -1063,13 +1063,42 @@
 </ul>
 </nav>
 </li>
-</ul>
-</nav>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#空闲空间管理">
+    空闲空间管理
+  </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#虚拟文件系统">
     虚拟文件系统
   </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件系统的性能与安全">
+    文件系统的性能与安全
+  </a>
+<nav aria-label="文件系统的性能与安全" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#页缓冲">
+    页缓冲
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#恢复">
+    恢复
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#日志系统">
+    日志系统
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1405,8 +1434,10 @@
 </ul>
 </nav>
 </li>
-</ul>
-</nav>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#空闲空间管理">
+    空闲空间管理
+  </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#虚拟文件系统">
@@ -1415,14 +1446,41 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#文件系统的性能与安全">
+    文件系统的性能与安全
+  </a>
+<nav aria-label="文件系统的性能与安全" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#页缓冲">
+    页缓冲
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#恢复">
+    恢复
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#日志系统">
+    日志系统
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="unit-6-文件系统--file-system-未完成">Unit 6: 文件系统 | File System [未完成]<a class="headerlink" href="#unit-6-文件系统--file-system-未完成" title="Permanent link">¶</a></h1>
+<h1 id="unit-6-文件系统--file-system">Unit 6: 文件系统 | File System<a class="headerlink" href="#unit-6-文件系统--file-system" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 5024 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 18 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 25 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 7151 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 47 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 36 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1559,20 +1617,20 @@ Tree-structured directory structure.</p>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/55.png"><img alt="" src="../img/55.png" width="80%"/></a> </center>
 Acyclic-graph directory structure.</p>
 </figure>
-<div class="admonition section">
-<p class="admonition-title">soft link</p>
+<details class="section" open="open">
+<summary>soft link</summary>
 <p>软链接又称符号链接(symbolic link)，是一个指向文件的指针，类似于 Windows 下的快捷方式。</p>
 <p>删除被软链接指向的那个文件并不会连带地处理软链接，但是原先的这个软链接已经失效了。</p>
 <p>从本质上来看，软链接是特殊的文件。</p>
-</div>
+</details>
 <p><a id="hard-link"></a></p>
-<div class="admonition section">
-<p class="admonition-title">hard link</p>
+<details class="section" open="open">
+<summary>hard link</summary>
 <p>硬链接是复制链接文件目录项的所有元信息，存到目标目录中，此时文件平等地属于两个目录。</p>
 <p>由于此时文件等价地属于复数个目录，所以在文件元信息被更新时，需要保证在若干目录下该文件的信息是一致的。</p>
 <p>删除被硬链接的文件并不会直接导致文件被删除，只有当用来记录「被硬链接数量」的 reference counter 被减至 0，即不再有其他硬链接指向该文件时，文件才会被删除；其他情况下都只需要在当前目录中删除该表项，并将 reference counter 减 1，更新相关元信息即可。</p>
 <p>从本质上来看，硬链接是目录表项。</p>
-</div>
+</details>
 <p>在无环图目录(acyclic-graph directories)中，为了保证无环，我们只允许创建关于文件这种叶子节点的硬链接<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。不过这个说法存在一个例外，我们都知道通常在任意路径都会有 <code>.</code> 和 <code>..</code> 这两个特殊目录，它们通过硬链接分别指向当前目录和父目录（根目录的父目录也是根目录）。</p>
 <p>此外，由于硬链接本质上是表项，而表项与文件系统相关，所以硬链接只能在同一个文件系统下创建，无法跨越 file-system boundary。</p>
 <h3 id="通用图目录">通用图目录<a class="headerlink" href="#通用图目录" title="Permanent link">¶</a></h3>
@@ -1720,20 +1778,20 @@ Volume mounted at /users.</p>
 </ul>
 <h3 id="文件操作_1">文件操作<a class="headerlink" href="#文件操作_1" title="Permanent link">¶</a></h3>
 <p>接下来，我们举例说明具体的操作是如何在这些设计下运作的。</p>
-<div class="admonition section">
-<p class="admonition-title">file creation</p>
+<details class="section" open="open">
+<summary>file creation</summary>
 <p>Application program 需要创建文件时，调用 logical file system，并给出需要创建的文件名。它了解 directory 的组织形式，会做相应处理。</p>
 <p>创建文件时，一个对应的 <a href="#FCB" target="_blank">FCB</a> 会被创建；与此同时，对应的 parent directory 也会被载入内存，并被更新。</p>
-</div>
-<div class="admonition section">
-<p class="admonition-title">file open &amp; close</p>
+</details>
+<details class="section" open="open">
+<summary>file open &amp; close</summary>
 <p>Application program 需要先打开文件才能对文件进行进一步的 I/O 操作，这一步通过系统调用 <code>open()</code> 来实现。</p>
 <p>打开文件时，<code>open()</code> 会将文件名传输给 logical file system。同时，<code>open()</code> 会在 system-wide open-file table 里查找这个文件，如果找到了，说明这个文件正在被其它进程使用，就可以剩下一些额外的开销直接进行下一步；反之，如果没有找到，就需要在 directory structure 中查找这个文件，当这个文件被找到后，其 FCB 会被复制进 system-wide open-file table 表示该文件被打开。</p>
 <p>随后，在 per-process open-file table 中创建一个 entry，指向 system-wide open-file table 中的 entry，表示当前进程打开了一个文件。同时，这个指向的 entry 的 reference counter 会被加 1。</p>
 <p>我们之后对文件的操作都依赖这个指向 system-wide open-file table 中 entry 的指针，它在 UNIX 中被称为 file descriptor，在 Windows 中被称为 file handle。</p>
 <hr/>
 <p>对应的，在文件 close 的过程中，会先删除 per-process open-file table 中的 entry，然后将 system-wide open-file table 中的 entry 的 reference counter 减 1，如果此时 reference counter 为 0，说明没有其它进程打开这个文件了，那么这个 entry 会被删除，此时需要更新 directory structure 中的信息。</p>
-</div>
+</details>
 <h3 id="目录的实现">目录的实现<a class="headerlink" href="#目录的实现" title="Permanent link">¶</a></h3>
 <p>本节介绍两种目录的实现方法。</p>
 <details class="section" open="open">
@@ -1782,9 +1840,199 @@ Volume mounted at /users.</p>
 <h3 id="块分配">块分配<a class="headerlink" href="#块分配" title="Permanent link">¶</a></h3>
 <p>我们在讲内存的时候，讨论过<a href="../Unit3-Part1/#连续分配及其问题" target="_blank">进程的内存分配策略</a>。这里讨论的内容是类似的，我们考虑文件内存要如何被分配。通常来说主要有三种：连续(contiguous)、链接(linked)和索引(indexed)，它们之间各有优劣。</p>
 <h4 id="连续">连续<a class="headerlink" href="#连续" title="Permanent link">¶</a></h4>
+<p>连续分配指的是每个文件占用一段连续的 block。</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/60.png"><img alt="" src="../img/60.png" width="80%"/></a> </center>
+Contiguous allocation of disk space.</p>
+</figure>
+<p>假设块大小为 512 B，如果给定存取文件的逻辑地址 LA，则其对应的结构内块号 Q 和块内偏移 R 为：</p>
+<div class="highlight"><pre><span></span><code><span class="n">block_size</span> <span class="o">=</span> <span class="mi">512</span> <span class="c1"># Bytes</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">LA</span> <span class="o">/</span> <span class="n">block_size</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">LA</span> <span class="o">%</span> <span class="n">block_size</span>
+</code></pre></div>
+<div class="admonition advice">
+<p class="admonition-title">advantages</p>
+<ul>
+<li>实现简单，只需要记录文件的 start block 和 length 即可；</li>
+<li>文件访问效率高；</li>
+</ul>
+</div>
+<div class="admonition not-advice">
+<p class="admonition-title">disadvantages</p>
+<ul>
+<li>分配时寻找合适空间比较困难；<ul>
+<li>类似<a href="../Unit3-Part1/#连续分配及其问题" target="_blank">进程的内存分配策略</a>，需要考虑外部碎片等问题；</li>
+</ul>
+</li>
+<li>在文件可能动态变化的情况下会很糟糕（或者说，文件需要多少空间有时是难以预计的，可能会出现实际使用空间比预期大或小的情况）；<ul>
+<li>如果文件变小，可能只是带来外部碎片，但是文件变大就无法解决了；</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>为了解决外部碎片的问题，有一种策略叫 compacts，指的是先暂时将文件系统复制到另外一个设备上，然后完全释放原始设备的资源，再将文件复制回去，从而实现了“压缩”。不过显然，这个操作的开销是巨大的。</p>
+<p>为了解决文件大小变大，无法扩展的问题，有一种机制叫做 extent，可以修正这个问题。当空间不够时，系统会被分配一块新的连续空间，链式地加入到原始空间的后面，这样就可以解决文件大小变大的问题了（类似于一种不定的大粒度的，由 FCB 维护的链接方案）。当然，为了实现这个方法，除了 start blok 和 length，还需要在 FCB 上记录指向 extent 的指针。</p>
 <h4 id="链接">链接<a class="headerlink" href="#链接" title="Permanent link">¶</a></h4>
+<p>每个 block 作为一个链节，维护存储信息以外还需要维护指向下一个 block 的指针。此时，FCB 中只需要记录起始地址即可。</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/61.png"><img alt="" src="../img/61.png" width="80%"/></a> </center>
+Linked allocation of disk space.</p>
+</figure>
+<p>假设块大小为 512 B，每个块的开头消耗 1 B 来存放指针，如果给定存取文件的逻辑地址 LA，则其对应的结构内块号 Q 和块内偏移 R 为：</p>
+<div class="highlight"><pre><span></span><code> ┌───────┬───────────────────────────────┐
+ │pointer│              data             │
+ └───────┴───────────────────────────────┘
+ 0       1                               512
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">valid_block_size</span> <span class="o">=</span> <span class="mi">512</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># Bytes</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">LA</span> <span class="o">/</span> <span class="n">valid_block_size</span>
+<span class="n">R</span> <span class="o">=</span> <span class="p">(</span><span class="n">LA</span> <span class="o">%</span> <span class="n">valid_block_size</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div>
+<div class="admonition advice">
+<p class="admonition-title">advantages</p>
+<ul>
+<li>实现简单，只需要记录文件的 start pointer 即可；</li>
+<li>文件的创建（分配）和增长很容易；</li>
+<li>解决了<a href="#连续" target="_blank">连续分配</a>中的外部碎片问题；</li>
+</ul>
+</div>
+<div class="admonition not-advice">
+<p class="admonition-title">disadvantages</p>
+<ul>
+<li>无法随机访问，文件访问效率低，因为需要从头开始遍历；</li>
+<li>需要额外的空间来存储指针；<ul>
+<li>额外空间于链节数量正相关，所以可以通过使用<strong>簇(cluster)</strong>，即多个连续块为一个链节，来减少指针带来的额外开销；</li>
+</ul>
+</li>
+<li>可靠性存在问题；</li>
+</ul>
+</div>
+<details class="extra" open="open">
+<summary>FAT</summary>
+<p>TODO: 完善这部分。</p>
+<div class="admonition quote">
+<p class="admonition-title">Links</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/File_Allocation_Table" target="_blank">FAT | Wikipedia</a></li>
+</ul>
+</div>
+<p>FAT 即 file-allocation table 是一种链接分配的变种，使用 FAT 的文件系统有 FAT12、FAT16、FAT32、exFAT（64位）。由于简单高效，它被 MS-DOS 使用。</p>
+<ul>
+<li>FAT 的每个目录项为 32 个字节。</li>
+<li>FAT32长文件名的目录项由几个32B表项组成。</li>
+<li>用一个表项存放短文件名和其他属性（包括簇号、文件大小，最后修改时间和最后修改日期、创建时间、创建日期和最后存取日期），短文件名的属性是 <code>0x20</code>。</li>
+<li>用连续若干个表项存放长文件名，每个表项存放 13 个字符（使用 Unicode 编码，每个字符占用 2 个字节）。</li>
+<li>长文件名的表项首字节的二进制数低 5 位值，分别为 <code>00001</code>、<code>00010</code>、<code>00011</code>、...表示它们的次序，左起第 2 位为 1（也就是在低 5 位基础上加<code>0x40</code>）表示该表项是最后一项。最后项存放 13 个字符位置多余时，先用 2 个字节 0 表示结束，再用 <code>0xFF`` 填充。长文件名的属性是</code>0x0F<code>。长文件名项的第 13、27、28 字节为</code>0x00`，第 14 字节为短文件名校验和。</li>
+</ul>
+</details>
+<details class="extra" open="open">
+<summary>NTFS</summary>
+<p>TODO: 完善这部分。</p>
+<div class="admonition quote">
+<p class="admonition-title">Links</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/NTFS" target="_blank">NTFS | Wikipedia</a></li>
+</ul>
+</div>
+<ul>
+<li>每个分区都有 MFT 即 master file table。</li>
+<li>MFT 由一个个 MFT entry（也称为文件记录）组成，每个 MFT entry 占用 1 KB 的空间。</li>
+<li>MFT 前 16 个记录用来存放元数据文件的信息，它们占有固定的位置。</li>
+<li>每个 MFT entry 头部(header)的几十个字节有着固定的结构，用来描述该 MFT entry 的相关信息；后面的字节存放着文件属性等信息。</li>
+<li>每个文件或目录的信息都包含在 MFT 中，每个文件或目录至少对应一个 MFT entry。</li>
+</ul>
+</details>
 <h4 id="索引">索引<a class="headerlink" href="#索引" title="Permanent link">¶</a></h4>
-<h2 id="虚拟文件系统">虚拟文件系统<a class="headerlink" href="#虚拟文件系统" title="Permanent link">¶</a></h2>
+<p>虽然<a href="#链接" target="_blank">链接</a>解决了<a href="#连续" target="_blank">连续</a>方案中分配不灵活的问题，但是不支持随机访问。</p>
+<p>索引方法将所有指针统一维护到 index block 中，而不是利用链表的方式。每个文件有自己的 index block，在 index block 中，顺序存放着指向文件的所有 block 的指针，index block 中第 i 个 entry 指向了存储文件数据的第 i 个 block。</p>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/62.png"><img alt="" src="../img/62.png" width="80%"/></a> </center>
+Indexed allocation of disk space.</p>
+</figure>
+<p>假设块大小为 512 B，如果给定存取文件的逻辑地址 LA，则其对应的结构内块号 Q 和块内偏移 R 为：</p>
+<div class="highlight"><pre><span></span><code><span class="n">block_size</span> <span class="o">=</span> <span class="mi">512</span> <span class="c1"># Bytes</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">LA</span> <span class="o">/</span> <span class="n">block_size</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">LA</span> <span class="o">%</span> <span class="n">block_size</span>
+</code></pre></div>
+<div class="admonition advice">
+<p class="admonition-title">advantages</p>
+<ul>
+<li>文件的创建（分配）和增长很容易；</li>
+<li>解决了<a href="#连续" target="_blank">连续分配</a>中的外部碎片问题；</li>
+<li>支持随机访问；</li>
+</ul>
+</div>
+<div class="admonition not-advice">
+<p class="admonition-title">disadvantages</p>
+<ul>
+<li>通常有更大的指针空间开销，因为 index 以 block 为最小占用单位；</li>
+</ul>
+</div>
+<p>当然，我们也要考虑 index block 太小的情况，这时候我们需要维护复数个 index blocks，几种常见的方案：</p>
+<ol>
+<li>使用链接索引，用链表将它们连起来；</li>
+<li>使用多级索引（回顾<a href="../Unit3-Part1/#页表设计改进" target="_blank">多级页表</a>）；</li>
+<li>使用混合模式，该方案为 UNIX 所采用，类似于分级电费，inode 中有 15 个指针，各自用途不同：<ol>
+<li>前 12 个直接索引 12 个 block；</li>
+<li>第 13 个指向一个 indirect index block（用不到的时候就不用）；</li>
+<li>第 14 个指向一个二级 indirect index block（用不到的时候就不用）；</li>
+<li>第 15 个指向一个三级 indirect index block（用不到的时候就不用）；</li>
+</ol>
+</li>
+</ol>
+<figure>
+<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/63.png"><img alt="" src="../img/63.png" width="80%"/></a> </center>
+The UNIX inode.</p>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">头脑风暴</p>
+<p>请思考这三种设计下，如何计算对应的结构内块号 Q 和块内偏移 R。</p>
+<details class="success">
+<summary>提示</summary>
+<p>链接索引：</p>
+<div class="highlight"><pre><span></span><code><span class="n">block_size</span> <span class="o">=</span> <span class="mi">512</span> <span class="c1"># Bytes</span>
+<span class="n">normal_block_size</span> <span class="o">=</span> <span class="n">block_size</span> <span class="c1"># Bytes</span>
+<span class="n">ptr_valid_block_size</span> <span class="o">=</span> <span class="n">block_size</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># Bytes</span>
+
+<span class="n">Q1</span> <span class="o">=</span> <span class="n">LA</span> <span class="o">/</span> <span class="p">(</span><span class="n">normal_block_size</span> <span class="o">*</span> <span class="n">ptr_valid_block_size</span><span class="p">)</span> <span class="c1"># the index block</span>
+<span class="n">R1</span> <span class="o">=</span> <span class="n">LA</span> <span class="o">%</span> <span class="p">(</span><span class="n">normal_block_size</span> <span class="o">*</span> <span class="n">ptr_valid_block_size</span><span class="p">)</span>
+
+<span class="n">Q2</span> <span class="o">=</span> <span class="n">R1</span> <span class="o">/</span> <span class="n">normal_block_size</span> <span class="c1"># the data block</span>
+<span class="n">R2</span> <span class="o">=</span> <span class="n">R1</span> <span class="o">%</span> <span class="n">normal_block_size</span> <span class="c1"># the offset in the data block</span>
+</code></pre></div>
+<p>二级索引：</p>
+<div class="highlight"><pre><span></span><code><span class="n">block_size</span> <span class="o">=</span> <span class="mi">512</span> <span class="c1"># Bytes</span>
+
+<span class="n">Q1</span> <span class="o">=</span> <span class="n">LA</span> <span class="o">/</span> <span class="p">(</span><span class="n">block_size</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># the inner index block</span>
+<span class="n">R1</span> <span class="o">=</span> <span class="n">LA</span> <span class="o">%</span> <span class="p">(</span><span class="n">block_size</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">Q2</span> <span class="o">=</span> <span class="n">R1</span> <span class="o">/</span> <span class="n">block_size</span> <span class="c1"># the data block</span>
+<span class="n">R2</span> <span class="o">=</span> <span class="n">R1</span> <span class="o">%</span> <span class="n">block_size</span> <span class="c1"># the offset in the data block</span>
+</code></pre></div>
+</details>
+</div>
+<h3 id="空闲空间管理">空闲空间管理<a class="headerlink" href="#空闲空间管理" title="Permanent link">¶</a></h3>
+<p>我们前面在<a href="#文件系统分层设计" target="_blank">文件系统分层设计</a>里提到过，file-organization module 需要负责进行空闲空间的管理。现在我们来考虑如何管理空闲空间。</p>
+<details class="section" open="open">
+<summary>位图</summary>
+<p>位图(bitmap)即位向量，用对应 bit 的 0 或 1 来标记对应的 block 是否空闲。</p>
+<p>使用这种方法需要带来的额外开销是，有多少 blocks 就需要多少个额外的 bits。例如，假设块大小为 4 KB，硬盘义工有 1 GB，则需要 2<sup>30</sup> / 2<sup>12</sup> = 2<sup>18</sup> = 256 KB 的额外空间来存储位图。</p>
+<p>相对来说容易得到连续的空间，因为 bitmap 中 bit 的相邻暗示 block 的相邻。</p>
+</details>
+<details class="section" open="open">
+<summary>链表</summary>
+<p>类似 free-frame list，用链表将空闲的 block 连起来。</p>
+<p>不容易造成空间浪费，但不太容易得到连续的空间。</p>
+</details>
+<details class="section" open="open">
+<summary>分组</summary>
+<p>将 n 个空闲块的地址存放在第 0 个空闲块中，在第 n 个空闲块存储后 n 个空闲块的地址，以此类推。</p>
+</details>
+<details class="section" open="open">
+<summary>计数</summary>
+<p>计数方法是基于链表方法的改进，基于连续空间通常被一起使用的假设，不是存储每个一个 block，而是只维护每个连续内存段的起始地址和长度。</p>
+</details>
+<h3 id="虚拟文件系统">虚拟文件系统<a class="headerlink" href="#虚拟文件系统" title="Permanent link">¶</a></h3>
 <p>我们在前面给出了大量不同的文件系统，但是操作系统应当能广泛支持各种文件系统（不同的 disk 使用的 FS 可能不同）。为了实现这一点，我们在文件系统上再做一次抽象，即<strong>虚拟文件系统(virtual FS, VFS)</strong>。</p>
 <figure>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/59.png"><img alt="" src="../img/59.png" width="80%"/></a> </center>
@@ -1795,6 +2043,15 @@ Schematic view of a virtual file system.</p>
 <li>封装并透明化具体文件操作，同一接口可能有不同的具体实现（类似于“多态”），通过这种方式来支持不同的文件系统；</li>
 <li>反过来为文件系统提供一个唯一标识文件的方式，VFS 基于一个名为 vnode 的 file-representation structure 的东西来表示文件，其中包含了在整个文件网络中标识文件的数字指示符；</li>
 </ol>
+<h2 id="文件系统的性能与安全">文件系统的性能与安全<a class="headerlink" href="#文件系统的性能与安全" title="Permanent link">¶</a></h2>
+<p>TODO: 完善这部分。</p>
+<h3 id="页缓冲">页缓冲<a class="headerlink" href="#页缓冲" title="Permanent link">¶</a></h3>
+<p>页缓冲(page cache)技术通过虚拟内存技术，以页为单位进行缓冲，而非以面向 FS 的 block 为单位。因为使用虚拟内存相关的接口会比使用文件系统的相关接口更快。</p>
+<h3 id="恢复">恢复<a class="headerlink" href="#恢复" title="Permanent link">¶</a></h3>
+<p>备份数据，并时常检查数据的一致性和完整性，如果发现问题则尝试利用备份数据进行恢复。</p>
+<h3 id="日志系统">日志系统<a class="headerlink" href="#日志系统" title="Permanent link">¶</a></h3>
+<p>日志结构的文件系统(log-structured FS)是一种文件系统的实现方式，它将所有的修改操作都作为一个事务(transaction)记录在一个日志中，而不是直接修改文件本身（对于文件的修改和日志的创建是异步的）。</p>
+<p>这种方式的好处是，当系统崩溃时，可以通过日志来恢复文件系统。</p>
 <div class="footnote">
 <hr/>
 <ol>
@@ -1817,7 +2074,7 @@ Schematic view of a virtual file system.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月26日 14:00:39</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月26日 16:04:34</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月21日 13:11:17</span>
