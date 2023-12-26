@@ -194,7 +194,35 @@ Acyclic-graph directory structure.
 General graph directory.
 </figure>
 
-## 文件系统挂载
+## 文件系统
+
+**文件系统(file system, FS)**在二级存储上，它为操作系统提供快速、便捷的，对硬盘数据的操作。文件系统是操作系统中，以文件的方式管理计算机软件资源的软件，以及被管理的文件和数据结构的集合。
+
+??? section "common file system types"
+
+    - FAT
+    - FAT32, exFAT
+    - NTFS
+    - ReFS
+    - S51K/S52K
+    - ext
+    - ext2, ext3, ext4(Linux, Android)
+    - proc, sysfs
+    - yaffs
+    - ReiserFS
+    - HPFS
+    - UFS
+    - HFS+(MacOS, iOS | old)
+    - iso9660(CD)
+    - NFS(network FS)
+    - VFS(virtual FS)
+    - ZFS(Open Solaris)
+    - LTFS
+    - APFS(MacOS, iOS | new)
+    - ...
+
+
+### 文件系统挂载
 
 文件系统**挂载(mount)**是指将一个文件系统的根目录挂载到另一个文件系统的某个目录（被称为 mount point），使得这个目录下的文件可以访问到被挂载的文件系统中的文件。只有被挂载了，一个文件系统才能被访问。
 
@@ -203,14 +231,43 @@ General graph directory.
 Volume mounted at /users.
 </figure>
 
-## 文件系统结构
+### 文件系统分层设计
 
+文件系统被分为若干层，向下与 device 交互，向上接受 application programs 的请求，如下是各个分层的设计：
 
+```mermaid
+graph LR;
+    A["application programs"] --> B["logical file system"];
+    B --> C["file-organization module"];
+    C --> D["basic file system"];
+    D --> E["I/O control"];
+    E --> F["devices"];
+```
 
+1. I/O control
+    - 向下控制 I/O devices，向上为文件系统提供 I/O 功能；
+    - 包含 device drivers 和 interrupt handlers，是与具体 device 交互的接口层；[^4]
+2. Basic file system
+    - 向下一层发射“抽象”（与设备型号无关）的操作指令（由下一层转化为设备直接支持的指令）；
+    - 与 [I/O 调度](./Unit5.md#调度){target="_blank"}有关；
+    - 管理内存缓冲区(memory buffer)和缓存(caches)；
+        - Buffer 的作用可以参考 [ADS 中的外排序](../D2CX_AdvancedDataStructure/Lec15.md){target="_blank"}中的相关内容来理解；
+        - Caches 用来存储一些会被频繁用到的文件系统元数据，以提高文件系统性能；
+3. File-organization module
+    - 以 basic file system 提供的功能为基础；
+    - 能够实现 file 的 logical block 到 physical block 的映射；[^4] 
+    - 同时，file-organization module 也囊括了 free-space manager；
+        - Free-space manager 维护那些没有被分配的 blocks，并在 file-organization module 请求的时候提供这些 blocks； 
+4. Logical file system
+    - 以[文件控制块](#fcb){target="_blank"}的形式存储文件系统的元数据，即一些结构信息，不包括实际的文件内容信息；
+    - 具体来说，logical file system 会维护 directory 的信息，为之后的 file-organization module 提供一些信息，例如符号文件名；
 
+### FCB
 
+**文件控制块(file control block, FCB)**
 
 
 [^1]: [ISO/IEC 10918-1: 1993(E) p.36](https://www.digicamsoft.com/itu/itu-t81-36.html){target="_blank"}，其中 SOI (Start Of Image) 的值为 `0xFFD8`。
 [^2]: [Why are hard links not allowed for directories?](https://askubuntu.com/questions/210741/why-are-hard-links-not-allowed-for-directories/525129#525129){target="_blank"}
 [^3]: [File Permissions](https://linuxcommand.org/lc3_lts0030.php){target="_blank"}
+[^4]: [ Implementation of File Systems](https://ebooks.inflibnet.ac.in/csp3/chapter/implementation-of-file-systems/){target="_blank"}
