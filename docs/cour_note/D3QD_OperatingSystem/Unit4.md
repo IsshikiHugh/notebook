@@ -48,11 +48,6 @@
 
     当操作完成后，DMA controller 会向 CPU 发送中断信号，表示任务完成。
 
-<figure markdown>
-<center> ![](img/50.png){ width=80% } </center>
-The life cycle of an I/O request.
-</figure>
-
 ## 应用程序 I/O 接口
 
 随着技术发展，操作系统对标准化、通用化的 I/O 方式的需求与市场多元化、差异化的 I/O 设备之间的矛盾日益突出。因此，一套通用的、标准化的 I/O 接口是十分必要的。于是，操作系统能够使用系统调用封装 I/O 操作，将不同操作的差异性透明化，在 UNIX 中，这个系统调用是 `ioctl`^[Wiki](https://en.wikipedia.org/wiki/Ioctl){target="_blank"}^。

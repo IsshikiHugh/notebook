@@ -23,6 +23,7 @@
     - 2024 操作系统考研复习指导（王道）
     - [咸鱼暄的操作系统笔记](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/1_intro/){target="_blank"}
     - [小角龙的操作系统笔记](https://zhang-each.github.io/My-CS-Notebook/OS/){target="_blank"}
+    - hjh 学长的 A4 纸
 
 !!! note "list"
     - [x] [Unit 0: 总览 | Overview](Unit0.md)
@@ -36,4 +37,4 @@
         - [x] [Part 2: 内存管理 | Memory Management](Unit3-Part2.md)
     - [x] [Unit 4: 输入/输出 | I/O](Unit4.md)
     - [x] [Unit 5: 存储 | Storage](Unit5.md)
-    - [ ] [Unit 6: 文件系统 | File System](Unit6.md)
+    - [x] [Unit 6: 文件系统 | File System](Unit6.md)

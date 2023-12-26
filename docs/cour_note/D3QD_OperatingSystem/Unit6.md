@@ -1,4 +1,4 @@
-# Unit 6: 文件系统 | File System [未完成]
+# Unit 6: 文件系统 | File System
 
 !!! info "导读"
 
@@ -162,7 +162,7 @@ Tree-structured directory structure.
 Acyclic-graph directory structure.
 </figure>
 
-!!! section "soft link"
+???+ section "soft link"
 
     软链接又称符号链接(symbolic link)，是一个指向文件的指针，类似于 Windows 下的快捷方式。
 
@@ -171,7 +171,7 @@ Acyclic-graph directory structure.
     从本质上来看，软链接是特殊的文件。
 
 <a id="hard-link" />
-!!! section "hard link"
+???+ section "hard link"
 
     硬链接是复制链接文件目录项的所有元信息，存到目标目录中，此时文件平等地属于两个目录。
 
@@ -316,13 +316,13 @@ In-Memory 的数据结构在 main memory 中维护，用于帮助文件系统管
 
 接下来，我们举例说明具体的操作是如何在这些设计下运作的。
 
-!!! section "file creation"
+???+ section "file creation"
 
     Application program 需要创建文件时，调用 logical file system，并给出需要创建的文件名。它了解 directory 的组织形式，会做相应处理。
 
     创建文件时，一个对应的 [FCB](#FCB){target="_blank"} 会被创建；与此同时，对应的 parent directory 也会被载入内存，并被更新。
 
-!!! section "file open & close"
+???+ section "file open & close"
 
     Application program 需要先打开文件才能对文件进行进一步的 I/O 操作，这一步通过系统调用 `open()` 来实现。
 
@@ -379,18 +379,208 @@ In-Memory 的数据结构在 main memory 中维护，用于帮助文件系统管
 
 #### 连续
 
+连续分配指的是每个文件占用一段连续的 block。
 
+<figure markdown>
+<center> ![](img/60.png){ width=80% } </center>
+Contiguous allocation of disk space.
+</figure>
+
+假设块大小为 512 B，如果给定存取文件的逻辑地址 LA，则其对应的结构内块号 Q 和块内偏移 R 为：
+
+```py
+block_size = 512 # Bytes
+Q = LA / block_size
+R = LA % block_size
+```
+
+!!! advice "advantages"
+
+    - 实现简单，只需要记录文件的 start block 和 length 即可；
+    - 文件访问效率高；
+
+!!! not-advice "disadvantages"
+
+    - 分配时寻找合适空间比较困难；
+        - 类似[进程的内存分配策略](./Unit3-Part1.md#连续分配及其问题){target="_blank"}，需要考虑外部碎片等问题；
+    - 在文件可能动态变化的情况下会很糟糕（或者说，文件需要多少空间有时是难以预计的，可能会出现实际使用空间比预期大或小的情况）；
+        - 如果文件变小，可能只是带来外部碎片，但是文件变大就无法解决了；
+
+为了解决外部碎片的问题，有一种策略叫 compacts，指的是先暂时将文件系统复制到另外一个设备上，然后完全释放原始设备的资源，再将文件复制回去，从而实现了“压缩”。不过显然，这个操作的开销是巨大的。
+
+为了解决文件大小变大，无法扩展的问题，有一种机制叫做 extent，可以修正这个问题。当空间不够时，系统会被分配一块新的连续空间，链式地加入到原始空间的后面，这样就可以解决文件大小变大的问题了（类似于一种不定的大粒度的，由 FCB 维护的链接方案）。当然，为了实现这个方法，除了 start blok 和 length，还需要在 FCB 上记录指向 extent 的指针。
 
 #### 链接
 
+每个 block 作为一个链节，维护存储信息以外还需要维护指向下一个 block 的指针。此时，FCB 中只需要记录起始地址即可。
 
+<figure markdown>
+<center> ![](img/61.png){ width=80% } </center>
+Linked allocation of disk space.
+</figure>
+
+假设块大小为 512 B，每个块的开头消耗 1 B 来存放指针，如果给定存取文件的逻辑地址 LA，则其对应的结构内块号 Q 和块内偏移 R 为：
+
+```plaintext
+ ┌───────┬───────────────────────────────┐
+ │pointer│              data             │
+ └───────┴───────────────────────────────┘
+ 0       1                               512
+```
+
+```py
+valid_block_size = 512 - 1 # Bytes
+Q = LA / valid_block_size
+R = (LA % valid_block_size) + 1
+```
+
+!!! advice "advantages"
+
+    - 实现简单，只需要记录文件的 start pointer 即可；
+    - 文件的创建（分配）和增长很容易；
+    - 解决了[连续分配](#连续){target="_blank"}中的外部碎片问题；
+
+!!! not-advice "disadvantages"
+
+    - 无法随机访问，文件访问效率低，因为需要从头开始遍历；
+    - 需要额外的空间来存储指针；
+        - 额外空间于链节数量正相关，所以可以通过使用**簇(cluster)**，即多个连续块为一个链节，来减少指针带来的额外开销；
+    - 可靠性存在问题；
+
+???+ extra "FAT"
+
+    TODO: 完善这部分。
+
+    !!! quote "Links"
+
+        - [FAT | Wikipedia](https://en.wikipedia.org/wiki/File_Allocation_Table){target="_blank"}
+    
+    FAT 即 file-allocation table 是一种链接分配的变种，使用 FAT 的文件系统有 FAT12、FAT16、FAT32、exFAT（64位）。由于简单高效，它被 MS-DOS 使用。
+
+    - FAT 的每个目录项为 32 个字节。
+    - FAT32长文件名的目录项由几个32B表项组成。
+    - 用一个表项存放短文件名和其他属性（包括簇号、文件大小，最后修改时间和最后修改日期、创建时间、创建日期和最后存取日期），短文件名的属性是 `0x20`。
+    - 用连续若干个表项存放长文件名，每个表项存放 13 个字符（使用 Unicode 编码，每个字符占用 2 个字节）。
+    - 长文件名的表项首字节的二进制数低 5 位值，分别为 `00001`、`00010`、`00011`、...表示它们的次序，左起第 2 位为 1（也就是在低 5 位基础上加`0x40`）表示该表项是最后一项。最后项存放 13 个字符位置多余时，先用 2 个字节 0 表示结束，再用 `0xFF`` 填充。长文件名的属性是 `0x0F`。长文件名项的第 13、27、28 字节为 `0x00`，第 14 字节为短文件名校验和。
+
+???+ extra "NTFS"
+
+    TODO: 完善这部分。
+
+    !!! quote "Links"
+
+        - [NTFS | Wikipedia](https://en.wikipedia.org/wiki/NTFS){target="_blank"}
+
+    - 每个分区都有 MFT 即 master file table。
+    - MFT 由一个个 MFT entry（也称为文件记录）组成，每个 MFT entry 占用 1 KB 的空间。
+    - MFT 前 16 个记录用来存放元数据文件的信息，它们占有固定的位置。
+    - 每个 MFT entry 头部(header)的几十个字节有着固定的结构，用来描述该 MFT entry 的相关信息；后面的字节存放着文件属性等信息。
+    - 每个文件或目录的信息都包含在 MFT 中，每个文件或目录至少对应一个 MFT entry。
 
 
 #### 索引
 
+虽然[链接](#链接){target="_blank"}解决了[连续](#连续){target="_blank"}方案中分配不灵活的问题，但是不支持随机访问。
 
+索引方法将所有指针统一维护到 index block 中，而不是利用链表的方式。每个文件有自己的 index block，在 index block 中，顺序存放着指向文件的所有 block 的指针，index block 中第 i 个 entry 指向了存储文件数据的第 i 个 block。
 
-## 虚拟文件系统
+<figure markdown>
+<center> ![](img/62.png){ width=80% } </center>
+Indexed allocation of disk space.
+</figure>
+
+假设块大小为 512 B，如果给定存取文件的逻辑地址 LA，则其对应的结构内块号 Q 和块内偏移 R 为：
+
+```py
+block_size = 512 # Bytes
+Q = LA / block_size
+R = LA % block_size
+```
+
+!!! advice "advantages"
+
+    - 文件的创建（分配）和增长很容易；
+    - 解决了[连续分配](#连续){target="_blank"}中的外部碎片问题；
+    - 支持随机访问；
+
+!!! not-advice "disadvantages"
+
+    - 通常有更大的指针空间开销，因为 index 以 block 为最小占用单位；
+
+当然，我们也要考虑 index block 太小的情况，这时候我们需要维护复数个 index blocks，几种常见的方案：
+
+1. 使用链接索引，用链表将它们连起来；
+2. 使用多级索引（回顾[多级页表](Unit3-Part1.md#页表设计改进){target="_blank"}）；
+3. 使用混合模式，该方案为 UNIX 所采用，类似于分级电费，inode 中有 15 个指针，各自用途不同：
+    1. 前 12 个直接索引 12 个 block；
+    2. 第 13 个指向一个 indirect index block（用不到的时候就不用）；
+    3. 第 14 个指向一个二级 indirect index block（用不到的时候就不用）；
+    4. 第 15 个指向一个三级 indirect index block（用不到的时候就不用）；
+
+<figure markdown>
+<center> ![](img/63.png){ width=80% } </center>
+The UNIX inode.
+</figure>
+
+!!! tip "头脑风暴"
+
+    请思考这三种设计下，如何计算对应的结构内块号 Q 和块内偏移 R。
+
+    ??? success "提示"
+
+        链接索引：
+
+        ```py
+        block_size = 512 # Bytes
+        normal_block_size = block_size # Bytes
+        ptr_valid_block_size = block_size - 1 # Bytes
+
+        Q1 = LA / (normal_block_size * ptr_valid_block_size) # the index block
+        R1 = LA % (normal_block_size * ptr_valid_block_size)
+
+        Q2 = R1 / normal_block_size # the data block
+        R2 = R1 % normal_block_size # the offset in the data block
+        ```
+
+        二级索引：
+
+        ```py
+        block_size = 512 # Bytes
+
+        Q1 = LA / (block_size ** 2) # the inner index block
+        R1 = LA % (block_size ** 2)
+
+        Q2 = R1 / block_size # the data block
+        R2 = R1 % block_size # the offset in the data block
+        ```
+
+### 空闲空间管理
+
+我们前面在[文件系统分层设计](#文件系统分层设计){target="_blank"}里提到过，file-organization module 需要负责进行空闲空间的管理。现在我们来考虑如何管理空闲空间。
+
+???+ section "位图"
+
+    位图(bitmap)即位向量，用对应 bit 的 0 或 1 来标记对应的 block 是否空闲。
+
+    使用这种方法需要带来的额外开销是，有多少 blocks 就需要多少个额外的 bits。例如，假设块大小为 4 KB，硬盘义工有 1 GB，则需要 2^30^ / 2^12^ = 2^18^ = 256 KB 的额外空间来存储位图。
+
+    相对来说容易得到连续的空间，因为 bitmap 中 bit 的相邻暗示 block 的相邻。
+
+???+ section "链表"
+
+    类似 free-frame list，用链表将空闲的 block 连起来。
+
+    不容易造成空间浪费，但不太容易得到连续的空间。
+
+???+ section "分组"
+
+    将 n 个空闲块的地址存放在第 0 个空闲块中，在第 n 个空闲块存储后 n 个空闲块的地址，以此类推。
+
+???+ section "计数"
+
+    计数方法是基于链表方法的改进，基于连续空间通常被一起使用的假设，不是存储每个一个 block，而是只维护每个连续内存段的起始地址和长度。
+
+### 虚拟文件系统
 
 我们在前面给出了大量不同的文件系统，但是操作系统应当能广泛支持各种文件系统（不同的 disk 使用的 FS 可能不同）。为了实现这一点，我们在文件系统上再做一次抽象，即**虚拟文件系统(virtual FS, VFS)**。
 
@@ -404,7 +594,23 @@ VFS 有两个主要功能：
 1. 封装并透明化具体文件操作，同一接口可能有不同的具体实现（类似于“多态”），通过这种方式来支持不同的文件系统；
 2. 反过来为文件系统提供一个唯一标识文件的方式，VFS 基于一个名为 vnode 的 file-representation structure 的东西来表示文件，其中包含了在整个文件网络中标识文件的数字指示符；
 
+## 文件系统的性能与安全
 
+TODO: 完善这部分。
+
+### 页缓冲
+
+页缓冲(page cache)技术通过虚拟内存技术，以页为单位进行缓冲，而非以面向 FS 的 block 为单位。因为使用虚拟内存相关的接口会比使用文件系统的相关接口更快。
+
+### 恢复
+
+备份数据，并时常检查数据的一致性和完整性，如果发现问题则尝试利用备份数据进行恢复。
+
+### 日志系统
+
+日志结构的文件系统(log-structured FS)是一种文件系统的实现方式，它将所有的修改操作都作为一个事务(transaction)记录在一个日志中，而不是直接修改文件本身（对于文件的修改和日志的创建是异步的）。
+
+这种方式的好处是，当系统崩溃时，可以通过日志来恢复文件系统。
 
 [^1]: [ISO/IEC 10918-1: 1993(E) p.36](https://www.digicamsoft.com/itu/itu-t81-36.html){target="_blank"}，其中 SOI (Start Of Image) 的值为 `0xFFD8`。
 [^2]: [Why are hard links not allowed for directories?](https://askubuntu.com/questions/210741/why-are-hard-links-not-allowed-for-directories/525129#525129){target="_blank"}
