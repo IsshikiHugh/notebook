@@ -1,5 +1,9 @@
 # Unit 6: 文件系统 | File System
 
+!!! warning "关于 FCB"
+
+    书本上并没有强调 FCB 维护的是打开的文件的信息，但是做题的时候可能会强调这一点。关于这一点我还需要做一些考证，请读者保持审慎的态度。
+
 !!! info "导读"
 
     在[存储](./Unit5.md){target="_blank"}一章，我们提到过，卷(volume)做初始化时，需要建立一个文件系统。文件系统提供了数据存储形式的逻辑视图，将数据以**文件(file)**的形式从硬件存储中抽象出来，并使用**目录(directory)**对文件进行进行结构化的组织和管理。
@@ -98,7 +102,7 @@ UNIX 系统会在文件开头，使用一串 magic number 来标识文件的类�
 
 ## 目录结构
 
-目录本质上是一个特殊的文件（Linux 中），而实际上，目录下文件的元信息是被存储在目录中的。目录的结构表示的是目录下文件的组织方式，接下来我们介绍若干目录结构的设计。
+目录本质上是一个特殊的文件（Linux 中），而实际上，目录下文件的元信息是被存储在目录中的。目录的结构表示的是目录下文件的组织方式，可以认为目录能够实现 filename 到 [FCB](#FCB){target="_blank"} 的映射，接下来我们介绍若干目录结构的设计。
 
 而在 Windows 中，目录和文件有不同的系统调用来控制。
 
@@ -261,8 +265,9 @@ graph LR;
     - 同时，file-organization module 也囊括了 free-space manager；
         - Free-space manager 维护那些没有被分配的 blocks，并在 file-organization module 请求的时候提供这些 blocks； 
 4. Logical file system
-    - 以[文件控制块](#FCB){target="_blank"}的形式存储文件系统的元数据，即一些结构信息，不包括实际的文件内容信息；
+    - 存储一些文件系统的结构信息，不包括实际的文件内容信息；
     - 具体来说，logical file system 会维护 directory 的信息，为之后的 file-organization module 提供一些信息，例如符号文件名；
+    - [FCB](#FCB){target="_blank"} 会维护被打开的文件的一些具体信息；
 
 ## 文件系统的实现
 
@@ -285,7 +290,7 @@ On-Disk 的数据结构维护 ⓵ 如何启动硬盘中的 OS，⓶ 硬盘中包
     - 在 UFS 中，它维护了文件以及对应的 inode numbers；在 NTFS 中，它在 master file table 中被维护。
     - 该数据结构是 per FS 的。
 - <a id="FCB" /> File control block 
-    - 文件控制块(file control block, FCB)存储了大量文件的具体信息。PCB 一般有一个唯一的标识符与目录项关联。
+    - 文件控制块(file control block, FCB)^[Wiki](https://en.wikipedia.org/wiki/File_Control_Block){target="_blank"}^维护了**被打开的**文件的具体信息。PCB 一般有一个唯一的标识符与目录项关联。
     - 例如，它可能被包含如下信息：
         - 文件权限；
         - 文件操作日期；
@@ -293,7 +298,7 @@ On-Disk 的数据结构维护 ⓵ 如何启动硬盘中的 OS，⓶ 硬盘中包
         - 文件大小；
         - 文件数据所在的 block 或这个 block 的指针；
         - ...
-    - 在 UFS 中，PCB 指的就是一个 inode；在 NTFS 中，PCB 通常在 master file table 中被维护，其维护形式类似于关系形数据库。
+    - 在 UFS 中，FCB 指的就是一个 inode；在 NTFS 中，PCB 通常在 master file table 中被维护，其维护形式类似于关系形数据库。
 
 ### 内存数据结构
 
@@ -578,7 +583,9 @@ The UNIX inode.
 
 ???+ section "计数"
 
-    计数方法是基于链表方法的改进，基于连续空间通常被一起使用的假设，不是存储每个一个 block，而是只维护每个连续内存段的起始地址和长度。
+    计数方法是基于链表方法的改进，基于连续空间通常被一起使用的假设，不是存储每个一个 block，而是只维护每个连续内存段的起始地址和**额外**长度。
+
+    请一定要注意这里的额外，在计算题里会考。例如，用 2 B 来表示长度，则实际上对应的 blocks 数量为 `0x1` + `0xffff` = 2^16^。
 
 ### 虚拟文件系统
 
