@@ -29,7 +29,7 @@ hide:
     - [🗂️ Git Something](./tech_accu/tool/Git/index.md)
     - [🗂️ 数字逻辑设计 | Digital Design](./cour_note/D2QD_DigitalDesign/index.md)
     - [🗂️ 高级数据结构 | Advanced Data Structure](./cour_note/D2CX_AdvancedDataStructure/index.md)
-    - [🗂️ 操作系统 | Operating System](./cour_note/D3QD_OperatingSystem/index.md)（更新中）
+    - [🗂️ 操作系统 | Operating System](./cour_note/D3QD_OperatingSystem/index.md)
 
 !!! info "站点统计"
     <center>
