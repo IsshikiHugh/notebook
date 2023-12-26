@@ -1010,9 +1010,23 @@
     文件系统分层设计
   </a>
 </li>
+</ul>
+</nav>
+</li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#fcb">
-    FCB
+<a class="md-nav__link" href="#文件系统的实现">
+    文件系统的实现
+  </a>
+<nav aria-label="文件系统的实现" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#硬盘数据结构">
+    硬盘数据结构
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#内存数据结构">
+    内存数据结构
   </a>
 </li>
 </ul>
@@ -1299,9 +1313,23 @@
     文件系统分层设计
   </a>
 </li>
+</ul>
+</nav>
+</li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#fcb">
-    FCB
+<a class="md-nav__link" href="#文件系统的实现">
+    文件系统的实现
+  </a>
+<nav aria-label="文件系统的实现" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#硬盘数据结构">
+    硬盘数据结构
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#内存数据结构">
+    内存数据结构
   </a>
 </li>
 </ul>
@@ -1316,7 +1344,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="unit-6-文件系统--file-system-未完成">Unit 6: 文件系统 | File System [未完成]<a class="headerlink" href="#unit-6-文件系统--file-system-未完成" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 3380 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 18 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 17 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 4045 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 18 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 20 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">导读</p>
@@ -1542,13 +1570,75 @@ Volume mounted at /users.</p>
 </ul>
 </li>
 <li>Logical file system<ul>
-<li>以<a href="#fcb" target="_blank">文件控制块</a>的形式存储文件系统的元数据，即一些结构信息，不包括实际的文件内容信息；</li>
+<li>以<a href="#FCB" target="_blank">文件控制块</a>的形式存储文件系统的元数据，即一些结构信息，不包括实际的文件内容信息；</li>
 <li>具体来说，logical file system 会维护 directory 的信息，为之后的 file-organization module 提供一些信息，例如符号文件名；</li>
 </ul>
 </li>
 </ol>
-<h3 id="fcb">FCB<a class="headerlink" href="#fcb" title="Permanent link">¶</a></h3>
-<p><strong>文件控制块(file control block, FCB)</strong></p>
+<h2 id="文件系统的实现">文件系统的实现<a class="headerlink" href="#文件系统的实现" title="Permanent link">¶</a></h2>
+<p>为了实现文件系统，我们需要在硬盘和内存中维护一些数据结构，下面分别介绍 <a href="#硬盘数据结构" target="_blank">on-disk structures</a> 和 <a href="#内存数据结构" target="_blank">in-memory structures</a>。</p>
+<h3 id="硬盘数据结构">硬盘数据结构<a class="headerlink" href="#硬盘数据结构" title="Permanent link">¶</a></h3>
+<p>On-Disk 的数据结构维护 ⓵ 如何启动硬盘中的 OS，⓶ 硬盘中包括的 block 总数，⓷ 空闲 block 的数量和位置，⓸ 目录结构以及文件个体等，下面介绍几个主要的数据结构。</p>
+<ul>
+<li>Boot control block<ul>
+<li>操作系统被保存在引导控制块(boot control block)中，一般 boot control block 是操作系统所在的 volume 的第一个 block。</li>
+<li>在 UFS 中，boot control block 也被称为 boot block；在 NTFS 中，也被称为 partition boot sector。</li>
+<li>该数据结构是 per volume 的。</li>
+</ul>
+</li>
+<li>Volume control block<ul>
+<li>卷控制块(volume control block)维护了 volume 的具体信息，例如 volume 的 blocks 数量、空闲 block 的数量与指针、空闲 PCB 的数量与指针等。</li>
+<li>在 UFS volume control block 也被称为 superblock；在 NTFS 中，也被称为 master file table。</li>
+<li>该数据结构是 per volume 的。</li>
+</ul>
+</li>
+<li>Directory structure<ul>
+<li><a href="#目录结构" target="_blank">目录结构(directory structure)</a>已经在前面提到过，它用来组织 files，同时也维护了 files 的元信息。</li>
+<li>在 UFS 中，它维护了文件以及对应的 inode numbers；在 NTFS 中，它在 master file table 中被维护。</li>
+<li>该数据结构是 per FS 的。</li>
+</ul>
+</li>
+<li><a id="FCB"></a> File control block <ul>
+<li>文件控制块(file control block, FCB)存储了大量文件的具体信息。PCB 一般有一个唯一的标识符与目录项关联。</li>
+<li>例如，它可能被包含如下信息：<ul>
+<li>文件权限；</li>
+<li>文件操作日期；</li>
+<li>ACL；</li>
+<li>文件大小；</li>
+<li>文件数据所在的 block 或这个 block 的指针；</li>
+<li>...</li>
+</ul>
+</li>
+<li>在 UFS 中，PCB 指的就是一个 inode；在 NTFS 中，PCB 通常在 master file table 中被维护，其维护形式类似于关系形数据库。</li>
+</ul>
+</li>
+</ul>
+<h3 id="内存数据结构">内存数据结构<a class="headerlink" href="#内存数据结构" title="Permanent link">¶</a></h3>
+<p>In-Memory 的数据结构在 main memory 中维护，用于帮助文件系统管理和一些缓存操作。</p>
+<ul>
+<li>Mount table<ul>
+<li>已被挂载的 volume 会被记录在 mount table 中。</li>
+</ul>
+</li>
+<li>Directory cache<ul>
+<li>为了提高文件系统的性能，一些最近被访问的目录信息会被缓存到内存中，这些缓存的目录信息被称为 directory cache。</li>
+</ul>
+</li>
+<li>System-wide open-file table<ul>
+<li>记录这个系统中所有进程打开的文件。</li>
+</ul>
+</li>
+<li>Per-process open-file table<ul>
+<li>记录每个进程打开的文件，其 entry 指向 system-wide open-file table 中的 entry。</li>
+</ul>
+</li>
+<li>Buffers<ul>
+<li>在内存中，用于缓冲 disk block 的内容。</li>
+<li>当一个 disk block 被读时，它的内容会被放到 buffer 里，方便下次使用时快速读取。</li>
+<li>如果这些内容被修改，只需要修改 buffer 中的信息，而这些修改内容会在合适的时候被写回 disk block。</li>
+</ul>
+</li>
+</ul>
 <div class="footnote">
 <hr/>
 <ol>
@@ -1571,7 +1661,7 @@ Volume mounted at /users.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月26日 11:08:14</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月26日 11:52:35</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月21日 13:11:17</span>
