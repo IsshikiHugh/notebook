@@ -4,11 +4,12 @@
 
     这部分内容（其实也包括之后的内容）写的比较简略，因为说是不太难，主要是期末了我也没心思写太细了，如果有好人可以帮我完善一下。
 
-!!! info "导读"
-
-    I/O 是计算机系统中的重要组成部分，它是计算机系统与外部世界交换信息的通道。I/O 设备的种类很多，如磁盘、打印机、键盘、鼠标、显示器、网卡等，承担了存储、通信、人机交互等若干功能。而我们知道 I/O 又是 CPU 的重要瓶颈，所以 I/O 系统的设计是一个很重要的问题。（但不是一个重要的考点？）
 
 ## I/O 概述
+
+I/O 是计算机系统中的重要组成部分，它是计算机系统与外部世界交换信息的通道。I/O 设备的种类很多，如磁盘、打印机、键盘、鼠标、显示器、网卡等，承担了存储、通信、人机交互等若干功能。而我们知道 I/O 又是 CPU 的重要瓶颈，所以 I/O 系统的设计是一个很重要的问题。（~~但不是一个重要的考点？~~）
+
+> 在 Linux 中，受 “[everything is a file](https://en.wikipedia.org/wiki/Everything_is_a_file){target="_blank"}” 思想的指导，I/O 设备也被看作一个特殊的文件。
 
 !!! definition "concepts"
 
@@ -48,9 +49,15 @@
 
     当操作完成后，DMA controller 会向 CPU 发送中断信号，表示任务完成。
 
+    磁盘就是典型的，通常使用 DMA 来实现 I/O 的设备。
+
 ## 应用程序 I/O 接口
 
-随着技术发展，操作系统对标准化、通用化的 I/O 方式的需求与市场多元化、差异化的 I/O 设备之间的矛盾日益突出。因此，一套通用的、标准化的 I/O 接口是十分必要的。于是，操作系统能够使用系统调用封装 I/O 操作，将不同操作的差异性透明化，在 UNIX 中，这个系统调用是 `ioctl`^[Wiki](https://en.wikipedia.org/wiki/Ioctl){target="_blank"}^。
+随着技术发展，操作系统对标准化、通用化的 I/O 方式的需求与市场多元化、差异化的 I/O 设备之间的矛盾日益突出。因此，一套通用的、标准化的 I/O 接口是十分必要的。
+
+于是，操作系统能够使用系统调用封装 I/O 操作，将不同操作的差异性透明化，在 UNIX 中，这个系统调用是 `ioctl`^[Wiki](https://en.wikipedia.org/wiki/Ioctl){target="_blank"}^。
+
+再往下，设备驱动(device driver)提供了一套统一的接口，通常是一系列异步中断处理方案。[^2]
 
 <figure markdown>
 <center> ![](img/50.png){ width=80% } </center>
@@ -76,6 +83,7 @@ A kernel I/O structure.
         - 可共享：可以被多个进程或线程并发使用，如 keyboard；
         - 独占的：不能被共享，如 tape；
     - 设备速度(device speed)
+        - 这里的速度强调的是设备间的速度，而使用 buffer 技术可以同时统一 I/O 设备之间以及 CPU 和 I/O 设备之间的速度差异；
     - I/O 方向(I/O direction)：
         - `R-`，如 CD-ROM；
         - `-W`，如 graphics controller^[Wiki](https://en.wikipedia.org/wiki/Professional_Graphics_Controller){target="_blank"}^；
@@ -84,3 +92,4 @@ A kernel I/O structure.
     > 修改自 [xyx 的操作系统笔记](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/12_io_systems/){target="_blank"}。
 
 [^1]: [Bus (computing) | Wikipedia](https://en.wikipedia.org/wiki/Bus_(computing)){target="_blank"}
+[^2]: [Device driver | Wikipedia](https://en.wikipedia.org/wiki/Device_driver){target="_blank"}
