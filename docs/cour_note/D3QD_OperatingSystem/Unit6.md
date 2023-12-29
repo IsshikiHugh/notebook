@@ -2,7 +2,7 @@
 
 !!! warning "关于 FCB"
 
-    书本上并没有强调 FCB 维护的是打开的文件的信息，但是做题的时候可能会强调这一点。关于这一点我还需要做一些考证，请读者保持审慎的态度。
+    书本上并没有强调 FCB 维护的是打开的文件的信息（甚至暗戳戳地在否定这句话），但是做题的时候可能会强调这一点。关于这一点我还需要做一些考证，请读者保持审慎的态度。
 
 !!! info "导读"
 
@@ -258,11 +258,11 @@ graph LR;
     - 向下一层发射“抽象”（与设备型号无关）的操作指令（由下一层转化为设备直接支持的指令）；
     - 与 [I/O 调度](./Unit5.md#调度){target="_blank"}有关；
     - 管理内存缓冲区(memory buffer)和缓存(caches)；
-        - Buffer 的作用可以参考 [ADS 中的外排序](../D2CX_AdvancedDataStructure/Lec15.md){target="_blank"}中的相关内容来理解，使用 buffer 技术可以统一 CPU 和 I/O 设备之间的速度差异；
+        - Buffer 的作用可以参考 [ADS 中的外排序](../D2CX_AdvancedDataStructure/Lec15.md){target="_blank"}中的相关内容来理解；
         - Caches 用来存储一些会被频繁用到的文件系统元数据，以提高文件系统性能；
 3. File-organization module
     - 以 basic file system 提供的功能为基础；
-    - 能够实现 file 的 logical block 到 physical block 的映射；[^4] 
+    - 能够实现 file 的 logical block 到 physical address 的映射；[^4] 
     - 同时，file-organization module 也囊括了 free-space manager；
         - Free-space manager 维护那些没有被分配的 blocks，并在 file-organization module 请求的时候提供这些 blocks； 
 4. Logical file system
@@ -292,6 +292,7 @@ On-Disk 的数据结构维护 ⓵ 如何启动硬盘中的 OS，⓶ 硬盘中包
     - 该数据结构是 per FS 的。
 - <a id="FCB" /> File control block 
     - 文件控制块(file control block, FCB)^[Wiki](https://en.wikipedia.org/wiki/File_Control_Block){target="_blank"}^维护了**被打开的**文件的具体信息。PCB 一般有一个唯一的标识符与目录项关联。
+    - **注意**：理论上的 FCB 定义如上，应当主要存在于内存中；但是课本中的 FCB 指的是更广泛的，因此在硬盘中维护文件元信息的那些东西也被称为 FCB，读者需要在这里梳理清楚这种定义上的偏差！
     - 例如，它可能被包含如下信息：
         - 文件权限；
         - 文件操作日期；
@@ -315,8 +316,8 @@ In-Memory 的数据结构在 main memory 中维护，用于帮助文件系统管
     - 记录每个进程打开的文件，其 entry 指向 system-wide open-file table 中的 entry。
 - Buffers
     - 在内存中，用于缓冲 disk block 的内容。
-    - 当一个 disk block 被读时，它的内容会被放到 buffer 里，方便下次使用时快速读取。
-    - 如果这些内容被修改，只需要修改 buffer 中的信息，而这些修改内容会在合适的时候被写回 disk block。
+    - 当一个 disk block 被读时，它的内容会被放到 buffer 里；当一个向 disk block 写的动作发生时，会先被写入 buffer。
+    - 通过上面这种方式，buffer 技术可以实现统一 CPU 和 I/O 设备之间的速度差异。
 
 ### 文件操作
 
@@ -712,5 +713,5 @@ TODO: 完善这部分。
 [^1]: [ISO/IEC 10918-1: 1993(E) p.36](https://www.digicamsoft.com/itu/itu-t81-36.html){target="_blank"}，其中 SOI (Start Of Image) 的值为 `0xFFD8`。
 [^2]: [Why are hard links not allowed for directories?](https://askubuntu.com/questions/210741/why-are-hard-links-not-allowed-for-directories/525129#525129){target="_blank"}
 [^3]: [File Permissions](https://linuxcommand.org/lc3_lts0030.php){target="_blank"}
-[^4]: [ Implementation of File Systems](https://ebooks.inflibnet.ac.in/csp3/chapter/implementation-of-file-systems/){target="_blank"}
+[^4]: [Implementation of File Systems](https://ebooks.inflibnet.ac.in/csp3/chapter/implementation-of-file-systems/){target="_blank"}
 [^5]: [Device driver | Wikipedia](https://en.wikipedia.org/wiki/Device_driver){target="_blank"}
