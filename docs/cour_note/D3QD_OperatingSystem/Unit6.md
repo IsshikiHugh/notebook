@@ -243,11 +243,11 @@ Volume mounted at /users.
 
 ```mermaid
 graph LR;
-    A["application programs"] --> B["logical file system"];
+    A(["application programs"]) --> B["logical file system"];
     B --> C["file-organization module"];
     C --> D["basic file system"];
     D --> E["I/O control"];
-    E --> F["devices"];
+    E --> F(["devices"]);
 ```
 
 1. I/O control
