@@ -1680,11 +1680,11 @@ Volume mounted at /users.</p>
 <h3 id="文件系统分层设计">文件系统分层设计<a class="headerlink" href="#文件系统分层设计" title="Permanent link">¶</a></h3>
 <p>文件系统被分为若干层，向下与 device 交互，向上接受 application programs 的请求，如下是各个分层的设计：</p>
 <pre class="mermaid"><code>graph LR;
-    A["application programs"] --&gt; B["logical file system"];
+    A(["application programs"]) --&gt; B["logical file system"];
     B --&gt; C["file-organization module"];
     C --&gt; D["basic file system"];
     D --&gt; E["I/O control"];
-    E --&gt; F["devices"];</code></pre>
+    E --&gt; F(["devices"]);</code></pre>
 <ol>
 <li>I/O control<ul>
 <li>向下控制 I/O devices，向上为文件系统提供 I/O 功能；</li>
@@ -2169,7 +2169,7 @@ Schematic view of a virtual file system.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月28日 12:03:04</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月29日 09:59:16</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月21日 13:11:17</span>
