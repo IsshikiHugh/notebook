@@ -253,6 +253,7 @@ graph LR;
 1. I/O control
     - 向下控制 I/O devices，向上为文件系统提供 I/O 功能；
     - 包含 device drivers 和 interrupt handlers，是与具体 device 交互的接口层；[^4]
+        - 其中设备驱动(device driver)提供了一套统一的接口，通常是一系列异步中断处理方案；[^5]
 2. Basic file system
     - 向下一层发射“抽象”（与设备型号无关）的操作指令（由下一层转化为设备直接支持的指令）；
     - 与 [I/O 调度](./Unit5.md#调度){target="_blank"}有关；
@@ -712,3 +713,4 @@ TODO: 完善这部分。
 [^2]: [Why are hard links not allowed for directories?](https://askubuntu.com/questions/210741/why-are-hard-links-not-allowed-for-directories/525129#525129){target="_blank"}
 [^3]: [File Permissions](https://linuxcommand.org/lc3_lts0030.php){target="_blank"}
 [^4]: [ Implementation of File Systems](https://ebooks.inflibnet.ac.in/csp3/chapter/implementation-of-file-systems/){target="_blank"}
+[^5]: [Device driver | Wikipedia](https://en.wikipedia.org/wiki/Device_driver){target="_blank"}

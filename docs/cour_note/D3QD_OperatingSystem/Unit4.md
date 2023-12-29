@@ -57,8 +57,6 @@ I/O 是计算机系统中的重要组成部分，它是计算机系统与外部�
 
 于是，操作系统能够使用系统调用封装 I/O 操作，将不同操作的差异性透明化，在 UNIX 中，这个系统调用是 `ioctl`^[Wiki](https://en.wikipedia.org/wiki/Ioctl){target="_blank"}^。
 
-再往下，设备驱动(device driver)提供了一套统一的接口，通常是一系列异步中断处理方案。[^2]
-
 <figure markdown>
 <center> ![](img/50.png){ width=80% } </center>
 A kernel I/O structure.
@@ -92,4 +90,3 @@ A kernel I/O structure.
     > 修改自 [xyx 的操作系统笔记](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/12_io_systems/){target="_blank"}。
 
 [^1]: [Bus (computing) | Wikipedia](https://en.wikipedia.org/wiki/Bus_(computing)){target="_blank"}
-[^2]: [Device driver | Wikipedia](https://en.wikipedia.org/wiki/Device_driver){target="_blank"}
