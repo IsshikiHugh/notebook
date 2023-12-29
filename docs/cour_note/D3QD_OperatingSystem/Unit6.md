@@ -258,7 +258,7 @@ graph LR;
     - 向下一层发射“抽象”（与设备型号无关）的操作指令（由下一层转化为设备直接支持的指令）；
     - 与 [I/O 调度](./Unit5.md#调度){target="_blank"}有关；
     - 管理内存缓冲区(memory buffer)和缓存(caches)；
-        - Buffer 的作用可以参考 [ADS 中的外排序](../D2CX_AdvancedDataStructure/Lec15.md){target="_blank"}中的相关内容来理解；
+        - Buffer 的作用可以参考 [ADS 中的外排序](../D2CX_AdvancedDataStructure/Lec15.md){target="_blank"}中的相关内容来理解，使用 buffer 技术可以统一 CPU 和 I/O 设备之间的速度差异；
         - Caches 用来存储一些会被频繁用到的文件系统元数据，以提高文件系统性能；
 3. File-organization module
     - 以 basic file system 提供的功能为基础；

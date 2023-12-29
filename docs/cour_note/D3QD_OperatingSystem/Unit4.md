@@ -81,7 +81,6 @@ A kernel I/O structure.
         - 可共享：可以被多个进程或线程并发使用，如 keyboard；
         - 独占的：不能被共享，如 tape；
     - 设备速度(device speed)
-        - 这里的速度强调的是设备间的速度，而使用 buffer 技术可以同时统一 I/O 设备之间以及 CPU 和 I/O 设备之间的速度差异；
     - I/O 方向(I/O direction)：
         - `R-`，如 CD-ROM；
         - `-W`，如 graphics controller^[Wiki](https://en.wikipedia.org/wiki/Professional_Graphics_Controller){target="_blank"}^；
