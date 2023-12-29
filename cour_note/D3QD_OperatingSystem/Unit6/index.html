@@ -1043,25 +1043,6 @@
 <a class="md-nav__link" href="#块分配与块组织">
     块分配与块组织
   </a>
-<nav aria-label="块分配与块组织" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#连续">
-    连续
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#链接">
-    链接
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#索引">
-    索引
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#空闲空间管理">
@@ -1419,25 +1400,6 @@
 <a class="md-nav__link" href="#块分配与块组织">
     块分配与块组织
   </a>
-<nav aria-label="块分配与块组织" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#连续">
-    连续
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#链接">
-    链接
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#索引">
-    索引
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#空闲空间管理">
@@ -1855,12 +1817,13 @@ Volume mounted at /users.</p>
 <h3 id="块分配与块组织">块分配与块组织<a class="headerlink" href="#块分配与块组织" title="Permanent link">¶</a></h3>
 <p>我们在讲内存的时候，讨论过<a href="../Unit3-Part1/#连续分配及其问题" target="_blank">进程的内存分配策略</a>。这里讨论的内容是类似的，我们考虑文件内存要如何被分配，同时，块如何分配也暗示了块是如何组织的。</p>
 <p>通常来说主要有三种：连续(contiguous)、链接(linked)和索引(indexed)，它们之间各有优劣，需要注意掌握它们的组织形式，会有计算题。</p>
-<h4 id="连续">连续<a class="headerlink" href="#连续" title="Permanent link">¶</a></h4>
+<details class="section" open="open">
+<summary>continuous</summary>
 <p>连续分配指的是每个文件占用一段连续的 block。</p>
-<figure>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/60.png"><img alt="" src="../img/60.png" width="80%"/></a> </center>
-Contiguous allocation of disk space.</p>
-</figure>
+<p><figure markdown="">
+<center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/60.png"><img alt="" src="../img/60.png" width="80%"/></a> </center>
+Contiguous allocation of disk space.
+</figure></p>
 <p>假设块大小为 512 B，如果给定存取文件的逻辑地址 LA，则其对应的结构内块号 Q 和块内偏移 R 为：</p>
 <div class="highlight"><pre><span></span><code><span class="n">block_size</span> <span class="o">=</span> <span class="mi">512</span> <span class="c1"># Bytes</span>
 <span class="n">Q</span> <span class="o">=</span> <span class="n">LA</span> <span class="o">/</span> <span class="n">block_size</span>
@@ -1888,17 +1851,19 @@ Contiguous allocation of disk space.</p>
 </div>
 <p>为了解决外部碎片的问题，有一种策略叫 compacts，指的是先暂时将文件系统复制到另外一个设备上，然后完全释放原始设备的资源，再将文件复制回去，从而实现了“压缩”。不过显然，这个操作的开销是巨大的。</p>
 <p>为了解决文件大小变大，无法扩展的问题，有一种机制叫做 extent，可以修正这个问题。当空间不够时，系统会被分配一块新的连续空间，链式地加入到原始空间的后面，这样就可以解决文件大小变大的问题了（类似于一种不定的大粒度的，由 FCB 维护的链接方案）。当然，为了实现这个方法，除了 start blok 和 length，还需要在 FCB 上记录指向 extent 的指针。</p>
-<h4 id="链接">链接<a class="headerlink" href="#链接" title="Permanent link">¶</a></h4>
+</details>
+<details class="section" open="open">
+<summary>linked</summary>
 <p>每个 block 作为一个链节，维护存储信息以外还需要维护指向下一个 block 的指针。此时，FCB 中只需要记录起始地址即可。</p>
-<figure>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/61.png"><img alt="" src="../img/61.png" width="80%"/></a> </center>
-Linked allocation of disk space.</p>
-</figure>
+<p><figure markdown="">
+<center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/61.png"><img alt="" src="../img/61.png" width="80%"/></a> </center>
+Linked allocation of disk space.
+</figure></p>
 <p>假设块大小为 512 B，每个块的开头消耗 1 B 来存放指针，如果给定存取文件的逻辑地址 LA，则其对应的结构内块号 Q 和块内偏移 R 为：</p>
-<div class="highlight"><pre><span></span><code> ┌───────┬───────────────────────────────┐
- │pointer│              data             │
- └───────┴───────────────────────────────┘
- 0       1                               512
+<div class="highlight"><pre><span></span><code>┌───────┬───────────────────────────────┐
+│pointer│              data             │
+└───────┴───────────────────────────────┘
+0       1                               512
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">valid_block_size</span> <span class="o">=</span> <span class="mi">512</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># Bytes</span>
 <span class="n">Q</span> <span class="o">=</span> <span class="n">LA</span> <span class="o">/</span> <span class="n">valid_block_size</span>
@@ -1939,13 +1904,15 @@ Linked allocation of disk space.</p>
 </div>
 </input></input></div>
 </details>
-<h4 id="索引">索引<a class="headerlink" href="#索引" title="Permanent link">¶</a></h4>
-<p>虽然<a href="#链接" target="_blank">链接</a>解决了<a href="#连续" target="_blank">连续</a>方案中分配不灵活的问题，但是不支持随机访问。</p>
+</details>
+<details class="section" open="open">
+<summary>index</summary>
+<p>虽然链接式方案解决了连续式方案中分配不灵活的问题，但是不支持随机访问。</p>
 <p>索引方法将所有指针统一维护到 index block 中，而不是利用链表的方式。每个文件有自己的 index block，在 index block 中，顺序存放着指向文件的所有 block 的指针，index block 中第 i 个 entry 指向了存储文件数据的第 i 个 block。</p>
-<figure>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/62.png"><img alt="" src="../img/62.png" width="80%"/></a> </center>
-Indexed allocation of disk space.</p>
-</figure>
+<p><figure markdown="">
+<center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/62.png"><img alt="" src="../img/62.png" width="80%"/></a> </center>
+Indexed allocation of disk space.
+</figure></p>
 <p>假设块大小为 512 B，如果给定存取文件的逻辑地址 LA，则其对应的结构内块号 Q 和块内偏移 R 为：</p>
 <div class="highlight"><pre><span></span><code><span class="n">block_size</span> <span class="o">=</span> <span class="mi">512</span> <span class="c1"># Bytes</span>
 <span class="n">Q</span> <span class="o">=</span> <span class="n">LA</span> <span class="o">/</span> <span class="n">block_size</span>
@@ -1977,10 +1944,11 @@ Indexed allocation of disk space.</p>
 </ol>
 </li>
 </ol>
-<figure>
-<p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/63.png"><img alt="" src="../img/63.png" width="80%"/></a> </center>
-The UNIX inode.</p>
-</figure>
+<p><figure markdown="">
+<center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/63.png"><img alt="" src="../img/63.png" width="80%"/></a> </center>
+The UNIX inode.
+</figure></p>
+</details>
 <div class="admonition tip">
 <p class="admonition-title">头脑风暴</p>
 <p>请思考这三种设计下，如何计算对应的结构内块号 Q 和块内偏移 R。</p>
@@ -2063,7 +2031,6 @@ The UNIX inode.</p>
 <p>位图(bitmap)即位向量，用对应 bit 的 0 或 1 来标记对应的 block 是否空闲。</p>
 <p>使用这种方法需要带来的额外开销是，有多少 blocks 就需要多少个额外的 bits。例如，假设块大小为 4 KiB，硬盘一共有 1 GiB，则需要 2<sup>30</sup> / 2<sup>12</sup> = 2<sup>18</sup> = 256 KiB 的额外空间来存储位图。</p>
 <p>相对来说容易得到连续的空间，因为 bitmap 中 bit 的相邻暗示 block 的相邻。</p>
-</details>
 <details class="eg" open="open">
 <summary>🌰</summary>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">题面</label><label for="__tabbed_3_2">解析</label></div>
@@ -2087,6 +2054,7 @@ The UNIX inode.</p>
 </div>
 </div>
 </input></input></div>
+</details>
 </details>
 <details class="section" open="open">
 <summary>链表</summary>
@@ -2194,7 +2162,7 @@ Schematic view of a virtual file system.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月29日 10:27:11</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月29日 10:30:20</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月21日 13:11:17</span>
