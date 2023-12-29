@@ -468,48 +468,6 @@ R = (LA % valid_block_size) + 1
 
         所以，文件系统支持的最多项数为 2^16^ 项，最大空间为 1 KiB * 2^16^ = 64 MB。
 
-???+ extra "ext"
-
-    TODO: 完善这部分。
-
-    !!! quote "Links"
-
-        - [ext2 | Wikipedia](https://en.wikipedia.org/wiki/Ext2){target="_blank"}
-
-    [Inode structure - record rec_len? | StackOverflow](https://stackoverflow.com/questions/56707783/inode-structure-record-rec-len){target="_blank"}
-
-
-???+ extra "FAT"
-
-    TODO: 完善这部分。
-
-    !!! quote "Links"
-
-        - [FAT | Wikipedia](https://en.wikipedia.org/wiki/File_Allocation_Table){target="_blank"}
-    
-    FAT 即 file-allocation table，是一种链接分配的变种，使用 FAT 的文件系统有 FAT12、FAT16、FAT32、exFAT（64位）。由于简单高效，它被 MS-DOS 使用。
-
-    - FAT 的每个目录项为 32 个字节。
-    - FAT32 长文件名的目录项由几个 32 B 表项组成。
-    - 用一个表项存放短文件名和其他属性（包括簇号、文件大小，最后修改时间和最后修改日期、创建时间、创建日期和最后存取日期），短文件名的属性是 `0x20`。
-    - 用连续若干个表项存放长文件名，每个表项存放 13 个字符（使用 Unicode 编码，每个字符占用 2 个字节）。
-    - 长文件名的表项首字节的二进制数低 5 位值，分别为 `00001`、`00010`、`00011`、...表示它们的次序，左起第 2 位为 1（也就是在低 5 位基础上加`0x40`）表示该表项是最后一项。最后项存放 13 个字符位置多余时，先用 2 个字节 0 表示结束，再用 `0xFF`` 填充。长文件名的属性是 `0x0F`。长文件名项的第 13、27、28 字节为 `0x00`，第 14 字节为短文件名校验和。
-
-???+ extra "NTFS"
-
-    TODO: 完善这部分。
-
-    !!! quote "Links"
-
-        - [NTFS | Wikipedia](https://en.wikipedia.org/wiki/NTFS){target="_blank"}
-
-    - 每个分区都有 MFT 即 master file table。
-    - MFT 由一个个 MFT entry（也称为文件记录）组成，每个 MFT entry 占用 1 KB 的空间。
-    - MFT 前 16 个记录用来存放元数据文件的信息，它们占有固定的位置。
-    - 每个 MFT entry 头部(header)的几十个字节有着固定的结构，用来描述该 MFT entry 的相关信息；后面的字节存放着文件属性等信息。
-    - 每个文件或目录的信息都包含在 MFT 中，每个文件或目录至少对应一个 MFT entry。
-
-
 #### 索引
 
 虽然[链接](#链接){target="_blank"}解决了[连续](#连续){target="_blank"}方案中分配不灵活的问题，但是不支持随机访问。
@@ -684,6 +642,50 @@ The UNIX inode.
     计数方法是基于链表方法的改进，基于连续空间通常被一起使用的假设，不是存储每个一个 block，而是只维护每个连续内存段的起始地址和**额外**长度。
 
     请一定要注意这里的额外，在计算题里会考。例如，用 2 B 来表示长度，则实际上对应的 blocks 数量为 `0x1` + `0xffff` = 2^16^。
+
+
+### 典型文件系统
+
+??? extra "ext"
+
+    TODO: 完善这部分。
+
+    !!! quote "Links"
+
+        - [ext2 | Wikipedia](https://en.wikipedia.org/wiki/Ext2){target="_blank"}
+
+    [Inode structure - record rec_len? | StackOverflow](https://stackoverflow.com/questions/56707783/inode-structure-record-rec-len){target="_blank"}
+
+
+??? extra "FAT"
+
+    TODO: 完善这部分。
+
+    !!! quote "Links"
+
+        - [FAT | Wikipedia](https://en.wikipedia.org/wiki/File_Allocation_Table){target="_blank"}
+    
+    FAT 即 file-allocation table，是一种链接分配的变种，使用 FAT 的文件系统有 FAT12、FAT16、FAT32、exFAT（64位）。由于简单高效，它被 MS-DOS 使用。
+
+    - FAT 的每个目录项为 32 个字节。
+    - FAT32 长文件名的目录项由几个 32 B 表项组成。
+    - 用一个表项存放短文件名和其他属性（包括簇号、文件大小，最后修改时间和最后修改日期、创建时间、创建日期和最后存取日期），短文件名的属性是 `0x20`。
+    - 用连续若干个表项存放长文件名，每个表项存放 13 个字符（使用 Unicode 编码，每个字符占用 2 个字节）。
+    - 长文件名的表项首字节的二进制数低 5 位值，分别为 `00001`、`00010`、`00011`、...表示它们的次序，左起第 2 位为 1（也就是在低 5 位基础上加`0x40`）表示该表项是最后一项。最后项存放 13 个字符位置多余时，先用 2 个字节 0 表示结束，再用 `0xFF`` 填充。长文件名的属性是 `0x0F`。长文件名项的第 13、27、28 字节为 `0x00`，第 14 字节为短文件名校验和。
+
+??? extra "NTFS"
+
+    TODO: 完善这部分。
+
+    !!! quote "Links"
+
+        - [NTFS | Wikipedia](https://en.wikipedia.org/wiki/NTFS){target="_blank"}
+
+    - 每个分区都有 MFT 即 master file table。
+    - MFT 由一个个 MFT entry（也称为文件记录）组成，每个 MFT entry 占用 1 KB 的空间。
+    - MFT 前 16 个记录用来存放元数据文件的信息，它们占有固定的位置。
+    - 每个 MFT entry 头部(header)的几十个字节有着固定的结构，用来描述该 MFT entry 的相关信息；后面的字节存放着文件属性等信息。
+    - 每个文件或目录的信息都包含在 MFT 中，每个文件或目录至少对应一个 MFT entry。
 
 ### 虚拟文件系统
 
