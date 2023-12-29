@@ -363,10 +363,6 @@ In-Memory 的数据结构在 main memory 中维护，用于帮助文件系统管
 
         - 使用有序数据结构（平衡树、B+ 树等）可以改善缺点；
   
-    !!! quote "inode"
-
-        [Ext2 FS 中 Inode structure 关于 record rec_len 的相关问题 | StackOverflow](https://stackoverflow.com/questions/56707783/inode-structure-record-rec-len){target="_blank"}
-
 ???+ section "hash table based"
 
     哈希表法通过哈希表来存储目录信息，每个目录项包含 file name 和指向 FCB/Inode 的指针，可以直接通过 hash function 进行 random access。
@@ -471,6 +467,17 @@ R = (LA % valid_block_size) + 1
         其次，由于块地址由 4 B 表示，所以地址空间最多有 2^32^ 个项。
 
         所以，文件系统支持的最多项数为 2^16^ 项，最大空间为 1 KiB * 2^16^ = 64 MB。
+
+???+ extra "ext"
+
+    TODO: 完善这部分。
+
+    !!! quote "Links"
+
+        - [ext2 | Wikipedia](https://en.wikipedia.org/wiki/Ext2){target="_blank"}
+
+    [Inode structure - record rec_len? | StackOverflow](https://stackoverflow.com/questions/56707783/inode-structure-record-rec-len){target="_blank"}
+
 
 ???+ extra "FAT"
 
