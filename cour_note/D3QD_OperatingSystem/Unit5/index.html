@@ -944,13 +944,13 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#scan--lock">
-    SCAN &amp; LOCK
+<a class="md-nav__link" href="#scan--look">
+    SCAN &amp; LOOK
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#c-scan--c-lock">
-    C-SCAN &amp; C-LOCK
+<a class="md-nav__link" href="#c-scan--c-look">
+    C-SCAN &amp; C-LOOK
   </a>
 </li>
 </ul>
@@ -1218,13 +1218,13 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#scan--lock">
-    SCAN &amp; LOCK
+<a class="md-nav__link" href="#scan--look">
+    SCAN &amp; LOOK
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#c-scan--c-lock">
-    C-SCAN &amp; C-LOCK
+<a class="md-nav__link" href="#c-scan--c-look">
+    C-SCAN &amp; C-LOOK
   </a>
 </li>
 </ul>
@@ -1372,7 +1372,7 @@ HDD moving-head disk mechanism.</p>
 <li>计算 seek time 需要额外开销；</li>
 </ul>
 </div>
-<h4 id="scan--lock">SCAN &amp; LOCK<a class="headerlink" href="#scan--lock" title="Permanent link">¶</a></h4>
+<h4 id="scan--look">SCAN &amp; LOOK<a class="headerlink" href="#scan--look" title="Permanent link">¶</a></h4>
 <p>SCAN 算法下磁头在碰到 LBA 边界前只会单向移动，而在移动过程中处理能够处理的请求。这样保证了处理请求的过程中总是顺序的。</p>
 <figure>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/47.png"><img alt="" src="../img/47.png" width="80%"/></a> </center>
@@ -1392,8 +1392,8 @@ SCAN disk scheduling.</p>
 <li>由于移动单向，所以如果请求发生在磁头刚刚经过的地方，那么可能会需要等待较长时间才会被响应；</li>
 </ul>
 </div>
-<p>如果我们不走到底，而是走到最靠近边界的请求对应的 LBA 就提前掉头，那么就是 LOCK 算法。显而易见的，LOCK 算法可以减少一些不必要的 SCAN。</p>
-<h4 id="c-scan--c-lock">C-SCAN &amp; C-LOCK<a class="headerlink" href="#c-scan--c-lock" title="Permanent link">¶</a></h4>
+<p>如果我们不走到底，而是走到最靠近边界的请求对应的 LBA 就提前掉头，那么就是 LOOK 算法。显而易见的，LOOK 算法可以减少一些不必要的 SCAN。</p>
+<h4 id="c-scan--c-look">C-SCAN &amp; C-LOOK<a class="headerlink" href="#c-scan--c-look" title="Permanent link">¶</a></h4>
 <p>C-SCAN 即 Circular SCAN，C-SCAN 与 SCAN 的唯一区别是，C-SCAN 的磁头移动是始终单向的，当磁头达到 LBA 的边界时，径直返回到另一端，回程中不响应任何请求，类似于“<a href="https://www.xiaoyuzhoufm.com/podcast/6291be6c5cf4a5ad60ca0cc5" target="_blank">首尾相撞</a>”了，所以才叫 “circular”。</p>
 <figure>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/48.png"><img alt="" src="../img/48.png" width="80%"/></a> </center>
@@ -1405,7 +1405,7 @@ C-SCAN disk scheduling.</p>
 <li>C-SCAN 相比 SCAN 有更均匀的等待时间；</li>
 </ul>
 </div>
-<p>类似的，如果我们不走到底，在处理完最靠近边界的请求后就直接返回；对应的，在返程的时候不是返回到最低 LBA，而是从最靠近边界的请求开始，那么就是 C-LOCK 算法。同样，C-LOCK 可以减少一些不必要的 C-SCAN。</p>
+<p>类似的，如果我们不走到底，在处理完最靠近边界的请求后就直接返回；对应的，在返程的时候不是返回到最低 LBA，而是从最靠近边界的请求开始，那么就是 C-LOOK 算法。同样，C-LOOK 可以减少一些不必要的 C-SCAN。</p>
 <hr/>
 <details class="eg" open="open">
 <summary>🌰</summary>
@@ -1418,9 +1418,9 @@ C-SCAN disk scheduling.</p>
 <li>FCFS</li>
 <li>SSTF</li>
 <li>SCAN（先向右）</li>
-<li>LOCK（先向右）</li>
+<li>LOOK（先向右）</li>
 <li>C-SCAN（向右）</li>
-<li>C-LOCK（向右）</li>
+<li>C-LOOK（向右）</li>
 </ol>
 <blockquote>
 <p><strong>提示</strong>：从计算上来讲比较繁琐的就只有第一个，后面的都有比较容易的算法。</p>
@@ -1436,21 +1436,21 @@ C-SCAN disk scheduling.</p>
 <p><strong>SCAN</strong>：</p>
 <p>由于这里的东西都是一次性给出来的，所以我们只需要向右扫到底，然后扫回来到 <code>86</code> 即可。</p>
 <p>所以答案是 <code>4999</code> - <code>143</code> + <code>4999</code> - <code>86</code> = <code>9769</code>。</p>
-<p><strong>LOCK</strong>：</p>
-<p>我们很容易发现，我们需要处理的明明最大才 <code>1774</code>，但是却得跑到 <code>4999</code>，所以使用 LOCK 的话我们就可以省很多距离。只需要扫到 <code>1774</code> 然后再扫回到 <code>130</code> 即可。</p>
+<p><strong>LOOK</strong>：</p>
+<p>我们很容易发现，我们需要处理的明明最大才 <code>1774</code>，但是却得跑到 <code>4999</code>，所以使用 LOOK 的话我们就可以省很多距离。只需要扫到 <code>1774</code> 然后再扫回到 <code>130</code> 即可。</p>
 <p>所以答案是 <code>1774</code> - <code>143</code> + <code>1774</code> - <code>86</code> = <code>3319</code>。</p>
 <p><strong>C-SCAN</strong>：</p>
-<p>类似 SCAN，向右扫到底，然后从左扫到 <strong><code>130</code></strong>（因为返程不会处理，所以处理的顺序是先 <code>86</code> 再 <code>130</code>）。但是需要注意，虽然 LOCK 只在向右扫的时候做处理，但是<strong>返程也需要计入 seek distance</strong>，毕竟 arm 不可能是闪现回 <code>0</code>。</p>
+<p>类似 SCAN，向右扫到底，然后从左扫到 <strong><code>130</code></strong>（因为返程不会处理，所以处理的顺序是先 <code>86</code> 再 <code>130</code>）。但是需要注意，虽然 LOOK 只在向右扫的时候做处理，但是<strong>返程也需要计入 seek distance</strong>，毕竟 arm 不可能是闪现回 <code>0</code>。</p>
 <p>所以答案是 <code>4999</code> - <code>143</code> + <code>4999</code> + <code>130</code> = <code>9985</code>。</p>
-<p><strong>C-LOCK</strong>：</p>
-<p>类似 LOCK，向右扫到 <code>1774</code>，然后从左扫到 <code>130</code>，同样，不能忘记计入返程的 seek distance。</p>
-<p>所以答案是 <u><code>1774</code> - <code>143</code> + <code>1774</code> - <code>86</code></u> + <code>130</code> - <code>86</code> = <code>3363</code>，然后你会发现，画横线的部分就是 LOCK 的计算时间，而 <code>130</code> - <code>86</code> 就反应了 C-XXXX 算法返程不处理的特点。</p>
+<p><strong>C-LOOK</strong>：</p>
+<p>类似 LOOK，向右扫到 <code>1774</code>，然后从左扫到 <code>130</code>，同样，不能忘记计入返程的 seek distance。</p>
+<p>所以答案是 <u><code>1774</code> - <code>143</code> + <code>1774</code> - <code>86</code></u> + <code>130</code> - <code>86</code> = <code>3363</code>，然后你会发现，画横线的部分就是 LOOK 的计算时间，而 <code>130</code> - <code>86</code> 就反应了 C-XXXX 算法返程不处理的特点。</p>
 </div>
 </div>
 </input></input></div>
 </details>
 <h3 id="调度算法的选择">调度算法的选择<a class="headerlink" href="#调度算法的选择" title="Permanent link">¶</a></h3>
-<p>Disk scheduling 应当被设计为一个可替换的模块，这样我们可以根据不同的应用场景选择不同的算法。通常，<a href="#sstf" target="_blank">SSTF</a> 是比较常见的默认选择；而当 I/O 较为频繁的时候，一般使用 <a href="#scan--lock" target="_blank">LOCK</a> 或者 <a href="#c-scan--c-lock" target="_blank">C-LOCK</a>。</p>
+<p>Disk scheduling 应当被设计为一个可替换的模块，这样我们可以根据不同的应用场景选择不同的算法。通常，<a href="#sstf" target="_blank">SSTF</a> 是比较常见的默认选择；而当 I/O 较为频繁的时候，一般使用 <a href="#scan--look" target="_blank">LOOK</a> 或者 <a href="#c-scan--c-look" target="_blank">C-LOOK</a>。</p>
 <blockquote>
 <p>表现本身依赖于请求的模式，而请求本身又依赖于文件分配策略。文件系统如果注重空间局部性，能够提供很好的表现提升。——<a href="https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/11_mass_storage/#1126-selecting-disk-scheduling-algorithm" target="_blank">xyx 的笔记</a></p>
 </blockquote>
@@ -1504,7 +1504,7 @@ C-SCAN disk scheduling.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年12月29日 10:20:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月3日 08:23:38</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>
