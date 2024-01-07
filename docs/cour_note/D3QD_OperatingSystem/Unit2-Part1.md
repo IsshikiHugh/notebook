@@ -486,7 +486,7 @@ process(i) {
     // i.e. find next waiting process j                 // ┐
     j = (i + 1) % n;                                    // │
     while (i != j && !WAITING[j]) {                     // ├ exit sec.
-        j = (i + 1) % n;                                // │
+        j = (j + 1) % n;                                // │
     }                                                   // │
     // release j's LOCK or release whole LOCK           // │
     if (i == j)     LOCK = false;                       // │
