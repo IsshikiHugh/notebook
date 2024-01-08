@@ -1661,7 +1661,7 @@ Diagram of process state.</p>
 <p><a id="SJF"></a></p>
 <h4 id="算法--shortest-job-first-sjf--shortest-remaining-time-first-srtf">算法 | Shortest-Job-First (SJF) / Shortest-Remaining-Time-First (SRTF)<a class="headerlink" href="#算法--shortest-job-first-sjf--shortest-remaining-time-first-srtf" title="Permanent link">¶</a></h4>
 <p>SJF 的思路是，当有多个进程处于就绪态时，选择需要<strong>运行时间最短</strong>的进程先运行。这种算法的优点是，能够保证平均等待时间最小；但是缺点是，如果有一个进程需要运行时间很长，那么它可能会一直被推迟，从而导致“<strong>饥饿</strong>”现象，此外，我们并不知道进程运行时间有多久。</p>
-<details class="eg">
+<details class="eg" open="open">
 <summary>🌰</summary>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">题面</label><label for="__tabbed_1_2">解析</label></div>
 <div class="tabbed-content">
@@ -1691,7 +1691,7 @@ Diagram of process state.</p>
 <p class="admonition-title">如何得到剩余时间</p>
 <p>我们知道，一个程序运行所需要的时间是一个无法在运行结束前得到的数据，因此使用这个东西进行调度就显得十分不合理。但我们可以通过预测的方法估计运行的剩余时间，但是既然是预测就会有不准确，所以 SJF/SRTF 并不能实现理论上平均等待时间最优。至于如何预测，书上提供了一个叫 exponential average 的方法，我们在这里不展开。</p>
 </div>
-<details class="eg">
+<details class="eg" open="open">
 <summary>🌰</summary>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">题面</label><label for="__tabbed_2_2">解析</label></div>
 <div class="tabbed-content">
@@ -1851,7 +1851,7 @@ Diagram of process state.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月8日 20:38:40</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月8日 20:41:32</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年10月5日 18:01:43</span>
