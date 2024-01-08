@@ -24,5 +24,5 @@
     - [x] [Chap 4 Sequential Circuits](Chap04.md)
     - [x] [Chap 5 Digital Hardware Implementation](Chap05.md)
     - [x] [Chap 6 Registers & Register Transfers](Chap06.md)
-    - [ ] [Chap 7 Memory Basics](Chap07.md) （没写）
+    - [x] [Chap 7 Memory Basics](Chap07.md)
     - [x] [Glossary](glossary.md)
