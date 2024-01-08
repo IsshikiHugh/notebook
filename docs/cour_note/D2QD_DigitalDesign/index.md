@@ -13,6 +13,9 @@
 
     很显然，我烂尾了，第五章内容很简陋，第七章基本没写，实在是考前来不及写完了。但是我可以保证除此之外的内容我都是仔细推敲后才写出来的orz。
 
+    本笔记经 [@MinJoker](https://github.com/MinJoker){target="_blank"} 补充和完善。<br />
+    更多数逻相关的知识与思考欢迎移步 [MinJoker's Notebook](https://minjoker.github.io/cs/system/digital_logic/){target="_blank"}。
+
     **此外，对于我已经写了的内容有疑义，或是希望能补充我没写的内容，欢迎提交 PR！**
 
 !!! note "List"
