@@ -479,8 +479,8 @@ RR 调度就是使用[分时技术](./Unit0.md/time-sharing)后的 FCFS 调度�
 需要注意的是，用户级多线程和内核级多线程并不冲突，因而排列组合后得到多线程主要有如下三种模型：
 
 <figure markdown>
-<center>![(a) Many-to-one model. (b) One-to-one model. (c) Many-to-many model.](img/19.png)</center>
-(a) Many-to-many model. (b) One-to-one model. \(c) Many-to-one model.
+<center>![](img/19.png)</center>
+(a) One-to-one model. (b) Many-to-many model. \(c) Many-to-one model.
 </figure>
 
 !!! quote "Linux 线程"
