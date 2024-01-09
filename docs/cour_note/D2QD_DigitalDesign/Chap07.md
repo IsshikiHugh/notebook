@@ -155,8 +155,8 @@ $16\times 1$ RAM 中的 word 是 1-bit 的，所以图中每个 cell 都表示�
 
 !!! tip "位扩展：$64\text{K}\times 16$ RAM"
 
-    - 16-bit 输入信号分成两路 8-bit，分别传输给两个 $256\text{K}\times 8$ RAM，16-bit 输出信号由两个 $256\text{K}\times 8$ RAM 分别产生的 8-bit 组成，可以理解为 RAM 的“**串联**”；
-    - 地址不变，相当于同时选中这两个 $256\text{K}\times 8$ RAM 中的某两个 word，而这两个 8-bit word 等价地表示了一个 16-bit word；
+    - 16-bit 输入信号分成两路 8-bit，分别传输给两个 $64\text{K}\times 8$ RAM，16-bit 输出信号由两个 $64\text{K}\times 8$ RAM 分别产生的 8-bit 组成，可以理解为 RAM 的“**串联**”；
+    - 地址不变，相当于同时选中这两个 $64\text{K}\times 8$ RAM 中的某两个 word，而这两个 8-bit word 等价地表示了一个 16-bit word；
 
     ![](img/140.png)
 
