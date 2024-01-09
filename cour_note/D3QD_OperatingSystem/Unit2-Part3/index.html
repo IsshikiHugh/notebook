@@ -1517,21 +1517,21 @@
 <ol>
 <li>初始化：<ul>
 <li><code>Work[m]</code> &lt;- <code>Available[m]</code>，<code>Work[m]</code> 表示当前状态的剩余资源量；</li>
-<li><code>Finish[n]</code> &lt;- <code>false</code>，表示所有进程/线程都还没运行；</li>
+<li><code>Finish[n]</code> &lt;- <code class="highlight"><span class="nb">false</span></code>，表示所有进程/线程都还没运行；</li>
 </ul>
 </li>
 <li>找到一个 <code>i</code> 使得：<ul>
-<li><code>(Finish[i] == false) &amp;&amp; (Need[i] &lt;= Work)</code>（注意，第二个 term 是 vector 比较，要求每一项都满足），满足该条件表示该进程/线程所需要的资源可以被满足；</li>
+<li><code class="highlight"><span class="p">(</span><span class="n">Finish</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">Need</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">Work</span><span class="p">)</span></code>（注意，第二个 term 是 vector 比较，要求每一项都满足），满足该条件表示该进程/线程所需要的资源可以被满足；</li>
 <li>如果没有这个 <code>i</code>，则 goto 3.；</li>
 <li>如果有这个 <code>i</code>，则更新状态：<ul>
-<li><code>Finish[i]</code> &lt;- <code>true</code>，表示该进程/线程执行完毕；</li>
+<li><code>Finish[i]</code> &lt;- <code class="highlight"><span class="nb">true</span></code>，表示该进程/线程执行完毕；</li>
 <li><code>Work</code> &lt;- <code>Work + Allocation[i]</code>，表示进程/线程执行完毕后释放资源；</li>
 <li>repeat 2.；</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>如果所有进程/线程都满足 <code>Finish[i] == true</code>，则系统处于安全状态，否则系统处于不安全状态；</li>
+<li>如果所有进程/线程都满足 <code class="highlight"><span class="n">Finish</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">true</span></code>，则系统处于安全状态，否则系统处于不安全状态；</li>
 </ol>
 </div>
 <h4 id="资源请求算法">资源请求算法<a class="headerlink" href="#资源请求算法" title="Permanent link">¶</a></h4>
@@ -1614,7 +1614,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月23日 17:15:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月9日 16:09:53</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2023年11月16日 11:17:25</span>
