@@ -309,6 +309,15 @@ Paging model of logical and physical memory.<br/>
     \end{aligned} 
     $$
 
+    如果题中给了 TLB access time，则需要将这个也加上去，因为无论 hit 还是 miss 都需要访问 TLB。
+
+    $$
+    \begin{aligned}
+        &\text{effective memory-access time} \\
+        &= (2 - p_{\text{hit}})t + \varepsilon_\text{TLB cache access}
+    \end{aligned} 
+    $$
+
     > 在现代计算机中，TLB 的结构可能会更加复杂（可能有更多层），所以实际的计算可能比上述更加复杂。
 
 ### 共享页
