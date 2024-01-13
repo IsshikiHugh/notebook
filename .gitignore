@@ -1,0 +1,11 @@
+# Editors Files
+.vscode
+
+# Desktop Services Store
+.DS_Store
+
+# Static Files
+site/
+
+# material src
+mkdocs-material

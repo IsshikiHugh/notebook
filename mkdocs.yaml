@@ -1,0 +1,291 @@
+site_name: Isshiki修's Notebook
+site_author: Isshiki修
+site_url: 'https://note.isshikih.top'
+
+repo_name: 'IsshikiHugh/notebook'
+repo_url: 'https://github.com/IsshikiHugh/notebook'
+edit_uri: blob/main/docs
+
+theme: 
+  name: material
+  language: zh
+  favicon: _assets/iro/IroPatch_Brown.ico
+  icon: 
+    # logo: material/pac-man
+    logo: octicons/paper-airplane-16
+    repo: fontawesome/brands/github-alt
+    admonition:
+      info: fontawesome/solid/anchor
+      note: fontawesome/solid/pen-nib
+      abstract: fontawesome/solid/list
+      tip: fontawesome/solid/lightbulb
+      success: fontawesome/solid/check
+      question: fontawesome/solid/circle-question
+      warning: fontawesome/solid/triangle-exclamation
+      failure: material/alien
+      danger: fontawesome/solid/virus
+      bug: fontawesome/solid/robot
+      example: fontawesome/solid/flask
+      quote: fontawesome/solid/link
+  font:
+    text: LXGW WenKai Screen GB Screen # Share Tech
+    code: JetBrains Mono
+  palette:
+    scheme: default
+    primary: brown
+    accent: deep orange
+  features:
+    - content.code.annotate
+    # - navigation.instant # This will cause LaTeX render fail at the first try.
+    - navigation.tracking
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.share
+  custom_dir: overrides
+
+plugins:
+  - minify
+  - statistics:
+      words_per_minute: 200
+  - glightbox
+  - search:
+      lang:
+        - zh
+        - en
+      separator: '[\s\-\.]+'
+  - git-revision-date-localized:
+      type: datetime
+      timezone: Asia/Shanghai
+      locale: zh
+      enable_creation_date: true
+      exclude:
+        - index.md
+        - coming.md
+        - link.md
+        - tech_accu/index.md
+        - cour_note/index.md
+        - pape_read/index.md
+        - others/index.md
+markdown_extensions:
+  - toc:
+      permalink: true # link for each title
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}} # enable Unicode link
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      # smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - mdx_math
+
+copyright: 'Copyright &copy 2022 Isshiki修'
+
+extra:
+  analytics:
+    provider: google
+    property: G-4P08GMSPJM
+    feedback:
+      title: 激励
+      ratings:
+        - icon: fontawesome/regular/hand-back-fist
+          name: 激励
+          data: 1
+          note: >- 
+            <center> 难道说……你愿意给我买一瓶快乐水吗！🫣 </center>
+            <img src="https://s2.loli.net/2023/08/03/EGbIvMQXalKTsUi.png" width=200px>
+
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/IsshikiHugh
+      name: Github
+
+# KaTeX cdn from: [ https://www.bootcdn.cn/KaTeX/ ]
+
+extra_css:
+  - _css/extra.css
+  - _css/flink.css
+  # - https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css
+  # - https://cdn.jsdelivr.net/npm/cn-fontsource-lxgw-wen-kai-gb-screen@1.0.6/font.min.css
+  - https://jsd.cdn.zzko.cn/npm/katex@0.16.4/dist/katex.min.css
+  - https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css
+  - https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
+  # - https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css
+extra_javascript: 
+  - _js/extra.js
+  # - _js/mathjax.js
+  - _js/katex.js
+  # - https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js
+  - https://jsd.cdn.zzko.cn/npm/katex@0.16.4/dist/katex.min.js
+
+
+nav:
+  - "💠 封面": 
+    - "💠 封面": index.md
+    - "💬 交流": link.md
+  - "📚 技术积累":
+    - tech_accu/index.md
+    - "常用工具":
+      - tech_accu/tool/index.md
+      - tech_accu/tool/Shell/index.md
+      - "Git Something":
+        - tech_accu/tool/Git/index.md
+        - tech_accu/tool/Git/Workflow/index.md
+        - tech_accu/tool/Git/Commands/index.md
+        - "🔗 A Fast Intro to Git Internals": https://sites.google.com/a/chromium.org/dev/developers/fast-intro-to-git-internals
+        - "🔗 .git 目录里到底包含了什么？": https://mp.weixin.qq.com/s/fQFOGAv9cdvdZTpyL_9y8g
+      - "MinIO":
+        - "🔗 Website": https://www.minio.org.cn/
+        - "🔗 Docs": http://docs.minio.org.cn/minio/baremetal/
+        - "🔗 Notes of MinIO x Golang": https://juejin.cn/post/7002026185391603749
+      - "Docker":
+        - "🔗 Docker build with Mac M1": https://medium.com/geekculture/docker-build-with-mac-m1-d668c802ab96
+      - "makefile":
+        - "🔗 What is a Makefile and how does it work?": https://opensource.com/article/18/8/what-how-makefile
+        - "🔗 makefile 介绍": https://seisman.github.io/how-to-write-makefile/introduction.html#
+      - tech_accu/tool/Colab/index.md
+    - "编程语言":
+      - C++:
+        - tech_accu/language/cpp/index.md
+        - tech_accu/language/cpp/Part0.md
+    - "标准 | 格式 | 规范":
+      - "BVH 格式详解": tech_accu/standard/BVH_format/index.md
+      - "👉 OAuth": https://www.yuque.com/isshikixiu/codes/gd5vxi
+      - "🔗 MIME": https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+    - "人工智能":
+      - tech_accu/ai/index.md
+      - tech_accu/ai/pytorch/index.md
+      - "Hydra": 
+        - tech_accu/ai/hydra/index.md
+      - "Pytorch Lighting":
+        - "🔗 官方文档": https://lightning.ai/docs/pytorch/stable/
+        - "🔗 PyTorch Lightning 入坑心得": https://medium.com/%E6%95%B8%E5%AD%B8-%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E8%88%87%E8%9F%92%E8%9B%87/pytorch-lightning-%E5%85%A5%E5%9D%91%E5%BF%83%E5%BE%97-81af12de9bb7
+  - "🗒 课程笔记":
+    - cour_note/index.md
+    - cour_note/D1QD_CXiaoCheng/index.md
+    - "🔮 概率论与数理统计":
+      - cour_note/D1CX_ProbabilityAndStatistics/index.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap01.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap02.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap03.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap04.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap05.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap06.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap07.md
+      - cour_note/D1CX_ProbabilityAndStatistics/Chap08.md
+    - cour_note/D1SJ_StanfordCS231n/index.md
+    - cour_note/D1SJ_Intro2CS/index.md
+    - "💎 数字逻辑设计 | Digital Design": 
+      - cour_note/D2QD_DigitalDesign/index.md
+      - cour_note/D2QD_DigitalDesign/Chap01.md
+      - cour_note/D2QD_DigitalDesign/Chap02.md
+      - cour_note/D2QD_DigitalDesign/Chap03.md
+      - cour_note/D2QD_DigitalDesign/Chap04.md
+      - cour_note/D2QD_DigitalDesign/Chap05.md
+      - cour_note/D2QD_DigitalDesign/Chap06.md
+      - cour_note/D2QD_DigitalDesign/Chap07.md
+    - "💎 计算机视觉导论 | I2CV":
+      - cour_note/D2QD_Intro2CV/index.md
+      - cour_note/D2QD_Intro2CV/Lec01.md
+      - cour_note/D2QD_Intro2CV/Lec02.md
+      - cour_note/D2QD_Intro2CV/Lec03.md
+      - cour_note/D2QD_Intro2CV/Lec04.md
+      - cour_note/D2QD_Intro2CV/Lec05.md
+      - cour_note/D2QD_Intro2CV/Lec06.md
+      - cour_note/D2QD_Intro2CV/Lec07.md
+      - cour_note/D2QD_Intro2CV/Lec08.md
+      - cour_note/D2QD_Intro2CV/Lec09.md
+      - cour_note/D2QD_Intro2CV/Lec10.md
+      - cour_note/D2QD_Intro2CV/Lec11.md
+      - cour_note/D2QD_Intro2CV/Lec12.md
+      - cour_note/D2QD_Intro2CV/Lec13.md
+    - cour_note/D2HJ_StanfordWriting/index.md
+    - "🔮 计算机组成 | Computer Organization":
+      - cour_note/D2CX_ComputerOrganization/index.md
+    - "💎 高级数据结构 | Advanced Data Structure": 
+      - cour_note/D2CX_AdvancedDataStructure/index.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec01.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec02.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec03.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec04.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec05.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec06.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec07.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec08.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec09.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec10.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec11.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec12.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec13.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec14.md
+      - cour_note/D2CX_AdvancedDataStructure/Lec15.md
+      - cour_note/D2CX_AdvancedDataStructure/Ex01.md
+    - "💎 操作系统 | Operating System":
+      - cour_note/D3QD_OperatingSystem/index.md
+      - cour_note/D3QD_OperatingSystem/Unit0.md
+      - cour_note/D3QD_OperatingSystem/Unit1.md
+      - "Unit 2 同步 | Synchronization":
+        - cour_note/D3QD_OperatingSystem/Unit2-Part1.md
+        - cour_note/D3QD_OperatingSystem/Unit2-Part2.md
+        - cour_note/D3QD_OperatingSystem/Unit2-Part3.md
+      - "Unit 3 内存 | Memory":
+        - cour_note/D3QD_OperatingSystem/Unit3-Part1.md
+        - cour_note/D3QD_OperatingSystem/Unit3-Part2.md
+      - cour_note/D3QD_OperatingSystem/Unit4.md
+      - cour_note/D3QD_OperatingSystem/Unit5.md
+      - cour_note/D3QD_OperatingSystem/Unit6.md
+    - "🔮 计算理论 | Theorem of Computing": 
+      - "🔗 xg 的 toc 笔记": https://note.tonycrane.cc/cs/tcs/toc/
+  - "📝 论文阅读":
+    - pape_read/index.md
+    - "资源":
+      - "🔗 Annotated Deep Learning Paper Implementations": https://nn.labml.ai/
+    - pape_read/NeRF/index.md
+    - pape_read/ACTOR/index.md
+    - pape_read/NSM/index.md
+    - pape_read/SAMP/index.md
+    - pape_read/EG3D/index.md
+    - pape_read/SA-MHR/index.md
+    - pape_read/TRACE/index.md
+  - "📦 杂项专题":
+    - others/index.md
+    - others/tools.md
+    - others/reveal-md2Slides/index.md
+    - "杂文收集":
+      - "🔗 OpenGL 101: Matrices-projection/view/model": https://solarianprogrammer.com/2013/05/22/opengl-101-matrices-projection-view-model/
+      - "🔗 全面解读 Group Normalization": https://zhuanlan.zhihu.com/p/35005794
+      - "🔗 WebGL 加载 .obj 文件": https://webglfundamentals.org/webgl/lessons/zh_cn/webgl-load-obj.html
+  - "🚧 施工中...":
+    - coming.md

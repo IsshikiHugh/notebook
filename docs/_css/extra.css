@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;700&display=swap');
+
+h2::before, h3::before, h4::before {
+    content: "# ";
+}
+
+.md-ellipsis,
+h1,
+.headerlink {
+    font-size: larger;
+    font-family: 'LXGW WenKai Screen', 'ZCOOL XiaoWei', serif;
+}
+
+.md-typeset h5 {
+    font-size: large;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5 {
+    font-weight: 600;
+}
+
+/* article a[href^="http"]::after,
+article a[href^="https://"]::after {
+    content: "";
+    width: 11px;
+    height: 11px;
+    margin-left: 4px;
+    background: var(--md-typeset-a-color);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z'/%3E%3Cpath fill-rule='evenodd' d='M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z'/%3E%3Cpath fill-rule='evenodd' d='M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+} */
+
+/* can make content in wider div */
+/* .md-grid {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 95%;
+} */
+
+body,
+input {
+    font-family: 'LXGW WenKai Screen', 'Lexend', 'Noto Sans SC', 'Source Code Pro', -apple-system, Helvetica, Arial, sans-serif;
+}
+
+center,
+p,
+li {
+    font-size: medium;
+}
+
+.md-nav__link {
+    font-size: small;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+    border: none;
+}
+
+.md-tabs {
+    background-color: var(--md-primary-fg-color--light);
+}
+
+.md-tabs__link {
+    margin-top: .8rem;
+    opacity: .4;
+    font-family: var(--md-text-font-family);
+}
+
+.md-tabs__link--active,
+.md-tabs__link:is(:focus, :hover) {
+    color: inherit;
+    opacity: 1;
+}
+
+.md-typeset details:not([open]) {
+    box-shadow: var(--md-shadow-z2);
+    padding-bottom: 0;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+    box-shadow: var(--md-shadow-z2);
+}
+
+/* .md-typeset img, */
+.md-typeset video {
+    box-shadow: var(--md-shadow-z1);
+    border-radius: 5px;
+}
+
+.md-typeset .md-button {
+    border: .15rem solid;
+    border-radius: .0rem;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    padding: .225em 2em;
+    transition: color 125ms,background-color 125ms,border-color 125ms;
+}
+
+:root,
+[data-md-color-scheme=default] {
+    --md-default-fg-color: rgba(72, 52, 52, .78);
+    --md-default-fg-color--light: rgba(72, 52, 52, .54);
+    --md-default-fg-color--lighter: rgba(72, 52, 52, .32);
+    --md-default-fg-color--lightest: rgba(72, 52, 52, .27);
+    --md-default-bg-color: #fffaf5;
+    --md-default-bg-color--light: hsla(0, 0%, 100%, .7);
+    --md-default-bg-color--lighter: hsla(0, 0%, 100%, .3);
+    --md-default-bg-color--lightest: hsla(0, 0%, 100%, .12);
+    --md-primary-fg-color: #967E76;
+    --md-primary-fg-color--light: #ab9188;
+    --md-primary-fg-color--dark: #806b65;
+    --md-primary-bg-color: #FDF6EC;
+    --md-primary-bg-color--light: hsla(0, 0%, 100%, .7);
+    --md-accent-fg-color: #b1c1a2;
+    --md-accent-fg-color--light: #809A6F;
+    --md-accent-fg-color--transparent: rgba(82, 108, 254, .1);
+    --md-accent-bg-color: #fff;
+    --md-accent-bg-color--light: hsla(0, 0%, 100%, .7);
+    --md-code-fg-color: #66806A;
+    --md-code-bg-color: #FFF3E4;
+    --md-code-hl-color: #d7e1c3;
+    --md-code-hl-number-color: #d52a2a;
+    --md-code-hl-special-color: #db1457;
+    --md-code-hl-function-color: #a846b9;
+    --md-code-hl-constant-color: #6e59d9;
+    --md-code-hl-keyword-color: #3f6ec6;
+    --md-code-hl-string-color: #1c7d4d;
+    --md-code-hl-name-color: var(--md-code-fg-color);
+    --md-code-hl-operator-color: var(--md-default-fg-color--light);
+    --md-code-hl-punctuation-color: var(--md-default-fg-color--light);
+    --md-code-hl-comment-color: var(--md-default-fg-color--light);
+    --md-code-hl-generic-color: var(--md-default-fg-color--light);
+    --md-code-hl-variable-color: var(--md-default-fg-color--light);
+    --md-typeset-color: var(--md-default-fg-color);
+    --md-typeset-a-color: var(--md-accent-fg-color--light);
+    --md-typeset-mark-color: rgba(255, 179, 0, 0.5);
+    --md-typeset-del-color: rgba(245, 80, 61, .15);
+    --md-typeset-ins-color: rgba(11, 213, 112, .15);
+    --md-typeset-kbd-color: #fafafa;
+    --md-typeset-kbd-accent-color: #fff;
+    --md-typeset-kbd-border-color: #b8b8b8;
+    --md-typeset-table-color: rgba(0, 0, 0, .12);
+    --md-admonition-fg-color: var(--md-default-fg-color);
+    --md-admonition-bg-color: #fff9f4;
+    --md-footer-fg-color: #fff;
+    --md-footer-fg-color--light: hsla(0, 0%, 100%, .7);
+    --md-footer-fg-color--lighter: hsla(0, 0%, 100%, .3);
+    --md-footer-bg-color: rgba(0, 0, 0, .87);
+    --md-footer-bg-color--dark: rgba(0, 0, 0, .32);
+    --md-shadow-z1: 1px 1px 3px #fff5ee, 1px 1px 5px #e1d0c5;
+    --md-shadow-z2: 1px 1px 3px #fff5ee, 2px 2px 7px #cebeb3;
+    --md-shadow-z3: 1px 1px 3px #fff5ee, 2px 2px 9px #cebeb3;
+}
+
+::selection {
+    background:rgba(209, 195, 177, 0.6);
+    /* color:blac; */
+}
+
+/* Customized admonitions: https://squidfunk.github.io/mkdocs-material/reference/admonitions/#customization */
+
+
+.md-typeset .admonition, .md-typeset details {
+    font-size: inherit;
+}
+
+/* definition */
+
+:root {
+    --md-admonition-icon--definition: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 21 12 3.5 22.5 21h-21M12 21l5-9H7l5 9Z"/></svg>')
+}
+
+.md-typeset .admonition.definition,
+.md-typeset details.definition {
+    border-color: #d2b300;
+}
+
+.md-typeset .definition>.admonition-title,
+.md-typeset .definition>summary {
+    background-color: #fbffde;
+}
+    
+.md-typeset .definition>.admonition-title::before,
+.md-typeset .definition>summary::before {
+    background-color: #d2b300;
+    -webkit-mask-image: var(--md-admonition-icon--definition);
+    mask-image: var(--md-admonition-icon--definition);
+}
+
+/* proof */
+
+:root {
+    --md-admonition-icon--proof: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M180.7 4.7c6.2-6.2 16.4-6.2 22.6 0l80 80c2.5 2.5 4.1 5.8 4.6 9.3l40.2 322H55.9L96.1 94c.4-3.5 2-6.8 4.6-9.3l80-80zM152 272c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24h-80zM32 448h320c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>')
+}
+
+.md-typeset .admonition.proof,
+.md-typeset details.proof {
+    border-color: #d8d0aa;
+}
+
+.md-typeset .proof>.admonition-title,
+.md-typeset .proof>summary {
+    background-color: #fdfdec;
+}
+
+.md-typeset .proof>.admonition-title::before,
+.md-typeset .proof>summary::before {
+    background-color: #d8d0aa;
+    -webkit-mask-image: var(--md-admonition-icon--proof);
+    mask-image: var(--md-admonition-icon--proof);
+}
+
+
+/* property */
+
+:root {
+    --md-admonition-icon--property: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M278.5 215.6 23 471c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l74.8-74.8c7.4 4.6 15.3 8.2 23.8 10.5 44.8 12.2 114.5 13.9 182.5-31.2 12.2-8.1 5.8-25.4-8.8-25.4h-16.1c-5.1 0-9.2-4.1-9.2-9.2 0-4.1 2.7-7.6 6.5-8.8l97.7-29.3c3.4-1 6.4-3.1 8.4-6.1 4.4-6.4 8.6-12.9 12.6-19.6 6.2-10.3-1.5-23-13.5-23H377c-5.1 0-9.2-4.1-9.2-9.2 0-4.1 2.7-7.6 6.5-8.8l80.9-24.3c4.6-1.4 8.4-4.8 10.2-9.3 29.1-73.4 42.4-150.3 46.5-199.6.8-9.9-3-19.6-10-26.6S485.2-.6 475.3.2C391.5 7 228.5 40.5 137.4 131.6c-80.1 80.1-80.7 170.7-66.1 224.8 2.1 7.9 12 9.6 17.8 3.8l164.5-164.4c6.2-6.2 16.4-6.2 22.6 0 5.4 5.4 6.1 13.6 2.2 19.8z"/></svg>')
+}
+
+.md-typeset .admonition.property,
+.md-typeset details.property {
+    border-color: #aaccd8;
+}
+
+.md-typeset .property>.admonition-title,
+.md-typeset .property>summary {
+    background-color: #ecf8fd;
+}
+
+.md-typeset .property>.admonition-title::before,
+.md-typeset .property>summary::before {
+    background-color: #aaccd8;
+    -webkit-mask-image: var(--md-admonition-icon--property);
+    mask-image: var(--md-admonition-icon--property);
+}
+
+/* extra */
+
+:root {
+    --md-admonition-icon--extra: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 11h-4v4h-2v-4H9V9h4V5h2v4h4m1-7H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2M4 6H2v14a2 2 0 0 0 2 2h14v-2H4V6Z"/></svg>')
+}
+
+.md-typeset .admonition.extra,
+.md-typeset details.extra {
+    border-color: #D09CFA;
+}
+
+.md-typeset .extra>.admonition-title,
+.md-typeset .extra>summary {
+    background-color: #F7DDFF;
+}
+
+.md-typeset .extra>.admonition-title::before,
+.md-typeset .extra>summary::before {
+    background-color: #D09CFA;
+    -webkit-mask-image: var(--md-admonition-icon--extra);
+    mask-image: var(--md-admonition-icon--extra);
+}
+
+
+/* section */
+
+:root {
+    --md-admonition-icon--section: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M565.6 36.24C572.1 40.72 576 48.11 576 56v336c0 9.1-6.2 18.9-15.5 22.4l-168 64c-5.1 2-10.8 2.1-16.1.4l-183.9-61.3-159.96 60.9c-7.37 2.8-15.66 1.8-22.16-2.6A24.091 24.091 0 0 1 0 456V120c0-10 6.15-18.9 15.46-22.43l168.04-64c5.1-1.97 10.8-2.09 16.1-.34l183.9 61.29 160-60.95c7.3-2.81 15.6-1.81 22.1 2.67zM48 421.2l120-45.7V90.83L48 136.5v284.7zm312-283.9-144-48v285.4l144 48V137.3zm48 283.9 120-45.7V90.83L408 136.5v284.7z"/></svg>')
+}
+
+.md-typeset .admonition.section,
+.md-typeset details.section {
+    border-color: #3AB4F2;
+}
+
+.md-typeset .section>.admonition-title,
+.md-typeset .section>summary {
+    background-color: #e1e8ff;
+}
+
+.md-typeset .section>.admonition-title::before,
+.md-typeset .section>summary::before {
+    background-color: #3AB4F2;
+    -webkit-mask-image: var(--md-admonition-icon--section);
+    mask-image: var(--md-admonition-icon--section);
+}
+
+
+/* key-point */
+
+:root {
+    --md-admonition-icon--key-point: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 112c30.88 0 56-25.12 56-56S286.9 0 256 0s-56.9 25.12-56.9 56 26 56 56.9 56zm255.1 85.4c0-5.178-2.509-10.2-7.096-13.26L476.4 168.2c-2.5-1.75-5.497-2.62-8.497-2.62-5.501.125-10.63 2.87-13.75 7.245-9.001 12-23.16 19.13-38.16 19.13-3.125 0-6.089-.253-9.089-.878-23.13-4.25-38.88-26.25-38.88-49.75C367.1 134 361.1 128 354.6 128h-38.75c-6.001 0-11.63 4-12.88 9.875C298.2 160.1 278.7 176 255.1 176c-22.75 0-42.25-15.88-47-38.12-.4-5.88-5.9-9.88-12-9.88h-38.75c-8.25 0-14.25 6-14.25 13.4 0 18.49-13.66 50.62-47.95 50.62-15.13 0-29.3-7.118-38.3-19.24-2.25-4.38-7.19-7.08-12.7-7.18-3 0-5.931.895-8.432 2.645l-28.63 16C2.509 187.2 0 192.3 0 197.4c0 2.438.558 4.901 1.72 7.185L109.9 432h53.13L69.85 236.4c8.5 2.4 17.26 3.6 26.13 3.6 2.432 0 56.83 1.503 84.76-52.5 17.36 23 45.86 36.5 75.16 36.5 29.38 0 57.01-13.38 75.26-36.25C336.1 197.6 360.6 240 416 240c8.751 0 17.5-1.125 26-3.5L349 432h53.13l108.1-227.4c1.17-2.3.87-4.8.87-7.2zM424 464H87.98c-13.26 0-24 10.75-24 23.1s10.74 24.9 24 24.9h336c13.26 0 24-10.75 24-23.1S437.3 464 424 464z"/></svg>')
+}
+
+.md-typeset .admonition.key-point,
+.md-typeset details.key-point {
+    border-color: #FF884B;
+}
+
+.md-typeset .key-point>.admonition-title,
+.md-typeset .key-point>summary {
+    background-color: #fff0c7;
+}
+
+.md-typeset .key-point>.admonition-title::before,
+.md-typeset .key-point>summary::before {
+    background-color: #FF884B;
+    -webkit-mask-image: var(--md-admonition-icon--key-point);
+    mask-image: var(--md-admonition-icon--key-point);
+}
+
+/* advice */
+
+:root {
+    --md-admonition-icon--advice: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M96 191.1H32c-17.67 0-32 14.33-32 31.1v223.1c0 17.67 14.33 31.1 32 31.1h64c17.67 0 32-14.33 32-31.1V223.1c0-16.8-14.3-32-32-32zM512 227c0-36.89-30.05-66.92-66.97-66.92h-99.86C354.7 135.1 360 113.5 360 100.8c0-33.8-26.2-68.78-70.06-68.78-46.61 0-59.36 32.44-69.61 58.5-31.66 80.5-60.33 66.39-60.33 93.47 0 12.84 10.36 23.99 24.02 23.99a23.88 23.88 0 0 0 14.97-5.26c76.76-61.37 57.97-122.7 90.95-122.7 16.08 0 22.06 12.75 22.06 20.79 0 7.404-7.594 39.55-25.55 71.59a23.934 23.934 0 0 0-3.066 11.72c0 13.92 11.43 23.1 24 23.1h137.6C455.5 208.1 464 216.6 464 227c0 9.809-7.766 18.03-17.67 18.71-12.66.86-22.36 11.4-22.36 23.94 0 15.47 11.39 15.95 11.39 28.91 0 25.37-35.03 12.34-35.03 42.15 0 11.22 6.392 13.03 6.392 22.25 0 22.66-29.77 13.76-29.77 40.64 0 4.515 1.11 5.961 1.11 9.456 0 10.45-8.516 18.95-18.97 18.95h-52.53c-25.62 0-51.02-8.466-71.5-23.81l-36.66-27.51a23.851 23.851 0 0 0-14.38-4.811c-13.85 0-24.03 11.38-24.03 24.04 0 7.287 3.312 14.42 9.596 19.13l36.67 27.52C235 468.1 270.6 480 306.6 480h52.53c35.33 0 64.36-27.49 66.8-62.2 17.77-12.23 28.83-32.51 28.83-54.83a65.97 65.97 0 0 0-.64-9.122c17.84-12.15 29.28-32.58 29.28-55.28 0-5.311-.641-10.54-1.876-15.64C499.9 270.1 512 250.2 512 227z"/></svg>')
+}
+
+.md-typeset .admonition.advice,
+.md-typeset details.advice {
+    border-color: #acc1a0;
+}
+
+.md-typeset .advice>.admonition-title,
+.md-typeset .advice>summary {
+    background-color: #ddf7d7;
+}
+
+.md-typeset .advice>.admonition-title::before,
+.md-typeset .advice>summary::before {
+    background-color: #acc1a0;
+    -webkit-mask-image: var(--md-admonition-icon--advice);
+    mask-image: var(--md-admonition-icon--advice);
+}
+
+
+/* not-advice */
+
+:root {
+    --md-admonition-icon--not-advice: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M128 288V64.03c0-17.67-14.33-31.1-32-31.1H32c-17.67 0-32 14.33-32 31.1v223.1c0 17.67 14.33 31.1 32 31.1h64c17.7 1.77 32-12.53 32-30.23zm353.5-58.9a66.276 66.276 0 0 0 1.875-15.64c0-22.7-11.44-43.13-29.28-55.28a65.97 65.97 0 0 0 .64-9.122c0-22.32-11.06-42.6-28.83-54.83-2.437-34.71-31.47-62.2-66.8-62.2h-52.53c-35.94 0-71.55 11.87-100.3 33.41L169.6 92.93c-6.285 4.71-9.596 11.85-9.596 19.13 0 12.76 10.29 24.04 24.03 24.04 5.013 0 10.07-1.565 14.38-4.811l36.66-27.51c20.48-15.34 45.88-23.81 71.5-23.81h52.53c10.45 0 18.97 8.497 18.97 18.95 0 3.5-1.11 4.94-1.11 9.456 0 26.97 29.77 17.91 29.77 40.64 0 9.254-6.392 10.96-6.392 22.25 0 13.97 10.85 21.95 19.58 23.59 8.953 1.671 15.45 9.481 15.45 18.56 0 13.04-11.39 13.37-11.39 28.91 0 12.54 9.702 23.08 22.36 23.94C456.2 266.1 464 275.2 464 284.1c0 10.43-8.516 18.93-18.97 18.93H307.4c-12.44 0-24 10.02-24 23.1 0 4.038 1.02 8.078 3.066 11.72C304.4 371.7 312 403.8 312 411.2c0 8.044-5.984 20.79-22.06 20.79-12.53 0-14.27-.906-24.94-28.07-24.75-62.91-61.74-99.9-80.98-99.9-13.8 0-24.02 11.27-24.02 23.99 0 7.041 3.083 14.02 9.016 18.76C238.1 402 211.4 480 289.9 480c43.9 0 70.1-35 70.1-68.8 0-12.7-5.328-35.21-14.83-59.33h99.86C481.1 351.9 512 321.9 512 284.1c0-22.3-12.1-43.1-30.5-55z"/></svg>')
+}
+
+.md-typeset .admonition.not-advice,
+.md-typeset details.not-advice {
+    border-color: #b46060;
+}
+
+.md-typeset .not-advice>.admonition-title,
+.md-typeset .not-advice>summary {
+    background-color: #ffe2d1;
+}
+
+.md-typeset .not-advice>.admonition-title::before,
+.md-typeset .not-advice>summary::before {
+    background-color: #b46060;
+    -webkit-mask-image: var(--md-admonition-icon--not-advice);
+    mask-image: var(--md-admonition-icon--not-advice);
+}
+
+
+/* eg */
+
+:root {
+    --md-admonition-icon--eg: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9.5A2.5 2.5 0 0 0 9.5 12a2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 12 9.5m0 3.5a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1m0-3.5A2.5 2.5 0 0 0 9.5 12a2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 12 9.5m0 3.5a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1m0-11A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 14c-2.63 0-5-1.57-6-4a6.505 6.505 0 0 1 8.5-3.5A6.52 6.52 0 0 1 18 12c-1 2.43-3.37 4-6 4m0-6.5A2.5 2.5 0 0 0 9.5 12a2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 12 9.5m0 3.5a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1Z"/></svg>')
+}
+
+.md-typeset .admonition.eg,
+.md-typeset details.eg {
+    border-color: #B7CADB;
+}
+
+.md-typeset .eg>.admonition-title,
+.md-typeset .eg>summary {
+    background-color: #FDF6EC;
+}
+
+.md-typeset .eg>.admonition-title::before,
+.md-typeset .eg>summary::before {
+    background-color: #B7CADB;
+    -webkit-mask-image: var(--md-admonition-icon--eg);
+    mask-image: var(--md-admonition-icon--eg);
+}
