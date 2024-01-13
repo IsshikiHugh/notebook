@@ -1,10 +1,14 @@
-# My Notebook
+# Isshiki修's Notebook
 
-传送门：[🔗](https://isshikihugh.github.io/notebook/)
+Pages: [🔗](https://isshikihugh.github.io/notebook/)
 
-本来是在语雀上做笔记的，但是由于某些原因放弃使用语雀了。现在和大家一起使用 mkdocs 当笔记本。计划之后同时塞到自己服务器上做静态部署。
+本来是在语雀上做笔记的，但是由于某些原因放弃使用语雀了。现在和大家一起使用 MkDocs 当笔记本。计划之后同时塞到自己服务器上做静态部署。
 
 **重要**：如果你想通过本项目来构建自己的 notebook，请务必修改 `mkdocs.yaml/extra.analytics.property`！否则你的数据会被推到我的后台！
+
+> 定期会做 commits 压缩处理，会先创建一个快照分支，然后把 main 分支用一个紧凑分支覆盖，再用 PR 把快照分支 squash merge 到 main 分支里。所以如果想查看古早的 commit 记录，可以看看快照分支。
+>
+> 上次压缩出来的紧凑分支：`a9bfe013de09a43c747995cc3dbcf4aa4fd11ff6`。
 
 ## 许可
 

@@ -13,7 +13,7 @@ if [ $# -gt 0 ]
 then
     git commit -m "$@"
 else
-    git commit -m "chore: Content synchronization"
+    git commit -m "chore: content synchronization"
 fi
 
 git push
