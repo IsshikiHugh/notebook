@@ -229,7 +229,7 @@ $$
 
 ---
 
-特别的，当 $\mu=0\;,\;\sigma=1$ 时，如果记这时的正太变量为 $Z$，即 $Z\sim N(0,1)$ 则它服从**标准正态分布(standard normal distribution)**。则其**密度函数**为：
+特别的，当 $\mu=0\;,\;\sigma=1$ 时，如果记这时的正态变量为 $Z$，即 $Z\sim N(0,1)$ 则它服从**标准正态分布(standard normal distribution)**。则其**密度函数**为：
 
 $$
 \varphi(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}\;, \;\;\;|x|<+\infty

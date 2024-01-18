@@ -168,7 +168,7 @@ $F$ 分布有如下性质：
 4. $\frac{\overline{X} - \mu}{S/\sqrt{n}}\sim t(n-1)$；
    - 这里注意区别一下：$\frac{\overline{X} - \mu}{\sigma/\sqrt{n}}\sim N(0,1)$；
 
-设 $X_1,X_2,...,X_n$ 和 $Y_1,Y_2,...,Y_n$ 是分别来自正态总体 $N(\mu_1,\sigma_1^2)$ 和 $N(\mu_2,\sigma_2^2)$，并且它们相互独立，$\overline{X},\overline{Y}$ 是样本均值，$S_1^2,S_2^2$ 是样本方差，则有：
+设 $X_1,X_2,...,X_{n_1}$ 和 $Y_1,Y_2,...,Y_{n_2}$ 是分别来自正态总体 $N(\mu_1,\sigma_1^2)$ 和 $N(\mu_2,\sigma_2^2)$，并且它们相互独立，$\overline{X},\overline{Y}$ 是样本均值，$S_1^2,S_2^2$ 是样本方差，则有：
 
 1. $\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma^2_2}\sim F(n_1-1,n_2-1)$；
 2. $\frac{(\overline{X}-\overline{Y})-(\mu_{1}-\mu_{2})}{\sqrt{\frac{\sigma_{1}^{2}}{n_1}+\frac{\sigma_{2}^{2}}{n_2}}} \sim N(0,1)$；
