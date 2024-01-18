@@ -195,7 +195,7 @@ nav:
   - "🗒 课程笔记":
     - cour_note/index.md
     - cour_note/D1QD_CXiaoCheng/index.md
-    - "🔮 概率论与数理统计":
+    - "💎 概率论与数理统计":
       - cour_note/D1CX_ProbabilityAndStatistics/index.md
       - cour_note/D1CX_ProbabilityAndStatistics/Chap01.md
       - cour_note/D1CX_ProbabilityAndStatistics/Chap02.md
@@ -266,6 +266,8 @@ nav:
       - cour_note/D3QD_OperatingSystem/Unit4.md
       - cour_note/D3QD_OperatingSystem/Unit5.md
       - cour_note/D3QD_OperatingSystem/Unit6.md
+    - "🔮 计算机网络 | Computer Network":
+      - "cour_note/D3QD_ComputerNetwork/index.md"
     - "🔮 计算理论 | Theorem of Computing": 
       - "🔗 xg 的 toc 笔记": https://note.tonycrane.cc/cs/tcs/toc/
   - "📝 论文阅读":
