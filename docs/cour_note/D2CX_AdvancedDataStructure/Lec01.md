@@ -72,7 +72,7 @@
 
     $$
     n_h = \left\{
-	    \begin{array}{l}
+        \begin{array}{l}
             1                       & (h = 0) \\
             2                       & (h = 1) \\
             n_{h-1} + n_{h-2} + 1   & (h > 1)

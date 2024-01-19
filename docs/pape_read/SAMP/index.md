@@ -45,25 +45,25 @@
 ### 方法　
 
 - `MotionNet`(core)：一个 cVAE，**输入**目标对象和动作，`MotionNet` 每一帧将**采样**一个潜向量，联合前一帧的动作来控制（即**预测**）下一个动作；
-	- 包含一个 encoder 和一个 decoder；  ![](assets/20230720095453.png)
-	- $X_i$ 表示第 $i$ 时刻的状态，$Z$ 为生成的潜向量，$I$ 为交互对象(interaction objects)（以**人物为原点**的体素空间表达）；
-		- encoder 包含 Interaction Encoder 和 State Encoder，分别将 $I$ 和 $X$ 编码（使用 3 个 FC）为低维度向量，再拼接起来输入到两个完全相同的 FC 中以预测 $\mu$ 和 $\sigma$ 即一个潜嵌入空间(latent embedding space)；
-		- 于是我们可以从以上述结果为参数的高斯分布中采样出潜向量 $Z$ 作为 decoder 的输入； ![](assets/20230720100605.png)
-		- [x] **问题**：为什么这里的 $j^r_i$ 是 6d 的？（实际上是 9d 旋转矩阵中会变元有 6 个，通过这个 6d 的向量能够还原出这个矩阵，而至于为什么用这个 6d 内容而非角度，可以参考[这篇文章](https://arxiv.org/abs/1812.07035)，角度具有突变不连续：$2pi = 0$，所以都不怎么用了）
-		- decoder 是一个 MoE，有 Prediction Network 和 Gating Network 两个部分，前者负责生成预测结果，后者负责生成各个专家网络的结果合成过程中的权重；
-	- 使用的 loss 为 $||\hat{X_i} - X_i||^2_2 + \beta_1\mathop{KL}(Q(Z|X_i, X_{i-1}, I) || p(Z))$；
-	- 特别注意，在测试过程中，我们仅仅从标准正态分布中采样潜向量；
-		- [x] **问题**：为什么？
+    - 包含一个 encoder 和一个 decoder；  ![](assets/20230720095453.png)
+    - $X_i$ 表示第 $i$ 时刻的状态，$Z$ 为生成的潜向量，$I$ 为交互对象(interaction objects)（以**人物为原点**的体素空间表达）；
+        - encoder 包含 Interaction Encoder 和 State Encoder，分别将 $I$ 和 $X$ 编码（使用 3 个 FC）为低维度向量，再拼接起来输入到两个完全相同的 FC 中以预测 $\mu$ 和 $\sigma$ 即一个潜嵌入空间(latent embedding space)；
+        - 于是我们可以从以上述结果为参数的高斯分布中采样出潜向量 $Z$ 作为 decoder 的输入； ![](assets/20230720100605.png)
+        - [x] **问题**：为什么这里的 $j^r_i$ 是 6d 的？（实际上是 9d 旋转矩阵中会变元有 6 个，通过这个 6d 的向量能够还原出这个矩阵，而至于为什么用这个 6d 内容而非角度，可以参考[这篇文章](https://arxiv.org/abs/1812.07035)，角度具有突变不连续：$2pi = 0$，所以都不怎么用了）
+        - decoder 是一个 MoE，有 Prediction Network 和 Gating Network 两个部分，前者负责生成预测结果，后者负责生成各个专家网络的结果合成过程中的权重；
+    - 使用的 loss 为 $||\hat{X_i} - X_i||^2_2 + \beta_1\mathop{KL}(Q(Z|X_i, X_{i-1}, I) || p(Z))$；
+    - 特别注意，在测试过程中，我们仅仅从标准正态分布中采样潜向量；
+        - [x] **问题**：为什么？
 - `GoalNet`：用来生成交互点和交互方向(contact points and orientations)，即目标(goals)；
-	- 该模块让 SAMP 能够适应不同的目标几何体；
-	- 同样包含一个 encoder 和一个 decoder；  ![](assets/20230720101937.png)
-	 - $I$ 为交互对象(interaction objects)（以物体**自身为原点**的体素空间表达），$\{g^p, g^d\}$ 分别为目标(goal)的位置和方向，$Z_{goal}$ 为潜向量；
-	 - 使用的 loss 为 $||\hat{g}^p - g^p||^2_2 + ||\hat{g}^d - g^d||^2_2 + \beta_2 \mathop{KL}(Q(Z_{goal}|g^p, g^d, I) || p(Z_{goal}))$；
+    - 该模块让 SAMP 能够适应不同的目标几何体；
+    - 同样包含一个 encoder 和一个 decoder；  ![](assets/20230720101937.png)
+     - $I$ 为交互对象(interaction objects)（以物体**自身为原点**的体素空间表达），$\{g^p, g^d\}$ 分别为目标(goal)的位置和方向，$Z_{goal}$ 为潜向量；
+     - 使用的 loss 为 $||\hat{g}^p - g^p||^2_2 + ||\hat{g}^d - g^d||^2_2 + \beta_2 \mathop{KL}(Q(Z_{goal}|g^p, g^d, I) || p(Z_{goal}))$；
 -  `Path Planning Module`：使用 A* 寻路以避障(obstacles)；
-	- 生成的路线中将会有许多路点(way-points)作为**过程中的**目标点(goals)；
-	- explicit A*；
-	- 所谓的“路径”，具体指的是一系列路点(way point)，通过这些“小目标”，来一步步引导虚拟人到达目标前，在最后一个路点进行目标动作的生成；
-	- 这一方面与 NSM 使用 sensor 检测不同，更加高效；
+    - 生成的路线中将会有许多路点(way-points)作为**过程中的**目标点(goals)；
+    - explicit A*；
+    - 所谓的“路径”，具体指的是一系列路点(way point)，通过这些“小目标”，来一步步引导虚拟人到达目标前，在最后一个路点进行目标动作的生成；
+    - 这一方面与 NSM 使用 sensor 检测不同，更加高效；
 
 > 这些独立组件使 SAMP 称为第一个解决生成多样动态动作序列，并且能真实应用于复杂场景中的。
 - [x] **问题**：这里最关键的是哪一个部分？与 NSM 相比独创性的地方具体在哪里？到底如何定义“diverse human-scene interactions”，和 Motion VAE 那种生成分布模型的有什么区别？（Motion VAE 是利用分布的极大似然估计得到结果的，MoGlow 貌似和场景没关系）

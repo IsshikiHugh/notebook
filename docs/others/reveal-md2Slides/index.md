@@ -280,11 +280,11 @@ verticalSeparator: <!--v-->
 - 反斜杠是为了防止md渲染错误，实际上不需要加
 
 \```cpp
-1		#include <iostream>
-2		int main(){
-3			std::cout << "Hello World!\n";
-4  		return 0;
-5		}
+1        #include <iostream>
+2        int main(){
+3            std::cout << "Hello World!\n";
+4          return 0;
+5        }
 \```
 ```
 
@@ -315,7 +315,7 @@ verticalSeparator: <!--v-->
 \```cpp[1|2-5]
 #include <iostream>
 int main(){
-	std::cout << "Hello World!\n";
+    std::cout << "Hello World!\n";
     return 0;
 }
 \```

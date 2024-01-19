@@ -197,10 +197,10 @@ $ pwd
 # 文件夹 dir1，里面有个文件 file2.md
 
 $ ls
-dir1		file1.md
+dir1        file1.md
 
 $ ls -a
-.				..		.hiden1		dir1		file1.md
+.                ..        .hiden1        dir1        file1.md
 
 $ ls -l
 drwxr-xr-x  2 isshikih  staff  64 10 12 12:15 dir1
@@ -351,7 +351,7 @@ mkdir: dir1: No such file or directory
 
 # 我们可以依次创建这些目录
 $ mkdir dir1 dir1/dir2
-$ tree   	# 该指令会显示当前的文件结构
+$ tree      # 该指令会显示当前的文件结构
 .
 ├── dir1
 │   ├── dir2
@@ -366,7 +366,7 @@ $ tree   	# 该指令会显示当前的文件结构
 
 # 或者使用 -p 参数，它允许创建嵌套目录，即如果前置目录不存在它会创建一个
 $ mkdir -p dir1/dir2
-$ tree   	# 该指令会显示当前的文件结构
+$ tree       # 该指令会显示当前的文件结构
 .
 ├── dir1
 │   ├── dir2
@@ -382,7 +382,7 @@ $ tree   	# 该指令会显示当前的文件结构
 
 ### 移动(重命名) | mv
 
-`mv`即 move，含义很明显，即改变文件或目录的位置。不过由于“位置”这件事，实际上也可以包含文件本身的名字，所以也可以用来做重命名，实际上就是修改目标位置到同一个路径下的另外一个名字。
+`mv` 即 move，含义很明显，即改变文件或目录的位置。不过由于“位置”这件事，实际上也可以包含文件本身的名字，所以也可以用来做重命名，实际上就是修改目标位置到同一个路径下的另外一个名字。
 
 ```shell
 # 注意，我们在这一节临时把 <path> 从 <filename> 和 <dirname> 中拆出来
@@ -399,7 +399,7 @@ $ mv <path1>/<target1> <path1>/<target2>
 
 ### 复制 | cp
 
-`cp`即 copy，用来复制文件或目录，基本语法和`mv`类似，我们再多介绍一个`-r`参数。
+`cp` 即 copy，用来复制文件或目录，基本语法和 `mv` 类似，我们再多介绍一个 `-r` 参数。
 
 ```shell
 # 该指令会复制一个文件 <filename> 到 <path> 下
@@ -411,7 +411,7 @@ cp: <dir> is a directory (not copied).
 # 但是使用 -r 参数可以复制 <path1> 下所有内容到 <path2> 下
 $ cp -r <path1> <path2>
 $ cp -r dir1 newDir
-$ tree   	# 该指令会显示当前的文件结构
+$ tree       # 该指令会显示当前的文件结构
 .
 ├── dir1
 │   ├── dir2
@@ -427,13 +427,13 @@ $ tree   	# 该指令会显示当前的文件结构
 
 ### 删除 | rm
 
-把`rm`放在最后讲是有原因的，或许你听说过 `rm / -rf` 这条指令，却不知道它的含义，那么看完这一小节你就知道这个指令有多恐怖了（千万不要跑这条指令）。
+把 `rm` 放在最后讲是有原因的，或许你听说过 `rm / -rf` 这条指令，却不知道它的含义，那么看完这一小节你就知道这个指令有多恐怖了（千万不要跑这条指令）。
 
-首先我们需要知道，Linux 下`rm`指令并不存在“垃圾箱”这个机制，即用`rm`删掉的东西是没法通过正常手段复原的，而上面那条指令的意思就是强制递归删除系统根目录下所有内容，也就是 **啥都删光了**。
+首先我们需要知道，Linux 下`rm`指令并不存在“垃圾箱”这个机制，即用 `rm` 删掉的东西是没法通过正常手段复原的，而上面那条指令的意思就是强制递归删除系统根目录下所有内容，也就是 **啥都删光了**。
 
-所以，一般我们都会建议使用`alias`保护`rm`指令（我写过`fish`的`rmalias`保护流程，可以参考[这篇文章](https://www.yuque.com/isshikixiu/codes/bokmrt)）。
+所以，一般我们都会建议使用 `alias` 保护 `rm` 指令（我写过 `fish` 的 `rmalias` 保护流程，可以参考[这篇文章](https://www.yuque.com/isshikixiu/codes/bokmrt)）。
 
-`rm`即 remove，顾名思义就是用来删除东西的，这是个非常危险的指令。常用的参数有`-r`和`-f`，分别表示递归删除和强制删除；此外，我们还将介绍一个`-i`参数。
+`rm` 即 remove，顾名思义就是用来删除东西的，这是个非常危险的指令。常用的参数有 `-r` 和 `-f`，分别表示递归删除和强制删除；此外，我们还将介绍一个`-i`参数。
 
 ```shell
 # 删除一个文件
@@ -472,9 +472,9 @@ $ rm -rf <dirname>
 
 # 推荐：递归删除时逐一确认
 $ rm -ri dir2
-examine files in directory dir2/? y		# 这里输入的 y 表示确认，否则都不会执行删除
-remove dir2//file3? y									# 这里输入的 y 表示确认，否则都不会执行删除
-remove dir2/? y 											# 这里输入的 y 表示确认，否则都不会执行删除
+examine files in directory dir2/? y     # 这里输入的 y 表示确认，否则都不会执行删除
+remove dir2//file3? y                   # 这里输入的 y 表示确认，否则都不会执行删除
+remove dir2/? y                         # 这里输入的 y 表示确认，否则都不会执行删除
 ```
 
 ## 重定向相关 💡
@@ -549,9 +549,9 @@ $ a.exe > out.txt
 // 假设 a.exe 的源码是这样的
 #include <stdio.h>
 int main(){
-		char str[1024];
-		scanf("%s", str);
-		printf("Hello %s!", str);
+        char str[1024];
+        scanf("%s", str);
+        printf("Hello %s!", str);
 }
 ```
 
@@ -697,7 +697,7 @@ Learn_shell means learn_shell and learn_shell!
 $ ls -a | wc -w
 5
 $ ls -a
-.	..	x	xx	xxx.log
+.    ..    x    xx    xxx.log
 
 # 再比如，统计当前目录下各个文件夹的大小，并输出从大到小的 10 项
 $ du | sort -nr | head
@@ -737,9 +737,9 @@ then
     commands
 elif condition2
 then
-		commands 
+        commands 
 else
-		commands
+        commands
 fi
 ```
 
@@ -789,7 +789,7 @@ done
 ```shell
 # 定义了一个叫做 foo 的函数，function 可以不写
 function foo(){
-	  commands
+      commands
 }
 ```
 
@@ -836,17 +836,17 @@ j
 ```shell
 #! /bin/bash
 function foo(){
-		echo $1
-		echo $2
-		echo $3
-		echo $4
-		echo $5
-		echo $6
-		echo $7
-		echo $8
-		echo $9
-		echo $10
-		echo ${10}
+        echo $1
+        echo $2
+        echo $3
+        echo $4
+        echo $5
+        echo $6
+        echo $7
+        echo $8
+        echo $9
+        echo $10
+        echo ${10}
 }
 
 foo a b c d e f g h i j

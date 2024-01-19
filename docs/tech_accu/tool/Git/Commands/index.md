@@ -131,12 +131,12 @@ git log
 
 ```shell
 # 回溯到特定 commit ，比较危险
-git reset HEAD               	# 回溯到上一个 commit ，效果上清空了暂存区，不影响工作区
-git reset --hard <commit-id> 	# 抛弃当前的工作区并回溯到某个版本
+git reset HEAD                 # 回溯到上一个 commit ，效果上清空了暂存区，不影响工作区
+git reset --hard <commit-id>   # 抛弃当前的工作区并回溯到某个版本
 
 # 抵消一次 commit ，产生一个与目标 commit 互逆的 commit
-git revert HEAD        				# 抵消上一次 commit
-git revert <commit-id> 				# 抵消特定 commit
+git revert HEAD                # 抵消上一次 commit
+git revert <commit-id>         # 抵消特定 commit
 ```
 
 ### 删除 / 移动(重命名)
@@ -223,8 +223,8 @@ git push -u <remote> <branch>
 # eg: 推送 master 分支的内容到 origin ，并自动设置上游
 git push -u origin master
 
-git push --force 	# 强制推送当前分支，即使有冲突存在
-         --all 	 	# 推送所有分支的内容
+git push --force     # 强制推送当前分支，即使有冲突存在
+         --all          # 推送所有分支的内容
 ```
 
 ## 分支管理

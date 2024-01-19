@@ -92,7 +92,7 @@ int main(){
 #include<stdio.h>
 
 int main(){
-	{}
+    {}
 }
 ```
 
@@ -136,9 +136,9 @@ int main(){
 ```c
 #define FLAG 1
 #if FLAG
-	//程序段1
+    //程序段1
 #else
-	//程序段2
+    //程序段2
 #endif
 ```
 
@@ -200,7 +200,7 @@ int main(){
 如下的循环语句：
 ```c
 for(表达式1;表达式2;表达式3){
-	语句
+    语句
 }
 ```
 其流程应当如下：
@@ -519,7 +519,7 @@ graph LR
 - `FILE` 本质上是一个结构体类型，定义如下：
 ```c
 typedef struct{
-	short            level;       /*缓冲区使用量*/
+    short            level;       /*缓冲区使用量*/
     unsigned         flags;       /*文件状态标志*/
     char             fd;          /*文件描述符*/
     short            bsize;       /*缓冲区大小*/

@@ -56,7 +56,7 @@ CV 领域的几个顶会
 - 课程目标
     - 学习计算机视觉相关的知识
     - 学会「用数学描述与解决问题」
-    	- `Linear Algebra` / `Optimization` / `Geometry`
+        - `Linear Algebra` / `Optimization` / `Geometry`
 - 课程资源
     - 教材：[https://szeliski.org/Book/](https://szeliski.org/Book/)     
 &nbsp;

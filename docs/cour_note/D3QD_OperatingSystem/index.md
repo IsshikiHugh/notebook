@@ -2,9 +2,9 @@
 
 !!! info "课程信息"
 
-	- **智云链接**：[🔗](https://classroom.zju.edu.cn/coursedetail?course_id=54447&tenant_code=112)
-	- **授课**：季江民
-	- **课本**：Operating System Concepts (10^th^ edition)
+    - **智云链接**：[🔗](https://classroom.zju.edu.cn/coursedetail?course_id=54447&tenant_code=112)
+    - **授课**：季江民
+    - **课本**：Operating System Concepts (10^th^ edition)
 
     !!! key-point "分数构成"
 

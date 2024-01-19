@@ -98,16 +98,16 @@ $$
 \mathbf{x}_c = \begin{bmatrix} x_c \\ y_c \\ z_c \end{bmatrix}
 =
 \begin{bmatrix}
-	r_{11} & r_{12} & r_{13} \\
-	r_{21} & r_{22} & r_{23} \\
-	r_{31} & r_{32} & r_{33} \\
+    r_{11} & r_{12} & r_{13} \\
+    r_{21} & r_{22} & r_{23} \\
+    r_{31} & r_{32} & r_{33} \\
 \end{bmatrix}
 \begin{bmatrix}
-	x_w \\ y_w \\ z_w
+    x_w \\ y_w \\ z_w
 \end{bmatrix}
 +
 \begin{bmatrix}
-	t_x \\ t_y \\ t_z
+    t_x \\ t_y \\ t_z
 \end{bmatrix}
 $$
 
@@ -123,13 +123,13 @@ $$
 \mathbf{\tilde x}_c = \begin{bmatrix} x_c \\ y_c \\ z_c \\ 1\end{bmatrix}
 =
 \underbrace{\begin{bmatrix}
-	r_{11} & r_{12} & r_{13} & t_x \\
-	r_{21} & r_{22} & r_{23} & t_y\\
-	r_{31} & r_{32} & r_{33} & t_z\\
-	0 & 0 & 0 & 1
+    r_{11} & r_{12} & r_{13} & t_x \\
+    r_{21} & r_{22} & r_{23} & t_y\\
+    r_{31} & r_{32} & r_{33} & t_z\\
+    0 & 0 & 0 & 1
 \end{bmatrix}}_{\text{Extrinsic Matrix}}
 \begin{bmatrix}
-	x_w \\ y_w \\ z_w \\ 1
+    x_w \\ y_w \\ z_w \\ 1
 \end{bmatrix}
 $$
 
@@ -173,19 +173,19 @@ $$
 
 $$
 \begin{bmatrix}
-	\mathbf{x}_{i_{1 \times 2}} \\ 1
+    \mathbf{x}_{i_{1 \times 2}} \\ 1
 \end{bmatrix}
 \cong
 \begin{bmatrix}
-	f & 0 & 0 & 0 \\
-	0 & f & 0 & 0 \\
-	0 & 0 & 1 & 0
+    f & 0 & 0 & 0 \\
+    0 & f & 0 & 0 \\
+    0 & 0 & 1 & 0
 \end{bmatrix}
 \begin{bmatrix}
-	x_c \\
-	y_c \\
-	z_c \\
-	1
+    x_c \\
+    y_c \\
+    z_c \\
+    1
 \end{bmatrix}
 $$
 
@@ -203,8 +203,8 @@ $$
 $$
 \left\{
     \begin{aligned}
-	    u &= m_x \cdot x_i + c_x\\
-	    v &= m_y \cdot y_i + c_y
+        u &= m_x \cdot x_i + c_x\\
+        v &= m_y \cdot y_i + c_y
     \end{aligned}
 \right.
 $$
@@ -243,22 +243,22 @@ $$
     这里得到的，包含 $f$ 和 $m$ 的矩阵才是**内参矩阵(Intrinsic Matrix)**，也被写作：
 
     $$
-	M_{int} = 
-	\begin{bmatrix}
-		m_x f & 0 & c_x & 0 \\
-		0 & m_y f & c_y & 0 \\
-		0 & 0 & 1 & 0
-	\end{bmatrix}
-	\\
+    M_{int} = 
+    \begin{bmatrix}
+        m_x f & 0 & c_x & 0 \\
+        0 & m_y f & c_y & 0 \\
+        0 & 0 & 1 & 0
+    \end{bmatrix}
+    \\
     or
-	\\
-	K = 
-	\begin{bmatrix}
-		m_x f & 0 & c_x \\
-		0 & m_y f & c_y \\
-		0 & 0 & 1
-	\end{bmatrix}
-	$$
+    \\
+    K = 
+    \begin{bmatrix}
+        m_x f & 0 & c_x \\
+        0 & m_y f & c_y \\
+        0 & 0 & 1
+    \end{bmatrix}
+    $$
 
 
 ---
@@ -289,18 +289,18 @@ graph LR
 $$
 M_{int} = 
 \begin{bmatrix}
-	m_x f & 0 & c_x & 0 \\
-	0 & m_y f & c_y & 0 \\
-	0 & 0 & 1 & 0
+    m_x f & 0 & c_x & 0 \\
+    0 & m_y f & c_y & 0 \\
+    0 & 0 & 1 & 0
 \end{bmatrix}
 \\
 or
 \\
 K = 
 \begin{bmatrix}
-	m_x f & 0 & c_x \\
-	0 & m_y f & c_y \\
-	0 & 0 & 1
+    m_x f & 0 & c_x \\
+    0 & m_y f & c_y \\
+    0 & 0 & 1
 \end{bmatrix}
 $$
 
@@ -354,36 +354,36 @@ $$
     $$
     \mathbf{\tilde{u}} = M_{int} \mathbf{\tilde{x}}_c \;\;\;\;i.e.\;\;\;\;
     \begin{bmatrix}
-		u' \\ v' \\ z_c
-	\end{bmatrix}
-	=
-	\begin{bmatrix}
-		f_x & 0 & c_x & 0 \\
-		0 & f_y & c_y & 0 \\
-		0 & 0 & 1 & 0
-	\end{bmatrix}
-	\begin{bmatrix}
-		x_c \\
-		y_c \\
-		z_c \\
-		1
-	\end{bmatrix}
+        u' \\ v' \\ z_c
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        f_x & 0 & c_x & 0 \\
+        0 & f_y & c_y & 0 \\
+        0 & 0 & 1 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_c \\
+        y_c \\
+        z_c \\
+        1
+    \end{bmatrix}
     $$
 
 !!! section "World to Camera: Extrinsic Matrix" 
     $$
     \mathbf{\tilde{x}}_c = M_{ext} \mathbf{\tilde{x}}_w \;\;\;\;i.e.\;\;\;\;
     \begin{bmatrix} x_c \\ y_c \\ z_c \\ 1\end{bmatrix}
-	=
-	\begin{bmatrix}
-		r_{11} & r_{12} & r_{13} & t_x \\
-		r_{21} & r_{22} & r_{23} & t_y\\
-		r_{31} & r_{32} & r_{33} & t_z\\
-		0 & 0 & 0 & 1
-	\end{bmatrix}
-	\begin{bmatrix}
-		x_w \\ y_w \\ z_w \\ 1
-	\end{bmatrix}
+    =
+    \begin{bmatrix}
+        r_{11} & r_{12} & r_{13} & t_x \\
+        r_{21} & r_{22} & r_{23} & t_y\\
+        r_{31} & r_{32} & r_{33} & t_z\\
+        0 & 0 & 0 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_w \\ y_w \\ z_w \\ 1
+    \end{bmatrix}
     $$
 
 而将它们结合，我们就得到了完整的**投影矩阵(Projection Matrix)**$P$：
@@ -391,23 +391,23 @@ $$
 $$
 \mathbf{\tilde u} = M_{int}M_{ext} \mathbf{\tilde x}_w = P \mathbf{\tilde x} \;\;\;\; i.e. \;\;\;\;
 \begin{bmatrix}
-	u \\ v \\ 1
+    u \\ v \\ 1
 \end{bmatrix}
 \cong
 \begin{bmatrix}
-	u' \\ v' \\ z_c
+    u' \\ v' \\ z_c
 \end{bmatrix}
 =
 \underbrace{\begin{bmatrix}
-	p_{11} & p_{12} & p_{13} & p_{14} \\
-	p_{21} & p_{22} & p_{23} & p_{24} \\
-	p_{31} & p_{32} & p_{33} & p_{34}
+    p_{11} & p_{12} & p_{13} & p_{14} \\
+    p_{21} & p_{22} & p_{23} & p_{24} \\
+    p_{31} & p_{32} & p_{33} & p_{34}
 \end{bmatrix}}_{\text{Projection Matrix } P}
 \begin{bmatrix}
-	x_w \\
-	y_w \\
-	z_w \\
-	1
+    x_w \\
+    y_w \\
+    z_w \\
+    1
 \end{bmatrix}
 $$
 
@@ -471,8 +471,8 @@ $$
     i.e. \;\;\;\;
     \left\{
     \begin{aligned}
-	    u^{(i)} &= \frac{p_{11}x_w^{(i)} + p_{12}y_w^{(i)} + p_{13}z_w^{(i)} + p_{14}}{p_{31}x_w^{(i)} + p_{32}y_w^{(i)} + p_{33}z_w^{(i)} + p_{34}} \\
-	    v^{(i)} &= \frac{p_{21}x_w^{(i)} + p_{22}y_w^{(i)} + p_{23}z_w^{(i)} + p_{24}}{p_{31}x_w^{(i)} + p_{32}y_w^{(i)} + p_{33}z_w^{(i)} + p_{34}}
+        u^{(i)} &= \frac{p_{11}x_w^{(i)} + p_{12}y_w^{(i)} + p_{13}z_w^{(i)} + p_{14}}{p_{31}x_w^{(i)} + p_{32}y_w^{(i)} + p_{33}z_w^{(i)} + p_{34}} \\
+        v^{(i)} &= \frac{p_{21}x_w^{(i)} + p_{22}y_w^{(i)} + p_{23}z_w^{(i)} + p_{24}}{p_{31}x_w^{(i)} + p_{32}y_w^{(i)} + p_{33}z_w^{(i)} + p_{34}}
     \end{aligned}
     \right.
     $$
@@ -539,22 +539,22 @@ $$
     \rightarrow
     P = 
     \begin{bmatrix}
-	    p_{11} & p_{12} & p_{13} & p_{14} \\
-	    p_{21} & p_{22} & p_{23} & p_{24} \\
-	    p_{31} & p_{32} & p_{33} & p_{34}
+        p_{11} & p_{12} & p_{13} & p_{14} \\
+        p_{21} & p_{22} & p_{23} & p_{24} \\
+        p_{31} & p_{32} & p_{33} & p_{34}
     \end{bmatrix}
     =
     \begin{bmatrix}
-		f_x & 0 & c_x & 0 \\
-		0 & f_y & c_y & 0 \\
-		0 & 0 & 1 & 0
-	\end{bmatrix}
+        f_x & 0 & c_x & 0 \\
+        0 & f_y & c_y & 0 \\
+        0 & 0 & 1 & 0
+    \end{bmatrix}
     \begin{bmatrix}
-		r_{11} & r_{12} & r_{13} & t_x \\
-		r_{21} & r_{22} & r_{23} & t_y\\
-		r_{31} & r_{32} & r_{33} & t_z\\
-		0 & 0 & 0 & 1
-	\end{bmatrix}
+        r_{11} & r_{12} & r_{13} & t_x \\
+        r_{21} & r_{22} & r_{23} & t_y\\
+        r_{31} & r_{32} & r_{33} & t_z\\
+        0 & 0 & 0 & 1
+    \end{bmatrix}
     $$
 
     通常来说，将一个矩阵分解为两个特定矩阵是不现实的，但是此处的内参矩阵的子式具有“上三角阵”这个性质，外参矩阵中旋转矩阵子式具有“正交”这个性质，而且观察 0 的分布，我们发现 $[p_{11} \sim p_{33}]$ 由 $KR$ 得到。所以我们恰好可以使用**[QR 分解](https://zh.wikipedia.org/zh-hans/QR%E5%88%86%E8%A7%A3)**来实现：

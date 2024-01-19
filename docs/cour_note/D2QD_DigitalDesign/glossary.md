@@ -4,7 +4,7 @@
     词汇表是 cm 老师整理的，让我们说 谢谢 cm ！
 
 
-## 1)	Ch1.1-7
+## 1) Ch1.1-7
 
 odometer：里程表，计程器
 
@@ -56,7 +56,7 @@ positional number system：按位记数制
 
 
 
-## 2)	Ch2.1-3
+## 2) Ch2.1-3
 
 notation: 标记法
 
@@ -112,7 +112,7 @@ subscript：下标
 
 
 
-## 3)	Ch2.4-7
+## 3) Ch2.4-7
 
 Venn diagram：维恩图
 
@@ -130,7 +130,7 @@ Hi-Impedance Outputs: 高阻态输出
 
 
 
-## 4)	ch3. 1-2
+## 4) ch3. 1-2
 
 rudimentary:基础的；基本的；未充分发展的；原始的
 
@@ -164,7 +164,7 @@ schematic：原理图，简图
 
 
 
-## 5)	ch3. 3-9
+## 5) ch3. 3-9
 
 decoder：译码器
 
@@ -180,7 +180,7 @@ cathode: 阴极，负极
 
 
 
-## 6)	Ch3. 8-10
+## 6) Ch3. 8-10
 
 Iterative array：迭代阵列
 
@@ -193,7 +193,7 @@ addition functional block
 
 
 
-## 7)	Ch3.11-12
+## 7) Ch3.11-12
 
 1's Complement：反码
 
@@ -209,7 +209,7 @@ contraction：(n.) 收缩、紧缩；contract：(v.) 收缩
 
 
 
-## 8)	Ch5. 2
+## 8) Ch5. 2
 
 fuse intact：熔丝保留
 
@@ -221,7 +221,7 @@ non-volatile：非易失性的
 
 
 
-## 9)	Ch4. 1-4
+## 9) Ch4. 1-4
 
 tractable: (adj.) 易处理的；易驾驭的
 
@@ -257,7 +257,7 @@ equivalent state：等价状态
 
 
 
-## 10)	Ch6. 1-5
+## 10) Ch6. 1-5
 
 register：寄存器
 
@@ -285,7 +285,7 @@ control unit：控制单元
 
 
 
-## 11)	Ch7. 1-7
+## 11) Ch7. 1-7
 
 strobe：选通；选通脉冲；闸门
 

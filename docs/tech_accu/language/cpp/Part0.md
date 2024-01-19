@@ -41,11 +41,11 @@ p = &y;
 
 ```cpp
 void f(int &x){
-	x = 1;
+    x = 1;
 }
 
 int main(){
-	int p = 0;
+    int p = 0;
     // 此时 p = 0
     f(p);
     // 此时 p = 1
@@ -79,27 +79,27 @@ using namespace std;
 
 class S{
     public:
-		void f();
+        void f();
     private:
-    	int a;
+        int a;
 };
 
 int a;
 
 void f(){
-	cout << "qwq\n";
+    cout << "qwq\n";
 }
 
 void S::f(){ // 这里正在定义一个属于类S的的函数
     ++a;     // 这里对一个类S的成员变量a进行了自增操作
-	::f();   // 这里调用了一个全局下的自由函数
+    ::f();   // 这里调用了一个全局下的自由函数
     ++::a;   // 这里对一个全局变量a进行了自增操作
     cout << a << " " << ::a << "\n";
 }
 
 int main(){
-	S k;
-	k.f(); 
+    S k;
+    k.f(); 
 }
 ```
 
@@ -119,8 +119,8 @@ int k(int x){ return x; }
 char k(long x){ return 'a'; }
 
 int main(){
-	cout << k(1L);   // 输出：a
-	cout << k(1);    // 输出：1
+    cout << k(1L);   // 输出：a
+    cout << k(1);    // 输出：1
 }
 ```
 
@@ -142,7 +142,7 @@ int main(){
 void fun(int x,int y);
 
 void fun(int x = 1,int y = 2){
-	// ...
+    // ...
 }
 ```
 
@@ -151,7 +151,7 @@ void fun(int x = 1,int y = 2){
 void fun(int x = 1,int y); 
 
 void fun(int x,int y = 2){
-	// ...
+    // ...
 }
 ```
 
@@ -160,7 +160,7 @@ void fun(int x,int y = 2){
 void fun(int x = 1,int y = 2);
 
 void fun(int x,int y){
-	// ...
+    // ...
 }
 ```
 
@@ -222,7 +222,7 @@ void fun(int x,int y){
 
 ```cpp
 namespace <Space Name>{
-	// 内容
+    // 内容
 } 
 ```
 

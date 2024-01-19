@@ -36,9 +36,9 @@
 
 $$
 \begin{aligned}
-	& F_{\Theta}:(\mathrm{x}, \mathrm{d}) \rightarrow (\mathrm{c}, \sigma)
-	\\
-	& \text{where } \mathrm{x} = (x,y,z), \; \mathrm{d} \text{ is a 3D Cartesian unit vector}, \; \mathrm{c} = (r,g,b), \; \sigma \text{ is the density}.
+    & F_{\Theta}:(\mathrm{x}, \mathrm{d}) \rightarrow (\mathrm{c}, \sigma)
+    \\
+    & \text{where } \mathrm{x} = (x,y,z), \; \mathrm{d} \text{ is a 3D Cartesian unit vector}, \; \mathrm{c} = (r,g,b), \; \sigma \text{ is the density}.
 \end{aligned} 
 $$
 
@@ -70,13 +70,13 @@ $$
     & \mathrm{C}(\mathrm{r})=
     \int_{t_n}^{t_f} 
     T(t) \cdot \sigma\left(
-    	\mathrm{r}(t) 
+        \mathrm{r}(t) 
     \right)  \cdot \mathrm{c} \left(
-    	\mathrm{r}(t), \mathrm{d}
+        \mathrm{r}(t), \mathrm{d}
     \right) \cdot \mathrm{d}t
 \end{aligned},\;\;
 \text{where } T(t) = \exp\left(
-	-\int_{t_n}^t \sigma\left(\mathrm{r}(s)\right) \; \mathrm{d}s
+    -\int_{t_n}^t \sigma\left(\mathrm{r}(s)\right) \; \mathrm{d}s
 \right)
 $$
 
