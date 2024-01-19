@@ -1520,11 +1520,11 @@ separator: &lt;!--s--&gt;
 <span class="k">-</span><span class="w"> </span>反斜杠是为了防止md渲染错误，实际上不需要加
 
 \```cpp
-1       <span class="ni">#include</span> &lt;iostream&gt;
-2       int main(){
-3           std::cout &lt;&lt; "Hello World!\n";
-4       return 0;
-5       }
+1        <span class="ni">#include</span> &lt;iostream&gt;
+2        int main(){
+3            std::cout &lt;&lt; "Hello World!\n";
+4          return 0;
+5        }
 \```
 </code></pre></div>
 <p>那么，为了实现高亮，我们只需要在语言后面加上一个方括号 <code>[...]</code> 来标记高亮行即可，比如 <code>[2-5]</code> 就是标记 2～5 行，也就是整个 <code>main()</code> 函数。此外，你还可以用<code>|</code>来分隔多个高亮块，来实现动画的效果，例如 <code>[1|2-5]</code> 就是先高亮预编译，再高亮 <code>main()</code> 函数。</p>
@@ -1650,7 +1650,7 @@ revealOptions:
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月19日 15:53:31</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>

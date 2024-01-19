@@ -1486,12 +1486,12 @@ git<span class="w"> </span>commit<span class="w"> </span>--amend<span class="w">
 <h3 id="回溯--抵消记录">回溯 / 抵消记录<a class="headerlink" href="#回溯--抵消记录" title="Permanent link">¶</a></h3>
 <p>在<code>log</code>中可以查询得到每一次<code>commit</code>的哈希，得到这些哈希(也可以使用标签)以后我们可以用它来进行 <strong>回溯</strong> 和 <strong>抵消</strong> 操作：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 回溯到特定 commit ，比较危险</span>
-git<span class="w"> </span>reset<span class="w"> </span>HEAD<span class="w">                  </span><span class="c1"># 回溯到上一个 commit ，效果上清空了暂存区，不影响工作区</span>
-git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>&lt;commit-id&gt;<span class="w">    </span><span class="c1"># 抛弃当前的工作区并回溯到某个版本</span>
+git<span class="w"> </span>reset<span class="w"> </span>HEAD<span class="w">                 </span><span class="c1"># 回溯到上一个 commit ，效果上清空了暂存区，不影响工作区</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>&lt;commit-id&gt;<span class="w">   </span><span class="c1"># 抛弃当前的工作区并回溯到某个版本</span>
 
 <span class="c1"># 抵消一次 commit ，产生一个与目标 commit 互逆的 commit</span>
-git<span class="w"> </span>revert<span class="w"> </span>HEAD<span class="w">                     </span><span class="c1"># 抵消上一次 commit</span>
-git<span class="w"> </span>revert<span class="w"> </span>&lt;commit-id&gt;<span class="w">              </span><span class="c1"># 抵消特定 commit</span>
+git<span class="w"> </span>revert<span class="w"> </span>HEAD<span class="w">                </span><span class="c1"># 抵消上一次 commit</span>
+git<span class="w"> </span>revert<span class="w"> </span>&lt;commit-id&gt;<span class="w">         </span><span class="c1"># 抵消特定 commit</span>
 </code></pre></div>
 <h3 id="删除--移动重命名">删除 / 移动(重命名)<a class="headerlink" href="#删除--移动重命名" title="Permanent link">¶</a></h3>
 <p><strong>删除</strong> 文件和 <strong>移动</strong>(<strong>重命名</strong>) 文件可以使用<code>rm</code>和<code>mv</code>，关于<code>rm</code>(<code>mv</code>)和<code>git rm</code>(<code>git mv</code>)的区别可以看<a href="https://www.cnblogs.com/lance-ehf/p/3871643.html">这里</a>。
@@ -1551,8 +1551,8 @@ git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span
 <span class="c1"># eg: 推送 master 分支的内容到 origin ，并自动设置上游</span>
 git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>master
 
-git<span class="w"> </span>push<span class="w"> </span>--force<span class="w">    </span><span class="c1"># 强制推送当前分支，即使有冲突存在</span>
-<span class="w">         </span>--all<span class="w">      </span><span class="c1"># 推送所有分支的内容</span>
+git<span class="w"> </span>push<span class="w"> </span>--force<span class="w">     </span><span class="c1"># 强制推送当前分支，即使有冲突存在</span>
+<span class="w">         </span>--all<span class="w">          </span><span class="c1"># 推送所有分支的内容</span>
 </code></pre></div>
 <h2 id="分支管理">分支管理<a class="headerlink" href="#分支管理" title="Permanent link">¶</a></h2>
 <h3 id="查看分支">查看分支<a class="headerlink" href="#查看分支" title="Permanent link">¶</a></h3>
@@ -1611,7 +1611,7 @@ git<span class="w"> </span>branch<span class="w"> </span>-dr<span class="w"> </s
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月19日 15:53:31</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>

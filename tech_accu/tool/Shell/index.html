@@ -1682,7 +1682,7 @@ $<span class="w"> </span>ls
 dir1<span class="w">        </span>file1.md
 
 $<span class="w"> </span>ls<span class="w"> </span>-a
-.<span class="w">               </span>..<span class="w">      </span>.hiden1<span class="w">     </span>dir1<span class="w">        </span>file1.md
+.<span class="w">                </span>..<span class="w">        </span>.hiden1<span class="w">        </span>dir1<span class="w">        </span>file1.md
 
 $<span class="w"> </span>ls<span class="w"> </span>-l
 drwxr-xr-x<span class="w">  </span><span class="m">2</span><span class="w"> </span>isshikih<span class="w">  </span>staff<span class="w">  </span><span class="m">64</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">12</span>:15<span class="w"> </span>dir1
@@ -1825,7 +1825,7 @@ $<span class="w"> </span>tree<span class="w">      </span><span class="c1"># 该
 
 <span class="c1"># 或者使用 -p 参数，它允许创建嵌套目录，即如果前置目录不存在它会创建一个</span>
 $<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>dir1/dir2
-$<span class="w"> </span>tree<span class="w">      </span><span class="c1"># 该指令会显示当前的文件结构</span>
+$<span class="w"> </span>tree<span class="w">       </span><span class="c1"># 该指令会显示当前的文件结构</span>
 .
 ├──<span class="w"> </span>dir1
 │<span class="w">   </span>├──<span class="w"> </span>dir2
@@ -1839,7 +1839,7 @@ $<span class="w"> </span>tree<span class="w">      </span><span class="c1"># 该
 <span class="m">4</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">4</span><span class="w"> </span>files
 </code></pre></div>
 <h3 id="移动重命名--mv">移动(重命名) | mv<a class="headerlink" href="#移动重命名--mv" title="Permanent link">¶</a></h3>
-<p><code>mv</code>即 move，含义很明显，即改变文件或目录的位置。不过由于“位置”这件事，实际上也可以包含文件本身的名字，所以也可以用来做重命名，实际上就是修改目标位置到同一个路径下的另外一个名字。</p>
+<p><code>mv</code> 即 move，含义很明显，即改变文件或目录的位置。不过由于“位置”这件事，实际上也可以包含文件本身的名字，所以也可以用来做重命名，实际上就是修改目标位置到同一个路径下的另外一个名字。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 注意，我们在这一节临时把 &lt;path&gt; 从 &lt;filename&gt; 和 &lt;dirname&gt; 中拆出来</span>
 <span class="c1"># 该指令会将 &lt;target1&gt; 移动到 &lt;path2&gt; 并改名为 &lt;target2&gt;，当然允许同名</span>
 $<span class="w"> </span>mv<span class="w"> </span>&lt;path1&gt;/&lt;target1&gt;<span class="w"> </span>&lt;path2&gt;/&lt;target2&gt;
@@ -1852,7 +1852,7 @@ $<span class="w"> </span>mv<span class="w"> </span>&lt;path1&gt;/&lt;target1&gt;
 $<span class="w"> </span>mv<span class="w"> </span>&lt;path1&gt;/&lt;target1&gt;<span class="w"> </span>&lt;path1&gt;/&lt;target2&gt;
 </code></pre></div>
 <h3 id="复制--cp">复制 | cp<a class="headerlink" href="#复制--cp" title="Permanent link">¶</a></h3>
-<p><code>cp</code>即 copy，用来复制文件或目录，基本语法和<code>mv</code>类似，我们再多介绍一个<code>-r</code>参数。</p>
+<p><code>cp</code> 即 copy，用来复制文件或目录，基本语法和 <code>mv</code> 类似，我们再多介绍一个 <code>-r</code> 参数。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 该指令会复制一个文件 &lt;filename&gt; 到 &lt;path&gt; 下</span>
 $<span class="w"> </span>cp<span class="w"> </span>&lt;filename&gt;<span class="w"> </span>&lt;path&gt;
 
@@ -1862,7 +1862,7 @@ cp:<span class="w"> </span>&lt;dir&gt;<span class="w"> </span>is<span class="w">
 <span class="c1"># 但是使用 -r 参数可以复制 &lt;path1&gt; 下所有内容到 &lt;path2&gt; 下</span>
 $<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>&lt;path1&gt;<span class="w"> </span>&lt;path2&gt;
 $<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>dir1<span class="w"> </span>newDir
-$<span class="w"> </span>tree<span class="w">      </span><span class="c1"># 该指令会显示当前的文件结构</span>
+$<span class="w"> </span>tree<span class="w">       </span><span class="c1"># 该指令会显示当前的文件结构</span>
 .
 ├──<span class="w"> </span>dir1
 │<span class="w">   </span>├──<span class="w"> </span>dir2
@@ -1876,10 +1876,10 @@ $<span class="w"> </span>tree<span class="w">      </span><span class="c1"># 该
 <span class="m">4</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">4</span><span class="w"> </span>files
 </code></pre></div>
 <h3 id="删除--rm">删除 | rm<a class="headerlink" href="#删除--rm" title="Permanent link">¶</a></h3>
-<p>把<code>rm</code>放在最后讲是有原因的，或许你听说过 <code>rm / -rf</code> 这条指令，却不知道它的含义，那么看完这一小节你就知道这个指令有多恐怖了（千万不要跑这条指令）。</p>
-<p>首先我们需要知道，Linux 下<code>rm</code>指令并不存在“垃圾箱”这个机制，即用<code>rm</code>删掉的东西是没法通过正常手段复原的，而上面那条指令的意思就是强制递归删除系统根目录下所有内容，也就是 <strong>啥都删光了</strong>。</p>
-<p>所以，一般我们都会建议使用<code>alias</code>保护<code>rm</code>指令（我写过<code>fish</code>的<code>rmalias</code>保护流程，可以参考<a href="https://www.yuque.com/isshikixiu/codes/bokmrt">这篇文章</a>）。</p>
-<p><code>rm</code>即 remove，顾名思义就是用来删除东西的，这是个非常危险的指令。常用的参数有<code>-r</code>和<code>-f</code>，分别表示递归删除和强制删除；此外，我们还将介绍一个<code>-i</code>参数。</p>
+<p>把 <code>rm</code> 放在最后讲是有原因的，或许你听说过 <code>rm / -rf</code> 这条指令，却不知道它的含义，那么看完这一小节你就知道这个指令有多恐怖了（千万不要跑这条指令）。</p>
+<p>首先我们需要知道，Linux 下<code>rm</code>指令并不存在“垃圾箱”这个机制，即用 <code>rm</code> 删掉的东西是没法通过正常手段复原的，而上面那条指令的意思就是强制递归删除系统根目录下所有内容，也就是 <strong>啥都删光了</strong>。</p>
+<p>所以，一般我们都会建议使用 <code>alias</code> 保护 <code>rm</code> 指令（我写过 <code>fish</code> 的 <code>rmalias</code> 保护流程，可以参考<a href="https://www.yuque.com/isshikixiu/codes/bokmrt">这篇文章</a>）。</p>
+<p><code>rm</code> 即 remove，顾名思义就是用来删除东西的，这是个非常危险的指令。常用的参数有 <code>-r</code> 和 <code>-f</code>，分别表示递归删除和强制删除；此外，我们还将介绍一个<code>-i</code>参数。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 删除一个文件</span>
 $<span class="w"> </span>rm<span class="w"> </span>&lt;filename&gt;
 
@@ -1917,8 +1917,8 @@ $<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>&l
 <span class="c1"># 推荐：递归删除时逐一确认</span>
 $<span class="w"> </span>rm<span class="w"> </span>-ri<span class="w"> </span>dir2
 examine<span class="w"> </span>files<span class="w"> </span><span class="k">in</span><span class="w"> </span>directory<span class="w"> </span>dir2/?<span class="w"> </span>y<span class="w">     </span><span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
-remove<span class="w"> </span>dir2//file3?<span class="w"> </span>y<span class="w">                                   </span><span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
-remove<span class="w"> </span>dir2/?<span class="w"> </span>y<span class="w">                                             </span><span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
+remove<span class="w"> </span>dir2//file3?<span class="w"> </span>y<span class="w">                   </span><span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
+remove<span class="w"> </span>dir2/?<span class="w"> </span>y<span class="w">                         </span><span class="c1"># 这里输入的 y 表示确认，否则都不会执行删除</span>
 </code></pre></div>
 <h2 id="重定向相关-">重定向相关 💡<a class="headerlink" href="#重定向相关-" title="Permanent link">¶</a></h2>
 <p>可以说这是 Shell 中最有意思的知识点之一了。重定向，顾名思义就是重新定向，更准确的来说是给数据流重新定向。首先，我们来看看这张图，它描述了命令运行时的数据交互。</p>
@@ -2090,7 +2090,7 @@ Learn_shell<span class="w"> </span>means<span class="w"> </span>learn_shell<span
 $<span class="w"> </span>ls<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-w
 <span class="m">5</span>
 $<span class="w"> </span>ls<span class="w"> </span>-a
-.<span class="w">   </span>..<span class="w">  </span>x<span class="w">   </span>xx<span class="w">  </span>xxx.log
+.<span class="w">    </span>..<span class="w">    </span>x<span class="w">    </span>xx<span class="w">    </span>xxx.log
 
 <span class="c1"># 再比如，统计当前目录下各个文件夹的大小，并输出从大到小的 10 项</span>
 $<span class="w"> </span>du<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-nr<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
@@ -2304,7 +2304,7 @@ C
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月19日 15:53:31</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
