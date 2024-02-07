@@ -4,8 +4,8 @@
 # Desktop Services Store
 .DS_Store
 
-# Static Files
-site/
+# Local Generation Files
+site
 
 # material src
 mkdocs-material

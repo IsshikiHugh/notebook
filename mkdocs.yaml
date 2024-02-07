@@ -36,6 +36,7 @@ theme:
     accent: deep orange
   features:
     - content.code.annotate
+    - content.code.copy
     # - navigation.instant # This will cause LaTeX render fail at the first try.
     - navigation.tracking
     - navigation.tabs
@@ -44,6 +45,7 @@ theme:
     - navigation.top
     - search.highlight
     - search.share
+    # - navigation.prune
   custom_dir: overrides
 
 plugins:
@@ -98,7 +100,7 @@ markdown_extensions:
       user: squidfunk
       repo: mkdocs-material
   - pymdownx.mark
-  - pymdownx.smartsymbols
+  # - pymdownx.smartsymbols
   - pymdownx.tabbed:
       alternate_style: true 
   - pymdownx.superfences:

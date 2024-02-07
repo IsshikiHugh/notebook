@@ -185,11 +185,15 @@ $$
 \mathbf{w}^{t+1} = \mathbf{w}^t - \eta_t\frac{\partial L}{\partial \mathbf{w}}\mathbf{w}^t 
 $$
 
-求梯度-》复合函数求导-》链式法则
+求梯度 -> 复合函数求导 -> 链式法则
 
 对于现在的深度学习工具来说，反向传播与求导等过程都可以自动实现，也就是说我们只需要设计好网络结构和 loss function 即可，而优化部分则可以通过工具实现。
 
-随机梯度下降，随机的采样一部分点，$\Omega$ @P86，
+随机梯度下降，随机的采样一部分点，$\Omega$ \@P86，
+
+??? question "Why called \"stochastic\"?"
+
+    Ref: [Stochasticity in Stochastic Gradient Descent (SGD)](https://medium.com/@jasraj.singh/what-is-stochastic-in-stochastic-gradient-descent-sgd-20d462aec672){target="_blank"}
 
 ### Architecture & hyper-parameters
 
