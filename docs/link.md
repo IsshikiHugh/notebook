@@ -73,7 +73,7 @@
             <div class="flink-item-icon">
                 ![](./_assets/avatars/minjoker.png)
             </div>
-        <a href="https://minjoker.github.io/" title="MinJoker 的 笔记本" target="_blank">
+        <a href="https://note.minjoker.top/" title="MinJoker 的 笔记本" target="_blank">
             <div class="flink-item-name">MinJoker 的 笔记本</div>
             <div class="flink-item-desc"> 被神仙学弟薄纱 orz </div>
         </a>
