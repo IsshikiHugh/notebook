@@ -302,7 +302,7 @@ LeftistHeapNode * del(LeftistHeapNode * cur, ElementType x) {
 !!! quote "link"
     Wikipedia: https://en.wikipedia.org/wiki/Skew_heap
 
-**斜堆(Skew Hea)**是比左偏堆更为一般的数据结构，它同样有着能够快速合并的性质。
+**斜堆(Skew Heap)**是比左偏堆更为一般的数据结构，它同样有着能够快速合并的性质。
 
 !!! tip "头脑风暴"
     让我们回顾一下左偏堆，由于需要自下而上地维护 dist，所以我们无法进行并发操作。回顾 AVL 树，同样为了维护它比较严格的平衡性质，我们也无法进行并发操作，而红黑树则通过一个能够仅仅通过变色就能调整的黑高来规避了必须自下而上维护的问题，实现了并发。
