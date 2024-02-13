@@ -95,7 +95,17 @@
             </div>
         <a href="https://blog.ralvines.top/" title="暮瞻 Blog" target="_blank">
             <div class="flink-item-name">暮瞻 Blog</div>
-            <div class="flink-item-desc"> 以我观物，故物皆着我之色彩。</div>
+            <div class="flink-item-desc"> 以我观物，故物皆着我之色彩。 </div>
+        </a>
+    </div>
+
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
+                ![](./_assets/avatars/memset0.jpg)
+            </div>
+        <a href="https://mem.ac/course/" title="memset0 的 Blog" target="_blank">
+            <div class="flink-item-name">memset0 的 Blog</div>
+            <div class="flink-item-desc"> 在海月的虚空中，纵身飞过秋凉的时鸟。 </div>
         </a>
     </div>
 
