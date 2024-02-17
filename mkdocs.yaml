@@ -283,9 +283,10 @@ nav:
     - pape_read/EG3D/index.md
     - pape_read/SA-MHR/index.md
     - pape_read/TRACE/index.md
-    - "[SLAHMR] Decoupling Human and Camera Motion from Videos in the Wild": https://isshikih.notion.site/Decoupling-Human-and-Camera-Motion-from-Videos-in-the-Wild-b960992c07fe4739a3dd939c22b9d94b?pvs=4
     - "[SMPLify] Keep It SMPL: Automatic Estimation of 3D Human Pose and Shape from a Single Image": https://isshikih.notion.site/Keep-It-SMPL-Automatic-Estimation-of-3D-Human-Pose-and-Shape-from-a-Single-Image-6dc0538b3e124a7cbff3993ed6e17f9e
     - "[SMPL-X] Expressive Body Capture: 3D Hands, Face, and Body from a Single Image": https://isshikih.notion.site/Expressive-Body-Capture-3D-Hands-Face-and-Body-from-a-Single-Image-b02c3d1452e64869977c7ca8e83502b5?pvs=4
+    - "[HuMoR] 3D Human Motion Model for Robust Pose Estimation": https://isshikih.notion.site/HuMoR-3D-Human-Motion-Model-for-Robust-Pose-Estimation-2f9c84ed776446ab8b878120fff1ba2a?pvs=4
+    - "[SLAHMR] Decoupling Human and Camera Motion from Videos in the Wild": https://isshikih.notion.site/Decoupling-Human-and-Camera-Motion-from-Videos-in-the-Wild-b960992c07fe4739a3dd939c22b9d94b?pvs=4
   - "📦 杂项专题":
     - others/index.md
     - others/tools.md
