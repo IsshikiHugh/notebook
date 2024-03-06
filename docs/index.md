@@ -26,10 +26,10 @@ hide:
 
 !!! advice "推荐阅读"
     - [📄 使用 reveal-md 来写 Slides](./others/reveal-md2Slides/index.md)
-    - [🗂️ Git Something](./tech_accu/tool/Git/index.md)
     - [🗂️ 操作系统 | Operating System](./cour_note/D3QD_OperatingSystem/index.md)
     - [🗂️ 数字逻辑设计 | Digital Design](./cour_note/D2QD_DigitalDesign/index.md)
     - [🗂️ 高级数据结构 | Advanced Data Structure](./cour_note/D2CX_AdvancedDataStructure/index.md)
+    - [🏆 ZJU CS 笔记大索引 | All Sum in One]([./tech_accu/tool/Git/index.md](https://isshikihugh.github.io/zju-cs-asio/)){target="_blank"}
 
 !!! info "站点统计"
     <center>
