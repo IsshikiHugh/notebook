@@ -1576,7 +1576,7 @@
 <ul>
 <li>原函数：<span class="arithmatex">\(F=\overline{A}B+C\overline{B}\)</span>；</li>
 <li>其对偶函数：<span class="arithmatex">\(F=(\overline{A}+B)(C+\overline{B})\)</span>；</li>
-<li>其互补函数：<span class="arithmatex">\(\overline{F}=(A+\overline{B})(\overline{C}+D)\)</span>；</li>
+<li>其互补函数：<span class="arithmatex">\(\overline{F}=(A+\overline{B})(\overline{C}+B)\)</span>；</li>
 </ul>
 </div>
 <h3 id="替代法则">替代法则<a class="headerlink" href="#替代法则" title="Permanent link">¶</a></h3>
@@ -1676,7 +1676,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <h3 id="最小项之和-som">最小项之和 SOM<a class="headerlink" href="#最小项之和-som" title="Permanent link">¶</a></h3>
 <p>课本中对最小项的描述是：</p>
 <blockquote>
-<p>A product term in which all the variables appear exactly once, either complemented or uncomplemented, is called <em>minterm</em>. </p>
+<p>A product term in which all the variables appear exactly once, either complemented or uncomplemented, is called <em>minterm</em>.</p>
 <p>Its characteristic property is that it represents exactly one combination of binary variable values in the truth table.</p>
 </blockquote>
 <p>用我的话来说，最小项之和就是挑出真值表中所有结果是 <code>1</code> 的最小项（<em>比较模糊但直观，所以请先囫囵吞枣，我在“追加说明”会进一步说明</em>）然后 <code>OR</code> 起来。显然，最小项之和的含义就是，一旦字面量取值的组合匹配了这几个“最小项”的其中一项，那么结果就是 <code>1</code>，符合了 <code>OR</code> 的“有1得1”的规则。</p>
@@ -1758,7 +1758,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <p>再次给出这个总结性的表述：<u>所谓的“挑出”，就是对于选定的一个字面量取值的组合，给出一个特定的表达式，使得只有这种组合的结果是 <span class="arithmatex">\(f\)</span>，而对于任何其他取值的组合，该表达式的结果都是 <span class="arithmatex">\(\overline{f}\)</span>，即实现了该表达式能 <strong>唯一表达</strong> 这个取值组合。</u></p>
 </details>
 <p>至此，我们得到了 🌰 所对应的 POM：</p>
-<div class="arithmatex">\[    
+<div class="arithmatex">\[
 \begin{aligned}
     F(X,Y,Z)
     &amp; = \prod M(0,1,3,6) \\
@@ -2194,7 +2194,7 @@ XY+\overline{X}Z+YZ=XY+\overline{X}Z
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年3月20日 13:58:39</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
