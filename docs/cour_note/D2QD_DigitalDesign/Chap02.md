@@ -38,7 +38,7 @@
 ![](img/7.jpeg)
 
 > 如图，(a)中绘制了三个常用逻辑门的符号；(b)中则描述了这些运算在 **时序图(timing diagram)** 中的状态；\(c)则描述了在延时（见下）效应下的时序图。
-> 
+>
 > 还有一个注意点是，非门其实更多的被称为 inverter，而非 NOT。
 
 但是由于是物理层面的实现，所以会有一些逻辑运算层面不会出现的问题，比如 **延时(delay)**。
@@ -60,7 +60,7 @@
 !!! quote "推荐阅读"
     - Title: Universal Logic Gates
     - URL: https://www.electronics-tutorials.ws/logic/universal-gates.html
-    
+
     > Universal Logic gates can be used to produce any other logic or Boolean function with the NAND and NOR gates being minimal
 
 ## 布尔代数
@@ -115,7 +115,7 @@
 !!! eg "eg"
     - 原函数：$F=\overline{A}B+C\overline{B}$；
     - 其对偶函数：$F=(\overline{A}+B)(C+\overline{B})$；
-    - 其互补函数：$\overline{F}=(A+\overline{B})(\overline{C}+D)$；
+    - 其互补函数：$\overline{F}=(A+\overline{B})(\overline{C}+B)$；
 
 ### 替代法则
 
@@ -165,8 +165,8 @@ $XY+\overline{X}Z+YZ=XY+\overline{X}Z+(X+\overline{X})YZ$，那后面就很简�
 
 课本中对最小项的描述是：
 
-> A product term in which all the variables appear exactly once, either complemented or uncomplemented, is called *minterm*. 
-> 
+> A product term in which all the variables appear exactly once, either complemented or uncomplemented, is called *minterm*.
+>
 > Its characteristic property is that it represents exactly one combination of binary variable values in the truth table.
 
 用我的话来说，最小项之和就是挑出真值表中所有结果是 `1` 的最小项（*比较模糊但直观，所以请先囫囵吞枣，我在“追加说明”会进一步说明*）然后 `OR` 起来。显然，最小项之和的含义就是，一旦字面量取值的组合匹配了这几个“最小项”的其中一项，那么结果就是 `1`，符合了 `OR` 的“有1得1”的规则。
@@ -285,7 +285,7 @@ $$
 
 至此，我们得到了 🌰 所对应的 POM：
 
-$$    
+$$
 \begin{aligned}
     F(X,Y,Z)
     & = \prod M(0,1,3,6) \\
@@ -592,7 +592,7 @@ $$
     https://www.geeksforgeeks.org/dont-care-x-conditions-in-k-maps/
 
 **不定项(Don't Cares)** 指的是需要化简的逻辑函数中，没有给出定义的几项，它们可能是：
-  
+
 - 输入组合不会出现；
 - 输入组合的输出不被使用；
 
@@ -608,7 +608,7 @@ $$
 
 !!! tip "由卡诺图得到乘积结果"
     尽管我们不停强调 与 和 或 是对称的，但是仍然有很多操作是鉴于我们对 `1` 的偏爱才会顺手的（你会发现，把乘除换成我们完全不熟悉的符号，你甚至可能无从下手）。
-    
+
     所以，在卡诺图的问题中，如果要利用卡诺图得到 $F$ 优化后的乘积形式，也可以将问题转化为求 $\overline{F}$ 优化后的和形式，然后再对其取反过，利用德·摩根定律来得到结果。
 
     具体来说就是反转 K-map 中所有的 `0` 和 `1`，然后着眼于 SOM 进行优化，最后再对结果取反，用德·摩根定律来得到结果。
@@ -630,7 +630,7 @@ $$
 
 ![](img/27.png)
 > 如图，左侧的两个主蕴含项因为包括了 ⓵ 和 ⓶ 这两个唯一的 `1`，所以是基本主蕴含项；
-> 
+>
 > 而右侧的蕴含项则是一个冗余的蕴含项；
 
 !!! warning "注意"
@@ -652,7 +652,7 @@ $$
 
     不过我没有全写出来；
 
---- 
+---
 
 ### 三态门
 
