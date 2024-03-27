@@ -6,11 +6,11 @@ repo_name: 'IsshikiHugh/notebook'
 repo_url: 'https://github.com/IsshikiHugh/notebook'
 edit_uri: blob/main/docs
 
-theme: 
+theme:
   name: material
   language: zh
   favicon: _assets/iro/IroPatch_Brown.ico
-  icon: 
+  icon:
     # logo: material/pac-man
     logo: octicons/paper-airplane-16
     repo: fontawesome/brands/github-alt
@@ -102,7 +102,7 @@ markdown_extensions:
   - pymdownx.mark
   # - pymdownx.smartsymbols
   - pymdownx.tabbed:
-      alternate_style: true 
+      alternate_style: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -125,7 +125,7 @@ extra:
         - icon: fontawesome/regular/hand-back-fist
           name: 激励
           data: 1
-          note: >- 
+          note: >-
             <center> 难道说……你愿意给我买一瓶快乐水吗！🫣 </center>
             <img src="https://s2.loli.net/2023/08/03/EGbIvMQXalKTsUi.png" width=200px>
 
@@ -145,7 +145,7 @@ extra_css:
   - https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css
   - https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
   # - https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css
-extra_javascript: 
+extra_javascript:
   - _js/extra.js
   # - _js/mathjax.js
   - _js/katex.js
@@ -154,7 +154,7 @@ extra_javascript:
 
 
 nav:
-  - "💠 封面": 
+  - "💠 封面":
     - "💠 封面": index.md
     - "💬 交流": link.md
   - "📚 技术积累":
@@ -189,7 +189,7 @@ nav:
     - "人工智能":
       - tech_accu/ai/index.md
       - tech_accu/ai/pytorch/index.md
-      - "Hydra": 
+      - "Hydra":
         - tech_accu/ai/hydra/index.md
       - "Pytorch Lighting":
         - "🔗 官方文档": https://lightning.ai/docs/pytorch/stable/
@@ -209,7 +209,7 @@ nav:
       - cour_note/D1CX_ProbabilityAndStatistics/Chap08.md
     - cour_note/D1SJ_StanfordCS231n/index.md
     - cour_note/D1SJ_Intro2CS/index.md
-    - "💎 数字逻辑设计 | Digital Design": 
+    - "💎 数字逻辑设计 | Digital Design":
       - cour_note/D2QD_DigitalDesign/index.md
       - cour_note/D2QD_DigitalDesign/Chap01.md
       - cour_note/D2QD_DigitalDesign/Chap02.md
@@ -236,7 +236,7 @@ nav:
     - cour_note/D2HJ_StanfordWriting/index.md
     - "🔮 计算机组成 | Computer Organization":
       - cour_note/D2CX_ComputerOrganization/index.md
-    - "💎 高级数据结构 | Advanced Data Structure": 
+    - "💎 高级数据结构 | Advanced Data Structure":
       - cour_note/D2CX_AdvancedDataStructure/index.md
       - cour_note/D2CX_AdvancedDataStructure/Lec01.md
       - cour_note/D2CX_AdvancedDataStructure/Lec02.md
@@ -270,7 +270,7 @@ nav:
       - cour_note/D3QD_OperatingSystem/Unit6.md
     - "🔮 计算机网络 | Computer Network":
       - "cour_note/D3QD_ComputerNetwork/index.md"
-    - "🔮 计算理论 | Theorem of Computing": 
+    - "🔮 计算理论 | Theorem of Computing":
       - "🔗 xg 的 toc 笔记": https://note.tonycrane.cc/cs/tcs/toc/
   - "📝 论文阅读":
     - pape_read/index.md
@@ -283,10 +283,12 @@ nav:
     - pape_read/EG3D/index.md
     - pape_read/SA-MHR/index.md
     - pape_read/TRACE/index.md
-    - "[SMPLify] Keep It SMPL: Automatic Estimation of 3D Human Pose and Shape from a Single Image": https://isshikih.notion.site/Keep-It-SMPL-Automatic-Estimation-of-3D-Human-Pose-and-Shape-from-a-Single-Image-6dc0538b3e124a7cbff3993ed6e17f9e
-    - "[SMPL-X] Expressive Body Capture: 3D Hands, Face, and Body from a Single Image": https://isshikih.notion.site/Expressive-Body-Capture-3D-Hands-Face-and-Body-from-a-Single-Image-b02c3d1452e64869977c7ca8e83502b5?pvs=4
-    - "[HuMoR] 3D Human Motion Model for Robust Pose Estimation": https://isshikih.notion.site/HuMoR-3D-Human-Motion-Model-for-Robust-Pose-Estimation-2f9c84ed776446ab8b878120fff1ba2a?pvs=4
-    - "[SLAHMR] Decoupling Human and Camera Motion from Videos in the Wild": https://isshikih.notion.site/Decoupling-Human-and-Camera-Motion-from-Videos-in-the-Wild-b960992c07fe4739a3dd939c22b9d94b?pvs=4
+    - pape_read/SMPLify/index.md
+    - pape_read/SMPLX/index.md
+    - pape_read/HuMoR/index.md
+    - pape_read/SLAHMR/index.md
+    - pape_read/WHAM/index.md
+    - pape_read/ManipNet/index.md
   - "📦 杂项专题":
     - others/index.md
     - others/tools.md
