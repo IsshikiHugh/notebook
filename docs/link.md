@@ -3,7 +3,7 @@
 !!! info "📜 介绍"
 
     你好！我想为这个小网站赋予一些社交价值，想认识更多厉害的人！欢迎大家在这里聊天，或是留下友链交换！
-    
+
 
 !!! summary "🔗 友链"
 
@@ -109,9 +109,19 @@
         </a>
     </div>
 
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
+                ![](https://s2.loli.net/2024/02/01/gaE47y5fKM6kosV.png)
+            </div>
+        <a href="https://mem.ac/course/" title="memset0 的 Blog" target="_blank">
+            <div class="flink-item-name">Wcowin’s Web</div>
+            <div class="flink-item-desc"> 循此苦旅，以达星辰。 </div>
+        </a>
     </div>
 
-??? tip "🔗 有意思的链接" 
+    </div>
+
+??? tip "🔗 有意思的链接"
 
     在这里收集一些有意思的链接！
 
