@@ -1816,7 +1816,7 @@ Diagram of process state.</p>
 <p>我们之前提到<a href="./Unit0.md/time-sharing">分时</a>的时候也说过，分时技术通过优化响应时间解决了用户交互问题，RR 调度虽然相比 SJF 有了更长的等待时间，但是有了更短的响应时间，而实际直接影响用户交互问题的应该是响应时间。</p>
 <p>一个需要注意的是，RR 调度有一个“超参数”，即时间片的长度。理论上，时间片约短，响应时间越短；但更短的时间片将带来更频繁的进程切换，从而带来更多的 dispatch latency。</p>
 <h4 id="算法--priority-scheduling">算法 | Priority Scheduling<a class="headerlink" href="#算法--priority-scheduling" title="Permanent link">¶</a></h4>
-<p>优先级调度的思路是，每个进程都有一个优先级，当有多个进程处于就绪态时，选择优先级最高的进程先运行。这种算法的优点是，能够保证优先级高的进程优先运行；但是缺点是，如果有一个进程的优先级很高，那么它可能会一直被推迟，从而导致“<strong>饥饿</strong>”现象。</p>
+<p>优先级调度的思路是，每个进程都有一个优先级，当有多个进程处于就绪态时，选择优先级最高的进程先运行。这种算法的优点是，能够保证优先级高的进程优先运行；但是缺点是，如果有一个进程的优先级很低，那么它可能会一直被推迟，从而导致“<strong>饥饿</strong>”现象。</p>
 <p>你可能发现了，如果把上面这句话的“优先级最高”改成“运行时间最短”/“剩余运行时间最短”，那就和 <a href="#shortest-job-first-sjf--shortest-remaining-time-first-srtf" target="_blank">SJF/SRTF</a> 一模一样了，SJF/SRTF 实际上就是优先级调度的一个特例，因而优先级调度当然是可以实现<strong>抢占式</strong>和<strong>非抢占式</strong>两种的。</p>
 <p>此外，优先级的分配可以根据使用需求进行设计，它可能是一些测量数据，也可能具有一些被赋予的意义，甚至可以是一些复合的值；优先级也并不一定是静态的，先前我们提到过的饥饿问题，就可以通过动态的优先级来解决：优先级随着等待时间增加不断增长，等待过久的任务就会被赋予较高的优先级，以此避免饥饿的发生，这种策略叫 priority aging。</p>
 <h4 id="设计--multilevel-queue-scheduling">设计 | Multilevel Queue Scheduling<a class="headerlink" href="#设计--multilevel-queue-scheduling" title="Permanent link">¶</a></h4>
@@ -1900,7 +1900,7 @@ Diagram of process state.</p>
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年4月2日 13:26:39</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
