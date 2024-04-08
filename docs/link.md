@@ -113,9 +113,19 @@
             <div class="flink-item-icon">
                 ![](https://s2.loli.net/2024/02/01/gaE47y5fKM6kosV.png)
             </div>
-        <a href="https://mem.ac/course/" title="memset0 的 Blog" target="_blank">
+        <a href="https://wcowin.work/" title="Wcowin’s Web 的 Blog" target="_blank">
             <div class="flink-item-name">Wcowin’s Web</div>
             <div class="flink-item-desc"> 循此苦旅，以达星辰。 </div>
+        </a>
+    </div>
+
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
+                ![](https://s2.loli.net/2024/03/31/Ht3QBqhgLYNAuwj.png)
+            </div>
+        <a href="https://lennychen.top" title="Lenny’s Web" target="_blank">
+            <div class="flink-item-name">Lenny’s Web</div>
+            <div class="flink-item-desc"> 天地不仁，以万物为刍狗。 </div>
         </a>
     </div>
 
