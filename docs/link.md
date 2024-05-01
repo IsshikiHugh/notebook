@@ -129,6 +129,16 @@
         </a>
     </div>
 
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
+                ![](https://lyk-love.cn/images/white_flower1.jpg)
+            </div>
+        <a href="https://lyk-love.cn/" title="LYK-love’s Web" target="_blank">
+            <div class="flink-item-name">Lenny’s Web</div>
+            <div class="flink-item-desc"> NJU 19, UC Davis 23. Deep learning researcher. </div>
+        </a>
+    </div>
+
     </div>
 
 ??? tip "🔗 有意思的链接"
