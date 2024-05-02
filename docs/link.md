@@ -91,9 +91,9 @@
 
     <div class="flink-list-item">
             <div class="flink-item-icon">
-                ![](https://blog.ralvines.top/images/avatar.jpg)
+                ![](https://ralvines.top/assets/logo.png)
             </div>
-        <a href="https://blog.ralvines.top/" title="暮瞻 Blog" target="_blank">
+        <a href="https://ralvines.top/" title="暮瞻 Blog" target="_blank">
             <div class="flink-item-name">暮瞻 Blog</div>
             <div class="flink-item-desc"> 以我观物，故物皆着我之色彩。 </div>
         </a>
@@ -134,7 +134,7 @@
                 ![](https://lyk-love.cn/images/white_flower1.jpg)
             </div>
         <a href="https://lyk-love.cn/" title="LYK-love’s Web" target="_blank">
-            <div class="flink-item-name">Lenny’s Web</div>
+            <div class="flink-item-name">LYK-love’s Web</div>
             <div class="flink-item-desc"> NJU 19, UC Davis 23. Deep learning researcher. </div>
         </a>
     </div>
