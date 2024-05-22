@@ -297,6 +297,7 @@ nav:
     - others/index.md
     - others/tools.md
     - others/reveal-md2Slides/index.md
+    - others/summer_research_2024/index.md
     - "杂文收集":
       - "🔗 OpenGL 101: Matrices-projection/view/model": https://solarianprogrammer.com/2013/05/22/opengl-101-matrices-projection-view-model/
       - "🔗 全面解读 Group Normalization": https://zhuanlan.zhihu.com/p/35005794
