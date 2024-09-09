@@ -145,4 +145,9 @@
 
     在这里收集一些有意思的链接！
 
-    - https://quickref.me/
+    - 各种常用工具文档速查：https://quickref.me/
+    - Emoji 快速匹配：https://emojispark.com/
+    - 各类配色工具：
+      - https://colorhunt.co/
+      - https://colorsite.librian.net/
+    - ffmpeg 指令生成：https://alfg.dev/ffmpeg-commander/
