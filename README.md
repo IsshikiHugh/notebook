@@ -2,7 +2,7 @@
 
 Pages: [🔗](https://isshikihugh.github.io/notebook/)
 
-本来是在语雀上做笔记的，但是由于某些原因放弃使用语雀了。现在和大家一起使用 MkDocs 当笔记本。计划之后同时塞到自己服务器上做静态部署。
+本来是在语雀上做笔记的，但是由于某些原因放弃使用语雀了。现在和大家一起使用 MkDocs 当笔记本。~~计划之后同时塞到自己服务器上做静态部署。~~
 
 **重要**：如果你想通过本项目来构建自己的 notebook，请务必修改 `mkdocs.yaml/extra.analytics.property`！否则你的数据会被推到我的后台！
 
