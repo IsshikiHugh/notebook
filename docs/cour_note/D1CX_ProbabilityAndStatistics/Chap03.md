@@ -87,7 +87,7 @@ $$
 则称 $(X,Y)$ 服从 $D$ 上的**均匀分布**。得到：
 
 $$
-P\{(X,Y)\in D\}=\frac{\text{Area of }D_1}{\text{Area of }D}\;,\;\;\text{while }D_1\subset D
+P\{(X,Y)\in D_1\}=\frac{\text{Area of }D_1}{\text{Area of }D}\;,\;\;\text{while }D_1\subset D
 $$
 
 ---
