@@ -196,7 +196,7 @@ li {
 .md-typeset .definition>summary {
     background-color: #fbffde;
 }
-    
+
 .md-typeset .definition>.admonition-title::before,
 .md-typeset .definition>summary::before {
     background-color: #d2b300;
