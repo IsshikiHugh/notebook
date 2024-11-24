@@ -276,6 +276,8 @@ nav:
   - "🥎 科研积累":
     - research/index.md
     - research/human_repr/index.md
+    - "Talks":
+      - research/talks/ECCV2024_Foundation_Models_for_3D_Humans/index.md
   - "📝 论文阅读":
     - pape_read/index.md
     - "资源":
