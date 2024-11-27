@@ -72,7 +72,7 @@ Generate human motion data.
     </figure>
 
 - Movement Primitive: have semantics meaning somewhat while still have a lot of data
-- 为了训练一个模型，我们需要“建模多小的 motion 粒度”？可能没必要建模 action。
+- 为了训练一个模型，我们需要“建模的 motion 粒度多小”？可能没必要建模 action。
 - Text-aligned latent motion space (combine with LLM)
 - generative, controllable, diverse, casual
 - easy to control to compose long term complex activities
@@ -90,3 +90,45 @@ Generate human motion data.
     - e.g. EgoGen (是 ego data 和 synthetic data 的结合)
         - 一整套的生成
         - train on static environment but extend on dynamic situation
+
+## Xavier Puig
+
+**[Xavier Puig: Human Models for Embodied AI](https://www.dropbox.com/scl/fi/2cb6ua4x9dzqe5tdidlql/ECCVW2024_HumanFoundation_Xavier.mp4?rlkey=5scm64sv60w6wcolu5xx78esg&e=1&st=ai4x8egp&dl=0){target="_blank"}**
+
+One focus of Embodied AI: robots that can collaborate with humans.
+
+Tasks:
+- Object & Vision & Language Navigation
+- Instruction Following, Object Manipulation
+- Modality (Audio, Vision, Tactile Sensing)
+
+Challenges:
+- Dynamic environment
+- Reason about the human
+- Adaptation to new humans
+
+Direction:
+1. Efficient & Realistic Human Simulation
+    - E.g., Habitat 3.0 (in the following three aspects)
+        - To be efficient: precomputing.
+        - Hierarchical: high-level controller -> motion primitives -> joint angles.
+        - *BUT* not rich enough.
+    - [Controllable Human-Object Interaction Synthesis](https://lijiaman.github.io/projects/chois/){target="_blank"}
+        - challenges:
+            - scene & texts (lack data)
+            - realistic interactions (contact, floating, etc.)
+        - solutions: 2 stage
+            - planning module
+            - interaction synthesis module
+                - test-time guidance with contact terms
+        - OMOMO Dataset
+2. Human-Robot Collaboration Tasks
+    - Social Navigation (robot finds & follows sb.)
+3. Human-In-The-Loop Evaluation
+
+Human Models for Embodied AI
+- Need to focus on human-centric scenarios in Embodied AI.
+- Generative human models that can be used for robot training and evaluation.
+- Predictive models of human behavior for better human-robot collaboration.
+
+
