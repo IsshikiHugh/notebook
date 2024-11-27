@@ -20,26 +20,26 @@
 **The target is to improve the perception models for 3D humans in 3D environments.**
 
 ### Data Sources
-    - From large video model (not Tang's topic).
-    - Synthetic data
-        - Bedlam, EgoGen, etc.
-        - rich & accurate annotations
-        - **controllability**
-            - modify the distribution for certain application
-        - **BUT** human behavior synthesis is a hard problem
-    - Monocular videos (online videos)
-        - PROX, ProxyCap, etc.
-        - requires better reconstruct videos
-        - diverse motion and appearance
-        - **rich semantics**
-        - **BUT** limited 3D annotations
-    - Embodied egocentric captures
-        - Nymeria, EgoBody, etc.
-        - extended **temporal** duration (more and more embodied devices), i.e. long videos
-        - rich & close hand-object interaction data
-        - multi-modality data (humans + audios + locations + scenes + ...)
-        - **BUT** limited observations for mocap (应该指的是对 device 携带者的 cap 总是 truncated 的？)
-    - All three are complementary.
+- From large video model (not Tang's topic).
+- Synthetic data
+    - Bedlam, EgoGen, etc.
+    - rich & accurate annotations
+    - **controllability**
+        - modify the distribution for certain application
+    - **BUT** human behavior synthesis is a hard problem
+- Monocular videos (online videos)
+    - PROX, ProxyCap, etc.
+    - requires better reconstruct videos
+    - diverse motion and appearance
+    - **rich semantics**
+    - **BUT** limited 3D annotations
+- Embodied egocentric captures
+    - Nymeria, EgoBody, etc.
+    - extended **temporal** duration (more and more embodied devices), i.e. long videos
+    - rich & close hand-object interaction data
+    - multi-modality data (humans + audios + locations + scenes + ...)
+    - **BUT** limited observations for mocap (应该指的是对 device 携带者的 cap 总是 truncated 的？)
+- All three are complementary.
 
 ### Several (Tang's) Works Answering the Question
 
