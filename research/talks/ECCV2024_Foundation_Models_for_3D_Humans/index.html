@@ -1268,27 +1268,36 @@
 </ul>
 <p><strong>The target is to improve the perception models for 3D humans in 3D environments.</strong></p>
 <h3 id="data-sources">Data Sources<a class="headerlink" href="#data-sources" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span><code>- From large video model (not Tang's topic).
-- Synthetic data
-    - Bedlam, EgoGen, etc.
-    - rich &amp; accurate annotations
-    - **controllability**
-        - modify the distribution for certain application
-    - **BUT** human behavior synthesis is a hard problem
-- Monocular videos (online videos)
-    - PROX, ProxyCap, etc.
-    - requires better reconstruct videos
-    - diverse motion and appearance
-    - **rich semantics**
-    - **BUT** limited 3D annotations
-- Embodied egocentric captures
-    - Nymeria, EgoBody, etc.
-    - extended **temporal** duration (more and more embodied devices), i.e. long videos
-    - rich &amp; close hand-object interaction data
-    - multi-modality data (humans + audios + locations + scenes + ...)
-    - **BUT** limited observations for mocap (应该指的是对 device 携带者的 cap 总是 truncated 的？)
-- All three are complementary.
-</code></pre></div>
+<ul>
+<li>From large video model (not Tang's topic).</li>
+<li>Synthetic data<ul>
+<li>Bedlam, EgoGen, etc.</li>
+<li>rich &amp; accurate annotations</li>
+<li><strong>controllability</strong><ul>
+<li>modify the distribution for certain application</li>
+</ul>
+</li>
+<li><strong>BUT</strong> human behavior synthesis is a hard problem</li>
+</ul>
+</li>
+<li>Monocular videos (online videos)<ul>
+<li>PROX, ProxyCap, etc.</li>
+<li>requires better reconstruct videos</li>
+<li>diverse motion and appearance</li>
+<li><strong>rich semantics</strong></li>
+<li><strong>BUT</strong> limited 3D annotations</li>
+</ul>
+</li>
+<li>Embodied egocentric captures<ul>
+<li>Nymeria, EgoBody, etc.</li>
+<li>extended <strong>temporal</strong> duration (more and more embodied devices), i.e. long videos</li>
+<li>rich &amp; close hand-object interaction data</li>
+<li>multi-modality data (humans + audios + locations + scenes + ...)</li>
+<li><strong>BUT</strong> limited observations for mocap (应该指的是对 device 携带者的 cap 总是 truncated 的？)</li>
+</ul>
+</li>
+<li>All three are complementary.</li>
+</ul>
 <h3 id="several-tangs-works-answering-the-question">Several (Tang's) Works Answering the Question<a class="headerlink" href="#several-tangs-works-answering-the-question" title="Permanent link">¶</a></h3>
 <h4 id="labeling-monocular-videos">Labeling Monocular Videos<a class="headerlink" href="#labeling-monocular-videos" title="Permanent link">¶</a></h4>
 <p>I.e., use motion capture from monocular videos to generate Pseudo GT from monocular videos.</p>
@@ -1389,7 +1398,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年11月27日 21:21:28</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年11月27日 21:23:26</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年11月24日 16:42:04</span>
