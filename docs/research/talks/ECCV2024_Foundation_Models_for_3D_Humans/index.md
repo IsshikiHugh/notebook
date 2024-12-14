@@ -20,6 +20,7 @@
 **The target is to improve the perception models for 3D humans in 3D environments.**
 
 ### Data Sources
+
 - From large video model (not Tang's topic).
 - Synthetic data
     - Bedlam, EgoGen, etc.
@@ -98,16 +99,19 @@ Generate human motion data.
 One focus of Embodied AI: robots that can collaborate with humans.
 
 Tasks:
+
 - Object & Vision & Language Navigation
 - Instruction Following, Object Manipulation
 - Modality (Audio, Vision, Tactile Sensing)
 
 Challenges:
+
 - Dynamic environment
 - Reason about the human
 - Adaptation to new humans
 
 Direction:
+
 1. Efficient & Realistic Human Simulation
     - E.g., Habitat 3.0 (in the following three aspects)
         - To be efficient: precomputing.
@@ -127,8 +131,13 @@ Direction:
 3. Human-In-The-Loop Evaluation
 
 Human Models for Embodied AI
+
 - Need to focus on human-centric scenarios in Embodied AI.
 - Generative human models that can be used for robot training and evaluation.
 - Predictive models of human behavior for better human-robot collaboration.
 
+
+## Jingyi Yu
+
+**[Jingyi Yu: Towards Anatomically Correct Digital Human: From Imaging to Foundation Models](https://www.dropbox.com/scl/fi/w529zzoony2p834vtxkps/ECCVW2024_HumanFoundation_Jingyi.mp4?rlkey=pnh061apolg5if8hnbd3dkrwn&e=1&st=hwvs5k0m&dl=0){target="_blank"}**
 
