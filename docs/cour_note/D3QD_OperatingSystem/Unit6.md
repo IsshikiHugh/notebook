@@ -116,7 +116,7 @@ Single-level directory.
 </figure>
 
 !!! not-advice "disadvantages"
-    
+
     - 为了实现索引，文件的名字必须是唯一的；
     - 随着文件数量的增大，这个设计愈发不合理；
 
@@ -171,7 +171,7 @@ Acyclic-graph directory structure.
     软链接又称符号链接(symbolic link)，是一个指向文件的指针，类似于 Windows 下的快捷方式。
 
     删除被软链接指向的那个文件并不会连带地处理软链接，但是原先的这个软链接已经失效了。
-    
+
     从本质上来看，软链接是特殊的文件。
 
 <a id="hard-link" />
@@ -180,7 +180,7 @@ Acyclic-graph directory structure.
     硬链接是复制链接文件目录项的所有元信息，存到目标目录中，此时文件平等地属于两个目录。
 
     由于此时文件等价地属于复数个目录，所以在文件元信息被更新时，需要保证在若干目录下该文件的信息是一致的。
-    
+
     删除被硬链接的文件并不会直接导致文件被删除，只有当用来记录「被硬链接数量」的 reference counter 被减至 0，即不再有其他硬链接指向该文件时，文件才会被删除；其他情况下都只需要在当前目录中删除该表项，并将 reference counter 减 1，更新相关元信息即可。
 
     从本质上来看，硬链接是目录表项。
@@ -262,9 +262,9 @@ graph LR;
         - Caches 用来存储一些会被频繁用到的文件系统元数据，以提高文件系统性能；
 3. File-organization module
     - 以 basic file system 提供的功能为基础；
-    - 能够实现 file 的 logical block 到 physical address 的映射；[^4] 
+    - 能够实现 file 的 logical block 到 physical address 的映射；[^4]
     - 同时，file-organization module 也囊括了 free-space manager；
-        - Free-space manager 维护那些没有被分配的 blocks，并在 file-organization module 请求的时候提供这些 blocks； 
+        - Free-space manager 维护那些没有被分配的 blocks，并在 file-organization module 请求的时候提供这些 blocks；
 4. Logical file system
     - 存储一些文件系统的结构信息，不包括实际的文件内容信息；
     - 具体来说，logical file system 会维护 directory 的信息，为之后的 file-organization module 提供一些信息，例如符号文件名；
@@ -290,7 +290,7 @@ On-Disk 的数据结构维护 ⓵ 如何启动硬盘中的 OS，⓶ 硬盘中包
     - [目录结构(directory structure)](#目录结构){target="_blank"}已经在前面提到过，它用来组织 files，同时也维护了 files 的元信息。
     - 在 UFS 中，它维护了文件以及对应的 inode numbers；在 NTFS 中，它在 master file table 中被维护。
     - 该数据结构是 per FS 的。
-- <a id="FCB" /> File control block 
+- <a id="FCB" /> File control block
     - 文件控制块(file control block, FCB)^[Wiki](https://en.wikipedia.org/wiki/File_Control_Block){target="_blank"}^维护了**被打开的**文件的具体信息。PCB 一般有一个唯一的标识符与目录项关联。
     - **注意**：理论上的 FCB 定义如上，应当主要存在于内存中；但是课本中的 FCB 指的是更广泛的，因此在硬盘中维护文件元信息的那些东西也被称为 FCB，读者需要在这里梳理清楚这种定义上的偏差！
     - 例如，它可能被包含如下信息：
@@ -354,7 +354,7 @@ In-Memory 的数据结构在 main memory 中维护，用于帮助文件系统管
     !!! advice "advantages"
 
         - 实现简单；
-    
+
     !!! not-advice "disadvantages"
 
         - 随着文件数量的增加，检索效率会降低；
@@ -362,7 +362,7 @@ In-Memory 的数据结构在 main memory 中维护，用于帮助文件系统管
     !!! extra "improvement"
 
         - 使用有序数据结构（平衡树、B+ 树等）可以改善缺点；
-  
+
 ???+ section "hash table based"
 
     哈希表法通过哈希表来存储目录信息，每个目录项包含 file name 和指向 FCB/Inode 的指针，可以直接通过 hash function 进行 random access。
@@ -554,7 +554,7 @@ In-Memory 的数据结构在 main memory 中维护，用于帮助文件系统管
 
         1. 若文件系统采用**连续分配**方式，每个磁盘块存放一条记录，文件 F 的存储区域**前后**均有足够空闲的磁盘空间，则完成上述插入操作最少需要访问几次存储块? F 的文件控制块内容会发生哪些改变？
 
-        2. 若文件系统采用**链接分配**方式，每个磁盘块存放一条记录和一个链接指针，则完成上述插入操作需要访问几次磁盘块？若每个磁盘块大小为 1 KiB，其中 4 B 存放链接指针，则该文件系统支持的文件最大长度是多少 GiB？ 
+        2. 若文件系统采用**链接分配**方式，每个磁盘块存放一条记录和一个链接指针，则完成上述插入操作需要访问几次磁盘块？若每个磁盘块大小为 1 KiB，其中 4 B 存放链接指针，则该文件系统支持的文件最大长度是多少 GiB？
 
     === "解析"
 
@@ -596,11 +596,11 @@ In-Memory 的数据结构在 main memory 中维护，用于帮助文件系统管
 
     位图(bitmap)即位向量，用对应 bit 的 0 或 1 来标记对应的 block 是否空闲。
 
-    使用这种方法需要带来的额外开销是，有多少 blocks 就需要多少个额外的 bits。例如，假设块大小为 4 KiB，硬盘一共有 1 GiB，则需要 2^30^ / 2^12^ = 2^18^ = 256 KiB 的额外空间来存储位图。
+    使用这种方法需要带来的额外开销是，有多少 blocks 就需要多少个额外的 bits。例如，假设块大小为 4 KiB，硬盘一共有 1 GiB，则需要 2^30^ / 2^12^ = 2^18^ (b) = 32 (KiB) 的额外空间来存储位图。
 
     相对来说容易得到连续的空间，因为 bitmap 中 bit 的相邻暗示 block 的相邻。
 
-    
+
     ???+ eg "🌰"
 
         === "题面"
@@ -661,7 +661,7 @@ In-Memory 的数据结构在 main memory 中维护，用于帮助文件系统管
     !!! quote "Links"
 
         - [FAT | Wikipedia](https://en.wikipedia.org/wiki/File_Allocation_Table){target="_blank"}
-    
+
     FAT 即 file-allocation table，是一种链接分配的变种，使用 FAT 的文件系统有 FAT12、FAT16、FAT32、exFAT（64位）。由于简单高效，它被 MS-DOS 使用。
 
     - FAT 的每个目录项为 32 个字节。
