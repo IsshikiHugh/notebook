@@ -151,3 +151,4 @@
       - https://colorhunt.co/
       - https://colorsite.librian.net/
     - ffmpeg 指令生成：https://alfg.dev/ffmpeg-commander/
+    - 缩写生成器: https://acronymify.com/
