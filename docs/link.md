@@ -139,6 +139,16 @@
         </a>
     </div>
 
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
+                ![](https://raw.githubusercontent.com/Auzers/picture/main/wechat.jpeg)
+            </div>
+        <a href="https://Auzers.github.io/notes/" title="am 的 笔记本" target="_blank">
+            <div class="flink-item-name">am 的 笔记本</div>
+            <div class="flink-item-desc"> ZJU 24. </div>
+        </a>
+    </div>
+
     </div>
 
 ??? tip "🔗 有意思的链接"
