@@ -6,12 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/cour_note/D1CX_ProbabilityAndStatistics/Chap06/" rel="canonical"/>
-<link href="../Chap05/" rel="prev"/>
-<link href="../Chap07/" rel="next"/>
+<link href="https://note.isshikih.top/tech_accu/tool/Docker/" rel="canonical"/>
+<link href="../Git/Commands/" rel="prev"/>
+<link href="../Colab/" rel="next"/>
 <link href="../../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
-<title>[6.x] 统计量与抽样分布 - Isshiki修's Notebook</title>
+<title>Docker - Isshiki修's Notebook</title>
 <link href="../../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6 31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0l112.3-112.3zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5 50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0 27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>');}</style>
@@ -43,7 +43,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#6x-统计量与抽样分布">
+<a class="md-skip" href="#docker">
           跳转至
         </a>
 </div>
@@ -67,7 +67,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              [6.x] 统计量与抽样分布
+              Docker
             
           </span>
 </div>
@@ -128,12 +128,12 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../tech_accu/">
+<a class="md-tabs__link md-tabs__link--active" href="../../">
         📚 技术积累
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../../">
+<a class="md-tabs__link" href="../../../cour_note/">
         🗒 课程笔记
       </a>
 </li>
@@ -205,43 +205,43 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/">📚 技术积累</a>
+<a href="../../">📚 技术积累</a>
 <label for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
           📚 技术积累
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/tool/">常用工具</a>
+<a href="../">常用工具</a>
 <label for="__nav_2_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_2_2">
 <span class="md-nav__icon md-icon"></span>
           常用工具
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Shell/">
+<a class="md-nav__link" href="../Shell/">
         Shell
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_2_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/tool/Git/">Git Something</a>
+<a href="../Git/">Git Something</a>
 <label for="__nav_2_2_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -253,12 +253,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Git/Workflow/">
+<a class="md-nav__link" href="../Git/Workflow/">
         Git Workflow
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Git/Commands/">
+<a class="md-nav__link" href="../Git/Commands/">
         Git Commands
       </a>
 </li>
@@ -305,15 +305,15 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_2_2_5" type="checkbox"/>
-<div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/tool/Docker/">Docker</a>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_2_5" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index md-nav__link--active">
+<a href="./">Docker</a>
 <label for="__nav_2_2_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_2_2_5_label" class="md-nav" data-md-level="3">
+<nav aria-expanded="true" aria-labelledby="__nav_2_2_5_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_2_2_5">
 <span class="md-nav__icon md-icon"></span>
           Docker
@@ -353,7 +353,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/tool/Colab/">
+<a class="md-nav__link" href="../Colab/">
         Google Colaboratory
       </a>
 </li>
@@ -375,7 +375,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_3_1" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/language/cpp/">C++</a>
+<a href="../../language/cpp/">C++</a>
 <label for="__nav_2_3_1">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -387,7 +387,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/language/cpp/Part0/">
+<a class="md-nav__link" href="../../language/cpp/Part0/">
         [pre] 前置与杂项
       </a>
 </li>
@@ -400,7 +400,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/standard/">标准 | 格式 | 规范</a>
+<a href="../../standard/">标准 | 格式 | 规范</a>
 <label for="__nav_2_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -412,7 +412,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/standard/BVH_format/">
+<a class="md-nav__link" href="../../standard/BVH_format/">
         BVH 格式详解
       </a>
 </li>
@@ -432,7 +432,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/ai/">人工智能</a>
+<a href="../../ai/">人工智能</a>
 <label for="__nav_2_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -444,14 +444,14 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../tech_accu/ai/pytorch/">
+<a class="md-nav__link" href="../../ai/pytorch/">
         PyTorch
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_5_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../../tech_accu/ai/hydra/">Hydra</a>
+<a href="../../ai/hydra/">Hydra</a>
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_2_5_3_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_2_5_3">
@@ -493,147 +493,76 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../">🗒 课程笔记</a>
+<a href="../../../cour_note/">🗒 课程笔记</a>
 <label for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
           🗒 课程笔记
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1QD_CXiaoCheng/">
+<a class="md-nav__link" href="../../../cour_note/D1QD_CXiaoCheng/">
         🔮 C小程 琐碎知识点整理
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../">💎 概率论与数理统计</a>
+<a href="../../../cour_note/D1CX_ProbabilityAndStatistics/">💎 概率论与数理统计</a>
 <label for="__nav_3_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_3_3_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_3_3_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_3">
 <span class="md-nav__icon md-icon"></span>
           💎 概率论与数理统计
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Chap01/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap01/">
         [1.x] 概率论的基本概念
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Chap02/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap02/">
         [2.x] 随机变量及其概率分布
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Chap03/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap03/">
         [3.x] 多元随机变量及其分布
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Chap04/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap04/">
         [4.x] 随机变量的数字特征
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Chap05/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap05/">
         [5.x] 大数定律及中心极限定理
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          [6.x] 统计量与抽样分布
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap06/">
         [6.x] 统计量与抽样分布
       </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#基本概念">
-    基本概念
-  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#统计量">
-    统计量
-  </a>
-<nav aria-label="统计量" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#样本均值">
-    样本均值
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#样本方差">
-    样本方差
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#样本-k-阶矩">
-    样本 k 阶矩
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#三大抽样分布">
-    三大抽样分布
-  </a>
-<nav aria-label="三大抽样分布" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#²-分布--卡方分布">
-    χ² 分布 / 卡方分布
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#t-分布--学生氏分布">
-    t 分布 / 学生氏分布
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#f-分布">
-    F 分布
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#正态总体下的抽样分布">
-    正态总体下的抽样分布
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../Chap07/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap07/">
         [7.x] 参数估计
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Chap08/">
+<a class="md-nav__link" href="../../../cour_note/D1CX_ProbabilityAndStatistics/Chap08/">
         [8.x] 假设检验
       </a>
 </li>
@@ -641,19 +570,19 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1SJ_StanfordCS231n/">
+<a class="md-nav__link" href="../../../cour_note/D1SJ_StanfordCS231n/">
         🔮 Deep Learning for Computer Vision | CS231N
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D1SJ_Intro2CS/">
+<a class="md-nav__link" href="../../../cour_note/D1SJ_Intro2CS/">
         🔮 计算机系统概论 | Introduction to Computing Systems
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_6" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2QD_DigitalDesign/">💎 数字逻辑设计 | Digital Design</a>
+<a href="../../../cour_note/D2QD_DigitalDesign/">💎 数字逻辑设计 | Digital Design</a>
 <label for="__nav_3_6">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -665,37 +594,37 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap01/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap01/">
         Chap 1 Digital Systems and Information
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap02/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap02/">
         Chap 2 Combinational Logic Circuits
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap03/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap03/">
         Chap 3 Combinational Logic Design
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap04/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap04/">
         Chap 4 Sequential Circuits
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap05/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap05/">
         Chap 5 Digital Hardware Implementation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap06/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap06/">
         Chap 6 Registers &amp; Register Transfers
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_DigitalDesign/Chap07/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_DigitalDesign/Chap07/">
         Chap 7 Memory Basics
       </a>
 </li>
@@ -705,7 +634,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_7" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2QD_Intro2CV/">💎 计算机视觉导论 | I2CV</a>
+<a href="../../../cour_note/D2QD_Intro2CV/">💎 计算机视觉导论 | I2CV</a>
 <label for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -717,67 +646,67 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec01/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec01/">
         Lecture 1 | Introduction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec02/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec02/">
         Lecture 2 | Image Formation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec03/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec03/">
         Lecture 3 | Image Processing
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec04/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec04/">
         Lecture 4 | Model Fitting and Optimization
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec05/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec05/">
         Lecture 5 | Feature Matching and Motion Estimation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec06/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec06/">
         Lecture 6 | Image Alignment and Stitching
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec07/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec07/">
         Lecture 7 | Structure From Motion
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec08/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec08/">
         Lecture 8 | Depth Estimation &amp; 3D Reconstruction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec09/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec09/">
         Lecture 9 | Deep Learning
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec10/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec10/">
         Lecture 10 | Recognition
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec11/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec11/">
         Lecture 11 | 3D Deep Learning
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec12/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec12/">
         Lecture 12 | Computational Photography 1
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2QD_Intro2CV/Lec13/">
+<a class="md-nav__link" href="../../../cour_note/D2QD_Intro2CV/Lec13/">
         Lecture 13 | Computational Photography 2
       </a>
 </li>
@@ -785,14 +714,14 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2HJ_StanfordWriting/">
+<a class="md-nav__link" href="../../../cour_note/D2HJ_StanfordWriting/">
         🔮 科学文章写作 | Writing in the Sciences
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_9" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2CX_ComputerOrganization/">🔮 计算机组成 | Computer Organization</a>
+<a href="../../../cour_note/D2CX_ComputerOrganization/">🔮 计算机组成 | Computer Organization</a>
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_3_9_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_9">
@@ -806,7 +735,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_10" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D2CX_AdvancedDataStructure/">💎 高级数据结构 | Advanced Data Structure</a>
+<a href="../../../cour_note/D2CX_AdvancedDataStructure/">💎 高级数据结构 | Advanced Data Structure</a>
 <label for="__nav_3_10">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -818,82 +747,82 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec01/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec01/">
         Lecture 1 | AVL Trees &amp; Splay Trees
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec02/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec02/">
         Lecture 2 | Red Black Tree &amp; B+ Tree
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec03/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec03/">
         Lecture 3 | Inverted File Index
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec04/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec04/">
         Lecture 4 | Leftist Heap &amp; Skew Heap
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec05/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec05/">
         Lecture 5 | Binomial Queue
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec06/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec06/">
         Lecture 6 | Backtracing
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec07/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec07/">
         Lecture 7 | Divide &amp; Conquer
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec08/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec08/">
         Lecture 8 | Dynamic Programming
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec09/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec09/">
         Lecture 9 | Greedy Algorithms
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec10/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec10/">
         Lecture 10 | NP Completeness
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec11/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec11/">
         Lecture 11 | Approximation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec12/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec12/">
         Lecture 12 | Local Search
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec13/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec13/">
         Lecture 13 | Randomized Algorithms
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec14/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec14/">
         Lecture 14 | Parallel
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Lec15/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Lec15/">
         Lecture 15 | External Sorting
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D2CX_AdvancedDataStructure/Ex01/">
+<a class="md-nav__link" href="../../../cour_note/D2CX_AdvancedDataStructure/Ex01/">
         Topic 1 | Amortized Analysis
       </a>
 </li>
@@ -903,7 +832,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_11" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D3QD_OperatingSystem/">💎 操作系统 | Operating System</a>
+<a href="../../../cour_note/D3QD_OperatingSystem/">💎 操作系统 | Operating System</a>
 <label for="__nav_3_11">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -915,12 +844,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit0/">
+<a class="md-nav__link" href="../../../cour_note/D3QD_OperatingSystem/Unit0/">
         Unit 0: 总览 | Overview
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit1/">
+<a class="md-nav__link" href="../../../cour_note/D3QD_OperatingSystem/Unit1/">
         Unit 1: 进程管理 | Process Management
       </a>
 </li>
@@ -937,17 +866,17 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit2-Part1/">
+<a class="md-nav__link" href="../../../cour_note/D3QD_OperatingSystem/Unit2-Part1/">
         U2 Part 1: 同步工具 | Synchronization Tools
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit2-Part2/">
+<a class="md-nav__link" href="../../../cour_note/D3QD_OperatingSystem/Unit2-Part2/">
         U2 Part 2: 同步问题例子 | Synchronization Problems Examples
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit2-Part3/">
+<a class="md-nav__link" href="../../../cour_note/D3QD_OperatingSystem/Unit2-Part3/">
         U2 Part 3: 死锁 | Deadlocks
       </a>
 </li>
@@ -967,12 +896,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit3-Part1/">
+<a class="md-nav__link" href="../../../cour_note/D3QD_OperatingSystem/Unit3-Part1/">
         U3 Part 1: 内存设计 | Memory Design
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit3-Part2/">
+<a class="md-nav__link" href="../../../cour_note/D3QD_OperatingSystem/Unit3-Part2/">
         U3 Part 2: 内存管理 | Memory Management
       </a>
 </li>
@@ -980,17 +909,17 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit4/">
+<a class="md-nav__link" href="../../../cour_note/D3QD_OperatingSystem/Unit4/">
         Unit 4: 输入/输出 | I/O
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit5/">
+<a class="md-nav__link" href="../../../cour_note/D3QD_OperatingSystem/Unit5/">
         Unit 5: 存储 | Storage
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../D3QD_OperatingSystem/Unit6/">
+<a class="md-nav__link" href="../../../cour_note/D3QD_OperatingSystem/Unit6/">
         Unit 6: 文件系统 | File System
       </a>
 </li>
@@ -1000,7 +929,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_12" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../D3QD_ComputerNetwork/">🔮 计算机网络 | Computer Network</a>
+<a href="../../../cour_note/D3QD_ComputerNetwork/">🔮 计算机网络 | Computer Network</a>
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_3_12_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_12">
@@ -1269,61 +1198,23 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#基本概念">
-    基本概念
+<a class="md-nav__link" href="#何为-docker-以及-我们为什么需要-docker">
+    “何为 Docker” 以及 “我们为什么需要 Docker”
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#统计量">
-    统计量
-  </a>
-<nav aria-label="统计量" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#样本均值">
-    样本均值
+<a class="md-nav__link" href="#关键词辨析">
+    关键词辨析
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#样本方差">
-    样本方差
+<a class="md-nav__link" href="#docker-使用">
+    Docker 使用
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#样本-k-阶矩">
-    样本 k 阶矩
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#三大抽样分布">
-    三大抽样分布
-  </a>
-<nav aria-label="三大抽样分布" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#²-分布--卡方分布">
-    χ² 分布 / 卡方分布
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#t-分布--学生氏分布">
-    t 分布 / 学生氏分布
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#f-分布">
-    F 分布
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#正态总体下的抽样分布">
-    正态总体下的抽样分布
+<a class="md-nav__link" href="#推荐资料">
+    推荐资料
   </a>
 </li>
 </ul>
@@ -1333,166 +1224,162 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="6x-统计量与抽样分布">[6.x] 统计量与抽样分布<a class="headerlink" href="#6x-统计量与抽样分布" title="Permanent link">¶</a></h1>
+<h1 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1732 个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 9 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 1261 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span> 48 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"></path></svg></span> 预计阅读时间 7 分钟</p>
 </div>
-<h2 id="基本概念">基本概念<a class="headerlink" href="#基本概念" title="Permanent link">¶</a></h2>
+<h2 id="何为-docker-以及-我们为什么需要-docker">“何为 Docker” 以及 “我们为什么需要 Docker”<a class="headerlink" href="#何为-docker-以及-我们为什么需要-docker" title="Permanent link">¶</a></h2>
+<blockquote>
+<p>Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same way you manage your applications. By taking advantage of Docker's methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.</p>
+</blockquote>
 <ul>
-<li>总体与个体：一个统计问题总有它明确的研究对象，研究对象的全体称为<strong>总体（母体）</strong>，总体中的每个成员称为<strong>个体</strong>；</li>
-<li>总体容量：总体中包含的个体数；<ul>
-<li>有限总体是容量有限的总体；</li>
-<li>无限总体是容量无限的总体，通常将容量非常大的总体也按无限总体处理；</li>
+<li>尽管原理上存在本质不同，但是你可以暂时将它当作一个轻量级的“虚拟机”。<ul>
+<li>关于 Docker 和 VM 的区别，推荐阅读：Docker vs. Virtual Machines: Differences You Should Know</li>
 </ul>
 </li>
-<li>随机样本：为推测总体的分布及其各种特征，按一定规则从总体中抽取若干个体进行观察试验，以获得关于总体的信息，这一过程称为抽样，所抽取的部分个体称为<strong>样本</strong>，通常记为 <span class="arithmatex">\(X=(X_1,X_2,...,X_n)\)</span>；</li>
-<li>样本容量：样本中所包含的个体数目 <span class="arithmatex">\(n\)</span>；<ul>
-<li>注意，每一个样本 <span class="arithmatex">\(X_i\)</span> 都是随机变量，维数与总体一致；</li>
-</ul>
-</li>
-<li>简单随机样本：满足<strong>代表性</strong>和<strong>独立性</strong>的样本称为<strong>简单随机样本(Simple Random Sample)</strong>，获得简单随机样本的抽样方法称为简单随机抽样；<ul>
-<li>代表性：<span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 中的每一个与所考察的总体 <span class="arithmatex">\(X\)</span> 都有相同的分布；</li>
-<li>独立性：<span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 是相互独立的随机变量；</li>
+<li>从模式上来讲，Docker 专注于三件事：Build Image, Ship Image, Run Image.<ul>
+<li>而这里的Image则是学习 Docker 过程中必须理解的一个概念。</li>
 </ul>
 </li>
 </ul>
-<p>后面提到的所有样本，指的都是简单随机样本。</p>
+<p>设想这样一个背景：</p>
 <ul>
-<li>若总体有分布函数 <span class="arithmatex">\(F(x)\)</span>，则样本具有联合分布函数 <span class="arithmatex">\(F_n(x_1,x_2,...,x_n)=\prod_{i=1}^{n}F(x_i)\)</span>；</li>
-<li>若总体为连续型（或离散型）随机变量，其概率密度函数（或分布律）为 <span class="arithmatex">\(f(x)\)</span>，则样本具有联合密度函数（或联合分布律） <span class="arithmatex">\(f_n(x_1,x_2,...,x_n)=\prod_{i=1}^{n}f(x_i)\)</span></li>
+<li>你在你的本地机器上写了一个复杂的服务，除了 GoLang 以外还配置了一大堆其他的依赖；</li>
+<li>这时候你需要把它部署到一个干干净净的服务器上，并且该发行版有很多你并不熟悉的特性……</li>
 </ul>
-<h2 id="统计量">统计量<a class="headerlink" href="#统计量" title="Permanent link">¶</a></h2>
-<p>设 <span class="arithmatex">\((X_1,X_2,...,X_n)\)</span> 是来自总体 <span class="arithmatex">\(X\)</span> 的一个样本，<span class="arithmatex">\(g(X_1,X_2,...,X_n)\)</span> 是 <span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 的函数，若 <span class="arithmatex">\(g\)</span> 中<strong>不含任何未知参数</strong>，则称 <span class="arithmatex">\(g(X_1,X_2,...,X_n)\)</span> 为一<strong>统计量</strong>。换言之，统计量是样本的不含任何未知参数的函数。</p>
+<p>如果你未曾了解过 Docker，那你或许只能选择再花一个下午在上面配置环境，甚至还会踩到更多的坑；但是如果你会用 Docker，那么你只需要为你的项目写一个 Dockerfile，并确保服务器上安装了 Docker，接下来只需要通过 Docker 直接部署即可。</p>
 <ul>
-<li>统计量仍然为随机变量；</li>
-<li>统计量的分布（称为抽样分布）一般与总体分布有关，<strong>可以依赖未知参数</strong>；</li>
-<li>当样本的观察值确定时，统计量的值也就随之确定了；</li>
-</ul>
-<h3 id="样本均值">样本均值<a class="headerlink" href="#样本均值" title="Permanent link">¶</a></h3>
-<div class="arithmatex">\[
-\overline{X}=\frac{1}{n}\sum_{i=1}^{n}X_i
-\]</div>
-<p>样本均值反映了总体的期望（均值）。</p>
-<p>样本均值的性质：</p>
-<ul>
-<li><span class="arithmatex">\(E(\overline{X})=\mu\)</span>，<span class="arithmatex">\(Var(\overline{X})=\sigma^2/n\)</span></li>
-<li><span class="arithmatex">\(\sum_{i=1}^{n}(X_i-\overline{X})=0\)</span>；</li>
-<li>数据观测值与样本均值的偏差平方和最小，即在形如 <span class="arithmatex">\(\sum(X_i-c)^2\)</span> 的函数中，<span class="arithmatex">\(\sum(X_i-\overline{X})^2\)</span>最小；</li>
-<li>若总体服从 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span>，则 <span class="arithmatex">\(\overline{X}\)</span> 的<strong>精确分布</strong>为 <span class="arithmatex">\(N(\mu,\sigma^2/n)\)</span>； </li>
-<li>若总体分布未知或不是正态分布，则当 <span class="arithmatex">\(n\)</span> 较大时，<span class="arithmatex">\(\overline{X}\)</span> <strong>近似服从</strong> <span class="arithmatex">\(N(\mu,\sigma^2/n)\)</span>；</li>
-</ul>
-<h3 id="样本方差">样本方差<a class="headerlink" href="#样本方差" title="Permanent link">¶</a></h3>
-<div class="arithmatex">\[
-S^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2
-\]</div>
-<p>样本方差反映了总体的方差，常作为总体方差 <span class="arithmatex">\(\sigma^2\)</span> 的无偏估计。</p>
-<p>样本方差的性质：</p>
-<ul>
-<li><span class="arithmatex">\(E(S^2)=\sigma^2\)</span>；</li>
-<li><span class="arithmatex">\(\sum(X_i-\overline{X})^2=\sum X_i^2-\frac{1}{n}(\sum X_i)^2=\sum X_i^2-n\overline{X}^2\)</span>；</li>
-</ul>
-<p>此外，<span class="arithmatex">\(S=\sqrt{S^2}=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X})^2}\)</span> 称为样本标准差。</p>
-<h3 id="样本-k-阶矩">样本 k 阶矩<a class="headerlink" href="#样本-k-阶矩" title="Permanent link">¶</a></h3>
-<p>样本 <span class="arithmatex">\(k\)</span> 阶（原点）矩，常作为总体 <span class="arithmatex">\(j=k\)</span> 阶原点矩 <span class="arithmatex">\(\mu_k\)</span> 的估计：</p>
-<div class="arithmatex">\[
-A_k=\frac{1}{n}\sum_{i=1}^{n}X_i^k,\;\;k=1,2,...
-\]</div>
-<p>样本 <span class="arithmatex">\(k\)</span> 阶中心距，常作为总体 <span class="arithmatex">\(j=k\)</span> 阶中心矩 <span class="arithmatex">\(\nu_k\)</span> 的估计，<span class="arithmatex">\(B_2\)</span> 可作为总体方差 <span class="arithmatex">\(\sigma^2\)</span> 的有偏估计：</p>
-<div class="arithmatex">\[
-B_k=\frac{1}{n}\sum_{i=1}^{n}(X_i-\overline{X})^k,\;\;k=2,3,...
-\]</div>
-<p>样本 <span class="arithmatex">\(k\)</span> 阶矩的性质：</p>
-<ul>
-<li>假设 <span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 是 <span class="arithmatex">\(X\)</span> 中抽取的样本，<span class="arithmatex">\(\mu_k=E(X^k)\)</span> 存在，由辛钦大数定律可知：<br/>
-<span class="arithmatex">\(A_k=\frac{1}{n}\sum_{i=1}^{n}X_i^k\xrightarrow{P}\mu_k,\;\;k=1,2,...\)</span></li>
+<li>按照我的理解，Docker 就是为了在部署过程中便捷地构建一个必须的环境而存在的。</li>
+<li>按照上面那个不太恰当的的“虚拟机”的比喻，就是在远程服务器上快速启一个配置好的虚拟机，并在里面运行对应的服务。</li>
 </ul>
 <hr/>
-<p>样本与总体的各阶矩对比表：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../17ECC8AFE0D7A858F4A941313C8D6F1B.png"><img alt="" src="../17ECC8AFE0D7A858F4A941313C8D6F1B.png"/></a></p>
-<h2 id="三大抽样分布">三大抽样分布<a class="headerlink" href="#三大抽样分布" title="Permanent link">¶</a></h2>
-<p>统计量的分布称为<strong>抽样分布(Sampling Distribution)</strong>。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1653818509039-f03e1455-9fbb-47d9-8d8b-c971d4c81190.jpeg"><img alt="" src="../1653818509039-f03e1455-9fbb-47d9-8d8b-c971d4c81190.jpeg"/></a></p>
-<h3 id="²-分布--卡方分布">χ² 分布 / 卡方分布<a class="headerlink" href="#²-分布--卡方分布" title="Permanent link">¶</a></h3>
-<p>设 <span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 为独立同分布，服从 <span class="arithmatex">\(N(0,1)\)</span>。则称 <span class="arithmatex">\(\chi_{n}^{2}=\sum_{i=1}^{n}X_i^2\)</span> 服从自由度为 <span class="arithmatex">\(n\)</span> 的 <span class="arithmatex">\(\chi^2\)</span> 分布，记 <span class="arithmatex">\(\chi_{n}^{2}\sim \chi^2(n)\)</span>。</p>
-<p><span class="arithmatex">\(\chi^2\)</span> 分布的密度函数（不要求）：</p>
-<div class="arithmatex">\[
-f_{\chi^2}(x)=
-\left\{
-\begin{aligned}
-&amp;\frac{1}{2^\frac{n}{2}\Gamma(\frac{n}{2})}x^{\frac{n}{2}-1}e^{-\frac{x}{2}},&amp;x&gt;0,
-\\
-&amp;0,&amp;\text{else},
-\end{aligned}
-\right.
-\]</div>
-<p><span class="arithmatex">\(\chi^2\)</span> 分布有如下性质：</p>
+<blockquote>
+<p>关于如何安装 Docker，这里我们直接略过，请自行搜索如何在你使用的操作系统上安装 Docker。</p>
+</blockquote>
+<hr/>
+<h2 id="关键词辨析">关键词辨析<a class="headerlink" href="#关键词辨析" title="Permanent link">¶</a></h2>
 <ul>
-<li>设 <span class="arithmatex">\(X \sim \chi^2(n)\)</span>，则有 <span class="arithmatex">\(E(X)=n\)</span>，<span class="arithmatex">\(Var(X)=2n\)</span>；</li>
-<li>设 <span class="arithmatex">\(Y_1 \sim \chi^2(m)\)</span>，<span class="arithmatex">\(Y_2\sim\chi^2(n)\)</span>，且两者互相独立，则 <span class="arithmatex">\(Y_1+Y_2\sim \chi^2(m+n)\)</span>；<ul>
-<li>这一性质被称为 <span class="arithmatex">\(\chi^2\)</span> 分布的可加性，可以推广到有限个相加的情形；</li>
+<li>Image<ul>
+<li>Docker Image 是用来构建 Docker Container 的一系列资源，你可以当它是一个“模板”，而 Container 是其实例化。其本质是一堆静态文件，并不具备执行能力。</li>
 </ul>
 </li>
-<li><span class="arithmatex">\(\chi^2\)</span> 分布的上 <span class="arithmatex">\(\alpha\)</span> 分位数：<br/>
-  对于给定的正数 <span class="arithmatex">\(\alpha,\;0&lt;\alpha&lt;1\)</span>，称满足条件 <span class="arithmatex">\(P\{\chi^2&gt;\chi^2_\alpha(n)\}=\int^{+\infty}_{\chi^2_\alpha(n)}f_{\chi^2}(x)\mathrm{d}x=\alpha\)</span> 的点 <span class="arithmatex">\(\chi^2_{\alpha}(n)\)</span> 为 <span class="arithmatex">\(\chi^2(n)\)</span> 分布的上 <span class="arithmatex">\(\alpha\)</span> 分位数；</li>
+<li>Container<ul>
+<li>Container 是 Image 的实例化，是一系列进程（当然你可以选择停止他们），它们根据 Image 中的内容被初始化创建，并基本上与你的宿主系统隔离，只留下一些用来进行交互的通道。</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1652275822271-2e025963-3925-482c-88dd-befa5ff324bf.jpeg"><img alt="" src="../1652275822271-2e025963-3925-482c-88dd-befa5ff324bf.jpeg"/></a></p>
-<h3 id="t-分布--学生氏分布">t 分布 / 学生氏分布<a class="headerlink" href="#t-分布--学生氏分布" title="Permanent link">¶</a></h3>
-<p>设 <span class="arithmatex">\(X\sim N(0,1)\)</span>，<span class="arithmatex">\(Y\sim \chi^2(n)\)</span>，且 <span class="arithmatex">\(X,Y\)</span> 相互独立，则称随机变量 <span class="arithmatex">\(T=\frac{X}{\sqrt{Y/n}}\)</span> 服从自由度为 <span class="arithmatex">\(n\)</span> 的 <span class="arithmatex">\(t\)</span> 分布，记做 <span class="arithmatex">\(T\sim t(n)\)</span>。</p>
-<p><span class="arithmatex">\(t\)</span> 分布的密度函数（不要求）：</p>
-<div class="arithmatex">\[
-f_t(x)=\frac{\Gamma[(n+1)/2]}{\sqrt{\pi n}\Gamma(\frac{n}{2})}(1+\frac{x^2}{n})^{-\frac{n+1}{2}},\;\;-\infty&lt;x&lt;+\infty
-\]</div>
-<p>其中 <span class="arithmatex">\(\Gamma(\alpha)=\int_0^{+\infty}t^{\alpha-1}e^{-t}\mathrm{d}t\)</span>，<span class="arithmatex">\(\Gamma(\alpha+1)=\alpha\Gamma(\alpha)=\alpha!(if\;\alpha\in\Z)\)</span>，<span class="arithmatex">\(\Gamma(0.5)=\sqrt{\pi}\)</span>。</p>
-<p><span class="arithmatex">\(t\)</span> 分布有如下性质：</p>
+</li>
+<li>Docker Hub<ul>
+<li>类似于 GitHub，你可以在上面搜索查看公开的 Image，从中挑选你需要的并拉取到本地进行使用。</li>
+<li><a href="https://hub.docker.com/">https://hub.docker.com/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="docker-使用">Docker 使用<a class="headerlink" href="#docker-使用" title="Permanent link">¶</a></h2>
 <ul>
-<li>设 <span class="arithmatex">\(T\sim t(n)\)</span>，则当 <span class="arithmatex">\(n\geq 2\)</span> 时，有 <span class="arithmatex">\(E(T)=0\)</span>；当 <span class="arithmatex">\(n\geq 3\)</span> 时，有 <span class="arithmatex">\(Var(T)=\frac{n}{n-2}\)</span>；</li>
-<li>当 <span class="arithmatex">\(n\)</span> 足够大时，<span class="arithmatex">\(t\)</span> 分布近似于标准正态分布 <span class="arithmatex">\(N(0,1)\)</span>；</li>
-<li>设 <span class="arithmatex">\(T\sim t(n)\)</span>，<span class="arithmatex">\(N\sim N(0,1)\)</span>，则对任意的 <span class="arithmatex">\(n\geq 1\)</span>，都存在 <span class="arithmatex">\(a_0&gt;0\)</span>，使得 <span class="arithmatex">\(P(|T|\geq a_0)\geq P(|N|\geq a_0)\)</span>；</li>
-<li><span class="arithmatex">\(t_{1-\alpha}(n)=-t_{\alpha}(n)\)</span>；</li>
+<li>关于命令行的说明，我将融合在之后的内容中在对应的使用场景中介绍，如果想要查看列表类型的命令说明，可以查看：<ul>
+<li><a href="https://docs.docker.com/engine/reference/commandline/cli/">https://docs.docker.com/engine/reference/commandline/cli/</a></li>
+<li><a href="https://docs.docker.com/engine/reference/commandline/docker/">https://docs.docker.com/engine/reference/commandline/docker/</a></li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1652276533342-568d2ad0-c850-4520-b3b0-16b416ac3fec.jpeg"><img alt="" src="../1652276533342-568d2ad0-c850-4520-b3b0-16b416ac3fec.jpeg"/></a></p>
-<h3 id="f-分布">F 分布<a class="headerlink" href="#f-分布" title="Permanent link">¶</a></h3>
-<p>设 <span class="arithmatex">\(U\sim\chi^2(n_1)\)</span>，<span class="arithmatex">\(V\sim \chi^2(n_2)\)</span>，且 <span class="arithmatex">\(U,V\)</span> 相互独立，则称随机变量 <span class="arithmatex">\(F=\frac{U/n_1}{V/n_2}\)</span> 服从自由度为 <span class="arithmatex">\((n_1,n_2)\)</span> 的 <span class="arithmatex">\(F\)</span> 分布，记 <span class="arithmatex">\(F\sim F(n_1,n_2)\)</span>。</p>
-<p><span class="arithmatex">\(F\)</span> 分布的密度函数（不要求）：</p>
-<div class="arithmatex">\[
-f_F(x)=\frac{
-\Gamma(\frac{n_1+n_2}{2})(\frac{n_1}{n_2})^{n_1/2}x^{(n_1/2)-1}
-}{
-\Gamma(\frac{n_1}{2})\Gamma(\frac{n_2}{2})[1+(n_1x/2)]^{(n_1+n_2)/2}
-},\;\;x&gt;0
-\]</div>
-<p><span class="arithmatex">\(F\)</span> 分布有如下性质：</p>
+</li>
+<li>在这里，我将简单介绍两种 Docker 的使用流程。分别对应“使用 Docker Hub 的 Docker 镜像”和“本地构建镜像并创建容器使用”。
+[使用 Docker Hub 的 Docker 镜像]</li>
+<li>刚好我之前写过一篇用 Docker 安装 FSL 的博客，直接拿这个做介绍了。</li>
+<li><a href="https://www.yuque.com/isshikixiu/notes/sna3ru">https://www.yuque.com/isshikixiu/notes/sna3ru</a>
+这里只放几个常见的命令，其它命令建议在使用遇到的时候去查阅docs：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c"># 拉取image</span>
+sudo<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span><span class="o">{</span>image<span class="w"> </span>name<span class="o">}</span>
+
+<span class="c"># 创建容器并进入</span>
+sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span><span class="o">{</span>image<span class="w"> </span>name<span class="o">}</span><span class="w"> </span><span class="o">{</span>entrance<span class="o">}</span>
+
+<span class="c"># 启动/结束实例</span>
+sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span><span class="o">{</span>container<span class="w"> </span>id<span class="o">}</span>
+sudo<span class="w"> </span>docker<span class="w"> </span>stop<span class="w"> </span><span class="o">{</span>container<span class="w"> </span>id<span class="o">}</span>
+
+<span class="c"># 进入运行中的实例</span>
+sudo<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-ti<span class="w"> </span><span class="o">{</span>container<span class="w"> </span>id<span class="o">}</span><span class="w"> </span><span class="o">{</span>entrance<span class="o">}</span>
+
+<span class="c"># container操作</span>
+sudo<span class="w"> </span>docker<span class="w"> </span>container<span class="w"> </span>...
+
+<span class="c"># image操作</span>
+sudo<span class="w"> </span>docker<span class="w"> </span>image<span class="w"> </span>...
+</code></pre></div>
 <ul>
-<li>设 <span class="arithmatex">\(F\sim F(n_1,n_2)\)</span>，则 <span class="arithmatex">\(F^{-1}\sim F(n_2,n_1)\)</span>；</li>
-<li>设 <span class="arithmatex">\(X\sim t(n)\)</span>，则 <span class="arithmatex">\(X^2\sim F(1,n)\)</span>；</li>
-<li><span class="arithmatex">\(F_{1-\alpha}(n_1,n_2)=\frac{1}{F_{\alpha}(n_2,n_1)}\)</span>；</li>
+<li>查找镜像<ul>
+<li>*Docker Hub 支持命令行交互，但使用起来大概不如直接浏览 Docker Hub 方便，所以这里不做介绍 。</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../1652343949815-c148c41c-c622-4cd2-8097-f0f877d25c84.png"><img alt="" src="../1652343949815-c148c41c-c622-4cd2-8097-f0f877d25c84.png"/></a></p>
-<h2 id="正态总体下的抽样分布">正态总体下的抽样分布<a class="headerlink" href="#正态总体下的抽样分布" title="Permanent link">¶</a></h2>
-<p>设 <span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span> 的样本，<span class="arithmatex">\(\overline{X}\)</span> 是样本均值，<span class="arithmatex">\(S^2\)</span> 是样本方差，则有：</p>
-<ol>
-<li><span class="arithmatex">\(\overline{X}\sim N(\mu,\frac{\sigma^2}{n})\)</span>；</li>
-<li><span class="arithmatex">\(\frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1)\)</span>；</li>
-<li><span class="arithmatex">\(\overline{X}\)</span> 与 <span class="arithmatex">\(S^2\)</span> 相互独立；</li>
-<li><span class="arithmatex">\(\frac{\overline{X} - \mu}{S/\sqrt{n}}\sim t(n-1)\)</span>；</li>
-<li>这里注意区别一下：<span class="arithmatex">\(\frac{\overline{X} - \mu}{\sigma/\sqrt{n}}\sim N(0,1)\)</span>；</li>
-</ol>
-<p>设 <span class="arithmatex">\(X_1,X_2,...,X_{n_1}\)</span> 和 <span class="arithmatex">\(Y_1,Y_2,...,Y_{n_2}\)</span> 是分别来自正态总体 <span class="arithmatex">\(N(\mu_1,\sigma_1^2)\)</span> 和 <span class="arithmatex">\(N(\mu_2,\sigma_2^2)\)</span>，并且它们相互独立，<span class="arithmatex">\(\overline{X},\overline{Y}\)</span> 是样本均值，<span class="arithmatex">\(S_1^2,S_2^2\)</span> 是样本方差，则有：</p>
-<ol>
-<li><span class="arithmatex">\(\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma^2_2}\sim F(n_1-1,n_2-1)\)</span>；</li>
-<li><span class="arithmatex">\(\frac{(\overline{X}-\overline{Y})-(\mu_{1}-\mu_{2})}{\sqrt{\frac{\sigma_{1}^{2}}{n_1}+\frac{\sigma_{2}^{2}}{n_2}}} \sim N(0,1)\)</span>；</li>
-<li>当 <span class="arithmatex">\(\sigma_1^2=\sigma_2^2=\sigma^2\)</span> 时：<br/>
-<span class="arithmatex">\(\frac{(\overline X - \overline Y) - (\mu_1-\mu_2)}{S_\omega\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\sim t(n_1+n_2-2)\)</span>，其中 <span class="arithmatex">\(S^2_\omega=\frac{(n_1-1)S_1^2+(n_2-1)S^2_2}{n_1+n_2-2}\)</span>；</li>
-</ol>
+</li>
+<li>使用docker pull 来拉取镜像</li>
+<li>使用docker run 来生成容器并运行
+[本地构建镜像并创建容器使用]
+首先，在考虑服务器之前，请先在本地做好这些事：</li>
+<li>准备好的你的代码。<ul>
+<li>例如我们需要在服务器上部署一个后端服务，那么首先你需要把这个后端服务的源代码准备好，否则“部署”将无从谈起。</li>
+</ul>
+</li>
+<li>写 Dockerfile<ul>
+<li>具体来说，Dockerfile 指导 Docker 如何构建一个镜像，包括但不限于要如何准备你所需要的依赖、如何组织你的源代码、如何编译你的源代码、镜像中会包含什么等。</li>
+<li>关于 Dockerfile 的语法，可以参考我展示的例子，但是并不仅限于这些。</li>
+</ul>
+</li>
+</ul>
+<p>这里提供一个简单的 dockerfile 模版样例：</p>
+<div class="highlight"><pre><span></span><code><span class="c"># 选取一个 go 的官方镜像作为基础 作为 编译环境</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">golang:1.18</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">builder</span>
+
+<span class="c"># 设置一些环境变量，其中三个是 golang 所需要的；WORKDIR 是为了方便下面使用而设置的</span>
+
+<span class="k">ENV</span><span class="w"> </span><span class="nv">GOPROXY</span><span class="o">=</span>https://mirrors.aliyun.com/goproxy/,direct<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nv">GO111MODULE</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nv">WORKDIR</span><span class="o">=</span>/tmp/src/
+
+<span class="c"># 运行 'mkdir -p $WORKDIR' 来创建工作目录</span>
+<span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$WORKDIR</span>
+
+<span class="c"># 将 . 下的内容全部复制到 $WORKDIR ，也就是 /tmp/src/</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span><span class="nv">$WORKDIR</span>
+
+<span class="c"># 进入工作目录 并且 进行 go 的包管理操作</span>
+<span class="k">RUN</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$WORKDIR</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>go<span class="w"> </span>mod<span class="w"> </span>download<span class="w"> </span>all
+
+<span class="c"># 进入工作目录 并且 编译</span>
+<span class="k">RUN</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$WORKDIR</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>/fileName
+
+<span class="c"># 选取 alpine 作为运行环境</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">alpine:3.15.2</span>
+
+<span class="c"># 复制文件内容</span>
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/fileName<span class="w"> </span>/fileName
+
+<span class="c"># 在启动容器时运行该命令</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"/fileName"</span><span class="p">]</span>
+</code></pre></div>
+<ul>
+<li>[非必需] 写一个部署脚本<ul>
+<li>使用 Docker 已经很大程度上便利了在服务器上的部署，但是仍然还是需要一些步骤，而多数情况写我们需要多次修改源代码并重新部署，为了偷懒提高效率，我们还可以血已干部署脚本来让我们的部署真正实现“一键化”；</li>
+<li>由于我们在这个流程中需要在部署端准备源代码，那么将不可避免的涉及到“源代码版本管理”这件事，显然这件事和 Docker 无关（如果你使用在本地把镜像上传到 Docker Hub 上，并在部署端拉取 Image 的模式，那么这件事就和 Docker 有关了），所以我们需要在脚本中写上一些 git 指令；</li>
+<li>除此之外，由于我们需要多次重新部署，那么对于老版本的容器和镜像也需要一定的管理，即删除没有用的镜像和容器；</li>
+<li>当然，最重要的还有从镜像的构建到容器的运行这一系列操作；</li>
+</ul>
+</li>
+</ul>
+<h2 id="推荐资料">推荐资料<a class="headerlink" href="#推荐资料" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://yeasy.gitbook.io/docker_practice/">https://yeasy.gitbook.io/docker_practice/</a></li>
+<li><a href="https://www.runoob.com/docker/docker-tutorial.html">https://www.runoob.com/docker/docker-tutorial.html</a></li>
+<li><a href="https://docs.docker.com/">https://docs.docker.com/</a></li>
+</ul>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月18日 13:13:24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年4月10日 14:31:53</span>
 <br/>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年4月10日 14:31:53</span>
 </small>
 </div>
 <form class="md-feedback" hidden="" name="feedback">
