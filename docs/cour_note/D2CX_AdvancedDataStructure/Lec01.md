@@ -979,7 +979,7 @@ $$
         &= 2 + \left( Rank_{i}(X) - Rank_{i-1}(G)\right )
              + \left( Rank_{i}(P) + Rank_{i}(G) \right)
              - \left( Rank_{i-1}(P) + Rank_{i-1}(X) \right) \\
-        &\leq 2 + 0 + 2Rank_{i}(X) - 2 + 2Rank_{i-1}(X) \\
+        &\leq 2 + 0 + 2Rank_{i}(X) - 2 - 2Rank_{i-1}(X) \\
         &= 2\left(Rank_{i}(X) - Rank_{i-1}(X)\right)
     \end{aligned}
     $$
