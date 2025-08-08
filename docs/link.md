@@ -149,6 +149,16 @@
         </a>
     </div>
 
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
+                ![](https://avatars.githubusercontent.com/u/56161071?v=4)
+            </div>
+        <a href="https://www.philfan.cn" title="PhilFan 的 笔记本" target="_blank">
+            <div class="flink-item-name">PhilFan 的 笔记本</div>
+            <div class="flink-item-desc"> Learn, build, share. </div>
+        </a>
+    </div>
+
     </div>
 
 ??? tip "🔗 有意思的链接"
