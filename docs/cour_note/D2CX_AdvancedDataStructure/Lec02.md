@@ -9,7 +9,7 @@
 
 !!! quote "link"
     OI Wiki: https://oi-wiki.org/ds/rbtree/
-    
+
     Wikipedia: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
 
 ---
@@ -66,7 +66,7 @@
 
             ![](img/6.png)
         === "答案"
-            
+
             不合法。
 
             `16` 号节点的右儿子是一个黑叶子，而这个叶子到根的路径上只有 3 个黑节点，而其他叶子到根都有 4 个黑节点。
@@ -78,7 +78,7 @@
 
             ![](img/7.png)
         === "答案"
-            
+
             合法。
 
     ---
@@ -98,7 +98,7 @@
 
     ??? proof "the proof of the property"
         > [关于黑高和点数的关系](https://stackoverflow.com/questions/70944386/maximum-height-of-a-node-in-a-red-black-tree)。
-        
+
         1. 首先我们有 $N \geq 2^{bh}-1$，也就是 $bh \leq \log_2 (N+1)$；
         2. 然后显然有 $2 bh(Tree) >= h(Tree)$
 
@@ -156,9 +156,9 @@
     我们只需要将图中的根节点**染红**，将根的两个子节点**染黑**，类似于将黑节点“下放”。
 
     ![](img/9.png)
-    
+
     通过第一步操作，我们可以保证这整个子树必定**平衡**、**不影响家长节点的黑高**（除了家长是根的情况）且**红点不邻**的。
-    
+
     然而我们并不知道这个根的家长节点是否是红色节点，因此做分类讨论。倘若其根的家长节点是红色节点，那么我们还需要向上递归，继续调整，根据实际情况转化为其他 case；若这子树的根没有家长节点，则直接染黑红根即可；而倘若子树根节点的家长节点是黑节点，那么我们就调整完毕了。
 
 在这三个过程中，我们观察到，只有 case 1 的转化会导致我们递归向上，而 case 2 向 case 3 的转化并不会导致我们改变关注的子树的范围。
@@ -189,7 +189,7 @@
 
 关于删除操作，下面这个视频讲的很清晰！只不过 case 1 可能还有些细节需要注意。
 
-👉 **[红黑树快速入门 - 04删除](https://www.bilibili.com/video/BV1uZ4y1P7rr/?spm_id_from=333.880.my_history.page.click&vd_source=13807e82155f985591ed6f1b4e3434ed)**
+~~👉 **[红黑树快速入门 - 04删除](https://www.bilibili.com/video/BV1uZ4y1P7rr/)**（链接失效了 TAT）~~
 
 要删除某个节点 x，我们首先要找到它，在 BST 中找到某个 x 的开销为 $O(\log N)$。接下来我们要删除这个任意位置的节点，这势必让红黑树的结构发生变化。此外，红黑性质的维护也是一个让人头疼的问题，因此，我们对这些情况做分类讨论：
 
@@ -232,21 +232,21 @@
 
     ![](img/13.png)
 
-    !!! section "Deletion / case 1.1" 
+    !!! section "Deletion / case 1.1"
         当 a 为**红**根时，由于 x 贡献了（相对于原红黑树）-1 的黑高，为了保证整个子树贡献的黑高不变，我们考虑把 w 的黑高“上放”到 a 上，也就是从下面“吸纳”上来。
 
         ![](img/14.png)
 
     !!! section "Deletion / case 1.2"
         当 a 为**黑**根时，我们没有空余的位置来“吸纳” w 的黑高，但是左子树和右子树的不平衡是必须解决的，而我们绝不能寄希望于“在不知道有没有红色节点的 b 和 c 的子树中去寻找红色节点”这个想法。
-        
+
         所以我们可以仿照「Insertion / case 3」，将整个树标记为灰色——「**由于删除结点，黑高 -1 的子树**」，然后进一步根据其家长节点的情况递归到其他 case。其中，当我们递归到 a 是整个树的根时可以退出，因为这相当于整个树的黑高 -1，不影响红黑性质。
 
         ![](img/15.png)
 
 !!! section "Deletion / case 2"
     画不动图了，先语言描述一下。
-    
+
     1. 将 w 染为 a 的颜色，再将 a 和 c 染成黑色；
     2. 将 a 左旋，使 w 成为这个子树新的根，a 成为 w 的左儿子，b 成为 a 的右儿子；
     3. 调整结束；
@@ -308,7 +308,7 @@
         D ===>|"C&R"| B
         D ===>|"C&R"| C
         ```
-    
+
     注意，状态机中的**粗线**表示转换过程中，我们关注的“子树”向上或向下转移了一级（由 case 4 出发时下降，由 case 1.2 出发时上升）；而**细线**表示我们关注的子树仍然是这一层的那一棵。以及，`C` 表示染色操作，`R` 表示旋转操作。
 
     其中，任何一个情况都可以作为一个初始情况。所以可以数出，到达 finish 的路径中，最多出现 3 次 Rotation（case 4 -> case 3 -> case 2 -> finish）。
@@ -328,7 +328,7 @@
 
 !!! quote "link"
     OI Wiki: https://oi-wiki.org/ds/bplus-tree/
-    
+
     Wiki: https://en.wikipedia.org/wiki/B%2B_tree
 
 ---
@@ -338,7 +338,7 @@
 B+ 树是一种用树状形式维护有序数列比较信息的数据结构，其增改操作拥相对于二叉树结构更加稳定的对数时间复杂度，通常用于数据库和操作系统的文件系统中。
 
 !!! definition "B+ Tree"
-    
+
     如下图就是一颗 $M=4$ 的 B+ 树，可以对照着这个例子来理解性质。
 
     ![](img/16.svg)
@@ -351,7 +351,7 @@ B+ 树是一种用树状形式维护有序数列比较信息的数据结构，�
         1. The root is either a leaf or has between $2$ and $M$ children.
         2. All nonleaf nodes (except the root) have between $\lceil M/2 \rceil$ and M children.
         3. All leaves are at the same depth.
-        
+
         > Assume each nonroot leaf also has between $\lceil M/2 \rceil$ and $M$ children.
 
     所有真实的数据都被存储在叶子结点中，形成一个有序的数列。而非叶子结点中第 `i` 个键值等于其第 `i+1` 棵子树的最小值（在上图中表现为颜色相同的一对上下结点），因此非叶结点最多存 $M-1$ 个值。
@@ -400,7 +400,7 @@ B+ 树是一种用树状形式维护有序数列比较信息的数据结构，�
 !!! section "Find(43)"
     === "Frame 1"
         ![](img/17_1.svg)
-        
+
         我们发现有 $21 \leq 43 < 48$，所以顺着标识的橙色指针向下。
     === "Frame 2"
         ![](img/17_2.svg)
@@ -424,11 +424,11 @@ B+ 树是一种用树状形式维护有序数列比较信息的数据结构，�
 !!! section "Insert(46), no split"
     === "Frame 1"
         ![](img/18_1.svg)
-        
+
         同查找，略。
     === "Frame 2"
         ![](img/18_2.svg)
-        
+
         同查找，略。
     === "Frame 3"
         ![](img/18_3.svg)
@@ -438,11 +438,11 @@ B+ 树是一种用树状形式维护有序数列比较信息的数据结构，�
 !!! section "Insert(44), split"
     === "Frame 1"
         ![](img/19_1.svg)
-        
+
         同查找，略。
     === "Frame 2"
         ![](img/19_2.svg)
-        
+
         同查找，略。
     === "Frame 3"
         ![](img/19_3.svg)
