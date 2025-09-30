@@ -90,17 +90,17 @@ LeftistHeapNode * merge(LeftistHeapNode * x, LeftistHeapNode * y) {
     // Recursive exit. If any is NULL, return the other as the new root of subtree.
     if (x == NULL) return y;
     if (y == NULL) return x;
-    
+
     // If `x`'s val is smaller than `y`'s, swap them, which means we always operates on `x`.
     if (x->val > y->val) {
         swap(x, y);
     }
-    
+
     // Merge `x`'s right subtree and `y`, and set `x`'s right subtree to the result.
     x->rs = merge(x->rs, y);
-    
+
     // If `x`'s left subtree's dist is smaller than `x`'s right subtree's dist, swap them.
-    if (x->ls->dist == NULL || x->ls->dist < x->rs->dist) {
+    if (x->ls == NULL || x->ls->dist < x->rs->dist) {
         swap(x->ls, x->rs);
     }
 
@@ -141,11 +141,11 @@ LeftistHeapNode * merge(LeftistHeapNode * x, LeftistHeapNode * y) {
         这里也跳过了两个步骤：
 
         往回走，发现 <font color=#2ECC71>**❺**</font> 的 dist 小于 <font color=#2E86C1>**❹**</font> 的 dist，满足性质，不需要改变。
-        
+
         继续往回走，发现 <font color=#2ECC71>**❷**</font> 和 <font color=#2E86C1>**❸**</font> 的 dist 相同，满足性质，也不需要改变。
-        
+
         从这里也可以看出来，并不是看上去更大的子树一定在左侧。
-        
+
 
 ---
 
@@ -168,7 +168,7 @@ LeftistHeapNode * merge(LeftistHeapNode * x, LeftistHeapNode * y) {
         if (tx->val > ty->val) {
             swap(tx, ty);
         }
-        
+
         // Specially mark the root on the first merge.
         if (res == NULL) {
             res = tx;
@@ -197,7 +197,7 @@ LeftistHeapNode * merge(LeftistHeapNode * x, LeftistHeapNode * y) {
         ty = ty->rs;
     }
 
-    // Adjust the left and right subtrees of all the nodes according to the properties of `dist`. 
+    // Adjust the left and right subtrees of all the nodes according to the properties of `dist`.
     // It does the same work as the adjust part in the recursive version. I ignore it here.
     res = adjust(res);
 
@@ -256,7 +256,7 @@ LeftistHeapNode * merge(LeftistHeapNode * x, LeftistHeapNode * y) {
 
         在这张图中，我们得到的两个**有序**数组分别是 <font color=#2ECC71>[1, 5]</font> 和 <font color=#2E86C1>[2, 6]</font>，接下来我们将它们进行排序。
     === "Frame 2"
-        ![](img/38.svg) 
+        ![](img/38.svg)
 
         经过排序，就会发现它们刚好符合我们在上面步骤得到的结果（可以对比着上面的 Frame 4 看）。实际上，只要你回顾一下归并排序的过程，再对比着看上面的过程，就会发现一模一样。
 
@@ -386,7 +386,7 @@ LeftistHeapNode * del(LeftistHeapNode * cur, ElementType x) {
 其中，额外需要定义 heavy node 和 light node：
 
 !!! definition "heavy node & light node"
-    对于一个子堆 $H$，如果 $size(H.\text{right\_descendant}) \geq \frac{1}{2}size(H)$，则 $H$ 是 heavy node，否则是 light node。 
+    对于一个子堆 $H$，如果 $size(H.\text{right\_descendant}) \geq \frac{1}{2}size(H)$，则 $H$ 是 heavy node，否则是 light node。
 
     ??? extra "\@ cy'ppt"
         A node p is heavy if the number of descendants of p’s right subtree is at least half of the number of descendants of p, and light otherwise.  Note that the number of descendants of a node includes the node itself.
@@ -431,7 +431,7 @@ $$
 
 $$
 \begin{aligned}
-\hat{c} 
+\hat{c}
     &= c + \Phi(H_{merged}) - \Phi(H_x) - \Phi(H_y) \\
     &\leq (l_x + h_x + l_y + h_y)
     + (l_x + h^0_x + l_y + h^0_y)
