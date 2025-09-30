@@ -1452,7 +1452,7 @@
 <span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">merge</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">rs</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// If `x`'s left subtree's dist is smaller than `x`'s right subtree's dist, swap them.</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">ls</span><span class="o">-&gt;</span><span class="n">dist</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">ls</span><span class="o">-&gt;</span><span class="n">dist</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">rs</span><span class="o">-&gt;</span><span class="n">dist</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">ls</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">ls</span><span class="o">-&gt;</span><span class="n">dist</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">rs</span><span class="o">-&gt;</span><span class="n">dist</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">swap</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">ls</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">rs</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
@@ -1543,7 +1543,7 @@
 <span class="w">        </span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">rs</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// Adjust the left and right subtrees of all the nodes according to the properties of `dist`. </span>
+<span class="w">    </span><span class="c1">// Adjust the left and right subtrees of all the nodes according to the properties of `dist`.</span>
 <span class="w">    </span><span class="c1">// It does the same work as the adjust part in the recursive version. I ignore it here.</span>
 <span class="w">    </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adjust</span><span class="p">(</span><span class="n">res</span><span class="p">);</span>
 
@@ -1601,7 +1601,7 @@
 <p>在这张图中，我们得到的两个<strong>有序</strong>数组分别是 <font color="#2ECC71">[1, 5]</font> 和 <font color="#2E86C1">[2, 6]</font>，接下来我们将它们进行排序。</p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/38.svg"><img alt="" src="../img/38.svg"/></a> </p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/38.svg"><img alt="" src="../img/38.svg"/></a></p>
 <p>经过排序，就会发现它们刚好符合我们在上面步骤得到的结果（可以对比着上面的 Frame 4 看）。实际上，只要你回顾一下归并排序的过程，再对比着看上面的过程，就会发现一模一样。</p>
 </div>
 </div>
@@ -1710,7 +1710,7 @@
 <p>其中，额外需要定义 heavy node 和 light node：</p>
 <div class="admonition definition">
 <p class="admonition-title">heavy node &amp; light node</p>
-<p>对于一个子堆 <span class="arithmatex">\(H\)</span>，如果 <span class="arithmatex">\(size(H.\text{right\_descendant}) \geq \frac{1}{2}size(H)\)</span>，则 <span class="arithmatex">\(H\)</span> 是 heavy node，否则是 light node。 </p>
+<p>对于一个子堆 <span class="arithmatex">\(H\)</span>，如果 <span class="arithmatex">\(size(H.\text{right\_descendant}) \geq \frac{1}{2}size(H)\)</span>，则 <span class="arithmatex">\(H\)</span> 是 heavy node，否则是 light node。</p>
 <details class="extra">
 <summary>@ cy'ppt</summary>
 <p>A node p is heavy if the number of descendants of p’s right subtree is at least half of the number of descendants of p, and light otherwise.  Note that the number of descendants of a node includes the node itself.</p>
@@ -1751,7 +1751,7 @@
 <p>于是，将它们代入得到结果：</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\hat{c} 
+\hat{c}
     &amp;= c + \Phi(H_{merged}) - \Phi(H_x) - \Phi(H_y) \\
     &amp;\leq (l_x + h_x + l_y + h_y)
     + (l_x + h^0_x + l_y + h^0_y)
@@ -1767,7 +1767,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年2月12日 23:47:45</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年9月30日 21:57:44</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
