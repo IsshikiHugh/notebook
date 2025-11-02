@@ -6,27 +6,27 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Isshiki修" name="author"/>
-<link href="https://note.isshikih.top/pape_read/" rel="canonical"/>
-<link href="../research/talks/ECCV2024_Foundation_Models_for_3D_Humans/" rel="prev"/>
-<link href="NeRF/" rel="next"/>
-<link href="../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
+<link href="https://note.isshikih.top/cour_note/UTCS386/" rel="canonical"/>
+<link href="../D3QD_ComputerNetwork/" rel="prev"/>
+<link href="../../research/" rel="next"/>
+<link href="../../_assets/iro/IroPatch_Brown.ico" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.12" name="generator"/>
-<title>扉页 - Isshiki修's Notebook</title>
-<link href="../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
-<link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<title>UT Austin C S 386 - Dependable Computing System - Isshiki修's Notebook</title>
+<link href="../../assets/stylesheets/main.0d440cfe.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 96c0-17.7 14.3-32 32-32s32 14.3 32 32-14.3 32-32 32-32-14.3-32-32zm85.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80H224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v208h-48c-53 0-96-43-96-96v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 88.4 71.6 160 160 160h160c88.4 0 160-71.6 160-160v-6.1l7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-56-56c-9.4-9.4-24.6-9.4-33.9 0l-56 56c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7v6.1c0 53-43 96-96 96H320V240h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-10.9z"/></svg>');--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m368.4 18.3-55.7 55.8 125.2 125.2 55.7-55.7c21.9-21.9 21.9-57.3 0-79.2l-46-46.1c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4l153.6-153.5c-3-6.3-4.7-13.3-4.7-20.7 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2 5.2-7.1 10.4-14.2 15.4-21.4 19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3 5 7.2 10.2 14.3 15.4 21.4 19.8 27.1 39.7 54.4 49.2 86.2h160zm-80 128c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zm-80-336c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112 8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0 0 114.6 0 256s114.6 256 256 256zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.3-32 32-32 32 14.3 32 32z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c4.97 0 9 3.58 9 8s-6 10-9 10-9-5.58-9-10 4.03-8 9-8m-1.69 7.93C9.29 9.29 7.47 8.58 6.25 9.34c-1.22.76-1.38 2.71-.36 4.35 1.03 1.64 2.85 2.35 4.07 1.59 1.22-.78 1.37-2.71.35-4.35m3.38 0c-1.02 1.64-.87 3.57.35 4.35 1.22.76 3.04.05 4.07-1.59 1.02-1.64.86-3.59-.36-4.35-1.22-.76-3.04-.05-4.06 1.59M12 17.75c-2 0-2.5-.75-2.5-.75 0 .03.5 2 2.5 2s2.5-2 2.5-2-.5.75-2.5.75Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v11.5c0 49.9-60.3 74.9-95.6 39.6l-8.2-8.1C107.7 62.5 87.5 62.5 75 75s-12.5 32.8 0 45.3l8.2 8.2c35.2 35.2 10.2 95.5-39.7 95.5H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h11.5c49.9 0 74.9 60.3 39.6 95.6l-8.1 8.2c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l8.2-8.2c35.3-35.3 95.6-10.3 95.6 39.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-11.5c0-49.9 60.3-74.9 95.6-39.6l8.2 8.2c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-8.2-8.2c-35.3-35.3-10.3-95.6 39.6-95.6H480c17.7 0 32-14.3 32-32s-14.3-32-32-32h-11.5c-49.9 0-74.9-60.3-39.6-95.6l8.2-8.2c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-8.2 8.2C348.3 118.4 288 93.4 288 43.5V32zm-16 192c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm32 104c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h128c35.3 0 64 28.7 64 64v288c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h128V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256c0-22.1-17.9-40-40-40s-40 17.9-40 40 17.9 40 40 40 40-17.9 40-40zm152 40c22.1 0 40-17.9 40-40s-17.9-40-40-40-40 17.9-40 40 17.9 40 40 40zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6 31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0l112.3-112.3zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5 50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0 27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>');}</style>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=LXGW+WenKai+Screen+GB+Screen:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"LXGW WenKai Screen GB Screen";--md-code-font:"JetBrains Mono"}</style>
-<link href="../_css/extra.css" rel="stylesheet"/>
-<link href="../_css/flink.css" rel="stylesheet"/>
+<link href="../../_css/extra.css" rel="stylesheet"/>
+<link href="../../_css/flink.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css" rel="stylesheet"/>
-<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-4P08GMSPJM"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-4P08GMSPJM",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-4P08GMSPJM",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
 <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
@@ -37,13 +37,13 @@
                 body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
                 body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
                 body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-                </style><script src="../assets/javascripts/glightbox.min.js"></script></head>
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="brown" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#扉页">
+<a class="md-skip" href="#ut-austin-c-s-386---dependable-computing-system">
           跳转至
         </a>
 </div>
@@ -51,7 +51,7 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="页眉" class="md-header__inner md-grid">
-<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href=".." title="Isshiki修's Notebook">
+<a aria-label="Isshiki修's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Isshiki修's Notebook">
 <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -67,7 +67,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              扉页
+              UT Austin C S 386 - Dependable Computing System
             
           </span>
 </div>
@@ -123,37 +123,37 @@
 <div class="md-tabs__inner md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="..">
+<a class="md-tabs__link" href="../..">
         💠 封面
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../tech_accu/">
+<a class="md-tabs__link" href="../../tech_accu/">
         📚 技术积累
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../cour_note/">
+<a class="md-tabs__link md-tabs__link--active" href="../">
         🗒 课程笔记
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../research/">
+<a class="md-tabs__link" href="../../research/">
         🥎 科研积累
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="./">
+<a class="md-tabs__link" href="../../pape_read/">
         📝 论文阅读
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../others/">
+<a class="md-tabs__link" href="../../others/">
         📦 杂项专题
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../coming/">
+<a class="md-tabs__link" href="../../coming/">
         🚧 施工中...
       </a>
 </li>
@@ -167,7 +167,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href=".." title="Isshiki修's Notebook">
+<a aria-label="Isshiki修's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Isshiki修's Notebook">
 <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"></path></svg>
 </a>
     Isshiki修's Notebook
@@ -186,7 +186,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="..">💠 封面</a>
+<a href="../..">💠 封面</a>
 <label for="__nav_1">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -198,7 +198,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../link/">
+<a class="md-nav__link" href="../../link/">
         💬 交流
       </a>
 </li>
@@ -208,7 +208,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../tech_accu/">📚 技术积累</a>
+<a href="../../tech_accu/">📚 技术积累</a>
 <label for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -222,7 +222,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../tech_accu/tool/">常用工具</a>
+<a href="../../tech_accu/tool/">常用工具</a>
 <label for="__nav_2_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -234,14 +234,14 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../tech_accu/tool/Shell/">
+<a class="md-nav__link" href="../../tech_accu/tool/Shell/">
         Shell
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_2_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../tech_accu/tool/Git/">Git Something</a>
+<a href="../../tech_accu/tool/Git/">Git Something</a>
 <label for="__nav_2_2_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -253,12 +253,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../tech_accu/tool/Git/Workflow/">
+<a class="md-nav__link" href="../../tech_accu/tool/Git/Workflow/">
         Git Workflow
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../tech_accu/tool/Git/Commands/">
+<a class="md-nav__link" href="../../tech_accu/tool/Git/Commands/">
         Git Commands
       </a>
 </li>
@@ -308,7 +308,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_2_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../tech_accu/tool/Docker/">Docker</a>
+<a href="../../tech_accu/tool/Docker/">Docker</a>
 <label for="__nav_2_2_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -353,7 +353,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../tech_accu/tool/Colab/">
+<a class="md-nav__link" href="../../tech_accu/tool/Colab/">
         Google Colaboratory
       </a>
 </li>
@@ -375,7 +375,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_3_1" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../tech_accu/language/cpp/">C++</a>
+<a href="../../tech_accu/language/cpp/">C++</a>
 <label for="__nav_2_3_1">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -387,7 +387,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../tech_accu/language/cpp/Part0/">
+<a class="md-nav__link" href="../../tech_accu/language/cpp/Part0/">
         [pre] 前置与杂项
       </a>
 </li>
@@ -400,7 +400,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../tech_accu/standard/">标准 | 格式 | 规范</a>
+<a href="../../tech_accu/standard/">标准 | 格式 | 规范</a>
 <label for="__nav_2_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -412,7 +412,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../tech_accu/standard/BVH_format/">
+<a class="md-nav__link" href="../../tech_accu/standard/BVH_format/">
         BVH 格式详解
       </a>
 </li>
@@ -432,7 +432,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../tech_accu/ai/">人工智能</a>
+<a href="../../tech_accu/ai/">人工智能</a>
 <label for="__nav_2_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -444,14 +444,14 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../tech_accu/ai/pytorch/">
+<a class="md-nav__link" href="../../tech_accu/ai/pytorch/">
         PyTorch
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_5_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../tech_accu/ai/hydra/">Hydra</a>
+<a href="../../tech_accu/ai/hydra/">Hydra</a>
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_2_5_3_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_2_5_3">
@@ -493,29 +493,29 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../cour_note/">🗒 课程笔记</a>
+<a href="../">🗒 课程笔记</a>
 <label for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
           🗒 课程笔记
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D1QD_CXiaoCheng/">
+<a class="md-nav__link" href="../D1QD_CXiaoCheng/">
         🔮 C小程 琐碎知识点整理
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../cour_note/D1CX_ProbabilityAndStatistics/">💎 概率论与数理统计</a>
+<a href="../D1CX_ProbabilityAndStatistics/">💎 概率论与数理统计</a>
 <label for="__nav_3_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -527,42 +527,42 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D1CX_ProbabilityAndStatistics/Chap01/">
+<a class="md-nav__link" href="../D1CX_ProbabilityAndStatistics/Chap01/">
         [1.x] 概率论的基本概念
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D1CX_ProbabilityAndStatistics/Chap02/">
+<a class="md-nav__link" href="../D1CX_ProbabilityAndStatistics/Chap02/">
         [2.x] 随机变量及其概率分布
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D1CX_ProbabilityAndStatistics/Chap03/">
+<a class="md-nav__link" href="../D1CX_ProbabilityAndStatistics/Chap03/">
         [3.x] 多元随机变量及其分布
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D1CX_ProbabilityAndStatistics/Chap04/">
+<a class="md-nav__link" href="../D1CX_ProbabilityAndStatistics/Chap04/">
         [4.x] 随机变量的数字特征
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D1CX_ProbabilityAndStatistics/Chap05/">
+<a class="md-nav__link" href="../D1CX_ProbabilityAndStatistics/Chap05/">
         [5.x] 大数定律及中心极限定理
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D1CX_ProbabilityAndStatistics/Chap06/">
+<a class="md-nav__link" href="../D1CX_ProbabilityAndStatistics/Chap06/">
         [6.x] 统计量与抽样分布
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D1CX_ProbabilityAndStatistics/Chap07/">
+<a class="md-nav__link" href="../D1CX_ProbabilityAndStatistics/Chap07/">
         [7.x] 参数估计
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D1CX_ProbabilityAndStatistics/Chap08/">
+<a class="md-nav__link" href="../D1CX_ProbabilityAndStatistics/Chap08/">
         [8.x] 假设检验
       </a>
 </li>
@@ -570,19 +570,19 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D1SJ_StanfordCS231n/">
+<a class="md-nav__link" href="../D1SJ_StanfordCS231n/">
         🔮 Deep Learning for Computer Vision | CS231N
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D1SJ_Intro2CS/">
+<a class="md-nav__link" href="../D1SJ_Intro2CS/">
         🔮 计算机系统概论 | Introduction to Computing Systems
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_6" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../cour_note/D2QD_DigitalDesign/">💎 数字逻辑设计 | Digital Design</a>
+<a href="../D2QD_DigitalDesign/">💎 数字逻辑设计 | Digital Design</a>
 <label for="__nav_3_6">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -594,37 +594,37 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_DigitalDesign/Chap01/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap01/">
         Chap 1 Digital Systems and Information
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_DigitalDesign/Chap02/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap02/">
         Chap 2 Combinational Logic Circuits
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_DigitalDesign/Chap03/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap03/">
         Chap 3 Combinational Logic Design
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_DigitalDesign/Chap04/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap04/">
         Chap 4 Sequential Circuits
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_DigitalDesign/Chap05/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap05/">
         Chap 5 Digital Hardware Implementation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_DigitalDesign/Chap06/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap06/">
         Chap 6 Registers &amp; Register Transfers
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_DigitalDesign/Chap07/">
+<a class="md-nav__link" href="../D2QD_DigitalDesign/Chap07/">
         Chap 7 Memory Basics
       </a>
 </li>
@@ -634,7 +634,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_7" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../cour_note/D2QD_Intro2CV/">💎 计算机视觉导论 | I2CV</a>
+<a href="../D2QD_Intro2CV/">💎 计算机视觉导论 | I2CV</a>
 <label for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -646,67 +646,67 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec01/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec01/">
         Lecture 1 | Introduction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec02/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec02/">
         Lecture 2 | Image Formation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec03/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec03/">
         Lecture 3 | Image Processing
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec04/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec04/">
         Lecture 4 | Model Fitting and Optimization
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec05/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec05/">
         Lecture 5 | Feature Matching and Motion Estimation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec06/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec06/">
         Lecture 6 | Image Alignment and Stitching
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec07/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec07/">
         Lecture 7 | Structure From Motion
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec08/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec08/">
         Lecture 8 | Depth Estimation &amp; 3D Reconstruction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec09/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec09/">
         Lecture 9 | Deep Learning
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec10/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec10/">
         Lecture 10 | Recognition
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec11/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec11/">
         Lecture 11 | 3D Deep Learning
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec12/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec12/">
         Lecture 12 | Computational Photography 1
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2QD_Intro2CV/Lec13/">
+<a class="md-nav__link" href="../D2QD_Intro2CV/Lec13/">
         Lecture 13 | Computational Photography 2
       </a>
 </li>
@@ -714,14 +714,14 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2HJ_StanfordWriting/">
+<a class="md-nav__link" href="../D2HJ_StanfordWriting/">
         🔮 科学文章写作 | Writing in the Sciences
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_9" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../cour_note/D2CX_ComputerOrganization/">🔮 计算机组成 | Computer Organization</a>
+<a href="../D2CX_ComputerOrganization/">🔮 计算机组成 | Computer Organization</a>
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_3_9_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_9">
@@ -735,7 +735,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_10" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../cour_note/D2CX_AdvancedDataStructure/">💎 高级数据结构 | Advanced Data Structure</a>
+<a href="../D2CX_AdvancedDataStructure/">💎 高级数据结构 | Advanced Data Structure</a>
 <label for="__nav_3_10">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -747,82 +747,82 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec01/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec01/">
         Lecture 1 | AVL Trees &amp; Splay Trees
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec02/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec02/">
         Lecture 2 | Red Black Tree &amp; B+ Tree
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec03/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec03/">
         Lecture 3 | Inverted File Index
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec04/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec04/">
         Lecture 4 | Leftist Heap &amp; Skew Heap
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec05/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec05/">
         Lecture 5 | Binomial Queue
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec06/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec06/">
         Lecture 6 | Backtracing
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec07/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec07/">
         Lecture 7 | Divide &amp; Conquer
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec08/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec08/">
         Lecture 8 | Dynamic Programming
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec09/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec09/">
         Lecture 9 | Greedy Algorithms
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec10/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec10/">
         Lecture 10 | NP Completeness
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec11/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec11/">
         Lecture 11 | Approximation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec12/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec12/">
         Lecture 12 | Local Search
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec13/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec13/">
         Lecture 13 | Randomized Algorithms
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec14/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec14/">
         Lecture 14 | Parallel
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Lec15/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Lec15/">
         Lecture 15 | External Sorting
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D2CX_AdvancedDataStructure/Ex01/">
+<a class="md-nav__link" href="../D2CX_AdvancedDataStructure/Ex01/">
         Topic 1 | Amortized Analysis
       </a>
 </li>
@@ -832,7 +832,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_11" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../cour_note/D3QD_OperatingSystem/">💎 操作系统 | Operating System</a>
+<a href="../D3QD_OperatingSystem/">💎 操作系统 | Operating System</a>
 <label for="__nav_3_11">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -844,12 +844,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D3QD_OperatingSystem/Unit0/">
+<a class="md-nav__link" href="../D3QD_OperatingSystem/Unit0/">
         Unit 0: 总览 | Overview
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D3QD_OperatingSystem/Unit1/">
+<a class="md-nav__link" href="../D3QD_OperatingSystem/Unit1/">
         Unit 1: 进程管理 | Process Management
       </a>
 </li>
@@ -866,17 +866,17 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D3QD_OperatingSystem/Unit2-Part1/">
+<a class="md-nav__link" href="../D3QD_OperatingSystem/Unit2-Part1/">
         U2 Part 1: 同步工具 | Synchronization Tools
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D3QD_OperatingSystem/Unit2-Part2/">
+<a class="md-nav__link" href="../D3QD_OperatingSystem/Unit2-Part2/">
         U2 Part 2: 同步问题例子 | Synchronization Problems Examples
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D3QD_OperatingSystem/Unit2-Part3/">
+<a class="md-nav__link" href="../D3QD_OperatingSystem/Unit2-Part3/">
         U2 Part 3: 死锁 | Deadlocks
       </a>
 </li>
@@ -896,12 +896,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D3QD_OperatingSystem/Unit3-Part1/">
+<a class="md-nav__link" href="../D3QD_OperatingSystem/Unit3-Part1/">
         U3 Part 1: 内存设计 | Memory Design
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D3QD_OperatingSystem/Unit3-Part2/">
+<a class="md-nav__link" href="../D3QD_OperatingSystem/Unit3-Part2/">
         U3 Part 2: 内存管理 | Memory Management
       </a>
 </li>
@@ -909,17 +909,17 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D3QD_OperatingSystem/Unit4/">
+<a class="md-nav__link" href="../D3QD_OperatingSystem/Unit4/">
         Unit 4: 输入/输出 | I/O
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D3QD_OperatingSystem/Unit5/">
+<a class="md-nav__link" href="../D3QD_OperatingSystem/Unit5/">
         Unit 5: 存储 | Storage
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cour_note/D3QD_OperatingSystem/Unit6/">
+<a class="md-nav__link" href="../D3QD_OperatingSystem/Unit6/">
         Unit 6: 文件系统 | File System
       </a>
 </li>
@@ -929,7 +929,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_12" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../cour_note/D3QD_ComputerNetwork/">🔮 计算机网络 | Computer Network</a>
+<a href="../D3QD_ComputerNetwork/">🔮 计算机网络 | Computer Network</a>
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_3_12_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_12">
@@ -960,12 +960,12 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3_14" type="checkbox"/>
-<div class="md-nav__link md-nav__link--index">
-<a href="../cour_note/UTCS386/">🔮 Dependable Computing System</a>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_14" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index md-nav__link--active">
+<a href="./">🔮 Dependable Computing System</a>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_3_14_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_3_14_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_14">
 <span class="md-nav__icon md-icon"></span>
           🔮 Dependable Computing System
@@ -980,7 +980,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../research/">🥎 科研积累</a>
+<a href="../../research/">🥎 科研积累</a>
 <label for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -992,14 +992,14 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../research/human_repr/">
+<a class="md-nav__link" href="../../research/human_repr/">
         Body Models
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_4_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../research/talks/ECCV2024_Foundation_Models_for_3D_Humans/">Talks</a>
+<a href="../../research/talks/ECCV2024_Foundation_Models_for_3D_Humans/">Talks</a>
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_4_3">
@@ -1013,15 +1013,15 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
-<div class="md-nav__link md-nav__link--index md-nav__link--active">
-<a href="./">📝 论文阅读</a>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../pape_read/">📝 论文阅读</a>
 <label for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
           📝 论文阅读
@@ -1048,67 +1048,67 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="NeRF/">
+<a class="md-nav__link" href="../../pape_read/NeRF/">
         [NeRF] Representing Scenes as Neural Radiance Fields for View Synthesis
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="ACTOR/">
+<a class="md-nav__link" href="../../pape_read/ACTOR/">
         [ACTOR] Action-Conditioned 3D Human Motion Synthesis with Transformer VAE
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="NSM/">
+<a class="md-nav__link" href="../../pape_read/NSM/">
         [NSM] Neural State Machine for Character-Scene Interactions
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="SAMP/">
+<a class="md-nav__link" href="../../pape_read/SAMP/">
         [SAMP] Stochastic Scene-Aware Motion Prediction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="EG3D/">
+<a class="md-nav__link" href="../../pape_read/EG3D/">
         [EG3D] Efficient Geometry-aware 3D Generative Adversarial Networks
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="SA-MHR/">
+<a class="md-nav__link" href="../../pape_read/SA-MHR/">
         [SA-HMR] Learning Human Mesh Recovery in 3D Scenes
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="TRACE/">
+<a class="md-nav__link" href="../../pape_read/TRACE/">
         [TRACE] 5D Temporal Regression of Avatars with Dynamic Cameras in 3D Environments
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="SMPLify/">
+<a class="md-nav__link" href="../../pape_read/SMPLify/">
         [SMPLify] Keep It SMPL: Automatic Estimation of 3D Human Pose and Shape from a Single Image
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="SMPLX/">
+<a class="md-nav__link" href="../../pape_read/SMPLX/">
         [SMPLX] Expressive Body Capture: 3D Hands, Face, and Body from a Single Image
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="HuMoR/">
+<a class="md-nav__link" href="../../pape_read/HuMoR/">
         [HuMoR] 3D Human Motion Model for Robust Pose Estimation
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="SLAHMR/">
+<a class="md-nav__link" href="../../pape_read/SLAHMR/">
         [SLAHMR] Decoupling Human and Camera Motion from Videos in the Wild
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="WHAM/">
+<a class="md-nav__link" href="../../pape_read/WHAM/">
         [WHAM] Reconstructing World-grounded Humans with Accurate 3D Motion
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="ManipNet/">
+<a class="md-nav__link" href="../../pape_read/ManipNet/">
         ManipNet: Neural Manipulation Synthesis with a Hand-Object Spatial Representation
       </a>
 </li>
@@ -1118,7 +1118,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../others/">📦 杂项专题</a>
+<a href="../../others/">📦 杂项专题</a>
 <label for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -1130,17 +1130,17 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../others/tools/">
+<a class="md-nav__link" href="../../others/tools/">
         工具收集
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../others/reveal-md2Slides/">
+<a class="md-nav__link" href="../../others/reveal-md2Slides/">
         使用 reveal-md 来写 Slides
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../others/summer_research_2024/">
+<a class="md-nav__link" href="../../others/summer_research_2024/">
         2024 暑研记录
       </a>
 </li>
@@ -1190,7 +1190,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../coming/">
+<a class="md-nav__link" href="../../coming/">
         内容正在编辑中……
       </a>
 </li>
@@ -1212,19 +1212,23 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="扉页">扉页<a class="headerlink" href="#扉页" title="Permanent link">¶</a></h1>
+<h1 id="ut-austin-c-s-386---dependable-computing-system">UT Austin C S 386 - Dependable Computing System<a class="headerlink" href="#ut-austin-c-s-386---dependable-computing-system" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 31 个字 </p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"></path></svg></span> 约 13 个字 </p>
 </div>
-<div class="admonition note">
-<p><br/><br/>
-<div align="center" style="font-size:32px;font-weight:bold">
-<sub>『その時を待つよ』</sub>
-</div>
-<div align="center" style="font-size:12px">
-    你们要努力进窄门，因为宽门和阔路引向沉沦。  ——安德烈·纪德《窄门》
-</div>
-<br/><br/><br/></p>
+<ul>
+<li><a href="topic1/">Topic 1: Probabilistic Clock Synchronization</a></li>
+</ul>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年11月3日 02:22:11</span>
+<br/>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年11月3日 02:22:11</span>
+</small>
 </div>
 <form class="md-feedback" hidden="" name="feedback">
 <fieldset>
@@ -1245,6 +1249,39 @@
 </div>
 </fieldset>
 </form>
+<h2 id="__comments">评论</h2>
+<!-- Insert generated snippet here -->
+<script async="" crossorigin="anonymous" data-category="Announcements" data-category-id="DIC_kwDOIVXFKs4CSVPj" data-emit-metadata="0" data-input-position="top" data-lang="zh-CN" data-mapping="pathname" data-reactions-enabled="1" data-repo="IsshikiHugh/notebook" data-repo-id="R_kgDOIVXFKg" data-strict="0" data-theme="light" src="https://giscus.app/client.js">
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    /* Set palette on initial load */
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = "light"
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = "light"
+
+          /* Instruct Giscus to change theme */
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
 </article>
 </div>
 </div>
@@ -1279,10 +1316,10 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.code.copy", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
-<script src="../assets/javascripts/bundle.4b2c34cd.min.js"></script>
-<script src="../_js/extra.js"></script>
-<script src="../_js/katex.js"></script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
+<script src="../../_js/extra.js"></script>
+<script src="../../_js/katex.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"></script>
 <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>
