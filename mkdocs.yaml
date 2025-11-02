@@ -275,6 +275,8 @@ nav:
       - "cour_note/D3QD_ComputerNetwork/index.md"
     - "🔮 计算理论 | Theorem of Computing":
       - "🔗 xg 的 toc 笔记": https://note.tonycrane.cc/cs/tcs/toc/
+    - "🔮 Dependable Computing System":
+      - cour_note/UTCS386/index.md
   - "🥎 科研积累":
     - research/index.md
     - research/human_repr/index.md
