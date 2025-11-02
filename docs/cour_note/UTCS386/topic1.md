@@ -94,3 +94,49 @@ Given this, we have a judgment: for the timeout delay, closer to $U_{min}$: more
 A best reading precision achievable by a clock reading experiment is: $e_{min} = 3\rho\cdot min$
 
 ---
+
+Define the reading attempt failure probability as $p$. If a reading attempt fails, we give a retry after a fixed delay $W$ for a maximum of $k$ times. Then the overall success probability is $1 - p^k$. Since each attempt costs two messages, the average number of messages $\bar{n}$ for achieving rapport is $\bar{n} = \frac{2}{1-p}$.
+
+---
+
+Define $H(t)$ as the hardware clock time which is not adjustable, and $C(t)$ is the logical clock time which will be read, and a periodically computed adjustment function $A$:
+
+$$
+C(t) = H(t) + A(t)
+\\
+\text{While}\; A(t) = m \cdot H(t) + N
+\\
+i.e. \; C(t) = (1 + m) \cdot H(t) + N
+$$
+
+Here $m$ and $N$ are computed periodically.
+
+!!! key-point "Adjustment"
+
+    For a slave process, at local rapport time $C(t) = L$, it estimates the master clock displays time M ($M\not= L$), it should adjust $A()$ so that $C'(t+\alpha) = M + \alpha$.
+
+    Make it clear, we have this two equations:
+    $$
+    \left\{\begin{aligned}
+    C(t) &= L
+    \\
+    C'(t+\alpha) &= M + \alpha
+    \end{aligned}\right.
+    \implies
+    \left\{\begin{aligned}
+    (1 + m) \cdot H + N &= L
+    \\
+    (1 + m) \cdot (H + \alpha) + N &= M + \alpha
+    \end{aligned}\right.
+    $$
+
+    Solve it, we have:
+    $$
+    \left\{\begin{aligned}
+    m &= \frac{M - L}{\alpha}
+    \\
+    N &= L - (1 + m) \cdot H
+    \end{aligned}\right.
+    $$
+
+
