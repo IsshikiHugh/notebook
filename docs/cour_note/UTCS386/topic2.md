@@ -61,14 +61,15 @@ So a message $(T, s, \sigma, h)$ will not be ignored if: $U < T + h \cdot (\delt
     1. A sender $s$ enqueues messages $(T, s, a, 1)$ on its out-adapters to channels $1, 2, \dots f + 1$ in this order.
     2. Denote $(T, s, a, h), h < k$, be a message accepted by a processor $p \not= s$, and let $c$ be the highest channel on which $p$ receives a copy of the message by local time $T + h(\delta + \epsilon)$.
         - If at $T + h(\delta + \epsilon)$ on $p$'s clock:
-        1. $c < f + 1 - h$, then $p$ forwards $(T, s, a, h + 1)$ on channels $c + 1,\dots f + 1 - h$;
-        2. Otherwise, $p$ does not forward.
+            1. $c < f + 1 - h$, then $p$ forwards $(T, s, a, h + 1)$ on channels $c + 1,\dots f + 1 - h$;
+            2. Otherwise, $p$ does not forward.
 
 !!! property "Lemma"
     Let $(T, s, o, h), h \leq k$, be a message accepted by a processor $p$ and let $c$ be the highest channel on which $p$ receives a copy of the message by local time $T + h(\delta + \epsilon)$.
+
     - If at time $T + h(\delta + \epsilon)$ on $p$'s clock:
-    1. $c \leq f + 1 - h$, then at least $h$ component failures have occurred since the broadcast was initiated;
-    2. $c > f + 1 - h$, then at least $h - 1$ component failures have occurred since the broadcast was initiated.
+        1. $c \leq f + 1 - h$, then at least $h$ component failures have occurred since the broadcast was initiated;
+        2. $c > f + 1 - h$, then at least $h - 1$ component failures have occurred since the broadcast was initiated.
 
     !!! proof "Intuitive Proof"
         The previous processor has already received $(h-1)$ failures since the hop count is $h$ already.
