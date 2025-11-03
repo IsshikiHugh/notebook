@@ -1287,19 +1287,25 @@
 <ol>
 <li>A sender <span class="arithmatex">\(s\)</span> enqueues messages <span class="arithmatex">\((T, s, a, 1)\)</span> on its out-adapters to channels <span class="arithmatex">\(1, 2, \dots f + 1\)</span> in this order.</li>
 <li>Denote <span class="arithmatex">\((T, s, a, h), h &lt; k\)</span>, be a message accepted by a processor <span class="arithmatex">\(p \not= s\)</span>, and let <span class="arithmatex">\(c\)</span> be the highest channel on which <span class="arithmatex">\(p\)</span> receives a copy of the message by local time <span class="arithmatex">\(T + h(\delta + \epsilon)\)</span>.<ul>
-<li>If at <span class="arithmatex">\(T + h(\delta + \epsilon)\)</span> on <span class="arithmatex">\(p\)</span>'s clock:</li>
+<li>If at <span class="arithmatex">\(T + h(\delta + \epsilon)\)</span> on <span class="arithmatex">\(p\)</span>'s clock:<ol>
 <li><span class="arithmatex">\(c &lt; f + 1 - h\)</span>, then <span class="arithmatex">\(p\)</span> forwards <span class="arithmatex">\((T, s, a, h + 1)\)</span> on channels <span class="arithmatex">\(c + 1,\dots f + 1 - h\)</span>;</li>
 <li>Otherwise, <span class="arithmatex">\(p\)</span> does not forward.</li>
+</ol>
+</li>
 </ul>
 </li>
 </ol>
 </div>
 <div class="admonition property">
 <p class="admonition-title">Lemma</p>
-<p>Let <span class="arithmatex">\((T, s, o, h), h \leq k\)</span>, be a message accepted by a processor <span class="arithmatex">\(p\)</span> and let <span class="arithmatex">\(c\)</span> be the highest channel on which <span class="arithmatex">\(p\)</span> receives a copy of the message by local time <span class="arithmatex">\(T + h(\delta + \epsilon)\)</span>.
-- If at time <span class="arithmatex">\(T + h(\delta + \epsilon)\)</span> on <span class="arithmatex">\(p\)</span>'s clock:
-1. <span class="arithmatex">\(c \leq f + 1 - h\)</span>, then at least <span class="arithmatex">\(h\)</span> component failures have occurred since the broadcast was initiated;
-2. <span class="arithmatex">\(c &gt; f + 1 - h\)</span>, then at least <span class="arithmatex">\(h - 1\)</span> component failures have occurred since the broadcast was initiated.</p>
+<p>Let <span class="arithmatex">\((T, s, o, h), h \leq k\)</span>, be a message accepted by a processor <span class="arithmatex">\(p\)</span> and let <span class="arithmatex">\(c\)</span> be the highest channel on which <span class="arithmatex">\(p\)</span> receives a copy of the message by local time <span class="arithmatex">\(T + h(\delta + \epsilon)\)</span>.</p>
+<ul>
+<li>If at time <span class="arithmatex">\(T + h(\delta + \epsilon)\)</span> on <span class="arithmatex">\(p\)</span>'s clock:<ol>
+<li><span class="arithmatex">\(c \leq f + 1 - h\)</span>, then at least <span class="arithmatex">\(h\)</span> component failures have occurred since the broadcast was initiated;</li>
+<li><span class="arithmatex">\(c &gt; f + 1 - h\)</span>, then at least <span class="arithmatex">\(h - 1\)</span> component failures have occurred since the broadcast was initiated.</li>
+</ol>
+</li>
+</ul>
 <div class="admonition proof">
 <p class="admonition-title">Intuitive Proof</p>
 <p>The previous processor has already received <span class="arithmatex">\((h-1)\)</span> failures since the hop count is <span class="arithmatex">\(h\)</span> already.</p>
@@ -1318,7 +1324,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年11月4日 05:29:53</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年11月4日 05:59:32</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年11月4日 05:23:58</span>
