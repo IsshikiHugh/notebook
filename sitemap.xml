@@ -361,12 +361,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://note.isshikih.top/cour_note/UTCS386/topic1/</loc>
+         <loc>https://note.isshikih.top/cour_note/UTCS386/paper1/</loc>
          <lastmod>2025-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://note.isshikih.top/cour_note/UTCS386/topic2/</loc>
+         <loc>https://note.isshikih.top/cour_note/UTCS386/paper2/</loc>
+         <lastmod>2025-11-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://note.isshikih.top/cour_note/UTCS386/paper3/</loc>
          <lastmod>2025-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
