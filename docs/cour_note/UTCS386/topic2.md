@@ -1,4 +1,4 @@
-# Synchronous Atomic Broadcast for Redundant Broadcast Channels
+# Paper 2: Synchronous Atomic Broadcast for Redundant Broadcast Channels
 
 ```bibtex
 @article{cristian1990synchronous,
@@ -77,6 +77,4 @@ So a message $(T, s, \sigma, h)$ will not be ignored if: $U < T + h \cdot (\delt
         - If $c > f + 1 - h$, then this is just the another case of the previous situation, the previous processor successfully forwarded the message to some higher channels. So it indicates $(h-1)$ failures.
 
 !!! property "The Unanimity Property"
-
     If a correct processor $p$ (one that does not crash during the broadcast) accepts a broadcast by time $T+\Delta$ on $p$'s clock, then each correct processor $q$ accepts the broadcast by time $T+\Delta$ on $q$'s clock.
-

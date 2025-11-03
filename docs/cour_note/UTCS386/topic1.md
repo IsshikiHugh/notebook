@@ -1,4 +1,4 @@
-# Topic 1: Probabilistic Clock Synchronization
+# Paper 1: Probabilistic Clock Synchronization
 
 ```bibtex
 @article{cristian1989probabilistic,
