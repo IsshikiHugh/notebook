@@ -116,6 +116,7 @@ Here $m$ and $N$ are computed periodically.
     For a slave process, at local rapport time $C(t) = L$, it estimates the master clock displays time M ($M\not= L$), it should adjust $A()$ so that $C'(t+\alpha) = M + \alpha$.
 
     Make it clear, we have this two equations:
+
     $$
     \left\{\begin{aligned}
     C(t) &= L
@@ -131,6 +132,7 @@ Here $m$ and $N$ are computed periodically.
     $$
 
     Solve it, we have:
+
     $$
     \left\{\begin{aligned}
     m &= \frac{M - L}{\alpha}
@@ -138,5 +140,4 @@ Here $m$ and $N$ are computed periodically.
     N &= L - (1 + m) \cdot H
     \end{aligned}\right.
     $$
-
 
