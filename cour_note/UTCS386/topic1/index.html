@@ -1310,37 +1310,35 @@ i.e. \; C(t) = (1 + m) \cdot H(t) + N
 <div class="admonition key-point">
 <p class="admonition-title">Adjustment</p>
 <p>For a slave process, at local rapport time <span class="arithmatex">\(C(t) = L\)</span>, it estimates the master clock displays time M (<span class="arithmatex">\(M\not= L\)</span>), it should adjust <span class="arithmatex">\(A()\)</span> so that <span class="arithmatex">\(C'(t+\alpha) = M + \alpha\)</span>.</p>
-<p>Make it clear, we have this two equations:
-<script type="math/tex; mode=display">
+<p>Make it clear, we have this two equations:</p>
+<div class="arithmatex">\[
 \left\{\begin{aligned}
-C(t) &= L
+C(t) &amp;= L
 \\
-C'(t+\alpha) &= M + \alpha
+C'(t+\alpha) &amp;= M + \alpha
 \end{aligned}\right.
 \implies
 \left\{\begin{aligned}
-(1 + m) \cdot H + N &= L
+(1 + m) \cdot H + N &amp;= L
 \\
-(1 + m) \cdot (H + \alpha) + N &= M + \alpha
+(1 + m) \cdot (H + \alpha) + N &amp;= M + \alpha
 \end{aligned}\right.
-</script>
-</p>
-<p>Solve it, we have:
-<script type="math/tex; mode=display">
+\]</div>
+<p>Solve it, we have:</p>
+<div class="arithmatex">\[
 \left\{\begin{aligned}
-m &= \frac{M - L}{\alpha}
+m &amp;= \frac{M - L}{\alpha}
 \\
-N &= L - (1 + m) \cdot H
+N &amp;= L - (1 + m) \cdot H
 \end{aligned}\right.
-</script>
-</p>
+\]</div>
 </div>
 <hr/>
 <div class="md-source-file">
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年11月3日 06:13:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年11月4日 05:23:58</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年11月3日 02:22:11</span>
