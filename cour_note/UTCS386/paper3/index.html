@@ -1256,9 +1256,11 @@
 </ul>
 <p>So the minimum membership formation message cost is <span class="arithmatex">\(n\)</span> <strong>datagram</strong> messages, while the periodic broadcast protocol requires <span class="arithmatex">\(n\)</span> <strong>atomic</strong> broadcasts.</p>
 <p>Reconfiguration latency for a single failure is given by <span class="arithmatex">\(D_1 = \pi+n\delta+\varepsilon+J\)</span> where <span class="arithmatex">\(J=2\Delta\)</span>. This assumes that processor-to-processor delay is between <span class="arithmatex">\(0\)</span> and <span class="arithmatex">\(\delta\)</span>. <em><span class="arithmatex">\(D_1 = \pi+\delta+\varepsilon+J\)</span> if the processor-to-processor delay is exactly <span class="arithmatex">\(\delta\)</span>. (Why?)</em></p>
-<p>Worst-case detection time for <span class="arithmatex">\(k\)</span> failures is given by:
-- <span class="arithmatex">\(D_k = 2\pi+(k-1)\delta-(n-1)\delta+\varepsilon+J\)</span> where <span class="arithmatex">\(J=2\Delta\)</span> if the processor-to-processor delay is exactly <span class="arithmatex">\(\delta\)</span>. This assumes that <span class="arithmatex">\(\pi&gt;\delta\)</span> so that member check-in can finish before the end of the period.
-- <span class="arithmatex">\(D_k = 2\pi+(k-1)\delta+\varepsilon+J\)</span> if processor-to-processor delay is between <span class="arithmatex">\(0\)</span> and <span class="arithmatex">\(\delta\)</span>.</p>
+<p>Worst-case detection time for <span class="arithmatex">\(k\)</span> failures is given by:</p>
+<ul>
+<li><span class="arithmatex">\(D_k = 2\pi+(k-1)\delta-(n-1)\delta+\varepsilon+J\)</span> where <span class="arithmatex">\(J=2\Delta\)</span> if the processor-to-processor delay is exactly <span class="arithmatex">\(\delta\)</span>. This assumes that <span class="arithmatex">\(\pi&gt;\delta\)</span> so that member check-in can finish before the end of the period.</li>
+<li><span class="arithmatex">\(D_k = 2\pi+(k-1)\delta+\varepsilon+J\)</span> if processor-to-processor delay is between <span class="arithmatex">\(0\)</span> and <span class="arithmatex">\(\delta\)</span>.</li>
+</ul>
 </div>
 <div class="admonition key-point">
 <p class="admonition-title">The Neighbor Surveillance Protocol</p>
@@ -1272,7 +1274,7 @@
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年11月4日 10:00:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年11月4日 10:01:36</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2025年11月4日 06:20:39</span>
