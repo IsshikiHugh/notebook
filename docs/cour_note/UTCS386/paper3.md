@@ -41,6 +41,7 @@
 
 
     Worst-case detection time for $k$ failures is given by:
+
     - $D_k = 2\pi+(k-1)\delta-(n-1)\delta+\varepsilon+J$ where $J=2\Delta$ if the processor-to-processor delay is exactly $\delta$. This assumes that $\pi>\delta$ so that member check-in can finish before the end of the period.
     - $D_k = 2\pi+(k-1)\delta+\varepsilon+J$ if processor-to-processor delay is between $0$ and $\delta$.
 
