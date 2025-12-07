@@ -125,4 +125,4 @@ Use D to calculate the unnecessary undone messagelist operations. If D has a bou
 !!! property "Theorem 8"
     Let `S` be an MRS, R-normal system.
 
-    Then `S` is domino-free.e
+    Then `S` is domino-free.
