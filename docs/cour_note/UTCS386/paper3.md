@@ -20,9 +20,9 @@
 - $\Delta = \eta + D + \eta$ refers to the process-to-process atomic broadcast delay bound.
 
 !!! key-point "The Periodic Broadcast Membership Protocol"
-    - Periodically (every $\pi$) one **broadcast** for issuing a new membership list; and each processor replies a PRESENT using **broadcast**.
-    - One processor issues $M = MEMBERSHIP(V=S+\Delta)$ at time $S$. And a group will be formed at time $C=V+\Delta$.
+    - Periodically (every $\pi$) one PRESENT **broadcast** for forming a new membership list.
     - Worst-case-join-delay: $J=2\Delta$
+    - Reconfiguration latency is: $D=\pi + \Delta + \varepsilon$
 
     The main drawback is that it requires $n$ (cardinality) atomic broadcasts every $\pi$ time units, even when no failures or joins occur.
 
