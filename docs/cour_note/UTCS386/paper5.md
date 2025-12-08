@@ -78,7 +78,7 @@ The upper bound of the utilization factor will be bounded by the "feasible sched
         - We have $C_1 \geq T_2 - T_1\lceil \frac{T_2}{T_1} \rceil$.
         - The utilization factor is $U=\frac{T_1}{T_2}\lfloor \frac{T_2}{T_1} \rfloor + C_1\left[ \frac{1}{T_1} - \frac{1}{T_2}\lceil\frac{T_2}{T_1}\rceil \right]$.
     - The minimum value of U is achieved when $C_1 = T_2 - T_1\lfloor \frac{T_2}{T_1} \rfloor$. The equation is $U=1-\frac{T_1}{T_2}\left[ \lceil \frac{T_2}{T_1} \rceil - \frac{T_2}{T_1} \right]\left[ \frac{T_2}{T_1} - \lfloor \frac{T_2}{T_1} \rfloor \right]$.
-        - And we denote $I=\lceil \frac{T_2}{T_1} \rceil$ and $f=\frac{T_2}{T_1} - \lfloor \frac{T_2}{T_1} \rfloor$, then the results can be rewrite as:
+        - And we denote $I=\lfloor \frac{T_2}{T_1} \rfloor$ and $f=\frac{T_2}{T_1} - \lfloor \frac{T_2}{T_1} \rfloor$, then the results can be rewrite as:
             - $U=1-\frac{1}{(I+f)}(1-f)f$
             - Minimize it and we have $U=2(\sqrt{2}-1)$.
 
