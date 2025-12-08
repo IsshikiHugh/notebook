@@ -99,7 +99,7 @@ Use D to calculate the unnecessary undone messagelist operations. If D has a bou
 !!! property "Theorem 5"
     Let `S` be an asynchronous system and suppose that a `MARK` command is executed just before every `RECEIVE` command. Then `S` is domino-free and `D = 0`.
 
-    （通过证明都是 necessary undone 来证明是 domino-free 的。）
+    （通过证明都是 necessary undone 来证明是 domino-free 的。具体证明是这样的：对于第一个 revoke 的 block 来说，因为要 revoke 到 ckpt，所以全都是 necessarily undone；而只有其中的 SEND 会影响别的 process 进行 revoke；而由于所有 process 的 RECEIVE 都是前缀（这个是为了扩展到后面的 MRS，在这里其实就是指 MRS 中有且仅有一个 `RECEIVE` 的特例），所以所有的 SEND 都会被这个 RECEIVE condition 住，也自然都是 necessarily undone 的。）
 
 !!! definition "MRS process"
     An MRS process is a process where the `MARK`, `SEND`, and `RECEIVE` operations are performed in an order specified by the regular expression (`MARK`; `RECEIVE`\*; `SEND`\*)\*. Thus a `MARK` command is followed by any number of `RECEIVE` commands that are followed in turn by any number of `SEND` commands; this entire pattern is repeated indefinitely.
