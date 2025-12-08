@@ -94,8 +94,14 @@ The upper bound of the utilization factor will be bounded by the "feasible sched
 
 ## Deadline-Driven Scheduling / Dynamic Priority Scheduling
 
+!!! definition "Deadline-Driven Scheduling"
+    A task will be assigned the highest priority if the deadline of its current request is the nearest, and will be assigned the lowest priority if the deadline of its current request is the furthest.
+    At any instant, the task with the highest priority and yet unfulfilled request will be executed.
+
 !!! property "Theorem 6"
     When the deadline driven scheduling algorithm is used to schedule a set of tasks on a processor, there is no processor idle time prior to an overflow.
+
+    （如果有 overflow，则没有 idle time，不过我觉得这句话说的非常不严谨。）
 
 !!! property "Theorem 7"
     For a given set of m tasks, the deadline driven scheduling algorithm is feasible if and only if:
@@ -103,4 +109,7 @@ The upper bound of the utilization factor will be bounded by the "feasible sched
     $$
     \sum_{i}\frac{C_i}{T_i} \leq 1
     $$
+
+    （利用 Theorem 6 辅助证明。）
+
 
