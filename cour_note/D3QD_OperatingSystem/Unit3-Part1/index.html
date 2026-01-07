@@ -1490,7 +1490,7 @@ Hardware address protection with base and limit registers. (right)</p>
 <p>需要注意的是，动态装载并不需要操作系统的支持，而是由开发者来负责实现。</p>
 </blockquote>
 <h3 id="动态链接和共享库">动态链接和共享库<a class="headerlink" href="#动态链接和共享库" title="Permanent link">¶</a></h3>
-<p>我们在<a href="../Unit0/#链接器和装载器" target="_blank">总览#链接器和装载器</a>中已经谈论过动态链接了。而能被动态链接的库就被称为<strong>动态链接库(dynamically linked libraries, DDLs)</strong>，由于它们可以被多个进程共享，所以也被称为<strong>共享库(shared libraries)</strong>。</p>
+<p>我们在<a href="../Unit0/#链接器和装载器" target="_blank">总览#链接器和装载器</a>中已经谈论过动态链接了。而能被动态链接的库就被称为<strong>动态链接库(dynamically linked libraries, DLLs)</strong>，由于它们可以被多个进程共享，所以也被称为<strong>共享库(shared libraries)</strong>。</p>
 <blockquote>
 <p>区别于动态装载，动态链接需要操作系统的支持。</p>
 </blockquote>
@@ -1695,14 +1695,14 @@ Paging model of logical and physical memory.<br/>
      +  \underbrace{(1 - \text{hit ratio}) \times 2 \times \text{memory-access}}_\text{TLB miss} \\
     &amp;= p_{\text{hit}} \times t + (1 - p_{\text{hit}}) \times 2t \\
     &amp;= (2 - p_{\text{hit}})t
-\end{aligned} 
+\end{aligned}
 \]</div>
 <p>如果题中给了 TLB access time，则需要将这个也加上去，因为无论 hit 还是 miss 都需要访问 TLB。</p>
 <div class="arithmatex">\[
 \begin{aligned}
     &amp;\text{effective memory-access time} \\
     &amp;= (2 - p_{\text{hit}})t + \varepsilon_\text{TLB cache access}
-\end{aligned} 
+\end{aligned}
 \]</div>
 <blockquote>
 <p>在现代计算机中，TLB 的结构可能会更加复杂（可能有更多层），所以实际的计算可能比上述更加复杂。</p>
@@ -1753,7 +1753,7 @@ Paging model of logical and physical memory.<br/>
 <p><center> <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../img/37.png"><img alt="" src="../img/37.png" width="80%"/></a> </center></p>
 <details class="section" open="open">
 <summary>clustered page tables</summary>
-<p>A variation of this scheme that is useful for 64-bit address spaces has been proposed. This variation uses <strong>clustered page tables</strong>, which are similar to hashed page tables except that <strong>each entry in the hash table refers to several pages</strong> (such as 16) rather than a single page. </p>
+<p>A variation of this scheme that is useful for 64-bit address spaces has been proposed. This variation uses <strong>clustered page tables</strong>, which are similar to hashed page tables except that <strong>each entry in the hash table refers to several pages</strong> (such as 16) rather than a single page.</p>
 <p>Therefore, a single page-table entry can store the mappings for multiple physical-page frames. Clustered page tables are particularly useful for <strong>sparse</strong> address spaces, where memory references are <strong>noncontiguous and scattered</strong> throughout the address space.</p>
 </details>
 </details>
@@ -1843,7 +1843,7 @@ Diagram showing virtual memory that is larger than physical memory.
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2026年1月7日 13:55:16</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
