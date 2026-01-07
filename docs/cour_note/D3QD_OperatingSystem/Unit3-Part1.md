@@ -13,7 +13,7 @@
     在引入[帧 & 页](#帧--页){target="_blank"}设计后，我们不再需要以进程为单位去观察内存，而是以页为单位，这意味着粒度更小，我们可以更加灵活地去管理内存。
 
     在[交换技术](#交换技术){target="_blank"}的支持下，**不是正在被使用的**虚拟内存可以**实际**被映射到物理内存或[后备存储](#交换技术){target="_blank"}中。更具体的来说，我们会将“暂时用不到”的东西暂放在[后备存储](#交换技术){target="_blank"}中，而在需要的时候将它们换到物理内存中。而在[下一节](./Unit3-Part2.md){target="_blank"}，我们要关注的重要问题就是，这些操作具体如何执行、如何优化，也就是介绍 demand paging 系统。
-    
+
 ## 内存基础设计
 
 ### 内存保护
@@ -52,7 +52,7 @@ Hardware address protection with base and limit registers. (right)
 
 ### 动态链接和共享库
 
-我们在[总览#链接器和装载器](./Unit0.md#链接器和装载器){target="_blank"}中已经谈论过动态链接了。而能被动态链接的库就被称为**动态链接库(dynamically linked libraries, DDLs)**，由于它们可以被多个进程共享，所以也被称为**共享库(shared libraries)**。
+我们在[总览#链接器和装载器](./Unit0.md#链接器和装载器){target="_blank"}中已经谈论过动态链接了。而能被动态链接的库就被称为**动态链接库(dynamically linked libraries, DLLs)**，由于它们可以被多个进程共享，所以也被称为**共享库(shared libraries)**。
 
 > 区别于动态装载，动态链接需要操作系统的支持。
 
@@ -64,7 +64,7 @@ Hardware address protection with base and limit registers. (right)
 !!! question "为什么进程所需要的内存是连续的？"
 
     请读者思考，为什么装载进程所需要的内存需要是完整、连续的，而不能是东一块而西一块的呢？
-    
+
     或者说，如果你认为它可以不连续，为了实现让它能正常运作，你可能需要哪些措施呢？你的设计相比使用朴素的连续内存分配，有什么优势和劣势呢？
 
     ??? success "提示"
@@ -112,16 +112,16 @@ Dynamic relocation using a relocation register.
 物理地址和虚拟地址的区分让使得用户程序不再需要（也不被允许）关注物理地址。此外，通过利用虚拟地址和物理地址的灵活映射，我们可以通过分页来实现良好的内存管理。
 
 !!! tip "头脑风暴"
-    
+
     请读者尝试设想，利用虚拟地址和物理地址的映射关系，我们能做到哪些事？
-    
+
     ??? success "提示"
-    
+
         1. 考虑数学上如何分类“函数映射”；
         2. 考虑如何实现地址连续；
 
 !!! tip "头脑风暴"
-    
+
     请读者思考，物理地址和虚拟地址的长度需要一样吗？
 
 <a id="virtual-address-space"/>
@@ -168,9 +168,9 @@ Dynamic relocation using a relocation register.
         2. 作为缩写的 frame 全称是 page frame，也被定义为 physical page；
 
         !!! warning "为了避免歧义，本 block 中，我们只使用 page，virtual page，physical page 这三个术语！"
-        
+
         在这个定义里，page 表示的实际上是抽象的数据块（注意，不是虚拟的），换句话来说：
-        
+
         1. page 的本质是“数据信息”；
         2. physical page 是 page 在物理内存上的实际存储形式；
         3. virtual page 是 page 的在虚拟内存上的逻辑映象，也 physical page 的一个 view；
@@ -186,7 +186,7 @@ Dynamic relocation using a relocation register.
     由于帧和页的大小是固定的，所以虽然理论上我们需要的是每一帧的首地址，但所谓的“首地址”实际上是 $m * FrameSize$，因此，只需要用 $m$ 就可以唯一确定了（就像数组的 random access）。
 
     现在，请读者思考，当 $FrameSize = 2^k$ 时，会有怎样良好的性质？
-    
+
     ??? success "提示"
 
         联系[页 & 虚拟地址](#页--虚拟地址){target="_blank"}，考虑整个地址的二进制表示中表示页号的部分在整个二进制串中的构成！
@@ -290,7 +290,7 @@ Paging model of logical and physical memory.<br/>
 此外，TLB 允许特定的表项被线固(wired down)，<u>被线固的表项不再允许被替换</u>。（~~这个中文是我自己才华横溢出来的，请不要到处用容易被当没见识。~~）
 
 !!! warning "虽然页表是 per-process data structures，但 TLB 并不是！"
-    
+
 正因如此，在 context switch 的时候，我们需要清空 TLB，即进行 flush 操作，否则下一个进程就会访问到上一个进程的页表。又或者我们不需要每次都清空 TLB，而是在 TLB 的表项中加入一个**地址空间标识符(address-space identifier, ASIDs)**字段；在查询页号时，也比较 ASID，只有 ASID 一致才算匹配成功。
 
 <center> ![](img/35.png){ width=80% } </center>
@@ -306,7 +306,7 @@ Paging model of logical and physical memory.<br/>
          +  \underbrace{(1 - \text{hit ratio}) \times 2 \times \text{memory-access}}_\text{TLB miss} \\
         &= p_{\text{hit}} \times t + (1 - p_{\text{hit}}) \times 2t \\
         &= (2 - p_{\text{hit}})t
-    \end{aligned} 
+    \end{aligned}
     $$
 
     如果题中给了 TLB access time，则需要将这个也加上去，因为无论 hit 还是 miss 都需要访问 TLB。
@@ -315,7 +315,7 @@ Paging model of logical and physical memory.<br/>
     \begin{aligned}
         &\text{effective memory-access time} \\
         &= (2 - p_{\text{hit}})t + \varepsilon_\text{TLB cache access}
-    \end{aligned} 
+    \end{aligned}
     $$
 
     > 在现代计算机中，TLB 的结构可能会更加复杂（可能有更多层），所以实际的计算可能比上述更加复杂。
@@ -383,8 +383,8 @@ Paging model of logical and physical memory.<br/>
 
     ???+ section "clustered page tables"
 
-        A variation of this scheme that is useful for 64-bit address spaces has been proposed. This variation uses **clustered page tables**, which are similar to hashed page tables except that **each entry in the hash table refers to several pages** (such as 16) rather than a single page. 
-        
+        A variation of this scheme that is useful for 64-bit address spaces has been proposed. This variation uses **clustered page tables**, which are similar to hashed page tables except that **each entry in the hash table refers to several pages** (such as 16) rather than a single page.
+
         Therefore, a single page-table entry can store the mappings for multiple physical-page frames. Clustered page tables are particularly useful for **sparse** address spaces, where memory references are **noncontiguous and scattered** throughout the address space.
 
 <a id="inverted-pgtb"/>
