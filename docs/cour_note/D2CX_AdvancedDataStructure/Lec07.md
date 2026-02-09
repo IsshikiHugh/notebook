@@ -111,7 +111,7 @@ $$
         $$
     === "解答"
         **预设**：
-        
+
         $$
         T(N) = O(N\log N)
         $$
@@ -156,18 +156,18 @@ $$
 对于一个递推式，我们将它不断展开以后，其形式大概会是这样：
 
 $$
-T(N) = ... = 
+T(N) = ... =
 \underbrace{\sum_{leaf_i}^{leaves}T(N_{leaf_i})}_{conquer}
-+ 
++
 \underbrace{\sum_{node_i}^{non-leaf-nodes}f(N_{node_i})}_{combine}
 $$
 
 其中，由于末端子问题的规模一般都足够小，可以认为 $T(N_{leaf_i})$ 都是常数，于是上式又可以变化为：
 
 $$
-T(N) = ... = 
+T(N) = ... =
 \underbrace{c\; N_{leaves}}_{conquer}
-+ 
++
 \underbrace{\sum_{node_i}^{non-leaf-nodes}f(N_{node_i})}_{combine}
 $$
 
@@ -193,9 +193,9 @@ $$
     于是我们可以根据下式的形式，对其进行求和，得到图片中下方的式子。
 
     $$
-    T(N) = ... = 
+    T(N) = ... =
     \underbrace{c\; N_{leaves}}_{conquer}
-    + 
+    +
     \underbrace{\sum_{node_i}^{non-leaf-nodes}f(N_{node_i})}_{combine}
     $$
 
@@ -230,7 +230,7 @@ $$
         - $f(N) = N = \Theta(N^{\log_2{2}})$，适用于情况 2；
         - 因此得到结果 $T(N) = \Theta(N \log N)$；
     - 【eg2】$a = b = 2,\; f(N) = N \log N$；
-        - $f(N) = N \log N$，虽然 $N \log N = \Omega(N^{\log_2{2}})$，但是 $N \log N \neq \Omega(N^{(\log_2{2}) - \varepsilon})$，所以不适用于情况 3；
+        - $f(N) = N \log N$，虽然 $N \log N = \Omega(N^{\log_2{2}})$，但是 $N \log N \neq \Omega(N^{(\log_2{2}) + \varepsilon})$，所以不适用于情况 3；
             - 具体来说，$\lim \limits_{N\to \infty} \frac{N \log N}{N^{1+\varepsilon}}=\lim \limits_{N\to \infty} \frac{\log N}{N^{\varepsilon}} = 0 \text{ for fixed } \varepsilon > 0$；
             - 这个例子体现出了 $\varepsilon$ 的一定作用；
 
@@ -268,7 +268,7 @@ $$
 
         $$
         \begin{aligned}
-        T(N) 
+        T(N)
         &= \Theta(N^{\log_b{a}}) + \sum_{j = 0}^{(\log_b{N})-1} a^j O\left(\left(\frac{N}{b^j}\right)^{(\log_b{a})-\varepsilon}\right)\\
         &= \Theta(N^{\log_b{a}}) + O\left(
             N^{(\log_b{a}) - \varepsilon}
@@ -352,12 +352,12 @@ $$
 
         $$
         \begin{aligned}
-            T(N) 
+            T(N)
             &< \Theta(N^{\log_b{a}}) + \sum_{j=0}^{(\log_b{N})-1}c^j f(N) \\
             &= \Theta(N^{\log_b{a}}) + f(N) \sum_{j=0}^{(\log_b{N})-1}c^j \\
             &= \Theta(N^{\log_b{a}}) + f(N) \times \frac{c^{1-\log_b{N}}}{1-c} \\
             &= \Theta(N^{\log_b{a}}) + f(N) \times \frac{1-N^{\log_b{c}}}{1-c}
-        \end{aligned}        
+        \end{aligned}
         $$
 
         而由于 $c<1$，所以 $\log_b{c} < 0$；而 $N > 0$，而且一般非常大，所以 $N^{\log_b{c}} \in (0,1)$。因此，对于确定的常数 $c$，我们有 $\frac{1-N^{\log_b{c}}}{1-c} \in \left(0, \frac{1}{1-c}\right)$；
@@ -366,7 +366,7 @@ $$
 
         $$
         \begin{aligned}
-            T(N) 
+            T(N)
             &< \Theta(N^{\log_b{a}}) + f(N) \times \frac{1-N^{\log_b{c}}}{1-c} \\
             &< \Theta(N^{\log_b{a}}) + f(N) \times \frac{1}{1-c}
         \end{aligned}
