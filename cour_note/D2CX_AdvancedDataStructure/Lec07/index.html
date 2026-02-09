@@ -1531,16 +1531,16 @@ a^{\log_b N} = \exp^{\frac{\ln N}{\ln b} \ln a} = \exp^{\frac{\ln a}{\ln b} \ln 
 <p>就类似于直接展开式子，只不过通过树状图的形式或许更加直观。</p>
 <p>对于一个递推式，我们将它不断展开以后，其形式大概会是这样：</p>
 <div class="arithmatex">\[
-T(N) = ... = 
+T(N) = ... =
 \underbrace{\sum_{leaf_i}^{leaves}T(N_{leaf_i})}_{conquer}
-+ 
++
 \underbrace{\sum_{node_i}^{non-leaf-nodes}f(N_{node_i})}_{combine}
 \]</div>
 <p>其中，由于末端子问题的规模一般都足够小，可以认为 <span class="arithmatex">\(T(N_{leaf_i})\)</span> 都是常数，于是上式又可以变化为：</p>
 <div class="arithmatex">\[
-T(N) = ... = 
+T(N) = ... =
 \underbrace{c\; N_{leaves}}_{conquer}
-+ 
++
 \underbrace{\sum_{node_i}^{non-leaf-nodes}f(N_{node_i})}_{combine}
 \]</div>
 <p>具体来说解释其含义，combine 部分就是在每一次“分治”的处理时间，如合并当前的子问题分治后的结果，体现在递推式的 <span class="arithmatex">\(f(N)\)</span> 部分；而 conquer 部分指的是当“分治”的“治”在“分”的末端的体现，即对于足够小的规模的问题，不再需要继续“分”的时候，对其处理的开销。</p>
@@ -1558,9 +1558,9 @@ T(N) = ... =
 <p>显然，树高为 <span class="arithmatex">\(\log_4 N\)</span>，根记为 <span class="arithmatex">\(0\)</span>，每个分治节点的 combine 开销已经标注在图的节点位置，横向箭头标记的是对该层所有节点的开销的求和。特别的，对于最底层，即叶子层，它表示的是 conquer 部分的开销（虽然我个人觉得没必要区分这俩）。</p>
 <p>于是我们可以根据下式的形式，对其进行求和，得到图片中下方的式子。</p>
 <div class="arithmatex">\[
-T(N) = ... = 
+T(N) = ... =
 \underbrace{c\; N_{leaves}}_{conquer}
-+ 
++
 \underbrace{\sum_{node_i}^{non-leaf-nodes}f(N_{node_i})}_{combine}
 \]</div>
 </div>
@@ -1596,7 +1596,7 @@ T(N) = ... =
 </ul>
 </li>
 <li>【eg2】<span class="arithmatex">\(a = b = 2,\; f(N) = N \log N\)</span>；<ul>
-<li><span class="arithmatex">\(f(N) = N \log N\)</span>，虽然 <span class="arithmatex">\(N \log N = \Omega(N^{\log_2{2}})\)</span>，但是 <span class="arithmatex">\(N \log N \neq \Omega(N^{(\log_2{2}) - \varepsilon})\)</span>，所以不适用于情况 3；<ul>
+<li><span class="arithmatex">\(f(N) = N \log N\)</span>，虽然 <span class="arithmatex">\(N \log N = \Omega(N^{\log_2{2}})\)</span>，但是 <span class="arithmatex">\(N \log N \neq \Omega(N^{(\log_2{2}) + \varepsilon})\)</span>，所以不适用于情况 3；<ul>
 <li>具体来说，<span class="arithmatex">\(\lim \limits_{N\to \infty} \frac{N \log N}{N^{1+\varepsilon}}=\lim \limits_{N\to \infty} \frac{\log N}{N^{\varepsilon}} = 0 \text{ for fixed } \varepsilon &gt; 0\)</span>；</li>
 <li>这个例子体现出了 <span class="arithmatex">\(\varepsilon\)</span> 的一定作用；</li>
 </ul>
@@ -1632,7 +1632,7 @@ T(N) = \Theta(N^{\log_b{a}}) + \sum_{j = 0}^{(\log_b{N})-1} a^j f(\frac{N}{b^j})
 <p>而我们有条件 <span class="arithmatex">\(f(N)=O(N^{(\log_b{a})-\varepsilon}), \text{ for }\varepsilon&gt;0\)</span>，将它代入到上式中得到：</p>
 <div class="arithmatex">\[
 \begin{aligned}
-T(N) 
+T(N)
 &amp;= \Theta(N^{\log_b{a}}) + \sum_{j = 0}^{(\log_b{N})-1} a^j O\left(\left(\frac{N}{b^j}\right)^{(\log_b{a})-\varepsilon}\right)\\
 &amp;= \Theta(N^{\log_b{a}}) + O\left(
     N^{(\log_b{a}) - \varepsilon}
@@ -1704,18 +1704,18 @@ a^jf(\frac{N}{b^j}) &lt; c\times a^{j-1}f(\frac{N}{b^{j-1}}) &lt; ... &lt; c^j f
 <p>将这个不等式应用于求和式中，我们能够得到：</p>
 <div class="arithmatex">\[
 \begin{aligned}
-    T(N) 
+    T(N)
     &amp;&lt; \Theta(N^{\log_b{a}}) + \sum_{j=0}^{(\log_b{N})-1}c^j f(N) \\
     &amp;= \Theta(N^{\log_b{a}}) + f(N) \sum_{j=0}^{(\log_b{N})-1}c^j \\
     &amp;= \Theta(N^{\log_b{a}}) + f(N) \times \frac{c^{1-\log_b{N}}}{1-c} \\
     &amp;= \Theta(N^{\log_b{a}}) + f(N) \times \frac{1-N^{\log_b{c}}}{1-c}
-\end{aligned}        
+\end{aligned}
 \]</div>
 <p>而由于 <span class="arithmatex">\(c&lt;1\)</span>，所以 <span class="arithmatex">\(\log_b{c} &lt; 0\)</span>；而 <span class="arithmatex">\(N &gt; 0\)</span>，而且一般非常大，所以 <span class="arithmatex">\(N^{\log_b{c}} \in (0,1)\)</span>。因此，对于确定的常数 <span class="arithmatex">\(c\)</span>，我们有 <span class="arithmatex">\(\frac{1-N^{\log_b{c}}}{1-c} \in \left(0, \frac{1}{1-c}\right)\)</span>；</p>
 <p>因此，上式便能改变为：</p>
 <div class="arithmatex">\[
 \begin{aligned}
-    T(N) 
+    T(N)
     &amp;&lt; \Theta(N^{\log_b{a}}) + f(N) \times \frac{1-N^{\log_b{c}}}{1-c} \\
     &amp;&lt; \Theta(N^{\log_b{a}}) + f(N) \times \frac{1}{1-c}
 \end{aligned}
@@ -1807,7 +1807,7 @@ T(N) = \left\{
 <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2026年2月10日 03:37:19</span>
 <br/>
         创建日期:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">2024年1月13日 19:00:24</span>
