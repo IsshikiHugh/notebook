@@ -41,6 +41,16 @@
 
     <div class="flink-list-item">
             <div class="flink-item-icon">
+                ![](./_assets/avatars/gztime.png)
+            </div>
+        <a href="https://blog.gzti.me/" title="GZTime's Blog" target="_blank">
+            <div class="flink-item-name">GZTime's Blog</div>
+            <div class="flink-item-desc"> 🤤 gzgg 教死我！</div>
+        </a>
+    </div>
+
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
                 ![](./_assets/avatars/zicx.jpeg)
             </div>
         <a href="https://zicx.top/notebook/" title="Zicx 的 笔记本" target="_blank">
