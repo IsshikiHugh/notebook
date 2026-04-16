@@ -169,6 +169,16 @@
         </a>
     </div>
 
+    <div class="flink-list-item">
+            <div class="flink-item-icon">
+                ![](https://WalkinDadHH.github.io/notes/assets/avatar.webp)
+            </div>
+        <a href="https://WalkinDadHH.github.io/notes/" title="WalkinDadHH's Notebook" target="_blank">
+            <div style="font-size: 1.2em;" class="flink-item-name">WalkinDadHH 的 笔记本</div>
+            <div class="flink-item-desc"> 流离之人追逐幻影。 </div>
+        </a>
+    </div>
+
     </div>
 
 ??? tip "🔗 有意思的链接"
