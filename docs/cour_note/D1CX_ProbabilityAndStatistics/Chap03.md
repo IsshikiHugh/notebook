@@ -58,7 +58,7 @@ $F_{Y|X}(y|x)=P\{Y\leq y | X = x\}=\frac{P\{Y\leq y,X=x\}}{P\{X=x\}}$ 为 $\{ X=
 3. 在 $f(x,y)$ 的连续点 $(x,y)$ 上有 $\frac{\partial^2F(x,y)}{\partial x\partial y}=f(x,y)$；
 4. $(X,Y)$ 落入 $xOy$ 平面任意区域 $D$ 的概率为：$P\{(X,Y)\in D\}=\iint \limits_{D} f(x,y)\mathrm{d}x\mathrm{d}y$；
    - 由于其几何意义为落在以 $D$ 为底，以曲面 $z=f(x,y)$ 为顶面的柱体体积，所以当 $D$ 面积为 $0$ 时概率为 $0$；
-   - `eg`：$P(X=1,Y=1)=0$，$P(X+Y=1)=0$，$P(X^2+Y^2=1)\not =0$；
+   - `eg`：$P(X=1,Y=1)=0$，$P(X+Y=1)=0$，$P(X^2+Y^2=1)=0$；
 
 ### 边际密度函数
 
